@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{20b90ce4-7fcb-4731-b9a0-075f875de82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{f18ab499-84e1-499f-8eff-9754361e0e52}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="gl3w">
+      <UniqueIdentifier>{42f99867-3108-43b8-99d0-fabefaf1f2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res_manager">
+      <UniqueIdentifier>{4d3b9ae6-9d54-4664-ada8-0867516a0fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls">
+      <UniqueIdentifier>{4af6253d-cf2c-4816-ad92-39a212d68b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="json">
+      <UniqueIdentifier>{098a79ae-f209-436c-b0e5-71d76d45ac34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controller">
+      <UniqueIdentifier>{4410c1c2-6270-4e7c-a455-c69b19f79b46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{be949d9d-5e7f-4b53-81a9-c102882c28fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="project">
+      <UniqueIdentifier>{af33b2a6-b2dc-4e4a-abd9-b73db9b8198f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_glfw_gl3.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\gl3w\GL\gl3w.c">
+      <Filter>gl3w</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="res_output.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="factory.h">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ui_assembler.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_button.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_base.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_polygon_image.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_reader.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_value.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="json\json_writer.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_slide.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_trajectory_box.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_listbox.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_image.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="af_application.cpp">
+      <Filter>controller</Filter>
+    </ClCompile>
+    <ClCompile Include="common_functions.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_res_load.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="project_edit.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_glfw_gl3.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\gl3w\GL\gl3w.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\gl3w\GL\glcorearb.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\texture.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="res_output.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="control_common_def.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ui_assembler.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_button.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_base.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_polygon_image.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="json\autolink.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\config.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\features.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\forwards.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\json_batchallocator.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\reader.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\value.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="json\writer.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_slide.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_trajectory_box.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_listbox.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_image.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="af_application.h">
+      <Filter>controller</Filter>
+    </ClInclude>
+    <ClInclude Include="af_message_queue.h">
+      <Filter>controller</Filter>
+    </ClInclude>
+    <ClInclude Include="common_functions.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_res_load.h" />
+    <ClInclude Include="project_edit.h">
+      <Filter>project</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.txt" />
+    <None Include="json\json_internalarray.inl">
+      <Filter>json</Filter>
+    </None>
+    <None Include="json\json_internalmap.inl">
+      <Filter>json</Filter>
+    </None>
+    <None Include="json\json_valueiterator.inl">
+      <Filter>json</Filter>
+    </None>
+  </ItemGroup>
+</Project>

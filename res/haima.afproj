@@ -1,0 +1,55 @@
+{
+   "name" : "screen",
+   "type" : "ft_base",
+   "texture_res_list" : [
+      {
+         "texture_pack_file" : "mainview.png",
+         "texture_data_file" : "mainview.json"
+      }
+   ],
+   "childs" : [
+      {
+         "name" : "background",
+         "type" : "ft_image",
+         "screen_pos" : {
+            "x" : 0.0,
+            "y" : 0.0,
+            "z" : 0.0
+         },
+         "texture_id_index" : 0,
+         "texture_index" : 1
+      },
+      {
+         "name" : "pointer_left",
+         "type" : "ft_image",
+         "screen_pos" : {
+            "x" : 104.0,
+            "y" : 67.0,
+            "z" : 0.0
+         },
+         "texture_id_index" : 0,
+         "texture_index" : 2,
+         "axipos" : {
+            "x" : 421.0,
+            "y" : 384.0,
+            "a" : 0.0
+         }
+      },
+      {
+         "name" : "pointer_right",
+         "type" : "ft_image",
+         "screen_pos" : {
+            "x" : 576.0,
+            "y" : 67.0,
+            "z" : 0.0
+         },
+         "texture_id_index" : 0,
+         "texture_index" : 3,
+         "axipos" : {
+            "x" : 997.0,
+            "y" : 384.0,
+            "a" : 0.0
+         }
+      }
+   ]
+}

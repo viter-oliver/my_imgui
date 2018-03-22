@@ -1,0 +1,43 @@
+﻿Build started 2018/3/20 10:50:31.
+     1>Project "G:\GitHub\imgui\examples\auto_future_graphics_design\auto_future_graphics_design.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IG:\GitHub\imgui\examples\\..\soil /IG:\GitHub\imgui\examples\\libs\glfw\include /IG:\GitHub\imgui\examples\\libs\gl3w /I..\.. /IG:\GitHub\imgui\examples\\..\glm /Zi /nologo /W4 /WX- /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\\" /Fd"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\vc120.pdb" /Gd /TP /errorReport:prompt main.cpp
+         main.cpp
+     1>g:\github\imgui\examples\auto_future_graphics_design\ui_assembler.h(10): warning C4512: 'ui_assembler' : assignment operator could not be generated
+                 g:\github\imgui\examples\auto_future_graphics_design\ui_assembler.h(4) : see declaration of 'ui_assembler'
+     1>main.cpp(25): warning C4100: 'argv' : unreferenced formal parameter
+     1>main.cpp(76): warning C4189: 'show_another_window' : local variable is initialized but not referenced
+     1>main.cpp(75): warning C4189: 'show_demo_window' : local variable is initialized but not referenced
+     1>main.cpp(77): warning C4189: 'show_edit_window' : local variable is initialized but not referenced
+     1>main.cpp(202): warning C4189: 'node_flags' : local variable is initialized but not referenced
+       Link:
+         D:\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.exe" /NOLOGO /LIBPATH:"G:\GitHub\imgui\examples\\libs\glfw\lib-vc2010-64" /LIBPATH:G:\GitHub\imgui\examples\\..\soil opengl32.lib glfw3.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.lib" /MACHINE:X64 G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui_demo.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui_draw.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\gl3w.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\af_application.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\common_functions.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_base.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_button.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_image.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_listbox.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_polygon_image.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_slide.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_trajectory_box.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui_impl_glfw_gl3.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\json_reader.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\json_value.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\json_writer.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\main.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\res_output.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\factory.obj
+         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ui_assembler.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+         Generating code
+         Finished generating code
+         auto_future_graphics_design.vcxproj -> G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.exe
+     1>Done Building Project "G:\GitHub\imgui\examples\auto_future_graphics_design\auto_future_graphics_design.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:04.55
