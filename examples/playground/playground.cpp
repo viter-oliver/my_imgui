@@ -55,7 +55,14 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	mptext["y"].y = 1;
 	mptext["z"].z = 2;
-
+	static int ssy;
+	struct sss
+	{
+		void fun()
+		{
+			ssy = 1;
+		}
+	};
 	return 0;
 
 }

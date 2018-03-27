@@ -64,7 +64,7 @@ ft_base::ft_base(ft_base& tar)
 	for (auto it : tar._vchilds)
 	{
 		string cname = typeid(*it).name();
-		cname = cname.substr(sizeof("nameclass "));
+		cname = cname.substr(sizeof("class"));
 		base_ui_component* pcontrol_instance = factory::get().produce(cname);
 		_vchilds.push_back(pcontrol_instance);
 

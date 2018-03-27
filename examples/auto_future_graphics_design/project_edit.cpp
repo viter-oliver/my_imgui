@@ -12,7 +12,7 @@ base_ui_component* project_edit(base_ui_component& fb)
 {
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;// | ImGuiTreeNodeFlags_Selected;
 	string cname = typeid(fb).name();
-	cname = cname.substr(sizeof("nameclass "));
+	cname = cname.substr(sizeof("class"));
 	string& objname = fb.get_name();
 	bool beparent = fb.get_child_count() > 0;
 	if (!beparent)
@@ -23,7 +23,7 @@ base_ui_component* project_edit(base_ui_component& fb)
 	{
 		node_flags_root |= ImGuiTreeNodeFlags_Selected;
 	}
-	if (ImGui::TreeNodeEx(objname.c_str(), node_flags_root))
+	if (IconTreeNode(cname,objname.c_str(), node_flags_root))
 	{
 		if (ImGui::IsItemClicked())
 		{

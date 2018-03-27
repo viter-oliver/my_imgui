@@ -4676,7 +4676,7 @@ bool ImGui::IsItemFocused()
 
 bool ImGui::IsItemClicked(int mouse_button)
 {
-    return IsMouseClicked(mouse_button) && IsItemHovered(ImGuiHoveredFlags_Default);
+	return IsMouseClicked(mouse_button) && IsItemHovered(ImGuiHoveredFlags_Default);
 }
 
 bool ImGui::IsAnyItemHovered()
@@ -7792,7 +7792,7 @@ void ImGui::ImageQuad(ImTextureID user_texture_id, const ImVec2& vp0, const ImVe
 	ImGuiWindow* window = GetCurrentWindow();
 	if (window->SkipItems)
 		return;
-	float xmin = vp0.x;
+	/*float xmin = vp0.x;
 	if (xmin > vp1.x) xmin = vp1.x;
 	if (xmin > vp2.x) xmin = vp2.x;
 	if (xmin > vp3.x) xmin = vp3.x;
@@ -7813,7 +7813,7 @@ void ImGui::ImageQuad(ImTextureID user_texture_id, const ImVec2& vp0, const ImVe
 
 	ItemSize(bb);
 	if (!ItemAdd(bb, 0))
-		return;
+		return;*/
 	if (border_col.w > 0.0f)
 	{
 		window->DrawList->AddQuad(vp0, vp1, vp2, vp3, GetColorU32(border_col), 0.0f);

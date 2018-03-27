@@ -36,13 +36,6 @@ int main(int argc, char* argv[])
 	{
 		g_cureent_project_file_path = argv[1];
 	}
-	char buffer[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, buffer);
-	g_current_run_path = buffer;
-	g_current_run_path += "\\";
-	string str_itnl_txtdata = g_current_run_path + intl_txt_data;
-	string str_itnl_txtres = g_current_run_path + intl_txt_res;
-	load_internal_texture_res(g_mtxt_intl, str_itnl_txtres.c_str(), str_itnl_txtdata.c_str());
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
         return 1;
@@ -65,7 +58,7 @@ int main(int argc, char* argv[])
 
     // Setup ImGui binding
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); (void)io;
+   // ImGuiIO& io = ImGui::GetIO(); (void)io;
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
     ImGui_ImplGlfwGL3_Init(window, true);
@@ -88,6 +81,13 @@ int main(int argc, char* argv[])
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
+	char buffer[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, buffer);
+	g_current_run_path = buffer;
+	g_current_run_path += "\\";
+	string str_itnl_txtdata = g_current_run_path + intl_txt_data;
+	string str_itnl_txtres = g_current_run_path + intl_txt_res;
+	load_internal_texture_res(g_mtxt_intl, str_itnl_txtres.c_str(), str_itnl_txtdata.c_str());
 
     bool show_demo_window = true;
     bool show_another_window = false;

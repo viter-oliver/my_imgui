@@ -1,16 +1,9 @@
-﻿Build started 2018/3/26 20:20:56.
+﻿Build started 2018/3/27 15:18:17.
      1>Project "G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\auto_future_graphics_design.vcxproj" on node 2 (Build target(s)).
      1>C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets(388,5): warning MSB8028: The intermediate directory (G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\) contains files shared from another project (opengl3_example.vcxproj).  This can lead to incorrect clean and rebuild behavior.
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IG:\GitHub\my_imgui\my_imgui\examples\\..\soil /IG:\GitHub\my_imgui\my_imgui\examples\\libs\glfw\include /IG:\GitHub\my_imgui\my_imgui\examples\\libs\gl3w /I..\.. /IG:\GitHub\my_imgui\my_imgui\examples\\..\glm /Zi /nologo /W4 /WX- /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\\" /Fd"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\vc120.pdb" /Gd /TP /errorReport:prompt main.cpp
-         main.cpp
-     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\ui_assembler.h(10): warning C4512: 'ui_assembler' : assignment operator could not be generated
-                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\ui_assembler.h(4) : see declaration of 'ui_assembler'
-     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(12): warning C4512: 'texture_res_load' : assignment operator could not be generated
-                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(7) : see declaration of 'texture_res_load'
-     1>main.cpp(93): warning C4189: 'show_another_window' : local variable is initialized but not referenced
-     1>main.cpp(92): warning C4189: 'show_demo_window' : local variable is initialized but not referenced
-     1>main.cpp(94): warning C4189: 'show_edit_window' : local variable is initialized but not referenced
+         D:\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IG:\GitHub\my_imgui\my_imgui\examples\\..\soil /IG:\GitHub\my_imgui\my_imgui\examples\\libs\glfw\include /IG:\GitHub\my_imgui\my_imgui\examples\\libs\gl3w /I..\.. /IG:\GitHub\my_imgui\my_imgui\examples\\..\glm /Zi /nologo /W4 /WX- /Od /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\\" /Fd"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\vc120.pdb" /Gd /TP /errorReport:prompt ..\..\imgui.cpp
+         imgui.cpp
        Link:
          D:\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\auto_future_graphics_design.exe" /INCREMENTAL /NOLOGO /LIBPATH:"G:\GitHub\my_imgui\my_imgui\examples\\libs\glfw\lib-vc2010-64" /LIBPATH:G:\GitHub\my_imgui\my_imgui\examples\\..\soil opengl32.lib glfw3.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /NODEFAULTLIB:msvcrt.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\auto_future_graphics_design.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\auto_future_graphics_design.lib" /MACHINE:X64 G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\imgui.obj
          G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\imgui_demo.obj
@@ -42,4 +35,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.14
+Time Elapsed 00:00:00.93

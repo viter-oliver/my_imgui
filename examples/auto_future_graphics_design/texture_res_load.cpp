@@ -83,7 +83,7 @@ void load_internal_texture_res(mtxt_internal& mptxt, const char* texture_path, c
 				Value& frame = jfm_unit["frame"];
 				Value& filename = jfm_unit["filename"];
 				string cname = filename.asString();
-				cname = cname.substr(0, cname.find_last_of('.') + 1);
+				cname = cname.substr(0, cname.find_last_of('.'));
 				mptxt[cname]._x0 = frame["x"].asInt();
 				mptxt[cname]._y0 = frame["y"].asInt();
 				mptxt[cname]._x1 = frame["x"].asInt() + frame["w"].asInt();
