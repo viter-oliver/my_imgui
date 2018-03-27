@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <vector>
+#include <map>
 using namespace std;
 struct stt
 {
@@ -26,6 +27,7 @@ public:
 	MyClass2(){}
 
 };
+
 #include <typeinfo>
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -44,6 +46,16 @@ int _tmain(int argc, _TCHAR* argv[])
 	}
 	MyClass* pm = new MyClass2();
 	printf("name%s\n",typeid(*pm).name());
+	delete pm;
+	int iy = -1;
+	int ddd = iy > 0 ? 1 : 2 + 3;
+	map<string, stt> mptext;
+	mptext["x"].x = 0;
+	mptext["x"].y= 0;
+
+	mptext["y"].y = 1;
+	mptext["z"].z = 2;
+
 	return 0;
 
 }

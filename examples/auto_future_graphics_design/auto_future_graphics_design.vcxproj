@@ -175,10 +175,12 @@
     <ClCompile Include="json\json_writer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="project_edit.cpp" />
+    <ClCompile Include="res_internal.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
     <ClCompile Include="texture_res_load.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
+    <ClCompile Include="user_control_imgui.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h" />
@@ -209,9 +211,11 @@
     <ClInclude Include="json\value.h" />
     <ClInclude Include="json\writer.h" />
     <ClInclude Include="project_edit.h" />
+    <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="texture_res_load.h" />
     <ClInclude Include="ui_assembler.h" />
+    <ClInclude Include="user_control_imgui.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

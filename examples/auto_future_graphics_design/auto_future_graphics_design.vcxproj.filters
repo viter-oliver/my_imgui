@@ -29,6 +29,9 @@
     <Filter Include="project">
       <UniqueIdentifier>{af33b2a6-b2dc-4e4a-abd9-b73db9b8198f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="user_imgui">
+      <UniqueIdentifier>{e6f8508e-b52e-415c-a22a-78b2d55e923d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -94,11 +97,17 @@
     <ClCompile Include="common_functions.cpp">
       <Filter>common</Filter>
     </ClCompile>
-    <ClCompile Include="texture_res_load.cpp">
-      <Filter>sources</Filter>
-    </ClCompile>
     <ClCompile Include="project_edit.cpp">
       <Filter>project</Filter>
+    </ClCompile>
+    <ClCompile Include="user_control_imgui.cpp">
+      <Filter>user_imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_res_load.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="res_internal.cpp">
+      <Filter>res_manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,9 +198,17 @@
     <ClInclude Include="common_functions.h">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="texture_res_load.h" />
     <ClInclude Include="project_edit.h">
       <Filter>project</Filter>
+    </ClInclude>
+    <ClInclude Include="user_control_imgui.h">
+      <Filter>user_imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_res_load.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="res_internal.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

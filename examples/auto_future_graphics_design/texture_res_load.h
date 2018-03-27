@@ -1,6 +1,7 @@
 #pragma once
 #include "res_output.h"
 #include "json/json.h"
+#include "res_internal.h"
 using namespace Json;
 class texture_res_load
 {
@@ -10,3 +11,4 @@ public:
 	void load_res_from_json(Value& jroot);
 };
 
+void load_internal_texture_res(mtxt_internal& mptxt, const char* texture_path, const char* texture_dataformat_path);

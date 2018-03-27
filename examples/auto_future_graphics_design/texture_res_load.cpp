@@ -62,3 +62,33 @@ void texture_res_load::load_res_from_json(Value& jroot)
 		}
 	}
 }
+
+void load_internal_texture_res(mtxt_internal& mptxt, const char* texture_path, const char* texture_dataformat_path)
+{
+	g_txt_id_intl = TextureHelper::load2DTexture(texture_path, g_txt_width_intl, g_txt_height_intl, \
+		GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
+	ifstream fin;
+	fin.open(texture_dataformat_path);
+	if (fin.is_open())
+	{
+		Reader reader;
+		Value jvalue;
+		if (reader.parse(fin, jvalue, false))
+		{
+			Value& frames = jvalue["frames"];
+			int iisize = frames.size();
+			for (int iix = 0; iix < iisize; iix++)
+			{
+				Value& jfm_unit = frames[iix];
+				Value& frame = jfm_unit["frame"];
+				Value& filename = jfm_unit["filename"];
+				string cname = filename.asString();
+				cname = cname.substr(0, cname.find_last_of('.') + 1);
+				mptxt[cname]._x0 = frame["x"].asInt();
+				mptxt[cname]._y0 = frame["y"].asInt();
+				mptxt[cname]._x1 = frame["x"].asInt() + frame["w"].asInt();
+				mptxt[cname]._y1 = frame["y"].asInt() + frame["h"].asInt();
+			}
+		}
+	}
+}
