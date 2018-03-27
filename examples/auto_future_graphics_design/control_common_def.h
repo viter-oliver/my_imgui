@@ -1,5 +1,7 @@
 #pragma once
 #include <imgui.h>
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include "imgui_internal.h"
 #include <vector>
 #include <string>
 #include "json/json.h"
@@ -15,6 +17,9 @@ typedef unsigned short ushort;
 using namespace std;
 using namespace Json;
 class base_ui_component;
+#if !defined(IMGUI_WAYLAND)
+const float edit_unit_len = 5.0f;
+#endif
 extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 class base_ui_component
 {
@@ -40,6 +45,8 @@ public:
 	}
 #endif
 public:
+	static float screenw;
+	static float screenh;
 	virtual void draw() = 0;
 	//virtual base_ui_component* get_new_instance() = 0;
 	void set_name(string& name){ _name = name; }

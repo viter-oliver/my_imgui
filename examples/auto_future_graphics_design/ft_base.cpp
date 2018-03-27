@@ -88,3 +88,5 @@ base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* unam
 	}
 	return NULL;
 }
+float base_ui_component::screenw = 0.0f;
+float base_ui_component::screenh = 0.0f;

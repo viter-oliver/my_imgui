@@ -4,6 +4,7 @@ class ft_image :
 	public ft_base
 {
 	ImVec3 _pos;
+	ImVec2 _size;
 	int _texture_index;
 	float _angle;
 	ImVec2 _axis_pos;
