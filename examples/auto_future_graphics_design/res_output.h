@@ -15,7 +15,8 @@ struct res_texture_list
 	int texture_width;
 	int texture_height;
 	int texture_id;
-	//const char* texture_path;
+	//string file_name_sets;
+	char** file_name_sets;
 	vres_txt_cd vtexture_coordinates;
 };
 typedef vector<res_texture_list> vres_txt_list;

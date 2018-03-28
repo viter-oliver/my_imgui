@@ -1,51 +1,97 @@
+
 {
-   "name" : "screen",
-   "type" : "ft_base",
-   "screenw" : 1920.0,
-   "screenh" : 720.0,
-   "texture_res_list" : [
-      {
-         "texture_pack_file" : "mainview.png",
-         "texture_data_file" : "mainview.json"
-      }
-   ],
-   "childs" : [
-      {
-         "name" : "background",
-         "type" : "ft_image",
-         "screen_pos" : {
-            "x" : 0.0,
-            "y" : 0.0,
-            "z" : 0.0
-         },
-         "texture_id_index" : 0,
-         "texture_index" : 1,
-         "size" : {
-            "w" : 0.0,
-            "h" : 0.0
-         }
-      },
-      {
-         "name" : "pointer_left",
-         "type" : "ft_image",
-         "screen_pos" : {
-            "x" : 104.0,
-            "y" : 67.0,
-            "z" : 0.0
-         },
-         "texture_id_index" : 0,
-         "texture_index" : 2
-      },
-      {
-         "name" : "pointer_right",
-         "type" : "ft_image",
-         "screen_pos" : {
-            "x" : 576.0,
-            "y" : 67.0,
-            "z" : 0.0
-         },
-         "texture_id_index" : 0,
-         "texture_index" : 3
-      }
-   ]
+	"childs" : 
+	[
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 960.0,
+				"y" : 960.0
+			},
+			"name" : "background",
+			"screen_pos" : 
+			{
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 720.0,
+				"w" : 1920.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 1,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 469.8470153808594,
+				"y" : 295.1360168457031
+			},
+			"name" : "pointer_left",
+			"screen_pos" : 
+			{
+				"x" : 240.8750152587891,
+				"y" : 67.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 452.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 2,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 801.50,
+				"y" : 801.50
+			},
+			"name" : "pointer_right",
+			"screen_pos" : 
+			{
+				"x" : 576.0,
+				"y" : 67.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 451.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 3,
+			"type" : "ft_image"
+		}
+	],
+	"name" : "screen",
+	"screen_pos" : 
+	{
+		"x" : 0.0,
+		"y" : 0.0,
+		"z" : 0.0
+	},
+	"screenh" : 720.0,
+	"screenw" : 1920.0,
+	"texture_res_list" : 
+	[
+		
+		{
+			"texture_data_file" : "mainview.json",
+			"texture_pack_file" : "mainview.png"
+		}
+	],
+	"type" : "ft_base"
 }
+

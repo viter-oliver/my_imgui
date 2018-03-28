@@ -18,6 +18,7 @@
 #include "project_edit.h"
 #include "res_internal.h"
 #include "texture_res_load.h"
+#include <functional>
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -28,7 +29,12 @@ const char* intl_txt_res = "internal_texture_dataformat.png";
 string g_cureent_project_file_path;
 string g_current_run_path;
 #include <windows.h>
-
+enum en_short_cut_item
+{
+	en_ctrl_o,
+	en_ctrl_s,
+	an_alt_f4,
+};
 int main(int argc, char* argv[])
 {
     // Setup window
@@ -58,7 +64,7 @@ int main(int argc, char* argv[])
 
     // Setup ImGui binding
     ImGui::CreateContext();
-   // ImGuiIO& io = ImGui::GetIO(); (void)io;
+    ImGuiIO& io = ImGui::GetIO(); //(void)io;
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
     ImGui_ImplGlfwGL3_Init(window, true);
@@ -75,10 +81,13 @@ int main(int argc, char* argv[])
     // - Read 'misc/fonts/README.txt' for more instructions and details.
     // - Remember that in C/C++ if you want to include a backslash \ in a string literal you need to write a double backslash \\ !
     //io.Fonts->AddFontDefault();
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f);
+	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/Roboto-Medium.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
-    //io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f);
+	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
+	io.Fonts->AddFontFromFileTTF("D:\\Qt\\Qt5.6.2\\5.6\\Src\\qtbase\\lib\\fonts\\DejaVuSerif-BoldOblique.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
 	char buffer[MAX_PATH];
@@ -129,7 +138,18 @@ int main(int argc, char* argv[])
 	//_app.register_update_fun("rotate_pointer", bind(&rotate_pointer::rotate, &_rt_pointer));
 	}
 	
-	
+	auto fun_shortct = [_proot](en_short_cut_item enshort){
+		if (!_proot)
+		{
+			return;
+		}
+		switch (enshort)
+		{
+		case en_ctrl_s:
+			ui_assembler _ui_as(*_proot);
+			_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
+		}
+	};
 
 	// Main loop
     while (!glfwWindowShouldClose(window))
@@ -182,6 +202,11 @@ int main(int argc, char* argv[])
 #else
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
 		static bool show_project_window=true,show_edit_window=true,show_property_window=true;
+		if (ImGui::GetIO().KeyCtrl&&ImGui::GetIO().KeysDown[GLFW_KEY_S])
+		{
+			fun_shortct(en_ctrl_s);
+		}
+
 		if (ImGui::BeginMainMenuBar())
 		{
 			if (ImGui::BeginMenu("File"))
@@ -194,7 +219,14 @@ int main(int argc, char* argv[])
 					ImGui::MenuItem("haima.afproj");
 					ImGui::EndMenu();
 				}
-				if (ImGui::MenuItem("Save", "Ctrl+S")) {}
+				if (ImGui::GetIO().KeyCtrl)
+				{
+					printf("ctrl is pressed\n");
+				}
+				if (ImGui::MenuItem("Save", "Ctrl+S") )
+				{
+					fun_shortct(en_ctrl_s);
+				}
 				if (ImGui::MenuItem("Save As..")) {}
 				ImGui::Separator();
 				

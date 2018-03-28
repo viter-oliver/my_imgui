@@ -26,6 +26,10 @@ fields: name,type,childs
 bool ft_base::init_from_json(Value& jvalue)
 {
 	_name=jvalue["name"].asString();
+	Value& jscreen_pos = jvalue["screen_pos"];
+	_pos.x = jscreen_pos["x"].asDouble();
+	_pos.y = jscreen_pos["y"].asDouble();
+	_pos.z = jscreen_pos["z"].asDouble();
 	Value& childs = jvalue["childs"];
 	if (childs.isNull())
 	{
@@ -38,6 +42,33 @@ bool ft_base::init_from_json(Value& jvalue)
 		base_ui_component* pcontrol_instance = factory::get().produce(child["type"].asString());
 		add_child(pcontrol_instance);
 		pcontrol_instance->init_from_json(child);
+	}
+	return true;
+}
+
+bool ft_base::init_json_unit(Value& junit)
+{
+	junit["name"] = _name;
+	string cname = typeid(*this).name();
+	cname = cname.substr(sizeof("class"));
+	junit["type"] = cname;
+	Value jscreen_pos(objectValue);
+	jscreen_pos["x"] = _pos.x;
+	jscreen_pos["y"] = _pos.y;
+	jscreen_pos["z"] = _pos.z;
+	junit["screen_pos"] = jscreen_pos;
+	Value jchilds(arrayValue);
+	size_t chcnt = child_count();
+	for (size_t ix = 0; ix < chcnt; ix++)
+	{
+		base_ui_component* pch_uc = get_child(ix);
+		Value jchuc(objectValue);
+		pch_uc->init_json_unit(jchuc);
+		jchilds.append(jchuc);
+	}
+	if (chcnt>0)
+	{
+		junit["childs"] = jchilds;
 	}
 	return true;
 }
@@ -70,7 +101,6 @@ ft_base::ft_base(ft_base& tar)
 
 	}
 }
-
 
 base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname)
 {

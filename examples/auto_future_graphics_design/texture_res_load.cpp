@@ -32,6 +32,7 @@ void texture_res_load::load_res_from_json(Value& jroot)
 		str_texture_pack_file += texture_pack_file.asString();
 		str_texture_data_file += texture_data_file.asString();
 		res_texture_list& rtlist = _texture_res_tar[ix];
+		
 		rtlist.texture_id = TextureHelper::load2DTexture(str_texture_pack_file.c_str(), \
 			rtlist.texture_width, rtlist.texture_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
 		ifstream fin;
@@ -44,6 +45,7 @@ void texture_res_load::load_res_from_json(Value& jroot)
 			{
 				Value& frames = jvalue["frames"];
 				int iisize = frames.size();
+				rtlist.file_name_sets = new char*[iisize];
 				for (int iix = 0; iix < iisize;iix++)
 				{
 					Value& jfm_unit = frames[iix];
@@ -52,6 +54,9 @@ void texture_res_load::load_res_from_json(Value& jroot)
 					rtlist.vtexture_coordinates.push_back(res_texture_coordinate());
 					res_texture_coordinate& res_txt_cd = rtlist.vtexture_coordinates[iix];
 					res_txt_cd._file_name = filename.asString();
+					rtlist.file_name_sets[iix] =const_cast<char*> ( res_txt_cd._file_name.c_str());
+					/*rtlist.file_name_sets += sfilename;
+					rtlist.file_name_sets += "\0";*/
 					res_txt_cd._x0 = frame["x"].asInt();
 					res_txt_cd._y0 = frame["y"].asInt();
 					res_txt_cd._x1 = frame["x"].asInt()+frame["w"].asInt();
@@ -60,6 +65,7 @@ void texture_res_load::load_res_from_json(Value& jroot)
 				}
 			}
 		}
+		//rtlist.file_name_sets += "\0";
 	}
 }
 

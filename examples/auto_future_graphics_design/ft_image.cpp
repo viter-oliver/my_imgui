@@ -17,9 +17,12 @@ void ft_image::draw()
 	int texture_height = g_vres_texture_list[_texture_id_index].texture_height;
 	float sizew =_size.x;
 	float sizeh = _size.y;
+	ImVec3 abpos = absolute_coordinate_of_base_pos();
+	float offsetx = abpos.x - _pos.x;
+	float offsety = abpos.y - _pos.y;
 	ImVec2 winpos = ImGui::GetWindowPos();
-	ImVec2 basePos = { _axis_pos.x + winpos.x, _axis_pos.y + winpos.y };
-	ImVec2 pos1 = { _pos.x + winpos.x, _pos.y + winpos.y };
+	ImVec2 axisBasePos = { offsetx + _axis_pos.x + winpos.x, offsety + _axis_pos.y + winpos.y };
+	ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
 	ImVec2 pos2 = { pos1.x, pos1.y + sizeh };
 	ImVec2 pos3 = { pos1.x + sizew, pos1.y + sizeh };
 	ImVec2 pos4 = { pos1.x + sizew, pos1.y };
@@ -30,10 +33,10 @@ void ft_image::draw()
 	ImVec2 uv3 = ImVec2((ptext_cd[_texture_index]._x1) / texture_width, (ptext_cd[_texture_index]._y0) / texture_height);
 	if (_angle != 0.f)
 	{
-		pos1 = rotate_point_by_zaxis(pos1, _angle, basePos);
-		pos2 = rotate_point_by_zaxis(pos2, _angle, basePos);
-		pos3 = rotate_point_by_zaxis(pos3, _angle, basePos);
-		pos4 = rotate_point_by_zaxis(pos4, _angle, basePos);
+		pos1 = rotate_point_by_zaxis(pos1, _angle, axisBasePos);
+		pos2 = rotate_point_by_zaxis(pos2, _angle, axisBasePos);
+		pos3 = rotate_point_by_zaxis(pos3, _angle, axisBasePos);
+		pos4 = rotate_point_by_zaxis(pos4, _angle, axisBasePos);
 	}
 	
 	ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
@@ -56,8 +59,8 @@ void ft_image::draw()
 		ImVec2 pos4b = pos4 + editunit;
 		ImGui::RenderFrame(pos4a, pos4b, col);
 
-		ImVec2 posaa = basePos - editunit;
-		ImVec2 posab = basePos + editunit;
+		ImVec2 posaa = axisBasePos - editunit;
+		ImVec2 posab = axisBasePos + editunit;
 		ImGui::RenderFrame(posaa, posab, col);
 
 
@@ -81,30 +84,29 @@ static void ShowHelpMarker(const char* desc)
 void ft_image::draw_peroperty_page()
 {
 	ImGui::Text("base pos:");
-	/*ImGui::InputFloat("x", &_pos.x, 0.f, base_ui_component::screenw);
-	ImGui::SameLine();*/
-	ImGui::SliderFloat("x", &_pos.x, 0.f, base_ui_component::screenw);
-
-	/*ImGui::InputFloat("y", &_pos.y, 0.f, base_ui_component::screenh);
-	ImGui::SameLine();*/
-	ImGui::SliderFloat("y", &_pos.y, 0.f, base_ui_component::screenh);
+	//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
+	//ImGui::SameLine();
+	ImGui::SliderFloat("x", &_pos.x, 1.f, base_ui_component::screenw);
+	ImGui::SliderFloat("y", &_pos.y, 1.f, base_ui_component::screenh);
 	ImGui::Text("size:");
 	ImGui::SliderFloat("w", &_size.x, 0.f, base_ui_component::screenw);
 	ImGui::SliderFloat("h", &_size.y, 0.f, base_ui_component::screenh);
 	ImGui::Text("axis pos:");
-	ImGui::SliderFloat("x", &_axis_pos.x, 0.f, base_ui_component::screenw);
-	ImGui::SliderFloat("y", &_axis_pos.y, 0.f, base_ui_component::screenh);
+	ImGui::SliderFloat("ax", &_axis_pos.x, 1.f, base_ui_component::screenw);
+	ImGui::SliderFloat("ay", &_axis_pos.y, 1.f, base_ui_component::screenh);
 
 	ImGui::Text("angle:");
 	ImGui::SliderFloat("a", &_angle, 0.f, 1.f);
+	ImGui::Spacing();
+	ImGui::Spacing();
 	ImGui::Separator();
-	{
-		// Using the _simplified_ one-liner Combo() api here
-		const char* items[] = { "AAAA", "BBBB", "CCCC", "DDDD", "EEEE", "FFFF", "GGGG", "HHHH", "IIII", "JJJJ", "KKKK", "LLLLLLL", "MMMM", "OOOOOOO" };
-		static int item_current = 0;
-		ImGui::Combo("combo", &item_current, items, IM_ARRAYSIZE(items));
-		ImGui::SameLine(); ShowHelpMarker("Refer to the \"Combo\" section below for an explanation of the full BeginCombo/EndCombo API, and demonstration of various flags.\n");
-	}
+	ImGui::Text("image:");
+	
+	int isize = g_vres_texture_list[_texture_id_index].vtexture_coordinates.size();
+	
+	ImGui::Combo("combo", &_texture_index, g_vres_texture_list[_texture_id_index].file_name_sets,isize);
+	ImGui::SameLine(); ShowHelpMarker("Refer to the \"Combo\" section below for an explanation of the full BeginCombo/EndCombo API, and demonstration of various flags.\n");
+
 
 			{
 				static char str0[128] = "Hello, world!";
@@ -147,10 +149,6 @@ texture_index
 bool ft_image::init_from_json(Value& jvalue)
 {
 	ft_base::init_from_json(jvalue);
-	Value& jscreen_pos = jvalue["screen_pos"];
-	_pos.x = jscreen_pos["x"].asDouble();
-	_pos.y = jscreen_pos["y"].asDouble();
-	_pos.z = jscreen_pos["z"].asDouble();
 	_texture_id_index = jvalue["texture_id_index"].asInt();
 	_texture_index = jvalue["texture_index"].asInt();
 	Value& jsize = jvalue["size"];
@@ -181,11 +179,25 @@ bool ft_image::init_from_json(Value& jvalue)
 	}
 	return true;
 }
+bool ft_image::init_json_unit(Value& junit)
+{
+	ft_base::init_json_unit(junit);
+	junit["texture_id_index"] = _texture_id_index;
+	junit["texture_index"] = _texture_index;
+	Value jsize(objectValue);
+	jsize["w"] = _size.x;
+	jsize["h"] = _size.y;
+	junit["size"] = jsize;
+	Value jaxispos(objectValue);
+	jaxispos["x"] = _axis_pos.x;
+	jaxispos["y"] = _axis_pos.y;
+	jaxispos["angle"] = _angle;
+	junit["axipos"] = jaxispos;
+	return true;
 
+}
 void ft_image::offset(ImVec2& imof)
 {
 	_pos.x += imof.x;
 	_pos.y += imof.y;
-	_axis_pos.x += imof.x;
-	_axis_pos.y += imof.y;
 }

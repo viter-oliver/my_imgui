@@ -11,6 +11,7 @@ public:
 	void draw_peroperty_page();
 #endif
 	bool init_from_json(Value& jvalue);
+	bool init_json_unit(Value& junit);
 	bool handle_mouse();
 };
 REGISTER_CONTROL(ft_base)

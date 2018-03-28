@@ -44,3 +44,35 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 	}
 	return true;
 }
+
+bool ui_assembler::output_ui_component_to_file(const char* file_path)
+{
+	Value jtexture;
+	ifstream fin;
+	fin.open(file_path);
+	if (fin.is_open())
+	{
+		Reader reader;
+		Value jroot;
+		if (reader.parse(fin, jroot, false))
+		{
+			jtexture = jroot["texture_res_list"];
+		}
+		fin.close();
+		
+	}
+	else
+	{
+		return false;
+	}
+	ofstream fout;
+	fout.open(file_path);
+	Value jroot(objectValue);
+	jroot["screenw"] = base_ui_component::screenw;
+	jroot["screenh"] = base_ui_component::screenh;
+	jroot["texture_res_list"] = jtexture;
+	_root.init_json_unit(jroot);
+	fout << jroot << endl;
+	fout.close();
+	return true;
+}

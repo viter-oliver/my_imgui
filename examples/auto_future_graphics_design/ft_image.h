@@ -3,7 +3,6 @@
 class ft_image :
 	public ft_base
 {
-	ImVec3 _pos;
 	ImVec2 _size;
 	int _texture_index;
 	float _angle;
@@ -15,8 +14,8 @@ public:
 	void draw_peroperty_page();
 #endif
 	bool init_from_json(Value& jvalue);
+	bool init_json_unit(Value& junit);
 	void offset(ImVec2& imof);
-	void translate_axis_pos(ImVec2& offset){ _axis_pos.x += offset.x; _axis_pos.y += offset.y; }
 	void rotate(float angle){  _angle = angle; }
 };
 REGISTER_CONTROL(ft_image)
