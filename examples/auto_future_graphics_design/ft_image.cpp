@@ -83,23 +83,18 @@ static void ShowHelpMarker(const char* desc)
 }
 void ft_image::draw_peroperty_page()
 {
-	ImGui::Text("base pos:");
-	//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
-	//ImGui::SameLine();
-	ImGui::SliderFloat("x", &_pos.x, 1.f, base_ui_component::screenw);
-	ImGui::SliderFloat("y", &_pos.y, 1.f, base_ui_component::screenh);
+	ft_base::draw_peroperty_page();
+	ImGui::Spacing();
+	ImGui::Spacing();
 	ImGui::Text("size:");
 	ImGui::SliderFloat("w", &_size.x, 0.f, base_ui_component::screenw);
 	ImGui::SliderFloat("h", &_size.y, 0.f, base_ui_component::screenh);
 	ImGui::Text("axis pos:");
 	ImGui::SliderFloat("ax", &_axis_pos.x, 1.f, base_ui_component::screenw);
 	ImGui::SliderFloat("ay", &_axis_pos.y, 1.f, base_ui_component::screenh);
-
+	ImGui::Separator();
 	ImGui::Text("angle:");
 	ImGui::SliderFloat("a", &_angle, 0.f, 1.f);
-	ImGui::Spacing();
-	ImGui::Spacing();
-	ImGui::Separator();
 	ImGui::Text("image:");
 	
 	int isize = g_vres_texture_list[_texture_id_index].vtexture_coordinates.size();
@@ -201,3 +196,18 @@ void ft_image::offset(ImVec2& imof)
 	_pos.x += imof.x;
 	_pos.y += imof.y;
 }
+
+ft_image::ft_image(ft_image& bsource)
+	:ft_base(bsource)
+{
+	_size = bsource._size;
+	_texture_index = bsource._texture_index;
+	_angle = bsource._angle;
+	_axis_pos = bsource._axis_pos;
+}
+
+base_ui_component* ft_image::get_a_copy()
+{
+	return new ft_image(*this);
+}
+

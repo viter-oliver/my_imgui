@@ -4,10 +4,11 @@ class ft_listbox :
 	public ft_base
 {
 	bool _vertical;
-	ImVec4 _origin_pos;
 	int _width, _height;
-	vector<base_ui_component*> _vlist;
 public:
+	ft_listbox();
+	ft_listbox(ft_listbox& bsource);
+	base_ui_component* get_a_copy();
 	void draw();
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();

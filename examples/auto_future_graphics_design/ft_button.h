@@ -3,10 +3,12 @@
 class ft_button :
 	public ft_base
 {
-	ImVec4 _pos[4];
 	int _texture_indices[2];
 	string _label;
 public:
+	ft_button();
+	ft_button(ft_button& bsource);
+	base_ui_component* get_a_copy();
 	//ft_button(int tid) :base_ui_component(tid){}
 	void draw();
 #if !defined(IMGUI_WAYLAND)

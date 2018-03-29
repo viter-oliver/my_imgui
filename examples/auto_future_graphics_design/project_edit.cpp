@@ -59,9 +59,18 @@ base_ui_component* project_edit(base_ui_component& fb)
 			{
 				if (ImGui::MenuItem("base", NULL, false))
 				{
+					if (psel)
+					{
+						psel->add_child(factory::get().produce("ft_base"));
+
+					}
 				}
 				if (ImGui::MenuItem("image", NULL, false))
 				{
+					if (psel)
+					{
+						psel->add_child(factory::get().produce("ft_image"));
+					}
 				}
 				if (ImGui::MenuItem("button", NULL, false))
 				{

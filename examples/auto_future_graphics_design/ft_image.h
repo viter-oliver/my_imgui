@@ -8,7 +8,9 @@ class ft_image :
 	float _angle;
 	ImVec2 _axis_pos;
 public:
-	ft_image() : _texture_index(0), _angle(0.0){}
+	ft_image() :ft_base(), _texture_index(0), _angle(0.0){}
+	ft_image(ft_image& bsource);
+	base_ui_component*get_a_copy();
 	void draw();
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();
@@ -18,4 +20,5 @@ public:
 	void offset(ImVec2& imof);
 	void rotate(float angle){  _angle = angle; }
 };
+
 REGISTER_CONTROL(ft_image)

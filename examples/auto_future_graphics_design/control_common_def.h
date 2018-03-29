@@ -17,6 +17,7 @@ typedef unsigned short ushort;
 using namespace std;
 using namespace Json;
 class base_ui_component;
+const unsigned char name_len = 0xff;
 #if !defined(IMGUI_WAYLAND)
 const float edit_unit_len = 5.0f;
 #endif
@@ -32,6 +33,7 @@ protected:
 	base_ui_component* _parent;
 	bool _visible;
 #if !defined(IMGUI_WAYLAND)
+	char _name_bk[name_len];
 protected:
 	bool _selected;
 public:
@@ -49,6 +51,7 @@ public:
 	static float screenw;
 	static float screenh;
 	virtual void draw() = 0;
+	virtual base_ui_component* get_a_copy() = 0;
 	//virtual base_ui_component* get_new_instance() = 0;
 	void set_name(string& name){ _name = name; }
 	string& get_name(){ return _name; }
@@ -59,10 +62,16 @@ public:
 		:_texture_id_index(0)
 		,_visible(true)
 		, _parent(NULL)
+		, _name("control")
 #if !defined(IMGUI_WAYLAND)
 		, _selected(false)
 #endif
-	{}
+	{
+#if !defined(IMGUI_WAYLAND)
+		memset(_name_bk, 0, name_len);
+		strcpy(_name_bk, _name.c_str());
+#endif
+	}
 	
 	~base_ui_component()
 	{

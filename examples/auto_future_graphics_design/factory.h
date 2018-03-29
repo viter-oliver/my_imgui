@@ -28,7 +28,14 @@ struct factory
 
 		return map_[key]();
 	}
+	template<typename... Args>
+	base_ui_component* produce(const std::string& key, Args&&... args)
+	{
+		if (map_.find(key) == map_.end())
+			throw std::invalid_argument("the message key is not exist!");
 
+		return map_[key](std::forward<Args>(args)...);
+	}
 	std::unique_ptr<base_ui_component> produce_unique(const std::string& key)
 	{
 		return std::unique_ptr<base_ui_component>(produce(key));

@@ -17,7 +17,16 @@ void ft_base::draw()
 #if !defined(IMGUI_WAYLAND)
 void ft_base::draw_peroperty_page()
 {
-
+	if (ImGui::InputText("object name", _name_bk,name_len))
+	{
+		_name = _name_bk;
+	}
+	ImGui::Text("base pos:");
+	//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
+	//ImGui::SameLine();
+	ImGui::SliderFloat("x", &_pos.x, 1.f, base_ui_component::screenw);
+	ImGui::SliderFloat("y", &_pos.y, 1.f, base_ui_component::screenh);
+	ImGui::Checkbox("visiblity:", &_visible);
 }
 #endif
 /*
@@ -26,6 +35,9 @@ fields: name,type,childs
 bool ft_base::init_from_json(Value& jvalue)
 {
 	_name=jvalue["name"].asString();
+#if !defined(IMGUI_WAYLAND)
+	strcpy(_name_bk, _name.c_str());
+#endif
 	Value& jscreen_pos = jvalue["screen_pos"];
 	_pos.x = jscreen_pos["x"].asDouble();
 	_pos.y = jscreen_pos["y"].asDouble();
@@ -87,19 +99,27 @@ bool ft_base::handle_mouse()
 	return true;
 }
 
-ft_base::ft_base(ft_base& tar)
+ft_base::ft_base(ft_base& bsource)
 {
-
-	_name = tar._name;
-	_texture_id_index = tar._texture_id_index;
-	for (auto it : tar._vchilds)
+	_name = bsource._name;
+	_pos = bsource._pos;
+	_texture_id_index = bsource._texture_id_index;
+	_parent = bsource._parent;
+	_visible = bsource._visible;
+	for (auto it : bsource._vchilds)
 	{
 		string cname = typeid(*it).name();
 		cname = cname.substr(sizeof("class"));
-		base_ui_component* pcontrol_instance = factory::get().produce(cname);
+		base_ui_component* pcontrol_instance = it->get_a_copy();
 		_vchilds.push_back(pcontrol_instance);
 
 	}
+}
+
+base_ui_component* ft_base::get_a_copy()
+{
+	ft_base* pcopy = new ft_base(*this);
+	return pcopy;
 }
 
 base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname)

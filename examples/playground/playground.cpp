@@ -2,6 +2,7 @@
 //
 
 #include "stdafx.h"
+#include "fab/fab.h"
 #include <vector>
 #include <map>
 using namespace std;
@@ -17,18 +18,31 @@ class MyClass
 public:
 	MyClass(){}
 	~MyClass(){}
+	virtual void func_test(){
+		printf("mycl\n");
+	}
 
 private:
 
 };
 class MyClass2:public MyClass
 {
+	int ddd;
 public:
-	MyClass2(){}
-
+	MyClass2(int g){
+		ddd = g;
+	}
+	MyClass2(MyClass2&){
+		ddd = 0;
+	}
+	void func_test(){
+		printf("mycl2\n");
+	}
 };
 
 #include <typeinfo>
+
+#define eprintf(format, ...)   fprintf (stderr, format , __VA_ARGS__)
 int _tmain(int argc, _TCHAR* argv[])
 {
 	vector<stt> vstt;
@@ -44,9 +58,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		printf("%d\n", *p++);
 	}
-	MyClass* pm = new MyClass2();
+	MyClass* pm = new MyClass2(1);
 	printf("name%s\n",typeid(*pm).name());
+	
+	eprintf("");
+	//mms->func_test();
 	delete pm;
+	using namespace fab;
+	MyClass2 mmg(1);
+	Factory<MyClass> ft;
+	ft.Register("MyClass2", [](int ss){return new MyClass2(ss); });
+	ft.Register("MyClass3", [](MyClass2& ss){return new MyClass2(ss); });
+
+	auto mc = ft.Create("MyClass3",mmg);
+	mc->func_test();
 	int iy = -1;
 	int ddd = iy > 0 ? 1 : 2 + 3;
 	map<string, stt> mptext;

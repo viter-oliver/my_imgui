@@ -5,7 +5,8 @@ class ft_base :
 {
 public:
 	ft_base() :base_ui_component(){}
-	ft_base(ft_base& tar);
+	ft_base(ft_base& bsource);
+	base_ui_component*get_a_copy();
 	void draw();
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();
