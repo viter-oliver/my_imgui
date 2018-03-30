@@ -150,6 +150,7 @@ int main(int argc, char* argv[])
 			_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
 		}
 	};
+	project_edit pjedit(*_proot);
 
 	// Main loop
     while (!glfwWindowShouldClose(window))
@@ -260,7 +261,9 @@ int main(int argc, char* argv[])
 			ImGui::Begin("project");
 			if (_proot)
 			{
-				_pselect=project_edit(*_proot);
+				pjedit.objects_view();
+				_pselect = pjedit.current_object();
+				pjedit.popup_context_menu();
 			}
 			ImGui::End();
 		}

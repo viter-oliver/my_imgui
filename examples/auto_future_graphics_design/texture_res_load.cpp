@@ -65,7 +65,6 @@ void texture_res_load::load_res_from_json(Value& jroot)
 				}
 			}
 		}
-		//rtlist.file_name_sets += "\0";
 	}
 }
 

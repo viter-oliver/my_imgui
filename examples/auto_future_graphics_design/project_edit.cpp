@@ -7,8 +7,7 @@
 3、当有多个node处于selected状态，快捷菜单只有copy和addsiblings，执行add sibling时，自末端向父级寻找selected的node，执行复制行为
 4、root被选中时不可以执行addsibling
 */
-base_ui_component* psel = NULL;
-base_ui_component* project_edit(base_ui_component& fb)
+void project_edit::view_object(base_ui_component& fb)
 {
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;// | ImGuiTreeNodeFlags_Selected;
 	string cname = typeid(fb).name();
@@ -28,64 +27,60 @@ base_ui_component* project_edit(base_ui_component& fb)
 		if (ImGui::IsItemClicked())
 		{
 		    fb.set_selected(true);
-			if (psel)
+			if (_pcurrent_object)
 			{
-				psel->set_selected(false);
+				_pcurrent_object->set_selected(false);
 			}
-			psel = &fb;
+			_pcurrent_object = &fb;
 		}
 		if (beparent)
 		{
 			for (size_t ix = 0; ix < fb.get_child_count(); ix++)
 			{
 				base_ui_component* pchild = fb.get_child(ix);
-				psel=project_edit(*pchild);
+				view_object(*pchild);
 			}
 		}
-		
 		ImGui::TreePop();
-
 	}
-	
-	if (fb.get_parent()==NULL)
+}
+
+void project_edit::objects_view()
+{
+	view_object(_root);
+}
+
+void project_edit::popup_context_menu()
+{
+	if (ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::BeginPopupContextWindow())
+		if (ImGui::MenuItem("copy", NULL, false))
 		{
-			if (ImGui::MenuItem("copy", NULL, false))
-			{
-			}
-
-			if (ImGui::BeginMenu("add child"))
-			{
-				if (ImGui::MenuItem("base", NULL, false))
-				{
-					if (psel)
-					{
-						psel->add_child(factory::get().produce("ft_base"));
-
-					}
-				}
-				if (ImGui::MenuItem("image", NULL, false))
-				{
-					if (psel)
-					{
-						psel->add_child(factory::get().produce("ft_image"));
-					}
-				}
-				if (ImGui::MenuItem("button", NULL, false))
-				{
-				}
-				if (ImGui::MenuItem("listbox", NULL, false))
-				{
-				}
-				ImGui::EndMenu();
-			}
-			if (ImGui::MenuItem("add sibling", NULL, false))
-			{
-			}
-
-			ImGui::EndPopup();
 		}
+
+		if (ImGui::BeginMenu("add child"))
+		{
+			factory::get().iterate_types([this](string cname, function<base_ui_component*()> infun){
+				if (ImGui::MenuItem(cname.c_str(), NULL, false))
+				{
+					if (_pcurrent_object)
+					{
+						_pcurrent_object->add_child(infun());
+					}
+				}
+			});
+			ImGui::EndMenu();
+		}
+		if (ImGui::MenuItem("add sibling", NULL, false))
+		{
+			if (_pcurrent_object&&_pcurrent_object->get_parent())
+			{
+				base_ui_component* psibling = _pcurrent_object->get_a_copy();
+				_pcurrent_object->get_parent()->add_child(psibling);
+			}
+			//ImGui::EndMenu();
+		}
+
+		ImGui::EndPopup();
 	}
-	return psel;
 }

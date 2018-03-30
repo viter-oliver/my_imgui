@@ -45,6 +45,13 @@ struct factory
 	{
 		return std::shared_ptr<base_ui_component>(produce(key));
 	}
+	void iterate_types(function<void(string,function<base_ui_component*()>)> imp)
+	{
+		for (auto it:map_)
+		{
+			imp((it.first),it.second);
+		}
+	}
 
 private:
 	factory() {};
