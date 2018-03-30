@@ -26,7 +26,7 @@ void ft_base::draw_peroperty_page()
 	//ImGui::SameLine();
 	ImGui::SliderFloat("x", &_pos.x, 1.f, base_ui_component::screenw);
 	ImGui::SliderFloat("y", &_pos.y, 1.f, base_ui_component::screenh);
-	ImGui::Checkbox("visiblity:", &_visible);
+	ImGui::Checkbox("visibility", &_visible);
 }
 #endif
 /*

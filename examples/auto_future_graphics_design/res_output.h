@@ -8,6 +8,8 @@ struct res_texture_coordinate
 	string _file_name;
 	float _x0, _y0, _x1, _y1;
 	res_texture_coordinate() :_x0(0.f), _y0(0.f), _x1(0.f), _y1(0.f){}
+	float owidth(){ return _x1 - _x0; }
+	float oheight(){ return _y1 - _y0; }
 };
 typedef vector<res_texture_coordinate> vres_txt_cd;
 struct res_texture_list

@@ -100,37 +100,26 @@ void ft_image::draw_peroperty_page()
 	int isize = g_vres_texture_list[_texture_id_index].vtexture_coordinates.size();
 	
 	ImGui::Combo("combo", &_texture_index, g_vres_texture_list[_texture_id_index].file_name_sets,isize);
-	ImGui::SameLine(); ShowHelpMarker("Refer to the \"Combo\" section below for an explanation of the full BeginCombo/EndCombo API, and demonstration of various flags.\n");
+	ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
+	ImGui::Spacing();
+	auto& res_coors = g_vres_texture_list[_texture_id_index].vtexture_coordinates;
+	float reswidth = res_coors[_texture_index].owidth();
+	float resheight = res_coors[_texture_index].oheight();
+	ImGui::Text("original size:%f,%f", reswidth, resheight);
+	ImGui::Spacing();
+	if (reswidth>0)
+	{
+		float draw_height = imge_edit_view_width*resheight / reswidth;
+		ImVec2 draw_size(imge_edit_view_width, draw_height);
+		int texture_id = g_vres_texture_list[_texture_id_index].texture_id;
+		float wtexture_width = g_vres_texture_list[_texture_id_index].texture_width;
+		float wtexture_height = g_vres_texture_list[_texture_id_index].texture_height;
 
+		ImVec2 uv0(res_coors[_texture_index]._x0 / wtexture_width, res_coors[_texture_index]._y0 / wtexture_height);
+		ImVec2 uv1(res_coors[_texture_index]._x1 / wtexture_width, res_coors[_texture_index]._y1 / wtexture_height);
+		ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+	}
 
-			{
-				static char str0[128] = "Hello, world!";
-				static int i0 = 123;
-				static float f0 = 0.001f;
-				ImGui::InputText("input text", str0, IM_ARRAYSIZE(str0));
-				ImGui::SameLine(); ShowHelpMarker("Hold SHIFT or use mouse to select text.\n" "CTRL+Left/Right to word jump.\n" "CTRL+A or double-click to select all.\n" "CTRL+X,CTRL+C,CTRL+V clipboard.\n" "CTRL+Z,CTRL+Y undo/redo.\n" "ESCAPE to revert.\n");
-
-				ImGui::InputInt("input int", &i0);
-				ImGui::SameLine(); ShowHelpMarker("You can apply arithmetic operators +,*,/ on numerical values.\n  e.g. [ 100 ], input \'*2\', result becomes [ 200 ]\nUse +- to subtract.\n");
-
-				ImGui::InputFloat("input float", &f0, 0.01f, 1.0f);
-				ImGui::InputFloat("screen x", &_pos.x, 1.0f, base_ui_component::screenw);
-
-				static float vec4a[4] = { 0.10f, 0.20f, 0.30f, 0.44f };
-				ImGui::InputFloat3("input float3", vec4a);
-			}
-
-			{
-				static int i1 = 50, i2 = 42;
-				ImGui::DragInt("drag int", &i1, 1);
-				ImGui::SameLine(); ShowHelpMarker("Click and drag to edit value.\nHold SHIFT/ALT for faster/slower edit.\nDouble-click or CTRL+click to input value.");
-
-				ImGui::DragInt("drag int 0..100", &i2, 1, 0, 100, "%.0f%%");
-
-				static float f1 = 1.00f, f2 = 0.0067f;
-				ImGui::DragFloat("drag float", &f1, 0.005f);
-				ImGui::DragFloat("drag small float", &f2, 0.0001f, 0.0f, 0.0f, "%.06f ns");
-			}
 
 }
 

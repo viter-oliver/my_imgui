@@ -56,8 +56,15 @@ void project_edit::popup_context_menu()
 	{
 		if (ImGui::MenuItem("copy", NULL, false))
 		{
+			_pcopy_object = _pcurrent_object;
 		}
-
+		if (ImGui::MenuItem("paste",NULL,false))
+		{
+			if (_pcopy_object&&_pcurrent_object)
+			{
+				_pcurrent_object->add_child(_pcopy_object->get_a_copy());
+			}
+		}
 		if (ImGui::BeginMenu("add child"))
 		{
 			factory::get().iterate_types([this](string cname, function<base_ui_component*()> infun){
