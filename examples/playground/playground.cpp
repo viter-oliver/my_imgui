@@ -41,7 +41,9 @@ public:
 };
 
 #include <typeinfo>
-
+#include "glm.hpp"
+#include "gtc/matrix_transform.hpp"
+#include "gtc/type_ptr.hpp"
 #define eprintf(format, ...)   fprintf (stderr, format , __VA_ARGS__)
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -88,7 +90,10 @@ int _tmain(int argc, _TCHAR* argv[])
 			ssy = 1;
 		}
 	};
+	glm::mat4 trans;
+	trans = glm::rotate(trans, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	glm::vec4 ret = trans*glm::vec4(1000.0f, 100.0f, 1.0f, 1.0f);
+	printf("%f,%f,%f\n", ret.x, ret.y, ret.z);
 	return 0;
-
 }
 

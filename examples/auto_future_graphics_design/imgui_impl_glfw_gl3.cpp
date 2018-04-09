@@ -141,14 +141,6 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
         for (int cmd_i = 0; cmd_i < cmd_list->CmdBuffer.Size; cmd_i++)
         {
             const ImDrawCmd* pcmd = &cmd_list->CmdBuffer[cmd_i];
-			/*gfloat* pcmaxtr = pcmd->pcustom_matrix;
-			lUniformMatrix4fv(g_AttribLocationcustomMtx, 1, GL_FALSE, pcmaxtr);
-			printf("#################################\n");
-			printf("%f %f %f %f\n", pcmaxtr[0], pcmaxtr[1], pcmaxtr[2], pcmaxtr[3]);
-			printf("%f %f %f %f\n", pcmaxtr[4], pcmaxtr[5], pcmaxtr[6], pcmaxtr[7]);
-			printf("%f %f %f %f\n", pcmaxtr[8], pcmaxtr[9], pcmaxtr[10], pcmaxtr[11]);
-			printf("%f %f %f %f\n", pcmaxtr[12], pcmaxtr[13], pcmaxtr[14], pcmaxtr[15]);*/
-
             if (pcmd->UserCallback)
             {
                 pcmd->UserCallback(cmd_list, pcmd);
@@ -287,24 +279,17 @@ void ImGui_ImplGlfw_ScrollCallback(GLFWwindow*, double xoffset, double yoffset)
     io.MouseWheelH += (float)xoffset;
     io.MouseWheel += (float)yoffset;
 }
-#include <stdio.h>
+
 void ImGui_ImplGlfw_KeyCallback(GLFWwindow*, int key, int, int action, int mods)
 {
     ImGuiIO& io = ImGui::GetIO();
-	if (action == GLFW_PRESS)
-	{
-		printf("keyvalue=%x is pressed\n", key);
-		io.KeysDown[key] = true;
-	}
-	if (action == GLFW_RELEASE)
-	{
-       printf("keyvalue=%x is released\n", key);
-		io.KeysDown[key] = false;
-	}
+    if (action == GLFW_PRESS)
+        io.KeysDown[key] = true;
+    if (action == GLFW_RELEASE)
+        io.KeysDown[key] = false;
 
     (void)mods; // Modifiers are not reliable across systems
     io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
-
     io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
     io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
     io.KeySuper = io.KeysDown[GLFW_KEY_LEFT_SUPER] || io.KeysDown[GLFW_KEY_RIGHT_SUPER];
