@@ -32,6 +32,9 @@
     <Filter Include="user_imgui">
       <UniqueIdentifier>{e6f8508e-b52e-415c-a22a-78b2d55e923d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="3dutility">
+      <UniqueIdentifier>{0e970a76-dad5-441e-b0ce-699d7656d61a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -108,6 +111,24 @@
     </ClCompile>
     <ClCompile Include="res_internal.cpp">
       <Filter>res_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_scene3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="af_cube.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="af_model.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="af_plane.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="af_sphere.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="basic3d.cpp">
+      <Filter>3dutility</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +230,24 @@
     </ClInclude>
     <ClInclude Include="res_internal.h">
       <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_scene3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="af_cube.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="af_model.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="af_plane.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="af_sphere.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="basic3d.h">
+      <Filter>3dutility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
