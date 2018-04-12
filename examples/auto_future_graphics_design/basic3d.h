@@ -8,7 +8,7 @@ struct base_vertex
 {
 	glm::vec3 position;
 	glm::vec3 vnormal;
-	base_vertex(){ vnormal = glm::vec3(0.f); }
+	//base_vertex(){ vnormal = glm::vec3(0.f); }
 };
 struct tri_face
 {

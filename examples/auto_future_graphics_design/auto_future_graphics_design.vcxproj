@@ -180,6 +180,7 @@
     <ClCompile Include="json\json_value.cpp" />
     <ClCompile Include="json\json_writer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="phong_shader.cpp" />
     <ClCompile Include="project_edit.cpp" />
     <ClCompile Include="res_internal.cpp" />
     <ClCompile Include="res_output.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="json\reader.h" />
     <ClInclude Include="json\value.h" />
     <ClInclude Include="json\writer.h" />
+    <ClInclude Include="phong_shader.h" />
     <ClInclude Include="project_edit.h" />
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />

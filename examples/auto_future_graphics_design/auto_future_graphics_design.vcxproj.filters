@@ -130,6 +130,9 @@
     <ClCompile Include="basic3d.cpp">
       <Filter>3dutility</Filter>
     </ClCompile>
+    <ClCompile Include="phong_shader.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -247,6 +250,9 @@
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="basic3d.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="phong_shader.h">
       <Filter>3dutility</Filter>
     </ClInclude>
   </ItemGroup>
