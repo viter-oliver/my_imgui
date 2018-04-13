@@ -19,7 +19,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_image.png",
+	"filename": "ft_cube.png",
 	"frame": {"x":1,"y":69,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -28,8 +28,35 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "ft_image.png",
+	"frame": {"x":1,"y":103,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "ft_listbox.png",
-	"frame": {"x":35,"y":1,"w":32,"h":32},
+	"frame": {"x":1,"y":137,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ft_model.png",
+	"frame": {"x":1,"y":171,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ft_plane.png",
+	"frame": {"x":1,"y":205,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -38,16 +65,16 @@
 },
 {
 	"filename": "ft_polygon_image.png",
-	"frame": {"x":69,"y":35,"w":28,"h":32},
-	"rotated": false,
+	"frame": {"x":1,"y":409,"w":28,"h":32},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":2,"y":0,"w":28,"h":32},
 	"sourceSize": {"w":32,"h":32},
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_slider.png",
-	"frame": {"x":35,"y":35,"w":32,"h":32},
+	"filename": "ft_scene3d.png",
+	"frame": {"x":1,"y":239,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -55,8 +82,26 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
+	"filename": "ft_slider.png",
+	"frame": {"x":1,"y":273,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ft_sphere.png",
+	"frame": {"x":1,"y":439,"w":28,"h":30},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":1,"w":28,"h":30},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
 	"filename": "ft_textblock.png",
-	"frame": {"x":35,"y":69,"w":32,"h":32},
+	"frame": {"x":1,"y":307,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -65,7 +110,7 @@
 },
 {
 	"filename": "ft_toggle_button.png",
-	"frame": {"x":69,"y":1,"w":32,"h":32},
+	"frame": {"x":1,"y":341,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -74,10 +119,19 @@
 },
 {
 	"filename": "ft_trajectory_box.png",
-	"frame": {"x":69,"y":69,"w":28,"h":30},
-	"rotated": false,
+	"frame": {"x":1,"y":439,"w":28,"h":30},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":2,"y":1,"w":28,"h":30},
+	"sourceSize": {"w":32,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "ft_viewport.png",
+	"frame": {"x":1,"y":375,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
 	"sourceSize": {"w":32,"h":32},
 	"pivot": {"x":0.5,"y":0.5}
 }],
@@ -86,8 +140,8 @@
 	"version": "1.0",
 	"image": "internal_texture_dataformat.png",
 	"format": "RGBA8888",
-	"size": {"w":102,"h":102},
+	"size": {"w":34,"h":468},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:c81b4bc3bee0b3539e590d960779b496:f767442dc28656b810e645ebf7a301b8:9708503ed8bd68d77440f2b7f055da9f$"
+	"smartupdate": "$TexturePacker:SmartUpdate:b6f8f82280aa047ac9237dd65d758044:e7d25a69101773999014f31dc07b6f49:9708503ed8bd68d77440f2b7f055da9f$"
 }
 }

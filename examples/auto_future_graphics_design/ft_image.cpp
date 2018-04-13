@@ -18,10 +18,7 @@ void ft_image::draw()
 	float sizew =_size.x;
 	float sizeh = _size.y;
 	ImVec3 abpos = absolute_coordinate_of_base_pos();
-	float offsetx = abpos.x - _pos.x;
-	float offsety = abpos.y - _pos.y;
 	ImVec2 winpos = ImGui::GetWindowPos();
-	ImVec2 axisBasePos = { offsetx + _axis_pos.x + winpos.x, offsety + _axis_pos.y + winpos.y };
 	ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
 	ImVec2 pos2 = { pos1.x, pos1.y + sizeh };
 	ImVec2 pos3 = { pos1.x + sizew, pos1.y + sizeh };
@@ -31,6 +28,10 @@ void ft_image::draw()
 	ImVec2 uv1 = ImVec2(ptext_cd[_texture_index]._x0 / texture_width, (ptext_cd[_texture_index]._y1) / texture_height);
 	ImVec2 uv2 = ImVec2((ptext_cd[_texture_index]._x1) / texture_width, (ptext_cd[_texture_index]._y1) / texture_height);
 	ImVec2 uv3 = ImVec2((ptext_cd[_texture_index]._x1) / texture_width, (ptext_cd[_texture_index]._y0) / texture_height);
+	
+	float offsetx = abpos.x - _pos.x;
+	float offsety = abpos.y - _pos.y;
+	ImVec2 axisBasePos = { offsetx + _axis_pos.x + winpos.x, offsety + _axis_pos.y + winpos.y };
 	if (_angle != 0.f)
 	{
 		pos1 = rotate_point_by_zaxis(pos1, _angle, axisBasePos);
@@ -58,11 +59,9 @@ void ft_image::draw()
 		ImVec2 pos4a = pos4 - editunit;
 		ImVec2 pos4b = pos4 + editunit;
 		ImGui::RenderFrame(pos4a, pos4b, col);
-
 		ImVec2 posaa = axisBasePos - editunit;
 		ImVec2 posab = axisBasePos + editunit;
 		ImGui::RenderFrame(posaa, posab, col);
-
 
 	}
 #endif
@@ -179,11 +178,6 @@ bool ft_image::init_json_unit(Value& junit)
 	junit["axipos"] = jaxispos;
 	return true;
 
-}
-void ft_image::offset(ImVec2& imof)
-{
-	_pos.x += imof.x;
-	_pos.y += imof.y;
 }
 
 ft_image::ft_image(ft_image& bsource)

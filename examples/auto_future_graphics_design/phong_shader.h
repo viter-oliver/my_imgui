@@ -1,16 +1,11 @@
 #pragma once
-#if !defined(IMGUI_WAYLAND)
-#include <GL/gl3w.h>
-#else
-#include"../../deps/glad/glad.h"
-#endif
+
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 #include "basic3d.h"
-class phong_shader
+class phong_shader :public basic_shader
 {
-	GLuint _vao, _vbo,_ebo;
 	GLuint _vertex_shader,_fragment_shader,_shader_program;
 	//attribute
 	GLuint _kzPosition, _kzNormal;
@@ -26,6 +21,7 @@ class phong_shader
 public:
 	phong_shader();
 	~phong_shader();
+	void load_tri_mesh(tri_mesh& tmesh);
 	void render_tri_mesh(tri_mesh& tmesh);
 	void set_vertex_wrold_matrix(glm::mat4& vtmat);
 };

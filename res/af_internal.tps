@@ -185,13 +185,19 @@
         <map type="IndividualSpriteSettingsMap">
             <key type="filename">UI icon/ft_base.png</key>
             <key type="filename">UI icon/ft_button.png</key>
+            <key type="filename">UI icon/ft_cube.png</key>
             <key type="filename">UI icon/ft_image.png</key>
             <key type="filename">UI icon/ft_listbox.png</key>
+            <key type="filename">UI icon/ft_model.png</key>
+            <key type="filename">UI icon/ft_plane.png</key>
             <key type="filename">UI icon/ft_polygon_image.png</key>
+            <key type="filename">UI icon/ft_scene3d.png</key>
             <key type="filename">UI icon/ft_slider.png</key>
+            <key type="filename">UI icon/ft_sphere.png</key>
             <key type="filename">UI icon/ft_textblock.png</key>
             <key type="filename">UI icon/ft_toggle_button.png</key>
             <key type="filename">UI icon/ft_trajectory_box.png</key>
+            <key type="filename">UI icon/ft_viewport.png</key>
             <struct type="IndividualSpriteSettings">
                 <key>pivotPoint</key>
                 <point_f>0.5,0.5</point_f>
@@ -216,6 +222,12 @@
             <filename>UI icon/ft_textblock.png</filename>
             <filename>UI icon/ft_toggle_button.png</filename>
             <filename>UI icon/ft_trajectory_box.png</filename>
+            <filename>UI icon/ft_sphere.png</filename>
+            <filename>UI icon/ft_cube.png</filename>
+            <filename>UI icon/ft_model.png</filename>
+            <filename>UI icon/ft_viewport.png</filename>
+            <filename>UI icon/ft_scene3d.png</filename>
+            <filename>UI icon/ft_plane.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

@@ -17,7 +17,6 @@ public:
 #endif
 	bool init_from_json(Value& jvalue);
 	bool init_json_unit(Value& junit);
-	void offset(ImVec2& imof);
 	void rotate(float angle){  _angle = angle; }
 };
 

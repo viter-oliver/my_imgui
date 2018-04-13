@@ -111,12 +111,7 @@ void main()
 
 phong_shader::phong_shader()
 {
-	glGenVertexArrays(1, &_vao);
-	glBindVertexArray(_vao);
-	//vbo
-	glGenBuffers(1, &_vbo);
-	//ebo;
-	glGenBuffers(1, &_ebo);
+	
 	//vertex shader
 	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(_vertex_shader, 1, &phong_vertex_share, NULL);
@@ -188,44 +183,42 @@ phong_shader::~phong_shader()
 	glDeleteProgram(_shader_program);
 	glDeleteShader(_vertex_shader);
 	glDeleteShader(_fragment_shader);
-	glDeleteBuffers(1,&_ebo);
-	glDeleteBuffers(1,&_vbo);
-	glDeleteVertexArrays(1, &_vao);
+	
 }
 #define OFFSETOF(TYPE, ELEMENT) ((size_t)&(((TYPE *)0)->ELEMENT))
+void phong_shader::load_tri_mesh(tri_mesh& tmesh)
+{
+	glBindVertexArray(tmesh._vao);
+	glEnableVertexAttribArray(_kzPosition);
+	glEnableVertexAttribArray(_kzNormal);
+	glBindBuffer(GL_ARRAY_BUFFER, tmesh._vbo);
+	glVertexAttribPointer(_kzPosition, 3, GL_FLOAT, GL_FALSE, sizeof(base_vertex), (GLvoid*)OFFSETOF(base_vertex, position));
+	glVertexAttribPointer(_kzNormal, 3, GL_FLOAT, GL_FALSE, sizeof(base_vertex), (GLvoid*)OFFSETOF(base_vertex, vnormal));
+	glBufferData(GL_ARRAY_BUFFER, tmesh.vertices.size()*sizeof(base_vertex), (const GLvoid*)&tmesh.vertices.at(0), GL_STREAM_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tmesh._ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, tmesh.faces.size()*sizeof(tri_face), (const GLvoid*)&tmesh.faces.at(0), GL_STREAM_DRAW);
+
+}
 void phong_shader::render_tri_mesh(tri_mesh& tmesh)
 {
 	GLint last_program, last_array_buffer, last_element_array_buffer;
 	glGetIntegerv(GL_CURRENT_PROGRAM, &last_program);
-	glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
-	glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &last_element_array_buffer);
 	glEnable(GL_BLEND);
 	glBlendEquation(GL_FUNC_ADD);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glUseProgram(_shader_program);
-	glEnableVertexAttribArray(_kzPosition);
-	glEnableVertexAttribArray(_kzNormal);
-	glVertexAttribPointer(_kzPosition, 3, GL_FLOAT, GL_FALSE, sizeof(base_vertex), (GLvoid*)OFFSETOF(base_vertex, position));
-	glVertexAttribPointer(_kzNormal, 3, GL_FLOAT, GL_FALSE, sizeof(base_vertex), (GLvoid*)OFFSETOF(base_vertex, vnormal));
-	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-	glBufferData(GL_ARRAY_BUFFER, tmesh.vertices.size()*sizeof(base_vertex), (const GLvoid*)&tmesh.vertices.at(0), GL_STREAM_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, tmesh.faces.size()*sizeof(tri_face), (const GLvoid*)&tmesh.faces.at(0), GL_STREAM_DRAW);
-	glDrawElements(GL_TRIANGLES, (GLsizei)tmesh.faces.size(), GL_INT, 0);
-	
-	glDisableVertexAttribArray(_kzPosition);
-	glDisableVertexAttribArray(_kzNormal);
+	glBindVertexArray(tmesh._vao);
+	glDrawElements(GL_TRIANGLES, (GLsizei)tmesh.faces.size(), GL_UNSIGNED_SHORT, 0);
+	glBindVertexArray(0);
 	glUseProgram(last_program);
-	glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, last_element_array_buffer);
 }
 
 void phong_shader::set_vertex_wrold_matrix(glm::mat4& vtmat)
 {
 	glUniformMatrix4fv(_kzWorldMatrix, 1, GL_FALSE, glm::value_ptr(vtmat));
 	glm::mat4 inversevm = glm::inverse(vtmat);//Äæ¾ØÕó
-	glm::mat4 transposvm = glm::transpose(inversevm);
+	glm::mat4 transposvm = glm::transpose(inversevm);//×ªÖÃ¾ØÕó
 	glUniformMatrix4fv(_kzNormal, 1, GL_FALSE, glm::value_ptr(transposvm));
 }

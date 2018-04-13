@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 #include "json/json.h"
+#include <algorithm>
 //#include <map>
 struct ft_vertex
 {
@@ -54,7 +55,14 @@ public:
 	virtual void draw() = 0;
 	virtual base_ui_component* get_a_copy() = 0;
 	//virtual base_ui_component* get_new_instance() = 0;
-	void set_name(string& name){ _name = name; }
+	void set_name(string& name)
+	{
+		_name = name; 
+#if !defined(IMGUI_WAYLAND)
+		memset(_name_bk, 0, name_len);
+		strcpy(_name_bk, _name.c_str());
+#endif
+	}
 	string& get_name(){ return _name; }
 	virtual bool handle_mouse(){ return false; }
 	virtual bool init_from_json(Value&){ return true; }
@@ -63,15 +71,11 @@ public:
 		:_texture_id_index(0)
 		,_visible(true)
 		, _parent(NULL)
-		, _name("control")
 #if !defined(IMGUI_WAYLAND)
 		, _selected(false)
 #endif
 	{
-#if !defined(IMGUI_WAYLAND)
-		memset(_name_bk, 0, name_len);
-		strcpy(_name_bk, _name.c_str());
-#endif
+
 	}
 	
 	~base_ui_component()
@@ -82,6 +86,15 @@ public:
 		}
 	}
 	void add_child(base_ui_component* pchild){ pchild->_parent = this; _vchilds.push_back(pchild); }
+	void remove_child(base_ui_component* pchild)
+	{
+		auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
+		if (it!=_vchilds.end())
+		{
+			_vchilds.erase(it);
+			delete pchild;
+		}
+	}
 	base_ui_component* get_child(int index)
 	{
 		return _vchilds[index];
@@ -103,12 +116,10 @@ public:
 		}
 		return base_pos;
 	}
-	virtual void offset(ImVec2& imof)
+	void offset(ImVec2& imof)
 	{
-		for (auto it:_vchilds)
-		{
-			it->offset(imof);
-		}
+		_pos.x += imof.x;
+		_pos.y += imof.y;
 	}
 	int get_texture_id_index(){return _texture_id_index; }
 	bool is_visible(){ return _visible; }

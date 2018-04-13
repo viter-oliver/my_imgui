@@ -262,7 +262,6 @@ int main(int argc, char* argv[])
 			if (_proot)
 			{
 				pjedit.objects_view();
-				_pselect = pjedit.current_object();
 				pjedit.popup_context_menu();
 			}
 			ImGui::End();
@@ -270,6 +269,7 @@ int main(int argc, char* argv[])
 		if (show_property_window)
 		{
 			ImGui::Begin("property");
+			_pselect = pjedit.current_object();
 			if (_pselect)
 			{
 				_pselect->draw_peroperty_page();

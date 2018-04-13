@@ -115,23 +115,23 @@
     <ClCompile Include="ft_scene3d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="af_cube.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="af_model.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="af_plane.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="af_sphere.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="basic3d.cpp">
       <Filter>3dutility</Filter>
     </ClCompile>
     <ClCompile Include="phong_shader.cpp">
       <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_cube.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_model.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_plane.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_sphere.cpp">
+      <Filter>controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -237,23 +237,23 @@
     <ClInclude Include="ft_scene3d.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="af_cube.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="af_model.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="af_plane.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="af_sphere.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="basic3d.h">
       <Filter>3dutility</Filter>
     </ClInclude>
     <ClInclude Include="phong_shader.h">
       <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_cube.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_model.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_plane.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_sphere.h">
+      <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

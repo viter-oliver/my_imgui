@@ -72,7 +72,9 @@ void project_edit::popup_context_menu()
 				{
 					if (_pcurrent_object)
 					{
-						_pcurrent_object->add_child(infun());
+						base_ui_component* pchild = infun();
+						pchild->set_name(cname);
+						_pcurrent_object->add_child(pchild);
 					}
 				}
 			});
@@ -86,6 +88,20 @@ void project_edit::popup_context_menu()
 				_pcurrent_object->get_parent()->add_child(psibling);
 			}
 			//ImGui::EndMenu();
+		}
+		if (ImGui::MenuItem("delete",NULL,false))
+		{
+			if (_pcurrent_object)
+			{
+
+				base_ui_component* pparent = _pcurrent_object->get_parent();
+				if (pparent)
+				{
+
+					pparent->remove_child(_pcurrent_object);
+					_pcurrent_object = pparent;
+				}
+			}
 		}
 
 		ImGui::EndPopup();
