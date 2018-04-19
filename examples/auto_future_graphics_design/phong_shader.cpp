@@ -109,9 +109,10 @@ void main()
 }
 )glsl";
 
-phong_shader::phong_shader()
+phong_shader::phong_shader(tri_mesh& tgmesh)
+	:basic_shader(tgmesh)
 {
-	
+	tri_mesh_normalize(_tmesh);
 	//vertex shader
 	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(_vertex_shader, 1, &phong_vertex_share, NULL);
@@ -125,6 +126,7 @@ phong_shader::phong_shader()
 	glAttachShader(_shader_program, _vertex_shader);
 	glAttachShader(_shader_program, _fragment_shader);
 	glLinkProgram(_shader_program);
+	glUseProgram(_shader_program);
 	//get attrib location
 	_kzPosition = glGetAttribLocation(_shader_program, "kzPosition");
 	_kzNormal = glGetAttribLocation(_shader_program, "kzNormal");
@@ -132,7 +134,7 @@ phong_shader::phong_shader()
 	_ProjectionCameraWorldMatrix = glGetUniformLocation(_shader_program, "ProjectionCameraWorldMatrix");
 	glm::mat4 proj = glm::perspective(glm::radians(60.0f), base_ui_component::screenw / base_ui_component::screenh, 1.0f, 10.0f);
 	glUniformMatrix4fv(_ProjectionCameraWorldMatrix, 1, GL_FALSE, glm::value_ptr(proj));
-	glm::mat4 tidentity;
+	glm::mat4 tidentity(1.f);
 	_kzWorldMatrix = glGetUniformLocation(_shader_program, "kzWorldMatrix");
 	glUniformMatrix4fv(_kzWorldMatrix, 1, GL_FALSE, glm::value_ptr(tidentity));
 	_kzNormalMatrix = glGetUniformLocation(_shader_program, "kzNormalMatrix");
@@ -186,20 +188,20 @@ phong_shader::~phong_shader()
 	
 }
 #define OFFSETOF(TYPE, ELEMENT) ((size_t)&(((TYPE *)0)->ELEMENT))
-void phong_shader::load_tri_mesh(tri_mesh& tmesh)
+void phong_shader::load_tri_mesh()
 {
-	glBindVertexArray(tmesh._vao);
+	glBindVertexArray(_tmesh._vao);
 	glEnableVertexAttribArray(_kzPosition);
 	glEnableVertexAttribArray(_kzNormal);
-	glBindBuffer(GL_ARRAY_BUFFER, tmesh._vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, _tmesh._vbo);
 	glVertexAttribPointer(_kzPosition, 3, GL_FLOAT, GL_FALSE, sizeof(base_vertex), (GLvoid*)OFFSETOF(base_vertex, position));
 	glVertexAttribPointer(_kzNormal, 3, GL_FLOAT, GL_FALSE, sizeof(base_vertex), (GLvoid*)OFFSETOF(base_vertex, vnormal));
-	glBufferData(GL_ARRAY_BUFFER, tmesh.vertices.size()*sizeof(base_vertex), (const GLvoid*)&tmesh.vertices.at(0), GL_STREAM_DRAW);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, tmesh._ebo);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, tmesh.faces.size()*sizeof(tri_face), (const GLvoid*)&tmesh.faces.at(0), GL_STREAM_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, _tmesh.vertices.size()*sizeof(base_vertex), (const GLvoid*)&_tmesh.vertices[0], GL_STREAM_DRAW);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _tmesh._ebo);
+	glBufferData(GL_ELEMENT_ARRAY_BUFFER, _tmesh.faces.size()*sizeof(tri_face), (const GLvoid*)&_tmesh.faces[0], GL_STREAM_DRAW);
 
 }
-void phong_shader::render_tri_mesh(tri_mesh& tmesh)
+void phong_shader::render_tri_mesh()
 {
 	GLint last_program, last_array_buffer, last_element_array_buffer;
 	glGetIntegerv(GL_CURRENT_PROGRAM, &last_program);
@@ -209,8 +211,9 @@ void phong_shader::render_tri_mesh(tri_mesh& tmesh)
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);
 	glUseProgram(_shader_program);
-	glBindVertexArray(tmesh._vao);
-	glDrawElements(GL_TRIANGLES, (GLsizei)tmesh.faces.size(), GL_UNSIGNED_SHORT, 0);
+	glBindVertexArray(_tmesh._vao);
+	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _tmesh._ebo);
+	glDrawElements(GL_TRIANGLES, (GLsizei)_tmesh.faces.size()*3, GL_UNSIGNED_SHORT, 0);
 	glBindVertexArray(0);
 	glUseProgram(last_program);
 }

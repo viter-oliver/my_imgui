@@ -161,6 +161,7 @@
     <ClCompile Include="..\..\imgui_draw.cpp" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="af_application.cpp" />
+    <ClCompile Include="color_shader.cpp" />
     <ClCompile Include="ft_cube.cpp" />
     <ClCompile Include="ft_model.cpp" />
     <ClCompile Include="ft_plane.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
     <ClCompile Include="texture_res_load.cpp" />
+    <ClCompile Include="texture_shader.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
     <ClCompile Include="user_control_imgui.cpp" />
   </ItemGroup>
@@ -197,6 +199,7 @@
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="af_application.h" />
+    <ClInclude Include="color_shader.h" />
     <ClInclude Include="ft_cube.h" />
     <ClInclude Include="af_message_queue.h" />
     <ClInclude Include="ft_model.h" />
@@ -228,6 +231,7 @@
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="texture_res_load.h" />
+    <ClInclude Include="texture_shader.h" />
     <ClInclude Include="ui_assembler.h" />
     <ClInclude Include="user_control_imgui.h" />
   </ItemGroup>

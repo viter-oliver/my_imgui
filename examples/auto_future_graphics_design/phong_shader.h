@@ -18,11 +18,12 @@ class phong_shader :public basic_shader
 	GLuint _PointLightColor2, _DirectionalLightColor1, _Emissive, _Ambient, _Diffuse, _SpecularColor;
 	//float
 	GLuint _SpecularExponent, _BlendIntensity;
+
 public:
-	phong_shader();
+	phong_shader(tri_mesh& tgmesh);
 	~phong_shader();
-	void load_tri_mesh(tri_mesh& tmesh);
-	void render_tri_mesh(tri_mesh& tmesh);
+	void load_tri_mesh();
+	void render_tri_mesh();
 	void set_vertex_wrold_matrix(glm::mat4& vtmat);
 };
 

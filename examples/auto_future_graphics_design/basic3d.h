@@ -19,6 +19,16 @@ struct base_vertex
 	base_vertex(float x, float y, float z) :position(x, y, z){}
 	//base_vertex(){ vnormal = glm::vec3(0.f); }
 };
+/*
+struct myc_class
+{
+	ImVec3 vnormal;
+    ImVec3& vcolor=vnormal;
+};
+struct my_test
+{
+	ImVector<myc_class> _test;
+};*/
 struct tri_face
 {
 	unsigned short vidx[3];
@@ -27,16 +37,20 @@ struct tri_face
 };
 struct tri_mesh 
 {
-	vector<base_vertex> vertices;
-	vector<tri_face> faces;
+	ImVector<base_vertex> vertices;
+	ImVector<tri_face> faces;
 	GLuint _vbo, _vao, _ebo;
 	tri_mesh();
 	~tri_mesh();
 };
-struct basic_shader
+class basic_shader
 {
-	virtual void load_tri_mesh(tri_mesh& tmesh)=0;
-	virtual void render_tri_mesh(tri_mesh& tmesh)=0;
+protected:
+	tri_mesh& _tmesh;
+public:
+	basic_shader(tri_mesh& tgmesh) :_tmesh(tgmesh){}
+	virtual void load_tri_mesh()=0;
+	virtual void render_tri_mesh()=0;
 	virtual void set_vertex_wrold_matrix(glm::mat4& vtmat)=0;
 };
 extern void init_cube_trimesh_faces(tri_mesh& cube_trmesh);

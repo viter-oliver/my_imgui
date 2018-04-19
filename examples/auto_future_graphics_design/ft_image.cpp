@@ -45,7 +45,7 @@ void ft_image::draw()
 #if !defined(IMGUI_WAYLAND)
 	if (is_selected())//draw envelope
 	{
-		ImU32 col = ImGui::GetColorU32(ImGuiCol_Separator);
+		ImU32 col = ImGui::GetColorU32(ImGuiCol_HeaderActive);
 		ImVec2 editunit(edit_unit_len, edit_unit_len);
 		ImVec2 pos1a = pos1 - editunit;
 		ImVec2 pos1b = pos1 + editunit;

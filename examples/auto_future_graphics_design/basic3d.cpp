@@ -34,23 +34,23 @@ void init_cube_trimesh_faces(tri_mesh& cube_trmesh)
 		return;
 	}
 #define FACE_INIT(x,y,z) cube_trmesh.faces.push_back(tri_face(x, y, z))
-	FACE_INIT(0, 1, 2);
-	FACE_INIT(2, 3, 0);
-
-	FACE_INIT(1, 5, 6);
-	FACE_INIT(6, 2, 1);
-
-	FACE_INIT(5, 6, 7);
-	FACE_INIT(7, 4, 5);
-
-	FACE_INIT(7, 3, 0);
-	FACE_INIT(0, 4, 7);
-
 	FACE_INIT(0, 4, 5);
 	FACE_INIT(5, 1, 0);
 
-	FACE_INIT(6, 2, 3);
-	FACE_INIT(3, 7, 6);
+	FACE_INIT(3, 2, 6);
+	FACE_INIT(6, 7, 3);
+
+	FACE_INIT(7, 4, 0);
+	FACE_INIT(0, 3, 7);
+
+	FACE_INIT(6, 2, 1);
+	FACE_INIT(1, 5, 6);
+
+	FACE_INIT(0, 1, 2);
+	FACE_INIT(2, 3, 0);
+
+	FACE_INIT(4, 7, 6);
+	FACE_INIT(6, 5, 4);
 
 }
 void tri_mesh_normalize(tri_mesh& trmesh)

@@ -133,6 +133,12 @@
     <ClCompile Include="ft_sphere.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="color_shader.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_shader.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -254,6 +260,12 @@
     </ClInclude>
     <ClInclude Include="ft_sphere.h">
       <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="color_shader.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_shader.h">
+      <Filter>3dutility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -26,9 +26,8 @@ ft_cube::ft_cube()
 	INI_MESH(0.25f, 0.25f, 0.25f);
 	INI_MESH(-0.25f, 0.25f, 0.25f);
 	init_cube_trimesh_faces(_mesh);
-	tri_mesh_normalize(_mesh);
-	_pshader = new phong_shader();
-	_pshader->load_tri_mesh(_mesh);
+	_pshader = new phong_shader(_mesh);
+	_pshader->load_tri_mesh();
 
 }
 
@@ -45,13 +44,14 @@ ft_cube::ft_cube(ft_cube& bsource)
 
 ft_cube::~ft_cube()
 {
+	delete _pshader;
 }
 
 void ft_cube::draw()
 {
 	
 	//_pshader->set_vertex_wrold_matrix(mod);
-	_pshader->render_tri_mesh(_mesh);
+	_pshader->render_tri_mesh();
 }
 #if !defined(IMGUI_WAYLAND)
 void ft_cube::draw_peroperty_page()

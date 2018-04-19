@@ -40,7 +40,11 @@ public:
 	}
 };
 
-
+struct testalias
+{
+	int jj;
+	int& ij = jj;
+};
 #include <typeinfo>
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
@@ -100,6 +104,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	{
 		iv = iv + 2;
 	}
+	testalias mya;
+	mya.jj = 1111;
+	printf("ij=%d\n", mya.ij);
+	int tst_int;
+	printf("%s\n",typeid(tst_int).name());
+	char* tst_str = "gfsdgd";
+	printf("%s\n", typeid(tst_str).name());
+
 	return 0;
 }
 
