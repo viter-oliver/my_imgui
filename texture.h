@@ -44,6 +44,41 @@ public:
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return textureId;
 	}
+	static  GLint transferMemory2Texture(const unsigned char*  pdata,int bufferLen, int& picWidth, int& picHeight, GLint internalFormat = GL_RGB,
+		GLenum picFormat = GL_RGB, int loadChannels = SOIL_LOAD_RGB)
+	{
+		// Step1 创建并绑定纹理对象
+		GLuint textureId = 0;
+		glGenTextures(1, &textureId);
+		glBindTexture(GL_TEXTURE_2D, textureId);
+		if (loadChannels == SOIL_LOAD_RGBA)
+		{
+			glEnable(GL_BLEND);
+			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		}
+		// Step2 设定wrap参数
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		// Step3 设定filter参数
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 
+			GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+		// Step4 加载纹理
+		GLubyte *imageData = NULL;
+		imageData = SOIL_load_image_from_memory(pdata, bufferLen,&picWidth, &picHeight, 0, loadChannels);
+		if (imageData == NULL)
+		{
+			std::cerr << "Fail to tranfer buffer to texture! "<<std::endl;
+			return 0;
+		}
+		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, picWidth, picHeight, 
+			0, picFormat, GL_UNSIGNED_BYTE, imageData);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		// Step5 释放纹理图片资源
+		SOIL_free_image_data(imageData);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		return textureId;
+	}
 	/*
 	* 创建 framebuffer-attachable texture
 	*/

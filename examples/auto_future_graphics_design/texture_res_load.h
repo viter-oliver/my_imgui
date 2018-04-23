@@ -11,4 +11,4 @@ public:
 	void load_res_from_json(Value& jroot);
 };
 
-void load_internal_texture_res(mtxt_internal& mptxt, const char* texture_path, const char* texture_dataformat_path);
+void load_internal_texture_res(mtxt_internal& mptxt, unsigned int txtresid, unsigned int txtformatid);

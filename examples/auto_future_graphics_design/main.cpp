@@ -19,18 +19,24 @@
 #include "res_internal.h"
 #include "texture_res_load.h"
 #include <functional>
+#if !defined(IMGUI_WAYLAND)
+#include <windows.h>
+#include <locale.h>  
+#include <ShlObj.h>
+#include <Commdlg.h>
+#endif
+#include "Resource.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
 }
-const char* intl_txt_data = "internal_texture_dataformat.json";
-const char* intl_txt_res = "internal_texture_dataformat.png";
 
 string g_cureent_project_file_path;
 string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
 {
+	en_ctrl_n,
 	en_ctrl_o,
 	en_ctrl_s,
 	an_alt_f4,
@@ -94,9 +100,7 @@ int main(int argc, char* argv[])
 	GetCurrentDirectory(MAX_PATH, buffer);
 	g_current_run_path = buffer;
 	g_current_run_path += "\\";
-	string str_itnl_txtdata = g_current_run_path + intl_txt_data;
-	string str_itnl_txtres = g_current_run_path + intl_txt_res;
-	load_internal_texture_res(g_mtxt_intl, str_itnl_txtres.c_str(), str_itnl_txtdata.c_str());
+	load_internal_texture_res(g_mtxt_intl, IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
 
     bool show_demo_window = true;
     bool show_another_window = false;
@@ -111,10 +115,9 @@ int main(int argc, char* argv[])
 	ft_base* _proot = NULL;	
 	base_ui_component* _pselect = NULL;
 	af_application _app;
-
 	if (!g_cureent_project_file_path.empty())
 	{
-		_proot=new ft_base;
+		_proot = new ft_base;
 		ui_assembler _ui_as(*_proot);
 		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 	//class rotate_pointer
@@ -137,20 +140,109 @@ int main(int argc, char* argv[])
 	//}_rt_pointer(*_proot);
 	//_app.register_update_fun("rotate_pointer", bind(&rotate_pointer::rotate, &_rt_pointer));
 	}
-	
-	auto fun_shortct = [_proot](en_short_cut_item enshort){
+	project_edit pjedit(*_proot);
+	function<void(en_short_cut_item)> fun_shortct = [_proot, pjedit, &fun_shortct](en_short_cut_item enshort) mutable {
 		if (!_proot)
 		{
 			return;
 		}
 		switch (enshort)
 		{
+		case en_ctrl_n:
+		{
+			if (_proot)
+			{
+				int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+				if (result == IDCANCEL)
+				{
+					return;
+				}
+				else
+				if (result == IDYES)
+				{
+					fun_shortct(en_ctrl_s);
+				}
+				pjedit.clear_sel_item();
+				delete _proot;
+				_proot = NULL;
+
+			}
+			g_cureent_project_file_path = "";
+			_proot = new ft_base;
+			_proot->set_name(string("screen"));
+
+		}
+		break;
+		case en_ctrl_o:
+		{
+			OPENFILENAME ofn = { sizeof(OPENFILENAME) };
+			ofn.hwndOwner = GetForegroundWindow();
+			ofn.lpstrFilter = "valid file:\0*.afproj\0\0";
+			char strFileName[MAX_PATH] = { 0 };
+			ofn.nFilterIndex = 1;
+			ofn.lpstrFile = strFileName;
+			ofn.nMaxFile = sizeof(strFileName);
+			ofn.lpstrTitle = "select a auto-future graphics design project file(*.afproj) please!";
+			ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+			if (GetOpenFileName(&ofn))
+			{
+				printf("open file%s\n", strFileName);
+				if (_proot)
+				{
+					int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+					if (result==IDCANCEL)
+					{
+						return;
+					}
+					else
+					if (result==IDYES)
+					{
+						fun_shortct(en_ctrl_s);
+					}
+					pjedit.clear_sel_item();
+					delete _proot;
+					_proot = NULL;
+				}
+				g_cureent_project_file_path = strFileName;
+				_proot = new ft_base;
+				ui_assembler _ui_as(*_proot);
+				_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
+
+			}
+		}
+		break;
 		case en_ctrl_s:
+		{
+			if (g_cureent_project_file_path.empty())
+			{
+				OPENFILENAME sfn = { sizeof(OPENFILENAME) };
+				sfn.hwndOwner = GetForegroundWindow();
+				sfn.lpstrFilter = "afd project file:\0*.afproj\0\0";
+				sfn.lpstrDefExt = "afproj";
+				char strFileName[MAX_PATH] = { 0 };
+				sfn.nFilterIndex = 1;
+				sfn.lpstrFile = strFileName;
+				sfn.nMaxFile = sizeof(strFileName);
+				sfn.lpstrTitle = "Save to";
+				sfn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+				sfn.FlagsEx = OFN_EX_NOPLACESBAR;
+				if (GetSaveFileName(&sfn))
+				{
+					g_cureent_project_file_path = strFileName;
+				}
+				else
+				{
+					return;
+				}
+			}
+			
 			ui_assembler _ui_as(*_proot);
 			_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
 		}
+		break;
+
+		}
 	};
-	project_edit pjedit(*_proot);
 
 	// Main loop
     while (!glfwWindowShouldClose(window))
@@ -203,9 +295,22 @@ int main(int argc, char* argv[])
 #else
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
 		static bool show_project_window=true,show_edit_window=true,show_property_window=true;
-		if (ImGui::GetIO().KeyCtrl&&ImGui::GetIO().KeysDown[GLFW_KEY_S])
+		if (ImGui::GetIO().KeyCtrl)
 		{
-			fun_shortct(en_ctrl_s);
+			if (ImGui::GetIO().KeysDown[GLFW_KEY_S])
+			{
+				fun_shortct(en_ctrl_s);
+			}
+			else
+			if (ImGui::GetIO().KeysDown[GLFW_KEY_O])
+			{
+				fun_shortct(en_ctrl_o);
+			}
+			else
+			if (ImGui::GetIO().KeysDown[GLFW_KEY_N])
+			{
+				fun_shortct(en_ctrl_n);
+			}
 		}
 
 		if (ImGui::BeginMainMenuBar())
@@ -213,8 +318,14 @@ int main(int argc, char* argv[])
 			if (ImGui::BeginMenu("File"))
 			{
 				//ImGui::MenuItem("(dummy menu)", NULL, false, false);
-				if (ImGui::MenuItem("New Project")) {}
-				if (ImGui::MenuItem("Open Project...", "Ctrl+O")) {}
+				if (ImGui::MenuItem("New Project", "Ctrl+N")) 
+				{
+					fun_shortct(en_ctrl_n);
+				}
+				if (ImGui::MenuItem("Open Project...", "Ctrl+O")) 
+				{
+					fun_shortct(en_ctrl_o);
+				}
 				if (ImGui::BeginMenu("Open Recent"))
 				{
 					ImGui::MenuItem("haima.afproj");
@@ -228,20 +339,34 @@ int main(int argc, char* argv[])
 				{
 					fun_shortct(en_ctrl_s);
 				}
-				if (ImGui::MenuItem("Save As..")) {}
+				if (ImGui::MenuItem("Save As..")) 
+				{
+				}
 				ImGui::Separator();
 				
-				if (ImGui::MenuItem("Quit", "Alt+F4")) {}
+				if (ImGui::MenuItem("Quit", "Alt+F4")) 
+				{
+				}
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Edit"))
 			{
-				if (ImGui::MenuItem("Undo", "CTRL+Z")) {}
-				if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) {}  // Disabled item
+				if (ImGui::MenuItem("Undo", "CTRL+Z")) 
+				{
+				}
+				if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) 
+				{
+				}  // Disabled item
 				ImGui::Separator();
-				if (ImGui::MenuItem("Cut", "CTRL+X")) {}
-				if (ImGui::MenuItem("Copy", "CTRL+C")) {}
-				if (ImGui::MenuItem("Paste", "CTRL+V")) {}
+				if (ImGui::MenuItem("Cut", "CTRL+X")) 
+				{
+				}
+				if (ImGui::MenuItem("Copy", "CTRL+C")) 
+				{
+				}
+				if (ImGui::MenuItem("Paste", "CTRL+V")) 
+				{
+				}
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Window"))

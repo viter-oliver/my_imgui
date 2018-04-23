@@ -48,7 +48,8 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 bool ui_assembler::output_ui_component_to_file(const char* file_path)
 {
 	Value jtexture;
-	ifstream fin;
+
+	/*ifstream fin;
 	fin.open(file_path);
 	if (fin.is_open())
 	{
@@ -64,7 +65,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	else
 	{
 		return false;
-	}
+	}*/
 	ofstream fout;
 	fout.open(file_path);
 	Value jroot(objectValue);

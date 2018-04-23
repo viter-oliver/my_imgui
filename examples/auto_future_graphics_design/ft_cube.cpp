@@ -1,5 +1,5 @@
 #include "ft_cube.h"
-#include "phong_shader.h"
+#include "color_shader.h"
 /*
       3              2
 
@@ -26,7 +26,7 @@ ft_cube::ft_cube()
 	INI_MESH(0.25f, 0.25f, 0.25f);
 	INI_MESH(-0.25f, 0.25f, 0.25f);
 	init_cube_trimesh_faces(_mesh);
-	_pshader = new phong_shader(_mesh);
+	_pshader = new color_shader(_mesh);
 	_pshader->load_tri_mesh();
 
 }

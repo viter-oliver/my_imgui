@@ -12,5 +12,6 @@ public:
 	{}
 	void objects_view();
 	void popup_context_menu();
+	void clear_sel_item(){ _pcopy_object = NULL; }
 	base_ui_component* current_object(){ return _pcurrent_object; }
 };

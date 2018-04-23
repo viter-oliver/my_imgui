@@ -90,12 +90,12 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;G:\GitHub\my_imgui\my_imgui\soil;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -228,6 +228,7 @@
     <ClInclude Include="json\writer.h" />
     <ClInclude Include="phong_shader.h" />
     <ClInclude Include="project_edit.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="texture_res_load.h" />
@@ -237,9 +238,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
+    <None Include="internal_texture_dataformat.json" />
     <None Include="json\json_internalarray.inl" />
     <None Include="json\json_internalmap.inl" />
     <None Include="json\json_valueiterator.inl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="auto_future_graphics_design.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="internal_texture_dataformat.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

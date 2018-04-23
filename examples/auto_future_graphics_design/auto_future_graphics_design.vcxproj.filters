@@ -267,6 +267,7 @@
     <ClInclude Include="texture_shader.h">
       <Filter>3dutility</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -279,5 +280,12 @@
     <None Include="json\json_valueiterator.inl">
       <Filter>json</Filter>
     </None>
+    <None Include="internal_texture_dataformat.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="auto_future_graphics_design.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="internal_texture_dataformat.png" />
   </ItemGroup>
 </Project>

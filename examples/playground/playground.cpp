@@ -45,6 +45,11 @@ struct testalias
 	int jj;
 	int& ij = jj;
 };
+
+/*#include <windows.h>
+#include <tchar.h>  
+#include <locale.h>*/  
+#include <ShlObj.h>
 #include <typeinfo>
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
@@ -111,7 +116,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("%s\n",typeid(tst_int).name());
 	char* tst_str = "gfsdgd";
 	printf("%s\n", typeid(tst_str).name());
-
+	OPENFILENAME ofn = { sizeof(OPENFILENAME) };
 	return 0;
 }
 

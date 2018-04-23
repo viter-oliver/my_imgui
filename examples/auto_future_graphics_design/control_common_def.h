@@ -122,6 +122,7 @@ public:
 		_pos.y += imof.y;
 	}
 	int get_texture_id_index(){return _texture_id_index; }
+	void set_texture_id_index(int texture_id_index){ _texture_id_index = texture_id_index; }
 	bool is_visible(){ return _visible; }
 	void set_visible(bool visible){ _visible = visible; }
 

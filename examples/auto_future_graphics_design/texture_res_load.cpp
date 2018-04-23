@@ -68,17 +68,46 @@ void texture_res_load::load_res_from_json(Value& jroot)
 	}
 }
 
-void load_internal_texture_res(mtxt_internal& mptxt, const char* texture_path, const char* texture_dataformat_path)
+void load_internal_texture_res(mtxt_internal& mptxt, unsigned int txtresid, unsigned int txtformatid)
 {
-	g_txt_id_intl = TextureHelper::load2DTexture(texture_path, g_txt_width_intl, g_txt_height_intl, \
-		GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
-	ifstream fin;
-	fin.open(texture_dataformat_path);
-	if (fin.is_open())
+	//MAKEINTRESOURCE
+	HRSRC hrTxt = FindResource(NULL, MAKEINTRESOURCE(txtresid), "PNG");
+	if (NULL==hrTxt)
 	{
+		printf("fail to get internal txture resource!\n");
+		return;
+	}
+	DWORD dwSize = SizeofResource(NULL, hrTxt);
+	if (dwSize==0)
+	{
+		printf("this size of internal texture resource is zero!\n");
+		return;
+	}
+	HGLOBAL htxtGlobal = LoadResource(NULL, hrTxt);
+	LPVOID pbuffer = LockResource(htxtGlobal);
+	g_txt_id_intl = TextureHelper::transferMemory2Texture((unsigned char*)pbuffer,dwSize, g_txt_width_intl, g_txt_height_intl, \
+		GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
+	
+	HRSRC hrData = FindResource(NULL, MAKEINTRESOURCE(txtformatid), "dataformat");
+	if (NULL == hrData)
+	{
+		printf("fail to get internal txture resource!\n");
+		return;
+	}
+	DWORD dwFSize = SizeofResource(NULL, hrData);
+	if (dwFSize == 0)
+	{
+		printf("this size of internal texture resource is zero!\n");
+		return;
+	}
+	HGLOBAL hdataGb = LoadResource(NULL, hrData);
+	LPVOID pdtBuffer = LockResource(hdataGb);
+	if (pdtBuffer)
+	{
+		string jdoc((char*)pdtBuffer);
 		Reader reader;
 		Value jvalue;
-		if (reader.parse(fin, jvalue, false))
+		if (reader.parse(jdoc, jvalue, false))
 		{
 			Value& frames = jvalue["frames"];
 			int iisize = frames.size();
