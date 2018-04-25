@@ -20,7 +20,6 @@ vertexes:
 bool ft_polygon_image::init_from_json(Value& jvalue)
 {
 	_name = jvalue["name"].asString();
-	_texture_id_index = jvalue["texture_id_index"].asInt();
 	Value& jvertexes = jvalue["vertexes"];
 	int isize = jvertexes.size();
 	for (int ix = 0; ix < isize; ix++)

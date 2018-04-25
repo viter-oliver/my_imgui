@@ -156,6 +156,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\iguidock.cpp" />
     <ClCompile Include="..\..\imgui.cpp" />
     <ClCompile Include="..\..\imgui_demo.cpp" />
     <ClCompile Include="..\..\imgui_draw.cpp" />
@@ -183,6 +184,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="phong_shader.cpp" />
     <ClCompile Include="project_edit.cpp" />
+    <ClCompile Include="res_edit.cpp" />
     <ClCompile Include="res_internal.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
@@ -194,6 +196,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h" />
     <ClInclude Include="..\..\imgui.h" />
+    <ClInclude Include="..\..\imguidock.h" />
     <ClInclude Include="..\..\imgui_internal.h" />
     <ClInclude Include="..\..\texture.h" />
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
@@ -229,6 +232,7 @@
     <ClInclude Include="phong_shader.h" />
     <ClInclude Include="project_edit.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="res_edit.h" />
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="texture_res_load.h" />

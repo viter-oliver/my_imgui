@@ -24,8 +24,10 @@
 #include <locale.h>  
 #include <ShlObj.h>
 #include <Commdlg.h>
+#include "imguidock.h"
 #endif
 #include "Resource.h"
+#include "res_edit.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -115,11 +117,15 @@ int main(int argc, char* argv[])
 	ft_base* _proot = NULL;	
 	base_ui_component* _pselect = NULL;
 	af_application _app;
+	res_edit* _pres_mg;
 	if (!g_cureent_project_file_path.empty())
 	{
 		_proot = new ft_base;
 		ui_assembler _ui_as(*_proot);
 		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
+		_pres_mg = new res_edit();
+
+
 	//class rotate_pointer
 	//{
 	//	ft_image* _pointer_image_left;
@@ -255,7 +261,43 @@ int main(int argc, char* argv[])
         ImGui_ImplGlfwGL3_NewFrame();
 		_app.update();
 		//socketpair
-#if 0
+#define _MY_IMGUI__
+#if defined(_Dockable_)
+
+		if (ImGui::Begin("imguidock window (= lumix engine's dock system)",NULL,ImVec2(500, 500),0.95f,ImGuiWindowFlags_NoScrollbar)) {
+			ImGui::BeginDockspace();
+			static char tmp[128];
+			for (int i=0;i<10;i++)  {
+				sprintf(tmp,"Dock %d",i);
+				if (i==9) ImGui::SetNextDock(ImGuiDockSlot_Bottom);// optional
+				if(ImGui::BeginDock(tmp))  {
+					ImGui::Text("Content of dock window %d goes here",i);
+				}
+				ImGui::EndDock();
+			}
+			ImGui::EndDockspace();
+		}
+		ImGui::End();
+		//ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
+		//const ImGuiWindowFlags flags =  (ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoBringToFrontOnFocus | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoTitleBar);
+		//const float oldWindowRounding = ImGui::GetStyle().WindowRounding;ImGui::GetStyle().WindowRounding = 0;
+		//const bool visible = ImGui::Begin("imguidock window (= lumix engine's dock system)",NULL,ImVec2(0, 0),1.0f,flags);
+		//ImGui::GetStyle().WindowRounding = oldWindowRounding;
+		//if (visible) {
+		//	ImGui::BeginDockspace();
+		//	static char tmp[128];
+		//	for (int i=0;i<10;i++)  {
+		//		sprintf(tmp,"Dock %d",i);
+		//		if (i==9) ImGui::SetNextDock(ImGuiDockSlot_Bottom);// optional
+		//		if(ImGui::BeginDock(tmp))  {
+		//			ImGui::Text("Content of dock window %d goes here",i);
+		//		}
+		//		ImGui::EndDock();
+		//	}
+		//	ImGui::EndDockspace();
+		//}
+		//ImGui::End();
+#elif defined(_DEMO_)
         // 1. Show a simple window.
         // Tip: if we don't call ImGui::Begin()/ImGui::End() the widgets automatically appears in a window called "Debug".
         {
@@ -292,9 +334,9 @@ int main(int argc, char* argv[])
             ImGui::SetNextWindowPos(ImVec2(650, 20), ImGuiCond_FirstUseEver); // Normally user code doesn't need/want to call this because positions are saved in .ini file anyway. Here we just want to make the demo initial state a bit more friendly!
             ImGui::ShowDemoWindow(&show_demo_window);
         }
-#else
+#elif defined(_MY_IMGUI__)
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
-		static bool show_project_window=true,show_edit_window=true,show_property_window=true;
+		static bool show_project_window=true,show_edit_window=true,show_property_window=true,show_resource_manager=true;
 		if (ImGui::GetIO().KeyCtrl)
 		{
 			if (ImGui::GetIO().KeysDown[GLFW_KEY_S])
@@ -377,6 +419,9 @@ int main(int argc, char* argv[])
 				if (ImGui::MenuItem("Project Window", NULL, show_project_window)) { show_project_window = !show_project_window; }
 				if (ImGui::MenuItem("Edit Window", NULL, show_edit_window)) { show_edit_window = !show_edit_window; }
 				if (ImGui::MenuItem("Property Window", NULL, show_property_window)) { show_property_window = !show_property_window; }
+				if (ImGui::MenuItem("Resource Manager", NULL, show_resource_manager)) { show_resource_manager = !show_resource_manager; }
+
+
 				ImGui::EndMenu();
 			}
 			ImGui::EndMainMenuBar();
@@ -412,7 +457,29 @@ int main(int argc, char* argv[])
 			}
 			ImGui::End();
 		}
+		if (show_resource_manager)
+		{
+			ImGui::Begin("resources manager", &show_resource_manager, ImVec2(200, 500));
+			ImGui::BeginDockspace();
 
+			ImGui::BeginDock("resource list:");
+			if (_pres_mg)
+			{
+				_pres_mg->draw_res_list();
+			}
+			ImGui::EndDock();
+
+			ImGui::BeginDock("resource item property:");
+			if (_pres_mg)
+			{
+				_pres_mg->draw_res_item_property();
+			}
+			ImGui::EndDock();
+
+			ImGui::EndDockspace();
+			ImGui::End();
+		}
+		
 #endif
         // Rendering
         int display_w, display_h;

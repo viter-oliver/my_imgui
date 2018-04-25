@@ -16,9 +16,9 @@ texture_res_list
   texture_pack_file
   texture_data_file
 */
-extern string g_cureent_project_file_path;
 void texture_res_load::load_res_from_json(Value& jroot)
 {
+	g_cur_texture_id_index = jroot["texture_id_index"].asInt();
 	Value& texture_res_list = jroot["texture_res_list"];
 	int isize = texture_res_list.size();
 	for (int ix = 0; ix < isize;ix++)
@@ -27,45 +27,64 @@ void texture_res_load::load_res_from_json(Value& jroot)
 		Value& texture_pack_file = junit["texture_pack_file"];
 		Value& texture_data_file = junit["texture_data_file"];
 		_texture_res_tar.push_back(res_texture_list());
-		string str_texture_pack_file = g_cureent_project_file_path.substr(0,g_cureent_project_file_path.find_last_of('\\')+1);
-		string str_texture_data_file = str_texture_pack_file;
-		str_texture_pack_file += texture_pack_file.asString();
-		str_texture_data_file += texture_data_file.asString();
 		res_texture_list& rtlist = _texture_res_tar[ix];
+		rtlist.texture_pack_file = texture_pack_file.asString();
+		rtlist.texture_data_file = texture_data_file.asString();
+		load_texture_info(rtlist, rtlist.texture_pack_file, rtlist.texture_data_file);
 		
-		rtlist.texture_id = TextureHelper::load2DTexture(str_texture_pack_file.c_str(), \
-			rtlist.texture_width, rtlist.texture_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
-		ifstream fin;
-		fin.open(str_texture_data_file);
-		if (fin.is_open())
-		{
-			Reader reader;
-			Value jvalue;
-			if (reader.parse(fin,jvalue,false))
-			{
-				Value& frames = jvalue["frames"];
-				int iisize = frames.size();
-				rtlist.file_name_sets = new char*[iisize];
-				for (int iix = 0; iix < iisize;iix++)
-				{
-					Value& jfm_unit = frames[iix];
-					Value& frame = jfm_unit["frame"];
-					Value& filename = jfm_unit["filename"];
-					rtlist.vtexture_coordinates.push_back(res_texture_coordinate());
-					res_texture_coordinate& res_txt_cd = rtlist.vtexture_coordinates[iix];
-					res_txt_cd._file_name = filename.asString();
-					rtlist.file_name_sets[iix] =const_cast<char*> ( res_txt_cd._file_name.c_str());
-					/*rtlist.file_name_sets += sfilename;
-					rtlist.file_name_sets += "\0";*/
-					res_txt_cd._x0 = frame["x"].asInt();
-					res_txt_cd._y0 = frame["y"].asInt();
-					res_txt_cd._x1 = frame["x"].asInt()+frame["w"].asInt();
-					res_txt_cd._y1 = frame["y"].asInt()+frame["h"].asInt();
+	}
+}
 
-				}
+extern string g_cureent_project_file_path;
+bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, string& str_txt_data_file)
+{
+	string str_texture_pack_file = g_cureent_project_file_path.substr(0,g_cureent_project_file_path.find_last_of('\\')+1);
+	str_texture_pack_file += "texture_res_list\\";
+	string str_texture_data_file = str_texture_pack_file;
+		
+	str_texture_pack_file += str_txt_pack_file;
+	str_texture_data_file += str_txt_data_file;
+		
+	rtlist.texture_id = TextureHelper::load2DTexture(str_texture_pack_file.c_str(), \
+	rtlist.texture_width, rtlist.texture_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
+	if (rtlist.texture_id==0)
+	{
+		return false;
+	}
+	ifstream fin;
+	fin.open(str_texture_data_file);
+	if (fin.is_open())
+	{
+		Reader reader;
+		Value jvalue;
+		if (reader.parse(fin, jvalue, false))
+		{
+			Value& frames = jvalue["frames"];
+			int iisize = frames.size();
+			rtlist.file_name_sets = new char*[iisize];
+			for (int iix = 0; iix < iisize; iix++)
+			{
+				Value& jfm_unit = frames[iix];
+				Value& frame = jfm_unit["frame"];
+				Value& filename = jfm_unit["filename"];
+				rtlist.vtexture_coordinates.push_back(res_texture_coordinate());
+				res_texture_coordinate& res_txt_cd = rtlist.vtexture_coordinates[iix];
+				res_txt_cd._file_name = filename.asString();
+				rtlist.file_name_sets[iix] = const_cast<char*> (res_txt_cd._file_name.c_str());
+				/*rtlist.file_name_sets += sfilename;
+				rtlist.file_name_sets += "\0";*/
+				res_txt_cd._x0 = frame["x"].asInt();
+				res_txt_cd._y0 = frame["y"].asInt();
+				res_txt_cd._x1 = frame["x"].asInt() + frame["w"].asInt();
+				res_txt_cd._y1 = frame["y"].asInt() + frame["h"].asInt();
+
 			}
 		}
+		fin.close();
 	}
+	else
+		return false;
+	return true;
 }
 
 void load_internal_texture_res(mtxt_internal& mptxt, unsigned int txtresid, unsigned int txtformatid)

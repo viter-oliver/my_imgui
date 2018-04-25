@@ -23,7 +23,6 @@ texture_index_background
 bool ft_slide::init_from_json(Value& jvalue)
 {
 	_name = jvalue["name"].asString();
-	_texture_id_index = jvalue["texture_id_index"].asInt();
 	Value& jthumb = jvalue["thumb"];
 	for (int ix = 0; ix < 4;ix++)
 	{

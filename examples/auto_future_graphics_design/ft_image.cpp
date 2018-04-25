@@ -11,10 +11,16 @@ y'=-(x-a)sin¦Á+(y-b)cos¦Á+b
 void ft_image::draw()
 {
 	ft_base::draw();
-	int texture_id = g_vres_texture_list[_texture_id_index].texture_id;
-	vres_txt_cd& ptext_cd = g_vres_texture_list[_texture_id_index].vtexture_coordinates;
-	int texture_width = g_vres_texture_list[_texture_id_index].texture_width;
-	int texture_height = g_vres_texture_list[_texture_id_index].texture_height;
+	int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+	vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+	if (_texture_index>=ptext_cd.size())
+	{
+		printf("invalid texture index:%d\n", _texture_index);
+		return;
+		
+	}
+	int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
+	int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 	float sizew =_size.x;
 	float sizeh = _size.y;
 	ImVec3 abpos = absolute_coordinate_of_base_pos();
@@ -96,12 +102,11 @@ void ft_image::draw_peroperty_page()
 	ImGui::SliderFloat("a", &_angle, 0.f, 1.f);
 	ImGui::Text("image:");
 	
-	int isize = g_vres_texture_list[_texture_id_index].vtexture_coordinates.size();
-	
-	ImGui::Combo("combo", &_texture_index, g_vres_texture_list[_texture_id_index].file_name_sets,isize);
+	auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+	int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
+	ImGui::Combo("combo", &_texture_index, g_vres_texture_list[g_cur_texture_id_index].file_name_sets, isize);
 	ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
 	ImGui::Spacing();
-	auto& res_coors = g_vres_texture_list[_texture_id_index].vtexture_coordinates;
 	float reswidth = res_coors[_texture_index].owidth();
 	float resheight = res_coors[_texture_index].oheight();
 	ImGui::Text("original size:%f,%f", reswidth, resheight);
@@ -110,9 +115,9 @@ void ft_image::draw_peroperty_page()
 	{
 		float draw_height = imge_edit_view_width*resheight / reswidth;
 		ImVec2 draw_size(imge_edit_view_width, draw_height);
-		int texture_id = g_vres_texture_list[_texture_id_index].texture_id;
-		float wtexture_width = g_vres_texture_list[_texture_id_index].texture_width;
-		float wtexture_height = g_vres_texture_list[_texture_id_index].texture_height;
+		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+		float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
+		float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 
 		ImVec2 uv0(res_coors[_texture_index]._x0 / wtexture_width, res_coors[_texture_index]._y0 / wtexture_height);
 		ImVec2 uv1(res_coors[_texture_index]._x1 / wtexture_width, res_coors[_texture_index]._y1 / wtexture_height);
@@ -132,7 +137,7 @@ texture_index
 bool ft_image::init_from_json(Value& jvalue)
 {
 	ft_base::init_from_json(jvalue);
-	_texture_id_index = jvalue["texture_id_index"].asInt();
+	g_cur_texture_id_index = jvalue["texture_id_index"].asInt();
 	_texture_index = jvalue["texture_index"].asInt();
 	Value& jsize = jvalue["size"];
 	if (!jsize.isNull())
@@ -142,7 +147,7 @@ bool ft_image::init_from_json(Value& jvalue)
 	}
 	if (_size.x==0.f||_size.y==0.f)
 	{
-		vres_txt_cd& ptext_cd = g_vres_texture_list[_texture_id_index].vtexture_coordinates;
+		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 		_size.x = ptext_cd[_texture_index]._x1 - ptext_cd[_texture_index]._x0;
 		_size.y = ptext_cd[_texture_index]._y1 - ptext_cd[_texture_index]._y0;
 	}
@@ -165,7 +170,7 @@ bool ft_image::init_from_json(Value& jvalue)
 bool ft_image::init_json_unit(Value& junit)
 {
 	ft_base::init_json_unit(junit);
-	junit["texture_id_index"] = _texture_id_index;
+	junit["texture_id_index"] = g_cur_texture_id_index;
 	junit["texture_index"] = _texture_index;
 	Value jsize(objectValue);
 	jsize["w"] = _size.x;

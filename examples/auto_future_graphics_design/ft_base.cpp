@@ -103,7 +103,6 @@ ft_base::ft_base(ft_base& bsource)
 {
 	_name = bsource._name;
 	_pos = bsource._pos;
-	_texture_id_index = bsource._texture_id_index;
 	_parent = bsource._parent;
 	_visible = bsource._visible;
 	for (auto it : bsource._vchilds)

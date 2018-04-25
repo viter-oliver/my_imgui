@@ -183,6 +183,7 @@
         </struct>
         <key>individualSpriteSettings</key>
         <map type="IndividualSpriteSettingsMap">
+            <key type="filename">UI icon/a.png</key>
             <key type="filename">UI icon/ft_base.png</key>
             <key type="filename">UI icon/ft_button.png</key>
             <key type="filename">UI icon/ft_cube.png</key>
@@ -228,6 +229,7 @@
             <filename>UI icon/ft_viewport.png</filename>
             <filename>UI icon/ft_scene3d.png</filename>
             <filename>UI icon/ft_plane.png</filename>
+            <filename>UI icon/a.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

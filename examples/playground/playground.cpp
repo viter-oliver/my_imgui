@@ -27,9 +27,11 @@ private:
 };
 class MyClass2:public MyClass
 {
+	
 	int ddd;
 public:
 	MyClass2(int g){
+		char nnn[20] = { 0 };
 		ddd = g;
 	}
 	MyClass2(MyClass2&){

@@ -35,6 +35,9 @@
     <Filter Include="3dutility">
       <UniqueIdentifier>{0e970a76-dad5-441e-b0ce-699d7656d61a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{4563ab87-9f09-4267-a43d-fda2a4512162}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -138,6 +141,12 @@
     </ClCompile>
     <ClCompile Include="texture_shader.cpp">
       <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\iguidock.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="res_edit.cpp">
+      <Filter>res_manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -267,7 +276,15 @@
     <ClInclude Include="texture_shader.h">
       <Filter>3dutility</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\imguidock.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="res_edit.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>res</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -280,12 +297,18 @@
     <None Include="json\json_valueiterator.inl">
       <Filter>json</Filter>
     </None>
-    <None Include="internal_texture_dataformat.json" />
+    <None Include="internal_texture_dataformat.json">
+      <Filter>res</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="auto_future_graphics_design.rc" />
+    <ResourceCompile Include="auto_future_graphics_design.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="internal_texture_dataformat.png" />
+    <Image Include="internal_texture_dataformat.png">
+      <Filter>res</Filter>
+    </Image>
   </ItemGroup>
 </Project>
