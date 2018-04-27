@@ -1,17 +1,18 @@
-﻿Build started 2018/4/11 16:08:14.
+﻿Build started 2018/4/27 15:12:30.
      1>Project "G:\GitHub\my_imgui\my_imgui\examples\playground\playground.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IG:\GitHub\my_imgui\my_imgui\examples\\..\glm /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\playground.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt playground.cpp
          playground.cpp
+     1>g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(217): warning C4101: 'tst_int' : unreferenced local variable
      1>g:\github\my_imgui\my_imgui\examples\playground\fab\factory.h(114): warning C4101: 'e' : unreferenced local variable
-                 g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(76) : see reference to function template instantiation 'std::unique_ptr<Base,std::default_delete<_Ty>> fab::Factory<Base,std::string>::Create<MyClass2&>(const Key &,MyClass2 &)' being compiled
+                 g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(187) : see reference to function template instantiation 'std::unique_ptr<Base,std::default_delete<_Ty>> fab::Factory<Base,std::string>::Create<MyClass2&>(const Key &,MyClass2 &)' being compiled
                  with
                  [
                      Base=MyClass
          ,            _Ty=MyClass
          ,            Key=std::string
                  ]
-                 g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(76) : see reference to function template instantiation 'std::unique_ptr<Base,std::default_delete<_Ty>> fab::Factory<Base,std::string>::Create<MyClass2&>(const Key &,MyClass2 &)' being compiled
+                 g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(187) : see reference to function template instantiation 'std::unique_ptr<Base,std::default_delete<_Ty>> fab::Factory<Base,std::string>::Create<MyClass2&>(const Key &,MyClass2 &)' being compiled
                  with
                  [
                      Base=MyClass
@@ -26,4 +27,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.18
+Time Elapsed 00:00:01.67

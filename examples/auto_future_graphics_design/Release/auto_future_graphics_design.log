@@ -1,43 +1,330 @@
-﻿Build started 2018/3/20 10:50:31.
-     1>Project "G:\GitHub\imgui\examples\auto_future_graphics_design\auto_future_graphics_design.vcxproj" on node 2 (Build target(s)).
+﻿Build started 2018/4/27 17:40:42.
+     1>Project "G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\auto_future_graphics_design.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\CL.exe /c /IG:\GitHub\imgui\examples\\..\soil /IG:\GitHub\imgui\examples\\libs\glfw\include /IG:\GitHub\imgui\examples\\libs\gl3w /I..\.. /IG:\GitHub\imgui\examples\\..\glm /Zi /nologo /W4 /WX- /O2 /Oi /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\\" /Fd"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\vc120.pdb" /Gd /TP /errorReport:prompt main.cpp
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IG:\GitHub\my_imgui\my_imgui\examples\\..\soil /IG:\GitHub\my_imgui\my_imgui\examples\\libs\glfw\include /IG:\GitHub\my_imgui\my_imgui\examples\\libs\gl3w /I..\.. /IG:\GitHub\my_imgui\my_imgui\examples\\..\glm /Zi /nologo /W4 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\\" /Fd"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\iguidock.cpp ..\..\imgui.cpp ..\..\imgui_demo.cpp ..\..\imgui_draw.cpp af_application.cpp color_shader.cpp ft_cube.cpp ft_model.cpp ft_plane.cpp ft_sphere.cpp basic3d.cpp common_functions.cpp ft_base.cpp ft_button.cpp ft_image.cpp ft_listbox.cpp ft_polygon_image.cpp ft_scene3d.cpp ft_slide.cpp ft_trajectory_box.cpp imgui_impl_glfw_gl3.cpp json\json_reader.cpp json\json_value.cpp json\json_writer.cpp main.cpp phong_shader.cpp project_edit.cpp res_edit.cpp res_internal.cpp res_output.cpp factory.h texture_res_load.cpp texture_shader.cpp ui_assembler.cpp user_control_imgui.cpp
+         iguidock.cpp
+     1>..\..\iguidock.cpp(1213): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>..\..\iguidock.cpp(1214): warning C4996: 'strcat': This function or variable may be unsafe. Consider using strcat_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(118) : see declaration of 'strcat'
+         imgui.cpp
+         imgui_demo.cpp
+         imgui_draw.cpp
+         af_application.cpp
+         color_shader.cpp
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(242) : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(264) : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(118): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(364) : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(119): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(120): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(36): warning C4244: '=' : conversion from 'int' to 'unsigned short', possible loss of data
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(55): warning C4512: 'basic_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(47) : see declaration of 'basic_shader'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\color_shader.h(15): warning C4512: 'color_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\color_shader.h(3) : see declaration of 'color_shader'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         ft_cube.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(242) : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(264) : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(118): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(364) : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(119): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(120): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(36): warning C4244: '=' : conversion from 'int' to 'unsigned short', possible loss of data
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(55): warning C4512: 'basic_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(47) : see declaration of 'basic_shader'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\color_shader.h(15): warning C4512: 'color_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\color_shader.h(3) : see declaration of 'color_shader'
+     1>ft_cube.cpp(51): warning C4100: 'jvalue' : unreferenced formal parameter
+     1>ft_cube.cpp(56): warning C4100: 'junit' : unreferenced formal parameter
+         ft_model.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         ft_plane.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         ft_sphere.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         basic3d.cpp
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(242) : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(264) : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(118): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(364) : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(119): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(120): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(36): warning C4244: '=' : conversion from 'int' to 'unsigned short', possible loss of data
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(55): warning C4512: 'basic_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(47) : see declaration of 'basic_shader'
+         common_functions.cpp
+         ft_base.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>ft_base.cpp(33): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>ft_base.cpp(35): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_base.cpp(36): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_base.cpp(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_base.cpp(132): warning C4018: '<' : signed/unsigned mismatch
+         ft_button.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         ft_image.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(242) : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(264) : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(118): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(364) : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(119): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(120): warning C4201: nonstandard extension used : nameless struct/union
+     1>ft_image.cpp(16): warning C4018: '>=' : signed/unsigned mismatch
+     1>ft_image.cpp(89): warning C4100: 'data' : unreferenced formal parameter
+     1>ft_image.cpp(124): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>ft_image.cpp(125): warning C4244: 'initializing' : conversion from 'int' to 'float', possible loss of data
+     1>ft_image.cpp(148): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_image.cpp(149): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_image.cpp(160): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_image.cpp(161): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_image.cpp(162): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         ft_listbox.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>ft_listbox.cpp(12): warning C4100: 'jvalue' : unreferenced formal parameter
+         ft_polygon_image.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>ft_polygon_image.cpp(28): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_polygon_image.cpp(29): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_polygon_image.cpp(30): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_polygon_image.cpp(31): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_polygon_image.cpp(32): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         ft_scene3d.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(242) : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(264) : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(118): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(364) : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(119): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(120): warning C4201: nonstandard extension used : nameless struct/union
+     1>ft_scene3d.cpp(8): warning C4244: 'argument' : conversion from 'float' to 'GLuint', possible loss of data
+     1>ft_scene3d.cpp(19): warning C4244: 'argument' : conversion from 'float' to 'GLsizei', possible loss of data
+     1>ft_scene3d.cpp(71): warning C4100: 'jvalue' : unreferenced formal parameter
+         ft_slide.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>ft_slide.cpp(30): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_slide.cpp(31): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_slide.cpp(32): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_slide.cpp(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_slide.cpp(39): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ft_slide.cpp(40): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+         ft_trajectory_box.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>ft_trajectory_box.cpp(13): warning C4100: 'jvalue' : unreferenced formal parameter
+         Compiling...
+         imgui_impl_glfw_gl3.cpp
+     1>imgui_impl_glfw_gl3.cpp(444): warning C4100: 'glsl_version' : unreferenced formal parameter
+         json_reader.cpp
+     1>json\json_reader.cpp(481): warning C4100: 'tokenStart' : unreferenced formal parameter
+     1>json\json_reader.cpp(551): warning C4127: conditional expression is constant
+     1>json\json_reader.cpp(540): warning C4100: 'tokenStart' : unreferenced formal parameter
+     1>json\json_reader.cpp(795): warning C4127: conditional expression is constant
+         json_value.cpp
+     1>json\json_value.cpp(532): warning C4100: 'other' : unreferenced formal parameter
+     1>json\json_value.cpp(697): warning C4127: conditional expression is constant
+     1>json\json_value.cpp(732): warning C4127: conditional expression is constant
+     1>json\json_value.cpp(759): warning C4127: conditional expression is constant
+     1>json\json_value.cpp(784): warning C4127: conditional expression is constant
+     1>json\json_value.cpp(1602): warning C4100: 'path' : unreferenced formal parameter
+     1>json\json_value.cpp(1624): warning C4100: 'location' : unreferenced formal parameter
+     1>json\json_value.cpp(1623): warning C4100: 'path' : unreferenced formal parameter
+         json_writer.cpp
+     1>json\json_writer.cpp(329): warning C4127: conditional expression is constant
+     1>json\json_writer.cpp(369): warning C4127: conditional expression is constant
+     1>json\json_writer.cpp(605): warning C4127: conditional expression is constant
+     1>json\json_writer.cpp(645): warning C4127: conditional expression is constant
          main.cpp
-     1>g:\github\imgui\examples\auto_future_graphics_design\ui_assembler.h(10): warning C4512: 'ui_assembler' : assignment operator could not be generated
-                 g:\github\imgui\examples\auto_future_graphics_design\ui_assembler.h(4) : see declaration of 'ui_assembler'
-     1>main.cpp(25): warning C4100: 'argv' : unreferenced formal parameter
-     1>main.cpp(76): warning C4189: 'show_another_window' : local variable is initialized but not referenced
-     1>main.cpp(75): warning C4189: 'show_demo_window' : local variable is initialized but not referenced
-     1>main.cpp(77): warning C4189: 'show_edit_window' : local variable is initialized but not referenced
-     1>main.cpp(202): warning C4189: 'node_flags' : local variable is initialized but not referenced
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\ui_assembler.h(11): warning C4512: 'ui_assembler' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\ui_assembler.h(4) : see declaration of 'ui_assembler'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\project_edit.h(17): warning C4512: 'project_edit' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\project_edit.h(4) : see declaration of 'project_edit'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(13): warning C4512: 'texture_res_load' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(7) : see declaration of 'texture_res_load'
+     1>main.cpp(178): warning C4239: nonstandard extension used : 'argument' : conversion from 'std::basic_string<char,std::char_traits<char>,std::allocator<char>>' to 'std::string &'
+                 A non-const reference may only be bound to an lvalue
+     1>main.cpp(108): warning C4189: 'show_another_window' : local variable is initialized but not referenced
+     1>main.cpp(107): warning C4189: 'show_demo_window' : local variable is initialized but not referenced
+     1>main.cpp(109): warning C4189: 'show_edit_window' : local variable is initialized but not referenced
+         phong_shader.cpp
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(242) : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(264) : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(118): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(364) : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(119): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(120): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(36): warning C4244: '=' : conversion from 'int' to 'unsigned short', possible loss of data
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(55): warning C4512: 'basic_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(47) : see declaration of 'basic_shader'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\phong_shader.h(28): warning C4512: 'phong_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\phong_shader.h(7) : see declaration of 'phong_shader'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>phong_shader.cpp(206): warning C4101: 'last_element_array_buffer' : unreferenced local variable
+     1>phong_shader.cpp(206): warning C4101: 'last_array_buffer' : unreferenced local variable
+         project_edit.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\project_edit.h(17): warning C4512: 'project_edit' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\project_edit.h(4) : see declaration of 'project_edit'
+         res_edit.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(13): warning C4512: 'texture_res_load' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(7) : see declaration of 'texture_res_load'
+         res_internal.cpp
+         res_output.cpp
+         factory.h
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         texture_res_load.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(13): warning C4512: 'texture_res_load' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(7) : see declaration of 'texture_res_load'
+     1>texture_res_load.cpp(78): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+     1>texture_res_load.cpp(79): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+     1>texture_res_load.cpp(80): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+     1>texture_res_load.cpp(81): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+     1>texture_res_load.cpp(142): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+     1>texture_res_load.cpp(143): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+     1>texture_res_load.cpp(144): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+     1>texture_res_load.cpp(145): warning C4244: '=' : conversion from 'Json::Value::Int' to 'float', possible loss of data
+         texture_shader.cpp
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(242) : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec2.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(64): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(264) : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(65): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec3.hpp(66): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(118): warning C4201: nonstandard extension used : nameless struct/union
+                 g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(364) : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(119): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\glm\detail/type_vec4.hpp(120): warning C4201: nonstandard extension used : nameless struct/union
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(36): warning C4244: '=' : conversion from 'int' to 'unsigned short', possible loss of data
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(55): warning C4512: 'basic_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\basic3d.h(47) : see declaration of 'basic_shader'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_shader.h(16): warning C4512: 'texture_shader' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_shader.h(3) : see declaration of 'texture_shader'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+         ui_assembler.cpp
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\control_common_def.h(78): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 D:\Microsoft Visual Studio 12.0\VC\include\string.h(112) : see declaration of 'strcpy'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\ui_assembler.h(11): warning C4512: 'ui_assembler' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\ui_assembler.h(4) : see declaration of 'ui_assembler'
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(13): warning C4512: 'texture_res_load' : assignment operator could not be generated
+                 g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\texture_res_load.h(7) : see declaration of 'texture_res_load'
+     1>ui_assembler.cpp(19): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>ui_assembler.cpp(27): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+         user_control_imgui.cpp
+     1>user_control_imgui.cpp(151): warning C4512: 'IconTreeNodeBehavior::nestfun' : assignment operator could not be generated
+                 user_control_imgui.cpp(115) : see declaration of 'IconTreeNodeBehavior::nestfun'
+         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IG:\GitHub\my_imgui\my_imgui\examples\\..\soil /IG:\GitHub\my_imgui\my_imgui\examples\\libs\glfw\include /IG:\GitHub\my_imgui\my_imgui\examples\\libs\gl3w /I..\.. /IG:\GitHub\my_imgui\my_imgui\examples\\..\glm /Zi /nologo /W4 /WX- /O2 /Oi /Oy- /GL /D _MBCS /Gm- /EHsc /MD /GS- /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\\" /Fd"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\vc120.pdb" /Gd /TC /analyze- /errorReport:prompt ..\libs\gl3w\GL\gl3w.c
+         gl3w.c
+       ResourceCompile:
+         C:\Program Files (x86)\Windows Kits\8.1\bin\x86\rc.exe /l"0x0409" /nologo /fo"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.res" auto_future_graphics_design.rc 
        Link:
-         D:\Microsoft Visual Studio 12.0\VC\bin\x86_amd64\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.exe" /NOLOGO /LIBPATH:"G:\GitHub\imgui\examples\\libs\glfw\lib-vc2010-64" /LIBPATH:G:\GitHub\imgui\examples\\..\soil opengl32.lib glfw3.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.lib" /MACHINE:X64 G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui_demo.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui_draw.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\gl3w.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\af_application.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\common_functions.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_base.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_button.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_image.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_listbox.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_polygon_image.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_slide.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ft_trajectory_box.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\imgui_impl_glfw_gl3.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\json_reader.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\json_value.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\json_writer.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\main.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\res_output.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\factory.obj
-         G:\GitHub\imgui\examples\auto_future_graphics_design\Release\ui_assembler.obj
-     1>LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
+         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.exe" /NOLOGO /LIBPATH:"G:\GitHub\my_imgui\my_imgui\examples\\libs\glfw\lib-vc2010-32" /LIBPATH:G:\GitHub\my_imgui\my_imgui\examples\\..\soil opengl32.lib glfw3.lib SOIL.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.lib" /MACHINE:X86 /SAFESEH G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.res
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\iguidock.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\imgui.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\imgui_demo.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\imgui_draw.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\gl3w.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\af_application.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\color_shader.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_cube.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_model.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_plane.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_sphere.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\basic3d.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\common_functions.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_base.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_button.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_image.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_listbox.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_polygon_image.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_scene3d.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_slide.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ft_trajectory_box.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\imgui_impl_glfw_gl3.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\json_reader.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\json_value.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\json_writer.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\main.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\phong_shader.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\project_edit.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\res_edit.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\res_internal.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\res_output.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\factory.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\texture_res_load.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\texture_shader.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\ui_assembler.obj
+         G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\user_control_imgui.obj
          Generating code
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\main.cpp(466): warning C4701: potentially uninitialized local variable '_pres_mg' used
+     1>g:\github\my_imgui\my_imgui\examples\auto_future_graphics_design\main.cpp(466): warning C4703: potentially uninitialized local pointer variable '_pres_mg' used
          Finished generating code
-         auto_future_graphics_design.vcxproj -> G:\GitHub\imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.exe
-     1>Done Building Project "G:\GitHub\imgui\examples\auto_future_graphics_design\auto_future_graphics_design.vcxproj" (Build target(s)).
+     1>SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\vc110.pdb'; linking object as if no debug info
+     1>SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\vc110.pdb'; linking object as if no debug info
+     1>SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\vc110.pdb'; linking object as if no debug info
+     1>SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'vc110.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\vc110.pdb'; linking object as if no debug info
+         auto_future_graphics_design.vcxproj -> G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Release\auto_future_graphics_design.exe
+     1>Done Building Project "G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\auto_future_graphics_design.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.55
+Time Elapsed 00:00:17.82

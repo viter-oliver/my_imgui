@@ -1,0 +1,95 @@
+﻿'auto_future_graphics_design.exe' (Win32): Loaded 'G:\GitHub\my_imgui\my_imgui\examples\auto_future_graphics_design\Debug\auto_future_graphics_design.exe'. Symbols loaded.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\ntdll.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\kernel32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\KernelBase.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\user32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\win32u.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\gdi32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\gdi32full.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\opengl32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\msvcp_win.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\msvcrt.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\ucrtbase.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\advapi32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\sechost.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\rpcrt4.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\glu32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\shell32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\cfgmgr32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\SHCore.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\combase.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\bcryptprimitives.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\windows.storage.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\shlwapi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\kernel.appcore.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\powrprof.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\profapi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\imm32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\msvcr120d.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\msvcp120d.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\uxtheme.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\winmm.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\winmmbase.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\winmmbase.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\winmmbase.dll'
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\winmmbase.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\winmmbase.dll'
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\dinput8.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\XInput1_4.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\devobj.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\dwmapi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\InputHost.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\CoreMessaging.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\CoreUIComponents.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\ntmarta.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\WinTypes.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\WinTypes.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\WinTypes.dll'
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\WinTypes.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\WinTypes.dll'
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Program Files\Listary\ListaryHook64.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\ole32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_5.82.16299.125_none_88782a244abc4c60\comctl32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\oleacc.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Program Files (x86)\kingsoft\kingsoft antivirus\kwsui64.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\psapi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\version.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\hid.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\setupapi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\wintrust.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\msasn1.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\crypt32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\vulkan-1.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_2e329e8610bbb375\igvk64.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\dxgi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\ResourcePolicyClient.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\ResourcePolicyClient.dll'
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\dxgi.dll'
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_2e329e8610bbb375\igvk64.dll'
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_2e329e8610bbb375\igvk64.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\dxgi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\ResourcePolicyClient.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\ResourcePolicyClient.dll'
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\dxgi.dll'
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_2e329e8610bbb375\igvk64.dll'
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\msctf.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\oleaut32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_2e329e8610bbb375\ig9icd64.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\wtsapi32.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\dxgi.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\ResourcePolicyClient.dll'. Cannot find or open the PDB file.
+'auto_future_graphics_design.exe' (Win32): Unloaded 'C:\Windows\System32\ResourcePolicyClient.dll'
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\DriverStore\FileRepository\igdlh64.inf_amd64_2e329e8610bbb375\igc64.dll'. Cannot find or open the PDB file.
+The thread 0xf08 has exited with code 0 (0x0).
+'auto_future_graphics_design.exe' (Win32): Loaded 'C:\Windows\System32\TextInputFramework.dll'. Cannot find or open the PDB file.
+The thread 0x26b4 has exited with code 0 (0x0).
+The thread 0x3c14 has exited with code 0 (0x0).
+The thread 0x41dc has exited with code 0 (0x0).
+The thread 0x3cb8 has exited with code 0 (0x0).
+The thread 0x3d10 has exited with code 0 (0x0).
+The thread 0x38bc has exited with code 0 (0x0).
+The thread 0x42d0 has exited with code 0 (0x0).
+The thread 0x3ab8 has exited with code 0 (0x0).
+The thread 0x4054 has exited with code 0 (0x0).
+The thread 0xc0c has exited with code 0 (0x0).
+The program '[16412] auto_future_graphics_design.exe' has exited with code 0 (0x0).
