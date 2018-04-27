@@ -31,16 +31,6 @@ ft_cube::ft_cube()
 
 }
 
-ft_cube::ft_cube(ft_cube& bsource)
-	: ft_base(bsource)
-{
-	_mesh = bsource._mesh;
-	_pshader =bsource. _pshader;
-	_scale = bsource._scale;
-	_rotation = bsource._rotation;
-	_translation = bsource._translation;
-
-}
 
 ft_cube::~ft_cube()
 {

@@ -3,18 +3,26 @@
 class ft_button :
 	public ft_base
 {
-	int _texture_indices[2];
-	string _label;
+	struct intl_pt
+	{
+		int _texture_indices[2];
+		string _label;
+	};
+	intl_pt _pt;
 public:
 	ft_button();
-	ft_button(ft_button& bsource);
-	base_ui_component* get_a_copy();
 	//ft_button(int tid) :base_ui_component(tid){}
 	void draw();
+	void collect_property_range(vproperty_list& vplist)
+	{
+		ft_base::collect_property_range(vplist);
+		vplist.push_back(property_range(&_pt, sizeof(intl_pt)));
+	}
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();
-#endif
 	bool init_from_json(Value& jvalue);
+#endif
+
 	bool handle_mouse();
 };
 REGISTER_CONTROL(ft_button)

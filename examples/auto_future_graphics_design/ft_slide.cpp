@@ -22,7 +22,7 @@ texture_index_background
 */
 bool ft_slide::init_from_json(Value& jvalue)
 {
-	_name = jvalue["name"].asString();
+	ft_base::init_from_json(jvalue);
 	Value& jthumb = jvalue["thumb"];
 	for (int ix = 0; ix < 4;ix++)
 	{

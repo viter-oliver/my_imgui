@@ -55,7 +55,7 @@ void res_edit::draw_res_list()
 		}
 		memset(texture_pack_name_str, 0, FILE_NAME_LEN);
 		memset(texture_data_name_str, 0, FILE_NAME_LEN);
-
+		
 	}
 
 }

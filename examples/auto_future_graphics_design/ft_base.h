@@ -5,14 +5,15 @@ class ft_base :
 {
 public:
 	ft_base() :base_ui_component(){}
-	ft_base(ft_base& bsource);
-	base_ui_component*get_a_copy();
+	
 	void draw();
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();
-#endif
 	bool init_from_json(Value& jvalue);
 	bool init_json_unit(Value& junit);
+#endif
 	bool handle_mouse();
 };
+void property_copy(vproperty_list& vdest, vproperty_list& vsource);
+base_ui_component* get_copy_of_object(base_ui_component* byobject);
 REGISTER_CONTROL(ft_base)

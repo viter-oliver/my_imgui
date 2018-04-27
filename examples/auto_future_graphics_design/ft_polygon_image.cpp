@@ -10,7 +10,6 @@ void ft_polygon_image::draw_peroperty_page()
 {
 
 }
-#endif
 /*
 fields:
 texture_id_index,
@@ -19,7 +18,7 @@ vertexes:
 */
 bool ft_polygon_image::init_from_json(Value& jvalue)
 {
-	_name = jvalue["name"].asString();
+	ft_base::init_from_json(jvalue);
 	Value& jvertexes = jvalue["vertexes"];
 	int isize = jvertexes.size();
 	for (int ix = 0; ix < isize; ix++)
@@ -36,6 +35,7 @@ bool ft_polygon_image::init_from_json(Value& jvalue)
 	}
 	return true;
 }
+#endif
 
 bool ft_polygon_image::handle_mouse()
 {

@@ -5,6 +5,7 @@
 #include "fab/fab.h"
 #include <vector>
 #include <map>
+#include <string>
 using namespace std;
 struct stt
 {
@@ -42,12 +43,40 @@ public:
 	}
 };
 
+class testc
+{
+public:
+	testc(){}
+	virtual void func_test(){
+		printf("mycl\n");
+	}
+	//string get_cname()
+	//{
+	//	return typeid(*this).name();
+	//}
+};
+class t1estc0 :public testc
+{
+	int ggg;
+public:
+	t1estc0(int i){ ggg = i; }
+	t1estc0(){}
+	t1estc0(t1estc0&){}
+	
+};
 struct testalias
 {
 	int jj;
 	int& ij = jj;
 };
 
+
+//class testc1 :public testc0
+//{
+//public:
+//	testc1(long j){}
+//	testc1(testc1&){}
+//};
 /*#include <windows.h>
 #include <tchar.h>  
 #include <locale.h>*/  
@@ -73,8 +102,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		printf("%d\n", *p++);
 	}
 	MyClass* pm = new MyClass2(1);
-	printf("name%s\n",typeid(*pm).name());
+	printf("name:::%s\n",typeid(*pm).name());
 	
+	testc* pcn = new t1estc0(1);
+	//testc* pcn2 = new testc1(1L);
+	printf("name:%s\n", typeid(*pcn).name());
+	//printf("name:%s\n", typeid(*pcn2).name());
+
 	eprintf("");
 	//mms->func_test();
 	delete pm;
@@ -118,6 +152,15 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("%s\n",typeid(tst_int).name());
 	char* tst_str = "gfsdgd";
 	printf("%s\n", typeid(tst_str).name());
+	//testc cn;
+	//printf("name:%s\n", cn.get_cname());
+	//testc0 cn0;
+	//printf("name:%s\n", cn0.get_cname());
+ //   testc1 cn1;
+	//printf("name:%s\n", cn1.get_cname());
+
+
+
 	OPENFILENAME ofn = { sizeof(OPENFILENAME) };
 	return 0;
 }

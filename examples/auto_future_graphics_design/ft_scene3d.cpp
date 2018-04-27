@@ -2,18 +2,11 @@
 #include "common_functions.h"
 
 ft_scene3d::ft_scene3d()
-	:ft_base(), _texture_index(0),
-	_size(800.f, 600.f),
+	:ft_base(),_size(800.f, 600.f),
 	_fboId(0), _colorTextId(0), _depthStencilTextId(0)
 {
 	prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, _size.x, _size.y);
 }
-ft_scene3d::ft_scene3d(ft_scene3d& bsource)
-	:ft_base(bsource)
-{
-	//prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, screenw, screenh);
-}
-
 
 ft_scene3d::~ft_scene3d()
 {

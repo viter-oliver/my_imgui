@@ -61,6 +61,10 @@ bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, stri
 		{
 			Value& frames = jvalue["frames"];
 			int iisize = frames.size();
+			if (iisize == 0)
+			{
+				return false;
+			}
 			rtlist.file_name_sets = new char*[iisize];
 			for (int iix = 0; iix < iisize; iix++)
 			{

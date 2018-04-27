@@ -8,22 +8,23 @@ class ft_scene3d :
 	public ft_base
 {
 	ImVec2 _size;
-	int _texture_index;
 	//frame buffer
 	unsigned int _fboId;
 	unsigned int _colorTextId;
 	unsigned int _depthStencilTextId;
 public:
 	ft_scene3d();
-	ft_scene3d(ft_scene3d& bsource);
 	~ft_scene3d();
-	base_ui_component* get_a_copy(){ return new ft_scene3d(*this); }
-	//ft_button(int tid) :base_ui_component(tid){}
 	void draw();
+	void collect_property_range(vproperty_list& vplist)
+	{
+		ft_base::collect_property_range(vplist);
+		vplist.push_back(property_range(&_size, sizeof(ImVec2)));
+	}
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();
-#endif
 	bool init_from_json(Value& jvalue);
+#endif
 	bool handle_mouse();
 };
 

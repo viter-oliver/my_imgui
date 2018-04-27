@@ -3,21 +3,30 @@
 class ft_image :
 	public ft_base
 {
-	ImVec2 _size;
-	int _texture_index;
-	float _angle;
-	ImVec2 _axis_pos;
+	struct intl_pt
+	{
+		ImVec2 _size;
+		ImVec2 _axis_pos;
+		int _texture_index;
+		float _angle;
+		intl_pt() :_texture_index(0), _angle(0.0){}
+	};
+	intl_pt _img_pt;
 public:
-	ft_image() :ft_base(), _texture_index(0), _angle(0.0){}
-	ft_image(ft_image& bsource);
-	base_ui_component*get_a_copy();
+	ft_image() :ft_base(), _img_pt(){}
+	void collect_property_range(vproperty_list& vplist)
+	{
+		ft_base::collect_property_range(vplist);
+		vplist.push_back(property_range(&_img_pt, sizeof(intl_pt)));
+	}
 	void draw();
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();
-#endif
 	bool init_from_json(Value& jvalue);
 	bool init_json_unit(Value& junit);
-	void rotate(float angle){  _angle = angle; }
+#endif
+
+	void rotate(float angle){ _img_pt._angle = angle; }
 };
 
 REGISTER_CONTROL(ft_image)

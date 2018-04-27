@@ -12,7 +12,7 @@ void project_edit::view_object(base_ui_component& fb)
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;// | ImGuiTreeNodeFlags_Selected;
 	string cname = typeid(fb).name();
 	cname = cname.substr(sizeof("class"));
-	string& objname = fb.get_name();
+	string objname = fb.get_name();
 	bool beparent = fb.get_child_count() > 0;
 	if (!beparent)
 	{
@@ -62,7 +62,7 @@ void project_edit::popup_context_menu()
 		{
 			if (_pcopy_object&&_pcurrent_object)
 			{
-				_pcurrent_object->add_child(_pcopy_object->get_a_copy());
+				_pcurrent_object->add_child(get_copy_of_object(_pcopy_object));
 			}
 		}
 		if (ImGui::BeginMenu("add child"))
@@ -84,7 +84,7 @@ void project_edit::popup_context_menu()
 		{
 			if (_pcurrent_object&&_pcurrent_object->get_parent())
 			{
-				base_ui_component* psibling = _pcurrent_object->get_a_copy();
+				base_ui_component* psibling = get_copy_of_object(_pcurrent_object);
 				_pcurrent_object->get_parent()->add_child(psibling);
 			}
 			//ImGui::EndMenu();

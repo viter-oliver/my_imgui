@@ -17,7 +17,7 @@ bool af_application::register_update_fun(const char* fun_name, function<void(voi
 
 void af_application::update()
 {
-	for (auto itf:_mp_update_funs)
+	for (auto& itf:_mp_update_funs)
 	{
 		itf.second();
 	}

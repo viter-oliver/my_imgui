@@ -10,16 +10,24 @@
 struct ft_vertex
 {
 
-	ImVec4  pos;
+	ImVec3  pos;
 	ImVec2  uv;
 	ImU32   col;
 };
-typedef unsigned short ushort;
+
+struct property_range
+{
+	void* _p_head_address;
+	int _len;
+	property_range(void* phead, int len) :_p_head_address(phead), _len(len){}
+};
 using namespace std;
+typedef vector<property_range> vproperty_list;
+
 using namespace Json;
 class base_ui_component;
-const unsigned char name_len = 0xff;
 #if !defined(IMGUI_WAYLAND)
+const unsigned char name_len = 20;
 const float edit_unit_len = 5.0f;
 const float imge_edit_view_width = 300.f;
 #endif
@@ -28,13 +36,17 @@ class base_ui_component
 {
 	friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 protected:
-	string _name;
-	ImVec3 _pos;
+	struct internal_property
+	{
+		char _name[name_len];
+		ImVec3 _pos;
+		bool _visible;
+		internal_property() :_visible(true){ memset(_name, 0, name_len); }
+    };
+	internal_property _in_p;
 	vector<base_ui_component*> _vchilds;
 	base_ui_component* _parent;
-	bool _visible;
 #if !defined(IMGUI_WAYLAND)
-	char _name_bk[name_len];
 protected:
 	bool _selected;
 public:
@@ -47,27 +59,28 @@ public:
 	{
 		_selected = beselected;
 	}
+	virtual bool init_from_json(Value&){ return true; }
+	virtual bool init_json_unit(Value&){ return true; }
+
 #endif
 public:
 	static float screenw;
 	static float screenh;
 	virtual void draw() = 0;
-	virtual base_ui_component* get_a_copy() = 0;
+	virtual void collect_property_range(vproperty_list& vplist)
+	{
+		vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
+	}
 	//virtual base_ui_component* get_new_instance() = 0;
 	void set_name(string& name)
 	{
-		_name = name; 
-#if !defined(IMGUI_WAYLAND)
-		memset(_name_bk, 0, name_len);
-		strcpy(_name_bk, _name.c_str());
-#endif
+		strcpy(_in_p._name,name.c_str());
+
 	}
-	string& get_name(){ return _name; }
+	string get_name(){ return string(_in_p._name); }
 	virtual bool handle_mouse(){ return false; }
-	virtual bool init_from_json(Value&){ return true; }
-	virtual bool init_json_unit(Value&){ return true; };
 	base_ui_component()
-		:_visible(true)
+		:_in_p()
 		, _parent(NULL)
 #if !defined(IMGUI_WAYLAND)
 		, _selected(false)
@@ -78,7 +91,7 @@ public:
 	
 	~base_ui_component()
 	{
-		for (auto it:_vchilds)
+		for (auto& it:_vchilds)
 		{
 			delete it;
 		}
@@ -101,10 +114,10 @@ public:
 	size_t get_child_count(){ return _vchilds.size(); }
 	base_ui_component* get_parent(){ return _parent; }
 	size_t child_count(){ return _vchilds.size(); }
-	ImVec3 base_pos(){ return _pos; }
+	ImVec3 base_pos(){ return _in_p._pos; }
 	ImVec3 absolute_coordinate_of_base_pos()
 	{
-		ImVec3 base_pos = _pos;
+		ImVec3 base_pos = _in_p._pos;
 		base_ui_component* parent = get_parent();
 		while (parent)
 		{
@@ -116,10 +129,9 @@ public:
 	}
 	void offset(ImVec2& imof)
 	{
-		_pos.x += imof.x;
-		_pos.y += imof.y;
+		_in_p._pos.x += imof.x;
+		_in_p._pos.y += imof.y;
 	}
-	bool is_visible(){ return _visible; }
-	void set_visible(bool visible){ _visible = visible; }
-
+	bool is_visible(){ return _in_p._visible; }
+	void set_visible(bool visible){ _in_p._visible = visible; }
 };

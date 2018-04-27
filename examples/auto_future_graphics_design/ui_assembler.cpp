@@ -54,7 +54,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	jroot["screenw"] = base_ui_component::screenw;
 	jroot["screenh"] = base_ui_component::screenh;
 	Value jtexture(arrayValue);
-	for (auto reslist:g_vres_texture_list)
+	for (auto& reslist:g_vres_texture_list)
 	{
 		Value jtext_res_unit(objectValue);
 		jtext_res_unit["texture_pack_file"] = reslist.texture_pack_file;

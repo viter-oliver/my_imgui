@@ -2,7 +2,7 @@
 #include <typeinfo>
 void ft_base::draw()
 {
-	if (!_visible)
+	if (!is_visible())
 	{
 		return;
 	}
@@ -17,31 +17,24 @@ void ft_base::draw()
 #if !defined(IMGUI_WAYLAND)
 void ft_base::draw_peroperty_page()
 {
-	if (ImGui::InputText("object name", _name_bk,name_len))
-	{
-		_name = _name_bk;
-	}
+	ImGui::InputText("object name", _in_p._name, name_len);
 	ImGui::Text("base pos:");
 	//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
 	//ImGui::SameLine();
-	ImGui::SliderFloat("x", &_pos.x, 1.f, base_ui_component::screenw);
-	ImGui::SliderFloat("y", &_pos.y, 1.f, base_ui_component::screenh);
-	ImGui::Checkbox("visibility", &_visible);
+	ImGui::SliderFloat("x", &_in_p._pos.x, 1.f, base_ui_component::screenw);
+	ImGui::SliderFloat("y", &_in_p._pos.y, 1.f, base_ui_component::screenh);
+	ImGui::Checkbox("visibility", &_in_p._visible);
 }
-#endif
 /*
 fields: name,type,childs
 */
 bool ft_base::init_from_json(Value& jvalue)
 {
-	_name=jvalue["name"].asString();
-#if !defined(IMGUI_WAYLAND)
-	strcpy(_name_bk, _name.c_str());
-#endif
+	strcpy(_in_p._name,jvalue["name"].asCString());
 	Value& jscreen_pos = jvalue["screen_pos"];
-	_pos.x = jscreen_pos["x"].asDouble();
-	_pos.y = jscreen_pos["y"].asDouble();
-	_pos.z = jscreen_pos["z"].asDouble();
+	_in_p._pos.x = jscreen_pos["x"].asDouble();
+	_in_p._pos.y = jscreen_pos["y"].asDouble();
+	_in_p._pos.z = jscreen_pos["z"].asDouble();
 	Value& childs = jvalue["childs"];
 	if (childs.isNull())
 	{
@@ -60,14 +53,14 @@ bool ft_base::init_from_json(Value& jvalue)
 
 bool ft_base::init_json_unit(Value& junit)
 {
-	junit["name"] = _name;
+	junit["name"] = _in_p._name;
 	string cname = typeid(*this).name();
 	cname = cname.substr(sizeof("class"));
 	junit["type"] = cname;
 	Value jscreen_pos(objectValue);
-	jscreen_pos["x"] = _pos.x;
-	jscreen_pos["y"] = _pos.y;
-	jscreen_pos["z"] = _pos.z;
+	jscreen_pos["x"] = _in_p._pos.x;
+	jscreen_pos["y"] = _in_p._pos.y;
+	jscreen_pos["z"] = _in_p._pos.z;
 	junit["screen_pos"] = jscreen_pos;
 	Value jchilds(arrayValue);
 	size_t chcnt = child_count();
@@ -84,10 +77,11 @@ bool ft_base::init_json_unit(Value& junit)
 	}
 	return true;
 }
+#endif
 
 bool ft_base::handle_mouse()
 {
-	if (!_visible)
+	if (!is_visible())
 	{
 		return false;
 	}
@@ -99,31 +93,9 @@ bool ft_base::handle_mouse()
 	return true;
 }
 
-ft_base::ft_base(ft_base& bsource)
-{
-	_name = bsource._name;
-	_pos = bsource._pos;
-	_parent = bsource._parent;
-	_visible = bsource._visible;
-	for (auto it : bsource._vchilds)
-	{
-		string cname = typeid(*it).name();
-		cname = cname.substr(sizeof("class"));
-		base_ui_component* pcontrol_instance = it->get_a_copy();
-		_vchilds.push_back(pcontrol_instance);
-
-	}
-}
-
-base_ui_component* ft_base::get_a_copy()
-{
-	ft_base* pcopy = new ft_base(*this);
-	return pcopy;
-}
-
 base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname)
 {
-	if (tar_ui._name==uname)
+	if (tar_ui.get_name() == uname)
 	{
 		return&tar_ui;
 	}
@@ -139,3 +111,29 @@ base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* unam
 }
 float base_ui_component::screenw = 0.0f;
 float base_ui_component::screenh = 0.0f;
+void property_copy(vproperty_list& vdest, vproperty_list& vsource)
+{
+	for (size_t i = 0; i < vdest.size(); i++)
+	{
+		memcpy(vdest[i]._p_head_address, vsource[i]._p_head_address, vdest[i]._len);
+	}
+}
+
+base_ui_component* get_copy_of_object(base_ui_component* byobject)
+{
+	string cname = typeid(*byobject).name();
+	cname = cname.substr(sizeof("class"));
+	base_ui_component* prtn = factory::get().produce(cname);
+	vproperty_list vrtn, vobj;
+	prtn->collect_property_range(vrtn);
+	byobject->collect_property_range(vobj);
+	property_copy(vrtn, vobj);
+	auto icnt = byobject->get_child_count();
+	for (int  ii = 0; ii < icnt; ii++)
+	{
+		auto pchild = byobject->get_child(ii);
+		auto pchd_cpy = get_copy_of_object(pchild);
+		prtn->add_child(pchd_cpy);
+	}
+	return prtn;
+}
