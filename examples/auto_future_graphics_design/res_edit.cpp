@@ -9,28 +9,20 @@
 res_edit::res_edit()
 {
 	_tmp_current_txt_id_index = g_cur_texture_id_index;
-	for (int ii = 0; ii < g_vres_texture_list.size();ii++)
-	{
-		_resshow.push_back(new char[FILE_NAME_LEN]);
-		char textresname[FILE_NAME_LEN] = { 0 };
-		sprintf(textresname, "texture resource: %d", ii);
-		strcpy(_resshow[ii], textresname);
-	}
+	
 }
 
 
 res_edit::~res_edit()
 {
-	for (int ii = 0; ii < g_vres_texture_list.size(); ii++)
-	{
-		delete _resshow[ii];
-	}
+
 }
 
 void res_edit::draw_res_list()
 {
 	int isize=g_vres_texture_list.size();
-	ImGui::Combo("texture resource list", &_tmp_current_txt_id_index, _resshow[0], isize);
+	static const char* texture_res_show[]{"texture res0", "texture res1", "texture res2", "texture res3", "texture res4",};
+	ImGui::Combo("texture resource list", &_tmp_current_txt_id_index, texture_res_show, isize);
 	if (_tmp_current_txt_id_index != g_cur_texture_id_index)
 	{
 		g_cur_texture_id_index = _tmp_current_txt_id_index;
@@ -38,25 +30,29 @@ void res_edit::draw_res_list()
 	ImGui::Text("add new texture resource:");
 	static char texture_pack_name_str[FILE_NAME_LEN] = "";
 	static char texture_data_name_str[FILE_NAME_LEN] = "";
-	ImGui::InputText("texture pack file:", texture_pack_name_str, FILE_NAME_LEN);
-	ImGui::InputText("texture data file:", texture_data_name_str, FILE_NAME_LEN);
-	if (ImGui::Button("new texture resource"))
+	if (isize < sizeof(texture_res_show))
 	{
-		g_vres_texture_list.push_back(res_texture_list());
-		int isize = g_vres_texture_list.size();
-		res_texture_list& retxt = g_vres_texture_list[isize - 1];
-
-		retxt.texture_pack_file = texture_pack_name_str;
-		retxt.texture_data_file = texture_data_name_str;
-		if (!load_texture_info(retxt, retxt.texture_pack_file, retxt.texture_data_file))
+		ImGui::InputText("texture pack file:", texture_pack_name_str, FILE_NAME_LEN);
+		ImGui::InputText("texture data file:", texture_data_name_str, FILE_NAME_LEN);
+		if (ImGui::Button("new texture resource"))
 		{
-			MessageBox(GetForegroundWindow(), "fail to loading texture information! ", "Error info", MB_OK);
-			g_vres_texture_list.erase(g_vres_texture_list.begin()+ (isize - 1));
-		}
-		memset(texture_pack_name_str, 0, FILE_NAME_LEN);
-		memset(texture_data_name_str, 0, FILE_NAME_LEN);
+			g_vres_texture_list.push_back(res_texture_list());
+			int isize = g_vres_texture_list.size();
+			res_texture_list& retxt = g_vres_texture_list[isize - 1];
+
+			retxt.texture_pack_file = texture_pack_name_str;
+			retxt.texture_data_file = texture_data_name_str;
+			if (!load_texture_info(retxt, retxt.texture_pack_file, retxt.texture_data_file))
+			{
+				MessageBox(GetForegroundWindow(), "fail to loading texture information! ", "Error info", MB_OK);
+				g_vres_texture_list.erase(g_vres_texture_list.begin()+ (isize - 1));
+			}
+			memset(texture_pack_name_str, 0, FILE_NAME_LEN);
+			memset(texture_data_name_str, 0, FILE_NAME_LEN);
 		
+		}
 	}
+
 
 }
 

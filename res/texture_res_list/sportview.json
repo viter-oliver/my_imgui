@@ -1,0 +1,210 @@
+{"frames": [
+
+{
+	"filename": "bg_583_54.png",
+	"frame": {"x":1,"y":723,"w":754,"h":565},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":754,"h":565},
+	"sourceSize": {"w":754,"h":754},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "bg_strong.png",
+	"frame": {"x":1,"y":1,"w":1920,"h":720},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":1920,"h":720},
+	"sourceSize": {"w":1920,"h":720},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "biaopan_di_0_13.png",
+	"frame": {"x":568,"y":723,"w":452,"h":472},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":452,"h":472},
+	"sourceSize": {"w":471,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "chesu_gaosubiao_1762_220.png",
+	"frame": {"x":887,"y":1515,"w":41,"h":196},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":196},
+	"sourceSize": {"w":44,"h":199},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "chesubiao_di_1211_12.png",
+	"frame": {"x":1022,"y":723,"w":451,"h":472},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":21,"y":0,"w":451,"h":472},
+	"sourceSize": {"w":472,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "chesubiao_guagntiao_1211_12.png",
+	"frame": {"x":1081,"y":1197,"w":399,"h":314},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":36,"y":36,"w":399,"h":314},
+	"sourceSize": {"w":470,"h":471},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "chesubiao_zhizhen_1542_83.png",
+	"frame": {"x":456,"y":1547,"w":14,"h":64},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":3,"w":14,"h":64},
+	"sourceSize": {"w":31,"h":189},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "chesubiao_zhuandongbiaopan_1211_12.png",
+	"frame": {"x":1482,"y":723,"w":407,"h":380},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":32,"y":32,"w":407,"h":380},
+	"sourceSize": {"w":471,"h":471},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "gaosubiao_548_245.png",
+	"frame": {"x":1085,"y":1513,"w":39,"h":175},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":39,"h":175},
+	"sourceSize": {"w":41,"h":177},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "kmh.png",
+	"frame": {"x":568,"y":1197,"w":93,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":93,"h":32},
+	"sourceSize": {"w":93,"h":32},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "shuiwenbiao_di_0_13.png",
+	"frame": {"x":1,"y":1479,"w":227,"h":69},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":124,"y":366,"w":227,"h":69},
+	"sourceSize": {"w":471,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "shuiwenbiao_liang_0_13.png",
+	"frame": {"x":456,"y":1479,"w":222,"h":66},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":125,"y":369,"w":222,"h":66},
+	"sourceSize": {"w":471,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "shuiwenbiao_liang_suoxiao_660_652.png",
+	"frame": {"x":1,"y":1550,"w":117,"h":8},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":11,"w":117,"h":8},
+	"sourceSize": {"w":117,"h":29},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "shuiwenbiao_suoxiao_580_652.png",
+	"frame": {"x":1262,"y":1513,"w":187,"h":30},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":0,"w":187,"h":30},
+	"sourceSize": {"w":192,"h":30},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "xuanzhuanbiaopan_0_13.png",
+	"frame": {"x":1482,"y":1105,"w":407,"h":372},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":33,"y":31,"w":407,"h":372},
+	"sourceSize": {"w":471,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "youbiao_an_1211_12.png",
+	"frame": {"x":230,"y":1479,"w":224,"h":68},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":125,"y":367,"w":224,"h":68},
+	"sourceSize": {"w":472,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "youbiao_liang_1078_650.png",
+	"frame": {"x":120,"y":1550,"w":117,"h":8},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":14,"w":117,"h":8},
+	"sourceSize": {"w":117,"h":31},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "youbiao_suoxiao_liang_1050_650.png",
+	"frame": {"x":1451,"y":1513,"w":188,"h":29},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":3,"y":2,"w":188,"h":29},
+	"sourceSize": {"w":192,"h":31},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "youbiaoliang_1211_12.png",
+	"frame": {"x":568,"y":1231,"w":222,"h":66},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":127,"y":369,"w":222,"h":66},
+	"sourceSize": {"w":472,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "zhuansu_gaosubiao_575_225.png",
+	"frame": {"x":680,"y":1515,"w":45,"h":205},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":2,"y":0,"w":45,"h":205},
+	"sourceSize": {"w":50,"h":209},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "zhuansu_guangdai_0_13.png",
+	"frame": {"x":680,"y":1197,"w":399,"h":316},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":37,"y":35,"w":399,"h":316},
+	"sourceSize": {"w":471,"h":472},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "zhuansu_zhizhen_330_83.png",
+	"frame": {"x":522,"y":1547,"w":14,"h":64},
+	"rotated": true,
+	"trimmed": true,
+	"spriteSourceSize": {"x":4,"y":3,"w":14,"h":64},
+	"sourceSize": {"w":31,"h":189},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "sportview.png",
+	"format": "RGBA8888",
+	"size": {"w":1922,"h":1562},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:579c69486fb870e34b06314a9e61d339:fdf759363f8a81e51522ed9323ed338b:f85e45b7ab16b2f9f9d35c38e39d8c35$"
+}
+}

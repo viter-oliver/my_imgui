@@ -69,7 +69,8 @@ public:
 	virtual void draw() = 0;
 	virtual void collect_property_range(vproperty_list& vplist)
 	{
-		vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
+		//vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
+		vplist.emplace_back(&_in_p, sizeof(internal_property));
 	}
 	//virtual base_ui_component* get_new_instance() = 0;
 	void set_name(string& name)

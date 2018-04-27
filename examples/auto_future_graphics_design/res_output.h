@@ -20,21 +20,12 @@ struct res_texture_list
 	string texture_pack_file;
 	string texture_data_file;
 	//string file_name_sets;
-	char** file_name_sets;
 	vres_txt_cd vtexture_coordinates;
-	res_texture_list():
-		file_name_sets(0)
+	res_texture_list()
 	{
-		//memset(texture_pack_file, 0, FILE_NAME_LEN);
-		//memset(texture_data_file, 0, FILE_NAME_LEN);
-
 	}
 	~res_texture_list()
 	{
-		if (file_name_sets)
-		{
-			delete[] file_name_sets;
-		}
 	}
 };
 typedef vector<res_texture_list> vres_txt_list;

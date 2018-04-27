@@ -55,7 +55,7 @@ void init_cube_trimesh_faces(tri_mesh& cube_trmesh)
 }
 void tri_mesh_normalize(tri_mesh& trmesh)
 {
-	for (auto ia:trmesh.faces)
+	for (auto& ia:trmesh.faces)
 	{
 		ImVec3 ev1=trmesh.vertices[ia.vidx[0]].position - trmesh.vertices[ia.vidx[1]].position;
 		glm::vec3 e1 = { ev1.x, ev1.y, ev1.z };

@@ -26,7 +26,7 @@ void texture_res_load::load_res_from_json(Value& jroot)
 		Value& junit = texture_res_list[ix];
 		Value& texture_pack_file = junit["texture_pack_file"];
 		Value& texture_data_file = junit["texture_data_file"];
-		_texture_res_tar.push_back(res_texture_list());
+		_texture_res_tar.emplace_back();
 		res_texture_list& rtlist = _texture_res_tar[ix];
 		rtlist.texture_pack_file = texture_pack_file.asString();
 		rtlist.texture_data_file = texture_data_file.asString();
@@ -65,16 +65,14 @@ bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, stri
 			{
 				return false;
 			}
-			rtlist.file_name_sets = new char*[iisize];
 			for (int iix = 0; iix < iisize; iix++)
 			{
 				Value& jfm_unit = frames[iix];
 				Value& frame = jfm_unit["frame"];
 				Value& filename = jfm_unit["filename"];
-				rtlist.vtexture_coordinates.push_back(res_texture_coordinate());
+				rtlist.vtexture_coordinates.emplace_back();
 				res_texture_coordinate& res_txt_cd = rtlist.vtexture_coordinates[iix];
 				res_txt_cd._file_name = filename.asString();
-				rtlist.file_name_sets[iix] = const_cast<char*> (res_txt_cd._file_name.c_str());
 				/*rtlist.file_name_sets += sfilename;
 				rtlist.file_name_sets += "\0";*/
 				res_txt_cd._x0 = frame["x"].asInt();

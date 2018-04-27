@@ -16,7 +16,7 @@ public:
 	void collect_property_range(vproperty_list& vplist)
 	{
 		ft_base::collect_property_range(vplist);
-		vplist.push_back(property_range(&_pt, sizeof(intl_pt)));
+		vplist.emplace_back(&_pt, sizeof(intl_pt));
 	}
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();

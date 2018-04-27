@@ -86,6 +86,11 @@ static void ShowHelpMarker(const char* desc)
 		ImGui::EndTooltip();
 	}
 }
+static bool get_texture_item(void* data, int idx, const char** out_str)
+{
+	*out_str = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[idx]._file_name.c_str();
+	return true;
+}
 void ft_image::draw_peroperty_page()
 {
 	ft_base::draw_peroperty_page();
@@ -104,7 +109,7 @@ void ft_image::draw_peroperty_page()
 	
 	auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 	int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
-	ImGui::Combo("texture index:", &_img_pt._texture_index, g_vres_texture_list[g_cur_texture_id_index].file_name_sets, isize);
+	ImGui::Combo("texture index:", &_img_pt._texture_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
 	ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
 	ImGui::Spacing();
 	float reswidth = res_coors[_img_pt._texture_index].owidth();

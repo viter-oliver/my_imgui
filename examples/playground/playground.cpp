@@ -3,6 +3,8 @@
 
 #include "stdafx.h"
 #include "fab/fab.h"
+#include <stdio.h>
+#include <iostream>  
 #include <vector>
 #include <map>
 #include <string>
@@ -26,12 +28,13 @@ public:
 private:
 
 };
-class MyClass2:public MyClass
+class MyClass2 :public MyClass
 {
-	
+
 	int ddd;
 public:
-	MyClass2(int g){
+	MyClass2(int g)
+	{
 		char nnn[20] = { 0 };
 		ddd = g;
 	}
@@ -39,8 +42,13 @@ public:
 		ddd = 0;
 	}
 	void func_test(){
+      int m[3]  { 0, 1, 2 };
 		printf("mycl2\n");
 	}
+	
+	 
+	//static constexpr int sss[10] = { 1, 2, 3 };
+	//const char *tmp[3]{"dd", "bnbnb", "fhjgfjhgfhj"};
 };
 
 class testc
@@ -60,8 +68,10 @@ class t1estc0 :public testc
 	int ggg;
 public:
 	t1estc0(int i){ ggg = i; }
-	t1estc0(){}
-	t1estc0(t1estc0&){}
+	t1estc0(){
+		printf("0 ");
+	}
+	t1estc0(t1estc0&){ printf("1 "); }
 	
 };
 struct testalias
@@ -69,6 +79,7 @@ struct testalias
 	int jj;
 	int& ij = jj;
 };
+
 
 
 //class testc1 :public testc0
@@ -85,7 +96,62 @@ struct testalias
 #include "glm.hpp"
 #include "gtc/matrix_transform.hpp"
 #include "gtc/type_ptr.hpp"
+#include <memory>
 #define eprintf(format, ...)   fprintf (stderr, format , __VA_ARGS__)
+struct Person
+{
+	int _age;
+	std::string _lname;
+	std::string _fname;
+
+	Person(int age, std::string&& lname, std::string&& fname) :
+		_age(age), _lname(std::move(lname)), _fname(std::move(fname))
+	{
+		std::cout << "constructor called" << std::endl;
+	}
+
+	Person(const Person&& rhs) :
+		_age(std::move(rhs._age)), _lname(std::move(rhs._lname)), _fname(std::move(rhs._fname))
+	{
+		std::cout << "move constructor called" << std::endl;
+	}
+
+	//default is an new C++ explicit instruction to the compiler to generate default constructor,
+	//copy constructor or assignment operator for a class.
+
+	Person& operator=(const Person& rhs) = default;
+
+};
+
+//compare between std::vector::push_back and std::vector::emplace_back
+
+void TestEmplace()
+{
+	std::cout << "# PushBack" << std::endl;
+	std::vector<Person> v;
+
+	//to use push_back, it needs to pass object, thus, construct and move will be called.
+
+	//v.push_back(Person(1, "Baby", "Caren"));
+
+	for (Person& p : v)
+	{
+		std::cout << p._age << " : " << p._fname << " : " << p._lname << std::endl;
+	}
+
+	std::cout << "\n\n# Emplace" << std::endl;
+	std::vector<Person> vEmplace;
+
+
+	//emplace_back allow you construct on the fly, thus only constructor called. no move.
+
+	vEmplace.emplace_back(18, "HighTeen", "Caren");
+
+	for (Person& p : vEmplace)
+	{
+		std::cout << p._age << " : " << p._fname << " : " << p._lname << std::endl;
+	}
+}
 int _tmain(int argc, _TCHAR* argv[])
 {
 	vector<stt> vstt;
@@ -159,9 +225,41 @@ int _tmain(int argc, _TCHAR* argv[])
  //   testc1 cn1;
 	//printf("name:%s\n", cn1.get_cname());
 
+	std::vector<int> myvector = { 10, 20, 30 };
 
 
-	OPENFILENAME ofn = { sizeof(OPENFILENAME) };
+	auto it = myvector.emplace(myvector.begin() + 1, 100);
+	myvector.emplace(it, 200);
+	myvector.emplace(myvector.end(), 300);
+
+	std::cout << "myvector contains:";
+	for (auto& x : myvector)
+		std::cout << ' ' << x;
+	std::cout << '\n';
+
+	struct test_cs
+	{
+		test_cs()
+		{
+			cout << "new test_cs" << endl; 
+		}
+		~test_cs()
+		{ 
+			cout << "delete test_cs" << endl; 
+		}
+	};
+	vector<shared_ptr<test_cs*> > vtestcs;
+	vtestcs.emplace_back(make_shared<test_cs*>(new test_cs()));
+	//vtestcs.push_back(make_shared<>(test_cs()));
+	vector<test_cs> vvtest;
+	if (true)
+	{
+	    vvtest.emplace_back();
+	    vvtest.emplace_back();
+	    vvtest.emplace_back();
+
+	}
+	//vvtest.clear();
 	return 0;
 }
 
