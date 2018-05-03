@@ -8,6 +8,9 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <glm.hpp>
+#include <gtc/matrix_transform.hpp>
+#include <gtc/type_ptr.hpp>
 using namespace std;
 struct stt
 {
@@ -28,6 +31,15 @@ public:
 private:
 
 };
+using namespace fab;
+Factory<MyClass> ft;
+template<typename T>
+struct shader_assist
+{
+	shader_assist(string key){ ft.Register(key, []{return new T(); }); }
+};
+#define REG_SHADER(shd_type) shader_assist<shd_type> reg_##shd_type(#shd_type)
+
 class MyClass2 :public MyClass
 {
 
@@ -50,7 +62,13 @@ public:
 	//static constexpr int sss[10] = { 1, 2, 3 };
 	//const char *tmp[3]{"dd", "bnbnb", "fhjgfjhgfhj"};
 };
-
+class MyClass3 :public MyClass
+{
+	void func_test(){
+		printf("MyClass3\n");
+	}
+};
+REG_SHADER(MyClass3);
 class testc
 {
 public:
@@ -178,12 +196,13 @@ int _tmain(int argc, _TCHAR* argv[])
 	eprintf("");
 	//mms->func_test();
 	delete pm;
-	using namespace fab;
+	
 	MyClass2 mmg(1);
-	Factory<MyClass> ft;
+	
+	ft.Register("MyClass", []{return new MyClass(); });
 	ft.Register("MyClass2", [](int ss){return new MyClass2(ss); });
 	ft.Register("MyClass3", [](MyClass2& ss){return new MyClass2(ss); });
-
+	
 	auto mc = ft.Create("MyClass3",mmg);
 	mc->func_test();
 	int iy = -1;
@@ -218,6 +237,17 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("%s\n",typeid(tst_int).name());
 	char* tst_str = "gfsdgd";
 	printf("%s\n", typeid(tst_str).name());
+	const int& tint = tst_int;
+	printf("%s\n", typeid(tint).name());
+	float* pf = 0;
+	float*& pr = pf;
+	printf("%s\n", typeid(pf).name());
+	printf("%s\n", typeid(pr).name());
+
+	printf("%s\n", typeid(mya).name());
+	printf("trans %s\n", typeid(trans).name());
+	printf("ret %s\n", typeid(ret).name());
+
 	//testc cn;
 	//printf("name:%s\n", cn.get_cname());
 	//testc0 cn0;
@@ -257,6 +287,18 @@ int _tmain(int argc, _TCHAR* argv[])
 	    vvtest.emplace_back();
 	    vvtest.emplace_back();
 	    vvtest.emplace_back();
+
+	}
+	map<string, int> mp_test;
+	mp_test["positin"] = 10;
+	mp_test["color"] = 11;
+	mp_test["color2"] = 13;
+	mp_test["postion2"] = 14;
+	mp_test["texture"] = 15;
+	mp_test["texture2"] = 16;
+	for (auto& iit:mp_test)
+	{
+		cout << iit.first << endl;
 
 	}
 	//vvtest.clear();

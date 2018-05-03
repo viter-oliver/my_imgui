@@ -74,3 +74,101 @@ void tri_mesh_normalize(tri_mesh& trmesh)
 		ib.vnormal = {enmn.x,enmn.y,enmn.z};
 	}
 }
+
+int attr_size[en_attr_type_count]=
+{
+	//en_attr_float,
+	1,
+	//en_attr_vec2,
+	2,
+	//en_attr_vec3,
+	3,
+	//en_attr_vec4,
+	4,
+};
+
+bool basic_shader::loading_shader_attributes_from_avbo(GLuint vao, GLuint vbo, float* pvertices, int cnt_vertices, vector<string>& attr_name_list, GLuint ebo, GLushort* pindices, int cnt_indics)
+{
+	glUseProgram(_shader_program_id);
+	glBindVertexArray(vao);
+	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBufferData(GL_ARRAY_BUFFER, cnt_vertices, pvertices, GL_STATIC_DRAW);
+	if (ebo!=0)
+	{
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ebo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, cnt_indics, pindices, GL_STATIC_DRAW);
+
+	}
+	int stride = 0;
+	for (auto& attr_name : attr_name_list)
+	{
+		auto& it_attr = _mattr_list.find(attr_name);
+		if (it_attr==_mattr_list.end())
+		{
+			printf("invalid attribute name:%s\n", attr_name);
+			return false;
+		}		
+		shader_attribute& attr = it_attr->second;
+		stride += attr_size[attr._type];
+	}
+
+	int pointer = 0;
+	for (auto& attr_name : attr_name_list)
+	{
+
+		shader_attribute& attr = _mattr_list[attr_name];
+		glEnableVertexAttribArray(attr._location);
+		glVertexAttribPointer(attr._location, attr_size[attr._type], GL_FLOAT, GL_FALSE, stride*sizeof(GLfloat), (void*)(pointer*sizeof(GLfloat)));
+		pointer += attr_size[attr._type];
+	}
+
+	return true;
+}
+
+bool basic_shader::set_uniform(string& unf_name, GLsizei icnt, float* falue)
+{
+	auto tt = _munf_list.find(unf_name);
+	if (tt == _munf_list.end())
+	{
+		printf("fail to find attr:%s\n", unf_name.c_str());
+		return false;
+	}
+	auto& unif = tt->second;
+
+	switch (unif._type)
+	{
+	case en_unf_float:
+		glUniform1fv(unif._location, icnt, falue);
+		break;
+	case en_unf_vec2:
+		glUniform2fv(unif._location, icnt, falue);
+		break;
+	case en_unf_vec3:
+		glUniform3fv(unif._location, icnt, falue);
+		break;
+	case en_unf_vec4:
+		glUniform4fv(unif._location, icnt, falue);
+		break;
+	case en_unf_mat4:
+		glUniformMatrix4fv(unif._location, icnt, GL_FALSE, falue);
+		break;
+	default:
+		printf("invalilde type\n");
+		return false;
+		break;
+	}
+	return true;
+}
+map<string, vector<unique_ptr<basic_shader>>> g_shader_list;
+Factory<basic_shader>& get_shader_fc()
+{
+   static Factory<basic_shader> shader_factory;
+   return shader_factory;
+}
+void instantiating_internal_shader()
+{
+	get_shader_fc().iterate_types([](string key, std::unique_ptr<basic_shader>& shd_insntance){
+		//auto sss = shd_insntance;
+		g_shader_list[key].push_back(std::move(shd_insntance));
+	});
+}

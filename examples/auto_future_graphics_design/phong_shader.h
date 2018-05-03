@@ -20,10 +20,8 @@ class phong_shader :public basic_shader
 	GLuint _SpecularExponent, _BlendIntensity;
 
 public:
-	phong_shader(tri_mesh& tgmesh);
+	phong_shader();
 	~phong_shader();
-	void load_tri_mesh();
-	void render_tri_mesh();
-	void set_vertex_wrold_matrix(glm::mat4& vtmat);
+	//void render();
 };
 

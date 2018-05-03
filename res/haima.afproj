@@ -157,33 +157,6 @@
 				"x" : 801.50,
 				"y" : 303.0
 			},
-			"childs" : 
-			[
-				
-				{
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "ft_image",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 0.0,
-						"z" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 65.0,
-						"w" : 14.0
-					},
-					"texture_id_index" : 0,
-					"texture_index" : 6,
-					"type" : "ft_image"
-				}
-			],
 			"name" : "pointer_right",
 			"screen_pos" : 
 			{

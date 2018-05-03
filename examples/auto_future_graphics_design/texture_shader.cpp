@@ -78,8 +78,7 @@ GLfloat cubeVertices[] = {
 	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,	// A
 };
 Camera camera(glm::vec3(0.f, 0.f, 6.f));
-texture_shader::texture_shader(tri_mesh& tgmesh)
-	:basic_shader(tgmesh)
+texture_shader::texture_shader()
 {
 	int txtwidth, txtheight;
 	cubeTextId = TextureHelper::load2DTexture("../../res/container.jpg", txtwidth,txtheight);
@@ -116,12 +115,12 @@ texture_shader::texture_shader(tri_mesh& tgmesh)
 	model = glm::translate(model, glm::vec3(1.0f, 0.0f, -1.0f));
 	glUniformMatrix4fv(_model, 1, GL_FALSE, glm::value_ptr(model));
 	_view = glGetUniformLocation(_shader_program, "view");
-	/*glm::mat4 view = glm::lookAt(
+	glm::mat4 view = glm::lookAt(
 		glm::vec3(-1.5f, -1.0f, -1.5f),
 		glm::vec3(0.0f, 0.0f, 0.0f),
 		glm::vec3(0.0f, -1.0f, 0.0f)
-		);*/
-	glm::mat4 view = camera.getViewMatrix();
+		);
+	/*glm::mat4 view = camera.getViewMatrix();*/
 	glUniformMatrix4fv(_view, 1, GL_FALSE, glm::value_ptr(view));
 	_proj = glGetUniformLocation(_shader_program, "projection");
 	glm::mat4 proj = glm::perspective(camera.mouse_zoom,800.f/ 600.f, 1.0f, 10.f);//glm::perspective(glm::radians(60.0f), base_ui_component::screenw / base_ui_component::screenh, 1.0f, 10.0f);
@@ -133,13 +132,8 @@ texture_shader::texture_shader(tri_mesh& tgmesh)
 texture_shader::~texture_shader()
 {
 }
-
-void texture_shader::load_tri_mesh()
-{
-	
-}
-
-void texture_shader::render_tri_mesh()
+/*
+void texture_shader::render()
 {
 	GLint last_program, last_array_buffer, last_element_array_buffer, last_vertex_array;
 	glGetIntegerv(GL_CURRENT_PROGRAM, &last_program);
@@ -164,8 +158,4 @@ void texture_shader::render_tri_mesh()
 	glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, last_element_array_buffer);
 }
-
-void texture_shader::set_vertex_wrold_matrix(glm::mat4& vtmat)
-{
-	glUniformMatrix4fv(_model, 1, GL_FALSE, glm::value_ptr(vtmat));
-}
+*/

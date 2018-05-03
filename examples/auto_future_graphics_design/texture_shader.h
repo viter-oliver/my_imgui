@@ -8,10 +8,8 @@ class texture_shader :
 	GLuint _postion, _color, _texcord;
 	GLuint _model, _view, _proj;
 public:
-	texture_shader(tri_mesh& tgmesh);
+	texture_shader();
 	~texture_shader();
-	void load_tri_mesh();
-	void render_tri_mesh();
-	void set_vertex_wrold_matrix(glm::mat4& vtmat);
+	//void render();
 };
 

@@ -66,12 +66,12 @@ void ft_scene3d::draw_peroperty_page()
 {
 	ft_base::draw_peroperty_page();
 }
-#endif
 
 bool ft_scene3d::init_from_json(Value& jvalue)
 {
 	return true;
 }
+#endif
 
 bool ft_scene3d::handle_mouse()
 {

@@ -4,13 +4,20 @@
 class ft_cube :
 	public ft_base
 {
-	tri_mesh _mesh;
+	//tri_mesh _mesh;
 	//render transformation
-	glm::vec3 _scale;
-	glm::vec3 _rotation;
-	glm::vec3 _translation;
+	struct intl_pt
+	{
+		glm::vec3 _scale;
+		glm::vec3 _rotation;
+		glm::vec3 _translation;
+		//int _shader_instance_index;
+		intl_pt() {}
+	};
+	intl_pt _pt;
 	basic_shader* _pshader;
-
+	static GLuint _vao, _vbo,_ebo;
+	static unsigned short _cube_instance_cnt;
 public:
 	ft_cube();
 	~ft_cube();
