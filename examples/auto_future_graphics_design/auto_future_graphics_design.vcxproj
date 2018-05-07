@@ -182,6 +182,9 @@
     <ClCompile Include="json\json_value.cpp" />
     <ClCompile Include="json\json_writer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="miniz.c" />
+    <ClCompile Include="ofbx.cpp" />
     <ClCompile Include="phong_shader.cpp" />
     <ClCompile Include="project_edit.cpp" />
     <ClCompile Include="res_edit.cpp" />
@@ -189,6 +192,7 @@
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
     <ClCompile Include="texture_res_load.cpp" />
+    <ClCompile Include="texture_shader.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
     <ClCompile Include="user_control_imgui.cpp" />
   </ItemGroup>
@@ -228,13 +232,18 @@
     <ClInclude Include="json\reader.h" />
     <ClInclude Include="json\value.h" />
     <ClInclude Include="json\writer.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="miniz.h" />
+    <ClInclude Include="ofbx.h" />
     <ClInclude Include="phong_shader.h" />
     <ClInclude Include="project_edit.h" />
+    <ClInclude Include="renderTransform.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="res_edit.h" />
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="texture_res_load.h" />
+    <ClInclude Include="texture_shader.h" />
     <ClInclude Include="ui_assembler.h" />
     <ClInclude Include="user_control_imgui.h" />
   </ItemGroup>

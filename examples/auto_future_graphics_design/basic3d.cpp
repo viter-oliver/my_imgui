@@ -12,6 +12,29 @@
 
 	4              5
 */
+#ifdef _TEST_MESH
+struct base_vertex
+{
+	ImVec3 position;
+	ImVec3 vnormal;
+	base_vertex(float x, float y, float z) :position(x, y, z){}
+	//base_vertex(){ vnormal = glm::vec3(0.f); }
+};
+
+struct tri_face
+{
+	unsigned short vidx[3];
+	tri_face(){ vidx[0] = vidx[1] = vidx[2] = 0; }
+	tri_face(int i0, int i1, int i2){ vidx[0] = i0; vidx[1] = i1; vidx[2] = i2; }
+};
+struct tri_mesh 
+{
+	ImVector<base_vertex> vertices;
+	ImVector<tri_face> faces;
+	GLuint _vbo, _vao, _ebo;
+	tri_mesh();
+	~tri_mesh();
+};
 tri_mesh::tri_mesh()
 {
 	glGenVertexArrays(1, &_vao);
@@ -74,7 +97,7 @@ void tri_mesh_normalize(tri_mesh& trmesh)
 		ib.vnormal = {enmn.x,enmn.y,enmn.z};
 	}
 }
-
+#endif
 int attr_size[en_attr_type_count]=
 {
 	//en_attr_float,
@@ -87,7 +110,7 @@ int attr_size[en_attr_type_count]=
 	4,
 };
 
-bool basic_shader::loading_shader_attributes_from_avbo(GLuint vao, GLuint vbo, float* pvertices, int cnt_vertices, vector<string>& attr_name_list, GLuint ebo, GLushort* pindices, int cnt_indics)
+bool basic_shader::loading_shader_attributes_from_avbo(GLuint vao, GLuint vbo, const GLvoid* pvertices, int cnt_vertices, vector<string>& attr_name_list, GLuint ebo, GLushort* pindices, int cnt_indics)
 {
 	glUseProgram(_shader_program_id);
 	glBindVertexArray(vao);
@@ -151,6 +174,9 @@ bool basic_shader::set_uniform(string& unf_name, GLsizei icnt, float* falue)
 		break;
 	case en_unf_mat4:
 		glUniformMatrix4fv(unif._location, icnt, GL_FALSE, falue);
+		break;
+	case en_unf_tex:
+		glUniform1i(unif._location, icnt);
 		break;
 	default:
 		printf("invalilde type\n");

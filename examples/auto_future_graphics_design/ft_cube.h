@@ -8,9 +8,9 @@ class ft_cube :
 	//render transformation
 	struct intl_pt
 	{
-		glm::vec3 _scale;
-		glm::vec3 _rotation;
-		glm::vec3 _translation;
+		ImVec3 _scale;
+		ImVec3 _rotation;
+		ImVec2 _translation;
 		//int _shader_instance_index;
 		intl_pt() {}
 	};
@@ -21,6 +21,11 @@ class ft_cube :
 public:
 	ft_cube();
 	~ft_cube();
+	void collect_property_range(vproperty_list& vplist)
+	{
+		ft_base::collect_property_range(vplist);
+		vplist.emplace_back(&_pt, sizeof(intl_pt));
+	}
 	void draw();
 #if !defined(IMGUI_WAYLAND)
 	void draw_peroperty_page();

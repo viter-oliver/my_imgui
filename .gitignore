@@ -6,6 +6,10 @@
 *.lo
 *.o
 *.obj
+*.log
+*.tlog
+*.lastbuildstate
+*.idb
 
 # Precompiled Headers
 *.gch
@@ -30,3 +34,4 @@
 *.exe
 *.out
 *.app
+

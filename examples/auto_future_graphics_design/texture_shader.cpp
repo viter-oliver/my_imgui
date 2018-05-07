@@ -7,155 +7,124 @@
 #include "texture.h"
 #include "camera.h"
 // Shader sources
-static const GLchar* vertexSource = R"glsl(
-    #version 330 core
-	layout(location = 0) in vec3 position;
-	layout(location = 1) in vec2 textCoord;
-	uniform mat4 projection;
+static const GLchar* ts_vertexSource = R"glsl(
+    attribute vec3 position;
+    attribute vec2 textcoord;
+    attribute vec3 normal;
+
+    varying vec2 Textcoord;
+	uniform mat4 proj;
 	uniform mat4 view;
 	uniform mat4 model;
-	out vec2 TextCoord;
 	void main()
 	{
-		 gl_Position = projection * view * model * vec4(position, 1.0);
-         //gl_Position = vec4(position, 1.0);
-		TextCoord = textCoord;
+		 gl_Position = proj * view * model * vec4(position, 1.0);
+		Textcoord = textcoord;
 	}
 )glsl";
-static const GLchar* fragmentSource = R"glsl(
-    #version 330 core
-	in vec2 TextCoord;
+static const GLchar* ts_fragmentSource = R"glsl(
+	varying vec2 Textcoord;
 	uniform sampler2D text;
-	out vec4 color;
 	void main()
 	{
-		color = texture(text, TextCoord);
+		gl_FragColor = texture(text, Textcoord);
 	}
 )glsl";
 
-GLfloat cubeVertices[] = {
-	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,	// A
-	0.5f, -0.5f, 0.5f, 1.0f, 0.0f,	// B
-	0.5f, 0.5f, 0.5f, 1.0f, 1.0f,	// C
-	0.5f, 0.5f, 0.5f, 1.0f, 1.0f,	// C
-	-0.5f, 0.5f, 0.5f, 0.0f, 1.0f,	// D
-	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,	// A
 
-
-	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,	// E
-	-0.5f, 0.5f, -0.5f, 0.0, 1.0f,   // H
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,	// G
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,	// G
-	0.5f, -0.5f, -0.5f, 1.0f, 0.0f,	// F
-	-0.5f, -0.5f, -0.5f, 0.0f, 0.0f,	// E
-
-	-0.5f, 0.5f, 0.5f, 0.0f, 1.0f,	// D
-	-0.5f, 0.5f, -0.5f, 1.0, 1.0f,   // H
-	-0.5f, -0.5f, -0.5f, 1.0f, 0.0f,	// E
-	-0.5f, -0.5f, -0.5f, 1.0f, 0.0f,	// E
-	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,	// A
-	-0.5f, 0.5f, 0.5f, 0.0f, 1.0f,	// D
-
-	0.5f, -0.5f, -0.5f, 1.0f, 0.0f,	// F
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,	// G
-	0.5f, 0.5f, 0.5f, 0.0f, 1.0f,	// C
-	0.5f, 0.5f, 0.5f, 0.0f, 1.0f,	// C
-	0.5f, -0.5f, 0.5f, 0.0f, 0.0f,	// B
-	0.5f, -0.5f, -0.5f, 1.0f, 0.0f,	// F
-
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,	// G
-	-0.5f, 0.5f, -0.5f, 0.0, 1.0f,   // H
-	-0.5f, 0.5f, 0.5f, 0.0f, 0.0f,	// D
-	-0.5f, 0.5f, 0.5f, 0.0f, 0.0f,	// D
-	0.5f, 0.5f, 0.5f, 1.0f, 0.0f,	// C
-	0.5f, 0.5f, -0.5f, 1.0f, 1.0f,	// G
-
-	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,	// A
-	-0.5f, -0.5f, -0.5f, 0.0f, 1.0f,// E
-	0.5f, -0.5f, -0.5f, 1.0f, 1.0f,	// F
-	0.5f, -0.5f, -0.5f, 1.0f, 1.0f,	// F
-	0.5f, -0.5f, 0.5f, 1.0f, 0.0f,	// B
-	-0.5f, -0.5f, 0.5f, 0.0f, 0.0f,	// A
-};
-Camera camera(glm::vec3(0.f, 0.f, 6.f));
 texture_shader::texture_shader()
 {
-	int txtwidth, txtheight;
-	cubeTextId = TextureHelper::load2DTexture("../../res/container.jpg", txtwidth,txtheight);
-	//vertex shader
+		//vertex shader
 	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(_vertex_shader, 1, &vertexSource, NULL);
+	glShaderSource(_vertex_shader, 1, &ts_vertexSource, NULL);
 	glCompileShader(_vertex_shader);
+#define CHECK_SHADER_STATUS
+#ifdef CHECK_SHADER_STATUS
+	GLint status;
+	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
+	if (status != GL_TRUE)
+	{
+		char buffer[512];
+		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
+		printf("shader error:%s\n", buffer);
+
+	}
+#endif
 	//fragment shader
 	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(_fragment_shader, 1, &fragmentSource, NULL);
+	glShaderSource(_fragment_shader, 1, &ts_fragmentSource, NULL);
 	glCompileShader(_fragment_shader);
+#ifdef CHECK_SHADER_STATUS
+	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
+	if (status != GL_TRUE)
+	{
+		char buffer[512];
+		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
+		printf("shader2 error:%s\n", buffer);
+	}
+#endif
 	//link
-	_shader_program = glCreateProgram();
-	glAttachShader(_shader_program, _vertex_shader);
-	glAttachShader(_shader_program, _fragment_shader);
-	glBindFragDataLocation(_shader_program, 0, "outColor");
-	glLinkProgram(_shader_program);
-	glUseProgram(_shader_program);
-	glBindVertexArray(tgmesh._vao);
-	glBindBuffer(GL_ARRAY_BUFFER, tgmesh._vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(cubeVertices), cubeVertices, GL_STATIC_DRAW);
-	// 顶点位置数据
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE,
-		5 * sizeof(GL_FLOAT), (GLvoid*)0);
-	glEnableVertexAttribArray(0);
-	// 顶点纹理数据
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE,
-		5 * sizeof(GL_FLOAT), (GLvoid*)(3 * sizeof(GL_FLOAT)));
-	glEnableVertexAttribArray(1);
-	glBindVertexArray(0);
+	_shader_program_id = glCreateProgram();
+	glAttachShader(_shader_program_id, _vertex_shader);
+	glAttachShader(_shader_program_id, _fragment_shader);
+	glBindFragDataLocation(_shader_program_id, 0, "outColor");
+	glLinkProgram(_shader_program_id);
+	glUseProgram(_shader_program_id);
+	
+	GLint i;
+	GLint count;
 
-	_model = glGetUniformLocation(_shader_program, "model");
-	glm::mat4 model = glm::mat4();
-	model = glm::translate(model, glm::vec3(1.0f, 0.0f, -1.0f));
+	GLint size; // size of the variable
+	GLenum type; // type of the variable (float, vec3 or mat4, etc)
+
+	const GLsizei bufSize = 16; // maximum name length
+	GLchar name[bufSize]; // variable name in GLSL
+	GLsizei length; // name length
+
+	glGetProgramiv(_shader_program_id, GL_ACTIVE_ATTRIBUTES, &count);
+	printf("Active Attributes: %d\n", count);
+
+	for (i = 0; i < count; i++)
+	{
+		glGetActiveAttrib(_shader_program_id, (GLuint)i, bufSize, &length, &size, &type, name);
+
+		printf("Attribute #%d Type: %u Name: %s\n", i, type, name);
+	}
+
+	glGetProgramiv(_shader_program_id, GL_ACTIVE_UNIFORMS, &count);
+	printf("Active Uniforms: %d\n", count);
+
+	for (i = 0; i < count; i++)
+	{
+		glGetActiveUniform(_shader_program_id, (GLuint)i, bufSize, &length, &size, &type, name);
+
+		printf("Uniform #%d Type: %u Name: %s\n", i, type, name);
+	}
+
+	_mattr_list["position"] = shader_attribute(en_attr_vec3, glGetAttribLocation(_shader_program_id, "position"));
+	_mattr_list["textcoord"] = shader_attribute(en_attr_vec2, glGetAttribLocation(_shader_program_id, "textcoord"));
+	_mattr_list["normal"] = shader_attribute(en_attr_vec3, glGetAttribLocation(_shader_program_id, "normal"));
+	GLuint _model = glGetUniformLocation(_shader_program_id, "model");
+	glm::mat4 model;
+	model= glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
 	glUniformMatrix4fv(_model, 1, GL_FALSE, glm::value_ptr(model));
-	_view = glGetUniformLocation(_shader_program, "view");
+	_munf_list["model"] = shader_uniform(en_unf_mat4, _model);
+	//GL_FLOAT
+	GLuint _view = glGetUniformLocation(_shader_program_id, "view");
 	glm::mat4 view = glm::lookAt(
-		glm::vec3(-1.5f, -1.0f, -1.5f),
-		glm::vec3(0.0f, 0.0f, 0.0f),
-		glm::vec3(0.0f, -1.0f, 0.0f)
+		glm::vec3(0.0f, 0.0f, 2.0f),
+		glm::vec3(0.0f, 0.0f, 1.0f),
+		glm::vec3(0.0f, 1.0f, 0.0f)
 		);
-	/*glm::mat4 view = camera.getViewMatrix();*/
 	glUniformMatrix4fv(_view, 1, GL_FALSE, glm::value_ptr(view));
-	_proj = glGetUniformLocation(_shader_program, "projection");
-	glm::mat4 proj = glm::perspective(camera.mouse_zoom,800.f/ 600.f, 1.0f, 10.f);//glm::perspective(glm::radians(60.0f), base_ui_component::screenw / base_ui_component::screenh, 1.0f, 10.0f);
+	_munf_list["view"] = shader_uniform(en_unf_mat4, _view);
+
+	GLuint _proj = glGetUniformLocation(_shader_program_id, "proj");
+	glm::mat4 proj = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 1.0f, 100.0f);
+
 	glUniformMatrix4fv(_proj, 1, GL_FALSE, glm::value_ptr(proj));
-	glUniform1i(glGetUniformLocation(_shader_program, "text"), 0);
+	_munf_list["proj"] = shader_uniform(en_unf_mat4, _proj);
+	_munf_list["text"] = shader_uniform(en_unf_tex, glGetAttribLocation(_shader_program_id, "text"));
 }
 
 
-texture_shader::~texture_shader()
-{
-}
-/*
-void texture_shader::render()
-{
-	GLint last_program, last_array_buffer, last_element_array_buffer, last_vertex_array;
-	glGetIntegerv(GL_CURRENT_PROGRAM, &last_program);
-	glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
-	glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING, &last_element_array_buffer);
-	glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
-
-	//glEnable(GL_DEPTH_TEST);
-	glUseProgram(_shader_program);
-	glBindVertexArray(_tmesh._vao);
-	//glBindVertexArray(cubeVAOId);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, cubeTextId);
-	
-	// 绘制第一个立方体
-
-	glDrawArrays(GL_TRIANGLES, 0, 36);
-	
-
-	glUseProgram(last_program);
-	glBindVertexArray(last_vertex_array);
-	glBindBuffer(GL_ARRAY_BUFFER, last_array_buffer);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, last_element_array_buffer);
-}
-*/

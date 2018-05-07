@@ -16,39 +16,7 @@
 #include "fab.h"
 using namespace fab;
 using namespace std;
-struct base_vertex
-{
-	ImVec3 position;
-	ImVec3 vnormal;
-	base_vertex(float x, float y, float z) :position(x, y, z){}
-	//base_vertex(){ vnormal = glm::vec3(0.f); }
-};
-/*
-struct myc_class
-{
-	ImVec3 vnormal;
-    ImVec3& vcolor=vnormal;
-};
-struct my_test
-{
-	ImVector<myc_class> _test;
-};*/
-struct tri_face
-{
-	unsigned short vidx[3];
-	tri_face(){ vidx[0] = vidx[1] = vidx[2] = 0; }
-	tri_face(int i0, int i1, int i2){ vidx[0] = i0; vidx[1] = i1; vidx[2] = i2; }
-};
-struct tri_mesh 
-{
-	ImVector<base_vertex> vertices;
-	ImVector<tri_face> faces;
-	GLuint _vbo, _vao, _ebo;
-	tri_mesh();
-	~tri_mesh();
-};
-extern void init_cube_trimesh_faces(tri_mesh& cube_trmesh);
-extern void tri_mesh_normalize(tri_mesh& trmesh);
+#define  FILE_NAME_LEN   50
 enum en_attribute_type
 {
 	en_attr_float,
@@ -73,6 +41,7 @@ enum en_uniform_type
 	en_unf_vec3,
 	en_unf_vec4,
 	en_unf_mat4,
+	en_unf_tex,
 	en_unf_count,
 
 };
@@ -99,14 +68,17 @@ public:
 		glDeleteShader(_vertex_shader);
 		glDeleteShader(_fragment_shader);
 	}
-	void use(){ glUseProgram(_shader_program_id); }
+	void use(){
+		glUseProgram(_shader_program_id); 
+	}
 	mattr_list& get_attr_list(){ return _mattr_list; }
 	munf_list& get_unf_list(){ return _munf_list; }
 	string& objname(){ return _obj_name; }
 	void set_obj_name(string& objn){ _obj_name = objn; }
 	GLuint shader_program_id(){ return _shader_program_id; }
-	bool loading_shader_attributes_from_avbo(GLuint vao, GLuint vbo, float* pvertices, int cnt_vertices, vector<string>& attr_name_list, GLuint ebo = 0, GLushort* pindices = 0, int cnt_indics = 0);
+	bool loading_shader_attributes_from_avbo(GLuint vao, GLuint vbo, const GLvoid* pvertices, int cnt_vertices, vector<string>& attr_name_list, GLuint ebo = 0, GLushort* pindices = 0, int cnt_indics = 0);
 	bool set_uniform(string& unf_name, GLsizei icnt,float* falue);
+	bool set_uniform_text(string& unf_name, GLint v0){ return set_uniform(unf_name, v0,0); }
 };
 
 extern map<string, vector<unique_ptr<basic_shader>>> g_shader_list;

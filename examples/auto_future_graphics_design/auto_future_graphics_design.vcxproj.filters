@@ -38,6 +38,9 @@
     <Filter Include="res">
       <UniqueIdentifier>{4563ab87-9f09-4267-a43d-fda2a4512162}</UniqueIdentifier>
     </Filter>
+    <Filter Include="fbx">
+      <UniqueIdentifier>{f27df0d4-eb3f-41e2-a514-7eee7698c472}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -144,6 +147,18 @@
     </ClCompile>
     <ClCompile Include="..\..\imgui_demo.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_shader.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="miniz.c">
+      <Filter>fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="ofbx.cpp">
+      <Filter>fbx</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -278,6 +293,21 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>res</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_shader.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="miniz.h">
+      <Filter>fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="ofbx.h">
+      <Filter>fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="renderTransform.h">
+      <Filter>fbx</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

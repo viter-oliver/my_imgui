@@ -61,7 +61,6 @@ public:
 	}
 	virtual bool init_from_json(Value&){ return true; }
 	virtual bool init_json_unit(Value&){ return true; }
-
 #endif
 public:
 	static float screenw;
@@ -72,6 +71,11 @@ public:
 		//vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
 		vplist.emplace_back(&_in_p, sizeof(internal_property));
 	}
+	virtual base_ui_component* get_copy_of_object()
+	{ 
+		return NULL; 
+	}
+
 	//virtual base_ui_component* get_new_instance() = 0;
 	void set_name(string& name)
 	{

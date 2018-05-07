@@ -13,6 +13,7 @@ public:
 	bool init_json_unit(Value& junit);
 #endif
 	bool handle_mouse();
+	base_ui_component* get_copy_of_object();
 };
 void property_copy(vproperty_list& vdest, vproperty_list& vsource);
 base_ui_component* get_copy_of_object(base_ui_component* byobject);

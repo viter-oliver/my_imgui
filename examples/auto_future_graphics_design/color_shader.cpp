@@ -6,7 +6,7 @@
 // Shader sources
 const GLchar* vertexSource = R"glsl(
     attribute vec3 position;
-    attribute vec3 qcolor;
+    attribute vec3 color;
     attribute vec2 texcoord;
     varying vec3 Color;
     varying vec2 Texcoord;
@@ -15,22 +15,21 @@ const GLchar* vertexSource = R"glsl(
     uniform highp mat4 proj;
     void main()
     {
-        Color = qcolor;
+        Color = color;
         Texcoord = texcoord;
         gl_Position = proj * view * model * vec4(position, 1.0);
         //gl_Position =  vec4(position, 1.0);
     }
 )glsl";
 const GLchar* fragmentSource = R"glsl(
-    #version 150 core
     varying vec3 Color;
     varying vec2 Texcoord;
-    out vec4 outColor;
+    //out vec4 outColor;
     //uniform sampler2D texPuppy;
     void main()
     {
         //outColor = texture(texPuppy, Texcoord);
-        outColor = vec4(Color, 1.0);
+        gl_FragColor = vec4(Color, 1.0);
     }
 
 )glsl";
@@ -42,6 +41,7 @@ color_shader::color_shader()
 	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(_vertex_shader, 1, &vertexSource, NULL);
 	glCompileShader(_vertex_shader);
+#ifdef CHECK_SHADER_STATUS
 	GLint status;
 	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
 	if (status!=GL_TRUE)
@@ -51,17 +51,21 @@ color_shader::color_shader()
 		printf("shader error:%s\n", buffer);
 		
 	}
+#endif
 	//fragment shader
 	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(_fragment_shader, 1, &fragmentSource, NULL);
 	glCompileShader(_fragment_shader);
+
+#ifdef CHECK_SHADER_STATUS
+	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
 	if (status != GL_TRUE)
 	{
 		char buffer[512];
 		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
 		printf("shader2 error:%s\n", buffer);
-
 	}
+#endif
 	//link
 	_shader_program_id = glCreateProgram();
 	glAttachShader(_shader_program_id, _vertex_shader);
@@ -73,21 +77,9 @@ color_shader::color_shader()
 	//glBindBuffer(GL_ARRAY_BUFFER, tgmesh._vbo);
 
 	_mattr_list["position"] = shader_attribute(en_attr_vec3, glGetAttribLocation(_shader_program_id, "position"));
-	_mattr_list["qcolor"] = shader_attribute(en_attr_vec3, glGetAttribLocation(_shader_program_id, "qcolor"));
+	_mattr_list["color"] = shader_attribute(en_attr_vec3, glGetAttribLocation(_shader_program_id, "color"));
 	_mattr_list["texcoord"] = shader_attribute(en_attr_vec2, glGetAttribLocation(_shader_program_id, "texcoord"));
 
-	/*
-	glEnableVertexAttribArray(_postion);
-	glVertexAttribPointer(_postion, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
-
-	_color = glGetAttribLocation(_shader_program, "qcolor");
-	glEnableVertexAttribArray(_color);
-	glVertexAttribPointer(_color, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(3 * sizeof(GLfloat)));
-
-	_texcord = glGetAttribLocation(_shader_program, "texcoord");
-	glEnableVertexAttribArray(_texcord);
-	glVertexAttribPointer(_texcord, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (void*)(6 * sizeof(GLfloat)));
-	*/
 	GLuint _model = glGetUniformLocation(_shader_program_id, "model");
 	glm::mat4 model = glm::mat4();
 	glUniformMatrix4fv(_model, 1, GL_FALSE, glm::value_ptr(model));
@@ -104,16 +96,7 @@ color_shader::color_shader()
 
 	GLuint _proj = glGetUniformLocation(_shader_program_id, "proj");
 	glm::mat4 proj = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 1.0f, 10.0f);
-	//glm::mat4 cb = proj*view*model;
-	//float* pview = glm::value_ptr(cb);
-	//for (int ii = 0; ii < 16; ++ii)
-	//{
-	//	printf("%f,", *pview++);
-	//	if (ii % 4 == 3)
-	//	{
-	//		printf("\n");
-	//	}
-	//}
+	
 	glUniformMatrix4fv(_proj, 1, GL_FALSE, glm::value_ptr(proj));
 	_munf_list["proj"] = shader_uniform(en_unf_mat4, _proj);
 

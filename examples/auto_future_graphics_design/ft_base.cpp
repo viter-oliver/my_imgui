@@ -92,7 +92,24 @@ bool ft_base::handle_mouse()
 	}
 	return true;
 }
-
+base_ui_component* ft_base::get_copy_of_object()
+{
+	string cname = typeid(*this).name();
+	cname = cname.substr(sizeof("class"));
+	base_ui_component* prtn = factory::get().produce(cname);
+	vproperty_list vrtn, vobj;
+	prtn->collect_property_range(vrtn);
+	this->collect_property_range(vobj);
+	property_copy(vrtn, vobj);
+	auto icnt = this->get_child_count();
+	for (int ii = 0; ii < icnt; ii++)
+	{
+		auto pchild = this->get_child(ii);
+		auto pchd_cpy = pchild->get_copy_of_object();
+		prtn->add_child(pchd_cpy);
+	}
+	return prtn;
+}
 base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname)
 {
 	if (tar_ui.get_name() == uname)

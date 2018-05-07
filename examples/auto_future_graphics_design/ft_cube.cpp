@@ -60,7 +60,7 @@ ft_cube::ft_cube()
 		glGenBuffers(1, &_vbo);
 		glGenBuffers(1, &_ebo);
 
-		vector<string> attr_name_list = { "position", "qcolor", "texcoord" };
+		vector<string> attr_name_list = { "position", "color", "texcoord" };
 		_pshader->loading_shader_attributes_from_avbo(_vao, _vbo, g_vertices, sizeof(g_vertices), \
 			attr_name_list, _ebo, g_indices, sizeof(g_indices));
 	}

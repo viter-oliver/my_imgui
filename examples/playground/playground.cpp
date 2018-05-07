@@ -7,6 +7,7 @@
 #include <iostream>  
 #include <vector>
 #include <map>
+#include <array>
 #include <string>
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
@@ -170,6 +171,83 @@ void TestEmplace()
 		std::cout << p._age << " : " << p._fname << " : " << p._lname << std::endl;
 	}
 }
+template<typename T>
+class ImVector
+{
+public:
+	int                         Size;
+	int                         Capacity;
+	T*                          Data;
+
+	typedef T                   value_type;
+	typedef value_type*         iterator;
+	typedef const value_type*   const_iterator;
+
+	inline ImVector()           { Size = Capacity = 0; Data = NULL; }
+	inline ~ImVector()          { if (Data) ImGui::MemFree(Data); }
+	inline ImVector(const ImVector<T>& src)                     { Size = Capacity = 0; Data = NULL; operator=(src); }
+	inline ImVector& operator=(const ImVector<T>& src)          { clear(); resize(src.Size); memcpy(Data, src.Data, (size_t)Size * sizeof(value_type)); return *this; }
+
+	inline bool                 empty() const                   { return Size == 0; }
+	inline int                  size() const                    { return Size; }
+	inline int                  capacity() const                { return Capacity; }
+	inline value_type&          operator[](int i)               { IM_ASSERT(i < Size); return Data[i]; }
+	inline const value_type&    operator[](int i) const         { IM_ASSERT(i < Size); return Data[i]; }
+
+	inline void                 clear()                         { if (Data) { Size = Capacity = 0; ImGui::MemFree(Data); Data = NULL; } }
+	inline iterator             begin()                         { return Data; }
+	inline const_iterator       begin() const                   { return Data; }
+	inline iterator             end()                           { return Data + Size; }
+	inline const_iterator       end() const                     { return Data + Size; }
+	inline value_type&          front()                         { IM_ASSERT(Size > 0); return Data[0]; }
+	inline const value_type&    front() const                   { IM_ASSERT(Size > 0); return Data[0]; }
+	inline value_type&          back()                          { IM_ASSERT(Size > 0); return Data[Size - 1]; }
+	inline const value_type&    back() const                    { IM_ASSERT(Size > 0); return Data[Size - 1]; }
+	inline void                 swap(ImVector<value_type>& rhs) { int rhs_size = rhs.Size; rhs.Size = Size; Size = rhs_size; int rhs_cap = rhs.Capacity; rhs.Capacity = Capacity; Capacity = rhs_cap; value_type* rhs_data = rhs.Data; rhs.Data = Data; Data = rhs_data; }
+
+	inline int          _grow_capacity(int sz) const            { int new_capacity = Capacity ? (Capacity + Capacity / 2) : 8; return new_capacity > sz ? new_capacity : sz; }
+	inline void         resize(int new_size)                    { if (new_size > Capacity) reserve(_grow_capacity(new_size)); Size = new_size; }
+	inline void         resize(int new_size, const value_type& v){ if (new_size > Capacity) reserve(_grow_capacity(new_size)); if (new_size > Size) for (int n = Size; n < new_size; n++) memcpy(&Data[n], &v, sizeof(v)); Size = new_size; }
+	inline void         reserve(int new_capacity)
+	{
+		if (new_capacity <= Capacity)
+			return;
+		value_type* new_data = (value_type*)ImGui::MemAlloc((size_t)new_capacity * sizeof(value_type));
+		if (Data)
+			memcpy(new_data, Data, (size_t)Size * sizeof(value_type));
+		ImGui::MemFree(Data);
+		Data = new_data;
+		Capacity = new_capacity;
+	}
+
+	// NB: &v cannot be pointing inside the ImVector Data itself! e.g. v.push_back(v[10]) is forbidden.
+	inline void         push_back(const value_type& v)                  { if (Size == Capacity) reserve(_grow_capacity(Size + 1)); memcpy(&Data[Size], &v, sizeof(v)); Size++; }
+	inline void         pop_back()                                      { IM_ASSERT(Size > 0); Size--; }
+	inline void         push_front(const value_type& v)                 { if (Size == 0) push_back(v); else insert(Data, v); }
+	inline iterator     erase(const_iterator it)                        { IM_ASSERT(it >= Data && it < Data + Size); const ptrdiff_t off = it - Data; memmove(Data + off, Data + off + 1, ((size_t)Size - (size_t)off - 1) * sizeof(value_type)); Size--; return Data + off; }
+	inline iterator     insert(const_iterator it, const value_type& v)  { IM_ASSERT(it >= Data && it <= Data + Size); const ptrdiff_t off = it - Data; if (Size == Capacity) reserve(_grow_capacity(Size + 1)); if (off < (int)Size) memmove(Data + off + 1, Data + off, ((size_t)Size - (size_t)off) * sizeof(value_type)); memcpy(&Data[off], &v, sizeof(v)); Size++; return Data + off; }
+	inline bool         contains(const value_type& v) const             { const T* data = Data;  const T* data_end = Data + Size; while (data < data_end) if (*data++ == v) return true; return false; }
+};
+class test_type_name
+{
+public:
+	virtual void fun()
+	{
+		cout << "just fun" << endl;
+	}
+	void print_tyep_name()
+	{
+		printf("typename:%s\n", typeid(*this).name());
+	}
+};
+class test_tn :public test_type_name
+{
+
+};
+class test_tn_tn :public test_tn
+{
+
+};
 int _tmain(int argc, _TCHAR* argv[])
 {
 	vector<stt> vstt;
@@ -216,16 +294,57 @@ int _tmain(int argc, _TCHAR* argv[])
 	static int ssy;
 	struct sss
 	{
+		sss(){}
+
 		void fun()
 		{
 			ssy = 1;
 		}
 	};
+
+	std::cout << "MyClass2 is_trivially_copyable:" << std::is_trivially_copyable<MyClass2>::value << std::endl;
 	glm::mat4 trans;
 	trans = glm::rotate(trans, glm::radians(180.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 	glm::vec4 ret = trans*glm::vec4(1000.0f, 100.0f, 1.0f, 1.0f);
 	printf("%f,%f,%f\n", ret.x, ret.y, ret.z);
-	vector<int> vtest = { 1, 3, 4, 5 };
+	std::cout << "glm::vec4 is_trivially_copyable:" << std::is_trivially_copyable<glm::vec4>::value << std::endl;
+
+	std::cout << "sss is_trivial:" << std::is_trivially_copyable<sss>::value << std::endl;
+	struct ImVec3
+	{
+		float x, y, z;
+		ImVec3() { x = y = z = 0.0f; }
+		ImVec3(float _x, float _y, float _z) { x = _x; y = _y; z = _z; }
+#ifdef IM_VEC3_CLASS_EXTRA          // Define constructor and implicit cast operators in imconfig.h to convert back<>forth from your math types and ImVec4.
+		IM_VEC3_CLASS_EXTRA
+#endif
+	};
+	struct ImVec2
+	{
+		float x, y;
+		ImVec2() { x = y = 0.0f; }
+		ImVec2(float _x, float _y) { x = _x; y = _y;  }
+#ifdef IM_VEC3_CLASS_EXTRA          // Define constructor and implicit cast operators in imconfig.h to convert back<>forth from your math types and ImVec4.
+		IM_VEC3_CLASS_EXTRA
+#endif
+	};
+	std::cout << "ImVec3 is_trivially_copyable:" << std::is_trivially_copyable<ImVec3>::value << std::endl;
+	std::cout << "vector<ImVec3> is_trivially_copyable:" << std::is_trivially_copyable<vector<ImVec3>>::value << std::endl;
+	std::cout << "ImVector<ImVec3> is_trivially_copyable:" << std::is_trivially_copyable<ImVector<ImVec3>>::value << std::endl;
+	std::cout << "IImVec3[50] is_trivially_copyable:" << std::is_trivially_copyable<ImVec3[50]>::value << std::endl;
+
+	struct intl_pt
+	{
+		ImVec3 _scale;
+		ImVec3 _rotation;
+		ImVec2 _translation;
+		//int _shader_instance_index;
+		intl_pt() {}
+	};
+	std::cout << "intl_pt is_trivially_copyable:" << std::is_trivially_copyable<intl_pt>::value << std::endl;
+	std::cout << "array<intl_pt,10> is_trivially_copyable:" << std::is_trivially_copyable<array<intl_pt,10>>::value << std::endl;
+	//intl_pt dd[10];
+     vector<int> vtest = { 1, 3, 4, 5 };
 	for (auto& iv:vtest)
 	{
 		iv = iv + 2;
@@ -301,6 +420,11 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << iit.first << endl;
 
 	}
+
+	test_type_name* ptn = new test_tn_tn;
+	ptn->print_tyep_name();
+	test_tn_tn tttn;
+	tttn.print_tyep_name();
 	//vvtest.clear();
 	return 0;
 }
