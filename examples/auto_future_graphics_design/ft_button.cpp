@@ -24,7 +24,7 @@ bool ft_button::init_from_json(Value& jvalue)
 
 	_pt._texture_indices[0] = jvalue["texture_index0"].asInt();
 	_pt._texture_indices[1] = jvalue["texture_index1"].asInt();
-	_pt._label = jvalue["label"].asString();
+	strcpy(_pt._label ,jvalue["label"].asCString());
 	return true;
 }
 #endif

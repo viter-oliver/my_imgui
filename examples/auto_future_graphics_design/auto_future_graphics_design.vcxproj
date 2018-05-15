@@ -90,7 +90,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -104,7 +104,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -121,7 +121,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
@@ -160,8 +160,15 @@
     <ClCompile Include="..\..\imgui.cpp" />
     <ClCompile Include="..\..\imgui_demo.cpp" />
     <ClCompile Include="..\..\imgui_draw.cpp" />
+    <ClCompile Include="..\..\json\json_reader.cpp" />
+    <ClCompile Include="..\..\json\json_value.cpp" />
+    <ClCompile Include="..\..\json\json_writer.cpp" />
+    <ClCompile Include="..\..\msg_filters_n\base_filter_n.cpp" />
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_by_priority_n.cpp" />
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp" />
+    <ClCompile Include="..\..\msg_host\msg_host_n.cpp" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
-    <ClCompile Include="af_application.cpp" />
+    <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="color_shader.cpp" />
     <ClCompile Include="ft_cube.cpp" />
     <ClCompile Include="ft_model.cpp" />
@@ -176,11 +183,9 @@
     <ClCompile Include="ft_polygon_image.cpp" />
     <ClCompile Include="ft_scene3d.cpp" />
     <ClCompile Include="ft_slide.cpp" />
+    <ClCompile Include="ft_textblock.cpp" />
     <ClCompile Include="ft_trajectory_box.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
-    <ClCompile Include="json\json_reader.cpp" />
-    <ClCompile Include="json\json_value.cpp" />
-    <ClCompile Include="json\json_writer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="miniz.c" />
@@ -201,13 +206,26 @@
     <ClInclude Include="..\..\imgui.h" />
     <ClInclude Include="..\..\imguidock.h" />
     <ClInclude Include="..\..\imgui_internal.h" />
+    <ClInclude Include="..\..\json\autolink.h" />
+    <ClInclude Include="..\..\json\config.h" />
+    <ClInclude Include="..\..\json\features.h" />
+    <ClInclude Include="..\..\json\forwards.h" />
+    <ClInclude Include="..\..\json\json.h" />
+    <ClInclude Include="..\..\json\json_batchallocator.h" />
+    <ClInclude Include="..\..\json\reader.h" />
+    <ClInclude Include="..\..\json\value.h" />
+    <ClInclude Include="..\..\json\writer.h" />
+    <ClInclude Include="..\..\msg_filters_n\base_filter_n.h" />
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_by_priority_n.h" />
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_circle_call_n.h" />
+    <ClInclude Include="..\..\msg_filters_n\priority_filter_def.h" />
+    <ClInclude Include="..\..\msg_host\msg_host_n.h" />
     <ClInclude Include="..\..\texture.h" />
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
-    <ClInclude Include="af_application.h" />
+    <ClInclude Include="af_shader.h" />
     <ClInclude Include="color_shader.h" />
     <ClInclude Include="ft_cube.h" />
-    <ClInclude Include="af_message_queue.h" />
     <ClInclude Include="ft_model.h" />
     <ClInclude Include="ft_plane.h" />
     <ClInclude Include="ft_sphere.h" />
@@ -221,17 +239,9 @@
     <ClInclude Include="ft_polygon_image.h" />
     <ClInclude Include="ft_scene3d.h" />
     <ClInclude Include="ft_slide.h" />
+    <ClInclude Include="ft_textblock.h" />
     <ClInclude Include="ft_trajectory_box.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
-    <ClInclude Include="json\autolink.h" />
-    <ClInclude Include="json\config.h" />
-    <ClInclude Include="json\features.h" />
-    <ClInclude Include="json\forwards.h" />
-    <ClInclude Include="json\json.h" />
-    <ClInclude Include="json\json_batchallocator.h" />
-    <ClInclude Include="json\reader.h" />
-    <ClInclude Include="json\value.h" />
-    <ClInclude Include="json\writer.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="miniz.h" />
     <ClInclude Include="ofbx.h" />
@@ -248,11 +258,11 @@
     <ClInclude Include="user_control_imgui.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\..\json\json_internalarray.inl" />
+    <None Include="..\..\json\json_internalmap.inl" />
+    <None Include="..\..\json\json_valueiterator.inl" />
     <None Include="..\README.txt" />
     <None Include="internal_texture_dataformat.json" />
-    <None Include="json\json_internalarray.inl" />
-    <None Include="json\json_internalmap.inl" />
-    <None Include="json\json_valueiterator.inl" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="auto_future_graphics_design.rc" />

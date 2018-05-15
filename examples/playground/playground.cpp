@@ -408,7 +408,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	    vvtest.emplace_back();
 
 	}
-	map<string, int> mp_test;
+	map<string, int> mp_test ;
 	mp_test["positin"] = 10;
 	mp_test["color"] = 11;
 	mp_test["color2"] = 13;
@@ -426,6 +426,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	test_tn_tn tttn;
 	tttn.print_tyep_name();
 	//vvtest.clear();
+	//map<int, int> mp_int = { 10, 10 };
+
 	return 0;
 }
 

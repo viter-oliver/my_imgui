@@ -157,6 +157,30 @@
 				"x" : 801.50,
 				"y" : 303.0
 			},
+			"childs" : 
+			[
+				
+				{
+					"content" : "gfdgdgfdgfd",
+					"name" : "ft_textblock",
+					"screen_pos" : 
+					{
+						"x" : 146.5790100097656,
+						"y" : 45.62800216674805,
+						"z" : 0.0
+					},
+					"txt_color" : 
+					{
+						"w" : 1.0,
+						"x" : 0.5051184892654419,
+						"y" : 0.6189618110656738,
+						"z" : 0.7299578189849854
+					},
+					"type" : "ft_textblock",
+					"width" : 560.0,
+					"wrapped" : false
+				}
+			],
 			"name" : "pointer_right",
 			"screen_pos" : 
 			{

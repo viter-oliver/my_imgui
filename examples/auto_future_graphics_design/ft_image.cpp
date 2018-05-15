@@ -140,7 +140,7 @@ texture_index
 bool ft_image::init_from_json(Value& jvalue)
 {
 	ft_base::init_from_json(jvalue);
-	g_cur_texture_id_index = jvalue["texture_id_index"].asInt();
+	//g_cur_texture_id_index = jvalue["texture_id_index"].asInt();
 	_img_pt._texture_index = jvalue["texture_index"].asInt();
 	Value& jsize = jvalue["size"];
 	if (!jsize.isNull())

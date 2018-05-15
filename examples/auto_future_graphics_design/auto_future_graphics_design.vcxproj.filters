@@ -20,9 +20,6 @@
     <Filter Include="json">
       <UniqueIdentifier>{098a79ae-f209-436c-b0e5-71d76d45ac34}</UniqueIdentifier>
     </Filter>
-    <Filter Include="controller">
-      <UniqueIdentifier>{4410c1c2-6270-4e7c-a455-c69b19f79b46}</UniqueIdentifier>
-    </Filter>
     <Filter Include="common">
       <UniqueIdentifier>{be949d9d-5e7f-4b53-81a9-c102882c28fe}</UniqueIdentifier>
     </Filter>
@@ -40,6 +37,15 @@
     </Filter>
     <Filter Include="fbx">
       <UniqueIdentifier>{f27df0d4-eb3f-41e2-a514-7eee7698c472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render_utilities">
+      <UniqueIdentifier>{8c38a201-8098-494d-9e3b-5dd3905a6a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msg_host">
+      <UniqueIdentifier>{5efb9bf8-4968-408a-a0c5-aa0362efa76e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msg_filter">
+      <UniqueIdentifier>{41e7c38b-8281-4f24-bdf1-06c88a6832d0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,15 +82,6 @@
     <ClCompile Include="ft_polygon_image.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="json\json_reader.cpp">
-      <Filter>json</Filter>
-    </ClCompile>
-    <ClCompile Include="json\json_value.cpp">
-      <Filter>json</Filter>
-    </ClCompile>
-    <ClCompile Include="json\json_writer.cpp">
-      <Filter>json</Filter>
-    </ClCompile>
     <ClCompile Include="ft_slide.cpp">
       <Filter>controls</Filter>
     </ClCompile>
@@ -96,9 +93,6 @@
     </ClCompile>
     <ClCompile Include="ft_image.cpp">
       <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="af_application.cpp">
-      <Filter>controller</Filter>
     </ClCompile>
     <ClCompile Include="common_functions.cpp">
       <Filter>common</Filter>
@@ -160,6 +154,33 @@
     <ClCompile Include="ofbx.cpp">
       <Filter>fbx</Filter>
     </ClCompile>
+    <ClCompile Include="af_shader.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_textblock.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_host\msg_host_n.cpp">
+      <Filter>msg_host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\json\json_reader.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\json\json_value.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\json\json_writer.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\base_filter_n.cpp">
+      <Filter>msg_filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_by_priority_n.cpp">
+      <Filter>msg_filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp">
+      <Filter>msg_filter</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -201,33 +222,6 @@
     <ClInclude Include="ft_polygon_image.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="json\autolink.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\config.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\features.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\forwards.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\json.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\json_batchallocator.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\reader.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\value.h">
-      <Filter>json</Filter>
-    </ClInclude>
-    <ClInclude Include="json\writer.h">
-      <Filter>json</Filter>
-    </ClInclude>
     <ClInclude Include="ft_slide.h">
       <Filter>controls</Filter>
     </ClInclude>
@@ -239,12 +233,6 @@
     </ClInclude>
     <ClInclude Include="ft_image.h">
       <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="af_application.h">
-      <Filter>controller</Filter>
-    </ClInclude>
-    <ClInclude Include="af_message_queue.h">
-      <Filter>controller</Filter>
     </ClInclude>
     <ClInclude Include="common_functions.h">
       <Filter>common</Filter>
@@ -309,20 +297,68 @@
     <ClInclude Include="renderTransform.h">
       <Filter>fbx</Filter>
     </ClInclude>
+    <ClInclude Include="af_shader.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_textblock.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_host\msg_host_n.h">
+      <Filter>msg_host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\autolink.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\config.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\features.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\forwards.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\json.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\json_batchallocator.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\reader.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\value.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\writer.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\base_filter_n.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_by_priority_n.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_circle_call_n.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\priority_filter_def.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
-    <None Include="json\json_internalarray.inl">
-      <Filter>json</Filter>
-    </None>
-    <None Include="json\json_internalmap.inl">
-      <Filter>json</Filter>
-    </None>
-    <None Include="json\json_valueiterator.inl">
-      <Filter>json</Filter>
-    </None>
     <None Include="internal_texture_dataformat.json">
       <Filter>res</Filter>
+    </None>
+    <None Include="..\..\json\json_internalarray.inl">
+      <Filter>json</Filter>
+    </None>
+    <None Include="..\..\json\json_internalmap.inl">
+      <Filter>json</Filter>
+    </None>
+    <None Include="..\..\json\json_valueiterator.inl">
+      <Filter>json</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

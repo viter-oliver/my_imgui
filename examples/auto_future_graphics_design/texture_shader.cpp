@@ -124,7 +124,7 @@ texture_shader::texture_shader()
 
 	glUniformMatrix4fv(_proj, 1, GL_FALSE, glm::value_ptr(proj));
 	_munf_list["proj"] = shader_uniform(en_unf_mat4, _proj);
-	_munf_list["text"] = shader_uniform(en_unf_tex, glGetAttribLocation(_shader_program_id, "text"));
+	_munf_list["text"] = shader_uniform(en_unf_tex, glGetUniformLocation(_shader_program_id, "text"));
 }
 
 

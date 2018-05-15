@@ -70,16 +70,23 @@ bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, stri
 				Value& jfm_unit = frames[iix];
 				Value& frame = jfm_unit["frame"];
 				Value& filename = jfm_unit["filename"];
+				bool rotated = jfm_unit["rotated"].asBool();
 				rtlist.vtexture_coordinates.emplace_back();
 				res_texture_coordinate& res_txt_cd = rtlist.vtexture_coordinates[iix];
 				res_txt_cd._file_name = filename.asString();
 				/*rtlist.file_name_sets += sfilename;
 				rtlist.file_name_sets += "\0";*/
-				res_txt_cd._x0 = frame["x"].asInt();
-				res_txt_cd._y0 = frame["y"].asInt();
-				res_txt_cd._x1 = frame["x"].asInt() + frame["w"].asInt();
-				res_txt_cd._y1 = frame["y"].asInt() + frame["h"].asInt();
+					res_txt_cd._x0 = frame["x"].asInt();
+					res_txt_cd._y0 = frame["y"].asInt();
+					res_txt_cd._x1 = frame["x"].asInt() + frame["w"].asInt() ;
+					res_txt_cd._y1 = frame["y"].asInt() + frame["h"].asInt() ;
 
+				if (rotated)
+				{
+					res_txt_cd._x1 = frame["x"].asInt()+ frame["h"].asInt();  ;
+					res_txt_cd._y1 = frame["y"].asInt() + frame["w"].asInt() ;
+				}
+				
 			}
 		}
 		fin.close();

@@ -6,7 +6,7 @@ class ft_button :
 	struct intl_pt
 	{
 		int _texture_indices[2];
-		string _label;
+		char _label[FILENAME_MAX];
 	};
 	intl_pt _pt;
 public:

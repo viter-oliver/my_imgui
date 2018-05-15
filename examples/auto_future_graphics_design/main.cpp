@@ -17,7 +17,6 @@
 #include "ft_base.h"
 #include "ui_assembler.h"
 #include "res_output.h"
-#include "af_application.h"
 #include "ft_image.h"
 #include "project_edit.h"
 #include "res_internal.h"
@@ -120,7 +119,6 @@ int main(int argc, char* argv[])
 	//	GL_RGBA,GL_RGBA,SOIL_LOAD_RGBA);
 	ft_base* _proot = NULL;	
 	base_ui_component* _pselect = NULL;
-	af_application _app;
 	res_edit* _pres_mg;
 	if (!g_cureent_project_file_path.empty())
 	{
@@ -263,7 +261,6 @@ int main(int argc, char* argv[])
         // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
         glfwPollEvents();
         ImGui_ImplGlfwGL3_NewFrame();
-		_app.update();
 		//socketpair
 #define _MY_IMGUI__
 #if defined(_Dockable_)
