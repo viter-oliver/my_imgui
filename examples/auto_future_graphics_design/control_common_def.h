@@ -26,8 +26,8 @@ typedef vector<property_range> vproperty_list;
 
 using namespace Json;
 class base_ui_component;
-#if !defined(IMGUI_WAYLAND)
 const unsigned char name_len = 20;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 const float edit_unit_len = 5.0f;
 const float imge_edit_view_width = 300.f;
 #endif
@@ -46,7 +46,7 @@ protected:
 	internal_property _in_p;
 	vector<base_ui_component*> _vchilds;
 	base_ui_component* _parent;
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 protected:
 	bool _selected;
 public:
@@ -66,10 +66,12 @@ public:
 	static float screenw;
 	static float screenh;
 	virtual void draw() = 0;
-	virtual void collect_property_range(vproperty_list& vplist)
+	virtual int collect_property_range(vproperty_list& vplist)
 	{
 		//vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
+		int len = sizeof(internal_property);
 		vplist.emplace_back(&_in_p, sizeof(internal_property));
+		return len;
 	}
 	virtual base_ui_component* get_copy_of_object()
 	{ 
@@ -87,7 +89,7 @@ public:
 	base_ui_component()
 		:_in_p()
 		, _parent(NULL)
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		, _selected(false)
 #endif
 	{

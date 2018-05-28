@@ -13132,7 +13132,7 @@ static void ImeSetInputScreenPosFn_DefaultImpl(int, int) {}
 //-----------------------------------------------------------------------------
 // HELP
 //-----------------------------------------------------------------------------
-
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ImGui::ShowMetricsWindow(bool* p_open)
 {
     if (ImGui::Begin("ImGui Metrics", p_open))
@@ -13303,7 +13303,7 @@ void ImGui::ShowMetricsWindow(bool* p_open)
     }
     ImGui::End();
 }
-
+#endif
 //-----------------------------------------------------------------------------
 
 // Include imgui_user.inl at the end of imgui.cpp to access private data/functions that aren't exposed.

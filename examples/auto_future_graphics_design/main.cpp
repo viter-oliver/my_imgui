@@ -31,6 +31,7 @@
 #endif
 #include "Resource.h"
 #include "res_edit.h"
+#include "afb_output.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -44,6 +45,7 @@ enum en_short_cut_item
 	en_ctrl_n,
 	en_ctrl_o,
 	en_ctrl_s,
+	en_ctrl_b,
 	an_alt_f4,
 };
 int main(int argc, char* argv[])
@@ -117,7 +119,7 @@ int main(int argc, char* argv[])
 	//g_vres_texture_list[0].texture_id = \
 	//	TextureHelper::load2DTexture(g_vres_texture_list[0].texture_path, g_vres_texture_list[0].texture_width, g_vres_texture_list[0].texture_height,\
 	//	GL_RGBA,GL_RGBA,SOIL_LOAD_RGBA);
-	ft_base* _proot = NULL;	
+	base_ui_component* _proot = NULL;
 	base_ui_component* _pselect = NULL;
 	res_edit* _pres_mg;
 	if (!g_cureent_project_file_path.empty())
@@ -248,7 +250,25 @@ int main(int argc, char* argv[])
 			_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
 		}
 		break;
-
+		case en_ctrl_b:
+		{
+			if (!g_cureent_project_file_path.empty())
+			{
+				string str_proj_file_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+				string str_proj_file_name = g_cureent_project_file_path.substr(g_cureent_project_file_path.find_last_of('\\') + 1);
+				str_proj_file_name = str_proj_file_name.substr(0, str_proj_file_name.find('.'));
+				string str_afb_file = str_proj_file_path + "afb\\";
+				str_afb_file += str_proj_file_name;
+				str_afb_file += ".AFB";
+				printf("afbfile:%s\n", str_afb_file.c_str());
+				afb_output afbop(*_proot);
+				afbop.output_afb(str_afb_file.c_str());
+			}
+		}
+		break;
+		case an_alt_f4:
+		exit(0);
+		break;
 		}
 	};
 
@@ -354,6 +374,11 @@ int main(int argc, char* argv[])
 			{
 				fun_shortct(en_ctrl_n);
 			}
+			else
+			if (ImGui::GetIO().KeysDown[GLFW_KEY_B])
+			{
+				fun_shortct(en_ctrl_b);
+			}
 		}
 
 		if (ImGui::BeginMainMenuBar())
@@ -386,9 +411,15 @@ int main(int argc, char* argv[])
 				{
 				}
 				ImGui::Separator();
+				if (ImGui::MenuItem("Export AFB", "Ctrl+B"))
+				{
+					fun_shortct(en_ctrl_b);
+				}
+				ImGui::Separator();
 				
 				if (ImGui::MenuItem("Quit", "Alt+F4")) 
 				{
+					fun_shortct(an_alt_f4);
 				}
 				ImGui::EndMenu();
 			}

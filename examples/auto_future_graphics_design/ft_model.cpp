@@ -83,7 +83,7 @@ void ft_model::draw()
 	}
 
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_model::draw_peroperty_page()
 {
 	ImGui::InputText("-texture file", _pt._texture_file, FILE_NAME_LEN);

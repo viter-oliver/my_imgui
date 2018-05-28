@@ -16,12 +16,16 @@ public:
 	ft_scene3d();
 	~ft_scene3d();
 	void draw();
-	void collect_property_range(vproperty_list& vplist)
+	int collect_property_range(vproperty_list& vplist)
 	{
-		ft_base::collect_property_range(vplist);
-		vplist.emplace_back(&_size, sizeof(ImVec2));
+		int plen = ft_base::collect_property_range(vplist);
+		int len = sizeof(ImVec2);
+		vplist.emplace_back(&_size, len);
+		len += plen;
+		return len;
+
 	}
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();
 	bool init_from_json(Value& jvalue);
 #endif

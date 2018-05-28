@@ -12,13 +12,16 @@ class ft_listbox :
 	intl_pt _lt_pt;
 public:
 	ft_listbox();
-	void collect_property_range(vproperty_list& vplist)
+	int collect_property_range(vproperty_list& vplist)
 	{
-		ft_base::collect_property_range(vplist);
-		vplist.emplace_back(&_lt_pt, sizeof(intl_pt));
+		int plen = ft_base::collect_property_range(vplist);
+		int len = sizeof(intl_pt);
+		vplist.emplace_back(&_lt_pt, len);
+		len += plen;
+		return len;
 	}
 	void draw();
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();
 	bool init_from_json(Value& jvalue);
 #endif

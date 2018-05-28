@@ -5,7 +5,7 @@ void ft_polygon_image::draw()
 {
 
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_polygon_image::draw_peroperty_page()
 {
 

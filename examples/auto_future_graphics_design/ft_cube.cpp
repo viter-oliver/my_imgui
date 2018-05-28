@@ -110,7 +110,7 @@ void ft_cube::draw()
 	_pshader->set_uniform(string("model"), 1, glm::value_ptr(model));
 	glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, (const void*)0);
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_cube::draw_peroperty_page()
 {
 }

@@ -47,6 +47,9 @@
     <Filter Include="msg_filter">
       <UniqueIdentifier>{41e7c38b-8281-4f24-bdf1-06c88a6832d0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="afb_manager">
+      <UniqueIdentifier>{1eed8a52-3174-4df9-b74a-a6938f17dde9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,9 +83,6 @@
       <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="ft_polygon_image.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_slide.cpp">
       <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="ft_trajectory_box.cpp">
@@ -181,6 +181,15 @@
     <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp">
       <Filter>msg_filter</Filter>
     </ClCompile>
+    <ClCompile Include="afb_output.cpp">
+      <Filter>afb_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="afb_load.cpp">
+      <Filter>afb_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_slider.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -220,9 +229,6 @@
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="ft_polygon_image.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_slide.h">
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="ft_trajectory_box.h">
@@ -344,6 +350,15 @@
     </ClInclude>
     <ClInclude Include="..\..\msg_filters_n\priority_filter_def.h">
       <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="afb_output.h">
+      <Filter>afb_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="afb_load.h">
+      <Filter>afb_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_slider.h">
+      <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

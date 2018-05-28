@@ -14,13 +14,16 @@ class ft_image :
 	intl_pt _img_pt;
 public:
 	ft_image() :ft_base(), _img_pt(){}
-	void collect_property_range(vproperty_list& vplist)
+	int collect_property_range(vproperty_list& vplist)
 	{
-		ft_base::collect_property_range(vplist);
-		vplist.emplace_back(&_img_pt, sizeof(intl_pt));
+		int plen = ft_base::collect_property_range(vplist);
+		int len = sizeof(intl_pt);
+		vplist.emplace_back(&_img_pt, len);
+		len += plen;
+		return len;
 	}
 	void draw();
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();
 	bool init_from_json(Value& jvalue);
 	bool init_json_unit(Value& junit);

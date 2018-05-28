@@ -16,7 +16,7 @@ struct res_texture_list
 {
 	int texture_width;
 	int texture_height;
-	int texture_id;
+	unsigned int texture_id;
 	string texture_pack_file;
 	string texture_data_file;
 	//string file_name_sets;

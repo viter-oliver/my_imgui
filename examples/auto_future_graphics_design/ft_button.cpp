@@ -4,7 +4,7 @@ void ft_button::draw()
 {
 
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_button::draw_peroperty_page()
 {
 

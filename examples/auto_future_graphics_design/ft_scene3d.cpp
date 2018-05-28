@@ -41,7 +41,7 @@ void ft_scene3d::draw()
 	//glActiveTexture(GL_TEXTURE0);
 	//glBindTexture(GL_TEXTURE_2D, _colorTextId);
 	ImGui::ImageQuad((ImTextureID)_colorTextId, pos1, pos2, pos3, pos4, ImVec2(0, 0), ImVec2(0, 1), ImVec2(1, 1), ImVec2(1, 0));
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	if (is_selected())//draw envelope
 	{
 		ImU32 col = ImGui::GetColorU32(ImGuiCol_HeaderActive);
@@ -61,7 +61,7 @@ void ft_scene3d::draw()
 	}
 #endif
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_scene3d::draw_peroperty_page()
 {
 	ft_base::draw_peroperty_page();

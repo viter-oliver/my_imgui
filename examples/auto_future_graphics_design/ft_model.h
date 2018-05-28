@@ -33,15 +33,19 @@ class ft_model :
 public:
 	ft_model();
 	~ft_model();
-	void collect_property_range(vproperty_list& vplist)
+	int collect_property_range(vproperty_list& vplist)
 	{
-		ft_base::collect_property_range(vplist);
-		vplist.emplace_back(&_pt, sizeof(intl_pt));
+		int plen = ft_base::collect_property_range(vplist);
+		int len = sizeof(intl_pt);
+		vplist.emplace_back(&_pt, len);
+		len += plen;
+		return len;
+
 	}
 	void load_mesh_data_2_vertices();
 	void load_vertics_2_vbo();
 	void draw();
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();
 	bool init_from_json(Value& jvalue);
 	bool init_json_unit(Value& junit);

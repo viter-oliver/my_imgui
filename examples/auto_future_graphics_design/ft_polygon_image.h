@@ -6,7 +6,7 @@ class ft_polygon_image :
 	ImVector<ft_vertex>  _vertexes;
 public:
 	void draw();
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();
 	bool init_from_json(Value& jvalue);
 #endif

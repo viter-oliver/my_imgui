@@ -9,7 +9,7 @@ public:
 	/*
 	/* 成功加载2D纹理则返回纹理对象Id 否则返回0                                                                
 	*/
-	static  GLint load2DTexture(const char* filename,int& picWidth, int& picHeight, GLint internalFormat = GL_RGB,
+	static  GLuint load2DTexture(const char* filename, int& picWidth, int& picHeight, GLint internalFormat = GL_RGB,
 		GLenum picFormat = GL_RGB, int loadChannels = SOIL_LOAD_RGB)
 	{
 		// Step1 创建并绑定纹理对象

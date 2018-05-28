@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{20b90ce4-7fcb-4731-b9a0-075f875de82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{f18ab499-84e1-499f-8eff-9754361e0e52}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="gl3w">
+      <UniqueIdentifier>{42f99867-3108-43b8-99d0-fabefaf1f2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res_manager">
+      <UniqueIdentifier>{4d3b9ae6-9d54-4664-ada8-0867516a0fd7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls">
+      <UniqueIdentifier>{4af6253d-cf2c-4816-ad92-39a212d68b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="json">
+      <UniqueIdentifier>{098a79ae-f209-436c-b0e5-71d76d45ac34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="common">
+      <UniqueIdentifier>{be949d9d-5e7f-4b53-81a9-c102882c28fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3dutility">
+      <UniqueIdentifier>{0e970a76-dad5-441e-b0ce-699d7656d61a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="fbx">
+      <UniqueIdentifier>{f27df0d4-eb3f-41e2-a514-7eee7698c472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render_utilities">
+      <UniqueIdentifier>{8c38a201-8098-494d-9e3b-5dd3905a6a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msg_host">
+      <UniqueIdentifier>{5efb9bf8-4968-408a-a0c5-aa0362efa76e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msg_filter">
+      <UniqueIdentifier>{41e7c38b-8281-4f24-bdf1-06c88a6832d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="afb_manager">
+      <UniqueIdentifier>{1eed8a52-3174-4df9-b74a-a6938f17dde9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_glfw_gl3.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\gl3w\GL\gl3w.c">
+      <Filter>gl3w</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="res_output.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="factory.h">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_button.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_base.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_polygon_image.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_trajectory_box.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_listbox.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_image.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="common_functions.cpp">
+      <Filter>common</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_scene3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="basic3d.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="phong_shader.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_cube.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_model.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_plane.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_sphere.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="color_shader.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_shader.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="Mesh.cpp">
+      <Filter>3dutility</Filter>
+    </ClCompile>
+    <ClCompile Include="miniz.c">
+      <Filter>fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="ofbx.cpp">
+      <Filter>fbx</Filter>
+    </ClCompile>
+    <ClCompile Include="af_shader.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_textblock.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_host\msg_host_n.cpp">
+      <Filter>msg_host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\json\json_reader.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\json\json_value.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\json\json_writer.cpp">
+      <Filter>json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\base_filter_n.cpp">
+      <Filter>msg_filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_by_priority_n.cpp">
+      <Filter>msg_filter</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp">
+      <Filter>msg_filter</Filter>
+    </ClCompile>
+    <ClCompile Include="afb_load.cpp">
+      <Filter>afb_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="main_app.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_slider.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_glfw_gl3.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\gl3w\GL\gl3w.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\gl3w\GL\glcorearb.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\texture.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="res_output.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="control_common_def.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_button.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_base.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_polygon_image.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_trajectory_box.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_listbox.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_image.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="common_functions.h">
+      <Filter>common</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_scene3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="basic3d.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="phong_shader.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_cube.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_model.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_plane.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_sphere.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="color_shader.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_shader.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>3dutility</Filter>
+    </ClInclude>
+    <ClInclude Include="miniz.h">
+      <Filter>fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="ofbx.h">
+      <Filter>fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="renderTransform.h">
+      <Filter>fbx</Filter>
+    </ClInclude>
+    <ClInclude Include="af_shader.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_textblock.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_host\msg_host_n.h">
+      <Filter>msg_host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\autolink.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\config.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\features.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\forwards.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\json.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\json_batchallocator.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\reader.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\value.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\json\writer.h">
+      <Filter>json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\base_filter_n.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_by_priority_n.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_circle_call_n.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\priority_filter_def.h">
+      <Filter>msg_filter</Filter>
+    </ClInclude>
+    <ClInclude Include="afb_load.h">
+      <Filter>afb_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_slider.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.txt" />
+    <None Include="..\..\json\json_internalarray.inl">
+      <Filter>json</Filter>
+    </None>
+    <None Include="..\..\json\json_internalmap.inl">
+      <Filter>json</Filter>
+    </None>
+    <None Include="..\..\json\json_valueiterator.inl">
+      <Filter>json</Filter>
+    </None>
+  </ItemGroup>
+</Project>

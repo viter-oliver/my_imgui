@@ -7,10 +7,10 @@ class ft_trajectory_box :
 	vector<ImVector<ImDrawVert>> _components;
 public:
 	void draw();
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();
-#endif
 	bool init_from_json(Value& jvalue);
+#endif
 	bool handle_mouse();
 };
 

@@ -14,7 +14,7 @@ void ft_base::draw()
 		}
 	}
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_base::draw_peroperty_page()
 {
 	ImGui::InputText("object name", _in_p._name, name_len);

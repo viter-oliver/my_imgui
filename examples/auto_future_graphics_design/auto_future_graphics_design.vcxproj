@@ -90,7 +90,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -121,7 +121,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
@@ -168,11 +168,14 @@
     <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp" />
     <ClCompile Include="..\..\msg_host\msg_host_n.cpp" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
+    <ClCompile Include="afb_load.cpp" />
+    <ClCompile Include="afb_output.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="color_shader.cpp" />
     <ClCompile Include="ft_cube.cpp" />
     <ClCompile Include="ft_model.cpp" />
     <ClCompile Include="ft_plane.cpp" />
+    <ClCompile Include="ft_slider.cpp" />
     <ClCompile Include="ft_sphere.cpp" />
     <ClCompile Include="basic3d.cpp" />
     <ClCompile Include="common_functions.cpp" />
@@ -182,7 +185,6 @@
     <ClCompile Include="ft_listbox.cpp" />
     <ClCompile Include="ft_polygon_image.cpp" />
     <ClCompile Include="ft_scene3d.cpp" />
-    <ClCompile Include="ft_slide.cpp" />
     <ClCompile Include="ft_textblock.cpp" />
     <ClCompile Include="ft_trajectory_box.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
@@ -223,11 +225,14 @@
     <ClInclude Include="..\..\texture.h" />
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
+    <ClInclude Include="afb_load.h" />
+    <ClInclude Include="afb_output.h" />
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="color_shader.h" />
     <ClInclude Include="ft_cube.h" />
     <ClInclude Include="ft_model.h" />
     <ClInclude Include="ft_plane.h" />
+    <ClInclude Include="ft_slider.h" />
     <ClInclude Include="ft_sphere.h" />
     <ClInclude Include="basic3d.h" />
     <ClInclude Include="common_functions.h" />
@@ -238,7 +243,6 @@
     <ClInclude Include="ft_listbox.h" />
     <ClInclude Include="ft_polygon_image.h" />
     <ClInclude Include="ft_scene3d.h" />
-    <ClInclude Include="ft_slide.h" />
     <ClInclude Include="ft_textblock.h" />
     <ClInclude Include="ft_trajectory_box.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />

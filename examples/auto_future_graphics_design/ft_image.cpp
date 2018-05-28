@@ -48,7 +48,7 @@ void ft_image::draw()
 	
 	ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	if (is_selected())//draw envelope
 	{
 		ImU32 col = ImGui::GetColorU32(ImGuiCol_HeaderActive);
@@ -73,7 +73,7 @@ void ft_image::draw()
 #endif
 	
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 static void ShowHelpMarker(const char* desc)
 {
 	ImGui::TextDisabled("(?)");

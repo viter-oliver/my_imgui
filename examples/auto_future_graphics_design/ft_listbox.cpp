@@ -4,7 +4,7 @@ void ft_listbox::draw()
 {
 
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_listbox::draw_peroperty_page()
 {
 

@@ -3179,8 +3179,8 @@ static void ShowExampleAppLongText(bool* p_open)
 // End of Demo code
 #else
 
-void ImGui::ShowDemoWindow(bool*) {}
-void ImGui::ShowUserGuide() {}
-void ImGui::ShowStyleEditor(ImGuiStyle*) {}
+//void ImGui::ShowDemoWindow(bool*) {}
+//void ImGui::ShowUserGuide() {}
+//void ImGui::ShowStyleEditor(ImGuiStyle*) {}
 
 #endif

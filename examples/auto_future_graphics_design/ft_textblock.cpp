@@ -14,7 +14,7 @@ void ft_textblock::draw()
 	if (_txt_pt._wrapped) ImGui::PopTextWrapPos();
 
 }
-#if !defined(IMGUI_WAYLAND)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void ft_textblock::draw_peroperty_page()
 {
 	ft_base::draw_peroperty_page();
