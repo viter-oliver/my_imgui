@@ -133,7 +133,7 @@ af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_
 	GLint size; // size of the variable
 	GLenum type; // type of the variable (float, vec3 or mat4, etc)
 
-	const GLsizei bufSize = 16; // maximum name length
+	const GLsizei bufSize = 256; // maximum name length
 	GLchar name[bufSize]; // variable name in GLSL
 	GLsizei length; // name length
 
@@ -196,6 +196,7 @@ bool af_shader::vertex_att_pointer(initializer_list<string> att_name_list)
 	}
 	return true;
 }
+/*
 template<typename T> bool af_shader::uniform(string unf_name, GLsizei icnt, T* pvalue)
 {
 	auto tt = _unf_list.find(unf_name);
@@ -280,27 +281,169 @@ template<typename T> bool af_shader::uniform(string unf_name, GLsizei icnt, T* p
 		glUniformMatrix4dv(unif._location, icnt, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT2x3:
-		glUniformMatrix2x3dv(unif._location, icnt, pvalue);
+		glUniformMatrix2x3dv(unif._location, icnt, GL_FALSE,pvalue);
 		break;
 	case GL_DOUBLE_MAT3x2:
-		glUniformMatrix3x2dv(unif._location, icnt, pvalue);
+		glUniformMatrix3x2dv(unif._location, icnt, GL_FALSE,pvalue);
 		break;
 	case GL_DOUBLE_MAT2x4:
-		glUniformMatrix2x4dv(unif._location, icnt, pvalue);
+		glUniformMatrix2x4dv(unif._location, icnt, GL_FALSE,pvalue);
 		break;
 	case GL_DOUBLE_MAT4x2:
-		glUniformMatrix4x2dv(unif._location, icnt, pvalue);
+		glUniformMatrix4x2dv(unif._location, icnt, GL_FALSE,pvalue);
 		break;
 	case GL_DOUBLE_MAT3x4:
-		glUniformMatrix3x4dv(unif._location, icnt, pvalue);
+		glUniformMatrix3x4dv(unif._location, icnt, GL_FALSE,pvalue);
 		break;
 	case GL_DOUBLE_MAT4x3:
-		glUniformMatrix4x3dv(unif._location, icnt, pvalue);
+		glUniformMatrix4x3dv(unif._location, icnt, GL_FALSE,pvalue);
 		break;
 	}
 	return true;
+}*/
+bool af_shader::uniform(string unf_name, GLsizei icnt, float* pvalue)
+{
+	auto tt = _unf_list.find(unf_name);
+	if (tt == _unf_list.end())
+	{
+		printf("fail to find attr:%s\n", unf_name.c_str());
+		return false;
+	}
+	auto& unif = tt->second;
+	switch (unif._variable_type)
+	{
+	case GL_FLOAT:
+		glUniform1fv(unif._location, icnt, pvalue);
+		break;
+	case GL_FLOAT_VEC2:
+		glUniform2fv(unif._location, icnt, pvalue);
+		break;
+	case GL_FLOAT_VEC3:
+		glUniform3fv(unif._location, icnt, pvalue);
+		break;
+	case GL_FLOAT_VEC4:
+		glUniform4fv(unif._location, icnt, pvalue);
+		break;
+	case GL_FLOAT_MAT2:
+		glUniformMatrix2fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT3:
+		glUniformMatrix3fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT4:
+		glUniformMatrix4fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT2x3:
+		glUniformMatrix2x3fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT3x2:
+		glUniformMatrix3x2fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT2x4:
+		glUniformMatrix2x4fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT4x2:
+		glUniformMatrix4x2fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT3x4:
+		glUniformMatrix3x4fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_FLOAT_MAT4x3:
+		glUniformMatrix4x3fv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	default:
+		printf("unmatched type");
+		return false;
+	}
+	return true;
 }
-template<typename T> bool af_shader::uniform(string unf_name, T pvalue)
+bool af_shader::uniform(string unf_name, GLsizei icnt, int* pvalue)
+{
+	auto tt = _unf_list.find(unf_name);
+	if (tt == _unf_list.end())
+	{
+		printf("fail to find attr:%s\n", unf_name.c_str());
+		return false;
+	}
+	auto& unif = tt->second;
+	switch (unif._variable_type)
+	{
+
+	case GL_INT:
+		glUniform1iv(unif._location, icnt, pvalue);
+		break;
+	case GL_INT_VEC2:
+		glUniform2iv(unif._location, icnt, pvalue);
+		break;
+	case GL_INT_VEC3:
+		glUniform3iv(unif._location, icnt, pvalue);
+		break;
+	case GL_INT_VEC4:
+		glUniform4iv(unif._location, icnt, pvalue);
+		break;
+	default:
+		printf("unmatched type");
+		return false;
+	}
+	return true;
+}
+bool af_shader::uniform(string unf_name, GLsizei icnt, double* pvalue)
+{
+	auto tt = _unf_list.find(unf_name);
+	if (tt == _unf_list.end())
+	{
+		printf("fail to find attr:%s\n", unf_name.c_str());
+		return false;
+	}
+	auto& unif = tt->second;
+	switch (unif._variable_type)
+	{
+	case GL_DOUBLE:
+		glUniform1dv(unif._location, icnt, pvalue);
+		break;
+	case GL_DOUBLE_VEC2:
+		glUniform2dv(unif._location, icnt, pvalue);
+		break;
+	case GL_DOUBLE_VEC3:
+		glUniform3dv(unif._location, icnt, pvalue);
+		break;
+	case GL_DOUBLE_VEC4:
+		glUniform4dv(unif._location, icnt, pvalue);
+		break;
+	case GL_DOUBLE_MAT2:
+		glUniformMatrix2dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT3:
+		glUniformMatrix3dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT4:
+		glUniformMatrix4dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT2x3:
+		glUniformMatrix2x3dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT3x2:
+		glUniformMatrix3x2dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT2x4:
+		glUniformMatrix2x4dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT4x2:
+		glUniformMatrix4x2dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT3x4:
+		glUniformMatrix3x4dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	case GL_DOUBLE_MAT4x3:
+		glUniformMatrix4x3dv(unif._location, icnt, GL_FALSE, pvalue);
+		break;
+	default:
+		printf("unmatched type");
+		return false;
+	}
+	return true;
+}
+bool af_shader::uniform(string unf_name, int ivalue)
 {
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
@@ -312,8 +455,11 @@ template<typename T> bool af_shader::uniform(string unf_name, T pvalue)
 	switch (unif._variable_type)
 	{
 	case GL_SAMPLER_2D:
-		glUniform1i(unif._location, pvalue);
+		glUniform1i(unif._location, ivalue);
 		break;
+	default:
+		printf("unmatched type");
+		return false;
 	}
 	return true;
 }

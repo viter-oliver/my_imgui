@@ -9,6 +9,7 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
+#include <glm/gtx/norm.hpp>
 #if !defined(IMGUI_WAYLAND)
 #include <GL/gl3w.h>
 #else
@@ -38,8 +39,12 @@ public:
 	bool is_valid(){ return _valid; }
 	void use(){ glUseProgram(_shader_program_id); }
 	bool vertex_att_pointer(initializer_list<string> att_name_list);
-	template<typename T> bool uniform(string unf_name, GLsizei icnt, T* pvalue);
-	template<typename T> bool uniform(string unf_name, T pvalue);
+	//template<typename T> bool uniform(string unf_name, GLsizei icnt, T* pvalue);
+	bool uniform(string unf_name, GLsizei icnt, float* pvalue);
+	bool uniform(string unf_name, GLsizei icnt, int* pvalue);
+	bool uniform(string unf_name, GLsizei icnt, double* pvalue);
+
+	bool uniform(string unf_name, int ivalue);
 
 };
 

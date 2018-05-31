@@ -190,6 +190,9 @@
     <ClCompile Include="ft_slider.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="ft_particles_gravity.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -360,6 +363,7 @@
     <ClInclude Include="ft_slider.h">
       <Filter>controls</Filter>
     </ClInclude>
+    <ClInclude Include="ft_particles_gravity.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
