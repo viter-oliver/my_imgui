@@ -90,34 +90,34 @@ GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY	uimage2DMSArray
 GL_UNSIGNED_INT_ATOMIC_COUNTER	atomic_uint
 */
 af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source)
-	:_valid(true)
 {
 	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(_vertex_shader, 1, &vertex_shader_source, NULL);
 	glCompileShader(_vertex_shader);
-#define CHECK_SHADER_STATUS
-#ifdef CHECK_SHADER_STATUS
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	GLint status;
 	char buffer[512];
 	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
 	if (status != GL_TRUE)
 	{
 		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
-		printf("shader error:%s\n", buffer);
+		compile_error_info = buffer;
 		_valid = false;
+		return;
 	}
 #endif
 	//fragment shader
 	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	glShaderSource(_fragment_shader, 1, &fragment_shader_source, NULL);
 	glCompileShader(_fragment_shader);
-#ifdef CHECK_SHADER_STATUS
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
 	if (status != GL_TRUE)
 	{
 		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
-		printf("shader2 error:%s\n", buffer);
+		compile_error_info = buffer;
 		_valid = false;
+		return;
 	}
 #endif
 	//link
@@ -146,7 +146,7 @@ af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_
 
 		printf("Attribute #%d Type: %u Name: %s\n", idx, type, name);
 		GLuint location = glGetAttribLocation(_shader_program_id, name);
-		_att_list[name] = shader_variable(type, location);
+		_att_list[name] = shader_variable(type, location,size);
 	}
 
 	glGetProgramiv(_shader_program_id, GL_ACTIVE_UNIFORMS, &count);
@@ -158,7 +158,7 @@ af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_
 
 		printf("Uniform #%d Type: %u Name: %s\n", idx, type, name);
 		GLint location = glGetUniformLocation(_shader_program_id, name);
-		_unf_list[name] = shader_variable(type, location);
+		_unf_list[name] = shader_variable(type, location,size);
 	}
 }
 
@@ -301,7 +301,7 @@ template<typename T> bool af_shader::uniform(string unf_name, GLsizei icnt, T* p
 	}
 	return true;
 }*/
-bool af_shader::uniform(string unf_name, GLsizei icnt, float* pvalue)
+bool af_shader::uniform(string unf_name, float* pvalue)
 {
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
@@ -313,43 +313,43 @@ bool af_shader::uniform(string unf_name, GLsizei icnt, float* pvalue)
 	switch (unif._variable_type)
 	{
 	case GL_FLOAT:
-		glUniform1fv(unif._location, icnt, pvalue);
+		glUniform1fv(unif._location, unif._size, pvalue);
 		break;
 	case GL_FLOAT_VEC2:
-		glUniform2fv(unif._location, icnt, pvalue);
+		glUniform2fv(unif._location, unif._size, pvalue);
 		break;
 	case GL_FLOAT_VEC3:
-		glUniform3fv(unif._location, icnt, pvalue);
+		glUniform3fv(unif._location, unif._size, pvalue);
 		break;
 	case GL_FLOAT_VEC4:
-		glUniform4fv(unif._location, icnt, pvalue);
+		glUniform4fv(unif._location, unif._size, pvalue);
 		break;
 	case GL_FLOAT_MAT2:
-		glUniformMatrix2fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix2fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT3:
-		glUniformMatrix3fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix3fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT4:
-		glUniformMatrix4fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix4fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT2x3:
-		glUniformMatrix2x3fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix2x3fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT3x2:
-		glUniformMatrix3x2fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix3x2fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT2x4:
-		glUniformMatrix2x4fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix2x4fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT4x2:
-		glUniformMatrix4x2fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix4x2fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT3x4:
-		glUniformMatrix3x4fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix3x4fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_FLOAT_MAT4x3:
-		glUniformMatrix4x3fv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix4x3fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	default:
 		printf("unmatched type");
@@ -357,7 +357,7 @@ bool af_shader::uniform(string unf_name, GLsizei icnt, float* pvalue)
 	}
 	return true;
 }
-bool af_shader::uniform(string unf_name, GLsizei icnt, int* pvalue)
+bool af_shader::uniform(string unf_name, int* pvalue)
 {
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
@@ -370,16 +370,16 @@ bool af_shader::uniform(string unf_name, GLsizei icnt, int* pvalue)
 	{
 
 	case GL_INT:
-		glUniform1iv(unif._location, icnt, pvalue);
+		glUniform1iv(unif._location, unif._size, pvalue);
 		break;
 	case GL_INT_VEC2:
-		glUniform2iv(unif._location, icnt, pvalue);
+		glUniform2iv(unif._location, unif._size, pvalue);
 		break;
 	case GL_INT_VEC3:
-		glUniform3iv(unif._location, icnt, pvalue);
+		glUniform3iv(unif._location, unif._size, pvalue);
 		break;
 	case GL_INT_VEC4:
-		glUniform4iv(unif._location, icnt, pvalue);
+		glUniform4iv(unif._location, unif._size, pvalue);
 		break;
 	default:
 		printf("unmatched type");
@@ -387,7 +387,7 @@ bool af_shader::uniform(string unf_name, GLsizei icnt, int* pvalue)
 	}
 	return true;
 }
-bool af_shader::uniform(string unf_name, GLsizei icnt, double* pvalue)
+bool af_shader::uniform(string unf_name, double* pvalue)
 {
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
@@ -399,43 +399,43 @@ bool af_shader::uniform(string unf_name, GLsizei icnt, double* pvalue)
 	switch (unif._variable_type)
 	{
 	case GL_DOUBLE:
-		glUniform1dv(unif._location, icnt, pvalue);
+		glUniform1dv(unif._location, unif._size, pvalue);
 		break;
 	case GL_DOUBLE_VEC2:
-		glUniform2dv(unif._location, icnt, pvalue);
+		glUniform2dv(unif._location, unif._size, pvalue);
 		break;
 	case GL_DOUBLE_VEC3:
-		glUniform3dv(unif._location, icnt, pvalue);
+		glUniform3dv(unif._location, unif._size, pvalue);
 		break;
 	case GL_DOUBLE_VEC4:
-		glUniform4dv(unif._location, icnt, pvalue);
+		glUniform4dv(unif._location, unif._size, pvalue);
 		break;
 	case GL_DOUBLE_MAT2:
-		glUniformMatrix2dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix2dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT3:
-		glUniformMatrix3dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix3dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT4:
-		glUniformMatrix4dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix4dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT2x3:
-		glUniformMatrix2x3dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix2x3dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT3x2:
-		glUniformMatrix3x2dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix3x2dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT2x4:
-		glUniformMatrix2x4dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix2x4dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT4x2:
-		glUniformMatrix4x2dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix4x2dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT3x4:
-		glUniformMatrix3x4dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix3x4dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	case GL_DOUBLE_MAT4x3:
-		glUniformMatrix4x3dv(unif._location, icnt, GL_FALSE, pvalue);
+		glUniformMatrix4x3dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	default:
 		printf("unmatched type");
@@ -463,3 +463,5 @@ bool af_shader::uniform(string unf_name, int ivalue)
 	}
 	return true;
 }
+
+vaf_shader g_af_shader_list;

@@ -154,9 +154,6 @@
     <ClCompile Include="ofbx.cpp">
       <Filter>fbx</Filter>
     </ClCompile>
-    <ClCompile Include="af_shader.cpp">
-      <Filter>render_utilities</Filter>
-    </ClCompile>
     <ClCompile Include="ft_textblock.cpp">
       <Filter>controls</Filter>
     </ClCompile>
@@ -190,8 +187,20 @@
     <ClCompile Include="ft_slider.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="material.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="af_shader.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
     <ClCompile Include="ft_particles_gravity.cpp">
-      <Filter>sources</Filter>
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="shader_uf.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="material_shader_edit.cpp">
+      <Filter>render_utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -363,7 +372,18 @@
     <ClInclude Include="ft_slider.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="ft_particles_gravity.h" />
+    <ClInclude Include="shader_uf.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_particles_gravity.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="material_shader_edit.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -379,6 +399,7 @@
     <None Include="..\..\json\json_valueiterator.inl">
       <Filter>json</Filter>
     </None>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="auto_future_graphics_design.rc">

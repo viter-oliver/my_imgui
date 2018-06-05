@@ -220,16 +220,16 @@ void ft_particles_gravity::draw()
 
 	// Same as the billboards tutorial
 	float cmr_wp[] = { 0.999137f, -0.000177f, 0.041540f };
-	_particle_shader->uniform("CameraRight_worldspace", 1, cmr_wp);
+	_particle_shader->uniform("CameraRight_worldspace", cmr_wp);
 	//glUniform3f(CameraRight_worldspace_ID, ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 	float cmu_wp[] = { -0.009298f, 0.973666f, 0.227788f };
-	_particle_shader->uniform("CameraUp_worldspace", 1, cmu_wp);
+	_particle_shader->uniform("CameraUp_worldspace", cmu_wp);
 	//glUniform3f(CameraUp_worldspace_ID, ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
 	float vwpj[] = { 1.809097f, -0.022448f, 0.040568f, 0.040486f,
 		-0.000320f, 2.350639f, 0.228434f, 0.227978f,
 		0.075215f, 0.549929f, -0.974772f, -0.972824f,
 		-0.376075f, -2.749644f, 4.673659f, 4.864121f };
-	_particle_shader->uniform("VP", 1, vwpj);
+	_particle_shader->uniform("VP", vwpj);
 
 	//glUniformMatrix4fv(ViewProjMatrixID, 1, GL_FALSE, &ViewProjectionMatrix[0][0]);
 

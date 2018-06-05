@@ -190,6 +190,8 @@
     <ClCompile Include="ft_trajectory_box.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="material.cpp" />
+    <ClCompile Include="material_shader_edit.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="miniz.c" />
     <ClCompile Include="ofbx.cpp" />
@@ -199,6 +201,7 @@
     <ClCompile Include="res_internal.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
+    <ClCompile Include="shader_uf.cpp" />
     <ClCompile Include="texture_res_load.cpp" />
     <ClCompile Include="texture_shader.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
@@ -248,6 +251,8 @@
     <ClInclude Include="ft_textblock.h" />
     <ClInclude Include="ft_trajectory_box.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="material.h" />
+    <ClInclude Include="material_shader_edit.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="miniz.h" />
     <ClInclude Include="ofbx.h" />
@@ -258,6 +263,7 @@
     <ClInclude Include="res_edit.h" />
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
+    <ClInclude Include="shader_uf.h" />
     <ClInclude Include="texture_res_load.h" />
     <ClInclude Include="texture_shader.h" />
     <ClInclude Include="ui_assembler.h" />
@@ -268,6 +274,7 @@
     <None Include="..\..\json\json_internalmap.inl" />
     <None Include="..\..\json\json_valueiterator.inl" />
     <None Include="..\README.txt" />
+    <None Include="ClassDiagram.cd" />
     <None Include="internal_texture_dataformat.json" />
   </ItemGroup>
   <ItemGroup>

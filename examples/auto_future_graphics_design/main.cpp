@@ -32,6 +32,7 @@
 #include "Resource.h"
 #include "res_edit.h"
 #include "afb_output.h"
+#include "material_shader_edit.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -121,14 +122,15 @@ int main(int argc, char* argv[])
 	//	GL_RGBA,GL_RGBA,SOIL_LOAD_RGBA);
 	base_ui_component* _proot = NULL;
 	base_ui_component* _pselect = NULL;
-	res_edit* _pres_mg;
+	shared_ptr<res_edit> _pres_mg;
+	shared_ptr<material_shader_edit> _pml_shd_mg;
 	if (!g_cureent_project_file_path.empty())
 	{
 		_proot = new ft_base;
 		ui_assembler _ui_as(*_proot);
 		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
-		_pres_mg = new res_edit();
-
+		_pres_mg = make_shared< res_edit>();
+		_pml_shd_mg = make_shared<material_shader_edit>();
 
 	//class rotate_pointer
 	//{
@@ -491,24 +493,42 @@ int main(int argc, char* argv[])
 		}
 		if (show_resource_manager)
 		{
+			//ImGui::SetNextWindowBgAlpha(1.0f); // Transparent background
 			ImGui::Begin("resources manager", &show_resource_manager, ImVec2(200, 500));
-			ImGui::BeginDockspace();
+			//ImGui::BeginDockspace();
 
-			ImGui::BeginDock("resource list:");
+			//ImGui::BeginDock("resource list:");
+			ImGui::BeginChild("res_list",ImVec2(1000, 160), true);
+			ImGui::Columns(2);
+			ImGui::Text("resources list:");
 			if (_pres_mg)
 			{
 				_pres_mg->draw_res_list();
-			}
-			ImGui::EndDock();
-
-			ImGui::BeginDock("resource item property:");
-			if (_pres_mg)
-			{
+				ImGui::NextColumn();
 				_pres_mg->draw_res_item_property();
 			}
-			ImGui::EndDock();
+			ImGui::NextColumn();
+			ImGui::Spacing();
+			ImGui::EndChild();
 
-			ImGui::EndDockspace();
+			ImGui::BeginChild("m_and_s", ImVec2(1000, 1000), true);
+			//ImGui::Separator();
+			ImGui::Columns(2);
+			ImGui::Text("materials and shaders:");
+			
+			if(_pml_shd_mg)
+			{
+				_pml_shd_mg->load_shader();
+				_pml_shd_mg->draw_shader();
+				_pml_shd_mg->draw_material();
+				ImGui::NextColumn();
+				_pml_shd_mg->load_shader_info();
+				_pml_shd_mg->draw_shader_item_property();
+				_pml_shd_mg->draw_material_item_property();
+				ImGui::NextColumn();
+			}
+			/**/
+			ImGui::EndChild();
 			ImGui::End();
 		}
 		
