@@ -170,7 +170,6 @@
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="af_shader.cpp" />
-    <ClCompile Include="color_shader.cpp" />
     <ClCompile Include="ft_cube.cpp" />
     <ClCompile Include="ft_model.cpp" />
     <ClCompile Include="ft_plane.cpp" />
@@ -188,12 +187,14 @@
     <ClCompile Include="ft_trajectory_box.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="main_app.cpp" />
+    <ClCompile Include="material.cpp" />
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="miniz.c" />
     <ClCompile Include="ofbx.cpp" />
-    <ClCompile Include="phong_shader.cpp" />
+    <ClCompile Include="primitive_object.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
+    <ClCompile Include="shader_uf.cpp" />
     <ClCompile Include="texture_shader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -219,7 +220,6 @@
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="afb_load.h" />
     <ClInclude Include="af_shader.h" />
-    <ClInclude Include="color_shader.h" />
     <ClInclude Include="ft_cube.h" />
     <ClInclude Include="ft_model.h" />
     <ClInclude Include="ft_plane.h" />
@@ -237,12 +237,14 @@
     <ClInclude Include="ft_textblock.h" />
     <ClInclude Include="ft_trajectory_box.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
+    <ClInclude Include="material.h" />
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="miniz.h" />
     <ClInclude Include="ofbx.h" />
-    <ClInclude Include="phong_shader.h" />
+    <ClInclude Include="primitive_object.h" />
     <ClInclude Include="renderTransform.h" />
     <ClInclude Include="res_output.h" />
+    <ClInclude Include="shader_uf.h" />
     <ClInclude Include="texture_shader.h" />
   </ItemGroup>
   <ItemGroup>

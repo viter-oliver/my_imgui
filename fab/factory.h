@@ -118,8 +118,12 @@ Factory<Base, Key>::Create(
 
 	typedef Function<Base, Args...> wrapper_t;
 	try {
+		/*wrapper_t const& wrapper =
+			dynamic_cast<wrapper_t const&>(*(ret->second));*/
+		/*wrapper_t const& wrapper =
+			reinterpret_cast<wrapper_t const&>(*(ret->second));*/
 		wrapper_t const& wrapper =
-			dynamic_cast<wrapper_t const&>(*(ret->second));
+			static_cast<wrapper_t const&>(*(ret->second));
 		return return_type(wrapper(std::forward<Args>(args)...));
 	} catch (std::bad_cast& e) {
 		throw exception::BadArguments();
@@ -153,6 +157,8 @@ void Factory<Base, Key>::Register(
 	Return (*delegate) (Args ... args))
 {
 	FAB_ASSERT_RETURN_TYPE(Return)
+		//decltype(Base) nnn;
+//	printf("type:%s\n", typeid(Base).name());
 	_map[key] = value_type (new Function<Base, Args...> (delegate));
 }
 

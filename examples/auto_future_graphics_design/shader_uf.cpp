@@ -1,17 +1,45 @@
 #include "shader_uf.h"
 #include<string>
+#include<sstream>
 using namespace std;
 #include "user_control_imgui.h"
+
+Factory<shader_uf>& get_shader_uf_fc()
+{
+	static Factory<shader_uf> _fac_shader_ur;
+	return _fac_shader_ur;
+}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+void shader_uf::output_2_json(Value& jvalue)
+{
+	jvalue["usize"] = _usize;
+	jvalue["el_size"] = _el_size;
+	jvalue["utype"] = _utype;
+}
+void shader_uf::init_from_json(Value& jvalue)
+{
+	//_usize = jvalue["usize"].asUInt();
+	//_el_size=jvalue["el_size"].asUInt();
+	_utype = jvalue["utype"].asUInt();
+
+}
+
+
 void shader_uf_float::edit()
 {
-	for (int ix = _usize; ix >0;)
+	float* pfvalue = _pfvalue;
+	int wsize = _usize*_el_size;
+	for (int ix = wsize; ix >0;)
 	{
-		//ImGui::InputFloatN()
+		string str_show ="###"+ _unf_name;
+		ostringstream ostream;
+		ostream << ix;
+		str_show+= ostream.str();
 		if (ix > 4)
 		{
-			ImGui::InputFloat4("input float", _pfvalue);
+			ImGui::InputFloat4(str_show.c_str(), pfvalue);
 			ix -= 4;
-			_pfvalue += 4;
+			pfvalue += 4;
 		}
 		else
 		{
@@ -19,16 +47,16 @@ void shader_uf_float::edit()
 			switch (itrim)
 			{
 			case 0:
-				ImGui::InputFloat4("input float", _pfvalue);
+				ImGui::InputFloat4(str_show.c_str(), pfvalue);
 				return;
 			case 1:
-				ImGui::InputFloat("input float", _pfvalue);
+				ImGui::InputFloat(str_show.c_str(), pfvalue);
 				return;
 			case 2:
-				ImGui::InputFloat2("input float", _pfvalue);
+				ImGui::InputFloat2(str_show.c_str(), pfvalue);
 				return;
 			case 3:
-				ImGui::InputFloat3("input float", _pfvalue);
+				ImGui::InputFloat3(str_show.c_str(), pfvalue);
 				return;
 			default:
 				return;
@@ -57,17 +85,44 @@ void shader_uf_float::edit()
 			
 	}*/
 }
+void shader_uf_float::output_2_json(Value& jvalue)
+{
+	shader_uf::output_2_json(jvalue);
+	jvalue["type"] = "shader_uf_float";
 
+	Value jlist(arrayValue);
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize ; ix++)
+	{
+		jlist.append(Value(_pfvalue[ix]));
+	}
+	jvalue["value_list"] = jlist;
+}
+void shader_uf_float::init_from_json(Value& jvalue)
+{
+	shader_uf::init_from_json(jvalue);
+	Value& value_list = jvalue["value_list"];
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize; ix++)
+	{
+		_pfvalue[ix] = value_list[ix].asDouble();
+	}
+}
 void shader_uf_int::edit()
 {
-	for (int ix = _usize; ix >0;)
+	int *pivalue = _pivalue;
+	int wsize = _usize*_el_size;
+	for (int ix = wsize; ix >0;)
 	{
-		//ImGui::InputFloatN()
+		string str_show = "###" + _unf_name;
+		ostringstream ostream;
+		ostream << ix;
+		str_show += ostream.str();
 		if (ix > 4)
 		{
-			ImGui::InputInt("input float", _pivalue);
+			ImGui::InputInt(str_show.c_str(), pivalue);
 			ix -= 4;
-			_pivalue += 4;
+			pivalue += 4;
 		}
 		else
 		{
@@ -75,16 +130,16 @@ void shader_uf_int::edit()
 			switch (itrim)
 			{
 			case 0:
-				ImGui::InputInt4("input float", _pivalue);
+				ImGui::InputInt4(str_show.c_str(), pivalue);
 				return;
 			case 1:
-				ImGui::InputInt("input float", _pivalue);
+				ImGui::InputInt(str_show.c_str(), pivalue);
 				return;
 			case 2:
-				ImGui::InputInt2("input float", _pivalue);
+				ImGui::InputInt2(str_show.c_str(), pivalue);
 				return;
 			case 3:
-				ImGui::InputInt3("input float", _pivalue);
+				ImGui::InputInt3(str_show.c_str(), pivalue);
 				return;
 			default:
 				return;
@@ -93,17 +148,43 @@ void shader_uf_int::edit()
 	}
 
 }
-
+void shader_uf_int::output_2_json(Value& jvalue)
+{
+	shader_uf::output_2_json(jvalue);
+	jvalue["type"] = "shader_uf_int";
+	Value jlist(arrayValue);
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize; ix++)
+	{
+		jlist.append(Value(_pivalue[ix]));
+	}
+	jvalue["value_list"] = jlist;
+}
+void shader_uf_int::init_from_json(Value& jvalue)
+{
+	shader_uf::init_from_json(jvalue);
+	Value& value_list = jvalue["value_list"];
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize; ix++)
+	{
+		_pivalue[ix] = value_list[ix].asInt();
+	}
+}
 void shader_uf_uint::edit()
 {
-	for (int ix = _usize; ix >0;)
+	unsigned int* puivalue = _puivalue;
+	int wsize = _usize*_el_size;
+	for (int ix = wsize; ix >0;)
 	{
-		//ImGui::InputFloatN()
+		string str_show = "###" + _unf_name;
+		ostringstream ostream;
+		ostream << ix;
+		str_show += ostream.str();
 		if (ix > 4)
 		{
-			ImGui::InputInt("input float", (int*)_puivalue);
+			ImGui::InputInt(str_show.c_str(), (int*)puivalue);
 			ix -= 4;
-			_puivalue += 4;
+			puivalue += 4;
 		}
 		else
 		{
@@ -111,16 +192,16 @@ void shader_uf_uint::edit()
 			switch (itrim)
 			{
 			case 0:
-				ImGui::InputInt4("input float", (int*)_puivalue);
+				ImGui::InputInt4(str_show.c_str(), (int*)puivalue);
 				return;
 			case 1:
-				ImGui::InputInt("input float", (int*)_puivalue);
+				ImGui::InputInt(str_show.c_str(), (int*)puivalue);
 				return;
 			case 2:
-				ImGui::InputInt2("input float", (int*)_puivalue);
+				ImGui::InputInt2(str_show.c_str(), (int*)puivalue);
 				return;
 			case 3:
-				ImGui::InputInt3("input float", (int*)_puivalue);
+				ImGui::InputInt3(str_show.c_str(), (int*)puivalue);
 				return;
 			default:
 				return;
@@ -128,17 +209,43 @@ void shader_uf_uint::edit()
 		}
 	}
 }
-
+void shader_uf_uint::output_2_json(Value& jvalue)
+{
+	shader_uf::output_2_json(jvalue);
+	jvalue["type"] = "shader_uf_uint";
+	Value jlist(arrayValue);
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize; ix++)
+	{
+		jlist.append(Value(_puivalue[ix]));
+	}
+	jvalue["value_list"] = jlist;
+}
+void shader_uf_uint::init_from_json(Value& jvalue)
+{
+	shader_uf::init_from_json(jvalue);
+	Value& value_list = jvalue["value_list"];
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize; ix++)
+	{
+		_puivalue[ix] = value_list[ix].asUInt();
+	}
+}
 void shader_uf_double::edit()
 {
-	for (int ix = _usize; ix >0;)
+	double* pdvalue = _pdvalue;
+	int wsize = _usize*_el_size;
+	for (int ix = wsize; ix >0;)
 	{
-		//ImGui::InputFloatN()
+		string str_show = "###" + _unf_name;
+		ostringstream ostream;
+		ostream << ix;
+		str_show += ostream.str();
 		if (ix > 4)
 		{
-			ImGui::InputFloat4("input float", (float*)_pdvalue);
+			ImGui::InputFloat4(str_show.c_str(), (float*)pdvalue);
 			ix -= 4;
-			_pdvalue += 4;
+			pdvalue += 4;
 		}
 		else
 		{
@@ -146,16 +253,16 @@ void shader_uf_double::edit()
 			switch (itrim)
 			{
 			case 0:
-				ImGui::InputFloat4("input float", (float*)_pdvalue);
+				ImGui::InputFloat4(str_show.c_str(), (float*)pdvalue);
 				return;
 			case 1:
-				ImGui::InputFloat("input float", (float*)_pdvalue);
+				ImGui::InputFloat(str_show.c_str(), (float*)pdvalue);
 				return;
 			case 2:
-				ImGui::InputFloat2("input float", (float*)_pdvalue);
+				ImGui::InputFloat2(str_show.c_str(), (float*)pdvalue);
 				return;
 			case 3:
-				ImGui::InputFloat3("input float", (float*)_pdvalue);
+				ImGui::InputFloat3(str_show.c_str(), (float*)pdvalue);
 				return;
 			default:
 				return;
@@ -163,3 +270,26 @@ void shader_uf_double::edit()
 		}
 	}
 }
+void shader_uf_double::output_2_json(Value& jvalue)
+{
+	shader_uf::output_2_json(jvalue);
+	jvalue["type"] = "shader_uf_double";
+	Value jlist(arrayValue);
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize; ix++)
+	{
+		jlist.append(Value(_pdvalue[ix]));
+	}
+	jvalue["value_list"] = jlist;
+}
+void shader_uf_double::init_from_json(Value& jvalue)
+{
+	shader_uf::init_from_json(jvalue);
+	Value& value_list = jvalue["value_list"];
+	GLuint wsize = _usize*_el_size;
+	for (int ix = 0; ix <wsize; ix++)
+	{
+		_pdvalue[ix] = value_list[ix].asDouble();
+	}
+}
+#endif

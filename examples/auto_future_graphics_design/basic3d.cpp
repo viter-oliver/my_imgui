@@ -112,7 +112,7 @@ int attr_size[en_attr_type_count]=
 
 bool basic_shader::loading_shader_attributes_from_avbo(GLuint vao, GLuint vbo, const GLvoid* pvertices, int cnt_vertices, vector<string>& attr_name_list, GLuint ebo, GLushort* pindices, int cnt_indics)
 {
-	glUseProgram(_shader_program_id);
+	//glUseProgram(_shader_program_id);
 	glBindVertexArray(vao);
 	glBindBuffer(GL_ARRAY_BUFFER, vbo);
 	glBufferData(GL_ARRAY_BUFFER, cnt_vertices, pvertices, GL_STATIC_DRAW);

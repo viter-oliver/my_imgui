@@ -33,20 +33,27 @@ class af_shader
 	mshader_variable_list _unf_list;
 	GLuint _shader_program_id, _vertex_shader, _fragment_shader;
 	string _name;
-
+	bool _valid{ true };
+	string _vs_code, _fs_code;
 public:
 	af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source);
 	~af_shader();
 	string get_name() { return _name; }
 	void set_name(string name){ _name = name; };
 	mshader_variable_list& get_uf_defs(){ return _unf_list; }
+	string get_vs_code(){ return _vs_code; }
+	string get_fs_code(){ return _fs_code; }
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-protected:
-	bool _valid;
 public:
 	string compile_error_info;
-	bool is_valid(){ return _valid; }
+	string _vs_name, _fs_name;
+	
+	bool _vs_selected{ false };
+	bool _fs_selected{ false };
+	void reset_sel(){ _vs_selected = _fs_selected = false; }
 #endif
+	bool is_valid(){ return _valid; }
 	void use(){ glUseProgram(_shader_program_id); }
 	bool vertex_att_pointer(initializer_list<string> att_name_list);
 	//template<typename T> bool uniform(string unf_name, GLsizei icnt, T* pvalue);
@@ -58,5 +65,5 @@ public:
 
 };
 
-typedef vector<shared_ptr<af_shader>> vaf_shader;
-extern vaf_shader g_af_shader_list;
+typedef map<string,shared_ptr<af_shader>> maf_shader;
+extern maf_shader g_af_shader_list;

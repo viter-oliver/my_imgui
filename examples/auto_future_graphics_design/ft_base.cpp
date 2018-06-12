@@ -21,8 +21,8 @@ void ft_base::draw_peroperty_page()
 	ImGui::Text("base pos:");
 	//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
 	//ImGui::SameLine();
-	ImGui::SliderFloat("x", &_in_p._pos.x, 1.f, base_ui_component::screenw);
-	ImGui::SliderFloat("y", &_in_p._pos.y, 1.f, base_ui_component::screenh);
+	ImGui::SliderFloat("x", &_in_p._pos.x, -base_ui_component::screenw, base_ui_component::screenw);
+	ImGui::SliderFloat("y", &_in_p._pos.y, -base_ui_component::screenh, base_ui_component::screenh);
 	ImGui::Checkbox("visibility", &_in_p._visible);
 }
 /*

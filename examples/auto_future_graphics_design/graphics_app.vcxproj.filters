@@ -88,9 +88,6 @@
     <ClCompile Include="basic3d.cpp">
       <Filter>3dutility</Filter>
     </ClCompile>
-    <ClCompile Include="phong_shader.cpp">
-      <Filter>3dutility</Filter>
-    </ClCompile>
     <ClCompile Include="ft_cube.cpp">
       <Filter>controls</Filter>
     </ClCompile>
@@ -102,9 +99,6 @@
     </ClCompile>
     <ClCompile Include="ft_sphere.cpp">
       <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="color_shader.cpp">
-      <Filter>3dutility</Filter>
     </ClCompile>
     <ClCompile Include="texture_shader.cpp">
       <Filter>3dutility</Filter>
@@ -153,6 +147,15 @@
     </ClCompile>
     <ClCompile Include="ft_slider.cpp">
       <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="material.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive_object.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="shader_uf.cpp">
+      <Filter>render_utilities</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -210,9 +213,6 @@
     <ClInclude Include="basic3d.h">
       <Filter>3dutility</Filter>
     </ClInclude>
-    <ClInclude Include="phong_shader.h">
-      <Filter>3dutility</Filter>
-    </ClInclude>
     <ClInclude Include="ft_cube.h">
       <Filter>controls</Filter>
     </ClInclude>
@@ -224,9 +224,6 @@
     </ClInclude>
     <ClInclude Include="ft_sphere.h">
       <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="color_shader.h">
-      <Filter>3dutility</Filter>
     </ClInclude>
     <ClInclude Include="texture_shader.h">
       <Filter>3dutility</Filter>
@@ -296,6 +293,15 @@
     </ClInclude>
     <ClInclude Include="ft_slider.h">
       <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive_object.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="shader_uf.h">
+      <Filter>render_utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

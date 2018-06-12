@@ -1,108 +1,116 @@
 #include "material.h"
 
-material::material(af_shader& sd)
-	:_shader(sd)
+material::material(shared_ptr<af_shader> psd)
+	:_pshader(psd)
 {
-	mshader_variable_list& sd_uf_def = _shader.get_uf_defs();
+	mshader_variable_list& sd_uf_def = _pshader->get_uf_defs();
 	for (auto& uf_def_ut : sd_uf_def)
 	{
 		auto& un_name = uf_def_ut.first;
 		auto& unif = uf_def_ut.second;
+		shared_ptr<shader_uf> pnunf = nullptr;
 		switch (unif._variable_type)
 		{
 		case GL_FLOAT:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size);
+			pnunf = make_shared<shader_uf_float>(unif._size,1);
 			break;
 		case GL_FLOAT_VEC2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*2);
+			pnunf = make_shared<shader_uf_float>(unif._size , 2);
 			break;
 		case GL_FLOAT_VEC3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*3);
+			pnunf = make_shared<shader_uf_float>(unif._size , 3);
 			break;
 		case GL_FLOAT_VEC4:
 		case GL_FLOAT_MAT2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*4);
+			pnunf = make_shared<shader_uf_float>(unif._size , 4);
 			break;
 		case GL_FLOAT_MAT3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*9);
+			pnunf = make_shared<shader_uf_float>(unif._size , 9);
 			break;
 		case GL_FLOAT_MAT4:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*16);
+			pnunf = make_shared<shader_uf_float>(unif._size , 16);
 			break;
 		case GL_FLOAT_MAT2x3:
 		case GL_FLOAT_MAT3x2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*6);
+			pnunf = make_shared<shader_uf_float>(unif._size , 6);
 			break;
 		case GL_FLOAT_MAT2x4:
 		case GL_FLOAT_MAT4x2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*8);
+			pnunf = make_shared<shader_uf_float>(unif._size , 8);
 			break;
 		case GL_FLOAT_MAT3x4:
 		case GL_FLOAT_MAT4x3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_float>(unif._size*12);
+			pnunf = make_shared<shader_uf_float>(unif._size , 12);
 			break;
 		case GL_DOUBLE:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size);
+			pnunf = make_shared<shader_uf_double>(unif._size,1);
 			break;
 		case GL_DOUBLE_VEC2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 2);
+			pnunf = make_shared<shader_uf_double>(unif._size , 2);
 			break;
 		case GL_DOUBLE_VEC3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 3);
+			pnunf = make_shared<shader_uf_double>(unif._size , 3);
 			break;
 		case GL_DOUBLE_VEC4:
 		case GL_DOUBLE_MAT2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 4);
+			pnunf = make_shared<shader_uf_double>(unif._size , 4);
 			break;
 		case GL_DOUBLE_MAT3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 9);
+			pnunf = make_shared<shader_uf_double>(unif._size , 9);
 			break;
 		case GL_DOUBLE_MAT4:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 16);
+			pnunf = make_shared<shader_uf_double>(unif._size , 16);
 			break;
 		case GL_DOUBLE_MAT2x3:
 		case GL_DOUBLE_MAT3x2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 6);
+			pnunf = make_shared<shader_uf_double>(unif._size , 6);
 			break;
 		case GL_DOUBLE_MAT2x4:
 		case GL_DOUBLE_MAT4x2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 8);
+			pnunf = make_shared<shader_uf_double>(unif._size , 8);
 			break;
 		case GL_DOUBLE_MAT3x4:
 		case GL_DOUBLE_MAT4x3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_double>(unif._size * 12);
+			pnunf = make_shared<shader_uf_double>(unif._size , 12);
 			break;
 		case GL_INT:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_int>(unif._size);
+			pnunf = make_shared<shader_uf_int>(unif._size,1);
 			break;
 		case GL_INT_VEC2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_int>(unif._size * 2);
+			pnunf = make_shared<shader_uf_int>(unif._size , 2);
 			break;
 		case GL_INT_VEC3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_int>(unif._size * 3);
+			pnunf = make_shared<shader_uf_int>(unif._size , 3);
 			break;
 		case GL_INT_VEC4:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_int>(unif._size * 4);
+			pnunf = make_shared<shader_uf_int>(unif._size , 4);
 			break;
 		case GL_UNSIGNED_INT:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_uint>(unif._size);
+			pnunf = make_shared<shader_uf_uint>(unif._size,1);
 			break;
 		case GL_UNSIGNED_INT_VEC2:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_uint>(unif._size * 2);
+			pnunf = make_shared<shader_uf_uint>(unif._size , 2);
 			break;
 		case GL_UNSIGNED_INT_VEC3:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_uint>(unif._size * 3);
+			pnunf = make_shared<shader_uf_uint>(unif._size , 3);
 			break;
 		case GL_UNSIGNED_INT_VEC4:
-			_mp_shader_uf[un_name] = make_shared<shader_uf_uint>(unif._size * 4);
+			pnunf = make_shared<shader_uf_uint>(unif._size , 4);
 			break;
+		}
+		if (pnunf)
+		{
+			pnunf->_unf_name = un_name;
+			pnunf->set_type(unif._variable_type);
+			_mp_shader_uf[un_name] = pnunf;
+
 		}
 	}
 }
 void material::use()
 {
-	_shader.use();
-	auto& sd_uf_def = _shader.get_uf_defs();
+	_pshader->use();
+	auto& sd_uf_def = _pshader->get_uf_defs();
 	for (auto& shd_uf_value : _mp_shader_uf)
 	{
 		auto& kname = shd_uf_value.first;
@@ -116,10 +124,71 @@ void material::use()
 		
 	}
 }
+void material::set_value(string unf_name, float* pfvalue, GLuint len)
+{
+	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	auto& pshd = shd_ut->second;
+	string cname = typeid(*pshd).name();
+	cname = cname.substr(sizeof("class"));
+	if (cname != "shader_uf_float")
+	{
+		printf("fail to match type:type of %s is not shader_uf_float but %s\n", unf_name.c_str(), cname.c_str());
+		return;
+	}
+	shared_ptr<shader_uf_float> pshdf = static_pointer_cast<shader_uf_float>(pshd);
+	pshdf->set_fvalue(pfvalue, len);
+}
+void material::set_value(string unf_name, int* pivalue, GLuint len)
+{
+	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	auto& pshd = shd_ut->second;
+	string cname = typeid(*pshd).name();
+	cname = cname.substr(sizeof("class"));
+	if (cname != "shader_uf_int")
+	{
+		printf("fail to match type:type of %s is not shader_uf_int but %s\n", unf_name.c_str(), cname.c_str());
+		return;
+	}
+	shared_ptr<shader_uf_int> pshdf = static_pointer_cast<shader_uf_int>(pshd);
+	pshdf->set_ivalue(pivalue, len);
+}
+void material::set_value(string unf_name, unsigned int* puivalue, GLuint len)
+{
+	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	auto& pshd = shd_ut->second;
+	string cname = typeid(*pshd).name();
+	cname = cname.substr(sizeof("class"));
+	if (cname != "shader_uf_uint")
+	{
+		printf("fail to match type:type of %s is not shader_uf_uint but %s\n", unf_name.c_str(), cname.c_str());
+		return;
+	}
+	shared_ptr<shader_uf_uint> pshdf = static_pointer_cast<shader_uf_uint>(pshd);
+	pshdf->set_uivalue(puivalue, len);
+
+}
+void material::set_value(string unf_name, double* pdvalue, GLuint len)
+{
+	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	auto& pshd = shd_ut->second;
+	string cname = typeid(*pshd).name();
+	cname = cname.substr(sizeof("class"));
+	if (cname != "shader_uf_double")
+	{
+		printf("fail to match type:type of %s is not shader_uf_double but %s\n", unf_name.c_str(), cname.c_str());
+		return;
+	}
+	shared_ptr<shader_uf_double> pshdf = static_pointer_cast<shader_uf_double>(pshd);
+	pshdf->set_dvalue(pdvalue, len);
+}
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 #include "user_control_imgui.h"
 void material::edit_ufs()
 {
+	string shd_name = "shader name:";
+	shd_name += _pshader->get_name();
+	ImGui::Text(shd_name.c_str());
 	for (auto& shd_uf_value : _mp_shader_uf)
 	{
 		string unf_name = shd_uf_value.first;
@@ -130,5 +199,44 @@ void material::edit_ufs()
 		//for (int ix = 0;ix)
 	}
 }
+void material::output_2_json(Value& jvalue)
+{
+	jvalue["name"] = _name;
+	jvalue["shader"] = _pshader->get_name();
+	Value junifs(objectValue);
+	for (auto& unif_ut : _mp_shader_uf)
+	{
+		Value junif_ut(objectValue);
+		unif_ut.second->output_2_json(junif_ut);
+		junifs[unif_ut.first] = junif_ut;
+	}
+	jvalue["uniform_list"] = junifs;
+}
+void material::init_from_json(Value& jvalue)
+{
+	_name = jvalue["name"].asString();
+	auto& shd_name = jvalue["shader"].asString();
+
+	auto& shd_unit = g_af_shader_list.find(shd_name);
+	if (shd_unit != g_af_shader_list.end())
+	{
+		_pshader = shd_unit->second;
+	}
+	
+	Value& uniform_list = jvalue["uniform_list"];
+	Value::Members memb(uniform_list.getMemberNames());
+	for (auto itmem = memb.begin(); itmem != memb.end(); ++itmem)
+	{
+		auto& mname = *itmem;
+		Value& junif = uniform_list[mname];
+		
+		string str_type = junif["type"].asString();
+		GLuint usize = junif["usize"].asUInt();
+		GLuint el_size = junif["el_size"].asUInt();
+		_mp_shader_uf[mname] = std::move(get_shader_uf_fc().Create(str_type, usize, el_size));
+		shared_ptr<shader_uf> pnunf = _mp_shader_uf[mname];
+		pnunf->init_from_json(junif);
+	}
+}
 #endif
-vmaterial g_material_list;
+mmaterial g_material_list;

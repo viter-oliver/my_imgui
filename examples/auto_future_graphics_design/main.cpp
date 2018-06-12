@@ -32,6 +32,7 @@
 #include "Resource.h"
 #include "res_edit.h"
 #include "afb_output.h"
+#include "primitive_object.h"
 #include "material_shader_edit.h"
 static void error_callback(int error, const char* description)
 {
@@ -110,7 +111,7 @@ int main(int argc, char* argv[])
 	g_current_run_path += "\\";
 	load_internal_texture_res(g_mtxt_intl, IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
 	instantiating_internal_shader();
-
+	init_primitive_list();
     bool show_demo_window = true;
     bool show_another_window = false;
 	bool show_edit_window = true;
@@ -511,24 +512,31 @@ int main(int argc, char* argv[])
 			ImGui::Spacing();
 			ImGui::EndChild();
 
-			ImGui::BeginChild("m_and_s", ImVec2(1000, 1000), true);
-			//ImGui::Separator();
-			ImGui::Columns(2);
-			ImGui::Text("materials and shaders:");
 			
 			if(_pml_shd_mg)
 			{
+				ImGui::BeginChild("shaders", ImVec2(1000, 600), true);
+			//ImGui::Separator();
+				ImGui::Columns(2);
+				ImGui::Text("shaders:");
 				_pml_shd_mg->load_shader();
 				_pml_shd_mg->draw_shader();
-				_pml_shd_mg->draw_material();
 				ImGui::NextColumn();
 				_pml_shd_mg->load_shader_info();
 				_pml_shd_mg->draw_shader_item_property();
+				ImGui::NextColumn();
+				ImGui::EndChild();
+				ImGui::BeginChild("materials", ImVec2(1000, 600), true);
+				ImGui::Columns(2);
+				ImGui::Text("materials:");
+				_pml_shd_mg->draw_material();
+				ImGui::NextColumn();
 				_pml_shd_mg->draw_material_item_property();
 				ImGui::NextColumn();
+			//ImGui::Separator();
+				ImGui::EndChild();
 			}
 			/**/
-			ImGui::EndChild();
 			ImGui::End();
 		}
 		

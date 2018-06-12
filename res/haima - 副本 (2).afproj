@@ -1,0 +1,336 @@
+
+{
+	"childs" : 
+	[
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 960.0,
+				"y" : 360.0
+			},
+			"name" : "background",
+			"screen_pos" : 
+			{
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 720.0,
+				"w" : 1920.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 1,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 330.0,
+				"y" : 303.0
+			},
+			"name" : "pointer_left",
+			"screen_pos" : 
+			{
+				"x" : 104.0,
+				"y" : 67.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 452.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 2,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 801.50,
+				"y" : 303.0
+			},
+			"name" : "pointer_right",
+			"screen_pos" : 
+			{
+				"x" : 576.0,
+				"y" : 67.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 69.0,
+				"w" : 225.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 16,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 330.0,
+				"y" : 303.0
+			},
+			"name" : "pointer_left",
+			"screen_pos" : 
+			{
+				"x" : 104.0,
+				"y" : 67.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 452.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 2,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 801.50,
+				"y" : 303.0
+			},
+			"childs" : 
+			[
+				
+				{
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "ft_image",
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"size" : 
+					{
+						"h" : 65.0,
+						"w" : 14.0
+					},
+					"texture_id_index" : 0,
+					"texture_index" : 6,
+					"type" : "ft_image"
+				}
+			],
+			"name" : "pointer_right",
+			"screen_pos" : 
+			{
+				"x" : 576.0,
+				"y" : 67.0,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 451.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 3,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 801.50,
+				"y" : 303.0
+			},
+			"childs" : 
+			[
+				
+				{
+					"content" : "gfdgdgfdgfd",
+					"name" : "ft_textblock",
+					"screen_pos" : 
+					{
+						"x" : 146.5790100097656,
+						"y" : 45.62800216674805,
+						"z" : 0.0
+					},
+					"txt_color" : 
+					{
+						"w" : 1.0,
+						"x" : 0.5051184892654419,
+						"y" : 0.6189618110656738,
+						"z" : 0.7299578189849854
+					},
+					"type" : "ft_textblock",
+					"width" : 560.0,
+					"wrapped" : false
+				}
+			],
+			"name" : "pointer_right",
+			"screen_pos" : 
+			{
+				"x" : 854.62402343750,
+				"y" : 65.46200561523438,
+				"z" : 0.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 451.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 3,
+			"type" : "ft_image"
+		}
+	],
+	"material_list" : 
+	[
+		
+		{
+			"name" : "mtl_particles",
+			"shader" : "particles",
+			"uniform_list" : 
+			{
+				"CameraRight_worldspace" : [ 2.0, 1.0, 3.0 ],
+				"CameraUp_worldspace" : [ 0.0, 0.0, 0.0 ],
+				"VP" : 
+				[
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0
+				]
+			}
+		},
+		
+		{
+			"name" : "mtl_particles1",
+			"shader" : "particles",
+			"uniform_list" : 
+			{
+				"CameraRight_worldspace" : [ 0.0, 0.0, 0.0 ],
+				"CameraUp_worldspace" : [ 1.0, 2.0, 3.0 ],
+				"VP" : 
+				[
+					1.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					1.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					1.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				]
+			}
+		},
+		
+		{
+			"name" : "mtl_particles2",
+			"shader" : "particles",
+			"uniform_list" : 
+			{
+				"CameraRight_worldspace" : [ 0.0, 0.0, 0.0 ],
+				"CameraUp_worldspace" : [ 0.0, 0.0, 0.0 ],
+				"VP" : 
+				[
+					1.0,
+					1.0,
+					0.0,
+					0.0,
+					0.0,
+					1.0,
+					0.0,
+					0.0,
+					0.0,
+					2.0,
+					1.0,
+					0.0,
+					0.0,
+					0.0,
+					0.0,
+					1.0
+				]
+			}
+		}
+	],
+	"name" : "screen",
+	"screen_pos" : 
+	{
+		"x" : 0.0,
+		"y" : 0.0,
+		"z" : 0.0
+	},
+	"screenh" : 720.0,
+	"screenw" : 1920.0,
+	"shader_list" : 
+	[
+		
+		{
+			"fs_code" : "#version 330 core\n\n// Interpolated values from the vertex shaders\nin vec2 UV;\nin vec4 particlecolor;\n\n// Ouput data\nout vec4 color;\n\nuniform sampler2D myTextureSampler;\n\nvoid main(){\n\t// Output color = color of the texture at the specified UV\n\t//color = texture( myTextureSampler, UV ) * particlecolor;\n\tcolor = texture( myTextureSampler, UV );\n}\n",
+			"fs_name" : "particles.fs",
+			"name" : "particles",
+			"vs_code" : "#version 330 core\n\n// Input vertex data, different for all executions of this shader.\nlayout(location = 0) in vec3 squareVertices;\nlayout(location = 1) in vec4 xyzs; // Position of the center of the particule and size of the square\nlayout(location = 2) in vec4 color; // Position of the center of the particule and size of the square\n\n// Output data ; will be interpolated for each fragment.\nout vec2 UV;\nout vec4 particlecolor;\n\n// Values that stay constant for the whole mesh.\nuniform vec3 CameraRight_worldspace;\nuniform vec3 CameraUp_worldspace;\nuniform mat4 VP; // Model-View-Projection matrix, but without the Model (the position is in BillboardPos; the orientation depends on the camera)\n\nvoid main()\n{\n\tfloat particleSize = xyzs.w; // because we encoded it this way.\n\tvec3 particleCenter_wordspace = xyzs.xyz;\n\t\n\tvec3 vertexPosition_worldspace = \n\t\tparticleCenter_wordspace\n\t\t+ CameraRight_worldspace * squareVertices.x * particleSize\n\t\t+ CameraUp_worldspace * squareVertices.y * particleSize;\n\n\t// Output position of the vertex\n\tgl_Position = VP * vec4(vertexPosition_worldspace, 1.0f);\n\n\t// UV of the vertex. No special space for this one.\n\tUV = squareVertices.xy + vec2(0.5, 0.5);\n\tparticlecolor = color;\n}\n\n",
+			"vs_name" : "particles.vs"
+		}
+	],
+	"texture_res_list" : 
+	[
+		
+		{
+			"texture_data_file" : "mainview.json",
+			"texture_pack_file" : "mainview.png"
+		},
+		
+		{
+			"texture_data_file" : "sportview.json",
+			"texture_pack_file" : "sportview.png"
+		},
+		
+		{
+			"texture_data_file" : "sportview.json",
+			"texture_pack_file" : "sportview.png"
+		},
+		
+		{
+			"texture_data_file" : "sportview.json",
+			"texture_pack_file" : "sportview.png"
+		}
+	],
+	"type" : "ft_base"
+}
+

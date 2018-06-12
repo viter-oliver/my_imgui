@@ -96,7 +96,7 @@ public:
 
 	}
 	
-	~base_ui_component()
+	virtual ~base_ui_component()
 	{
 		for (auto& it:_vchilds)
 		{

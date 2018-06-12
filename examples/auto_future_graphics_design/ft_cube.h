@@ -1,6 +1,8 @@
 #pragma once
 #include "ft_base.h"
 #include "basic3d.h"
+#include "material.h"
+#include "primitive_object.h"
 class ft_cube :
 	public ft_base
 {
@@ -8,16 +10,15 @@ class ft_cube :
 	//render transformation
 	struct intl_pt
 	{
+		ImVec3 _translation;
 		ImVec3 _scale;
 		ImVec3 _rotation;
-		ImVec2 _translation;
 		//int _shader_instance_index;
-		intl_pt() {}
+		intl_pt():_scale(1.f,1.f,1.f) {}
 	};
 	intl_pt _pt;
-	basic_shader* _pshader;
-	static GLuint _vao, _vbo,_ebo;
-	static unsigned short _cube_instance_cnt;
+	shared_ptr<material> _pmaterial;
+	shared_ptr<primitive_object> _pcube_prim;
 public:
 	ft_cube();
 	~ft_cube();

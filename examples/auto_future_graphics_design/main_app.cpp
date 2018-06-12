@@ -26,6 +26,7 @@
 #endif
 #include "Resource.h"
 #include "afb_load.h"
+#include "primitive_object.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -95,7 +96,7 @@ int main(int argc, char* argv[])
 	g_current_run_path = buffer;
 	g_current_run_path += "\\";
 	instantiating_internal_shader();
-
+	init_primitive_list();
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	//g_res_texture_list[0].texture_id = TextureHelper::load2DTexture(g_res_texture_list[0].texture_path, g_res_texture_list[0].texture_width, g_res_texture_list[0].texture_height);

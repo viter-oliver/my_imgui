@@ -91,6 +91,8 @@ GL_UNSIGNED_INT_ATOMIC_COUNTER	atomic_uint
 */
 af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source)
 {
+	_vs_code = vertex_shader_source;
+	_fs_code = fragment_shader_source;
 	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(_vertex_shader, 1, &vertex_shader_source, NULL);
 	glCompileShader(_vertex_shader);
@@ -191,8 +193,9 @@ bool af_shader::vertex_att_pointer(initializer_list<string> att_name_list)
 
 		auto& attr = _att_list[iname];
 		glEnableVertexAttribArray(attr._location);
-		glVertexAttribPointer(attr._location, shader_variable_type_size[attr._variable_type]._cnt, attr._variable_type, GL_FALSE, stride, (void*)(pointer));
-		pointer += (shader_variable_type_size[attr._variable_type]._cnt+shader_variable_type_size[attr._variable_type]._utsize);
+		auto& shd_tp_sz = shader_variable_type_size[attr._variable_type];
+		glVertexAttribPointer(attr._location, shd_tp_sz._cnt, attr._variable_type, GL_FALSE, stride, (void*)(pointer));
+		pointer += shd_tp_sz._cnt;
 	}
 	return true;
 }
@@ -464,4 +467,4 @@ bool af_shader::uniform(string unf_name, int ivalue)
 	return true;
 }
 
-vaf_shader g_af_shader_list;
+maf_shader g_af_shader_list;

@@ -1,7 +1,8 @@
 #include "ui_assembler.h"
 #include <fstream>
 #include "texture_res_load.h"
-
+#include "af_shader.h"
+#include "material.h"
 bool ui_assembler::load_ui_component_from_file(const char* file_path)
 {
 	ifstream fin;
@@ -33,6 +34,30 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 
 			texture_res_load tresload(g_vres_texture_list);
 			tresload.load_res_from_json(jroot);
+			Value& shader_list = jroot["shader_list"];
+			auto isize = shader_list.size();
+			UInt ix = 0;
+			for (ix = 0; ix < isize; ix++)
+			{
+				Value& shd_unit = shader_list[ix];
+				auto& vs_code = shd_unit["vs_code"].asString();
+				auto& fs_code = shd_unit["fs_code"].asString();
+				shared_ptr<af_shader> pshd = make_shared<af_shader>(vs_code.c_str(), fs_code.c_str());
+				pshd->_vs_name = shd_unit["vs_name"].asString();
+				pshd->_fs_name = shd_unit["fs_name"].asString();
+				pshd->set_name(shd_unit["name"].asString());
+				g_af_shader_list[shd_unit["name"].asString()] = pshd;
+			}
+			Value& material_list = jroot["material_list"];
+			isize = material_list.size();
+			for (ix = 0; ix < isize; ix++)
+			{
+				Value& mtl_unit = material_list[ix];
+				shared_ptr<material> pmtl = make_shared<material>();
+				pmtl->init_from_json(mtl_unit);
+				g_material_list[pmtl->get_name()]=pmtl;
+
+			}
 			_root.init_from_json(jroot);
 		}
 		fin.close();
@@ -62,6 +87,30 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		jtexture.append(jtext_res_unit);
 	}
 	jroot["texture_res_list"] = jtexture;
+	Value jshader(arrayValue);
+	for (auto& shd_ut : g_af_shader_list)
+	{
+		Value jshd_unit(objectValue);
+		auto& sd_name = shd_ut.first;
+		auto& p_sd = shd_ut.second;
+		jshd_unit["name"] = sd_name;
+		jshd_unit["vs_name"] = p_sd->_vs_name;
+		jshd_unit["fs_name"] = p_sd->_fs_name;
+		jshd_unit["vs_code"] = p_sd->get_vs_code();
+		jshd_unit["fs_code"] = p_sd->get_fs_code();
+		jshader.append(jshd_unit);
+	}
+	jroot["shader_list"] = jshader;
+	Value jmaterial(arrayValue);
+	for (auto& mtl_ut : g_material_list)
+	{
+		Value jmtl_ut(objectValue);
+		auto& pmtl = mtl_ut.second;
+		pmtl->output_2_json(jmtl_ut);
+		jmaterial.append(jmtl_ut);
+	}
+	jroot["material_list"] = jmaterial;
+
 	_root.init_json_unit(jroot);
 	fout << jroot << endl;
 	fout.close();

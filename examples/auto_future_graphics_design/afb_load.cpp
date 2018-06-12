@@ -9,7 +9,8 @@
 #else
 #include"../../deps/glad/glad.h"
 #endif
-
+#include "af_shader.h"
+#include "material.h"
 void init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
 {
 	auto obj_arr_sz = obj.via.array.size;
@@ -41,32 +42,6 @@ void init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
 			ptar->add_child(pchild);
 		}
 	}
-	/*MsgPack::array ppty{ mg_obj["property"].array_items()};
-	int idx = 0;
-	for (auto& pu : ppty)//so dirty!!!
-	{
-		MsgPack::object ptmo{ pu.object_items() };
-		MsgPack::binary pt_mem{ ptmo["pt_mem"].binary_items() };
-		memcpy(vplist[idx]._p_head_address, &pt_mem[0], vplist[idx]._len);
-		idx++;
-	}
-	auto& chld_lst = mg_obj.find("childs");
-	if (chld_lst != mg_obj.end())
-	{
-		MsgPack::array child_list{ chld_lst->second.array_items() };
-		if (child_list.size() > 0)
-		{
-			for (auto& chld : child_list)
-			{
-				MsgPack::object chld_oj{ chld.object_items() };
-				string cname = chld_oj["type"].string_value();
-				base_ui_component* pcontrol_instance = factory::get().produce(cname);
-				init_ui_component_by_mgo(*pcontrol_instance, chld_oj);
-				tar.add_child(pcontrol_instance);
-			}
-		}
-	}
-	*/
 }
 
 void afb_load::load_afb(const char* afb_file)
@@ -112,8 +87,6 @@ void afb_load::load_afb(const char* afb_file)
 		res_unit.texture_height = bin_res_unit.via.array.ptr[1].as<int>();
 		auto res_bin = bin_res_unit.via.array.ptr[2];
 		auto bin_sz = res_bin.via.bin.size;
-		//uint8_t* ptxt = new uint8_t[bin_sz];
-		//memcpy(ptxt, res_bin.via.bin.ptr, bin_sz);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, res_unit.texture_width, res_unit.texture_height,
 			0, GL_RGBA, GL_UNSIGNED_BYTE, res_bin.via.bin.ptr);
 		glGenerateMipmap(GL_TEXTURE_2D);
@@ -127,7 +100,6 @@ void afb_load::load_afb(const char* afb_file)
 			res_texture_coordinate& cd_unit = res_unit.vtexture_coordinates[curpos];
 			auto bin_cd_unit = res_data.via.array.ptr[iy];
 			auto bin_filen = bin_cd_unit.via.array.ptr[0];
-			//char str_name[50] = {0};
 			cd_unit._file_name.reserve(bin_filen.via.str.size+1);
 			cd_unit._file_name.resize(bin_filen.via.str.size+1);
 			memcpy(&cd_unit._file_name[0], bin_filen.via.str.ptr, bin_filen.via.str.size);
@@ -138,62 +110,85 @@ void afb_load::load_afb(const char* afb_file)
 		}
 
 	}
-	auto obj_ui = obj_w.via.array.ptr[3];
-	init_ui_component_by_mgo(_pj, obj_ui);
-	    
-
-	/*while (unpac.next(oh))
+	auto obj_shader_list = obj_w.via.array.ptr[3];
+	auto shd_cnt = obj_shader_list.via.array.size;
+	for (size_t ix = 0; ix < shd_cnt; ix++)
 	{
-		auto sw = oh.get();
-		std::cout << type_str[sw.type] << ":" << sw << std::endl;
+		auto shd_unit = obj_shader_list.via.array.ptr[ix];
+		auto shd_name = shd_unit.via.array.ptr[0];
+		auto str_shd_nm_sz = shd_name.via.str.size;
+		char* pshd_name = new char[str_shd_nm_sz + 1];
+		memset(pshd_name, 0, str_shd_nm_sz + 1);
+		memcpy(pshd_name, shd_name.via.str.ptr, str_shd_nm_sz);
+		auto shd_vs_code = shd_unit.via.array.ptr[1];
+		auto str_vs_code_sz = shd_vs_code.via.str.size;
+		char* psd_vs_code = new char[str_vs_code_sz + 1];
+		memset(psd_vs_code, 0, str_vs_code_sz + 1);
+		memcpy(psd_vs_code, shd_vs_code.via.str.ptr, str_vs_code_sz);
+		auto shd_fs_code = shd_unit.via.array.ptr[2];
+		auto str_fs_code_sz = shd_fs_code.via.str.size;
+		char* psd_fs_code = new char[str_fs_code_sz + 1];
+		memset(psd_fs_code, 0, str_fs_code_sz + 1);
+		memcpy(psd_fs_code, shd_fs_code.via.str.ptr, str_fs_code_sz);
+		g_af_shader_list[pshd_name] = make_shared<af_shader>(psd_vs_code, psd_fs_code);
+		delete[] pshd_name;
+		delete[] psd_vs_code;
+		delete[] psd_fs_code;
 	}
-	*/
-	/*string err;
-	MsgPack ui_obj = MsgPack::parse(outbuff, err);
-	MsgPack::object root{ ui_obj.object_items() };
-	base_ui_component::screenw = root["screenw"].float32_value();
-	base_ui_component::screenh = root["screenh"].float32_value();
-	g_cur_texture_id_index = root["current_txt_index"].int32_value();
-	//MsgPack::array res_list{ root["txtres_list"].array_items() };
-	for (auto& mg_resunit : root["txtres_list"].array_items())
+	auto obj_material_list = obj_w.via.array.ptr[4];
+	auto mtl_cnt = obj_material_list.via.array.size;
+	for (size_t ix = 0; ix < mtl_cnt; ix++)
 	{
-		g_vres_texture_list.emplace_back(res_texture_list());
-		int cur_pos = g_vres_texture_list.size() - 1;
-		res_texture_list& res_unit = g_vres_texture_list[cur_pos];
-		glGenTextures(1, &res_unit.texture_id);
-		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		// Step3 设定filter参数
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); 
-		MsgPack::object mg_res_obj{ mg_resunit.object_items() };
-		res_unit.texture_width = mg_res_obj["txtpk_w"].int32_value();
-		res_unit.texture_height = mg_res_obj["txtpk_h"].int32_value();
-		MsgPack::binary imgdata{ mg_res_obj["txtpk_file"].binary_items() };
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, res_unit.texture_width, res_unit.texture_height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, &imgdata[0]);
-		glGenerateMipmap(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, 0);
-		MsgPack::array  txt_coord_data{ mg_res_obj["txtpk_fmt"].array_items() };
-		vres_txt_cd& txt_cd = res_unit.vtexture_coordinates;
-		for (auto& cood_unit : txt_coord_data)
+		auto mtl_unit = obj_material_list.via.array.ptr[ix];
+		auto mtl_name = mtl_unit.via.array.ptr[0];
+		auto mtl_name_size = mtl_name.via.str.size;
+		char* pstr_mtl_name = new char[mtl_name_size + 1];
+		memset(pstr_mtl_name, 0, mtl_name_size + 1);
+		memcpy(pstr_mtl_name, mtl_name.via.str.ptr, mtl_name_size);
+		shared_ptr<material> pmtl = make_shared<material>();
+		g_material_list[pstr_mtl_name] = pmtl;
+		auto shd_name = mtl_unit.via.array.ptr[1];
+		auto shd_name_size = shd_name.via.str.size;
+		char* pstr_shd_name = new char[shd_name_size + 1];
+		memset(pstr_shd_name, 0, shd_name_size+1);
+		memcpy(pstr_shd_name, shd_name.via.str.ptr, shd_name_size);
+		auto pshd = g_af_shader_list.find(pstr_shd_name);
+		if (pshd != g_af_shader_list.end())
 		{
-			txt_cd.emplace_back(res_texture_coordinate());
-			int c_pos = txt_cd.size() - 1;
-			res_texture_coordinate& cd_ut = txt_cd[c_pos];
-			MsgPack::object mgcd{ cood_unit.object_items() };
-			cd_ut._file_name = mgcd["file_name"].string_value();
-			cd_ut._x0= mgcd["x0"].float32_value();
-			cd_ut._x1= mgcd["x1"].float32_value();
-			cd_ut._y0= mgcd["y0"].float32_value();
-			cd_ut._y1= mgcd["y1"].float32_value();
+			pmtl->set_pshader(pshd->second);
 		}
+		auto& mpshd_uf = pmtl->get_mp_sd_uf();
+		auto shd_uf_list = mtl_unit.via.array.ptr[2];
+		auto shd_uf_list_cnt = shd_uf_list.via.array.size;
+		for (size_t iy = 0; iy < shd_uf_list_cnt; iy++)
+		{
+			auto shd_uf_unit = shd_uf_list.via.array.ptr[iy];
+			auto shd_uf_name = shd_uf_unit.via.array.ptr[0];
+			auto shd_uf_name_sz = shd_uf_name.via.str.size;
+			char* pshd_uf_name = new char[shd_uf_name_sz + 1];
+			memset(pshd_uf_name, 0, shd_uf_name_sz + 1);
+			memcpy(pshd_uf_name, shd_uf_name.via.str.ptr, shd_uf_name_sz);
+			auto shd_uf_type=shd_uf_unit.via.array.ptr[1];
+			auto shd_uf_type_sz = shd_uf_type.via.str.size;
+			char* pshd_uf_type = new char[shd_uf_type_sz + 1];
+			memset(pshd_uf_type, 0, shd_uf_type_sz + 1);
+			memcpy(pshd_uf_type, shd_uf_type.via.str.ptr, shd_uf_type_sz);
+
+			auto shd_uf_usize=shd_uf_unit.via.array.ptr[2];
+			auto shd_uf_el_size=shd_uf_unit.via.array.ptr[3];
+			auto shd_uf_utype=shd_uf_unit.via.array.ptr[4];
+			
+			shared_ptr<shader_uf> pnunf = std::move(get_shader_uf_fc().Create(pshd_uf_type, shd_uf_usize.as<GLuint>(), shd_uf_el_size.as<GLuint>()));
+			pnunf->set_type(shd_uf_utype.as<GLenum>());
+			auto shd_data = shd_uf_unit.via.array.ptr[5];
+			auto wsize = shd_uf_usize.as<GLuint>()*shd_uf_el_size.as<GLuint>();
+			memcpy(pnunf->get_data_head(), shd_data.via.bin.ptr,wsize);
+			mpshd_uf[pshd_uf_name] = pnunf;
+			delete[] pshd_uf_name;
+			delete[] pshd_uf_type;
+		}
+		delete[] pstr_mtl_name;
 	}
-	MsgPack::object control_objects{ root["control_objects"].object_items() };
-	init_ui_component_by_mgo(_pj, control_objects);
-	*/
-	
+	auto obj_ui = obj_w.via.array.ptr[5];
+	init_ui_component_by_mgo(_pj, obj_ui);
 }

@@ -99,6 +99,7 @@ void ft_image::draw_peroperty_page()
 	ImGui::Text("size:");
 	ImGui::SliderFloat("w", &_img_pt._size.x, 0.f, base_ui_component::screenw);
 	ImGui::SliderFloat("h", &_img_pt._size.y, 0.f, base_ui_component::screenh);
+
 	ImGui::Text("axis pos:");
 	ImGui::SliderFloat("ax", &_img_pt._axis_pos.x, 1.f, base_ui_component::screenw);
 	ImGui::SliderFloat("ay", &_img_pt._axis_pos.y, 1.f, base_ui_component::screenh);
