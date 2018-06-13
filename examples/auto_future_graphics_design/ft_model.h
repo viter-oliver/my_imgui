@@ -12,7 +12,7 @@ class ft_model :
 	{
 		ImVec3 _scale;
 		ImVec3 _rotation;
-		ImVec2 _translation;
+		ImVec3 _translation;
 		char _texture_file[FILE_NAME_LEN];
 		char _mesh_data_file[FILE_NAME_LEN];
 		GLuint _textureId;

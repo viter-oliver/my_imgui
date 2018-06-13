@@ -128,6 +128,7 @@ base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* unam
 }
 float base_ui_component::screenw = 0.0f;
 float base_ui_component::screenh = 0.0f;
+
 void property_copy(vproperty_list& vdest, vproperty_list& vsource)
 {
 	for (size_t i = 0; i < vdest.size(); i++)

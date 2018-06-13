@@ -99,10 +99,6 @@ int main(int argc, char* argv[])
 	init_primitive_list();
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	//g_res_texture_list[0].texture_id = TextureHelper::load2DTexture(g_res_texture_list[0].texture_path, g_res_texture_list[0].texture_width, g_res_texture_list[0].texture_height);
-	//g_vres_texture_list[0].texture_id = \
-	//	TextureHelper::load2DTexture(g_vres_texture_list[0].texture_path, g_vres_texture_list[0].texture_width, g_vres_texture_list[0].texture_height,\
-	//	GL_RGBA,GL_RGBA,SOIL_LOAD_RGBA);
 	base_ui_component* _proot = NULL;
 	if (!g_cureent_project_file_path.empty())
 	{

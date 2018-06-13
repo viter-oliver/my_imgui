@@ -1,3 +1,18 @@
+/**
+  @file   control_common_def.h
+  @brief  the head file provide basic definition of control class, all control class inherited from the class base_ui_component
+  @author  Viter 
+  @version V1.0.0
+  @date    6/13/2018 
+  @modifier                          
+  @reason
+
+  ========================================================================
+
+  description:
+  
+  ========================================================================
+**/
 #pragma once
 #include <imgui.h>
 #define IMGUI_DEFINE_MATH_OPERATORS
@@ -32,10 +47,19 @@ const float edit_unit_len = 5.0f;
 const float imge_edit_view_width = 300.f;
 #endif
 extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
+/**
+* @brief  base_ui_component is the base class of control class \n
+* description: base_ui_component is designed as a recursive composition 
+*            design pattern, including all the basic features of graphics element,
+            such as drawing, parenting, childing and identity,
+*/
 class base_ui_component
 {
 	friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 protected:
+	/**
+	* @brief define the property data block\n
+	*/
 	struct internal_property
 	{
 		char _name[name_len];
@@ -43,13 +67,21 @@ protected:
 		bool _visible;
 		internal_property() :_visible(true){ memset(_name, 0, name_len); }
     };
+	/*!< the member will be serialized */
 	internal_property _in_p;
+	/*!< the member contain all of the components which is the object
+	of the child class of base_ui_componnet */
 	vector<base_ui_component*> _vchilds;
+	/*!< the parent object, this member will NULL if current object is root */
 	base_ui_component* _parent;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 protected:
+	/*!< used for selecting a object in project edit for property editing */
 	bool _selected;
 public:
+	/**
+	*@brief draw property on the property page for editing
+	*/
 	virtual void draw_peroperty_page() = 0;
 	bool is_selected()
 	{
@@ -59,13 +91,40 @@ public:
 	{
 		_selected = beselected;
 	}
-	virtual bool init_from_json(Value&){ return true; }
-	virtual bool init_json_unit(Value&){ return true; }
+	/**
+	*@brief instancing class from a json value unit
+	*@param jvalue a json value 
+	*  jvalue which contain all the value of the data member of current object
+	*@return result
+	*  --true success
+	*  --false failure
+	*/
+	virtual bool init_from_json(Value& jvalue){ return true; }
+	/**
+	*@brief init a json unit by some data members
+	*@param junit a json value
+	*  junit which will be stored all the value of the data member of current object
+	*@return result
+	*  -true success
+	*  -false failure
+	*/
+	virtual bool init_json_unit(Value& junit){ return true; }
 #endif
 public:
+	/*!< define the width of screen */
 	static float screenw;
+	/*!< define the height of screen */
 	static float screenh;
+	/**
+	*@brief draw self on a surface
+	*/
 	virtual void draw() = 0;
+	/**
+	*@brief get the memory range of the property data block 
+	*@param vplist[out] a container which the range of property data block will store into
+	*@return length of property data block
+	*  -
+	*/
 	virtual int collect_property_range(vproperty_list& vplist)
 	{
 		//vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
@@ -73,6 +132,9 @@ public:
 		vplist.emplace_back(&_in_p, sizeof(internal_property));
 		return len;
 	}
+	/**
+	*@brief get a copy of a ui component object
+	*/
 	virtual base_ui_component* get_copy_of_object()
 	{ 
 		return NULL; 
@@ -121,7 +183,13 @@ public:
 	size_t get_child_count(){ return _vchilds.size(); }
 	base_ui_component* get_parent(){ return _parent; }
 	size_t child_count(){ return _vchilds.size(); }
+	/**
+	*@brief get relative coordinates of current object
+	*/
 	ImVec3 base_pos(){ return _in_p._pos; }
+	/**
+	*@brief get absolute coordinates of current object
+	*/
 	ImVec3 absolute_coordinate_of_base_pos()
 	{
 		ImVec3 base_pos = _in_p._pos;

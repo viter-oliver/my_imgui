@@ -2,6 +2,11 @@
 #include "af_shader.h"
 #include "shader_uf.h"
 typedef map<string, shared_ptr<shader_uf>> mp_shader_uf;
+/**
+* @brief is instance of the shader  \n
+* description:
+* - a material contain a variable list which is correspond to the shader variable type of the shader referenced by the material
+*/
 class material
 {
 	shared_ptr<af_shader> _pshader;
@@ -30,6 +35,9 @@ public:
 	{
 		return _mp_shader_uf;
 	}
+	/**
+	* @brief  when a material is used, the shader referenced is used \n
+	*/
 	void use();
 	void set_value(string unf_name, float* pfvalue, GLuint len);
 	void set_value(string unf_name, int* pivalue, GLuint len);
@@ -45,4 +53,5 @@ public:
 #endif
 };
 typedef map<string,shared_ptr<material>> mmaterial;
+/*!< material of g_material_list will be referenced by some ui components*/
 extern mmaterial g_material_list;

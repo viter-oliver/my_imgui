@@ -18,6 +18,9 @@
 #include "fab.h"
 using namespace fab;
 using namespace std;
+/**
+* @brief basic variable type of the shader  \n
+*/
 struct shader_variable
 {
 	GLenum _variable_type;
@@ -27,13 +30,20 @@ struct shader_variable
 	shader_variable(GLenum vtp, GLuint loc, GLuint size) :_variable_type(vtp), _location(loc),_size(size){}
 };
 typedef map<string, shader_variable> mshader_variable_list;
+/**
+* @brief  af_shader, process unit of gpu for rendering ui components \n
+*/
 class af_shader
 {
+	/*!< all the type of attribute variables  of shader */
 	mshader_variable_list _att_list;
+	/*!< all the type of uniform variables of shader */
 	mshader_variable_list _unf_list;
 	GLuint _shader_program_id, _vertex_shader, _fragment_shader;
 	string _name;
+	/*!< whether shader is valid */
 	bool _valid{ true };
+	/*!< vertex shader source code and fragment shader source code */
 	string _vs_code, _fs_code;
 public:
 	af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source);
