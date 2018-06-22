@@ -1,0 +1,100 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'ft_particles_gravity\&.h'\fP
+.br
+\fC#include <fstream>\fP
+.br
+\fC#include 'SOIL\&.h'\fP
+.br
+\fC#include 'texture\&.h'\fP
+.br
+\fC#include <GLFW/glfw3\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBParticle\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBFindUnusedParticle\fP ()"
+.br
+.ti -1c
+.RI "void \fBSortParticles\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const int \fBMaxParticles\fP = 100000"
+.br
+.ti -1c
+.RI "\fBParticle\fP \fBParticlesContainer\fP [\fBMaxParticles\fP]"
+.br
+.ti -1c
+.RI "GLfloat \fBg_particule_position_size_data\fP [\fBMaxParticles\fP *4]"
+.br
+.ti -1c
+.RI "GLfloat \fBg_particule_color_data\fP [\fBMaxParticles\fP *4]"
+.br
+.ti -1c
+.RI "int \fBLastUsedParticle\fP = 0"
+.br
+.ti -1c
+.RI "static const GLfloat \fBg_vertex_buffer_data\fP []"
+.br
+.ti -1c
+.RI "string \fBg_cureent_project_file_path\fP"
+.br
+.ti -1c
+.RI "const char * \fBshaders_fold\fP = 'shaders\\\\'"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "int FindUnusedParticle ()"
+
+.SS "void SortParticles ()"
+
+.SH "Variable Documentation"
+.PP 
+.SS "string g_cureent_project_file_path"
+
+.SS "GLfloat g_particule_color_data[\fBMaxParticles\fP *4]"
+
+.SS "GLfloat g_particule_position_size_data[\fBMaxParticles\fP *4]"
+
+.SS "const GLfloat g_vertex_buffer_data[]\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+= {
+    -0\&.5f, -0\&.5f, 0\&.0f,
+    0\&.5f, -0\&.5f, 0\&.0f,
+    -0\&.5f, 0\&.5f, 0\&.0f,
+    0\&.5f, 0\&.5f, 0\&.0f,
+}
+.fi
+.SS "int LastUsedParticle = 0"
+
+.SS "const int MaxParticles = 100000"
+
+.SS "\fBParticle\fP ParticlesContainer[\fBMaxParticles\fP]"
+
+.SS "const char* shaders_fold = 'shaders\\\\'"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

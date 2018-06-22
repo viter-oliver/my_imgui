@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="texture__shader_8h" kind="file" language="C++">
+    <compoundname>texture_shader.h</compoundname>
+    <includes refid="basic3d_8h" local="yes">basic3d.h</includes>
+    <includedby refid="texture__shader_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.cpp</includedby>
+    <incdepgraph>
+      <node id="1231">
+        <label>functional</label>
+      </node>
+      <node id="1228">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="1230">
+        <label>map</label>
+      </node>
+      <node id="1234">
+        <label>gtc/type_ptr.hpp</label>
+      </node>
+      <node id="1233">
+        <label>gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="1236">
+        <label>fab.h</label>
+      </node>
+      <node id="1229">
+        <label>vector</label>
+      </node>
+      <node id="1232">
+        <label>glm.hpp</label>
+      </node>
+      <node id="1227">
+        <label>imgui.h</label>
+      </node>
+      <node id="1235">
+        <label>GL/gl3w.h</label>
+      </node>
+      <node id="1225">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.h</label>
+        <link refid="texture_shader.h"/>
+        <childnode refid="1226" relation="include">
+        </childnode>
+      </node>
+      <node id="1226">
+        <label>basic3d.h</label>
+        <link refid="basic3d_8h"/>
+        <childnode refid="1227" relation="include">
+        </childnode>
+        <childnode refid="1228" relation="include">
+        </childnode>
+        <childnode refid="1229" relation="include">
+        </childnode>
+        <childnode refid="1230" relation="include">
+        </childnode>
+        <childnode refid="1231" relation="include">
+        </childnode>
+        <childnode refid="1232" relation="include">
+        </childnode>
+        <childnode refid="1233" relation="include">
+        </childnode>
+        <childnode refid="1234" relation="include">
+        </childnode>
+        <childnode refid="1235" relation="include">
+        </childnode>
+        <childnode refid="1236" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1238">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.cpp</label>
+        <link refid="texture__shader_8cpp"/>
+      </node>
+      <node id="1237">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.h</label>
+        <link refid="texture_shader.h"/>
+        <childnode refid="1238" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classtexture__shader" prot="public">texture_shader</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="texture__shader_8h_1acb8fe79a9a31d1a922350d3c6b991eec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>REG_SHADER</definition>
+        <argsstring>(texture_shader)</argsstring>
+        <name>REG_SHADER</name>
+        <param>
+          <type><ref refid="classtexture__shader" kindref="compound">texture_shader</ref></type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.h" line="10" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="basic3d_8h" kindref="compound">basic3d.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="classtexture__shader" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classtexture__shader" kindref="compound">texture_shader</ref><sp/>:</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classbasic__shader" kindref="compound">basic_shader</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classtexture__shader_1a6202ab0844403533c9ea22aa903bd862" kindref="member">texture_shader</ref>();</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//void<sp/>render();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><ref refid="texture__shader_8h_1acb8fe79a9a31d1a922350d3c6b991eec" kindref="member">REG_SHADER</ref>(<ref refid="classtexture__shader" kindref="compound">texture_shader</ref>);</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.h"/>
+  </compounddef>
+</doxygen>

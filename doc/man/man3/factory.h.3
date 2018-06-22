@@ -1,0 +1,48 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <map>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include <functional>\fP
+.br
+\fC#include <memory>\fP
+.br
+\fC#include 'control_common_def\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBfactory\fP"
+.br
+.ti -1c
+.RI "struct \fBfactory::register_t< T >\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBREGISTER_CONTROL_VNAME\fP(T)   reg_control_##T##_"
+.br
+.ti -1c
+.RI "#define \fBREGISTER_CONTROL_BYKEY\fP(T,  key, \&.\&.\&.)   static \fBfactory::register_t\fP<T> \fBREGISTER_CONTROL_VNAME\fP(T)(key, ##__VA_ARGS__);"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define REGISTER_CONTROL_BYKEY(T, key,  \&.\&.\&.)   static \fBfactory::register_t\fP<T> \fBREGISTER_CONTROL_VNAME\fP(T)(key, ##__VA_ARGS__);"
+
+.SS "#define REGISTER_CONTROL_VNAME(T)   reg_control_##T##_"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

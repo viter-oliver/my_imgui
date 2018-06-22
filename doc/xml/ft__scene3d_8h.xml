@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__scene3d_8h" kind="file" language="C++">
+    <compoundname>ft_scene3d.h</compoundname>
+    <includes refid="ft__base_8h" local="yes">ft_base.h</includes>
+    <includes local="no">glm.hpp</includes>
+    <includes local="no">gtc/matrix_transform.hpp</includes>
+    <includes local="no">gtc/type_ptr.hpp</includes>
+    <includedby refid="ft__scene3d_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.cpp</includedby>
+    <incdepgraph>
+      <node id="670">
+        <label>functional</label>
+      </node>
+      <node id="674">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="665">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h</label>
+        <link refid="ft_scene3d.h"/>
+        <childnode refid="666" relation="include">
+        </childnode>
+        <childnode refid="678" relation="include">
+        </childnode>
+        <childnode refid="679" relation="include">
+        </childnode>
+        <childnode refid="680" relation="include">
+        </childnode>
+      </node>
+      <node id="669">
+        <label>string</label>
+      </node>
+      <node id="668">
+        <label>map</label>
+      </node>
+      <node id="680">
+        <label>gtc/type_ptr.hpp</label>
+      </node>
+      <node id="676">
+        <label>json.h</label>
+      </node>
+      <node id="679">
+        <label>gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="666">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="667" relation="include">
+        </childnode>
+      </node>
+      <node id="675">
+        <label>vector</label>
+      </node>
+      <node id="672">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="673" relation="include">
+        </childnode>
+        <childnode refid="674" relation="include">
+        </childnode>
+        <childnode refid="675" relation="include">
+        </childnode>
+        <childnode refid="669" relation="include">
+        </childnode>
+        <childnode refid="676" relation="include">
+        </childnode>
+        <childnode refid="677" relation="include">
+        </childnode>
+      </node>
+      <node id="667">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="668" relation="include">
+        </childnode>
+        <childnode refid="669" relation="include">
+        </childnode>
+        <childnode refid="670" relation="include">
+        </childnode>
+        <childnode refid="671" relation="include">
+        </childnode>
+        <childnode refid="672" relation="include">
+        </childnode>
+      </node>
+      <node id="678">
+        <label>glm.hpp</label>
+      </node>
+      <node id="673">
+        <label>imgui.h</label>
+      </node>
+      <node id="677">
+        <label>algorithm</label>
+      </node>
+      <node id="671">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="682">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.cpp</label>
+        <link refid="ft__scene3d_8cpp"/>
+      </node>
+      <node id="681">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h</label>
+        <link refid="ft_scene3d.h"/>
+        <childnode refid="682" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classft__scene3d" prot="public">ft_scene3d</innerclass>
+    <innerclass refid="structft__scene3d_1_1intl__pt" prot="private">ft_scene3d::intl_pt</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__base_8h" kindref="compound">ft_base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/matrix_transform.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/type_ptr.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="classft__scene3d" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classft__scene3d" kindref="compound">ft_scene3d</ref><sp/>:</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classft__base" kindref="compound">ft_base</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10" refid="structft__scene3d_1_1intl__pt" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structft__scene3d_1_1intl__pt" kindref="compound">intl_pt</ref></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12" refid="structft__scene3d_1_1intl__pt_1aace81752bd8aafc05b6f2eff3f05040b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__scene3d_1_1intl__pt_1aace81752bd8aafc05b6f2eff3f05040b" kindref="member">_size</ref>;</highlight></codeline>
+<codeline lineno="13" refid="structft__scene3d_1_1intl__pt_1a42b490671bdeae3a62cd431845ae5f41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec4<sp/><ref refid="structft__scene3d_1_1intl__pt_1a42b490671bdeae3a62cd431845ae5f41" kindref="member">_back_color</ref>;</highlight></codeline>
+<codeline lineno="14" refid="structft__scene3d_1_1intl__pt_1a66ed8570db8ba68dba041e7fd2e0c5b8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structft__scene3d_1_1intl__pt_1a66ed8570db8ba68dba041e7fd2e0c5b8" kindref="member">intl_pt</ref>()</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:_size(800.f,<sp/>600.f)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>,<sp/>_back_color(0.2f,<sp/>0.2f,<sp/>0.5f,<sp/>0.5f)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="19" refid="classft__scene3d_1abd161feba1565d514ac4e175cb10c95f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structft__scene3d_1_1intl__pt" kindref="compound">intl_pt</ref><sp/><ref refid="classft__scene3d_1abd161feba1565d514ac4e175cb10c95f" kindref="member">_sn_pt</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//frame<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="classft__scene3d_1addf5a515f7215d652c1048b1bf82e8fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1addf5a515f7215d652c1048b1bf82e8fc" kindref="member">_fboId</ref>;</highlight></codeline>
+<codeline lineno="22" refid="classft__scene3d_1a92866824ac864ad7b60b8f9011aa5627" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1a92866824ac864ad7b60b8f9011aa5627" kindref="member">_colorTextId</ref>;</highlight></codeline>
+<codeline lineno="23" refid="classft__scene3d_1ac6457391323de2d8a6f2130e51c82752" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1ac6457391323de2d8a6f2130e51c82752" kindref="member">_depthStencilTextId</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__scene3d_1a1f8cebe1cec4cc08438b42f776c5c0d4" kindref="member">ft_scene3d</ref>();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__scene3d_1a6aab295c5bcdba29567f29f6e2dd4e23" kindref="member">~ft_scene3d</ref>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1a80483181d052d99bf8c289c43a1b8d89" kindref="member">draw</ref>();</highlight></codeline>
+<codeline lineno="28" refid="classft__scene3d_1a76b1b7a6e3b3a88cd3a975fb6e9d00ba" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1a76b1b7a6e3b3a88cd3a975fb6e9d00ba" kindref="member">collect_property_range</ref>(<ref refid="control__common__def_8h_1a2829b10b78675304660841f0fb2135d4" kindref="member">vproperty_list</ref>&amp;<sp/>vplist)</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>plen<sp/>=<sp/><ref refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b" kindref="member">ft_base::collect_property_range</ref>(vplist);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="classft__scene3d_1abd161feba1565d514ac4e175cb10c95f" kindref="member">_sn_pt</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vplist.emplace_back(&amp;_sn_pt,<sp/>len);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len<sp/>+=<sp/>plen;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>len;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1a91c97b4fa3145deab33d7871487bea15" kindref="member">draw_peroperty_page</ref>();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1a57177793cad5a91632c0723c69454c73" kindref="member">init_from_json</ref>(Value&amp;<sp/>jvalue);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1afd8a847d2583a35f75431ce36a376ea9" kindref="member">init_json_unit</ref>(Value&amp;<sp/>junit);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__scene3d_1a150a07a95a824d3096f641f8d3a4d360" kindref="member">handle_mouse</ref>();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><ref refid="afb__load_8cpp_1a464695366cb3e9683ab9cd7091409f68" kindref="member">REGISTER_CONTROL</ref>(<ref refid="classft__scene3d" kindref="compound">ft_scene3d</ref>)</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h"/>
+  </compounddef>
+</doxygen>

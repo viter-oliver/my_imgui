@@ -1,0 +1,50 @@
+.TH "ofbx::IElement" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::IElement \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherited by \fBofbx::Element\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fBIElement\fP * \fBgetFirstChild\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBIElement\fP * \fBgetSibling\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBDataView\fP \fBgetID\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBIElementProperty\fP * \fBgetFirstProperty\fP () const =0"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBIElement\fP* ofbx::IElement::getFirstChild () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Element\fP\&.
+.SS "virtual \fBIElementProperty\fP* ofbx::IElement::getFirstProperty () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Element\fP\&.
+.SS "virtual \fBDataView\fP ofbx::IElement::getID () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Element\fP\&.
+.SS "virtual \fBIElement\fP* ofbx::IElement::getSibling () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Element\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

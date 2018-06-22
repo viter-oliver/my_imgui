@@ -1,0 +1,230 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classft__button" kind="class" language="C++" prot="public">
+    <compoundname>ft_button</compoundname>
+    <basecompoundref refid="classft__base" prot="public" virt="non-virtual">ft_base</basecompoundref>
+    <includes refid="ft__button_8h" local="no">ft_button.h</includes>
+    <innerclass refid="structft__button_1_1intl__pt" prot="private">ft_button::intl_pt</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classft__button_1a337594b1d5a0a9dc006ff96331e1a6d1" prot="private" static="no" mutable="no">
+        <type><ref refid="structft__button_1_1intl__pt" kindref="compound">intl_pt</ref></type>
+        <definition>intl_pt ft_button::_pt</definition>
+        <argsstring></argsstring>
+        <name>_pt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classft__button_1a41e6b1e461c16a60121cf2cf7e126671" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ft_button::ft_button</definition>
+        <argsstring>()</argsstring>
+        <name>ft_button</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="13" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.cpp" bodystart="36" bodyend="40"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__button_1a8492630647dfd6925f7883017135ff12" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ft_button::draw</definition>
+        <argsstring>()</argsstring>
+        <name>draw</name>
+        <reimplements refid="classft__base_1a09062404251d099907ff9d7f2b18b89a">draw</reimplements>
+        <briefdescription>
+<para>draw self on a surface </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="15" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.cpp" bodystart="3" bodyend="6"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__button_1a06502229d4787ebac64599eeaa247d38" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int ft_button::collect_property_range</definition>
+        <argsstring>(vproperty_list &amp;vplist)</argsstring>
+        <name>collect_property_range</name>
+        <reimplements refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b">collect_property_range</reimplements>
+        <param>
+          <type><ref refid="control__common__def_8h_1a2829b10b78675304660841f0fb2135d4" kindref="member">vproperty_list</ref> &amp;</type>
+          <declname>vplist</declname>
+        </param>
+        <briefdescription>
+<para>get the memory range of the property data block </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vplist[out]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a container which the range of property data block will store into </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>length of property data block<itemizedlist>
+<listitem></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="16" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" bodystart="16" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__button_1aa894670085c04c79d0d6e264adaa4f82" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ft_button::draw_peroperty_page</definition>
+        <argsstring>()</argsstring>
+        <name>draw_peroperty_page</name>
+        <reimplements refid="classft__base_1a03bf0cd635d96f8a42686567893c2bd4">draw_peroperty_page</reimplements>
+        <briefdescription>
+<para>draw property on the property page for editing </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="26" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.cpp" bodystart="8" bodyend="11"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__button_1ad74e3d75af1176fffbd583bfd9a4b3b6" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool ft_button::init_from_json</definition>
+        <argsstring>(Value &amp;jvalue)</argsstring>
+        <name>init_from_json</name>
+        <reimplements refid="classft__base_1a2921bac309eb7b6064c8ee2f39876640">init_from_json</reimplements>
+        <param>
+          <type>Value &amp;</type>
+          <declname>jvalue</declname>
+        </param>
+        <briefdescription>
+<para>instancing class from a json value unit </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jvalue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a json value jvalue which contain all the value of the data member of current object </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>result <ndash/>true success <ndash/>false failure </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="27" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.cpp" bodystart="21" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__button_1ab6667a655aec64b9bca5470cb1ee075e" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool ft_button::handle_mouse</definition>
+        <argsstring>()</argsstring>
+        <name>handle_mouse</name>
+        <reimplements refid="classft__base_1a9fff220865b2aeb2d7dedd1dd07c4a90">handle_mouse</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.cpp" bodystart="31" bodyend="34"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="227">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="228" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="228">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+      </node>
+      <node id="226">
+        <label>ft_button</label>
+        <link refid="classft__button"/>
+        <childnode refid="227" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="230">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="231" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="233">
+        <label>ft_button::intl_pt</label>
+        <link refid="structft__button_1_1intl__pt"/>
+      </node>
+      <node id="231">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+        <childnode refid="231" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="232" relation="usage">
+          <edgelabel>_in_p</edgelabel>
+        </childnode>
+      </node>
+      <node id="229">
+        <label>ft_button</label>
+        <link refid="classft__button"/>
+        <childnode refid="230" relation="public-inheritance">
+        </childnode>
+        <childnode refid="233" relation="usage">
+          <edgelabel>_pt</edgelabel>
+        </childnode>
+      </node>
+      <node id="232">
+        <label>base_ui_component::internal_property</label>
+        <link refid="structbase__ui__component_1_1internal__property"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="5" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" bodystart="3" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classbase__ui__component_1a544403a2926ccead33f8efab97fbf0fa" prot="protected" virt="non-virtual"><scope>ft_button</scope><name>_in_p</name></member>
+      <member refid="classbase__ui__component_1aa1825be2fe793f7bd408d01f3436bc58" prot="protected" virt="non-virtual"><scope>ft_button</scope><name>_parent</name></member>
+      <member refid="classft__button_1a337594b1d5a0a9dc006ff96331e1a6d1" prot="private" virt="non-virtual"><scope>ft_button</scope><name>_pt</name></member>
+      <member refid="classbase__ui__component_1a5f97f62b438bc6e39a55f230380b1bcf" prot="protected" virt="non-virtual"><scope>ft_button</scope><name>_selected</name></member>
+      <member refid="classbase__ui__component_1a01dc8ef82c5151bf027971069350916c" prot="protected" virt="non-virtual"><scope>ft_button</scope><name>_vchilds</name></member>
+      <member refid="classbase__ui__component_1ae7efd3132e7d8c3bc59b3b8cbbdbed58" prot="public" virt="non-virtual"><scope>ft_button</scope><name>absolute_coordinate_of_base_pos</name></member>
+      <member refid="classbase__ui__component_1a0ed950da68a94238cfef7483cf0d3f20" prot="public" virt="non-virtual"><scope>ft_button</scope><name>add_child</name></member>
+      <member refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" prot="public" virt="non-virtual"><scope>ft_button</scope><name>base_pos</name></member>
+      <member refid="classbase__ui__component_1a65a95f5414eb2d7be2757fa6c97ad566" prot="public" virt="non-virtual"><scope>ft_button</scope><name>base_ui_component</name></member>
+      <member refid="classbase__ui__component_1a9329fc1712f79bbb1f09b7fcf9506598" prot="public" virt="non-virtual"><scope>ft_button</scope><name>child_count</name></member>
+      <member refid="classft__button_1a06502229d4787ebac64599eeaa247d38" prot="public" virt="virtual"><scope>ft_button</scope><name>collect_property_range</name></member>
+      <member refid="classft__button_1a8492630647dfd6925f7883017135ff12" prot="public" virt="virtual"><scope>ft_button</scope><name>draw</name></member>
+      <member refid="classft__button_1aa894670085c04c79d0d6e264adaa4f82" prot="public" virt="virtual"><scope>ft_button</scope><name>draw_peroperty_page</name></member>
+      <member refid="classft__base_1ae9872ac2cd2aa700a1e91f2537cca075" prot="public" virt="non-virtual"><scope>ft_button</scope><name>ft_base</name></member>
+      <member refid="classft__button_1a41e6b1e461c16a60121cf2cf7e126671" prot="public" virt="non-virtual"><scope>ft_button</scope><name>ft_button</name></member>
+      <member refid="classbase__ui__component_1a9ecd8f35cc9aa4b5133514a3b06b7ff3" prot="public" virt="non-virtual"><scope>ft_button</scope><name>get_child</name></member>
+      <member refid="classbase__ui__component_1a4d3b7f9887b863a5607e43ac4f29c9d5" prot="public" virt="non-virtual"><scope>ft_button</scope><name>get_child_count</name></member>
+      <member refid="classft__base_1a8ac04e73e38ebcf7b30c76bd88aff07d" prot="public" virt="virtual"><scope>ft_button</scope><name>get_copy_of_object</name></member>
+      <member refid="classbase__ui__component_1ad09db0a28ea8a64dea8751b965f372d8" prot="public" virt="non-virtual"><scope>ft_button</scope><name>get_name</name></member>
+      <member refid="classbase__ui__component_1a31cba9202f2e1832c0762de72a79e417" prot="public" virt="non-virtual"><scope>ft_button</scope><name>get_parent</name></member>
+      <member refid="classft__button_1ab6667a655aec64b9bca5470cb1ee075e" prot="public" virt="virtual"><scope>ft_button</scope><name>handle_mouse</name></member>
+      <member refid="classft__button_1ad74e3d75af1176fffbd583bfd9a4b3b6" prot="public" virt="virtual"><scope>ft_button</scope><name>init_from_json</name></member>
+      <member refid="classft__base_1aa7ebbfc073f79a8a383bc7b78af64f91" prot="public" virt="virtual"><scope>ft_button</scope><name>init_json_unit</name></member>
+      <member refid="classbase__ui__component_1a7e049f196571b69481efc09d874e9a86" prot="public" virt="non-virtual"><scope>ft_button</scope><name>is_selected</name></member>
+      <member refid="classbase__ui__component_1ac0e5e289b0bc4f3f80c0d4cea794f5c7" prot="public" virt="non-virtual"><scope>ft_button</scope><name>is_visible</name></member>
+      <member refid="classbase__ui__component_1aea0946d8e113fbeaf37855e740ee8dcc" prot="public" virt="non-virtual"><scope>ft_button</scope><name>offset</name></member>
+      <member refid="classbase__ui__component_1a177f92647397b122c7b9709f3fa4331f" prot="public" virt="non-virtual"><scope>ft_button</scope><name>remove_child</name></member>
+      <member refid="classbase__ui__component_1aca508bf254f0b9c55d29c68c8249e2d3" prot="public" virt="non-virtual"><scope>ft_button</scope><name>screenh</name></member>
+      <member refid="classbase__ui__component_1a1027bcda32d3f479b6d14c0cbbcc184b" prot="public" virt="non-virtual"><scope>ft_button</scope><name>screenw</name></member>
+      <member refid="classbase__ui__component_1af543d0a51ac1ba57d9611edcb0e67800" prot="public" virt="non-virtual"><scope>ft_button</scope><name>set_name</name></member>
+      <member refid="classbase__ui__component_1ac68d1904c07807f3003df632a118ad3f" prot="public" virt="non-virtual"><scope>ft_button</scope><name>set_selected</name></member>
+      <member refid="classbase__ui__component_1af7a2c9107435cd51b952cf2a0d1c3b50" prot="public" virt="non-virtual"><scope>ft_button</scope><name>set_visible</name></member>
+      <member refid="classbase__ui__component_1a6d4e9322ad1ea5c1c7010fbae0963839" prot="public" virt="virtual"><scope>ft_button</scope><name>~base_ui_component</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

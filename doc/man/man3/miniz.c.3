@@ -1,0 +1,1561 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'miniz\&.h'\fP
+.br
+\fC#include <sys/stat\&.h>\fP
+.br
+\fC#include <utime\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBinflate_state\fP"
+.br
+.ti -1c
+.RI "struct \fBtdefl_sym_freq\fP"
+.br
+.ti -1c
+.RI "struct \fBtdefl_output_buffer\fP"
+.br
+.ti -1c
+.RI "struct \fBmz_zip_array\fP"
+.br
+.ti -1c
+.RI "struct \fBmz_zip_internal_state_tag\fP"
+.br
+.ti -1c
+.RI "struct \fBmz_zip_writer_add_state\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBTDEFL_PUT_BITS\fP(b,  l)"
+.br
+.ti -1c
+.RI "#define \fBTDEFL_RLE_PREV_CODE_SIZE\fP()"
+.br
+.ti -1c
+.RI "#define \fBTDEFL_RLE_ZERO_CODE_SIZE\fP()"
+.br
+.ti -1c
+.RI "#define \fBTDEFL_PROBE\fP"
+.br
+.ti -1c
+.RI "#define \fBTINFL_MEMCPY\fP(d,  s,  l)   memcpy(d, s, l)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_MEMSET\fP(p,  c,  l)   memset(p, c, l)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_CR_BEGIN\fP"
+.br
+.ti -1c
+.RI "#define \fBTINFL_CR_RETURN\fP(state_index,  result)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_CR_RETURN_FOREVER\fP(state_index,  result)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_CR_FINISH\fP   }"
+.br
+.ti -1c
+.RI "#define \fBTINFL_GET_BYTE\fP(state_index,  c)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_NEED_BITS\fP(state_index,  n)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_SKIP_BITS\fP(state_index,  n)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_GET_BITS\fP(state_index,  b,  n)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_HUFF_BITBUF_FILL\fP(state_index,  pHuff)"
+.br
+.ti -1c
+.RI "#define \fBTINFL_HUFF_DECODE\fP(state_index,  sym,  pHuff)"
+.br
+.ti -1c
+.RI "#define \fBMZ_FOPEN\fP(f,  m)   fopen(f, m)"
+.br
+.ti -1c
+.RI "#define \fBMZ_FCLOSE\fP   fclose"
+.br
+.ti -1c
+.RI "#define \fBMZ_FREAD\fP   fread"
+.br
+.ti -1c
+.RI "#define \fBMZ_FWRITE\fP   fwrite"
+.br
+.ti -1c
+.RI "#define \fBMZ_FTELL64\fP   ftello"
+.br
+.ti -1c
+.RI "#define \fBMZ_FSEEK64\fP   fseeko"
+.br
+.ti -1c
+.RI "#define \fBMZ_FILE_STAT_STRUCT\fP   stat"
+.br
+.ti -1c
+.RI "#define \fBMZ_FILE_STAT\fP   stat"
+.br
+.ti -1c
+.RI "#define \fBMZ_FFLUSH\fP   fflush"
+.br
+.ti -1c
+.RI "#define \fBMZ_FREOPEN\fP(f,  m,  s)   freopen(f, m, s)"
+.br
+.ti -1c
+.RI "#define \fBMZ_DELETE_FILE\fP   remove"
+.br
+.ti -1c
+.RI "#define \fBMZ_TOLOWER\fP(c)   ((((c) >= 'A') && ((c) <= 'Z')) ? ((c) - 'A' + 'a') : (c))"
+.br
+.ti -1c
+.RI "#define \fBMZ_ZIP_ARRAY_SET_ELEMENT_SIZE\fP(array_ptr,  element_size)   (array_ptr)->m_element_size = element_size"
+.br
+.ti -1c
+.RI "#define \fBMZ_ZIP_ARRAY_ELEMENT\fP(array_ptr,  element_type,  index)   ((element_type *)((array_ptr)->m_p))[index]"
+.br
+.ti -1c
+.RI "#define \fBMZ_SWAP_UINT32\fP(a,  b)"
+.br
+.ti -1c
+.RI "#define \fBMZ_WRITE_LE16\fP(p,  v)   \fBmz_write_le16\fP((\fBmz_uint8\fP *)(p), (\fBmz_uint16\fP)(v))"
+.br
+.ti -1c
+.RI "#define \fBMZ_WRITE_LE32\fP(p,  v)   \fBmz_write_le32\fP((\fBmz_uint8\fP *)(p), (\fBmz_uint32\fP)(v))"
+.br
+.ti -1c
+.RI "#define \fBMZ_WRITE_LE64\fP(p,  v)   \fBmz_write_le64\fP((\fBmz_uint8\fP *)(p), (\fBmz_uint64\fP)(v))"
+.br
+.ti -1c
+.RI "#define \fBMZ_ZIP64_MAX_LOCAL_EXTRA_FIELD_SIZE\fP   (sizeof(\fBmz_uint16\fP) * 2 + sizeof(\fBmz_uint64\fP) * 2)"
+.br
+.ti -1c
+.RI "#define \fBMZ_ZIP64_MAX_CENTRAL_EXTRA_FIELD_SIZE\fP   (sizeof(\fBmz_uint16\fP) * 2 + sizeof(\fBmz_uint64\fP) * 3)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef unsigned char \fBmz_validate_uint16\fP[sizeof(\fBmz_uint16\fP)==2?1:-1]"
+.br
+.ti -1c
+.RI "typedef unsigned char \fBmz_validate_uint32\fP[sizeof(\fBmz_uint32\fP)==4?1:-1]"
+.br
+.ti -1c
+.RI "typedef unsigned char \fBmz_validate_uint64\fP[sizeof(\fBmz_uint64\fP)==8?1:-1]"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBTDEFL_MAX_SUPPORTED_HUFF_CODESIZE\fP = 32 }"
+.br
+.ti -1c
+.RI "enum { \fBMZ_ZIP_END_OF_CENTRAL_DIR_HEADER_SIG\fP = 0x06054b50, \fBMZ_ZIP_CENTRAL_DIR_HEADER_SIG\fP = 0x02014b50, \fBMZ_ZIP_LOCAL_DIR_HEADER_SIG\fP = 0x04034b50, \fBMZ_ZIP_LOCAL_DIR_HEADER_SIZE\fP = 30, \fBMZ_ZIP_CENTRAL_DIR_HEADER_SIZE\fP = 46, \fBMZ_ZIP_END_OF_CENTRAL_DIR_HEADER_SIZE\fP = 22, \fBMZ_ZIP64_END_OF_CENTRAL_DIR_HEADER_SIG\fP = 0x06064b50, \fBMZ_ZIP64_END_OF_CENTRAL_DIR_LOCATOR_SIG\fP = 0x07064b50, \fBMZ_ZIP64_END_OF_CENTRAL_DIR_HEADER_SIZE\fP = 56, \fBMZ_ZIP64_END_OF_CENTRAL_DIR_LOCATOR_SIZE\fP = 20, \fBMZ_ZIP64_EXTENDED_INFORMATION_FIELD_HEADER_ID\fP = 0x0001, \fBMZ_ZIP_DATA_DESCRIPTOR_ID\fP = 0x08074b50, \fBMZ_ZIP_DATA_DESCRIPTER_SIZE64\fP = 24, \fBMZ_ZIP_DATA_DESCRIPTER_SIZE32\fP = 16, \fBMZ_ZIP_CDH_SIG_OFS\fP = 0, \fBMZ_ZIP_CDH_VERSION_MADE_BY_OFS\fP = 4, \fBMZ_ZIP_CDH_VERSION_NEEDED_OFS\fP = 6, \fBMZ_ZIP_CDH_BIT_FLAG_OFS\fP = 8, \fBMZ_ZIP_CDH_METHOD_OFS\fP = 10, \fBMZ_ZIP_CDH_FILE_TIME_OFS\fP = 12, \fBMZ_ZIP_CDH_FILE_DATE_OFS\fP = 14, \fBMZ_ZIP_CDH_CRC32_OFS\fP = 16, \fBMZ_ZIP_CDH_COMPRESSED_SIZE_OFS\fP = 20, \fBMZ_ZIP_CDH_DECOMPRESSED_SIZE_OFS\fP = 24, \fBMZ_ZIP_CDH_FILENAME_LEN_OFS\fP = 28, \fBMZ_ZIP_CDH_EXTRA_LEN_OFS\fP = 30, \fBMZ_ZIP_CDH_COMMENT_LEN_OFS\fP = 32, \fBMZ_ZIP_CDH_DISK_START_OFS\fP = 34, \fBMZ_ZIP_CDH_INTERNAL_ATTR_OFS\fP = 36, \fBMZ_ZIP_CDH_EXTERNAL_ATTR_OFS\fP = 38, \fBMZ_ZIP_CDH_LOCAL_HEADER_OFS\fP = 42, \fBMZ_ZIP_LDH_SIG_OFS\fP = 0, \fBMZ_ZIP_LDH_VERSION_NEEDED_OFS\fP = 4, \fBMZ_ZIP_LDH_BIT_FLAG_OFS\fP = 6, \fBMZ_ZIP_LDH_METHOD_OFS\fP = 8, \fBMZ_ZIP_LDH_FILE_TIME_OFS\fP = 10, \fBMZ_ZIP_LDH_FILE_DATE_OFS\fP = 12, \fBMZ_ZIP_LDH_CRC32_OFS\fP = 14, \fBMZ_ZIP_LDH_COMPRESSED_SIZE_OFS\fP = 18, \fBMZ_ZIP_LDH_DECOMPRESSED_SIZE_OFS\fP = 22, \fBMZ_ZIP_LDH_FILENAME_LEN_OFS\fP = 26, \fBMZ_ZIP_LDH_EXTRA_LEN_OFS\fP = 28, \fBMZ_ZIP_LDH_BIT_FLAG_HAS_LOCATOR\fP = 1 << 3, \fBMZ_ZIP_ECDH_SIG_OFS\fP = 0, \fBMZ_ZIP_ECDH_NUM_THIS_DISK_OFS\fP = 4, \fBMZ_ZIP_ECDH_NUM_DISK_CDIR_OFS\fP = 6, \fBMZ_ZIP_ECDH_CDIR_NUM_ENTRIES_ON_DISK_OFS\fP = 8, \fBMZ_ZIP_ECDH_CDIR_TOTAL_ENTRIES_OFS\fP = 10, \fBMZ_ZIP_ECDH_CDIR_SIZE_OFS\fP = 12, \fBMZ_ZIP_ECDH_CDIR_OFS_OFS\fP = 16, \fBMZ_ZIP_ECDH_COMMENT_SIZE_OFS\fP = 20, \fBMZ_ZIP64_ECDL_SIG_OFS\fP = 0, \fBMZ_ZIP64_ECDL_NUM_DISK_CDIR_OFS\fP = 4, \fBMZ_ZIP64_ECDL_REL_OFS_TO_ZIP64_ECDR_OFS\fP = 8, \fBMZ_ZIP64_ECDL_TOTAL_NUMBER_OF_DISKS_OFS\fP = 16, \fBMZ_ZIP64_ECDH_SIG_OFS\fP = 0, \fBMZ_ZIP64_ECDH_SIZE_OF_RECORD_OFS\fP = 4, \fBMZ_ZIP64_ECDH_VERSION_MADE_BY_OFS\fP = 12, \fBMZ_ZIP64_ECDH_VERSION_NEEDED_OFS\fP = 14, \fBMZ_ZIP64_ECDH_NUM_THIS_DISK_OFS\fP = 16, \fBMZ_ZIP64_ECDH_NUM_DISK_CDIR_OFS\fP = 20, \fBMZ_ZIP64_ECDH_CDIR_NUM_ENTRIES_ON_DISK_OFS\fP = 24, \fBMZ_ZIP64_ECDH_CDIR_TOTAL_ENTRIES_OFS\fP = 32, \fBMZ_ZIP64_ECDH_CDIR_SIZE_OFS\fP = 40, \fBMZ_ZIP64_ECDH_CDIR_OFS_OFS\fP = 48, \fBMZ_ZIP_VERSION_MADE_BY_DOS_FILESYSTEM_ID\fP = 0, \fBMZ_ZIP_DOS_DIR_ATTRIBUTE_BITFLAG\fP = 0x10, \fBMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_IS_ENCRYPTED\fP = 1, \fBMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_COMPRESSED_PATCH_FLAG\fP = 32, \fBMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_USES_STRONG_ENCRYPTION\fP = 64, \fBMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_LOCAL_DIR_IS_MASKED\fP = 8192, \fBMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_UTF8\fP = 1 << 11 }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmz_ulong\fP \fBmz_adler32\fP (\fBmz_ulong\fP adler, const unsigned char *ptr, size_t buf_len)"
+.br
+.ti -1c
+.RI "\fBmz_ulong\fP \fBmz_crc32\fP (\fBmz_ulong\fP crc, const \fBmz_uint8\fP *ptr, size_t buf_len)"
+.br
+.ti -1c
+.RI "void \fBmz_free\fP (void *p)"
+.br
+.ti -1c
+.RI "void * \fBminiz_def_alloc_func\fP (void *opaque, size_t items, size_t size)"
+.br
+.ti -1c
+.RI "void \fBminiz_def_free_func\fP (void *opaque, void *address)"
+.br
+.ti -1c
+.RI "void * \fBminiz_def_realloc_func\fP (void *opaque, void *address, size_t items, size_t size)"
+.br
+.ti -1c
+.RI "const char * \fBmz_version\fP (void)"
+.br
+.ti -1c
+.RI "int \fBmz_deflateInit\fP (\fBmz_streamp\fP pStream, int level)"
+.br
+.ti -1c
+.RI "int \fBmz_deflateInit2\fP (\fBmz_streamp\fP pStream, int level, int method, int window_bits, int mem_level, int strategy)"
+.br
+.ti -1c
+.RI "int \fBmz_deflateReset\fP (\fBmz_streamp\fP pStream)"
+.br
+.ti -1c
+.RI "int \fBmz_deflate\fP (\fBmz_streamp\fP pStream, int flush)"
+.br
+.ti -1c
+.RI "int \fBmz_deflateEnd\fP (\fBmz_streamp\fP pStream)"
+.br
+.ti -1c
+.RI "\fBmz_ulong\fP \fBmz_deflateBound\fP (\fBmz_streamp\fP pStream, \fBmz_ulong\fP source_len)"
+.br
+.ti -1c
+.RI "int \fBmz_compress2\fP (unsigned char *pDest, \fBmz_ulong\fP *pDest_len, const unsigned char *pSource, \fBmz_ulong\fP source_len, int level)"
+.br
+.ti -1c
+.RI "int \fBmz_compress\fP (unsigned char *pDest, \fBmz_ulong\fP *pDest_len, const unsigned char *pSource, \fBmz_ulong\fP source_len)"
+.br
+.ti -1c
+.RI "\fBmz_ulong\fP \fBmz_compressBound\fP (\fBmz_ulong\fP source_len)"
+.br
+.ti -1c
+.RI "int \fBmz_inflateInit2\fP (\fBmz_streamp\fP pStream, int window_bits)"
+.br
+.ti -1c
+.RI "int \fBmz_inflateInit\fP (\fBmz_streamp\fP pStream)"
+.br
+.ti -1c
+.RI "int \fBmz_inflate\fP (\fBmz_streamp\fP pStream, int flush)"
+.br
+.ti -1c
+.RI "int \fBmz_inflateEnd\fP (\fBmz_streamp\fP pStream)"
+.br
+.ti -1c
+.RI "int \fBmz_uncompress\fP (unsigned char *pDest, \fBmz_ulong\fP *pDest_len, const unsigned char *pSource, \fBmz_ulong\fP source_len)"
+.br
+.ti -1c
+.RI "const char * \fBmz_error\fP (int err)"
+.br
+.ti -1c
+.RI "static \fBtdefl_sym_freq\fP * \fBtdefl_radix_sort_syms\fP (\fBmz_uint\fP num_syms, \fBtdefl_sym_freq\fP *pSyms0, \fBtdefl_sym_freq\fP *pSyms1)"
+.br
+.ti -1c
+.RI "static void \fBtdefl_calculate_minimum_redundancy\fP (\fBtdefl_sym_freq\fP *A, int n)"
+.br
+.ti -1c
+.RI "static void \fBtdefl_huffman_enforce_max_code_size\fP (int *pNum_codes, int code_list_len, int max_code_size)"
+.br
+.ti -1c
+.RI "static void \fBtdefl_optimize_huffman_table\fP (\fBtdefl_compressor\fP *d, int table_num, int table_len, int code_size_limit, int static_table)"
+.br
+.ti -1c
+.RI "static void \fBtdefl_start_dynamic_block\fP (\fBtdefl_compressor\fP *d)"
+.br
+.ti -1c
+.RI "static void \fBtdefl_start_static_block\fP (\fBtdefl_compressor\fP *d)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBtdefl_compress_lz_codes\fP (\fBtdefl_compressor\fP *d)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBtdefl_compress_block\fP (\fBtdefl_compressor\fP *d, \fBmz_bool\fP static_block)"
+.br
+.ti -1c
+.RI "static int \fBtdefl_flush_block\fP (\fBtdefl_compressor\fP *d, int flush)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBtdefl_find_match\fP (\fBtdefl_compressor\fP *d, \fBmz_uint\fP lookahead_pos, \fBmz_uint\fP max_dist, \fBmz_uint\fP max_match_len, \fBmz_uint\fP *pMatch_dist, \fBmz_uint\fP *pMatch_len)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBtdefl_record_literal\fP (\fBtdefl_compressor\fP *d, \fBmz_uint8\fP lit)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBtdefl_record_match\fP (\fBtdefl_compressor\fP *d, \fBmz_uint\fP match_len, \fBmz_uint\fP match_dist)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBtdefl_compress_normal\fP (\fBtdefl_compressor\fP *d)"
+.br
+.ti -1c
+.RI "static \fBtdefl_status\fP \fBtdefl_flush_output_buffer\fP (\fBtdefl_compressor\fP *d)"
+.br
+.ti -1c
+.RI "\fBtdefl_status\fP \fBtdefl_compress\fP (\fBtdefl_compressor\fP *d, const void *pIn_buf, size_t *pIn_buf_size, void *pOut_buf, size_t *pOut_buf_size, \fBtdefl_flush\fP flush)"
+.br
+.ti -1c
+.RI "\fBtdefl_status\fP \fBtdefl_compress_buffer\fP (\fBtdefl_compressor\fP *d, const void *pIn_buf, size_t in_buf_size, \fBtdefl_flush\fP flush)"
+.br
+.ti -1c
+.RI "\fBtdefl_status\fP \fBtdefl_init\fP (\fBtdefl_compressor\fP *d, \fBtdefl_put_buf_func_ptr\fP pPut_buf_func, void *pPut_buf_user, int flags)"
+.br
+.ti -1c
+.RI "\fBtdefl_status\fP \fBtdefl_get_prev_return_status\fP (\fBtdefl_compressor\fP *d)"
+.br
+.ti -1c
+.RI "\fBmz_uint32\fP \fBtdefl_get_adler32\fP (\fBtdefl_compressor\fP *d)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBtdefl_compress_mem_to_output\fP (const void *pBuf, size_t buf_len, \fBtdefl_put_buf_func_ptr\fP pPut_buf_func, void *pPut_buf_user, int flags)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBtdefl_output_buffer_putter\fP (const void *pBuf, int len, void *pUser)"
+.br
+.ti -1c
+.RI "void * \fBtdefl_compress_mem_to_heap\fP (const void *pSrc_buf, size_t src_buf_len, size_t *pOut_len, int flags)"
+.br
+.ti -1c
+.RI "size_t \fBtdefl_compress_mem_to_mem\fP (void *pOut_buf, size_t out_buf_len, const void *pSrc_buf, size_t src_buf_len, int flags)"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBtdefl_create_comp_flags_from_zip_params\fP (int level, int window_bits, int strategy)"
+.br
+.ti -1c
+.RI "void * \fBtdefl_write_image_to_png_file_in_memory_ex\fP (const void *pImage, int w, int h, int num_chans, size_t *pLen_out, \fBmz_uint\fP level, \fBmz_bool\fP flip)"
+.br
+.ti -1c
+.RI "void * \fBtdefl_write_image_to_png_file_in_memory\fP (const void *pImage, int w, int h, int num_chans, size_t *pLen_out)"
+.br
+.ti -1c
+.RI "\fBtdefl_compressor\fP * \fBtdefl_compressor_alloc\fP ()"
+.br
+.ti -1c
+.RI "void \fBtdefl_compressor_free\fP (\fBtdefl_compressor\fP *pComp)"
+.br
+.ti -1c
+.RI "\fBtinfl_status\fP \fBtinfl_decompress\fP (\fBtinfl_decompressor\fP *r, const \fBmz_uint8\fP *pIn_buf_next, size_t *pIn_buf_size, \fBmz_uint8\fP *pOut_buf_start, \fBmz_uint8\fP *pOut_buf_next, size_t *pOut_buf_size, const \fBmz_uint32\fP decomp_flags)"
+.br
+.ti -1c
+.RI "void * \fBtinfl_decompress_mem_to_heap\fP (const void *pSrc_buf, size_t src_buf_len, size_t *pOut_len, int flags)"
+.br
+.ti -1c
+.RI "size_t \fBtinfl_decompress_mem_to_mem\fP (void *pOut_buf, size_t out_buf_len, const void *pSrc_buf, size_t src_buf_len, int flags)"
+.br
+.ti -1c
+.RI "int \fBtinfl_decompress_mem_to_callback\fP (const void *pIn_buf, size_t *pIn_buf_size, \fBtinfl_put_buf_func_ptr\fP pPut_buf_func, void *pPut_buf_user, int flags)"
+.br
+.ti -1c
+.RI "\fBtinfl_decompressor\fP * \fBtinfl_decompressor_alloc\fP ()"
+.br
+.ti -1c
+.RI "void \fBtinfl_decompressor_free\fP (\fBtinfl_decompressor\fP *pDecomp)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBmz_zip_array_init\fP (\fBmz_zip_array\fP *pArray, \fBmz_uint32\fP element_size)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBmz_zip_array_clear\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_array\fP *pArray)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_array_ensure_capacity\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_array\fP *pArray, size_t min_new_capacity, \fBmz_uint\fP growing)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP \fBmz_zip_array_reserve\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_array\fP *pArray, size_t new_capacity, \fBmz_uint\fP growing)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP \fBmz_zip_array_resize\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_array\fP *pArray, size_t new_size, \fBmz_uint\fP growing)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP \fBmz_zip_array_ensure_room\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_array\fP *pArray, size_t n)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP \fBmz_zip_array_push_back\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_array\fP *pArray, const void *pElements, size_t n)"
+.br
+.ti -1c
+.RI "static \fBMZ_TIME_T\fP \fBmz_zip_dos_to_time_t\fP (int dos_time, int dos_date)"
+.br
+.ti -1c
+.RI "static void \fBmz_zip_time_t_to_dos_time\fP (\fBMZ_TIME_T\fP time, \fBmz_uint16\fP *pDOS_time, \fBmz_uint16\fP *pDOS_date)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_get_file_modified_time\fP (const char *pFilename, \fBMZ_TIME_T\fP *pTime)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_set_file_times\fP (const char *pFilename, \fBMZ_TIME_T\fP access_time, \fBMZ_TIME_T\fP modified_time)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP \fBmz_zip_set_error\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_error\fP err_num)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_reader_init_internal\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP \fBmz_zip_reader_filename_less\fP (const \fBmz_zip_array\fP *pCentral_dir_array, const \fBmz_zip_array\fP *pCentral_dir_offsets, \fBmz_uint\fP l_index, \fBmz_uint\fP r_index)"
+.br
+.ti -1c
+.RI "static void \fBmz_zip_reader_sort_central_dir_offsets_by_filename\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_reader_locate_header_sig\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint32\fP record_sig, \fBmz_uint32\fP record_size, \fBmz_int64\fP *pOfs)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_reader_read_central_dir\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "void \fBmz_zip_zero_struct\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_reader_end_internal\fP (\fBmz_zip_archive\fP *pZip, \fBmz_bool\fP set_last_error)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_end\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_init\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint64\fP size, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "static size_t \fBmz_zip_mem_read_func\fP (void *pOpaque, \fBmz_uint64\fP file_ofs, void *pBuf, size_t n)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_init_mem\fP (\fBmz_zip_archive\fP *pZip, const void *pMem, size_t size, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "static size_t \fBmz_zip_file_read_func\fP (void *pOpaque, \fBmz_uint64\fP file_ofs, void *pBuf, size_t n)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_init_file\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_uint32\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_init_file_v2\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_uint\fP flags, \fBmz_uint64\fP file_start_ofs, \fBmz_uint64\fP archive_size)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_init_cfile\fP (\fBmz_zip_archive\fP *pZip, \fBMZ_FILE\fP *pFile, \fBmz_uint64\fP archive_size, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP const \fBmz_uint8\fP * \fBmz_zip_get_cdh\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_is_file_encrypted\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_is_file_supported\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_is_file_a_directory\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_file_stat_internal\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, const \fBmz_uint8\fP *pCentral_dir_header, \fBmz_zip_archive_file_stat\fP *pStat, \fBmz_bool\fP *pFound_zip64_extra_data)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP \fBmz_zip_string_equal\fP (const char *pA, const char *pB, \fBmz_uint\fP len, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP int \fBmz_zip_filename_compare\fP (const \fBmz_zip_array\fP *pCentral_dir_array, const \fBmz_zip_array\fP *pCentral_dir_offsets, \fBmz_uint\fP l_index, const char *pR, \fBmz_uint\fP r_len)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_locate_file_binary_search\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_uint32\fP *pIndex)"
+.br
+.ti -1c
+.RI "int \fBmz_zip_reader_locate_file\fP (\fBmz_zip_archive\fP *pZip, const char *pName, const char *pComment, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_locate_file_v2\fP (\fBmz_zip_archive\fP *pZip, const char *pName, const char *pComment, \fBmz_uint\fP flags, \fBmz_uint32\fP *pIndex)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_to_mem_no_alloc\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, void *pBuf, size_t buf_size, \fBmz_uint\fP flags, void *pUser_read_buf, size_t user_read_buf_size)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_file_to_mem_no_alloc\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, void *pBuf, size_t buf_size, \fBmz_uint\fP flags, void *pUser_read_buf, size_t user_read_buf_size)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_to_mem\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, void *pBuf, size_t buf_size, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_file_to_mem\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, void *pBuf, size_t buf_size, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "void * \fBmz_zip_reader_extract_to_heap\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, size_t *pSize, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "void * \fBmz_zip_reader_extract_file_to_heap\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, size_t *pSize, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_to_callback\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, \fBmz_file_write_func\fP pCallback, void *pOpaque, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_file_to_callback\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_file_write_func\fP pCallback, void *pOpaque, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "static size_t \fBmz_zip_file_write_callback\fP (void *pOpaque, \fBmz_uint64\fP ofs, const void *pBuf, size_t n)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_to_file\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, const char *pDst_filename, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_file_to_file\fP (\fBmz_zip_archive\fP *pZip, const char *pArchive_filename, const char *pDst_filename, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_to_cfile\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, \fBMZ_FILE\fP *pFile, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_extract_file_to_cfile\fP (\fBmz_zip_archive\fP *pZip, const char *pArchive_filename, \fBMZ_FILE\fP *pFile, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "static size_t \fBmz_zip_compute_crc32_callback\fP (void *pOpaque, \fBmz_uint64\fP file_ofs, const void *pBuf, size_t n)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_validate_file\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_validate_archive\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_validate_mem_archive\fP (const void *pMem, size_t size, \fBmz_uint\fP flags, \fBmz_zip_error\fP *pErr)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_validate_file_archive\fP (const char *pFilename, \fBmz_uint\fP flags, \fBmz_zip_error\fP *pErr)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBmz_write_le16\fP (\fBmz_uint8\fP *p, \fBmz_uint16\fP v)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBmz_write_le32\fP (\fBmz_uint8\fP *p, \fBmz_uint32\fP v)"
+.br
+.ti -1c
+.RI "static \fBMZ_FORCEINLINE\fP void \fBmz_write_le64\fP (\fBmz_uint8\fP *p, \fBmz_uint64\fP v)"
+.br
+.ti -1c
+.RI "static size_t \fBmz_zip_heap_write_func\fP (void *pOpaque, \fBmz_uint64\fP file_ofs, const void *pBuf, size_t n)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_end_internal\fP (\fBmz_zip_archive\fP *pZip, \fBmz_bool\fP set_last_error)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_v2\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint64\fP existing_size, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint64\fP existing_size)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_heap_v2\fP (\fBmz_zip_archive\fP *pZip, size_t size_to_reserve_at_beginning, size_t initial_allocation_size, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_heap\fP (\fBmz_zip_archive\fP *pZip, size_t size_to_reserve_at_beginning, size_t initial_allocation_size)"
+.br
+.ti -1c
+.RI "static size_t \fBmz_zip_file_write_func\fP (void *pOpaque, \fBmz_uint64\fP file_ofs, const void *pBuf, size_t n)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_file\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_uint64\fP size_to_reserve_at_beginning)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_file_v2\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_uint64\fP size_to_reserve_at_beginning, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_cfile\fP (\fBmz_zip_archive\fP *pZip, \fBMZ_FILE\fP *pFile, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_from_reader_v2\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_init_from_reader\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_add_mem\fP (\fBmz_zip_archive\fP *pZip, const char *pArchive_name, const void *pBuf, size_t buf_size, \fBmz_uint\fP level_and_flags)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_add_put_buf_callback\fP (const void *pBuf, int len, void *pUser)"
+.br
+.ti -1c
+.RI "static \fBmz_uint32\fP \fBmz_zip_writer_create_zip64_extra_data\fP (\fBmz_uint8\fP *pBuf, \fBmz_uint64\fP *pUncomp_size, \fBmz_uint64\fP *pComp_size, \fBmz_uint64\fP *pLocal_header_ofs)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_create_local_dir_header\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint8\fP *pDst, \fBmz_uint16\fP filename_size, \fBmz_uint16\fP extra_size, \fBmz_uint64\fP uncomp_size, \fBmz_uint64\fP comp_size, \fBmz_uint32\fP uncomp_crc32, \fBmz_uint16\fP method, \fBmz_uint16\fP bit_flags, \fBmz_uint16\fP dos_time, \fBmz_uint16\fP dos_date)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_create_central_dir_header\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint8\fP *pDst, \fBmz_uint16\fP filename_size, \fBmz_uint16\fP extra_size, \fBmz_uint16\fP comment_size, \fBmz_uint64\fP uncomp_size, \fBmz_uint64\fP comp_size, \fBmz_uint32\fP uncomp_crc32, \fBmz_uint16\fP method, \fBmz_uint16\fP bit_flags, \fBmz_uint16\fP dos_time, \fBmz_uint16\fP dos_date, \fBmz_uint64\fP local_header_ofs, \fBmz_uint32\fP ext_attributes)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_add_to_central_dir\fP (\fBmz_zip_archive\fP *pZip, const char *pFilename, \fBmz_uint16\fP filename_size, const void *pExtra, \fBmz_uint16\fP extra_size, const void *pComment, \fBmz_uint16\fP comment_size, \fBmz_uint64\fP uncomp_size, \fBmz_uint64\fP comp_size, \fBmz_uint32\fP uncomp_crc32, \fBmz_uint16\fP method, \fBmz_uint16\fP bit_flags, \fBmz_uint16\fP dos_time, \fBmz_uint16\fP dos_date, \fBmz_uint64\fP local_header_ofs, \fBmz_uint32\fP ext_attributes, const char *user_extra_data, \fBmz_uint\fP user_extra_data_len)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_validate_archive_name\fP (const char *pArchive_name)"
+.br
+.ti -1c
+.RI "static \fBmz_uint\fP \fBmz_zip_writer_compute_padding_needed_for_file_alignment\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_write_zeros\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint64\fP cur_file_ofs, \fBmz_uint32\fP n)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_add_mem_ex\fP (\fBmz_zip_archive\fP *pZip, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, \fBmz_uint64\fP uncomp_size, \fBmz_uint32\fP uncomp_crc32)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_add_mem_ex_v2\fP (\fBmz_zip_archive\fP *pZip, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, \fBmz_uint64\fP uncomp_size, \fBmz_uint32\fP uncomp_crc32, \fBMZ_TIME_T\fP *last_modified, const char *user_extra_data, \fBmz_uint\fP user_extra_data_len, const char *user_extra_data_central, \fBmz_uint\fP user_extra_data_central_len)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_add_cfile\fP (\fBmz_zip_archive\fP *pZip, const char *pArchive_name, \fBMZ_FILE\fP *pSrc_file, \fBmz_uint64\fP size_to_add, const \fBMZ_TIME_T\fP *pFile_time, const void *pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, const char *user_extra_data, \fBmz_uint\fP user_extra_data_len, const char *user_extra_data_central, \fBmz_uint\fP user_extra_data_central_len)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_add_file\fP (\fBmz_zip_archive\fP *pZip, const char *pArchive_name, const char *pSrc_filename, const void *pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags)"
+.br
+.ti -1c
+.RI "static \fBmz_bool\fP \fBmz_zip_writer_update_zip64_extension_block\fP (\fBmz_zip_array\fP *pNew_ext, \fBmz_zip_archive\fP *pZip, const \fBmz_uint8\fP *pExt, uint32_t ext_len, \fBmz_uint64\fP *pComp_size, \fBmz_uint64\fP *pUncomp_size, \fBmz_uint64\fP *pLocal_header_ofs, \fBmz_uint32\fP *pDisk_start)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_add_from_zip_reader\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_archive\fP *pSource_zip, \fBmz_uint\fP src_file_index)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_finalize_archive\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_finalize_heap_archive\fP (\fBmz_zip_archive\fP *pZip, void **ppBuf, size_t *pSize)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_writer_end\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_add_mem_to_archive_file_in_place\fP (const char *pZip_filename, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_add_mem_to_archive_file_in_place_v2\fP (const char *pZip_filename, const char *pArchive_name, const void *pBuf, size_t buf_size, const void *pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, \fBmz_zip_error\fP *pErr)"
+.br
+.ti -1c
+.RI "void * \fBmz_zip_extract_archive_file_to_heap_v2\fP (const char *pZip_filename, const char *pArchive_name, const char *pComment, size_t *pSize, \fBmz_uint\fP flags, \fBmz_zip_error\fP *pErr)"
+.br
+.ti -1c
+.RI "void * \fBmz_zip_extract_archive_file_to_heap\fP (const char *pZip_filename, const char *pArchive_name, size_t *pSize, \fBmz_uint\fP flags)"
+.br
+.ti -1c
+.RI "\fBmz_zip_mode\fP \fBmz_zip_get_mode\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_zip_type\fP \fBmz_zip_get_type\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_zip_error\fP \fBmz_zip_set_last_error\fP (\fBmz_zip_archive\fP *pZip, \fBmz_zip_error\fP err_num)"
+.br
+.ti -1c
+.RI "\fBmz_zip_error\fP \fBmz_zip_peek_last_error\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_zip_error\fP \fBmz_zip_clear_last_error\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_zip_error\fP \fBmz_zip_get_last_error\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "const char * \fBmz_zip_get_error_string\fP (\fBmz_zip_error\fP mz_err)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_is_zip64\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "size_t \fBmz_zip_get_central_dir_size\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBmz_zip_reader_get_num_files\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBmz_zip_get_archive_size\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBmz_zip_get_archive_file_start_offset\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "\fBMZ_FILE\fP * \fBmz_zip_get_cfile\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.ti -1c
+.RI "size_t \fBmz_zip_read_archive_data\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint64\fP file_ofs, void *pBuf, size_t n)"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBmz_zip_reader_get_filename\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, char *pFilename, \fBmz_uint\fP filename_buf_size)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_reader_file_stat\fP (\fBmz_zip_archive\fP *pZip, \fBmz_uint\fP file_index, \fBmz_zip_archive_file_stat\fP *pStat)"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBmz_zip_end\fP (\fBmz_zip_archive\fP *pZip)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "static const \fBmz_uint16\fP \fBs_tdefl_len_sym\fP [256]"
+.br
+.ti -1c
+.RI "static const \fBmz_uint8\fP \fBs_tdefl_len_extra\fP [256]"
+.br
+.ti -1c
+.RI "static const \fBmz_uint8\fP \fBs_tdefl_small_dist_sym\fP [512]"
+.br
+.ti -1c
+.RI "static const \fBmz_uint8\fP \fBs_tdefl_small_dist_extra\fP [512]"
+.br
+.ti -1c
+.RI "static const \fBmz_uint8\fP \fBs_tdefl_large_dist_sym\fP [128]"
+.br
+.ti -1c
+.RI "static const \fBmz_uint8\fP \fBs_tdefl_large_dist_extra\fP [128]"
+.br
+.ti -1c
+.RI "static \fBmz_uint8\fP \fBs_tdefl_packed_code_size_syms_swizzle\fP [] = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 }"
+.br
+.ti -1c
+.RI "static const \fBmz_uint\fP \fBmz_bitmasks\fP [17] = { 0x0000, 0x0001, 0x0003, 0x0007, 0x000F, 0x001F, 0x003F, 0x007F, 0x00FF, 0x01FF, 0x03FF, 0x07FF, 0x0FFF, 0x1FFF, 0x3FFF, 0x7FFF, 0xFFFF }"
+.br
+.ti -1c
+.RI "static const \fBmz_uint\fP \fBs_tdefl_num_probes\fP [11] = { 0, 1, 6, 32, 16, 32, 128, 256, 512, 768, 1500 }"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MZ_DELETE_FILE   remove"
+
+.SS "#define MZ_FCLOSE   fclose"
+
+.SS "#define MZ_FFLUSH   fflush"
+
+.SS "#define MZ_FILE_STAT   stat"
+
+.SS "#define MZ_FILE_STAT_STRUCT   stat"
+
+.SS "#define MZ_FOPEN(f, m)   fopen(f, m)"
+
+.SS "#define MZ_FREAD   fread"
+
+.SS "#define MZ_FREOPEN(f, m, s)   freopen(f, m, s)"
+
+.SS "#define MZ_FSEEK64   fseeko"
+
+.SS "#define MZ_FTELL64   ftello"
+
+.SS "#define MZ_FWRITE   fwrite"
+
+.SS "#define MZ_SWAP_UINT32(a, b)"
+\fBValue:\fP
+.PP
+.nf
+do                       \
+    {                        \\
+        mz_uint32 t = a;     \
+        a = b;               \
+        b = t;               \
+    }                        \\
+    MZ_MACRO_END
+.fi
+.SS "#define MZ_TOLOWER(c)   ((((c) >= 'A') && ((c) <= 'Z')) ? ((c) - 'A' + 'a') : (c))"
+
+.SS "#define MZ_WRITE_LE16(p, v)   \fBmz_write_le16\fP((\fBmz_uint8\fP *)(p), (\fBmz_uint16\fP)(v))"
+
+.SS "#define MZ_WRITE_LE32(p, v)   \fBmz_write_le32\fP((\fBmz_uint8\fP *)(p), (\fBmz_uint32\fP)(v))"
+
+.SS "#define MZ_WRITE_LE64(p, v)   \fBmz_write_le64\fP((\fBmz_uint8\fP *)(p), (\fBmz_uint64\fP)(v))"
+
+.SS "#define MZ_ZIP64_MAX_CENTRAL_EXTRA_FIELD_SIZE   (sizeof(\fBmz_uint16\fP) * 2 + sizeof(\fBmz_uint64\fP) * 3)"
+
+.SS "#define MZ_ZIP64_MAX_LOCAL_EXTRA_FIELD_SIZE   (sizeof(\fBmz_uint16\fP) * 2 + sizeof(\fBmz_uint64\fP) * 2)"
+
+.SS "#define MZ_ZIP_ARRAY_ELEMENT(array_ptr, element_type, index)   ((element_type *)((array_ptr)->m_p))[index]"
+
+.SS "#define MZ_ZIP_ARRAY_SET_ELEMENT_SIZE(array_ptr, element_size)   (array_ptr)->m_element_size = element_size"
+
+.SS "#define TDEFL_PROBE"
+\fBValue:\fP
+.PP
+.nf
+next_probe_pos = d->m_next[probe_pos];                                                        \
+    if ((!next_probe_pos) || ((dist = (mz_uint16)(lookahead_pos - next_probe_pos)) > max_dist))   \
+        return;                                                                                   \
+    probe_pos = next_probe_pos & TDEFL_LZ_DICT_SIZE_MASK;                                         \
+    if ((d->m_dict[probe_pos + match_len] == c0) && (d->m_dict[probe_pos + match_len - 1] == c1)) \
+        break;
+.fi
+.SS "#define TDEFL_PUT_BITS(b, l)"
+\fBValue:\fP
+.PP
+.nf
+do                                                             \
+    {                                                              \\
+        mz_uint bits = b;                                          \\
+        mz_uint len = l;                                           \\
+        MZ_ASSERT(bits <= ((1U << len) - 1U));                     \
+        d->m_bit_buffer |= (bits << d->m_bits_in);                 \
+        d->m_bits_in += len;                                       \
+        while (d->m_bits_in >= 8)                                  \
+        {                                                          \
+            if (d->m_pOutput_buf < d->m_pOutput_buf_end)           \
+                *d->m_pOutput_buf++ = (mz_uint8)(d->m_bit_buffer); \
+            d->m_bit_buffer >>= 8;                                 \
+            d->m_bits_in -= 8;                                     \
+        }                                                          \
+    }                                                              \\
+    MZ_MACRO_END
+.fi
+.SS "#define TDEFL_RLE_PREV_CODE_SIZE()"
+\fBValue:\fP
+.PP
+.nf
+{                                                                                                                    \
+        if (rle_repeat_count)                                                                                            \
+        {                                                                                                                \
+            if (rle_repeat_count < 3)                                                                                    \
+            {                                                                                                            \
+                d->m_huff_count[2][prev_code_size] = (mz_uint16)(d->m_huff_count[2][prev_code_size] + rle_repeat_count); \
+                while (rle_repeat_count--)                                                                               \
+                    packed_code_sizes[num_packed_code_sizes++] = prev_code_size;                                         \
+            }                                                                                                            \
+            else                                                                                                         \
+            {                                                                                                            \
+                d->m_huff_count[2][16] = (mz_uint16)(d->m_huff_count[2][16] + 1);                                        \
+                packed_code_sizes[num_packed_code_sizes++] = 16;                                                         \
+                packed_code_sizes[num_packed_code_sizes++] = (mz_uint8)(rle_repeat_count - 3);                           \
+            }                                                                                                            \
+            rle_repeat_count = 0;                                                                                        \
+        }                                                                                                                \
+    }
+.fi
+.SS "#define TDEFL_RLE_ZERO_CODE_SIZE()"
+\fBValue:\fP
+.PP
+.nf
+{                                                                                      \
+        if (rle_z_count)                                                                   \
+        {                                                                                  \
+            if (rle_z_count < 3)                                                           \
+            {                                                                              \
+                d->m_huff_count[2][0] = (mz_uint16)(d->m_huff_count[2][0] + rle_z_count);  \
+                while (rle_z_count--)                                                      \
+                    packed_code_sizes[num_packed_code_sizes++] = 0;                        \
+            }                                                                              \
+            else if (rle_z_count <= 10)                                                    \
+            {                                                                              \
+                d->m_huff_count[2][17] = (mz_uint16)(d->m_huff_count[2][17] + 1);          \
+                packed_code_sizes[num_packed_code_sizes++] = 17;                           \
+                packed_code_sizes[num_packed_code_sizes++] = (mz_uint8)(rle_z_count - 3);  \
+            }                                                                              \
+            else                                                                           \
+            {                                                                              \
+                d->m_huff_count[2][18] = (mz_uint16)(d->m_huff_count[2][18] + 1);          \
+                packed_code_sizes[num_packed_code_sizes++] = 18;                           \
+                packed_code_sizes[num_packed_code_sizes++] = (mz_uint8)(rle_z_count - 11); \
+            }                                                                              \
+            rle_z_count = 0;                                                               \
+        }                                                                                  \
+    }
+.fi
+.SS "#define TINFL_CR_BEGIN"
+\fBValue:\fP
+.PP
+.nf
+switch (r->m_state) \
+    {                   \
+        case 0:
+.fi
+.SS "#define TINFL_CR_FINISH   }"
+
+.SS "#define TINFL_CR_RETURN(state_index, result)"
+\fBValue:\fP
+.PP
+.nf
+do                                       \
+    {                                        \
+        status = result;                     \
+        r->m_state = state_index;            \
+        goto common_exit;                    \
+        case state_index:                    \
+            ;                                \
+    }                                        \\
+    MZ_MACRO_END
+.fi
+.SS "#define TINFL_CR_RETURN_FOREVER(state_index, result)"
+\fBValue:\fP
+.PP
+.nf
+do                                               \
+    {                                                \
+        for (;;)                                     \
+        {                                            \\
+            TINFL_CR_RETURN(state_index, result);    \
+        }                                            \
+    }                                                \\
+    MZ_MACRO_END
+.fi
+.SS "#define TINFL_GET_BITS(state_index, b, n)"
+\fBValue:\fP
+.PP
+.nf
+do                                       \
+    {                                        \
+        if (num_bits < (mz_uint)(n))         \
+        {                                    \\
+            TINFL_NEED_BITS(state_index, n); \
+        }                                    \
+        b = bit_buf & ((1 << (n)) - 1);      \
+        bit_buf >>= (n);                     \
+        num_bits -= (n);                     \
+    }                                        \\
+    MZ_MACRO_END
+.fi
+.SS "#define TINFL_GET_BYTE(state_index, c)"
+\fBValue:\fP
+.PP
+.nf
+do                                                                                                                                                          \
+    {                                                                                                                                                           \
+        while (pIn_buf_cur >= pIn_buf_end)                                                                                                                      \
+        {                                                                                                                                                       \\
+            TINFL_CR_RETURN(state_index, (decomp_flags &TINFL_FLAG_HAS_MORE_INPUT) ? TINFL_STATUS_NEEDS_MORE_INPUT : TINFL_STATUS_FAILED_CANNOT_MAKE_PROGRESS); \
+        }                                                                                                                                                       \
+        c = *pIn_buf_cur++;                                                                                                                                     \
+    }                                                                                                                                                           \\
+    MZ_MACRO_END
+.fi
+.SS "#define TINFL_HUFF_BITBUF_FILL(state_index, pHuff)"
+\fBValue:\fP
+.PP
+.nf
+do                                                                         \
+    {                                                                          \
+        temp = (pHuff)->m_look_up[bit_buf & (TINFL_FAST_LOOKUP_SIZE - 1)];     \
+        if (temp >= 0)                                                         \
+        {                                                                      \
+            code_len = temp >> 9;                                              \
+            if ((code_len) && (num_bits >= code_len))                          \
+                break;                                                         \
+        }                                                                      \
+        else if (num_bits > TINFL_FAST_LOOKUP_BITS)                            \
+        {                                                                      \
+            code_len = TINFL_FAST_LOOKUP_BITS;                                 \
+            do                                                                 \
+            {                                                                  \
+                temp = (pHuff)->m_tree[~temp + ((bit_buf >> code_len++) & 1)]; \
+            } while ((temp < 0) && (num_bits >= (code_len + 1)));              \
+            if (temp >= 0)                                                     \
+                break;                                                         \
+        }                                                                      \\
+        TINFL_GET_BYTE(state_index, c);                                        \
+        bit_buf |= (((tinfl_bit_buf_t)c) << num_bits);                         \
+        num_bits += 8;                                                         \
+    } while (num_bits < 15);
+.fi
+.SS "#define TINFL_HUFF_DECODE(state_index, sym, pHuff)"
+
+.SS "#define TINFL_MEMCPY(d, s, l)   memcpy(d, s, l)"
+
+.SS "#define TINFL_MEMSET(p, c, l)   memset(p, c, l)"
+
+.SS "#define TINFL_NEED_BITS(state_index, n)"
+\fBValue:\fP
+.PP
+.nf
+do                                                 \
+    {                                                  \\
+        mz_uint c;                                     \\
+        TINFL_GET_BYTE(state_index, c);                \
+        bit_buf |= (((tinfl_bit_buf_t)c) << num_bits); \
+        num_bits += 8;                                 \
+    } while (num_bits < (mz_uint)(n))
+.fi
+.SS "#define TINFL_SKIP_BITS(state_index, n)"
+\fBValue:\fP
+.PP
+.nf
+do                                       \
+    {                                        \
+        if (num_bits < (mz_uint)(n))         \
+        {                                    \\
+            TINFL_NEED_BITS(state_index, n); \
+        }                                    \
+        bit_buf >>= (n);                     \
+        num_bits -= (n);                     \
+    }                                        \\
+    MZ_MACRO_END
+.fi
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef unsigned char mz_validate_uint16[sizeof(\fBmz_uint16\fP)==2?1:-1]"
+
+.SS "typedef unsigned char mz_validate_uint32[sizeof(\fBmz_uint32\fP)==4?1:-1]"
+
+.SS "typedef unsigned char mz_validate_uint64[sizeof(\fBmz_uint64\fP)==8?1:-1]"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITDEFL_MAX_SUPPORTED_HUFF_CODESIZE \fP\fP
+.SS "anonymous enum"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIMZ_ZIP_END_OF_CENTRAL_DIR_HEADER_SIG \fP\fP
+.TP
+\fB\fIMZ_ZIP_CENTRAL_DIR_HEADER_SIG \fP\fP
+.TP
+\fB\fIMZ_ZIP_LOCAL_DIR_HEADER_SIG \fP\fP
+.TP
+\fB\fIMZ_ZIP_LOCAL_DIR_HEADER_SIZE \fP\fP
+.TP
+\fB\fIMZ_ZIP_CENTRAL_DIR_HEADER_SIZE \fP\fP
+.TP
+\fB\fIMZ_ZIP_END_OF_CENTRAL_DIR_HEADER_SIZE \fP\fP
+.TP
+\fB\fIMZ_ZIP64_END_OF_CENTRAL_DIR_HEADER_SIG \fP\fP
+.TP
+\fB\fIMZ_ZIP64_END_OF_CENTRAL_DIR_LOCATOR_SIG \fP\fP
+.TP
+\fB\fIMZ_ZIP64_END_OF_CENTRAL_DIR_HEADER_SIZE \fP\fP
+.TP
+\fB\fIMZ_ZIP64_END_OF_CENTRAL_DIR_LOCATOR_SIZE \fP\fP
+.TP
+\fB\fIMZ_ZIP64_EXTENDED_INFORMATION_FIELD_HEADER_ID \fP\fP
+.TP
+\fB\fIMZ_ZIP_DATA_DESCRIPTOR_ID \fP\fP
+.TP
+\fB\fIMZ_ZIP_DATA_DESCRIPTER_SIZE64 \fP\fP
+.TP
+\fB\fIMZ_ZIP_DATA_DESCRIPTER_SIZE32 \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_SIG_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_VERSION_MADE_BY_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_VERSION_NEEDED_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_BIT_FLAG_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_METHOD_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_FILE_TIME_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_FILE_DATE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_CRC32_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_COMPRESSED_SIZE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_DECOMPRESSED_SIZE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_FILENAME_LEN_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_EXTRA_LEN_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_COMMENT_LEN_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_DISK_START_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_INTERNAL_ATTR_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_EXTERNAL_ATTR_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_CDH_LOCAL_HEADER_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_SIG_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_VERSION_NEEDED_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_BIT_FLAG_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_METHOD_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_FILE_TIME_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_FILE_DATE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_CRC32_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_COMPRESSED_SIZE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_DECOMPRESSED_SIZE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_FILENAME_LEN_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_EXTRA_LEN_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_LDH_BIT_FLAG_HAS_LOCATOR \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_SIG_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_NUM_THIS_DISK_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_NUM_DISK_CDIR_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_CDIR_NUM_ENTRIES_ON_DISK_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_CDIR_TOTAL_ENTRIES_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_CDIR_SIZE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_CDIR_OFS_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_ECDH_COMMENT_SIZE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDL_SIG_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDL_NUM_DISK_CDIR_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDL_REL_OFS_TO_ZIP64_ECDR_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDL_TOTAL_NUMBER_OF_DISKS_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_SIG_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_SIZE_OF_RECORD_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_VERSION_MADE_BY_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_VERSION_NEEDED_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_NUM_THIS_DISK_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_NUM_DISK_CDIR_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_CDIR_NUM_ENTRIES_ON_DISK_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_CDIR_TOTAL_ENTRIES_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_CDIR_SIZE_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP64_ECDH_CDIR_OFS_OFS \fP\fP
+.TP
+\fB\fIMZ_ZIP_VERSION_MADE_BY_DOS_FILESYSTEM_ID \fP\fP
+.TP
+\fB\fIMZ_ZIP_DOS_DIR_ATTRIBUTE_BITFLAG \fP\fP
+.TP
+\fB\fIMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_IS_ENCRYPTED \fP\fP
+.TP
+\fB\fIMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_COMPRESSED_PATCH_FLAG \fP\fP
+.TP
+\fB\fIMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_USES_STRONG_ENCRYPTION \fP\fP
+.TP
+\fB\fIMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_LOCAL_DIR_IS_MASKED \fP\fP
+.TP
+\fB\fIMZ_ZIP_GENERAL_PURPOSE_BIT_FLAG_UTF8 \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "void* miniz_def_alloc_func (void * opaque, size_t items, size_t size)"
+
+.SS "void miniz_def_free_func (void * opaque, void * address)"
+
+.SS "void* miniz_def_realloc_func (void * opaque, void * address, size_t items, size_t size)"
+
+.SS "\fBmz_ulong\fP mz_adler32 (\fBmz_ulong\fP adler, const unsigned char * ptr, size_t buf_len)"
+
+.SS "int mz_compress (unsigned char * pDest, \fBmz_ulong\fP * pDest_len, const unsigned char * pSource, \fBmz_ulong\fP source_len)"
+
+.SS "int mz_compress2 (unsigned char * pDest, \fBmz_ulong\fP * pDest_len, const unsigned char * pSource, \fBmz_ulong\fP source_len, int level)"
+
+.SS "\fBmz_ulong\fP mz_compressBound (\fBmz_ulong\fP source_len)"
+
+.SS "\fBmz_ulong\fP mz_crc32 (\fBmz_ulong\fP crc, const \fBmz_uint8\fP * ptr, size_t buf_len)"
+
+.SS "int mz_deflate (\fBmz_streamp\fP pStream, int flush)"
+
+.SS "\fBmz_ulong\fP mz_deflateBound (\fBmz_streamp\fP pStream, \fBmz_ulong\fP source_len)"
+
+.SS "int mz_deflateEnd (\fBmz_streamp\fP pStream)"
+
+.SS "int mz_deflateInit (\fBmz_streamp\fP pStream, int level)"
+
+.SS "int mz_deflateInit2 (\fBmz_streamp\fP pStream, int level, int method, int window_bits, int mem_level, int strategy)"
+
+.SS "int mz_deflateReset (\fBmz_streamp\fP pStream)"
+
+.SS "const char* mz_error (int err)"
+
+.SS "void mz_free (void * p)"
+
+.SS "int mz_inflate (\fBmz_streamp\fP pStream, int flush)"
+
+.SS "int mz_inflateEnd (\fBmz_streamp\fP pStream)"
+
+.SS "int mz_inflateInit (\fBmz_streamp\fP pStream)"
+
+.SS "int mz_inflateInit2 (\fBmz_streamp\fP pStream, int window_bits)"
+
+.SS "int mz_uncompress (unsigned char * pDest, \fBmz_ulong\fP * pDest_len, const unsigned char * pSource, \fBmz_ulong\fP source_len)"
+
+.SS "const char* mz_version (void)"
+
+.SS "static \fBMZ_FORCEINLINE\fP void mz_write_le16 (\fBmz_uint8\fP * p, \fBmz_uint16\fP v)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP void mz_write_le32 (\fBmz_uint8\fP * p, \fBmz_uint32\fP v)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP void mz_write_le64 (\fBmz_uint8\fP * p, \fBmz_uint64\fP v)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_add_mem_to_archive_file_in_place (const char * pZip_filename, const char * pArchive_name, const void * pBuf, size_t buf_size, const void * pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags)"
+
+.SS "\fBmz_bool\fP mz_zip_add_mem_to_archive_file_in_place_v2 (const char * pZip_filename, const char * pArchive_name, const void * pBuf, size_t buf_size, const void * pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, \fBmz_zip_error\fP * pErr)"
+
+.SS "static \fBMZ_FORCEINLINE\fP void mz_zip_array_clear (\fBmz_zip_archive\fP * pZip, \fBmz_zip_array\fP * pArray)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_array_ensure_capacity (\fBmz_zip_archive\fP * pZip, \fBmz_zip_array\fP * pArray, size_t min_new_capacity, \fBmz_uint\fP growing)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP mz_zip_array_ensure_room (\fBmz_zip_archive\fP * pZip, \fBmz_zip_array\fP * pArray, size_t n)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP void mz_zip_array_init (\fBmz_zip_array\fP * pArray, \fBmz_uint32\fP element_size)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP mz_zip_array_push_back (\fBmz_zip_archive\fP * pZip, \fBmz_zip_array\fP * pArray, const void * pElements, size_t n)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP mz_zip_array_reserve (\fBmz_zip_archive\fP * pZip, \fBmz_zip_array\fP * pArray, size_t new_capacity, \fBmz_uint\fP growing)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP mz_zip_array_resize (\fBmz_zip_archive\fP * pZip, \fBmz_zip_array\fP * pArray, size_t new_size, \fBmz_uint\fP growing)\fC [static]\fP"
+
+.SS "\fBmz_zip_error\fP mz_zip_clear_last_error (\fBmz_zip_archive\fP * pZip)"
+
+.SS "static size_t mz_zip_compute_crc32_callback (void * pOpaque, \fBmz_uint64\fP file_ofs, const void * pBuf, size_t n)\fC [static]\fP"
+
+.SS "static \fBMZ_TIME_T\fP mz_zip_dos_to_time_t (int dos_time, int dos_date)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_end (\fBmz_zip_archive\fP * pZip)"
+
+.SS "void* mz_zip_extract_archive_file_to_heap (const char * pZip_filename, const char * pArchive_name, size_t * pSize, \fBmz_uint\fP flags)"
+
+.SS "void* mz_zip_extract_archive_file_to_heap_v2 (const char * pZip_filename, const char * pArchive_name, const char * pComment, size_t * pSize, \fBmz_uint\fP flags, \fBmz_zip_error\fP * pErr)"
+
+.SS "static size_t mz_zip_file_read_func (void * pOpaque, \fBmz_uint64\fP file_ofs, void * pBuf, size_t n)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_file_stat_internal (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, const \fBmz_uint8\fP * pCentral_dir_header, \fBmz_zip_archive_file_stat\fP * pStat, \fBmz_bool\fP * pFound_zip64_extra_data)\fC [static]\fP"
+
+.SS "static size_t mz_zip_file_write_callback (void * pOpaque, \fBmz_uint64\fP ofs, const void * pBuf, size_t n)\fC [static]\fP"
+
+.SS "static size_t mz_zip_file_write_func (void * pOpaque, \fBmz_uint64\fP file_ofs, const void * pBuf, size_t n)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP int mz_zip_filename_compare (const \fBmz_zip_array\fP * pCentral_dir_array, const \fBmz_zip_array\fP * pCentral_dir_offsets, \fBmz_uint\fP l_index, const char * pR, \fBmz_uint\fP r_len)\fC [static]\fP"
+
+.SS "\fBmz_uint64\fP mz_zip_get_archive_file_start_offset (\fBmz_zip_archive\fP * pZip)"
+
+.SS "\fBmz_uint64\fP mz_zip_get_archive_size (\fBmz_zip_archive\fP * pZip)"
+
+.SS "static \fBMZ_FORCEINLINE\fP const \fBmz_uint8\fP* mz_zip_get_cdh (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index)\fC [static]\fP"
+
+.SS "size_t mz_zip_get_central_dir_size (\fBmz_zip_archive\fP * pZip)"
+
+.SS "\fBMZ_FILE\fP* mz_zip_get_cfile (\fBmz_zip_archive\fP * pZip)"
+
+.SS "const char* mz_zip_get_error_string (\fBmz_zip_error\fP mz_err)"
+
+.SS "static \fBmz_bool\fP mz_zip_get_file_modified_time (const char * pFilename, \fBMZ_TIME_T\fP * pTime)\fC [static]\fP"
+
+.SS "\fBmz_zip_error\fP mz_zip_get_last_error (\fBmz_zip_archive\fP * pZip)"
+
+.SS "\fBmz_zip_mode\fP mz_zip_get_mode (\fBmz_zip_archive\fP * pZip)"
+
+.SS "\fBmz_zip_type\fP mz_zip_get_type (\fBmz_zip_archive\fP * pZip)"
+
+.SS "static size_t mz_zip_heap_write_func (void * pOpaque, \fBmz_uint64\fP file_ofs, const void * pBuf, size_t n)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_is_zip64 (\fBmz_zip_archive\fP * pZip)"
+
+.SS "static \fBmz_bool\fP mz_zip_locate_file_binary_search (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_uint32\fP * pIndex)\fC [static]\fP"
+
+.SS "static size_t mz_zip_mem_read_func (void * pOpaque, \fBmz_uint64\fP file_ofs, void * pBuf, size_t n)\fC [static]\fP"
+
+.SS "\fBmz_zip_error\fP mz_zip_peek_last_error (\fBmz_zip_archive\fP * pZip)"
+
+.SS "size_t mz_zip_read_archive_data (\fBmz_zip_archive\fP * pZip, \fBmz_uint64\fP file_ofs, void * pBuf, size_t n)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_end (\fBmz_zip_archive\fP * pZip)"
+
+.SS "static \fBmz_bool\fP mz_zip_reader_end_internal (\fBmz_zip_archive\fP * pZip, \fBmz_bool\fP set_last_error)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_file_to_callback (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_file_write_func\fP pCallback, void * pOpaque, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_file_to_cfile (\fBmz_zip_archive\fP * pZip, const char * pArchive_filename, \fBMZ_FILE\fP * pFile, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_file_to_file (\fBmz_zip_archive\fP * pZip, const char * pArchive_filename, const char * pDst_filename, \fBmz_uint\fP flags)"
+
+.SS "void* mz_zip_reader_extract_file_to_heap (\fBmz_zip_archive\fP * pZip, const char * pFilename, size_t * pSize, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_file_to_mem (\fBmz_zip_archive\fP * pZip, const char * pFilename, void * pBuf, size_t buf_size, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_file_to_mem_no_alloc (\fBmz_zip_archive\fP * pZip, const char * pFilename, void * pBuf, size_t buf_size, \fBmz_uint\fP flags, void * pUser_read_buf, size_t user_read_buf_size)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_to_callback (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, \fBmz_file_write_func\fP pCallback, void * pOpaque, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_to_cfile (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, \fBMZ_FILE\fP * pFile, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_to_file (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, const char * pDst_filename, \fBmz_uint\fP flags)"
+
+.SS "void* mz_zip_reader_extract_to_heap (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, size_t * pSize, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_to_mem (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, void * pBuf, size_t buf_size, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_extract_to_mem_no_alloc (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, void * pBuf, size_t buf_size, \fBmz_uint\fP flags, void * pUser_read_buf, size_t user_read_buf_size)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_file_stat (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, \fBmz_zip_archive_file_stat\fP * pStat)"
+
+.SS "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP mz_zip_reader_filename_less (const \fBmz_zip_array\fP * pCentral_dir_array, const \fBmz_zip_array\fP * pCentral_dir_offsets, \fBmz_uint\fP l_index, \fBmz_uint\fP r_index)\fC [static]\fP"
+
+.SS "\fBmz_uint\fP mz_zip_reader_get_filename (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, char * pFilename, \fBmz_uint\fP filename_buf_size)"
+
+.SS "\fBmz_uint\fP mz_zip_reader_get_num_files (\fBmz_zip_archive\fP * pZip)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_init (\fBmz_zip_archive\fP * pZip, \fBmz_uint64\fP size, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_init_cfile (\fBmz_zip_archive\fP * pZip, \fBMZ_FILE\fP * pFile, \fBmz_uint64\fP archive_size, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_init_file (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_uint32\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_init_file_v2 (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_uint\fP flags, \fBmz_uint64\fP file_start_ofs, \fBmz_uint64\fP archive_size)"
+
+.SS "static \fBmz_bool\fP mz_zip_reader_init_internal (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP flags)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_reader_init_mem (\fBmz_zip_archive\fP * pZip, const void * pMem, size_t size, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_is_file_a_directory (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_is_file_encrypted (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_is_file_supported (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index)"
+
+.SS "int mz_zip_reader_locate_file (\fBmz_zip_archive\fP * pZip, const char * pName, const char * pComment, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_reader_locate_file_v2 (\fBmz_zip_archive\fP * pZip, const char * pName, const char * pComment, \fBmz_uint\fP flags, \fBmz_uint32\fP * pIndex)"
+
+.SS "static \fBmz_bool\fP mz_zip_reader_locate_header_sig (\fBmz_zip_archive\fP * pZip, \fBmz_uint32\fP record_sig, \fBmz_uint32\fP record_size, \fBmz_int64\fP * pOfs)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_reader_read_central_dir (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP flags)\fC [static]\fP"
+
+.SS "static void mz_zip_reader_sort_central_dir_offsets_by_filename (\fBmz_zip_archive\fP * pZip)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP mz_zip_set_error (\fBmz_zip_archive\fP * pZip, \fBmz_zip_error\fP err_num)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_set_file_times (const char * pFilename, \fBMZ_TIME_T\fP access_time, \fBMZ_TIME_T\fP modified_time)\fC [static]\fP"
+
+.SS "\fBmz_zip_error\fP mz_zip_set_last_error (\fBmz_zip_archive\fP * pZip, \fBmz_zip_error\fP err_num)"
+
+.SS "static \fBMZ_FORCEINLINE\fP \fBmz_bool\fP mz_zip_string_equal (const char * pA, const char * pB, \fBmz_uint\fP len, \fBmz_uint\fP flags)\fC [static]\fP"
+
+.SS "static void mz_zip_time_t_to_dos_time (\fBMZ_TIME_T\fP time, \fBmz_uint16\fP * pDOS_time, \fBmz_uint16\fP * pDOS_date)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_validate_archive (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_validate_file (\fBmz_zip_archive\fP * pZip, \fBmz_uint\fP file_index, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_validate_file_archive (const char * pFilename, \fBmz_uint\fP flags, \fBmz_zip_error\fP * pErr)"
+
+.SS "\fBmz_bool\fP mz_zip_validate_mem_archive (const void * pMem, size_t size, \fBmz_uint\fP flags, \fBmz_zip_error\fP * pErr)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_add_cfile (\fBmz_zip_archive\fP * pZip, const char * pArchive_name, \fBMZ_FILE\fP * pSrc_file, \fBmz_uint64\fP size_to_add, const \fBMZ_TIME_T\fP * pFile_time, const void * pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, const char * user_extra_data, \fBmz_uint\fP user_extra_data_len, const char * user_extra_data_central, \fBmz_uint\fP user_extra_data_central_len)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_add_file (\fBmz_zip_archive\fP * pZip, const char * pArchive_name, const char * pSrc_filename, const void * pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_add_from_zip_reader (\fBmz_zip_archive\fP * pZip, \fBmz_zip_archive\fP * pSource_zip, \fBmz_uint\fP src_file_index)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_add_mem (\fBmz_zip_archive\fP * pZip, const char * pArchive_name, const void * pBuf, size_t buf_size, \fBmz_uint\fP level_and_flags)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_add_mem_ex (\fBmz_zip_archive\fP * pZip, const char * pArchive_name, const void * pBuf, size_t buf_size, const void * pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, \fBmz_uint64\fP uncomp_size, \fBmz_uint32\fP uncomp_crc32)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_add_mem_ex_v2 (\fBmz_zip_archive\fP * pZip, const char * pArchive_name, const void * pBuf, size_t buf_size, const void * pComment, \fBmz_uint16\fP comment_size, \fBmz_uint\fP level_and_flags, \fBmz_uint64\fP uncomp_size, \fBmz_uint32\fP uncomp_crc32, \fBMZ_TIME_T\fP * last_modified, const char * user_extra_data, \fBmz_uint\fP user_extra_data_len, const char * user_extra_data_central, \fBmz_uint\fP user_extra_data_central_len)"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_add_put_buf_callback (const void * pBuf, int len, void * pUser)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_add_to_central_dir (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_uint16\fP filename_size, const void * pExtra, \fBmz_uint16\fP extra_size, const void * pComment, \fBmz_uint16\fP comment_size, \fBmz_uint64\fP uncomp_size, \fBmz_uint64\fP comp_size, \fBmz_uint32\fP uncomp_crc32, \fBmz_uint16\fP method, \fBmz_uint16\fP bit_flags, \fBmz_uint16\fP dos_time, \fBmz_uint16\fP dos_date, \fBmz_uint64\fP local_header_ofs, \fBmz_uint32\fP ext_attributes, const char * user_extra_data, \fBmz_uint\fP user_extra_data_len)\fC [static]\fP"
+
+.SS "static \fBmz_uint\fP mz_zip_writer_compute_padding_needed_for_file_alignment (\fBmz_zip_archive\fP * pZip)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_create_central_dir_header (\fBmz_zip_archive\fP * pZip, \fBmz_uint8\fP * pDst, \fBmz_uint16\fP filename_size, \fBmz_uint16\fP extra_size, \fBmz_uint16\fP comment_size, \fBmz_uint64\fP uncomp_size, \fBmz_uint64\fP comp_size, \fBmz_uint32\fP uncomp_crc32, \fBmz_uint16\fP method, \fBmz_uint16\fP bit_flags, \fBmz_uint16\fP dos_time, \fBmz_uint16\fP dos_date, \fBmz_uint64\fP local_header_ofs, \fBmz_uint32\fP ext_attributes)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_create_local_dir_header (\fBmz_zip_archive\fP * pZip, \fBmz_uint8\fP * pDst, \fBmz_uint16\fP filename_size, \fBmz_uint16\fP extra_size, \fBmz_uint64\fP uncomp_size, \fBmz_uint64\fP comp_size, \fBmz_uint32\fP uncomp_crc32, \fBmz_uint16\fP method, \fBmz_uint16\fP bit_flags, \fBmz_uint16\fP dos_time, \fBmz_uint16\fP dos_date)\fC [static]\fP"
+
+.SS "static \fBmz_uint32\fP mz_zip_writer_create_zip64_extra_data (\fBmz_uint8\fP * pBuf, \fBmz_uint64\fP * pUncomp_size, \fBmz_uint64\fP * pComp_size, \fBmz_uint64\fP * pLocal_header_ofs)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_writer_end (\fBmz_zip_archive\fP * pZip)"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_end_internal (\fBmz_zip_archive\fP * pZip, \fBmz_bool\fP set_last_error)\fC [static]\fP"
+
+.SS "\fBmz_bool\fP mz_zip_writer_finalize_archive (\fBmz_zip_archive\fP * pZip)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_finalize_heap_archive (\fBmz_zip_archive\fP * pZip, void ** ppBuf, size_t * pSize)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init (\fBmz_zip_archive\fP * pZip, \fBmz_uint64\fP existing_size)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_cfile (\fBmz_zip_archive\fP * pZip, \fBMZ_FILE\fP * pFile, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_file (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_uint64\fP size_to_reserve_at_beginning)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_file_v2 (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_uint64\fP size_to_reserve_at_beginning, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_from_reader (\fBmz_zip_archive\fP * pZip, const char * pFilename)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_from_reader_v2 (\fBmz_zip_archive\fP * pZip, const char * pFilename, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_heap (\fBmz_zip_archive\fP * pZip, size_t size_to_reserve_at_beginning, size_t initial_allocation_size)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_heap_v2 (\fBmz_zip_archive\fP * pZip, size_t size_to_reserve_at_beginning, size_t initial_allocation_size, \fBmz_uint\fP flags)"
+
+.SS "\fBmz_bool\fP mz_zip_writer_init_v2 (\fBmz_zip_archive\fP * pZip, \fBmz_uint64\fP existing_size, \fBmz_uint\fP flags)"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_update_zip64_extension_block (\fBmz_zip_array\fP * pNew_ext, \fBmz_zip_archive\fP * pZip, const \fBmz_uint8\fP * pExt, uint32_t ext_len, \fBmz_uint64\fP * pComp_size, \fBmz_uint64\fP * pUncomp_size, \fBmz_uint64\fP * pLocal_header_ofs, \fBmz_uint32\fP * pDisk_start)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_validate_archive_name (const char * pArchive_name)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP mz_zip_writer_write_zeros (\fBmz_zip_archive\fP * pZip, \fBmz_uint64\fP cur_file_ofs, \fBmz_uint32\fP n)\fC [static]\fP"
+
+.SS "void mz_zip_zero_struct (\fBmz_zip_archive\fP * pZip)"
+
+.SS "static void tdefl_calculate_minimum_redundancy (\fBtdefl_sym_freq\fP * A, int n)\fC [static]\fP"
+
+.SS "\fBtdefl_status\fP tdefl_compress (\fBtdefl_compressor\fP * d, const void * pIn_buf, size_t * pIn_buf_size, void * pOut_buf, size_t * pOut_buf_size, \fBtdefl_flush\fP flush)"
+
+.SS "static \fBmz_bool\fP tdefl_compress_block (\fBtdefl_compressor\fP * d, \fBmz_bool\fP static_block)\fC [static]\fP"
+
+.SS "\fBtdefl_status\fP tdefl_compress_buffer (\fBtdefl_compressor\fP * d, const void * pIn_buf, size_t in_buf_size, \fBtdefl_flush\fP flush)"
+
+.SS "static \fBmz_bool\fP tdefl_compress_lz_codes (\fBtdefl_compressor\fP * d)\fC [static]\fP"
+
+.SS "void* tdefl_compress_mem_to_heap (const void * pSrc_buf, size_t src_buf_len, size_t * pOut_len, int flags)"
+
+.SS "size_t tdefl_compress_mem_to_mem (void * pOut_buf, size_t out_buf_len, const void * pSrc_buf, size_t src_buf_len, int flags)"
+
+.SS "\fBmz_bool\fP tdefl_compress_mem_to_output (const void * pBuf, size_t buf_len, \fBtdefl_put_buf_func_ptr\fP pPut_buf_func, void * pPut_buf_user, int flags)"
+
+.SS "static \fBmz_bool\fP tdefl_compress_normal (\fBtdefl_compressor\fP * d)\fC [static]\fP"
+
+.SS "\fBtdefl_compressor\fP* tdefl_compressor_alloc ()"
+
+.SS "void tdefl_compressor_free (\fBtdefl_compressor\fP * pComp)"
+
+.SS "\fBmz_uint\fP tdefl_create_comp_flags_from_zip_params (int level, int window_bits, int strategy)"
+
+.SS "static \fBMZ_FORCEINLINE\fP void tdefl_find_match (\fBtdefl_compressor\fP * d, \fBmz_uint\fP lookahead_pos, \fBmz_uint\fP max_dist, \fBmz_uint\fP max_match_len, \fBmz_uint\fP * pMatch_dist, \fBmz_uint\fP * pMatch_len)\fC [static]\fP"
+
+.SS "static int tdefl_flush_block (\fBtdefl_compressor\fP * d, int flush)\fC [static]\fP"
+
+.SS "static \fBtdefl_status\fP tdefl_flush_output_buffer (\fBtdefl_compressor\fP * d)\fC [static]\fP"
+
+.SS "\fBmz_uint32\fP tdefl_get_adler32 (\fBtdefl_compressor\fP * d)"
+
+.SS "\fBtdefl_status\fP tdefl_get_prev_return_status (\fBtdefl_compressor\fP * d)"
+
+.SS "static void tdefl_huffman_enforce_max_code_size (int * pNum_codes, int code_list_len, int max_code_size)\fC [static]\fP"
+
+.SS "\fBtdefl_status\fP tdefl_init (\fBtdefl_compressor\fP * d, \fBtdefl_put_buf_func_ptr\fP pPut_buf_func, void * pPut_buf_user, int flags)"
+
+.SS "static void tdefl_optimize_huffman_table (\fBtdefl_compressor\fP * d, int table_num, int table_len, int code_size_limit, int static_table)\fC [static]\fP"
+
+.SS "static \fBmz_bool\fP tdefl_output_buffer_putter (const void * pBuf, int len, void * pUser)\fC [static]\fP"
+
+.SS "static \fBtdefl_sym_freq\fP* tdefl_radix_sort_syms (\fBmz_uint\fP num_syms, \fBtdefl_sym_freq\fP * pSyms0, \fBtdefl_sym_freq\fP * pSyms1)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP void tdefl_record_literal (\fBtdefl_compressor\fP * d, \fBmz_uint8\fP lit)\fC [static]\fP"
+
+.SS "static \fBMZ_FORCEINLINE\fP void tdefl_record_match (\fBtdefl_compressor\fP * d, \fBmz_uint\fP match_len, \fBmz_uint\fP match_dist)\fC [static]\fP"
+
+.SS "static void tdefl_start_dynamic_block (\fBtdefl_compressor\fP * d)\fC [static]\fP"
+
+.SS "static void tdefl_start_static_block (\fBtdefl_compressor\fP * d)\fC [static]\fP"
+
+.SS "void* tdefl_write_image_to_png_file_in_memory (const void * pImage, int w, int h, int num_chans, size_t * pLen_out)"
+
+.SS "void* tdefl_write_image_to_png_file_in_memory_ex (const void * pImage, int w, int h, int num_chans, size_t * pLen_out, \fBmz_uint\fP level, \fBmz_bool\fP flip)"
+
+.SS "\fBtinfl_status\fP tinfl_decompress (\fBtinfl_decompressor\fP * r, const \fBmz_uint8\fP * pIn_buf_next, size_t * pIn_buf_size, \fBmz_uint8\fP * pOut_buf_start, \fBmz_uint8\fP * pOut_buf_next, size_t * pOut_buf_size, const \fBmz_uint32\fP decomp_flags)"
+
+.SS "int tinfl_decompress_mem_to_callback (const void * pIn_buf, size_t * pIn_buf_size, \fBtinfl_put_buf_func_ptr\fP pPut_buf_func, void * pPut_buf_user, int flags)"
+
+.SS "void* tinfl_decompress_mem_to_heap (const void * pSrc_buf, size_t src_buf_len, size_t * pOut_len, int flags)"
+
+.SS "size_t tinfl_decompress_mem_to_mem (void * pOut_buf, size_t out_buf_len, const void * pSrc_buf, size_t src_buf_len, int flags)"
+
+.SS "\fBtinfl_decompressor\fP* tinfl_decompressor_alloc ()"
+
+.SS "void tinfl_decompressor_free (\fBtinfl_decompressor\fP * pDecomp)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "const \fBmz_uint\fP mz_bitmasks[17] = { 0x0000, 0x0001, 0x0003, 0x0007, 0x000F, 0x001F, 0x003F, 0x007F, 0x00FF, 0x01FF, 0x03FF, 0x07FF, 0x0FFF, 0x1FFF, 0x3FFF, 0x7FFF, 0xFFFF }\fC [static]\fP"
+
+.SS "const \fBmz_uint8\fP s_tdefl_large_dist_extra[128]\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+=
+    {
+        0, 0, 8, 8, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12,
+        12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13,
+        13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13
+    }
+.fi
+.SS "const \fBmz_uint8\fP s_tdefl_large_dist_sym[128]\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+=
+    {
+        0, 0, 18, 19, 20, 20, 21, 21, 22, 22, 22, 22, 23, 23, 23, 23, 24, 24, 24, 24, 24, 24, 24, 24, 25, 25, 25, 25, 25, 25, 25, 25, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26, 26,
+        26, 26, 26, 26, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 27, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28,
+        28, 28, 28, 28, 28, 28, 28, 28, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29, 29
+    }
+.fi
+.SS "const \fBmz_uint8\fP s_tdefl_len_extra[256]\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+=
+    {
+        0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3,
+        4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4,
+        5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5,
+        5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 0
+    }
+.fi
+.SS "const \fBmz_uint16\fP s_tdefl_len_sym[256]\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+=
+    {
+        257, 258, 259, 260, 261, 262, 263, 264, 265, 265, 266, 266, 267, 267, 268, 268, 269, 269, 269, 269, 270, 270, 270, 270, 271, 271, 271, 271, 272, 272, 272, 272,
+        273, 273, 273, 273, 273, 273, 273, 273, 274, 274, 274, 274, 274, 274, 274, 274, 275, 275, 275, 275, 275, 275, 275, 275, 276, 276, 276, 276, 276, 276, 276, 276,
+        277, 277, 277, 277, 277, 277, 277, 277, 277, 277, 277, 277, 277, 277, 277, 277, 278, 278, 278, 278, 278, 278, 278, 278, 278, 278, 278, 278, 278, 278, 278, 278,
+        279, 279, 279, 279, 279, 279, 279, 279, 279, 279, 279, 279, 279, 279, 279, 279, 280, 280, 280, 280, 280, 280, 280, 280, 280, 280, 280, 280, 280, 280, 280, 280,
+        281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281, 281,
+        282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282, 282,
+        283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283, 283,
+        284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 284, 285
+    }
+.fi
+.SS "const \fBmz_uint\fP s_tdefl_num_probes[11] = { 0, 1, 6, 32, 16, 32, 128, 256, 512, 768, 1500 }\fC [static]\fP"
+
+.SS "\fBmz_uint8\fP s_tdefl_packed_code_size_syms_swizzle[] = { 16, 17, 18, 0, 8, 7, 9, 6, 10, 5, 11, 4, 12, 3, 13, 2, 14, 1, 15 }\fC [static]\fP"
+
+.SS "const \fBmz_uint8\fP s_tdefl_small_dist_extra[512]\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+=
+    {
+        0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5,
+        5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+        6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6,
+        6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+        7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+        7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+        7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+        7, 7, 7, 7, 7, 7, 7, 7
+    }
+.fi
+.SS "const \fBmz_uint8\fP s_tdefl_small_dist_sym[512]\fC [static]\fP"
+\fBInitial value:\fP
+.PP
+.nf
+=
+    {
+        0, 1, 2, 3, 4, 4, 5, 5, 6, 6, 6, 6, 7, 7, 7, 7, 8, 8, 8, 8, 8, 8, 8, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11,
+        11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 12, 13,
+        13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 13, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+        14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14, 14,
+        14, 14, 14, 14, 14, 14, 14, 14, 14, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15,
+        15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
+        16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
+        16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16,
+        16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
+        17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
+        17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17,
+        17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17, 17
+    }
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

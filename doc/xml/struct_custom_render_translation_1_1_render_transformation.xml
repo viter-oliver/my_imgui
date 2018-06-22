@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="struct_custom_render_translation_1_1_render_transformation" kind="struct" language="C++" prot="public">
+    <compoundname>CustomRenderTranslation::RenderTransformation</compoundname>
+    <includes refid="render_transform_8h" local="no">renderTransform.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_custom_render_translation_1_1_render_transformation_1a83ae4b0eba21e17139957fa68c326973" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 CustomRenderTranslation::RenderTransformation::Scale</definition>
+        <argsstring></argsstring>
+        <name>Scale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="9" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_custom_render_translation_1_1_render_transformation_1a163db65e6107abc98836254d462e9d42" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 CustomRenderTranslation::RenderTransformation::Rotation</definition>
+        <argsstring></argsstring>
+        <name>Rotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="10" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_custom_render_translation_1_1_render_transformation_1a28e351a7b7b996dd1170287e037c5142" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 CustomRenderTranslation::RenderTransformation::Translation</definition>
+        <argsstring></argsstring>
+        <name>Translation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="7" bodyend="12"/>
+    <listofallmembers>
+      <member refid="struct_custom_render_translation_1_1_render_transformation_1a163db65e6107abc98836254d462e9d42" prot="public" virt="non-virtual"><scope>CustomRenderTranslation::RenderTransformation</scope><name>Rotation</name></member>
+      <member refid="struct_custom_render_translation_1_1_render_transformation_1a83ae4b0eba21e17139957fa68c326973" prot="public" virt="non-virtual"><scope>CustomRenderTranslation::RenderTransformation</scope><name>Scale</name></member>
+      <member refid="struct_custom_render_translation_1_1_render_transformation_1a28e351a7b7b996dd1170287e037c5142" prot="public" virt="non-virtual"><scope>CustomRenderTranslation::RenderTransformation</scope><name>Translation</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

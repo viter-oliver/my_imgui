@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classafb__load" kind="class" language="C++" prot="public">
+    <compoundname>afb_load</compoundname>
+    <includes refid="afb__load_8h" local="no">afb_load.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classafb__load_1ad5a32b4f88baa5fad057d6017191d4ce" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref> *&amp;</type>
+        <definition>base_ui_component*&amp; afb_load::_pj</definition>
+        <argsstring></argsstring>
+        <name>_pj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" line="5" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classafb__load_1add2c2ac710e6ae8ffedb25ced94233bd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>afb_load::afb_load</definition>
+        <argsstring>(base_ui_component *&amp;pr_root)</argsstring>
+        <name>afb_load</name>
+        <param>
+          <type><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref> *&amp;</type>
+          <declname>pr_root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" line="7" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classafb__load_1a642f2e98c9ab3444c9d6657f031f9ee5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>afb_load::~afb_load</definition>
+        <argsstring>()</argsstring>
+        <name>~afb_load</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classafb__load_1a70dd9dcdf7bb9160f90d92376048b6a3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void afb_load::load_afb</definition>
+        <argsstring>(const char *afb_file)</argsstring>
+        <name>load_afb</name>
+        <param>
+          <type>const char *</type>
+          <declname>afb_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" line="10" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.cpp" bodystart="47" bodyend="194"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="4">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="5" relation="usage">
+          <edgelabel>_in_p</edgelabel>
+        </childnode>
+      </node>
+      <node id="3">
+        <label>afb_load</label>
+        <link refid="classafb__load"/>
+        <childnode refid="4" relation="usage">
+          <edgelabel>_pj</edgelabel>
+        </childnode>
+      </node>
+      <node id="5">
+        <label>base_ui_component::internal_property</label>
+        <link refid="structbase__ui__component_1_1internal__property"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" line="4" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.h" bodystart="3" bodyend="11"/>
+    <listofallmembers>
+      <member refid="classafb__load_1ad5a32b4f88baa5fad057d6017191d4ce" prot="private" virt="non-virtual"><scope>afb_load</scope><name>_pj</name></member>
+      <member refid="classafb__load_1add2c2ac710e6ae8ffedb25ced94233bd" prot="public" virt="non-virtual"><scope>afb_load</scope><name>afb_load</name></member>
+      <member refid="classafb__load_1a70dd9dcdf7bb9160f90d92376048b6a3" prot="public" virt="non-virtual"><scope>afb_load</scope><name>load_afb</name></member>
+      <member refid="classafb__load_1a642f2e98c9ab3444c9d6657f031f9ee5" prot="public" virt="non-virtual"><scope>afb_load</scope><name>~afb_load</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

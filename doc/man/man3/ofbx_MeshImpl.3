@@ -1,0 +1,84 @@
+.TH "ofbx::MeshImpl" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::MeshImpl \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBofbx::Mesh\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMeshImpl\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "\fBMatrix\fP \fBgetGeometricMatrix\fP () const override"
+.br
+.ti -1c
+.RI "\fBType\fP \fBgetType\fP () const override"
+.br
+.ti -1c
+.RI "const \fBGeometry\fP * \fBgetGeometry\fP () const override"
+.br
+.ti -1c
+.RI "const \fBMaterial\fP * \fBgetMaterial\fP (int index) const override"
+.br
+.ti -1c
+.RI "int \fBgetMaterialCount\fP () const override"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "const \fBGeometry\fP * \fBgeometry\fP = nullptr"
+.br
+.ti -1c
+.RI "const \fBScene\fP & \fBscene\fP"
+.br
+.ti -1c
+.RI "std::vector< const \fBMaterial\fP * > \fBmaterials\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::MeshImpl::MeshImpl (const \fBScene\fP & _scene, const \fBIElement\fP & _element)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBMatrix\fP ofbx::MeshImpl::getGeometricMatrix () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Mesh\fP\&.
+.SS "const \fBGeometry\fP* ofbx::MeshImpl::getGeometry () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Mesh\fP\&.
+.SS "const \fBMaterial\fP* ofbx::MeshImpl::getMaterial (int index) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Mesh\fP\&.
+.SS "int ofbx::MeshImpl::getMaterialCount () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Mesh\fP\&.
+.SS "\fBType\fP ofbx::MeshImpl::getType () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Object\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBGeometry\fP* ofbx::MeshImpl::geometry = nullptr"
+
+.SS "std::vector<const \fBMaterial\fP*> ofbx::MeshImpl::materials"
+
+.SS "const \fBScene\fP& ofbx::MeshImpl::scene"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

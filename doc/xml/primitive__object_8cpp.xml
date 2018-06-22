@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="primitive__object_8cpp" kind="file" language="C++">
+    <compoundname>primitive_object.cpp</compoundname>
+    <includes refid="primitive__object_8h" local="yes">primitive_object.h</includes>
+    <incdepgraph>
+      <node id="1032">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp</label>
+        <link refid="primitive_object.cpp"/>
+        <childnode refid="1033" relation="include">
+        </childnode>
+      </node>
+      <node id="1035">
+        <label>string</label>
+      </node>
+      <node id="1034">
+        <label>map</label>
+      </node>
+      <node id="1037">
+        <label>GL/gl3w.h</label>
+      </node>
+      <node id="1033">
+        <label>primitive_object.h</label>
+        <link refid="primitive__object_8h"/>
+        <childnode refid="1034" relation="include">
+        </childnode>
+        <childnode refid="1035" relation="include">
+        </childnode>
+        <childnode refid="1036" relation="include">
+        </childnode>
+        <childnode refid="1037" relation="include">
+        </childnode>
+      </node>
+      <node id="1036">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float half_side_len</definition>
+        <argsstring></argsstring>
+        <name>half_side_len</name>
+        <initializer>= 0.5f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp" line="2" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp" bodystart="2" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="primitive__object_8cpp_1ac9e195fa5e90838a13c1dbccebb0bd29" prot="public" static="no" mutable="no">
+        <type><ref refid="primitive__object_8h_1af8f418a973d64fb42fc8ec3f93b4bd2b" kindref="member">mp_primitive</ref></type>
+        <definition>mp_primitive g_primitive_list</definition>
+        <argsstring></argsstring>
+        <name>g_primitive_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>the primitive object of g_primitive_list will be referenced by some ui components </para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp" line="57" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="primitive__object_8cpp_1ae6ee6b64a1c89988a58aaf27584ac547" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void init_primitive_list</definition>
+        <argsstring>()</argsstring>
+        <name>init_primitive_list</name>
+        <briefdescription>
+<para>put all primitive defined object into g_primitive_list </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp" line="53" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp" bodystart="53" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="primitive__object_8h" kindref="compound">primitive_object.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref><sp/>=<sp/>0.5f;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">GLfloat<sp/><ref refid="structprimitive__cube_1af005a73cad24f7285b5c85a5aaf6461b" kindref="member">primitive_cube::_vertices</ref>[]=<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,<sp/>0.0f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>1.0f,<sp/>1.0f,<sp/>0.0f,<sp/>1.0f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>1.0f,<sp/>0.0f,<sp/>1.0f,<sp/>1.0f,<sp/>1.0f,</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>0.0f,<sp/>1.0f,<sp/>1.0f,<sp/>0.0f,<sp/>1.0f,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>0.0f,<sp/>0.0f,<sp/>1.0f,<sp/>0.0f,<sp/>1.0f,</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>1.0f,<sp/>0.0f,<sp/>0.0f,<sp/>1.0f,<sp/>1.0f,</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>0.0f,<sp/>1.0f,<sp/>0.0f,<sp/>0.0f,<sp/>1.0f,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>-<ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/><ref refid="primitive__object_8cpp_1ae8c81fd03e549cb9b570bc30f9e12ef4" kindref="member">half_side_len</ref>,<sp/>0.0f,<sp/>0.0f,<sp/>0.0f,<sp/>1.0f,<sp/>1.0f,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">GLushort<sp/><ref refid="structprimitive__cube_1afc98140d0357e8919381e1fe0b7e53d4" kindref="member">primitive_cube::_indices</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>0,<sp/>4,<sp/>5,</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>5,<sp/>1,<sp/>0,</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>3,<sp/>2,<sp/>6,</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>6,<sp/>7,<sp/>3,</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>7,<sp/>4,<sp/>0,</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>0,<sp/>3,<sp/>7,</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>6,<sp/>2,<sp/>1,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>1,<sp/>5,<sp/>6,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>0,<sp/>1,<sp/>2,</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>2,<sp/>3,<sp/>0,</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>4,<sp/>7,<sp/>6,</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>6,<sp/>5,<sp/>4</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><ref refid="structprimitive__cube_1a4aa2040b7d4278622b77301848068b69" kindref="member">primitive_cube::primitive_cube</ref>()</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>:<ref refid="structprimitive__object" kindref="compound">primitive_object</ref>()</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(_vao);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/>_vbo);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_vertices),<sp/>_vertices,<sp/>GL_STATIC_DRAW);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,<sp/>_ebo);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferData(GL_ELEMENT_ARRAY_BUFFER,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(_indices),<sp/>_indices,<sp/>GL_STATIC_DRAW);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(0);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(0,<sp/>3,<sp/>GL_FLOAT,<sp/>GL_FALSE,<sp/>8*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat),<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)(0));</highlight><highlight class="comment">//position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(1);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(1,<sp/>3,<sp/>GL_FLOAT,<sp/>GL_FALSE,<sp/>8*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat),(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)(3*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat)));</highlight><highlight class="comment">//color</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(2);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(2,<sp/>2,<sp/>GL_FLOAT,<sp/>GL_FALSE,<sp/>8*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat),(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)(6*</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat)));</highlight><highlight class="comment">//texture</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(0);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="primitive__object_8cpp_1ae6ee6b64a1c89988a58aaf27584ac547" kindref="member">init_primitive_list</ref>()</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="primitive__object_8cpp_1ac9e195fa5e90838a13c1dbccebb0bd29" kindref="member">g_primitive_list</ref>[</highlight><highlight class="stringliteral">&quot;cube&quot;</highlight><highlight class="normal">]<sp/>=<sp/>make_shared&lt;primitive_cube&gt;();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><ref refid="primitive__object_8h_1af8f418a973d64fb42fc8ec3f93b4bd2b" kindref="member">mp_primitive</ref><sp/><ref refid="primitive__object_8cpp_1ac9e195fa5e90838a13c1dbccebb0bd29" kindref="member">g_primitive_list</ref>;</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.cpp"/>
+  </compounddef>
+</doxygen>

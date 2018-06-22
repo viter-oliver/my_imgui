@@ -1,0 +1,58 @@
+.TH "inflate_state" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+inflate_state \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBtinfl_decompressor\fP \fBm_decomp\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_dict_ofs\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_dict_avail\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_first_call\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_has_flushed\fP"
+.br
+.ti -1c
+.RI "int \fBm_window_bits\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP \fBm_dict\fP [\fBTINFL_LZ_DICT_SIZE\fP]"
+.br
+.ti -1c
+.RI "\fBtinfl_status\fP \fBm_last_status\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBtinfl_decompressor\fP inflate_state::m_decomp"
+
+.SS "\fBmz_uint8\fP inflate_state::m_dict[\fBTINFL_LZ_DICT_SIZE\fP]"
+
+.SS "\fBmz_uint\fP inflate_state::m_dict_avail"
+
+.SS "\fBmz_uint\fP inflate_state::m_dict_ofs"
+
+.SS "\fBmz_uint\fP inflate_state::m_first_call"
+
+.SS "\fBmz_uint\fP inflate_state::m_has_flushed"
+
+.SS "\fBtinfl_status\fP inflate_state::m_last_status"
+
+.SS "int inflate_state::m_window_bits"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

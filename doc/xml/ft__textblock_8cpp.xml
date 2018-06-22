@@ -1,0 +1,156 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__textblock_8cpp" kind="file" language="C++">
+    <compoundname>ft_textblock.cpp</compoundname>
+    <includes refid="ft__textblock_8h" local="yes">ft_textblock.h</includes>
+    <incdepgraph>
+      <node id="755">
+        <label>functional</label>
+      </node>
+      <node id="759">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="749">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.cpp</label>
+        <link refid="ft_textblock.cpp"/>
+        <childnode refid="750" relation="include">
+        </childnode>
+      </node>
+      <node id="750">
+        <label>ft_textblock.h</label>
+        <link refid="ft__textblock_8h"/>
+        <childnode refid="751" relation="include">
+        </childnode>
+      </node>
+      <node id="754">
+        <label>string</label>
+      </node>
+      <node id="753">
+        <label>map</label>
+      </node>
+      <node id="761">
+        <label>json.h</label>
+      </node>
+      <node id="751">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="752" relation="include">
+        </childnode>
+      </node>
+      <node id="760">
+        <label>vector</label>
+      </node>
+      <node id="757">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="758" relation="include">
+        </childnode>
+        <childnode refid="759" relation="include">
+        </childnode>
+        <childnode refid="760" relation="include">
+        </childnode>
+        <childnode refid="754" relation="include">
+        </childnode>
+        <childnode refid="761" relation="include">
+        </childnode>
+        <childnode refid="762" relation="include">
+        </childnode>
+      </node>
+      <node id="752">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="753" relation="include">
+        </childnode>
+        <childnode refid="754" relation="include">
+        </childnode>
+        <childnode refid="755" relation="include">
+        </childnode>
+        <childnode refid="756" relation="include">
+        </childnode>
+        <childnode refid="757" relation="include">
+        </childnode>
+      </node>
+      <node id="758">
+        <label>imgui.h</label>
+      </node>
+      <node id="762">
+        <label>algorithm</label>
+      </node>
+      <node id="756">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__textblock_8h" kindref="compound">ft_textblock.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__textblock_1a34cc8147b33e816bd259fb2e61d6e318" kindref="member">ft_textblock::draw</ref>()</highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1a09062404251d099907ff9d7f2b18b89a" kindref="member">ft_base::draw</ref>();</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec3<sp/>abpos<sp/>=<sp/><ref refid="classbase__ui__component_1ae7efd3132e7d8c3bc59b3b8cbbdbed58" kindref="member">absolute_coordinate_of_base_pos</ref>();</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ImVec2<sp/>winpos<sp/>=<sp/>ImGui::GetWindowPos();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SetCursorPosX(abpos.x<sp/>);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SetCursorPosY(abpos.y);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a9b579cdf5e72ba1978f710e8ceaf357f" kindref="member">_wrapped</ref>)<sp/>ImGui::PushTextWrapPos(ImGui::GetCursorPos().x<sp/>+<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affe6f892c6b2c1828f9072acc5a26489" kindref="member">_width</ref>);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::TextColored(<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>,<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affcda0f26a92893dfb1059802ce32ce0" kindref="member">_content</ref>);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ImGui::Text(_txt_pt._content);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a9b579cdf5e72ba1978f710e8ceaf357f" kindref="member">_wrapped</ref>)<sp/>ImGui::PopTextWrapPos();</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__textblock_1aadf7178232db1f6b0e38af2bd056d937" kindref="member">ft_textblock::draw_peroperty_page</ref>()</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1a03bf0cd635d96f8a42686567893c2bd4" kindref="member">ft_base::draw_peroperty_page</ref>();</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::InputText(</highlight><highlight class="stringliteral">&quot;content:&quot;</highlight><highlight class="normal">,<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affcda0f26a92893dfb1059802ce32ce0" kindref="member">_content</ref>,<sp/><ref refid="ft__textblock_8h_1a4103decba88147493b839a19d7d64ef4" kindref="member">MAX_CONTENT_LEN</ref>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Spacing();</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Spacing();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;#size:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SliderFloat(</highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affe6f892c6b2c1828f9072acc5a26489" kindref="member">_width</ref>,<sp/>0.f,<sp/><ref refid="classbase__ui__component_1a1027bcda32d3f479b6d14c0cbbcc184b" kindref="member">base_ui_component::screenw</ref>);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ImGui::SliderFloat(&quot;h&quot;,<sp/>&amp;_txt_pt._size.y,<sp/>0.f,<sp/>base_ui_component::screenh);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Checkbox(</highlight><highlight class="stringliteral">&quot;wrapped&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a9b579cdf5e72ba1978f710e8ceaf357f" kindref="member">_wrapped</ref>);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::ColorEdit3(</highlight><highlight class="stringliteral">&quot;text<sp/>color:&quot;</highlight><highlight class="normal">,<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*)&amp;<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>,<sp/>ImGuiColorEditFlags_RGB);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="31"><highlight class="comment">fields:</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">txt_color,</highlight></codeline>
+<codeline lineno="33"><highlight class="comment">width</highlight></codeline>
+<codeline lineno="34"><highlight class="comment">content</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">wrapped</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__textblock_1a32cb6af33155cf65c185d5cdcdc09ee0" kindref="member">ft_textblock::init_from_json</ref>(Value&amp;<sp/>jvalue)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1a2921bac309eb7b6064c8ee2f39876640" kindref="member">ft_base::init_from_json</ref>(jvalue);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>Value&amp;<sp/>txt_color<sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;txt_color&quot;</highlight><highlight class="normal">];</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.x<sp/>=<sp/>txt_color[</highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.y<sp/>=<sp/>txt_color[</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.z<sp/>=<sp/>txt_color[</highlight><highlight class="stringliteral">&quot;z&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.w<sp/>=<sp/>txt_color[</highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affe6f892c6b2c1828f9072acc5a26489" kindref="member">_width</ref><sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;width&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>Value&amp;<sp/><ref refid="classft__textblock_1a34b325f7b47efaca99fdf67ca75d6038" kindref="member">content</ref><sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;content&quot;</highlight><highlight class="normal">];</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>strcpy(<ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affcda0f26a92893dfb1059802ce32ce0" kindref="member">_content</ref>,<sp/>content.asCString());</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a9b579cdf5e72ba1978f710e8ceaf357f" kindref="member">_wrapped</ref><sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;wrapped&quot;</highlight><highlight class="normal">].asBool();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__textblock_1a5049d69de68bc6c6f0a954d377872e7c" kindref="member">ft_textblock::init_json_unit</ref>(Value&amp;<sp/>junit)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1aa7ebbfc073f79a8a383bc7b78af64f91" kindref="member">ft_base::init_json_unit</ref>(junit);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>Value<sp/>txt_color(objectValue);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>txt_color[</highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.x;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>txt_color[</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.y;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>txt_color[</highlight><highlight class="stringliteral">&quot;z&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.z;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>txt_color[</highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a335bbe52439c5bc3b5c5be4442678580" kindref="member">_txt_color</ref>.w;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;txt_color&quot;</highlight><highlight class="normal">]<sp/>=<sp/>txt_color;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;width&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affe6f892c6b2c1828f9072acc5a26489" kindref="member">_width</ref>;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;content&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1affcda0f26a92893dfb1059802ce32ce0" kindref="member">_content</ref>;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;wrapped&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" kindref="member">_txt_pt</ref>.<ref refid="structft__textblock_1_1intl__pt_1a9b579cdf5e72ba1978f710e8ceaf357f" kindref="member">_wrapped</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.cpp"/>
+  </compounddef>
+</doxygen>

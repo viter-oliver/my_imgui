@@ -17,9 +17,9 @@ class ft_cube :
 		intl_pt():_scale(1.f,1.f,1.f) {}
 	};
 	intl_pt _pt;
-	/*!< referencing the color material */
+	/** referencing the color material */
 	shared_ptr<material> _pmaterial;
-	/*!< referencing the cube primitive object */
+	/** referencing the cube primitive object */
 	shared_ptr<primitive_object> _pcube_prim;
 public:
 	ft_cube();

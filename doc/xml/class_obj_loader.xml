@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="class_obj_loader" kind="class" language="C++" prot="public">
+    <compoundname>ObjLoader</compoundname>
+    <includes refid="_mesh_8h" local="no">Mesh.h</includes>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_obj_loader_1a1b98e76fbf63d70836f297fb83201f16" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool ObjLoader::loadFromFile</definition>
+        <argsstring>(const char *path, std::vector&lt; Vertex &gt; &amp;vertData)</argsstring>
+        <name>loadFromFile</name>
+        <param>
+          <type>const char *</type>
+          <declname>path</declname>
+        </param>
+        <param>
+          <type>std::vector&lt; <ref refid="struct_vertex" kindref="compound">Vertex</ref> &gt; &amp;</type>
+          <declname>vertData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/Mesh.h" line="36" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/Mesh.h" bodystart="36" bodyend="162"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/Mesh.h" line="34" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/Mesh.h" bodystart="33" bodyend="163"/>
+    <listofallmembers>
+      <member refid="class_obj_loader_1a1b98e76fbf63d70836f297fb83201f16" prot="public" virt="non-virtual"><scope>ObjLoader</scope><name>loadFromFile</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

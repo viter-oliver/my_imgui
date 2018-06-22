@@ -1,0 +1,448 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="camera_8h" kind="file" language="C++">
+    <compoundname>camera.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">fstream</includes>
+    <includes local="no">GL/gl3w.h</includes>
+    <includes local="no">glm.hpp</includes>
+    <includes local="no">gtc/matrix_transform.hpp</includes>
+    <includes local="no">gtx/string_cast.hpp</includes>
+    <includes local="no">iomanip</includes>
+    <includedby refid="texture__shader_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.cpp</includedby>
+    <incdepgraph>
+      <node id="145">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h</label>
+        <link refid="camera.h"/>
+        <childnode refid="146" relation="include">
+        </childnode>
+        <childnode refid="147" relation="include">
+        </childnode>
+        <childnode refid="148" relation="include">
+        </childnode>
+        <childnode refid="149" relation="include">
+        </childnode>
+        <childnode refid="150" relation="include">
+        </childnode>
+        <childnode refid="151" relation="include">
+        </childnode>
+        <childnode refid="152" relation="include">
+        </childnode>
+      </node>
+      <node id="152">
+        <label>iomanip</label>
+      </node>
+      <node id="147">
+        <label>fstream</label>
+      </node>
+      <node id="150">
+        <label>gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="149">
+        <label>glm.hpp</label>
+      </node>
+      <node id="146">
+        <label>iostream</label>
+      </node>
+      <node id="151">
+        <label>gtx/string_cast.hpp</label>
+      </node>
+      <node id="148">
+        <label>GL/gl3w.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="153">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h</label>
+        <link refid="camera.h"/>
+        <childnode refid="154" relation="include">
+        </childnode>
+      </node>
+      <node id="154">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/texture_shader.cpp</label>
+        <link refid="texture__shader_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="class_camera" prot="public">Camera</innerclass>
+      <sectiondef kind="enum">
+      <memberdef kind="enum" id="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcb" prot="public" static="no">
+        <name>Camera_Movement</name>
+        <enumvalue id="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaa26736999186daf8146f809e863712a1" prot="public">
+          <name>FORWARD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbafed2fca77e454294d6b8bda1bf2c9fd6" prot="public">
+          <name>BACKWARD</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbadb45120aafd37a973140edee24708065" prot="public">
+          <name>LEFT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaec8379af7490bb9eaaf579cf17876f38" prot="public">
+          <name>RIGHT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="12" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="12" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="camera_8h_1aad8ef0922adf3ff721892dfc8eb806d6" prot="public" static="no" mutable="no">
+        <type>const GLfloat</type>
+        <definition>const GLfloat YAW</definition>
+        <argsstring></argsstring>
+        <name>YAW</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="19" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="camera_8h_1a4ce864ea1227b9e112d693f8c282290c" prot="public" static="no" mutable="no">
+        <type>const GLfloat</type>
+        <definition>const GLfloat PITCH</definition>
+        <argsstring></argsstring>
+        <name>PITCH</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="20" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="camera_8h_1aba924f5d1202a01928a09a6e9aefae8d" prot="public" static="no" mutable="no">
+        <type>const GLfloat</type>
+        <definition>const GLfloat SPEED</definition>
+        <argsstring></argsstring>
+        <name>SPEED</name>
+        <initializer>= 3.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="21" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="camera_8h_1a78a59674e072a9945659b79d92c52c9e" prot="public" static="no" mutable="no">
+        <type>const GLfloat</type>
+        <definition>const GLfloat MOUSE_SENSITIVTY</definition>
+        <argsstring></argsstring>
+        <name>MOUSE_SENSITIVTY</name>
+        <initializer>= 0.05f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="22" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="camera_8h_1af75c0d0ade981c309a189d42c7681fe7" prot="public" static="no" mutable="no">
+        <type>const GLfloat</type>
+        <definition>const GLfloat MOUSE_ZOOM</definition>
+        <argsstring></argsstring>
+        <name>MOUSE_ZOOM</name>
+        <initializer>= 45.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="23" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="camera_8h_1ad9554bc3a481b18d835acab1155bee5d" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float MAX_PITCH_ANGLE</definition>
+        <argsstring></argsstring>
+        <name>MAX_PITCH_ANGLE</name>
+        <initializer>= 89.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="24" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#ifndef<sp/>_CAMERA_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_CAMERA_H_</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GL/gl3w.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/matrix_transform.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtx/string_cast.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iomanip&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>std::setprecision</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>定义移动方向</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcb" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcb" kindref="member">Camera_Movement</ref><sp/>{</highlight></codeline>
+<codeline lineno="13" refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaa26736999186daf8146f809e863712a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaa26736999186daf8146f809e863712a1" kindref="member">FORWARD</ref>,</highlight></codeline>
+<codeline lineno="14" refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbafed2fca77e454294d6b8bda1bf2c9fd6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbafed2fca77e454294d6b8bda1bf2c9fd6" kindref="member">BACKWARD</ref>,</highlight></codeline>
+<codeline lineno="15" refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbadb45120aafd37a973140edee24708065" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbadb45120aafd37a973140edee24708065" kindref="member">LEFT</ref>,</highlight></codeline>
+<codeline lineno="16" refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaec8379af7490bb9eaaf579cf17876f38" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaec8379af7490bb9eaaf579cf17876f38" kindref="member">RIGHT</ref></highlight></codeline>
+<codeline lineno="17"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/>定义预设常量</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="camera_8h_1aad8ef0922adf3ff721892dfc8eb806d6" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLfloat<sp/><ref refid="camera_8h_1aad8ef0922adf3ff721892dfc8eb806d6" kindref="member">YAW</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="20" refid="camera_8h_1a4ce864ea1227b9e112d693f8c282290c" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLfloat<sp/><ref refid="camera_8h_1a4ce864ea1227b9e112d693f8c282290c" kindref="member">PITCH</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="21" refid="camera_8h_1aba924f5d1202a01928a09a6e9aefae8d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLfloat<sp/><ref refid="camera_8h_1aba924f5d1202a01928a09a6e9aefae8d" kindref="member">SPEED</ref><sp/>=<sp/>3.0f;</highlight></codeline>
+<codeline lineno="22" refid="camera_8h_1a78a59674e072a9945659b79d92c52c9e" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLfloat<sp/><ref refid="camera_8h_1a78a59674e072a9945659b79d92c52c9e" kindref="member">MOUSE_SENSITIVTY</ref><sp/>=<sp/>0.05f;</highlight></codeline>
+<codeline lineno="23" refid="camera_8h_1af75c0d0ade981c309a189d42c7681fe7" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLfloat<sp/><ref refid="camera_8h_1af75c0d0ade981c309a189d42c7681fe7" kindref="member">MOUSE_ZOOM</ref><sp/>=<sp/>45.0f;</highlight></codeline>
+<codeline lineno="24" refid="camera_8h_1ad9554bc3a481b18d835acab1155bee5d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><sp/><ref refid="camera_8h_1ad9554bc3a481b18d835acab1155bee5d" kindref="member">MAX_PITCH_ANGLE</ref><sp/>=<sp/>89.0f;<sp/></highlight><highlight class="comment">//<sp/>防止万向锁</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26" refid="class_camera" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_camera" kindref="compound">Camera</ref></highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="29" refid="class_camera_1a39fe27704ae6b1ace959e8311c37ffc2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="class_camera_1a39fe27704ae6b1ace959e8311c37ffc2" kindref="member">Camera</ref>(glm::vec3<sp/>pos<sp/>=<sp/>glm::vec3(0.0,<sp/>0.0,<sp/>2.0),</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_camera_1a3fe5f351380fb118ffc600591769f049" kindref="member">up</ref><sp/>=<sp/>glm::vec3(0.0,<sp/>1.0,<sp/>0.0),</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GLfloat<sp/>yaw<sp/>=<sp/><ref refid="camera_8h_1aad8ef0922adf3ff721892dfc8eb806d6" kindref="member">YAW</ref>,<sp/>GLfloat<sp/>pitch<sp/>=<sp/><ref refid="camera_8h_1a4ce864ea1227b9e112d693f8c282290c" kindref="member">PITCH</ref>)<sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:<ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref>(pos),<sp/><ref refid="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" kindref="member">forward</ref>(0.0,<sp/>0.0,<sp/>-1.0),<sp/><ref refid="class_camera_1aeed12d28097f13307412171277b04091" kindref="member">viewUp</ref>(<ref refid="class_camera_1a3fe5f351380fb118ffc600591769f049" kindref="member">up</ref>),</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_camera_1aabe2ce10d7abfe8011a51394c6e0d863" kindref="member">moveSpeed</ref>(<ref refid="camera_8h_1aba924f5d1202a01928a09a6e9aefae8d" kindref="member">SPEED</ref>),<sp/><ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref>(<ref refid="camera_8h_1af75c0d0ade981c309a189d42c7681fe7" kindref="member">MOUSE_ZOOM</ref>),<sp/><ref refid="class_camera_1a0658cc8b38fc33f092f196648e00e724" kindref="member">mouse_sensitivity</ref>(<ref refid="camera_8h_1a78a59674e072a9945659b79d92c52c9e" kindref="member">MOUSE_SENSITIVTY</ref>),</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref>(yaw),<sp/><ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref>(pitch)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1ad424b8b92e580508caf21337b69b93fa" kindref="member">updateCameraVectors</ref>();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>获取视变换矩阵 <sp/><sp/><sp/>glm::mat4<sp/>getViewMatrix()
+<sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>glm::lookAt(this-&gt;position,<sp/>this-&gt;position<sp/>+<sp/>this-&gt;forward,<sp/>this-&gt;viewUp);
+<sp/><sp/>}
+<sp/><sp/>//<sp/>处理键盘按键后方向移动
+<sp/>void<sp/>handleKeyPress(Camera_Movement<sp/>direction,<sp/>GLfloat<sp/>deltaTime)
+<sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>GLfloat<sp/>velocity<sp/>=<sp/>this-&gt;moveSpeed<sp/>*<sp/>deltaTime;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>switch<sp/>(direction)
+<sp/><sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>case<sp/>FORWARD:
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;position<sp/>+=<sp/>this-&gt;forward<sp/>*<sp/>velocity;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;
+<sp/><sp/><sp/><sp/><sp/>case<sp/>BACKWARD:
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;position<sp/>-=<sp/>this-&gt;forward<sp/>*<sp/>velocity;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;
+<sp/><sp/><sp/><sp/><sp/>case<sp/>LEFT:
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;position<sp/>-=<sp/>this-&gt;side<sp/>*<sp/>velocity;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;
+<sp/><sp/><sp/><sp/><sp/>case<sp/>RIGHT:
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;position<sp/>+=<sp/>this-&gt;side<sp/>*<sp/>velocity;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;
+<sp/><sp/><sp/><sp/><sp/>default:
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>break;
+<sp/><sp/><sp/><sp/><sp/>}
+<sp/><sp/>}
+<sp/><sp/>//<sp/>处理鼠标移动
+<sp/><sp/><sp/><sp/>void<sp/>handleMouseMove(GLfloat<sp/>xoffset,<sp/>GLfloat<sp/>yoffset)
+<sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>xoffset<sp/>*=<sp/>this-&gt;mouse_sensitivity;<sp/>//<sp/>用鼠标灵敏度调节角度变换
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>yoffset<sp/>*=<sp/>this-&gt;mouse_sensitivity;
+
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pitchAngle<sp/>+=<sp/>yoffset;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;yawAngle<sp/>+=<sp/>xoffset;
+
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;normalizeAngle();
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;updateCameraVectors();
+<sp/><sp/><sp/>}
+<sp/><sp/>//<sp/>处理鼠标滚轮缩放 保持在[1.0,<sp/>MOUSE_ZOOM]之间
+<sp/><sp/><sp/>void<sp/>handleMouseScroll(GLfloat<sp/>yoffset)
+<sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;mouse_zoom<sp/>&gt;=<sp/>1.0f<sp/>&amp;&amp;<sp/>this-&gt;mouse_zoom<sp/>&lt;=<sp/>MOUSE_ZOOM)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mouse_zoom<sp/>-=<sp/>this-&gt;mouse_sensitivity<sp/>*<sp/>yoffset;
+<sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;mouse_zoom<sp/>&lt;=<sp/>1.0f)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mouse_zoom<sp/>=<sp/>1.0f;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;mouse_zoom<sp/>&gt;=<sp/>45.0f)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mouse_zoom<sp/>=<sp/>45.0f;
+<sp/><sp/>}
+<sp/><sp/>//<sp/>使pitch<sp/>yaw角度保持在合理范围内
+<sp/><sp/>void<sp/>normalizeAngle()
+<sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;pitchAngle<sp/>&gt;<sp/>MAX_PITCH_ANGLE)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pitchAngle<sp/>=<sp/>MAX_PITCH_ANGLE;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;pitchAngle<sp/>&lt;<sp/>-MAX_PITCH_ANGLE)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pitchAngle<sp/>=<sp/>-MAX_PITCH_ANGLE;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;yawAngle<sp/>&lt;<sp/>0.0f)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;yawAngle<sp/>+=<sp/>360.0f;
+<sp/><sp/>}
+<sp/><sp/>//<sp/>计算forward<sp/>side向量
+<sp/><sp/><sp/><sp/>void<sp/>updateCameraVectors()
+<sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/>forward;
+<sp/><sp/><sp/><sp/><sp/>forward.x<sp/>=<sp/>-sin(glm::radians(this-&gt;yawAngle))<sp/>*<sp/>cos(glm::radians(this-&gt;pitchAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/>forward.y<sp/>=<sp/>sin(glm::radians(this-&gt;pitchAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>forward.z<sp/>=<sp/>-cos(glm::radians(this-&gt;yawAngle))<sp/>*<sp/>cos(glm::radians(this-&gt;pitchAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;forward<sp/>=<sp/>glm::normalize(forward);
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/>side;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.x<sp/>=<sp/>cos(glm::radians(this-&gt;yawAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.y<sp/>=<sp/>0;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.z<sp/>=<sp/>-sin(glm::radians(this-&gt;yawAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;side<sp/>=<sp/>glm::normalize(side);
+<sp/>}
+public:
+<sp/><sp/>glm::vec3<sp/>forward,up,<sp/>side,<sp/>viewUp,<sp/>position;<sp/>//<sp/>相机属性
+<sp/><sp/>GLfloat<sp/>yawAngle,<sp/>pitchAngle;<sp/>//<sp/>欧拉角
+<sp/><sp/><sp/>GLfloat<sp/>moveSpeed,<sp/>mouse_sensitivity,<sp/>mouse_zoom;<sp/>//<sp/>相机选项
+};
+
+#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="class_camera_1a5569ca5967e01d3344fbf6aba36d9820" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::mat4<sp/><ref refid="class_camera_1a5569ca5967e01d3344fbf6aba36d9820" kindref="member">getViewMatrix</ref>()</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>glm::lookAt(this-&gt;<ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref>,<sp/>this-&gt;<ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref><sp/>+<sp/>this-&gt;<ref refid="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" kindref="member">forward</ref>,<sp/>this-&gt;<ref refid="class_camera_1aeed12d28097f13307412171277b04091" kindref="member">viewUp</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>处理键盘按键后方向移动</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45" refid="class_camera_1ad5c19624ed750472ae37fa93ca6a89e7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_camera_1ad5c19624ed750472ae37fa93ca6a89e7" kindref="member">handleKeyPress</ref>(<ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcb" kindref="member">Camera_Movement</ref><sp/>direction,<sp/>GLfloat<sp/>deltaTime)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GLfloat<sp/>velocity<sp/>=<sp/>this-&gt;<ref refid="class_camera_1aabe2ce10d7abfe8011a51394c6e0d863" kindref="member">moveSpeed</ref><sp/>*<sp/>deltaTime;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(direction)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaa26736999186daf8146f809e863712a1" kindref="member">FORWARD</ref>:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref><sp/>+=<sp/>this-&gt;<ref refid="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" kindref="member">forward</ref><sp/>*<sp/>velocity;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbafed2fca77e454294d6b8bda1bf2c9fd6" kindref="member">BACKWARD</ref>:</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref><sp/>-=<sp/>this-&gt;<ref refid="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" kindref="member">forward</ref><sp/>*<sp/>velocity;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbadb45120aafd37a973140edee24708065" kindref="member">LEFT</ref>:</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref><sp/>-=<sp/>this-&gt;<ref refid="class_camera_1a3190dbe45430d67ec1859f67b75b1a28" kindref="member">side</ref><sp/>*<sp/>velocity;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcbaec8379af7490bb9eaaf579cf17876f38" kindref="member">RIGHT</ref>:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref><sp/>+=<sp/>this-&gt;<ref refid="class_camera_1a3190dbe45430d67ec1859f67b75b1a28" kindref="member">side</ref><sp/>*<sp/>velocity;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>处理鼠标移动</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67" refid="class_camera_1a448f93ac228e149ebb5c8ab7888201fc" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_camera_1a448f93ac228e149ebb5c8ab7888201fc" kindref="member">handleMouseMove</ref>(GLfloat<sp/>xoffset,<sp/>GLfloat<sp/>yoffset)</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>xoffset<sp/>*=<sp/>this-&gt;<ref refid="class_camera_1a0658cc8b38fc33f092f196648e00e724" kindref="member">mouse_sensitivity</ref>;<sp/></highlight><highlight class="comment">//<sp/>用鼠标灵敏度调节角度变换</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yoffset<sp/>*=<sp/>this-&gt;<ref refid="class_camera_1a0658cc8b38fc33f092f196648e00e724" kindref="member">mouse_sensitivity</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref><sp/>+=<sp/>yoffset;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref><sp/>+=<sp/>xoffset;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a86981d6c020d92e8f14ed8c73dbb0eab" kindref="member">normalizeAngle</ref>();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1ad424b8b92e580508caf21337b69b93fa" kindref="member">updateCameraVectors</ref>();</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>处理鼠标滚轮缩放 保持在[1.0,<sp/>MOUSE_ZOOM]之间 <sp/><sp/><sp/>void<sp/>handleMouseScroll(GLfloat<sp/>yoffset)
+<sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;mouse_zoom<sp/>&gt;=<sp/>1.0f<sp/>&amp;&amp;<sp/>this-&gt;mouse_zoom<sp/>&lt;=<sp/>MOUSE_ZOOM)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mouse_zoom<sp/>-=<sp/>this-&gt;mouse_sensitivity<sp/>*<sp/>yoffset;
+<sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;mouse_zoom<sp/>&lt;=<sp/>1.0f)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mouse_zoom<sp/>=<sp/>1.0f;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;mouse_zoom<sp/>&gt;=<sp/>45.0f)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;mouse_zoom<sp/>=<sp/>45.0f;
+<sp/><sp/>}
+<sp/><sp/>//<sp/>使pitch<sp/>yaw角度保持在合理范围内
+<sp/><sp/>void<sp/>normalizeAngle()
+<sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;pitchAngle<sp/>&gt;<sp/>MAX_PITCH_ANGLE)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pitchAngle<sp/>=<sp/>MAX_PITCH_ANGLE;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;pitchAngle<sp/>&lt;<sp/>-MAX_PITCH_ANGLE)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;pitchAngle<sp/>=<sp/>-MAX_PITCH_ANGLE;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(this-&gt;yawAngle<sp/>&lt;<sp/>0.0f)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;yawAngle<sp/>+=<sp/>360.0f;
+<sp/><sp/>}
+<sp/><sp/>//<sp/>计算forward<sp/>side向量
+<sp/><sp/><sp/><sp/>void<sp/>updateCameraVectors()
+<sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/>forward;
+<sp/><sp/><sp/><sp/><sp/>forward.x<sp/>=<sp/>-sin(glm::radians(this-&gt;yawAngle))<sp/>*<sp/>cos(glm::radians(this-&gt;pitchAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/>forward.y<sp/>=<sp/>sin(glm::radians(this-&gt;pitchAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>forward.z<sp/>=<sp/>-cos(glm::radians(this-&gt;yawAngle))<sp/>*<sp/>cos(glm::radians(this-&gt;pitchAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;forward<sp/>=<sp/>glm::normalize(forward);
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/>side;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.x<sp/>=<sp/>cos(glm::radians(this-&gt;yawAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.y<sp/>=<sp/>0;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.z<sp/>=<sp/>-sin(glm::radians(this-&gt;yawAngle));
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;side<sp/>=<sp/>glm::normalize(side);
+<sp/>}
+public:
+<sp/><sp/>glm::vec3<sp/>forward,up,<sp/>side,<sp/>viewUp,<sp/>position;<sp/>//<sp/>相机属性
+<sp/><sp/>GLfloat<sp/>yawAngle,<sp/>pitchAngle;<sp/>//<sp/>欧拉角
+<sp/><sp/><sp/>GLfloat<sp/>moveSpeed,<sp/>mouse_sensitivity,<sp/>mouse_zoom;<sp/>//<sp/>相机选项
+};
+
+#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="class_camera_1a06bded94e9b7454ff02dc7780277dc6f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_camera_1a06bded94e9b7454ff02dc7780277dc6f" kindref="member">handleMouseScroll</ref>(GLfloat<sp/>yoffset)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref><sp/>&gt;=<sp/>1.0f<sp/>&amp;&amp;<sp/>this-&gt;<ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref><sp/>&lt;=<sp/><ref refid="camera_8h_1af75c0d0ade981c309a189d42c7681fe7" kindref="member">MOUSE_ZOOM</ref>)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref><sp/>-=<sp/>this-&gt;<ref refid="class_camera_1a0658cc8b38fc33f092f196648e00e724" kindref="member">mouse_sensitivity</ref><sp/>*<sp/>yoffset;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref><sp/>&lt;=<sp/>1.0f)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref><sp/>&gt;=<sp/>45.0f)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref><sp/>=<sp/>45.0f;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>使pitch<sp/>yaw角度保持在合理范围内</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90" refid="class_camera_1a86981d6c020d92e8f14ed8c73dbb0eab" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_camera_1a86981d6c020d92e8f14ed8c73dbb0eab" kindref="member">normalizeAngle</ref>()</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref><sp/>&gt;<sp/><ref refid="camera_8h_1ad9554bc3a481b18d835acab1155bee5d" kindref="member">MAX_PITCH_ANGLE</ref>)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref><sp/>=<sp/><ref refid="camera_8h_1ad9554bc3a481b18d835acab1155bee5d" kindref="member">MAX_PITCH_ANGLE</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref><sp/>&lt;<sp/>-<ref refid="camera_8h_1ad9554bc3a481b18d835acab1155bee5d" kindref="member">MAX_PITCH_ANGLE</ref>)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref><sp/>=<sp/>-<ref refid="camera_8h_1ad9554bc3a481b18d835acab1155bee5d" kindref="member">MAX_PITCH_ANGLE</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(this-&gt;<ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref><sp/>&lt;<sp/>0.0f)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;<ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref><sp/>+=<sp/>360.0f;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>计算forward<sp/>side向量</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="class_camera_1ad424b8b92e580508caf21337b69b93fa" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_camera_1ad424b8b92e580508caf21337b69b93fa" kindref="member">updateCameraVectors</ref>()</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" kindref="member">forward</ref>;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forward.x<sp/>=<sp/>-sin(glm::radians(this-&gt;<ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref>))<sp/>*<sp/>cos(glm::radians(this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref>));</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forward.y<sp/>=<sp/>sin(glm::radians(this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref>));</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forward.z<sp/>=<sp/>-cos(glm::radians(this-&gt;<ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref>))<sp/>*<sp/>cos(glm::radians(this-&gt;<ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref>));</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;forward<sp/>=<sp/>glm::normalize(forward);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_camera_1a3190dbe45430d67ec1859f67b75b1a28" kindref="member">side</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.x<sp/>=<sp/>cos(glm::radians(this-&gt;<ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref>));</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.y<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>side.z<sp/>=<sp/>-sin(glm::radians(this-&gt;<ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref>));</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this-&gt;side<sp/>=<sp/>glm::normalize(side);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="115" refid="class_camera_1aeed12d28097f13307412171277b04091" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" kindref="member">forward</ref>,<ref refid="class_camera_1a3fe5f351380fb118ffc600591769f049" kindref="member">up</ref>,<sp/><ref refid="class_camera_1a3190dbe45430d67ec1859f67b75b1a28" kindref="member">side</ref>,<sp/><ref refid="class_camera_1aeed12d28097f13307412171277b04091" kindref="member">viewUp</ref>,<sp/><ref refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" kindref="member">position</ref>;<sp/></highlight><highlight class="comment">//<sp/>相机属性 <sp/><sp/>GLfloat<sp/>yawAngle,<sp/>pitchAngle;<sp/>//<sp/>欧拉角
+<sp/><sp/><sp/>GLfloat<sp/>moveSpeed,<sp/>mouse_sensitivity,<sp/>mouse_zoom;<sp/>//<sp/>相机选项
+};
+
+#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116" refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>GLfloat<sp/><ref refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" kindref="member">yawAngle</ref>,<sp/><ref refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" kindref="member">pitchAngle</ref>;<sp/></highlight><highlight class="comment">//<sp/>欧拉角 <sp/><sp/><sp/>GLfloat<sp/>moveSpeed,<sp/>mouse_sensitivity,<sp/>mouse_zoom;<sp/>//<sp/>相机选项
+};
+
+#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117" refid="class_camera_1aabe2ce10d7abfe8011a51394c6e0d863" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>GLfloat<sp/><ref refid="class_camera_1aabe2ce10d7abfe8011a51394c6e0d863" kindref="member">moveSpeed</ref>,<sp/><ref refid="class_camera_1a0658cc8b38fc33f092f196648e00e724" kindref="member">mouse_sensitivity</ref>,<sp/><ref refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" kindref="member">mouse_zoom</ref>;<sp/></highlight><highlight class="comment">//<sp/>相机选项</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h"/>
+  </compounddef>
+</doxygen>

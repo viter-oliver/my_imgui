@@ -1,0 +1,248 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_animation_layer_impl" kind="struct" language="C++" prot="public">
+    <compoundname>ofbx::AnimationLayerImpl</compoundname>
+    <basecompoundref refid="structofbx_1_1_animation_layer" prot="public" virt="non-virtual">ofbx::AnimationLayer</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_animation_layer_impl_1a7d45b88aabbae241565c7c266ba64cf1" prot="public" static="no" mutable="no">
+        <type>std::vector&lt; <ref refid="structofbx_1_1_animation_curve_node_impl" kindref="compound">AnimationCurveNodeImpl</ref> * &gt;</type>
+        <definition>std::vector&lt;AnimationCurveNodeImpl*&gt; ofbx::AnimationLayerImpl::curve_nodes</definition>
+        <argsstring></argsstring>
+        <name>curve_nodes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="1552" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="1552" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structofbx_1_1_animation_layer_impl_1a70224d568a081d66bc0b518a811f8794" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ofbx::AnimationLayerImpl::AnimationLayerImpl</definition>
+        <argsstring>(const Scene &amp;_scene, const IElement &amp;_element)</argsstring>
+        <name>AnimationLayerImpl</name>
+        <param>
+          <type>const <ref refid="structofbx_1_1_scene" kindref="compound">Scene</ref> &amp;</type>
+          <declname>_scene</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structofbx_1_1_i_element" kindref="compound">IElement</ref> &amp;</type>
+          <declname>_element</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="1526" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="1526" bodyend="1529"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_animation_layer_impl_1a06e194050ab45e8ed3536d26abc0939b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" kindref="member">Type</ref></type>
+        <definition>Type ofbx::AnimationLayerImpl::getType</definition>
+        <argsstring>() const override</argsstring>
+        <name>getType</name>
+        <reimplements refid="structofbx_1_1_object_1a351a55f8f04b3ead907280f3a4dcc48c">getType</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="1532" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="1532" bodyend="1532"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_animation_layer_impl_1a78960823b8181406695df4bd428184f6" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="structofbx_1_1_animation_curve_node" kindref="compound">AnimationCurveNode</ref> *</type>
+        <definition>const AnimationCurveNode* ofbx::AnimationLayerImpl::getCurveNode</definition>
+        <argsstring>(int index) const override</argsstring>
+        <name>getCurveNode</name>
+        <reimplements refid="structofbx_1_1_animation_layer_1a20aeaec5a83cf1639d95fd17c5af1495">getCurveNode</reimplements>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="1535" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="1535" bodyend="1539"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_animation_layer_impl_1aac46e88d31187d59a9e7ae4ac51a9e8b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>const <ref refid="structofbx_1_1_animation_curve_node" kindref="compound">AnimationCurveNode</ref> *</type>
+        <definition>const AnimationCurveNode* ofbx::AnimationLayerImpl::getCurveNode</definition>
+        <argsstring>(const Object &amp;bone, const char *prop) const override</argsstring>
+        <name>getCurveNode</name>
+        <reimplements refid="structofbx_1_1_animation_layer_1a3ac2b1f873e2926f99fce83ca04f19e4">getCurveNode</reimplements>
+        <param>
+          <type>const <ref refid="structofbx_1_1_object" kindref="compound">Object</ref> &amp;</type>
+          <declname>bone</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>prop</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="1542" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="1542" bodyend="1549"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="82">
+        <label>ofbx::Object</label>
+        <link refid="structofbx_1_1_object"/>
+      </node>
+      <node id="81">
+        <label>ofbx::AnimationLayer</label>
+        <link refid="structofbx_1_1_animation_layer"/>
+        <childnode refid="82" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="80">
+        <label>ofbx::AnimationLayerImpl</label>
+        <link refid="structofbx_1_1_animation_layer_impl"/>
+        <childnode refid="81" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="91">
+        <label>ofbx::Property</label>
+        <link refid="structofbx_1_1_property"/>
+        <childnode refid="92" relation="public-inheritance">
+        </childnode>
+        <childnode refid="91" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="93" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+      <node id="85">
+        <label>ofbx::Object</label>
+        <link refid="structofbx_1_1_object"/>
+        <childnode refid="85" relation="usage">
+          <edgelabel>node_attribute</edgelabel>
+        </childnode>
+        <childnode refid="86" relation="usage">
+          <edgelabel>scene</edgelabel>
+        </childnode>
+        <childnode refid="90" relation="usage">
+          <edgelabel>element</edgelabel>
+        </childnode>
+      </node>
+      <node id="88">
+        <label>ofbx::Root</label>
+        <link refid="structofbx_1_1_root"/>
+        <childnode refid="85" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="92">
+        <label>ofbx::IElementProperty</label>
+        <link refid="structofbx_1_1_i_element_property"/>
+      </node>
+      <node id="84">
+        <label>ofbx::AnimationLayer</label>
+        <link refid="structofbx_1_1_animation_layer"/>
+        <childnode refid="85" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>ofbx::IScene</label>
+        <link refid="structofbx_1_1_i_scene"/>
+      </node>
+      <node id="90">
+        <label>ofbx::IElement</label>
+        <link refid="structofbx_1_1_i_element"/>
+      </node>
+      <node id="86">
+        <label>ofbx::Scene</label>
+        <link refid="structofbx_1_1_scene"/>
+        <childnode refid="87" relation="public-inheritance">
+        </childnode>
+        <childnode refid="88" relation="usage">
+          <edgelabel>m_root</edgelabel>
+        </childnode>
+        <childnode refid="89" relation="usage">
+          <edgelabel>m_root_element</edgelabel>
+        </childnode>
+      </node>
+      <node id="89">
+        <label>ofbx::Element</label>
+        <link refid="structofbx_1_1_element"/>
+        <childnode refid="90" relation="public-inheritance">
+        </childnode>
+        <childnode refid="91" relation="usage">
+          <edgelabel>first_property</edgelabel>
+        </childnode>
+        <childnode refid="93" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="89" relation="usage">
+          <edgelabel>sibling</edgelabel>
+          <edgelabel>child</edgelabel>
+        </childnode>
+      </node>
+      <node id="93">
+        <label>ofbx::DataView</label>
+        <link refid="structofbx_1_1_data_view"/>
+      </node>
+      <node id="83">
+        <label>ofbx::AnimationLayerImpl</label>
+        <link refid="structofbx_1_1_animation_layer_impl"/>
+        <childnode refid="84" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="1525" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="1524" bodyend="1553"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_animation_layer_1aa71253c4d522a5442bf4eaafd5422b2f" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>AnimationLayer</name></member>
+      <member refid="structofbx_1_1_animation_layer_impl_1a70224d568a081d66bc0b518a811f8794" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>AnimationLayerImpl</name></member>
+      <member refid="structofbx_1_1_animation_layer_impl_1a7d45b88aabbae241565c7c266ba64cf1" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>curve_nodes</name></member>
+      <member refid="structofbx_1_1_object_1a37c36cf361d6b9783348f2dbdc1462c8" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>element</name></member>
+      <member refid="structofbx_1_1_object_1a265dd11d0863c60bd537f18ef7a8e028" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>evalLocal</name></member>
+      <member refid="structofbx_1_1_animation_layer_impl_1a78960823b8181406695df4bd428184f6" prot="public" virt="virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getCurveNode</name></member>
+      <member refid="structofbx_1_1_animation_layer_impl_1aac46e88d31187d59a9e7ae4ac51a9e8b" prot="public" virt="virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getCurveNode</name></member>
+      <member refid="structofbx_1_1_object_1abbe7839bd1a2e6469c05fd82e4fa3334" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getGlobalTransform</name></member>
+      <member refid="structofbx_1_1_object_1afe2a2a4f6998a42eb5de7bd04fb93f2d" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getLocalRotation</name></member>
+      <member refid="structofbx_1_1_object_1a91007293b823fea15253a32ef6a8df2d" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getLocalScaling</name></member>
+      <member refid="structofbx_1_1_object_1aa3de47089adf9fd9e19b674b7eeb4923" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getLocalTranslation</name></member>
+      <member refid="structofbx_1_1_object_1a117b5609981c4c3f45f77c758de097a3" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getParent</name></member>
+      <member refid="structofbx_1_1_object_1a52008edb38ebc35269d1523b0cb4599a" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getPostRotation</name></member>
+      <member refid="structofbx_1_1_object_1ac80b1e2e54a0325397505abcdb40b254" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getPreRotation</name></member>
+      <member refid="structofbx_1_1_object_1a7434e37ced967fb1bf8c8bb6a12a674e" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getRotationOffset</name></member>
+      <member refid="structofbx_1_1_object_1ae5325426051bc9083973e7db6ed10b73" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getRotationOrder</name></member>
+      <member refid="structofbx_1_1_object_1a554fe3984a6ddf1b5a03a811633591b5" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getRotationPivot</name></member>
+      <member refid="structofbx_1_1_object_1a066556d7b2361538093050d3422b6676" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getScalingOffset</name></member>
+      <member refid="structofbx_1_1_object_1a0c528f1e34f6c9287d2e389488d5dc39" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getScalingPivot</name></member>
+      <member refid="structofbx_1_1_object_1ace5bf5d0a7fd82d953d058df65d0c85e" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getScene</name></member>
+      <member refid="structofbx_1_1_animation_layer_impl_1a06e194050ab45e8ed3536d26abc0939b" prot="public" virt="virtual"><scope>ofbx::AnimationLayerImpl</scope><name>getType</name></member>
+      <member refid="structofbx_1_1_object_1aa9389f53bde91f138df49e48e0447b0b" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>id</name></member>
+      <member refid="structofbx_1_1_object_1accbd64c9e29189111ece33831d0ffe91" prot="protected" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>is_node</name></member>
+      <member refid="structofbx_1_1_object_1ae214d85b80db101df3e1b8f46a837722" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>isNode</name></member>
+      <member refid="structofbx_1_1_object_1a805b47b5743d377e8b5939ed8c42a5c4" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>name</name></member>
+      <member refid="structofbx_1_1_object_1aa88660f2cb7b584b7feaf208e633863e" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>node_attribute</name></member>
+      <member refid="structofbx_1_1_object_1ad3852f1bb90c811e9d4b3775d1e40a14" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>Object</name></member>
+      <member refid="structofbx_1_1_object_1a3baace736ac9954b9369faeb94dc4fc3" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1a0f01e46c82d9d3e0c5673d9f53c2b7fe" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1a7d9f54c95d761ca7b24a8b18b39ae39d" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1ab3c2a9ad2afc5436079603ca57c35ea0" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>resolveObjectLinkReverse</name></member>
+      <member refid="structofbx_1_1_animation_layer_1a5d25a2e667c86870662cbb17624d6224" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>s_type</name></member>
+      <member refid="structofbx_1_1_object_1aa8b8ff6f452ed54e032c9e657ceb4f62" prot="protected" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>scene</name></member>
+      <member refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" prot="public" virt="non-virtual"><scope>ofbx::AnimationLayerImpl</scope><name>Type</name></member>
+      <member refid="structofbx_1_1_object_1ae05540cc4f719253808195263452fe57" prot="public" virt="virtual"><scope>ofbx::AnimationLayerImpl</scope><name>~Object</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

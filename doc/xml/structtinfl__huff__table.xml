@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structtinfl__huff__table" kind="struct" language="C++" prot="public">
+    <compoundname>tinfl_huff_table</compoundname>
+    <includes refid="miniz_8h" local="no">miniz.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtinfl__huff__table_1a31f719d4829db3d6646139d5249094cb" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a9354eca32f90733aa9bb3738c92da596" kindref="member">mz_uint8</ref></type>
+        <definition>mz_uint8 tinfl_huff_table::m_code_size[TINFL_MAX_HUFF_SYMBOLS_0]</definition>
+        <argsstring>[TINFL_MAX_HUFF_SYMBOLS_0]</argsstring>
+        <name>m_code_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="857" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="857" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtinfl__huff__table_1a51b707504c86547f166bc557d7ce4f84" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a5a94836eff2f4841bcdd2eb4ea3b8cc4" kindref="member">mz_int16</ref></type>
+        <definition>mz_int16 tinfl_huff_table::m_look_up[TINFL_FAST_LOOKUP_SIZE]</definition>
+        <argsstring>[TINFL_FAST_LOOKUP_SIZE]</argsstring>
+        <name>m_look_up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="858" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="858" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtinfl__huff__table_1a1208fe7e128f00188f99ba6f51fa9af6" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a5a94836eff2f4841bcdd2eb4ea3b8cc4" kindref="member">mz_int16</ref></type>
+        <definition>mz_int16 tinfl_huff_table::m_tree[TINFL_MAX_HUFF_SYMBOLS_0 *2]</definition>
+        <argsstring>[TINFL_MAX_HUFF_SYMBOLS_0 *2]</argsstring>
+        <name>m_tree</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="858" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="858" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="856" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="855" bodyend="859"/>
+    <listofallmembers>
+      <member refid="structtinfl__huff__table_1a31f719d4829db3d6646139d5249094cb" prot="public" virt="non-virtual"><scope>tinfl_huff_table</scope><name>m_code_size</name></member>
+      <member refid="structtinfl__huff__table_1a51b707504c86547f166bc557d7ce4f84" prot="public" virt="non-virtual"><scope>tinfl_huff_table</scope><name>m_look_up</name></member>
+      <member refid="structtinfl__huff__table_1a1208fe7e128f00188f99ba6f51fa9af6" prot="public" virt="non-virtual"><scope>tinfl_huff_table</scope><name>m_tree</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

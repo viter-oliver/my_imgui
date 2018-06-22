@@ -1,0 +1,434 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="main__app_8cpp" kind="file" language="C++">
+    <compoundname>main_app.cpp</compoundname>
+    <includes local="yes">imgui.h</includes>
+    <includes refid="imgui__impl__glfw__gl3_8h" local="yes">imgui_impl_glfw_gl3.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">GL/gl3w.h</includes>
+    <includes local="no">GLFW/glfw3.h</includes>
+    <includes local="yes">SOIL.h</includes>
+    <includes local="yes">texture.h</includes>
+    <includes refid="ft__base_8h" local="yes">ft_base.h</includes>
+    <includes refid="res__output_8h" local="yes">res_output.h</includes>
+    <includes refid="ft__image_8h" local="yes">ft_image.h</includes>
+    <includes local="no">functional</includes>
+    <includes local="no">windows.h</includes>
+    <includes local="no">locale.h</includes>
+    <includes local="no">ShlObj.h</includes>
+    <includes local="no">Commdlg.h</includes>
+    <includes refid="resource_8h" local="yes">Resource.h</includes>
+    <includes refid="afb__load_8h" local="yes">afb_load.h</includes>
+    <includes refid="primitive__object_8h" local="yes">primitive_object.h</includes>
+    <incdepgraph>
+      <node id="869">
+        <label>functional</label>
+      </node>
+      <node id="878">
+        <label>windows.h</label>
+      </node>
+      <node id="872">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="863">
+        <label>SOIL.h</label>
+      </node>
+      <node id="868">
+        <label>string</label>
+      </node>
+      <node id="867">
+        <label>map</label>
+      </node>
+      <node id="862">
+        <label>GLFW/glfw3.h</label>
+      </node>
+      <node id="874">
+        <label>json.h</label>
+      </node>
+      <node id="877">
+        <label>ft_image.h</label>
+        <link refid="ft__image_8h"/>
+        <childnode refid="865" relation="include">
+        </childnode>
+      </node>
+      <node id="859">
+        <label>imgui_impl_glfw_gl3.h</label>
+        <link refid="imgui__impl__glfw__gl3_8h"/>
+      </node>
+      <node id="865">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="866" relation="include">
+        </childnode>
+      </node>
+      <node id="857">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp</label>
+        <link refid="main_app.cpp"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="859" relation="include">
+        </childnode>
+        <childnode refid="860" relation="include">
+        </childnode>
+        <childnode refid="861" relation="include">
+        </childnode>
+        <childnode refid="862" relation="include">
+        </childnode>
+        <childnode refid="863" relation="include">
+        </childnode>
+        <childnode refid="864" relation="include">
+        </childnode>
+        <childnode refid="865" relation="include">
+        </childnode>
+        <childnode refid="876" relation="include">
+        </childnode>
+        <childnode refid="877" relation="include">
+        </childnode>
+        <childnode refid="869" relation="include">
+        </childnode>
+        <childnode refid="878" relation="include">
+        </childnode>
+        <childnode refid="879" relation="include">
+        </childnode>
+        <childnode refid="880" relation="include">
+        </childnode>
+        <childnode refid="881" relation="include">
+        </childnode>
+        <childnode refid="882" relation="include">
+        </childnode>
+        <childnode refid="883" relation="include">
+        </childnode>
+        <childnode refid="884" relation="include">
+        </childnode>
+      </node>
+      <node id="873">
+        <label>vector</label>
+      </node>
+      <node id="883">
+        <label>afb_load.h</label>
+        <link refid="afb__load_8h"/>
+        <childnode refid="871" relation="include">
+        </childnode>
+      </node>
+      <node id="871">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="858" relation="include">
+        </childnode>
+        <childnode refid="872" relation="include">
+        </childnode>
+        <childnode refid="873" relation="include">
+        </childnode>
+        <childnode refid="868" relation="include">
+        </childnode>
+        <childnode refid="874" relation="include">
+        </childnode>
+        <childnode refid="875" relation="include">
+        </childnode>
+      </node>
+      <node id="866">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="867" relation="include">
+        </childnode>
+        <childnode refid="868" relation="include">
+        </childnode>
+        <childnode refid="869" relation="include">
+        </childnode>
+        <childnode refid="870" relation="include">
+        </childnode>
+        <childnode refid="871" relation="include">
+        </childnode>
+      </node>
+      <node id="880">
+        <label>ShlObj.h</label>
+      </node>
+      <node id="858">
+        <label>imgui.h</label>
+      </node>
+      <node id="861">
+        <label>GL/gl3w.h</label>
+      </node>
+      <node id="881">
+        <label>Commdlg.h</label>
+      </node>
+      <node id="875">
+        <label>algorithm</label>
+      </node>
+      <node id="860">
+        <label>stdio.h</label>
+      </node>
+      <node id="884">
+        <label>primitive_object.h</label>
+        <link refid="primitive__object_8h"/>
+        <childnode refid="867" relation="include">
+        </childnode>
+        <childnode refid="868" relation="include">
+        </childnode>
+        <childnode refid="870" relation="include">
+        </childnode>
+        <childnode refid="861" relation="include">
+        </childnode>
+      </node>
+      <node id="879">
+        <label>locale.h</label>
+      </node>
+      <node id="864">
+        <label>texture.h</label>
+      </node>
+      <node id="870">
+        <label>memory</label>
+      </node>
+      <node id="876">
+        <label>res_output.h</label>
+        <link refid="res__output_8h"/>
+        <childnode refid="873" relation="include">
+        </childnode>
+        <childnode refid="868" relation="include">
+        </childnode>
+      </node>
+      <node id="882">
+        <label>Resource.h</label>
+        <link refid="resource_8h"/>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="main__app_8cpp_1a6442f9b3b14f51e8558c73573039e3ee" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string g_cureent_project_file_path</definition>
+        <argsstring></argsstring>
+        <name>g_cureent_project_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" line="35" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="main__app_8cpp_1a4d762e72332452b2eed64305674dbd46" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string g_current_run_path</definition>
+        <argsstring></argsstring>
+        <name>g_current_run_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" line="36" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="main__app_8cpp_1a6e6d1771a9242858811be0a3569838fa" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void error_callback</definition>
+        <argsstring>(int error, const char *description)</argsstring>
+        <name>error_callback</name>
+        <param>
+          <type>int</type>
+          <declname>error</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>description</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="main__app_8cpp_1a3b30acb735dc960baf71adf4ac1baa86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void instantiating_internal_shader</definition>
+        <argsstring>()</argsstring>
+        <name>instantiating_internal_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" line="34" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.cpp" bodystart="194" bodyend="200"/>
+      </memberdef>
+      <memberdef kind="function" id="main__app_8cpp_1a0ddf1224851353fc92bfbff6f499fa97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int main</definition>
+        <argsstring>(int argc, char *argv[])</argsstring>
+        <name>main</name>
+        <param>
+          <type>int</type>
+          <declname>argc</declname>
+        </param>
+        <param>
+          <type>char *</type>
+          <declname>argv</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" line="39" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp" bodystart="39" bodyend="145"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>ImGui<sp/>-<sp/>standalone<sp/>example<sp/>application<sp/>for<sp/>GLFW<sp/>+<sp/>OpenGL<sp/>3,<sp/>using<sp/>programmable<sp/>pipeline</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>you<sp/>are<sp/>new<sp/>to<sp/>ImGui,<sp/>see<sp/>examples/README.txt<sp/>and<sp/>documentation<sp/>at<sp/>the<sp/>top<sp/>of<sp/>imgui.cpp.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(GLFW<sp/>is<sp/>a<sp/>cross-platform<sp/>general<sp/>purpose<sp/>library<sp/>for<sp/>handling<sp/>windows,<sp/>inputs,<sp/>OpenGL/Vulkan<sp/>graphics<sp/>context<sp/>creation,<sp/>etc.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(GL3W<sp/>is<sp/>a<sp/>helper<sp/>library<sp/>to<sp/>access<sp/>OpenGL<sp/>functions<sp/>since<sp/>there<sp/>is<sp/>no<sp/>standard<sp/>header<sp/>to<sp/>access<sp/>modern<sp/>OpenGL<sp/>functions<sp/>easily.<sp/>Alternatives<sp/>are<sp/>GLEW,<sp/>Glad,<sp/>etc.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;imgui.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="imgui__impl__glfw__gl3_8h" kindref="compound">imgui_impl_glfw_gl3.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_WAYLAND)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GL/gl3w.h&gt;</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>example<sp/>is<sp/>using<sp/>gl3w<sp/>to<sp/>access<sp/>OpenGL<sp/>functions<sp/>(because<sp/>it<sp/>is<sp/>small).<sp/>You<sp/>may<sp/>use<sp/>glew/glad/glLoadGen/etc.<sp/>whatever<sp/>already<sp/>works<sp/>for<sp/>you.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;../../deps/glad/glad.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GLFW/glfw3.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;SOIL.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;texture.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__base_8h" kindref="compound">ft_base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="res__output_8h" kindref="compound">res_output.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__image_8h" kindref="compound">ft_image.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_WAYLAND)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;locale.h&gt;</highlight><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ShlObj.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Commdlg.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="resource_8h" kindref="compound">Resource.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="afb__load_8h" kindref="compound">afb_load.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="primitive__object_8h" kindref="compound">primitive_object.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="main__app_8cpp_1a6e6d1771a9242858811be0a3569838fa" kindref="member">error_callback</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>error,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>description)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>fprintf(stderr,<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>%d:<sp/>%s\n&quot;</highlight><highlight class="normal">,<sp/>error,<sp/>description);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="main__app_8cpp_1a3b30acb735dc960baf71adf4ac1baa86" kindref="member">instantiating_internal_shader</ref>();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="main__app_8cpp_1a6442f9b3b14f51e8558c73573039e3ee" kindref="member">g_cureent_project_file_path</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="main__app_8cpp_1a4d762e72332452b2eed64305674dbd46" kindref="member">g_current_run_path</ref>;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="main__app_8cpp_1a0ddf1224851353fc92bfbff6f499fa97" kindref="member">main</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>argc,<sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>argv[])</highlight></codeline>
+<codeline lineno="40"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>window</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(argc&gt;1)</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="main__app_8cpp_1a6442f9b3b14f51e8558c73573039e3ee" kindref="member">g_cureent_project_file_path</ref><sp/>=<sp/>argv[1];</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwSetErrorCallback(<ref refid="main__app_8cpp_1a6e6d1771a9242858811be0a3569838fa" kindref="member">error_callback</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!glfwInit())</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,<sp/>3);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR,<sp/>2);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwWindowHint(GLFW_OPENGL_PROFILE,<sp/>GLFW_OPENGL_CORE_PROFILE);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>__APPLE__</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,<sp/>GL_TRUE);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>GLFWmonitor*<sp/><sp/>pmornitor<sp/>=<sp/>glfwGetPrimaryMonitor();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLFWvidmode<sp/>*<sp/>mode<sp/>=<sp/>glfwGetVideoMode(pmornitor);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iw,<sp/>ih;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>iw<sp/>=<sp/>mode-&gt;width;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>ih<sp/>=<sp/>mode-&gt;height;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>GLFWwindow*<sp/>window<sp/>=<sp/>glfwCreateWindow(iw,<sp/>ih,<sp/></highlight><highlight class="stringliteral">&quot;Graphics<sp/>app&quot;</highlight><highlight class="normal">,<sp/>NULL,<sp/>NULL);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwMakeContextCurrent(window);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwSwapInterval(1);<sp/></highlight><highlight class="comment">//<sp/>Enable<sp/>vsync</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>gl3wInit();</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>ImGui<sp/>binding</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::CreateContext();</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();<sp/></highlight><highlight class="comment">//(void)io;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//io.ConfigFlags<sp/>|=<sp/>ImGuiConfigFlags_NavEnableKeyboard;<sp/><sp/>//<sp/>Enable<sp/>Keyboard<sp/>Controls</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//io.ConfigFlags<sp/>|=<sp/>ImGuiConfigFlags_NavEnableGamepad;<sp/><sp/><sp/>//<sp/>Enable<sp/>Gamepad<sp/>Controls</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a3056f834e494497bdec6cbbdac177014" kindref="member">ImGui_ImplGlfwGL3_Init</ref>(window,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>style</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ImGui::StyleColorsLight();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::StyleColorsClassic();</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Load<sp/>Fonts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>If<sp/>no<sp/>fonts<sp/>are<sp/>loaded,<sp/>dear<sp/>imgui<sp/>will<sp/>use<sp/>the<sp/>default<sp/>font.<sp/>You<sp/>can<sp/>also<sp/>load<sp/>multiple<sp/>fonts<sp/>and<sp/>use<sp/>ImGui::PushFont()/PopFont()<sp/>to<sp/>select<sp/>them.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>AddFontFromFileTTF()<sp/>will<sp/>return<sp/>the<sp/>ImFont*<sp/>so<sp/>you<sp/>can<sp/>store<sp/>it<sp/>if<sp/>you<sp/>need<sp/>to<sp/>select<sp/>the<sp/>font<sp/>among<sp/>multiple.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>If<sp/>the<sp/>file<sp/>cannot<sp/>be<sp/>loaded,<sp/>the<sp/>function<sp/>will<sp/>return<sp/>NULL.<sp/>Please<sp/>handle<sp/>those<sp/>errors<sp/>in<sp/>your<sp/>application<sp/>(e.g.<sp/>use<sp/>an<sp/>assertion,<sp/>or<sp/>display<sp/>an<sp/>error<sp/>and<sp/>quit).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>The<sp/>fonts<sp/>will<sp/>be<sp/>rasterized<sp/>at<sp/>a<sp/>given<sp/>size<sp/>(w/<sp/>oversampling)<sp/>and<sp/>stored<sp/>into<sp/>a<sp/>texture<sp/>when<sp/>calling<sp/>ImFontAtlas::Build()/GetTexDataAsXXXX(),<sp/>which<sp/>ImGui_ImplXXXX_NewFrame<sp/>below<sp/>will<sp/>call.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Read<sp/>&apos;misc/fonts/README.txt&apos;<sp/>for<sp/>more<sp/>instructions<sp/>and<sp/>details.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>Remember<sp/>that<sp/>in<sp/>C/C++<sp/>if<sp/>you<sp/>want<sp/>to<sp/>include<sp/>a<sp/>backslash<sp/>\<sp/>in<sp/>a<sp/>string<sp/>literal<sp/>you<sp/>need<sp/>to<sp/>write<sp/>a<sp/>double<sp/>backslash<sp/>\\<sp/>!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//io.Fonts-&gt;AddFontDefault();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//io.Fonts-&gt;AddFontFromFileTTF(&quot;../../misc/fonts/Roboto-Medium.ttf&quot;,<sp/>16.0f,<sp/>NULL,<sp/>io.Fonts-&gt;GetGlyphRangesChinese());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//io.Fonts-&gt;AddFontFromFileTTF(&quot;../../misc/fonts/Cousine-Regular.ttf&quot;,<sp/>15.0f);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//io.Fonts-&gt;AddFontFromFileTTF(&quot;../../misc/fonts/DroidSans.ttf&quot;,<sp/>16.0f,<sp/>NULL,<sp/>io.Fonts-&gt;GetGlyphRangesChinese());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//io.Fonts-&gt;AddFontFromFileTTF(&quot;../../misc/fonts/ProggyTiny.ttf&quot;,<sp/>10.0f);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>io.Fonts-&gt;AddFontFromFileTTF(</highlight><highlight class="stringliteral">&quot;D:\\Qt\\Qt5.6.2\\5.6\\Src\\qtbase\\lib\\fonts\\DejaVuSerif-BoldOblique.ttf&quot;</highlight><highlight class="normal">,<sp/>16.0f,<sp/>NULL,<sp/>io.Fonts-&gt;GetGlyphRangesChinese());</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ImFont*<sp/>font<sp/>=<sp/>io.Fonts-&gt;AddFontFromFileTTF(&quot;c:\\Windows\\Fonts\\ArialUni.ttf&quot;,<sp/>18.0f,<sp/>NULL,<sp/>io.Fonts-&gt;GetGlyphRangesJapanese());</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//IM_ASSERT(font<sp/>!=<sp/>NULL);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>buffer[MAX_PATH];</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>GetCurrentDirectory(MAX_PATH,<sp/>buffer);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main__app_8cpp_1a4d762e72332452b2eed64305674dbd46" kindref="member">g_current_run_path</ref><sp/>=<sp/>buffer;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main__app_8cpp_1a4d762e72332452b2eed64305674dbd46" kindref="member">g_current_run_path</ref><sp/>+=<sp/></highlight><highlight class="stringliteral">&quot;\\&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="main__app_8cpp_1a3b30acb735dc960baf71adf4ac1baa86" kindref="member">instantiating_internal_shader</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="primitive__object_8cpp_1ae6ee6b64a1c89988a58aaf27584ac547" kindref="member">init_primitive_list</ref>();</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ImVec2<sp/>edit_window_size<sp/>=<sp/>ImVec2()</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec4<sp/>clear_color<sp/>=<sp/>ImVec4(0.45f,<sp/>0.55f,<sp/>0.60f,<sp/>1.00f);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref>*<sp/>_proot<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="main__app_8cpp_1a6442f9b3b14f51e8558c73573039e3ee" kindref="member">g_cureent_project_file_path</ref>.empty())</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//_proot<sp/>=<sp/>new<sp/>ft_base;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classafb__load" kindref="compound">afb_load</ref><sp/>afl(_proot);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>afl.load_afb(<ref refid="main__app_8cpp_1a6442f9b3b14f51e8558c73573039e3ee" kindref="member">g_cureent_project_file_path</ref>.c_str());</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Main<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(!glfwWindowShouldClose(window))</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>You<sp/>can<sp/>read<sp/>the<sp/>io.WantCaptureMouse,<sp/>io.WantCaptureKeyboard<sp/>flags<sp/>to<sp/>tell<sp/>if<sp/>dear<sp/>imgui<sp/>wants<sp/>to<sp/>use<sp/>your<sp/>inputs.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>When<sp/>io.WantCaptureMouse<sp/>is<sp/>true,<sp/>do<sp/>not<sp/>dispatch<sp/>mouse<sp/>input<sp/>data<sp/>to<sp/>your<sp/>main<sp/>application.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>-<sp/>When<sp/>io.WantCaptureKeyboard<sp/>is<sp/>true,<sp/>do<sp/>not<sp/>dispatch<sp/>keyboard<sp/>input<sp/>data<sp/>to<sp/>your<sp/>main<sp/>application.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Generally<sp/>you<sp/>may<sp/>always<sp/>pass<sp/>all<sp/>inputs<sp/>to<sp/>dear<sp/>imgui,<sp/>and<sp/>hide<sp/>them<sp/>from<sp/>your<sp/>application<sp/>based<sp/>on<sp/>those<sp/>two<sp/>flags.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwPollEvents();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ab337e0626b4c8503d682dc82ee5fa1f2" kindref="member">ImGui_ImplGlfwGL3_NewFrame</ref>();</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::SetNextWindowSize(ImVec2(1920,<sp/>720),<sp/>ImGuiCond_FirstUseEver);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>show_app<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::Begin(</highlight><highlight class="stringliteral">&quot;edit<sp/>window&quot;</highlight><highlight class="normal">,<sp/>&amp;show_app,<sp/>ImGuiWindowFlags_NoTitleBar<sp/>|<sp/>ImGuiWindowFlags_NoResize<sp/>|<sp/>ImGuiWindowFlags_NoScrollbar<sp/>|<sp/>ImGuiWindowFlags_NoScrollWithMouse<sp/>|<sp/>ImGuiWindowFlags_NoMove<sp/>|<sp/>ImGuiWindowFlags_NoSavedSettings);</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(_proot)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_proot-&gt;<ref refid="classbase__ui__component_1a5fc23a6332571a078b6c15b320460252" kindref="member">draw</ref>();</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::End();</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rendering</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>display_w,<sp/>display_h;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwGetFramebufferSize(window,<sp/>&amp;display_w,<sp/>&amp;display_h);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glViewport(0,<sp/>0,<sp/>display_w,<sp/>display_h);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glClearColor(clear_color.x,<sp/>clear_color.y,<sp/>clear_color.z,<sp/>clear_color.w);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glClear(GL_COLOR_BUFFER_BIT);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::Render();</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a02d9bc6823f054af9540659b6f04b859" kindref="member">ImGui_ImplGlfwGL3_RenderDrawData</ref>(ImGui::GetDrawData());</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwSwapBuffers(window);</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Cleanup</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a034756d657dceda4a9e6df6cbae93dff" kindref="member">ImGui_ImplGlfwGL3_Shutdown</ref>();</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::DestroyContext();</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwTerminate();</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp"/>
+  </compounddef>
+</doxygen>

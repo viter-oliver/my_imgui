@@ -1,0 +1,505 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__slider_8h" kind="file" language="C++">
+    <compoundname>ft_slider.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">math.h</includes>
+    <includes refid="ft__base_8h" local="yes">ft_base.h</includes>
+    <includedby refid="ft__slider_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.cpp</includedby>
+    <incdepgraph>
+      <node id="710">
+        <label>functional</label>
+      </node>
+      <node id="714">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="709">
+        <label>string</label>
+      </node>
+      <node id="708">
+        <label>map</label>
+      </node>
+      <node id="715">
+        <label>json.h</label>
+      </node>
+      <node id="706">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="707" relation="include">
+        </childnode>
+      </node>
+      <node id="704">
+        <label>vector</label>
+      </node>
+      <node id="712">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="713" relation="include">
+        </childnode>
+        <childnode refid="714" relation="include">
+        </childnode>
+        <childnode refid="704" relation="include">
+        </childnode>
+        <childnode refid="709" relation="include">
+        </childnode>
+        <childnode refid="715" relation="include">
+        </childnode>
+        <childnode refid="716" relation="include">
+        </childnode>
+      </node>
+      <node id="707">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="708" relation="include">
+        </childnode>
+        <childnode refid="709" relation="include">
+        </childnode>
+        <childnode refid="710" relation="include">
+        </childnode>
+        <childnode refid="711" relation="include">
+        </childnode>
+        <childnode refid="712" relation="include">
+        </childnode>
+      </node>
+      <node id="705">
+        <label>math.h</label>
+      </node>
+      <node id="713">
+        <label>imgui.h</label>
+      </node>
+      <node id="703">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h</label>
+        <link refid="ft_slider.h"/>
+        <childnode refid="704" relation="include">
+        </childnode>
+        <childnode refid="705" relation="include">
+        </childnode>
+        <childnode refid="706" relation="include">
+        </childnode>
+      </node>
+      <node id="716">
+        <label>algorithm</label>
+      </node>
+      <node id="711">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="718">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.cpp</label>
+        <link refid="ft__slider_8cpp"/>
+      </node>
+      <node id="717">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h</label>
+        <link refid="ft_slider.h"/>
+        <childnode refid="718" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classft__slider" prot="public">ft_slider</innerclass>
+    <innerclass refid="structft__slider_1_1intl__pt" prot="private">ft_slider::intl_pt</innerclass>
+    <innerclass refid="structft__slider_1_1random__point__array" prot="private">ft_slider::random_point_array</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="ft__slider_8h_1a145155fe841d51019218d317530eddeb" prot="public" static="no">
+        <name>qu1et_thr_length</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <initializer>sqrt(<ref refid="ft__slider_8h_1a8b7063daefa2e89fde728a9a2ca479d8" kindref="member">qu1et_square</ref>&lt;float&gt;(a) + <ref refid="ft__slider_8h_1a8b7063daefa2e89fde728a9a2ca479d8" kindref="member">qu1et_square</ref>&lt;float&gt;(b))</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="10" column="9" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ft__slider_8h_1aa4aeaa5823d2fa0e164b3b65fdd75c92" prot="public" static="no">
+        <name>qu1et_one_quadrangle_length</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>c</defname></param>
+        <param><defname>d</defname></param>
+        <initializer>(<ref refid="ft__slider_8h_1a145155fe841d51019218d317530eddeb" kindref="member">qu1et_thr_length</ref>(d.x-a.x, d.y-a.y) + <ref refid="ft__slider_8h_1a145155fe841d51019218d317530eddeb" kindref="member">qu1et_thr_length</ref>(b.x-c.x, b.y-c.y))/2</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="12" column="9" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ft__slider_8h_1add959d9cdbce654903096d176f53f5b9" prot="public" static="no">
+        <name>qu1et_top_point_pos_x_of_square</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>c</defname></param>
+        <param><defname>d</defname></param>
+        <param><defname>l</defname></param>
+        <param><defname>h</defname></param>
+        <initializer>l*abs(d.x - a.x)/h + a.x</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="15" column="9" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ft__slider_8h_1a2d78ae0b6ce98c218a2b2d54d0fbe1ee" prot="public" static="no">
+        <name>qu1et_top_point_pos_y_of_square</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>c</defname></param>
+        <param><defname>d</defname></param>
+        <param><defname>l</defname></param>
+        <param><defname>h</defname></param>
+        <initializer>l*abs(d.y - a.y)/h + a.y</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="16" column="9" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ft__slider_8h_1a4b38f75c3e7344f0e805eb12cb03364b" prot="public" static="no">
+        <name>qu1et_bottom_point_pos_x_of_square</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>c</defname></param>
+        <param><defname>d</defname></param>
+        <param><defname>l</defname></param>
+        <param><defname>h</defname></param>
+        <initializer>l*abs(c.x - b.x)/h + b.x</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="17" column="9" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="ft__slider_8h_1a470a53877d5aa4fe4c96b1e8fd795198" prot="public" static="no">
+        <name>qu1et_bottom_point_pos_y_of_square</name>
+        <param><defname>a</defname></param>
+        <param><defname>b</defname></param>
+        <param><defname>c</defname></param>
+        <param><defname>d</defname></param>
+        <param><defname>l</defname></param>
+        <param><defname>h</defname></param>
+        <initializer>l*abs(c.y - b.y)/h + b.y</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="18" column="9" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ft__slider_8h_1a8b7063daefa2e89fde728a9a2ca479d8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>class T</type>
+          </param>
+        </templateparamlist>
+        <type>T</type>
+        <definition>T qu1et_square</definition>
+        <argsstring>(T val)</argsstring>
+        <name>qu1et_square</name>
+        <param>
+          <type>T</type>
+          <declname>val</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="7" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="7" bodyend="9"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__base_8h" kindref="compound">ft_base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">template</highlight><highlight class="normal">&lt;</highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/>T&gt;</highlight></codeline>
+<codeline lineno="7" refid="ft__slider_8h_1a8b7063daefa2e89fde728a9a2ca479d8" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">inline</highlight><highlight class="normal"><sp/>T<sp/><ref refid="ft__slider_8h_1a8b7063daefa2e89fde728a9a2ca479d8" kindref="member">qu1et_square</ref>(T<sp/>val)<sp/>{<sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>val<sp/>*<sp/>val;<sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="10" refid="ft__slider_8h_1a145155fe841d51019218d317530eddeb" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>qu1et_thr_length(a,<sp/>b)<sp/>sqrt(qu1et_square&lt;float&gt;(a)<sp/>+<sp/>qu1et_square&lt;float&gt;(b))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//计算单个四边形参与周长运算的长度 #define<sp/>qu1et_one_quadrangle_length(a,<sp/>b,<sp/>c,<sp/>d)<sp/>(qu1et_thr_length(d.x-a.x,<sp/>d.y-a.y)<sp/>+<sp/>qu1et_thr_length(b.x-c.x,<sp/>b.y-c.y))/2
+
+//计算小矩形中上下的点坐标
+#define<sp/>qu1et_top_point_pos_x_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/><sp/>l*abs(d.x<sp/>-<sp/>a.x)/h<sp/>+<sp/>a.x
+#define<sp/>qu1et_top_point_pos_y_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(d.y<sp/>-<sp/>a.y)/h<sp/>+<sp/>a.y
+#define<sp/>qu1et_bottom_point_pos_x_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(c.x<sp/>-<sp/>b.x)/h<sp/>+<sp/>b.x
+#define<sp/>qu1et_bottom_point_pos_y_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(c.y<sp/>-<sp/>b.y)/h<sp/>+<sp/>b.y
+
+
+class<sp/>ft_slider<sp/>:
+<sp/><sp/>public<sp/>ft_base
+{
+<sp/><sp/><sp/>struct<sp/>intl_pt
+<sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>_position{0.f};
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>_direction_item{<sp/>0<sp/>};
+<sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>_bg_axi_pos;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>_bg_angle{0.f};
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>_texture_bg_index{0};
+
+<sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>_head_pos;
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>_texture_head_index{0};
+
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>_thumb_pos;
+<sp/><sp/><sp/><sp/><sp/>int<sp/>_texture_thumb_index{0};
+<sp/><sp/><sp/>};
+<sp/>intl_pt<sp/>_slider_pt;
+public:
+<sp/><sp/><sp/><sp/>ft_slider();
+<sp/><sp/><sp/>int<sp/>collect_property_range(vproperty_list&amp;<sp/>vplist)
+<sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>plen<sp/>=<sp/>ft_base::collect_property_range(vplist);
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>len<sp/>=<sp/>sizeof(intl_pt);
+<sp/><sp/><sp/><sp/><sp/>vplist.emplace_back(&amp;_slider_pt,<sp/>len);
+<sp/><sp/><sp/><sp/><sp/>len<sp/>+=<sp/>plen;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>len;
+<sp/><sp/><sp/><sp/>}
+<sp/><sp/>void<sp/>draw();
+#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)
+<sp/><sp/>void<sp/>draw_peroperty_page();
+<sp/><sp/><sp/><sp/>bool<sp/>init_from_json(Value&amp;<sp/>jvalue);
+<sp/><sp/><sp/><sp/>bool<sp/>init_json_unit(Value&amp;<sp/>junit);
+#endif
+<sp/><sp/>bool<sp/>handle_mouse();
+private:
+
+<sp/>bool<sp/>read_point_position_file(const<sp/>char<sp/>*str);
+<sp/><sp/><sp/><sp/>//save<sp/>texture<sp/>size
+<sp/><sp/><sp/><sp/>ImVec2<sp/>_bg_texture_size;
+<sp/><sp/><sp/>ImVec2<sp/>_head_texture_size;
+<sp/>ImVec2<sp/>_thumb_texture_size;
+
+<sp/><sp/><sp/>char<sp/>_cbuffer_random_text[128];
+
+<sp/><sp/><sp/>struct<sp/>random_point_array
+<sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>top_point;
+<sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>bottom_point;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>random_point_array(){}
+<sp/><sp/><sp/><sp/><sp/>random_point_array(ImVec2<sp/>&amp;itop,<sp/>ImVec2<sp/>&amp;ibottom)<sp/>
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:top_point(itop),<sp/>bottom_point(ibottom)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{}
+
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>operator=(random_point_array<sp/>&amp;it)
+<sp/><sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>top_point<sp/>=<sp/>it.top_point;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bottom_point<sp/>=<sp/>it.bottom_point;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}
+
+<sp/><sp/><sp/><sp/><sp/>bool<sp/>operator==(random_point_array<sp/>&amp;it)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(it.top_point.x<sp/>==<sp/>top_point.x<sp/>&amp;&amp;<sp/>it.top_point.y<sp/>==<sp/>top_point.y<sp/>&amp;&amp;<sp/>it.bottom_point.x<sp/>==<sp/>bottom_point.x<sp/>&amp;&amp;<sp/>it.bottom_point.x<sp/>==<sp/>bottom_point.x)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>true;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/><sp/><sp/><sp/><sp/>}
+<sp/><sp/>};
+<sp/>typedef<sp/>std::vector&lt;random_point_array&gt;<sp/>random_point_vec;
+<sp/><sp/>random_point_vec<sp/>ft_slider_random_point_vec;
+<sp/><sp/><sp/>float<sp/>_random_all_length{0.f};
+
+<sp/><sp/><sp/><sp/>random_point_array<sp/>_pre_point_2vec2;
+<sp/><sp/><sp/>random_point_array<sp/>_next_point_2vec2;
+
+<sp/>random_point_array<sp/>_current_point_2vec2_thumb_use;
+};
+
+REGISTER_CONTROL(ft_slider)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12" refid="ft__slider_8h_1aa4aeaa5823d2fa0e164b3b65fdd75c92" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>qu1et_one_quadrangle_length(a,<sp/>b,<sp/>c,<sp/>d)<sp/>(qu1et_thr_length(d.x-a.x,<sp/>d.y-a.y)<sp/>+<sp/>qu1et_thr_length(b.x-c.x,<sp/>b.y-c.y))/2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//计算小矩形中上下的点坐标 #define<sp/>qu1et_top_point_pos_x_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/><sp/>l*abs(d.x<sp/>-<sp/>a.x)/h<sp/>+<sp/>a.x
+#define<sp/>qu1et_top_point_pos_y_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(d.y<sp/>-<sp/>a.y)/h<sp/>+<sp/>a.y
+#define<sp/>qu1et_bottom_point_pos_x_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(c.x<sp/>-<sp/>b.x)/h<sp/>+<sp/>b.x
+#define<sp/>qu1et_bottom_point_pos_y_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(c.y<sp/>-<sp/>b.y)/h<sp/>+<sp/>b.y
+
+
+class<sp/>ft_slider<sp/>:
+<sp/>public<sp/>ft_base
+{
+<sp/><sp/><sp/>struct<sp/>intl_pt
+<sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>_position{0.f};
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>_direction_item{<sp/>0<sp/>};
+<sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>_bg_axi_pos;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>float<sp/>_bg_angle{0.f};
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>_texture_bg_index{0};
+
+<sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>_head_pos;
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>_texture_head_index{0};
+
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>_thumb_pos;
+<sp/><sp/><sp/><sp/><sp/>int<sp/>_texture_thumb_index{0};
+<sp/><sp/><sp/>};
+<sp/>intl_pt<sp/>_slider_pt;
+public:
+<sp/><sp/><sp/><sp/>ft_slider();
+<sp/><sp/><sp/>int<sp/>collect_property_range(vproperty_list&amp;<sp/>vplist)
+<sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>plen<sp/>=<sp/>ft_base::collect_property_range(vplist);
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>int<sp/>len<sp/>=<sp/>sizeof(intl_pt);
+<sp/><sp/><sp/><sp/><sp/>vplist.emplace_back(&amp;_slider_pt,<sp/>len);
+<sp/><sp/><sp/><sp/><sp/>len<sp/>+=<sp/>plen;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>len;
+<sp/><sp/><sp/><sp/>}
+<sp/><sp/>void<sp/>draw();
+#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)
+<sp/><sp/>void<sp/>draw_peroperty_page();
+<sp/><sp/><sp/><sp/>bool<sp/>init_from_json(Value&amp;<sp/>jvalue);
+<sp/><sp/><sp/><sp/>bool<sp/>init_json_unit(Value&amp;<sp/>junit);
+#endif
+<sp/><sp/>bool<sp/>handle_mouse();
+private:
+
+<sp/>bool<sp/>read_point_position_file(const<sp/>char<sp/>*str);
+<sp/><sp/><sp/><sp/>//save<sp/>texture<sp/>size
+<sp/><sp/><sp/><sp/>ImVec2<sp/>_bg_texture_size;
+<sp/><sp/><sp/>ImVec2<sp/>_head_texture_size;
+<sp/>ImVec2<sp/>_thumb_texture_size;
+
+<sp/><sp/><sp/>char<sp/>_cbuffer_random_text[128];
+
+<sp/><sp/><sp/>struct<sp/>random_point_array
+<sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>top_point;
+<sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>bottom_point;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/>random_point_array(){}
+<sp/><sp/><sp/><sp/><sp/>random_point_array(ImVec2<sp/>&amp;itop,<sp/>ImVec2<sp/>&amp;ibottom)<sp/>
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:top_point(itop),<sp/>bottom_point(ibottom)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{}
+
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>void<sp/>operator=(random_point_array<sp/>&amp;it)
+<sp/><sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>top_point<sp/>=<sp/>it.top_point;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bottom_point<sp/>=<sp/>it.bottom_point;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}
+
+<sp/><sp/><sp/><sp/><sp/>bool<sp/>operator==(random_point_array<sp/>&amp;it)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(it.top_point.x<sp/>==<sp/>top_point.x<sp/>&amp;&amp;<sp/>it.top_point.y<sp/>==<sp/>top_point.y<sp/>&amp;&amp;<sp/>it.bottom_point.x<sp/>==<sp/>bottom_point.x<sp/>&amp;&amp;<sp/>it.bottom_point.x<sp/>==<sp/>bottom_point.x)
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>true;
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/><sp/><sp/><sp/><sp/>}
+<sp/><sp/>};
+<sp/>typedef<sp/>std::vector&lt;random_point_array&gt;<sp/>random_point_vec;
+<sp/><sp/>random_point_vec<sp/>ft_slider_random_point_vec;
+<sp/><sp/><sp/>float<sp/>_random_all_length{0.f};
+
+<sp/><sp/><sp/><sp/>random_point_array<sp/>_pre_point_2vec2;
+<sp/><sp/><sp/>random_point_array<sp/>_next_point_2vec2;
+
+<sp/>random_point_array<sp/>_current_point_2vec2_thumb_use;
+};
+
+REGISTER_CONTROL(ft_slider)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="ft__slider_8h_1add959d9cdbce654903096d176f53f5b9" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>qu1et_top_point_pos_x_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/><sp/>l*abs(d.x<sp/>-<sp/>a.x)/h<sp/>+<sp/>a.x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="ft__slider_8h_1a2d78ae0b6ce98c218a2b2d54d0fbe1ee" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>qu1et_top_point_pos_y_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(d.y<sp/>-<sp/>a.y)/h<sp/>+<sp/>a.y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="ft__slider_8h_1a4b38f75c3e7344f0e805eb12cb03364b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>qu1et_bottom_point_pos_x_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(c.x<sp/>-<sp/>b.x)/h<sp/>+<sp/>b.x</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="ft__slider_8h_1a470a53877d5aa4fe4c96b1e8fd795198" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>qu1et_bottom_point_pos_y_of_square(a,<sp/>b,<sp/>c,<sp/>d,<sp/>l,<sp/>h)<sp/>l*abs(c.y<sp/>-<sp/>b.y)/h<sp/>+<sp/>b.y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="classft__slider" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classft__slider" kindref="compound">ft_slider</ref><sp/>:</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classft__base" kindref="compound">ft_base</ref></highlight></codeline>
+<codeline lineno="23"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="24" refid="structft__slider_1_1intl__pt" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structft__slider_1_1intl__pt" kindref="compound">intl_pt</ref></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26" refid="structft__slider_1_1intl__pt_1a78f053479ee757db1cd545cc23d868fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1intl__pt_1a78f053479ee757db1cd545cc23d868fb" kindref="member">_position</ref>{0.f};</highlight></codeline>
+<codeline lineno="27" refid="structft__slider_1_1intl__pt_1a884233a1c665a4ce4c2bfe60e7d888f6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1intl__pt_1a884233a1c665a4ce4c2bfe60e7d888f6" kindref="member">_direction_item</ref>{<sp/>0<sp/>};</highlight></codeline>
+<codeline lineno="28" refid="structft__slider_1_1intl__pt_1a5e3b8f289e13fed481d64d7800873c64" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__slider_1_1intl__pt_1a5e3b8f289e13fed481d64d7800873c64" kindref="member">_bg_axi_pos</ref>;</highlight></codeline>
+<codeline lineno="29" refid="structft__slider_1_1intl__pt_1aab597359bf1dcaa36d5edadefb8b5843" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1intl__pt_1aab597359bf1dcaa36d5edadefb8b5843" kindref="member">_bg_angle</ref>{0.f};</highlight></codeline>
+<codeline lineno="30" refid="structft__slider_1_1intl__pt_1a46f8b7182c53f651dab6db50e00ec4ec" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1intl__pt_1a46f8b7182c53f651dab6db50e00ec4ec" kindref="member">_texture_bg_index</ref>{0};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="structft__slider_1_1intl__pt_1a0b345095d7a9c459ff1fa6e9f0fb4493" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__slider_1_1intl__pt_1a0b345095d7a9c459ff1fa6e9f0fb4493" kindref="member">_head_pos</ref>;</highlight></codeline>
+<codeline lineno="33" refid="structft__slider_1_1intl__pt_1a1b53eca7ae12e0d0fe96fdfeeeda0664" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1intl__pt_1a1b53eca7ae12e0d0fe96fdfeeeda0664" kindref="member">_texture_head_index</ref>{0};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35" refid="structft__slider_1_1intl__pt_1a68fe91a77e7724c574611aa0a626b32a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__slider_1_1intl__pt_1a68fe91a77e7724c574611aa0a626b32a" kindref="member">_thumb_pos</ref>;</highlight></codeline>
+<codeline lineno="36" refid="structft__slider_1_1intl__pt_1aad804c8de7fd7d308c962ffa2526d26f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1intl__pt_1aad804c8de7fd7d308c962ffa2526d26f" kindref="member">_texture_thumb_index</ref>{0};</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="38" refid="classft__slider_1a5af288cb8d2cf6d8d14676af6a47c8fb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structft__slider_1_1intl__pt" kindref="compound">intl_pt</ref><sp/><ref refid="classft__slider_1a5af288cb8d2cf6d8d14676af6a47c8fb" kindref="member">_slider_pt</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__slider_1ad51f12f6fbcb3fdea76cf080d4d43954" kindref="member">ft_slider</ref>();</highlight></codeline>
+<codeline lineno="41" refid="classft__slider_1a97fb0b96df2b5a0f16628789fb1e6595" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1a97fb0b96df2b5a0f16628789fb1e6595" kindref="member">collect_property_range</ref>(<ref refid="control__common__def_8h_1a2829b10b78675304660841f0fb2135d4" kindref="member">vproperty_list</ref>&amp;<sp/>vplist)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>plen<sp/>=<sp/><ref refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b" kindref="member">ft_base::collect_property_range</ref>(vplist);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structft__slider_1_1intl__pt" kindref="compound">intl_pt</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vplist.emplace_back(&amp;_slider_pt,<sp/>len);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len<sp/>+=<sp/>plen;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>len;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1ad653f7e28dcfdffd72a88ad9498686d5" kindref="member">draw</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1a5002fe5bc83d50ad16ca48f5316d92e9" kindref="member">draw_peroperty_page</ref>();</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1a64b3b85a727d03c27f3c18ec10c77d28" kindref="member">init_from_json</ref>(Value&amp;<sp/>jvalue);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1aa3e4d0fa996bc090987a9db31100ae73" kindref="member">init_json_unit</ref>(Value&amp;<sp/>junit);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1a5e84abd05ef1f22b57c5b115b0abb196" kindref="member">handle_mouse</ref>();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keyword">private</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1aeff9d518e8aa6519ee0a9744364c8695" kindref="member">read_point_position_file</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>*str);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//save<sp/>texture<sp/>size</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60" refid="classft__slider_1a21a5af3cda787f21d5771b9290341241" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="classft__slider_1a21a5af3cda787f21d5771b9290341241" kindref="member">_bg_texture_size</ref>;</highlight></codeline>
+<codeline lineno="61" refid="classft__slider_1a799fdea6d7cb2b0ec9b1bb394414cab5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="classft__slider_1a799fdea6d7cb2b0ec9b1bb394414cab5" kindref="member">_head_texture_size</ref>;</highlight></codeline>
+<codeline lineno="62" refid="classft__slider_1adaf6ba44678231ce0b95cd4987d63659" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="classft__slider_1adaf6ba44678231ce0b95cd4987d63659" kindref="member">_thumb_texture_size</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="classft__slider_1ae20be714ddde94ec68db550efa59d398" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1ae20be714ddde94ec68db550efa59d398" kindref="member">_cbuffer_random_text</ref>[128];</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="structft__slider_1_1random__point__array" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68" refid="structft__slider_1_1random__point__array_1a5aa0d7eba0ed5b88100eca5fd0fe8ef8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__slider_1_1random__point__array_1a5aa0d7eba0ed5b88100eca5fd0fe8ef8" kindref="member">top_point</ref>;</highlight></codeline>
+<codeline lineno="69" refid="structft__slider_1_1random__point__array_1a83d6f6c46dd62015d7a9f8104ebb8058" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__slider_1_1random__point__array_1a83d6f6c46dd62015d7a9f8104ebb8058" kindref="member">bottom_point</ref>;</highlight></codeline>
+<codeline lineno="70" refid="structft__slider_1_1random__point__array_1a1ead5439d30e0a158854fac2d4a73ff8" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structft__slider_1_1random__point__array_1a1ead5439d30e0a158854fac2d4a73ff8" kindref="member">random_point_array</ref>(){}</highlight></codeline>
+<codeline lineno="71" refid="structft__slider_1_1random__point__array_1ad1960f0fe5804161254ed2c2feb1c6a7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structft__slider_1_1random__point__array_1ad1960f0fe5804161254ed2c2feb1c6a7" kindref="member">random_point_array</ref>(ImVec2<sp/>&amp;itop,<sp/>ImVec2<sp/>&amp;ibottom)<sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:top_point(itop),<sp/>bottom_point(ibottom)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75" refid="structft__slider_1_1random__point__array_1a911ddc2530566c6e44222abb94c4becf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1random__point__array_1a911ddc2530566c6e44222abb94c4becf" kindref="member">operator=</ref>(<ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref><sp/>&amp;it)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>top_point<sp/>=<sp/>it.<ref refid="structft__slider_1_1random__point__array_1a5aa0d7eba0ed5b88100eca5fd0fe8ef8" kindref="member">top_point</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bottom_point<sp/>=<sp/>it.<ref refid="structft__slider_1_1random__point__array_1a83d6f6c46dd62015d7a9f8104ebb8058" kindref="member">bottom_point</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81" refid="structft__slider_1_1random__point__array_1a1528bdca9eb56624a90fd227b327f908" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="structft__slider_1_1random__point__array_1a1528bdca9eb56624a90fd227b327f908" kindref="member">operator==</ref>(<ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref><sp/>&amp;it)</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(it.<ref refid="structft__slider_1_1random__point__array_1a5aa0d7eba0ed5b88100eca5fd0fe8ef8" kindref="member">top_point</ref>.x<sp/>==<sp/>top_point.x<sp/>&amp;&amp;<sp/>it.<ref refid="structft__slider_1_1random__point__array_1a5aa0d7eba0ed5b88100eca5fd0fe8ef8" kindref="member">top_point</ref>.y<sp/>==<sp/>top_point.y<sp/>&amp;&amp;<sp/>it.<ref refid="structft__slider_1_1random__point__array_1a83d6f6c46dd62015d7a9f8104ebb8058" kindref="member">bottom_point</ref>.x<sp/>==<sp/>bottom_point.x<sp/>&amp;&amp;<sp/>it.<ref refid="structft__slider_1_1random__point__array_1a83d6f6c46dd62015d7a9f8104ebb8058" kindref="member">bottom_point</ref>.x<sp/>==<sp/>bottom_point.x)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="90" refid="classft__slider_1aed848d7de88c66d2de4b9f1183e20997" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>std::vector&lt;random_point_array&gt;<sp/><ref refid="classft__slider_1aed848d7de88c66d2de4b9f1183e20997" kindref="member">random_point_vec</ref>;</highlight></codeline>
+<codeline lineno="91" refid="classft__slider_1a37f1446a7fe4b8c598fe11d315357b24" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>random_point_vec<sp/><ref refid="classft__slider_1a37f1446a7fe4b8c598fe11d315357b24" kindref="member">ft_slider_random_point_vec</ref>;</highlight></codeline>
+<codeline lineno="92" refid="classft__slider_1adca9fd11e9aff3f102057a8ae9bb87c5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="classft__slider_1adca9fd11e9aff3f102057a8ae9bb87c5" kindref="member">_random_all_length</ref>{0.f};</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"></highlight></codeline>
+<codeline lineno="94" refid="classft__slider_1ae5121a32129f9a6d8d834dcee2bf6c64" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref><sp/><ref refid="classft__slider_1ae5121a32129f9a6d8d834dcee2bf6c64" kindref="member">_pre_point_2vec2</ref>;</highlight></codeline>
+<codeline lineno="95" refid="classft__slider_1abb5f8b4aa7b88540a10067cf4d718b1b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref><sp/><ref refid="classft__slider_1abb5f8b4aa7b88540a10067cf4d718b1b" kindref="member">_next_point_2vec2</ref>;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="classft__slider_1ae751e1434d6d819e07a716d519035b5f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref><sp/><ref refid="classft__slider_1ae751e1434d6d819e07a716d519035b5f" kindref="member">_current_point_2vec2_thumb_use</ref>;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><ref refid="afb__load_8cpp_1a464695366cb3e9683ab9cd7091409f68" kindref="member">REGISTER_CONTROL</ref>(<ref refid="classft__slider" kindref="compound">ft_slider</ref>)</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h"/>
+  </compounddef>
+</doxygen>

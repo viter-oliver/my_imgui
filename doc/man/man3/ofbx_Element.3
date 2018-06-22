@@ -1,0 +1,79 @@
+.TH "ofbx::Element" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::Element \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBofbx::IElement\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBIElement\fP * \fBgetFirstChild\fP () const override"
+.br
+.ti -1c
+.RI "\fBIElement\fP * \fBgetSibling\fP () const override"
+.br
+.ti -1c
+.RI "\fBDataView\fP \fBgetID\fP () const override"
+.br
+.ti -1c
+.RI "\fBIElementProperty\fP * \fBgetFirstProperty\fP () const override"
+.br
+.ti -1c
+.RI "\fBIElementProperty\fP * \fBgetProperty\fP (int idx) const "
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBDataView\fP \fBid\fP"
+.br
+.ti -1c
+.RI "\fBElement\fP * \fBchild\fP = nullptr"
+.br
+.ti -1c
+.RI "\fBElement\fP * \fBsibling\fP = nullptr"
+.br
+.ti -1c
+.RI "\fBProperty\fP * \fBfirst_property\fP = nullptr"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBIElement\fP* ofbx::Element::getFirstChild () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IElement\fP\&.
+.SS "\fBIElementProperty\fP* ofbx::Element::getFirstProperty () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IElement\fP\&.
+.SS "\fBDataView\fP ofbx::Element::getID () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IElement\fP\&.
+.SS "\fBIElementProperty\fP* ofbx::Element::getProperty (int idx) const\fC [inline]\fP"
+
+.SS "\fBIElement\fP* ofbx::Element::getSibling () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IElement\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBElement\fP* ofbx::Element::child = nullptr"
+
+.SS "\fBProperty\fP* ofbx::Element::first_property = nullptr"
+
+.SS "\fBDataView\fP ofbx::Element::id"
+
+.SS "\fBElement\fP* ofbx::Element::sibling = nullptr"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

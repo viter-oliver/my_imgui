@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structmz__zip__archive" kind="struct" language="C++" prot="public">
+    <compoundname>mz_zip_archive</compoundname>
+    <includes refid="miniz_8h" local="no">miniz.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmz__zip__archive_1a45a402e348cc83629be5453441878d81" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad1ec3c4964d89baaf6427b699bf71f3f" kindref="member">mz_uint64</ref></type>
+        <definition>mz_uint64 mz_zip_archive::m_archive_size</definition>
+        <argsstring></argsstring>
+        <name>m_archive_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1040" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1040" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a128125bc28f4d1f118fe7b9badd0f975" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad1ec3c4964d89baaf6427b699bf71f3f" kindref="member">mz_uint64</ref></type>
+        <definition>mz_uint64 mz_zip_archive::m_central_directory_file_ofs</definition>
+        <argsstring></argsstring>
+        <name>m_central_directory_file_ofs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1041" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1041" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1afd3d9bd1f542c57aae52c8d6fad6f387" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ab1a91818a39ac203d5d9f12a003e8557" kindref="member">mz_uint32</ref></type>
+        <definition>mz_uint32 mz_zip_archive::m_total_files</definition>
+        <argsstring></argsstring>
+        <name>m_total_files</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1044" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1044" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a3015327b3da7922ae56ae73bb99b4fae" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad909f6ff4c74a79b317e306a164c77f3" kindref="member">mz_zip_mode</ref></type>
+        <definition>mz_zip_mode mz_zip_archive::m_zip_mode</definition>
+        <argsstring></argsstring>
+        <name>m_zip_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1045" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1045" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1ae63ea3648c32998d2b17cc6dc6401671" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a9e009caf9b469d91618c184666c50da4" kindref="member">mz_zip_type</ref></type>
+        <definition>mz_zip_type mz_zip_archive::m_zip_type</definition>
+        <argsstring></argsstring>
+        <name>m_zip_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1046" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1046" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a1b7722292a33d849b861e23bf94f69d9" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ae12d56c14c748fc82c425478f017dc6d" kindref="member">mz_zip_error</ref></type>
+        <definition>mz_zip_error mz_zip_archive::m_last_error</definition>
+        <argsstring></argsstring>
+        <name>m_last_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1047" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1047" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1ad0a89dcb30f4b8fc8b1a94c9df93d0ff" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad1ec3c4964d89baaf6427b699bf71f3f" kindref="member">mz_uint64</ref></type>
+        <definition>mz_uint64 mz_zip_archive::m_file_offset_alignment</definition>
+        <argsstring></argsstring>
+        <name>m_file_offset_alignment</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1049" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1049" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a1ee45d07ddf4439065e62c12f7de3286" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a8145a3e9c9fac12ec4089a6e39ba9f4f" kindref="member">mz_alloc_func</ref></type>
+        <definition>mz_alloc_func mz_zip_archive::m_pAlloc</definition>
+        <argsstring></argsstring>
+        <name>m_pAlloc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1051" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1051" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1abb6dbd66d702cdffc05a885f8448003d" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ac00f79fc7189a19f9729dbd9b82c8380" kindref="member">mz_free_func</ref></type>
+        <definition>mz_free_func mz_zip_archive::m_pFree</definition>
+        <argsstring></argsstring>
+        <name>m_pFree</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1052" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1052" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1ac3cdd59e8bcc156954790af62fee92e8" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a9adc24aaf31eeb77293ebdb97ab6463c" kindref="member">mz_realloc_func</ref></type>
+        <definition>mz_realloc_func mz_zip_archive::m_pRealloc</definition>
+        <argsstring></argsstring>
+        <name>m_pRealloc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1053" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1053" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a54c3a1be907a1e075a112ff06b191644" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* mz_zip_archive::m_pAlloc_opaque</definition>
+        <argsstring></argsstring>
+        <name>m_pAlloc_opaque</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1054" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1054" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1ac3df2038c7486a5df1ed51bfa3f7443c" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a88993adb5262c6e17495f22790b22bdd" kindref="member">mz_file_read_func</ref></type>
+        <definition>mz_file_read_func mz_zip_archive::m_pRead</definition>
+        <argsstring></argsstring>
+        <name>m_pRead</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1056" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1056" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a999d2d2e54211bfe0606008b6597f0d5" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a20dd8c64af05b367626a8e151c78e521" kindref="member">mz_file_write_func</ref></type>
+        <definition>mz_file_write_func mz_zip_archive::m_pWrite</definition>
+        <argsstring></argsstring>
+        <name>m_pWrite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1057" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1057" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a943ea385742e04f7995cb54b46892213" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad7bc23cd7073bca03279afc2f57dc50f" kindref="member">mz_file_needs_keepalive</ref></type>
+        <definition>mz_file_needs_keepalive mz_zip_archive::m_pNeeds_keepalive</definition>
+        <argsstring></argsstring>
+        <name>m_pNeeds_keepalive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1058" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1058" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a477d8ad842fa3707c2330454c8173f7d" prot="public" static="no" mutable="no">
+        <type>void *</type>
+        <definition>void* mz_zip_archive::m_pIO_opaque</definition>
+        <argsstring></argsstring>
+        <name>m_pIO_opaque</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1059" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1059" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__archive_1a9d47a170d9f54452fcfe1152c26af40b" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a2f5efde14c151952d14c6a231b7767ac" kindref="member">mz_zip_internal_state</ref> *</type>
+        <definition>mz_zip_internal_state* mz_zip_archive::m_pState</definition>
+        <argsstring></argsstring>
+        <name>m_pState</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1061" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1061" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="468">
+        <label>mz_zip_archive</label>
+        <link refid="structmz__zip__archive"/>
+        <childnode refid="469" relation="usage">
+          <edgelabel>m_pState</edgelabel>
+        </childnode>
+      </node>
+      <node id="470">
+        <label>mz_zip_array</label>
+        <link refid="structmz__zip__array"/>
+      </node>
+      <node id="469">
+        <label>mz_zip_internal_state_tag</label>
+        <link refid="structmz__zip__internal__state__tag"/>
+        <childnode refid="470" relation="usage">
+          <edgelabel>m_central_dir_offsets</edgelabel>
+          <edgelabel>m_sorted_central_dir_offsets</edgelabel>
+          <edgelabel>m_central_dir</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" line="1039" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.h" bodystart="1038" bodyend="1063"/>
+    <listofallmembers>
+      <member refid="structmz__zip__archive_1a45a402e348cc83629be5453441878d81" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_archive_size</name></member>
+      <member refid="structmz__zip__archive_1a128125bc28f4d1f118fe7b9badd0f975" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_central_directory_file_ofs</name></member>
+      <member refid="structmz__zip__archive_1ad0a89dcb30f4b8fc8b1a94c9df93d0ff" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_file_offset_alignment</name></member>
+      <member refid="structmz__zip__archive_1a1b7722292a33d849b861e23bf94f69d9" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_last_error</name></member>
+      <member refid="structmz__zip__archive_1a1ee45d07ddf4439065e62c12f7de3286" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pAlloc</name></member>
+      <member refid="structmz__zip__archive_1a54c3a1be907a1e075a112ff06b191644" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pAlloc_opaque</name></member>
+      <member refid="structmz__zip__archive_1abb6dbd66d702cdffc05a885f8448003d" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pFree</name></member>
+      <member refid="structmz__zip__archive_1a477d8ad842fa3707c2330454c8173f7d" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pIO_opaque</name></member>
+      <member refid="structmz__zip__archive_1a943ea385742e04f7995cb54b46892213" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pNeeds_keepalive</name></member>
+      <member refid="structmz__zip__archive_1ac3df2038c7486a5df1ed51bfa3f7443c" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pRead</name></member>
+      <member refid="structmz__zip__archive_1ac3cdd59e8bcc156954790af62fee92e8" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pRealloc</name></member>
+      <member refid="structmz__zip__archive_1a9d47a170d9f54452fcfe1152c26af40b" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pState</name></member>
+      <member refid="structmz__zip__archive_1a999d2d2e54211bfe0606008b6597f0d5" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_pWrite</name></member>
+      <member refid="structmz__zip__archive_1afd3d9bd1f542c57aae52c8d6fad6f387" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_total_files</name></member>
+      <member refid="structmz__zip__archive_1a3015327b3da7922ae56ae73bb99b4fae" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_zip_mode</name></member>
+      <member refid="structmz__zip__archive_1ae63ea3648c32998d2b17cc6dc6401671" prot="public" virt="non-virtual"><scope>mz_zip_archive</scope><name>m_zip_type</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

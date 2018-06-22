@@ -1,0 +1,371 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__image_8cpp" kind="file" language="C++">
+    <compoundname>ft_image.cpp</compoundname>
+    <includes refid="ft__image_8h" local="yes">ft_image.h</includes>
+    <includes refid="res__output_8h" local="yes">res_output.h</includes>
+    <includes local="no">glm.hpp</includes>
+    <includes local="no">gtc/matrix_transform.hpp</includes>
+    <includes local="no">gtc/type_ptr.hpp</includes>
+    <includes refid="common__functions_8h" local="yes">common_functions.h</includes>
+    <incdepgraph>
+      <node id="418">
+        <label>functional</label>
+      </node>
+      <node id="430">
+        <label>common_functions.h</label>
+        <link refid="common__functions_8h"/>
+        <childnode refid="421" relation="include">
+        </childnode>
+        <childnode refid="417" relation="include">
+        </childnode>
+        <childnode refid="431" relation="include">
+        </childnode>
+      </node>
+      <node id="422">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="417">
+        <label>string</label>
+      </node>
+      <node id="416">
+        <label>map</label>
+      </node>
+      <node id="429">
+        <label>gtc/type_ptr.hpp</label>
+      </node>
+      <node id="424">
+        <label>json.h</label>
+      </node>
+      <node id="428">
+        <label>gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="413">
+        <label>ft_image.h</label>
+        <link refid="ft__image_8h"/>
+        <childnode refid="414" relation="include">
+        </childnode>
+      </node>
+      <node id="414">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="415" relation="include">
+        </childnode>
+      </node>
+      <node id="412">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp</label>
+        <link refid="ft_image.cpp"/>
+        <childnode refid="413" relation="include">
+        </childnode>
+        <childnode refid="426" relation="include">
+        </childnode>
+        <childnode refid="427" relation="include">
+        </childnode>
+        <childnode refid="428" relation="include">
+        </childnode>
+        <childnode refid="429" relation="include">
+        </childnode>
+        <childnode refid="430" relation="include">
+        </childnode>
+      </node>
+      <node id="423">
+        <label>vector</label>
+      </node>
+      <node id="420">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="421" relation="include">
+        </childnode>
+        <childnode refid="422" relation="include">
+        </childnode>
+        <childnode refid="423" relation="include">
+        </childnode>
+        <childnode refid="417" relation="include">
+        </childnode>
+        <childnode refid="424" relation="include">
+        </childnode>
+        <childnode refid="425" relation="include">
+        </childnode>
+      </node>
+      <node id="415">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="416" relation="include">
+        </childnode>
+        <childnode refid="417" relation="include">
+        </childnode>
+        <childnode refid="418" relation="include">
+        </childnode>
+        <childnode refid="419" relation="include">
+        </childnode>
+        <childnode refid="420" relation="include">
+        </childnode>
+      </node>
+      <node id="427">
+        <label>glm.hpp</label>
+      </node>
+      <node id="421">
+        <label>imgui.h</label>
+      </node>
+      <node id="431">
+        <label>GL/gl3w.h</label>
+      </node>
+      <node id="425">
+        <label>algorithm</label>
+      </node>
+      <node id="419">
+        <label>memory</label>
+      </node>
+      <node id="426">
+        <label>res_output.h</label>
+        <link refid="res__output_8h"/>
+        <childnode refid="423" relation="include">
+        </childnode>
+        <childnode refid="417" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ft__image_8cpp_1a5a6835892409131d5a4b1a49f40d194a" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ShowHelpMarker</definition>
+        <argsstring>(const char *desc)</argsstring>
+        <name>ShowHelpMarker</name>
+        <param>
+          <type>const char *</type>
+          <declname>desc</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp" line="77" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp" bodystart="77" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="ft__image_8cpp_1af7d44b7141d9ce14bc9e05436ceca252" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool get_texture_item</definition>
+        <argsstring>(void *data, int idx, const char **out_str)</argsstring>
+        <name>get_texture_item</name>
+        <param>
+          <type>void *</type>
+          <declname>data</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <param>
+          <type>const char **</type>
+          <declname>out_str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp" line="89" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp" bodystart="89" bodyend="93"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__image_8h" kindref="compound">ft_image.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="res__output_8h" kindref="compound">res_output.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/matrix_transform.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/type_ptr.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common__functions_8h" kindref="compound">common_functions.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">x&apos;=(x-a)cos¦Á+(y-b)sin¦Á+a</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">y&apos;=-(x-a)sin¦Á+(y-b)cos¦Á+b</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__image_1a5fa45bb2ecf50acba2533aa37ed736f6" kindref="member">ft_image::draw</ref>()</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1a09062404251d099907ff9d7f2b18b89a" kindref="member">ft_base::draw</ref>();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>texture_id<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_id;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="res__output_8h_1a4c8dadcc7988266b4b23d4b2096da321" kindref="member">vres_txt_cd</ref>&amp;<sp/>ptext_cd<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].vtexture_coordinates;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref><sp/>&gt;=<sp/>ptext_cd.size())</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;invalid<sp/>texture<sp/>index:%d\n&quot;</highlight><highlight class="normal">,<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>texture_width<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_width;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>texture_height<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_height;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sizew<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.x;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>sizeh<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.y;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec3<sp/>abpos<sp/>=<sp/><ref refid="classbase__ui__component_1ae7efd3132e7d8c3bc59b3b8cbbdbed58" kindref="member">absolute_coordinate_of_base_pos</ref>();</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>winpos<sp/>=<sp/>ImGui::GetWindowPos();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>pos1<sp/>=<sp/>{<sp/>abpos.x<sp/>+<sp/>winpos.x,<sp/>abpos.y<sp/>+<sp/>winpos.y<sp/>};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>pos2<sp/>=<sp/>{<sp/>pos1.x,<sp/>pos1.y<sp/>+<sp/>sizeh<sp/>};</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>pos3<sp/>=<sp/>{<sp/>pos1.x<sp/>+<sp/>sizew,<sp/>pos1.y<sp/>+<sp/>sizeh<sp/>};</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>pos4<sp/>=<sp/>{<sp/>pos1.x<sp/>+<sp/>sizew,<sp/>pos1.y<sp/>};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>uv0<sp/>=<sp/>ImVec2(ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x0<sp/>/<sp/>texture_width,<sp/>ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y0<sp/>/<sp/>texture_height);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>uv1<sp/>=<sp/>ImVec2(ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x0<sp/>/<sp/>texture_width,<sp/>(ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y1)<sp/>/<sp/>texture_height);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>uv2<sp/>=<sp/>ImVec2((ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x1)<sp/>/<sp/>texture_width,<sp/>(ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y1)<sp/>/<sp/>texture_height);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>uv3<sp/>=<sp/>ImVec2((ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x1)<sp/>/<sp/>texture_width,<sp/>(ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y0)<sp/>/<sp/>texture_height);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>offsetx<sp/>=<sp/>abpos.x<sp/>-<sp/><ref refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" kindref="member">base_pos</ref>().x;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>offsety<sp/>=<sp/>abpos.y<sp/>-<sp/><ref refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" kindref="member">base_pos</ref>().y;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>axisBasePos<sp/>=<sp/>{<sp/>offsetx<sp/>+<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.x<sp/>+<sp/>winpos.x,<sp/>offsety<sp/>+<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.y<sp/>+<sp/>winpos.y<sp/>};</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref><sp/>!=<sp/>0.f)</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos1<sp/>=<sp/><ref refid="common__functions_8cpp_1a447a8f285289bb5b32229fd8fbd3e124" kindref="member">rotate_point_by_zaxis</ref>(pos1,<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref>,<sp/>axisBasePos);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos2<sp/>=<sp/><ref refid="common__functions_8cpp_1a447a8f285289bb5b32229fd8fbd3e124" kindref="member">rotate_point_by_zaxis</ref>(pos2,<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref>,<sp/>axisBasePos);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos3<sp/>=<sp/><ref refid="common__functions_8cpp_1a447a8f285289bb5b32229fd8fbd3e124" kindref="member">rotate_point_by_zaxis</ref>(pos3,<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref>,<sp/>axisBasePos);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pos4<sp/>=<sp/><ref refid="common__functions_8cpp_1a447a8f285289bb5b32229fd8fbd3e124" kindref="member">rotate_point_by_zaxis</ref>(pos4,<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref>,<sp/>axisBasePos);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::ImageQuad((ImTextureID)texture_id,<sp/>pos1,<sp/>pos2,<sp/>pos3,<sp/>pos4,<sp/>uv0,<sp/>uv1,<sp/>uv2,<sp/>uv3);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classbase__ui__component_1a7e049f196571b69481efc09d874e9a86" kindref="member">is_selected</ref>())</highlight><highlight class="comment">//draw<sp/>envelope</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImU32<sp/>col<sp/>=<sp/>ImGui::GetColorU32(ImGuiCol_HeaderActive);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>editunit(<ref refid="control__common__def_8h_1ab56c822b9fe26b8c1dd802da9be13627" kindref="member">edit_unit_len</ref>,<sp/><ref refid="control__common__def_8h_1ab56c822b9fe26b8c1dd802da9be13627" kindref="member">edit_unit_len</ref>);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos1a<sp/>=<sp/>pos1<sp/>-<sp/>editunit;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos1b<sp/>=<sp/>pos1<sp/>+<sp/>editunit;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::RenderFrame(pos1a,<sp/>pos1b,<sp/>col);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos2a<sp/>=<sp/>pos2<sp/>-<sp/>editunit;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos2b<sp/>=<sp/>pos2<sp/>+<sp/>editunit;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::RenderFrame(pos2a,<sp/>pos2b,<sp/>col);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos3a<sp/>=<sp/>pos3<sp/>-<sp/>editunit;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos3b<sp/>=<sp/>pos3<sp/>+<sp/>editunit;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::RenderFrame(pos3a,<sp/>pos3b,<sp/>col);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos4a<sp/>=<sp/>pos4<sp/>-<sp/>editunit;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>pos4b<sp/>=<sp/>pos4<sp/>+<sp/>editunit;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::RenderFrame(pos4a,<sp/>pos4b,<sp/>col);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>posaa<sp/>=<sp/>axisBasePos<sp/>-<sp/>editunit;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>posab<sp/>=<sp/>axisBasePos<sp/>+<sp/>editunit;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::RenderFrame(posaa,<sp/>posab,<sp/>col);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ft__image_8cpp_1a5a6835892409131d5a4b1a49f40d194a" kindref="member">ShowHelpMarker</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>desc)</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::TextDisabled(</highlight><highlight class="stringliteral">&quot;(?)&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ImGui::IsItemHovered())</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::BeginTooltip();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::PushTextWrapPos(ImGui::GetFontSize()<sp/>*<sp/>35.0f);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::TextUnformatted(desc);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::PopTextWrapPos();</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::EndTooltip();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="ft__image_8cpp_1af7d44b7141d9ce14bc9e05436ceca252" kindref="member">get_texture_item</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>data,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>idx,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">**<sp/>out_str)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>*out_str<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].vtexture_coordinates[idx]._file_name.c_str();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__image_1ab2b48245dde10cf9ca28b96352349c80" kindref="member">ft_image::draw_peroperty_page</ref>()</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1a03bf0cd635d96f8a42686567893c2bd4" kindref="member">ft_base::draw_peroperty_page</ref>();</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Spacing();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Spacing();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;size:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SliderFloat(</highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.x,<sp/>0.f,<sp/><ref refid="classbase__ui__component_1a1027bcda32d3f479b6d14c0cbbcc184b" kindref="member">base_ui_component::screenw</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SliderFloat(</highlight><highlight class="stringliteral">&quot;h&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.y,<sp/>0.f,<sp/><ref refid="classbase__ui__component_1aca508bf254f0b9c55d29c68c8249e2d3" kindref="member">base_ui_component::screenh</ref>);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;axis<sp/>pos:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SliderFloat(</highlight><highlight class="stringliteral">&quot;ax&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.x,<sp/>1.f,<sp/><ref refid="classbase__ui__component_1a1027bcda32d3f479b6d14c0cbbcc184b" kindref="member">base_ui_component::screenw</ref>);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SliderFloat(</highlight><highlight class="stringliteral">&quot;ay&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.y,<sp/>1.f,<sp/><ref refid="classbase__ui__component_1aca508bf254f0b9c55d29c68c8249e2d3" kindref="member">base_ui_component::screenh</ref>);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Separator();</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;angle:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SliderFloat(</highlight><highlight class="stringliteral">&quot;a&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref>,<sp/>0.f,<sp/>1.f);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;image:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal">&amp;<sp/>res_coors<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].vtexture_coordinates;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isize<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].vtexture_coordinates.size();</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Combo(</highlight><highlight class="stringliteral">&quot;texture<sp/>index:&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>,<sp/>&amp;<ref refid="ft__image_8cpp_1af7d44b7141d9ce14bc9e05436ceca252" kindref="member">get_texture_item</ref>,<sp/>&amp;<ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>],<sp/>isize);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SameLine();<sp/><ref refid="ft__image_8cpp_1a5a6835892409131d5a4b1a49f40d194a" kindref="member">ShowHelpMarker</ref>(</highlight><highlight class="stringliteral">&quot;select<sp/>a<sp/>image<sp/>from<sp/>image<sp/>resource!\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Spacing();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>reswidth<sp/>=<sp/>res_coors[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>].owidth();</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>resheight<sp/>=<sp/>res_coors[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>].oheight();</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;original<sp/>size:%f,%f&quot;</highlight><highlight class="normal">,<sp/>reswidth,<sp/>resheight);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Spacing();</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(reswidth&gt;0)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>draw_height<sp/>=<sp/><ref refid="control__common__def_8h_1a9259fb256b6772d2689523f825a73b85" kindref="member">imge_edit_view_width</ref>*resheight<sp/>/<sp/>reswidth;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>draw_size(<ref refid="control__common__def_8h_1a9259fb256b6772d2689523f825a73b85" kindref="member">imge_edit_view_width</ref>,<sp/>draw_height);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>texture_id<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_id;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>wtexture_width<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_width;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>wtexture_height<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_height;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>uv0(res_coors[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x0<sp/>/<sp/>wtexture_width,<sp/>res_coors[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y0<sp/>/<sp/>wtexture_height);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/>uv1(res_coors[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x1<sp/>/<sp/>wtexture_width,<sp/>res_coors[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y1<sp/>/<sp/>wtexture_height);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::Image((ImTextureID)texture_id,<sp/>draw_size,<sp/>uv0,<sp/>uv1,<sp/>ImColor(255,<sp/>255,<sp/>255,<sp/>255),<sp/>ImColor(255,<sp/>255,<sp/>255,<sp/>128));</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="136"><highlight class="comment">fields:</highlight></codeline>
+<codeline lineno="137"><highlight class="comment">screen_pos,</highlight></codeline>
+<codeline lineno="138"><highlight class="comment">texture_id_index</highlight></codeline>
+<codeline lineno="139"><highlight class="comment">texture_index</highlight></codeline>
+<codeline lineno="140"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__image_1ad896e67de420c04a9cac378b62f76dad" kindref="member">ft_image::init_from_json</ref>(Value&amp;<sp/>jvalue)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1a2921bac309eb7b6064c8ee2f39876640" kindref="member">ft_base::init_from_json</ref>(jvalue);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//g_cur_texture_id_index<sp/>=<sp/>jvalue[&quot;texture_id_index&quot;].asInt();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref><sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;texture_index&quot;</highlight><highlight class="normal">].asInt();</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>Value&amp;<sp/>jsize<sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;size&quot;</highlight><highlight class="normal">];</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!jsize.isNull())</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.x<sp/>=<sp/>jsize[</highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.y<sp/>=<sp/>jsize[</highlight><highlight class="stringliteral">&quot;h&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.x<sp/>==<sp/>0.f<sp/>||<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.y<sp/>==<sp/>0.f)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="res__output_8h_1a4c8dadcc7988266b4b23d4b2096da321" kindref="member">vres_txt_cd</ref>&amp;<sp/>ptext_cd<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].vtexture_coordinates;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.x<sp/>=<sp/>ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x1<sp/>-<sp/>ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._x0;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.y<sp/>=<sp/>ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y1<sp/>-<sp/>ptext_cd[<ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>]._y0;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>Value&amp;<sp/>jaxispos<sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;axipos&quot;</highlight><highlight class="normal">];</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!jaxispos.isNull())</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.x<sp/>=<sp/>jaxispos[</highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.y<sp/>=<sp/>jaxispos[</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref><sp/>=<sp/>jaxispos[</highlight><highlight class="stringliteral">&quot;angle&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>aw<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.x<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>ah<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.y<sp/>/<sp/>2;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.x<sp/>=<sp/><ref refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" kindref="member">base_pos</ref>().x<sp/>+<sp/>aw;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.y<sp/>=<sp/><ref refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" kindref="member">base_pos</ref>().y<sp/>+<sp/>ah;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__image_1a3d315d85b17e9a30d9849a414c66cc81" kindref="member">ft_image::init_json_unit</ref>(Value&amp;<sp/>junit)</highlight></codeline>
+<codeline lineno="175"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1aa7ebbfc073f79a8a383bc7b78af64f91" kindref="member">ft_base::init_json_unit</ref>(junit);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;texture_id_index&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;texture_index&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>Value<sp/>jsize(objectValue);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/>jsize[</highlight><highlight class="stringliteral">&quot;w&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.x;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>jsize[</highlight><highlight class="stringliteral">&quot;h&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>.y;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;size&quot;</highlight><highlight class="normal">]<sp/>=<sp/>jsize;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>Value<sp/>jaxispos(objectValue);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>jaxispos[</highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.x;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>jaxispos[</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>.y;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>jaxispos[</highlight><highlight class="stringliteral">&quot;angle&quot;</highlight><highlight class="normal">]<sp/>=<sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref>;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/>junit[</highlight><highlight class="stringliteral">&quot;axipos&quot;</highlight><highlight class="normal">]<sp/>=<sp/>jaxispos;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp"/>
+  </compounddef>
+</doxygen>

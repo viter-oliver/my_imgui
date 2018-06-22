@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_matrix" kind="struct" language="C++" prot="public">
+    <compoundname>ofbx::Matrix</compoundname>
+    <includes refid="ofbx_8h" local="no">ofbx.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_matrix_1ad42b5d1eeab5f0716f5a78c8ce3ce8f0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Matrix::m[16]</definition>
+        <argsstring>[16]</argsstring>
+        <name>m</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="39" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="38" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="37" bodyend="40"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_matrix_1ad42b5d1eeab5f0716f5a78c8ce3ce8f0" prot="public" virt="non-virtual"><scope>ofbx::Matrix</scope><name>m</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

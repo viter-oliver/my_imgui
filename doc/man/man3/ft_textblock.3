@@ -1,0 +1,152 @@
+.TH "ft_textblock" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ft_textblock \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ft_textblock\&.h>\fP
+.PP
+Inherits \fBft_base\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBintl_pt\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBft_textblock\fP ()"
+.br
+.ti -1c
+.RI "\fB~ft_textblock\fP ()"
+.br
+.ti -1c
+.RI "int \fBcollect_property_range\fP (\fBvproperty_list\fP &vplist)"
+.br
+.RI "\fIget the memory range of the property data block \fP"
+.ti -1c
+.RI "void \fBdraw\fP ()"
+.br
+.RI "\fIdraw self on a surface \fP"
+.ti -1c
+.RI "void \fBset_content\fP (const char *strct)"
+.br
+.ti -1c
+.RI "const char * \fBcontent\fP ()"
+.br
+.ti -1c
+.RI "void \fBdraw_peroperty_page\fP ()"
+.br
+.RI "\fIdraw property on the property page for editing \fP"
+.ti -1c
+.RI "bool \fBinit_from_json\fP (Value &jvalue)"
+.br
+.RI "\fIinstancing class from a json value unit \fP"
+.ti -1c
+.RI "bool \fBinit_json_unit\fP (Value &junit)"
+.br
+.RI "\fIinit a json unit by some data members \fP"
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBintl_pt\fP \fB_txt_pt\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ft_textblock::ft_textblock ()\fC [inline]\fP"
+
+.SS "ft_textblock::~ft_textblock ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "int ft_textblock::collect_property_range (\fBvproperty_list\fP & vplist)\fC [inline]\fP, \fC [virtual]\fP"
+
+.PP
+get the memory range of the property data block 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIvplist[out]\fP a container which the range of property data block will store into 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+length of property data block
+.IP "\(bu" 2
+
+.PP
+.RE
+.PP
+
+.PP
+Reimplemented from \fBbase_ui_component\fP\&.
+.SS "const char* ft_textblock::content ()\fC [inline]\fP"
+
+.SS "void ft_textblock::draw ()\fC [virtual]\fP"
+
+.PP
+draw self on a surface 
+.PP
+Reimplemented from \fBft_base\fP\&.
+.SS "void ft_textblock::draw_peroperty_page ()\fC [virtual]\fP"
+
+.PP
+draw property on the property page for editing 
+.PP
+Reimplemented from \fBft_base\fP\&.
+.SS "bool ft_textblock::init_from_json (Value & jvalue)\fC [virtual]\fP"
+
+.PP
+instancing class from a json value unit 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIjvalue\fP a json value jvalue which contain all the value of the data member of current object 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+result --true success --false failure 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBft_base\fP\&.
+.SS "bool ft_textblock::init_json_unit (Value & junit)\fC [virtual]\fP"
+
+.PP
+init a json unit by some data members 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIjunit\fP a json value junit which will be stored all the value of the data member of current object 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+result -true success -false failure 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBft_base\fP\&.
+.SS "void ft_textblock::set_content (const char * strct)\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBintl_pt\fP ft_textblock::_txt_pt\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

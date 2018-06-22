@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="res__output_8cpp" kind="file" language="C++">
+    <compoundname>res_output.cpp</compoundname>
+    <includes refid="res__output_8h" local="yes">res_output.h</includes>
+    <incdepgraph>
+      <node id="1125">
+        <label>string</label>
+      </node>
+      <node id="1122">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.cpp</label>
+        <link refid="res_output.cpp"/>
+        <childnode refid="1123" relation="include">
+        </childnode>
+      </node>
+      <node id="1124">
+        <label>vector</label>
+      </node>
+      <node id="1123">
+        <label>res_output.h</label>
+        <link refid="res__output_8h"/>
+        <childnode refid="1124" relation="include">
+        </childnode>
+        <childnode refid="1125" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" prot="public" static="no" mutable="no">
+        <type><ref refid="res__output_8h_1afb358c54d90a75f73b8b7288020c8bac" kindref="member">vres_txt_list</ref></type>
+        <definition>vres_txt_list g_vres_texture_list</definition>
+        <argsstring></argsstring>
+        <name>g_vres_texture_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.cpp" line="3" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.cpp" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int g_cur_texture_id_index</definition>
+        <argsstring></argsstring>
+        <name>g_cur_texture_id_index</name>
+        <initializer>=0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.cpp" line="4" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.cpp" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="res__output_8h" kindref="compound">res_output.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"><ref refid="res__output_8h_1afb358c54d90a75f73b8b7288020c8bac" kindref="member">vres_txt_list</ref><sp/><sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>=0;</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.cpp"/>
+  </compounddef>
+</doxygen>

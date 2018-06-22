@@ -1,0 +1,359 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classmaterial" kind="class" language="C++" prot="public">
+    <compoundname>material</compoundname>
+    <includes refid="material_8h" local="no">material.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmaterial_1a706821e75cfb1ea6df8ce43d762dbd79" prot="private" static="no" mutable="no">
+        <type>shared_ptr&lt; <ref refid="classaf__shader" kindref="compound">af_shader</ref> &gt;</type>
+        <definition>shared_ptr&lt;af_shader&gt; material::_pshader</definition>
+        <argsstring></argsstring>
+        <name>_pshader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="12" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaterial_1a0a36f66a86106797d2325f3c01ffdace" prot="private" static="no" mutable="no">
+        <type><ref refid="material_8h_1a471bc6a26b328014dd54e403fd2853f4" kindref="member">mp_shader_uf</ref></type>
+        <definition>mp_shader_uf material::_mp_shader_uf</definition>
+        <argsstring></argsstring>
+        <name>_mp_shader_uf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="13" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmaterial_1abea331fd97c8ba019e2bab4e2a158233" prot="private" static="no" mutable="no">
+        <type>string</type>
+        <definition>string material::_name</definition>
+        <argsstring></argsstring>
+        <name>_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="14" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="14" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="classmaterial_1a2a684c2aecd9f356fec2ae5c0dcb30f0" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool material::_sel</definition>
+        <argsstring></argsstring>
+        <name>_sel</name>
+        <initializer>{ false }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="49" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="49" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmaterial_1abcbc2f61c24746fe8923983a4ba39d1e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>material::material</definition>
+        <argsstring>()</argsstring>
+        <name>material</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="16" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="16" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1ac1a5718968d2ca22a3f6f226384e1b96" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>material::material</definition>
+        <argsstring>(shared_ptr&lt; af_shader &gt; psd)</argsstring>
+        <name>material</name>
+        <param>
+          <type>shared_ptr&lt; <ref refid="classaf__shader" kindref="compound">af_shader</ref> &gt;</type>
+          <declname>psd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="17" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="3" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1acdec1476ae5952b6cf0f7692ac9c8372" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::set_pshader</definition>
+        <argsstring>(shared_ptr&lt; af_shader &gt; psd)</argsstring>
+        <name>set_pshader</name>
+        <param>
+          <type>shared_ptr&lt; <ref refid="classaf__shader" kindref="compound">af_shader</ref> &gt;</type>
+          <declname>psd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="18" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1ae7ebefdb91d18b359bc52719e508e7dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>shared_ptr&lt; <ref refid="classaf__shader" kindref="compound">af_shader</ref> &gt; &amp;</type>
+        <definition>shared_ptr&lt;af_shader&gt;&amp; material::get_shader</definition>
+        <argsstring>()</argsstring>
+        <name>get_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="22" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1aa9d4a4ef83e54260d95bc415a1f1bfd8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::set_name</definition>
+        <argsstring>(string nm)</argsstring>
+        <name>set_name</name>
+        <param>
+          <type>string</type>
+          <declname>nm</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="26" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a261217d835715e8e5d38ef86e57dc7e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>string material::get_name</definition>
+        <argsstring>()</argsstring>
+        <name>get_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a810216e64c18a5397436bdd7a7bed51f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="material_8h_1a471bc6a26b328014dd54e403fd2853f4" kindref="member">mp_shader_uf</ref> &amp;</type>
+        <definition>mp_shader_uf&amp; material::get_mp_sd_uf</definition>
+        <argsstring>()</argsstring>
+        <name>get_mp_sd_uf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="34" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a362cea393b6e5335d2e816e90b744f8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::use</definition>
+        <argsstring>()</argsstring>
+        <name>use</name>
+        <briefdescription>
+<para>when a material is used, the shader referenced is used <linebreak/>
+</para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="41" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="110" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1aaa7e7b2d198cc94e5d283e8d0993b66d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::set_value</definition>
+        <argsstring>(string unf_name, float *pfvalue, GLuint len)</argsstring>
+        <name>set_value</name>
+        <param>
+          <type>string</type>
+          <declname>unf_name</declname>
+        </param>
+        <param>
+          <type>float *</type>
+          <declname>pfvalue</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="42" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="127" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a7907e635afede116aa08ac4ef3b7f9b4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::set_value</definition>
+        <argsstring>(string unf_name, int *pivalue, GLuint len)</argsstring>
+        <name>set_value</name>
+        <param>
+          <type>string</type>
+          <declname>unf_name</declname>
+        </param>
+        <param>
+          <type>int *</type>
+          <declname>pivalue</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="43" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="141" bodyend="154"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a8b7ae21a1d0113848f0ea45e469f4c3f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::set_value</definition>
+        <argsstring>(string unf_name, unsigned int *puivalue, GLuint len)</argsstring>
+        <name>set_value</name>
+        <param>
+          <type>string</type>
+          <declname>unf_name</declname>
+        </param>
+        <param>
+          <type>unsigned int *</type>
+          <declname>puivalue</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="44" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="155" bodyend="169"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a412b48e4a3718a003bb4e2350284ab95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::set_value</definition>
+        <argsstring>(string unf_name, double *pdvalue, GLuint len)</argsstring>
+        <name>set_value</name>
+        <param>
+          <type>string</type>
+          <declname>unf_name</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>pdvalue</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="45" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="170" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1ab1ccc5d1c7c6e9d2de34f0afa1ec6111" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::edit_ufs</definition>
+        <argsstring>()</argsstring>
+        <name>edit_ufs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="48" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="187" bodyend="201"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a7822363a51aacc670b08e68e25cf8cf2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::output_2_json</definition>
+        <argsstring>(Value &amp;jvalue)</argsstring>
+        <name>output_2_json</name>
+        <param>
+          <type>Value &amp;</type>
+          <declname>jvalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="51" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="202" bodyend="214"/>
+      </memberdef>
+      <memberdef kind="function" id="classmaterial_1a8834d79437c0e0b8b8bb78bed8755702" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void material::init_from_json</definition>
+        <argsstring>(Value &amp;jvalue)</argsstring>
+        <name>init_from_json</name>
+        <param>
+          <type>Value &amp;</type>
+          <declname>jvalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="52" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp" bodystart="215" bodyend="240"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>is instance of the shader <linebreak/>
+description: </para>    </briefdescription>
+    <detaileddescription>
+<para><itemizedlist>
+<listitem><para>a material contain a variable list which is correspond to the shader variable type of the shader referenced by the material </para></listitem></itemizedlist>
+</para>    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h" bodystart="10" bodyend="54"/>
+    <listofallmembers>
+      <member refid="classmaterial_1a0a36f66a86106797d2325f3c01ffdace" prot="private" virt="non-virtual"><scope>material</scope><name>_mp_shader_uf</name></member>
+      <member refid="classmaterial_1abea331fd97c8ba019e2bab4e2a158233" prot="private" virt="non-virtual"><scope>material</scope><name>_name</name></member>
+      <member refid="classmaterial_1a706821e75cfb1ea6df8ce43d762dbd79" prot="private" virt="non-virtual"><scope>material</scope><name>_pshader</name></member>
+      <member refid="classmaterial_1a2a684c2aecd9f356fec2ae5c0dcb30f0" prot="public" virt="non-virtual"><scope>material</scope><name>_sel</name></member>
+      <member refid="classmaterial_1ab1ccc5d1c7c6e9d2de34f0afa1ec6111" prot="public" virt="non-virtual"><scope>material</scope><name>edit_ufs</name></member>
+      <member refid="classmaterial_1a810216e64c18a5397436bdd7a7bed51f" prot="public" virt="non-virtual"><scope>material</scope><name>get_mp_sd_uf</name></member>
+      <member refid="classmaterial_1a261217d835715e8e5d38ef86e57dc7e6" prot="public" virt="non-virtual"><scope>material</scope><name>get_name</name></member>
+      <member refid="classmaterial_1ae7ebefdb91d18b359bc52719e508e7dd" prot="public" virt="non-virtual"><scope>material</scope><name>get_shader</name></member>
+      <member refid="classmaterial_1a8834d79437c0e0b8b8bb78bed8755702" prot="public" virt="non-virtual"><scope>material</scope><name>init_from_json</name></member>
+      <member refid="classmaterial_1abcbc2f61c24746fe8923983a4ba39d1e" prot="public" virt="non-virtual"><scope>material</scope><name>material</name></member>
+      <member refid="classmaterial_1ac1a5718968d2ca22a3f6f226384e1b96" prot="public" virt="non-virtual"><scope>material</scope><name>material</name></member>
+      <member refid="classmaterial_1a7822363a51aacc670b08e68e25cf8cf2" prot="public" virt="non-virtual"><scope>material</scope><name>output_2_json</name></member>
+      <member refid="classmaterial_1aa9d4a4ef83e54260d95bc415a1f1bfd8" prot="public" virt="non-virtual"><scope>material</scope><name>set_name</name></member>
+      <member refid="classmaterial_1acdec1476ae5952b6cf0f7692ac9c8372" prot="public" virt="non-virtual"><scope>material</scope><name>set_pshader</name></member>
+      <member refid="classmaterial_1aaa7e7b2d198cc94e5d283e8d0993b66d" prot="public" virt="non-virtual"><scope>material</scope><name>set_value</name></member>
+      <member refid="classmaterial_1a7907e635afede116aa08ac4ef3b7f9b4" prot="public" virt="non-virtual"><scope>material</scope><name>set_value</name></member>
+      <member refid="classmaterial_1a8b7ae21a1d0113848f0ea45e469f4c3f" prot="public" virt="non-virtual"><scope>material</scope><name>set_value</name></member>
+      <member refid="classmaterial_1a412b48e4a3718a003bb4e2350284ab95" prot="public" virt="non-virtual"><scope>material</scope><name>set_value</name></member>
+      <member refid="classmaterial_1a362cea393b6e5335d2e816e90b744f8c" prot="public" virt="non-virtual"><scope>material</scope><name>use</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

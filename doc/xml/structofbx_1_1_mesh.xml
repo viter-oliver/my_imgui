@@ -1,0 +1,251 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_mesh" kind="struct" language="C++" prot="public" abstract="yes">
+    <compoundname>ofbx::Mesh</compoundname>
+    <basecompoundref refid="structofbx_1_1_object" prot="public" virt="non-virtual">ofbx::Object</basecompoundref>
+    <derivedcompoundref refid="structofbx_1_1_mesh_impl" prot="public" virt="non-virtual">ofbx::MeshImpl</derivedcompoundref>
+    <includes refid="ofbx_8h" local="no">ofbx.h</includes>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_mesh_1a3036acb99093feccd7928b38ed17e2fc" prot="public" static="yes" mutable="no">
+        <type>const <ref refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" kindref="member">Type</ref></type>
+        <definition>const Type ofbx::Mesh::s_type</definition>
+        <argsstring></argsstring>
+        <name>s_type</name>
+        <initializer>= <ref refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a5b65fe46c5dd90ebcec69c472c3be1d9" kindref="member">Type::MESH</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="289" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structofbx_1_1_mesh_1a1cc4437f333a52f89028528fdce7c1fd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ofbx::Mesh::Mesh</definition>
+        <argsstring>(const Scene &amp;_scene, const IElement &amp;_element)</argsstring>
+        <name>Mesh</name>
+        <param>
+          <type>const <ref refid="structofbx_1_1_scene" kindref="compound">Scene</ref> &amp;</type>
+          <declname>_scene</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structofbx_1_1_i_element" kindref="compound">IElement</ref> &amp;</type>
+          <declname>_element</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="291" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="976" bodyend="979"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_mesh_1a37e054d59bc07d49259c93da354d7171" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_geometry" kindref="compound">Geometry</ref> *</type>
+        <definition>virtual const Geometry* ofbx::Mesh::getGeometry</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getGeometry</name>
+        <reimplementedby refid="structofbx_1_1_mesh_impl_1a851efb923ca29e097c35aff005ebfec2">getGeometry</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="293" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_mesh_1a3b9318ba38194fd6996ad231965e8b93" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="structofbx_1_1_matrix" kindref="compound">Matrix</ref></type>
+        <definition>virtual Matrix ofbx::Mesh::getGeometricMatrix</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getGeometricMatrix</name>
+        <reimplementedby refid="structofbx_1_1_mesh_impl_1ac2d00cf2b9ba582b63df144ae316dc9b">getGeometricMatrix</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="294" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_mesh_1af3cd8d41fb3c872a7c8f095a00b98768" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_material" kindref="compound">Material</ref> *</type>
+        <definition>virtual const Material* ofbx::Mesh::getMaterial</definition>
+        <argsstring>(int idx) const =0</argsstring>
+        <name>getMaterial</name>
+        <reimplementedby refid="structofbx_1_1_mesh_impl_1a434a07f4d5ba84db50b7a82bdf4d95bb">getMaterial</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="295" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_mesh_1a3aeb0e7ed3e4468ba7e6dbf224bf1e3c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int ofbx::Mesh::getMaterialCount</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getMaterialCount</name>
+        <reimplementedby refid="structofbx_1_1_mesh_impl_1af48e9b89d5f617c70110425fe8810cde">getMaterialCount</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="296" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="437">
+        <label>ofbx::Mesh</label>
+        <link refid="structofbx_1_1_mesh"/>
+        <childnode refid="438" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="438">
+        <label>ofbx::Object</label>
+        <link refid="structofbx_1_1_object"/>
+      </node>
+      <node id="439">
+        <label>ofbx::MeshImpl</label>
+        <link refid="structofbx_1_1_mesh_impl"/>
+        <childnode refid="437" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="447">
+        <label>ofbx::Property</label>
+        <link refid="structofbx_1_1_property"/>
+        <childnode refid="448" relation="public-inheritance">
+        </childnode>
+        <childnode refid="447" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="449" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+      <node id="440">
+        <label>ofbx::Mesh</label>
+        <link refid="structofbx_1_1_mesh"/>
+        <childnode refid="441" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="441">
+        <label>ofbx::Object</label>
+        <link refid="structofbx_1_1_object"/>
+        <childnode refid="441" relation="usage">
+          <edgelabel>node_attribute</edgelabel>
+        </childnode>
+        <childnode refid="442" relation="usage">
+          <edgelabel>scene</edgelabel>
+        </childnode>
+        <childnode refid="446" relation="usage">
+          <edgelabel>element</edgelabel>
+        </childnode>
+      </node>
+      <node id="444">
+        <label>ofbx::Root</label>
+        <link refid="structofbx_1_1_root"/>
+        <childnode refid="441" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="448">
+        <label>ofbx::IElementProperty</label>
+        <link refid="structofbx_1_1_i_element_property"/>
+      </node>
+      <node id="443">
+        <label>ofbx::IScene</label>
+        <link refid="structofbx_1_1_i_scene"/>
+      </node>
+      <node id="446">
+        <label>ofbx::IElement</label>
+        <link refid="structofbx_1_1_i_element"/>
+      </node>
+      <node id="442">
+        <label>ofbx::Scene</label>
+        <link refid="structofbx_1_1_scene"/>
+        <childnode refid="443" relation="public-inheritance">
+        </childnode>
+        <childnode refid="444" relation="usage">
+          <edgelabel>m_root</edgelabel>
+        </childnode>
+        <childnode refid="445" relation="usage">
+          <edgelabel>m_root_element</edgelabel>
+        </childnode>
+      </node>
+      <node id="445">
+        <label>ofbx::Element</label>
+        <link refid="structofbx_1_1_element"/>
+        <childnode refid="446" relation="public-inheritance">
+        </childnode>
+        <childnode refid="447" relation="usage">
+          <edgelabel>first_property</edgelabel>
+        </childnode>
+        <childnode refid="449" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="445" relation="usage">
+          <edgelabel>sibling</edgelabel>
+          <edgelabel>child</edgelabel>
+        </childnode>
+      </node>
+      <node id="449">
+        <label>ofbx::DataView</label>
+        <link refid="structofbx_1_1_data_view"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="288" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="287" bodyend="297"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_object_1a37c36cf361d6b9783348f2dbdc1462c8" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>element</name></member>
+      <member refid="structofbx_1_1_object_1a265dd11d0863c60bd537f18ef7a8e028" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>evalLocal</name></member>
+      <member refid="structofbx_1_1_mesh_1a3b9318ba38194fd6996ad231965e8b93" prot="public" virt="pure-virtual"><scope>ofbx::Mesh</scope><name>getGeometricMatrix</name></member>
+      <member refid="structofbx_1_1_mesh_1a37e054d59bc07d49259c93da354d7171" prot="public" virt="pure-virtual"><scope>ofbx::Mesh</scope><name>getGeometry</name></member>
+      <member refid="structofbx_1_1_object_1abbe7839bd1a2e6469c05fd82e4fa3334" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getGlobalTransform</name></member>
+      <member refid="structofbx_1_1_object_1afe2a2a4f6998a42eb5de7bd04fb93f2d" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getLocalRotation</name></member>
+      <member refid="structofbx_1_1_object_1a91007293b823fea15253a32ef6a8df2d" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getLocalScaling</name></member>
+      <member refid="structofbx_1_1_object_1aa3de47089adf9fd9e19b674b7eeb4923" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getLocalTranslation</name></member>
+      <member refid="structofbx_1_1_mesh_1af3cd8d41fb3c872a7c8f095a00b98768" prot="public" virt="pure-virtual"><scope>ofbx::Mesh</scope><name>getMaterial</name></member>
+      <member refid="structofbx_1_1_mesh_1a3aeb0e7ed3e4468ba7e6dbf224bf1e3c" prot="public" virt="pure-virtual"><scope>ofbx::Mesh</scope><name>getMaterialCount</name></member>
+      <member refid="structofbx_1_1_object_1a117b5609981c4c3f45f77c758de097a3" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getParent</name></member>
+      <member refid="structofbx_1_1_object_1a52008edb38ebc35269d1523b0cb4599a" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getPostRotation</name></member>
+      <member refid="structofbx_1_1_object_1ac80b1e2e54a0325397505abcdb40b254" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getPreRotation</name></member>
+      <member refid="structofbx_1_1_object_1a7434e37ced967fb1bf8c8bb6a12a674e" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getRotationOffset</name></member>
+      <member refid="structofbx_1_1_object_1ae5325426051bc9083973e7db6ed10b73" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getRotationOrder</name></member>
+      <member refid="structofbx_1_1_object_1a554fe3984a6ddf1b5a03a811633591b5" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getRotationPivot</name></member>
+      <member refid="structofbx_1_1_object_1a066556d7b2361538093050d3422b6676" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getScalingOffset</name></member>
+      <member refid="structofbx_1_1_object_1a0c528f1e34f6c9287d2e389488d5dc39" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getScalingPivot</name></member>
+      <member refid="structofbx_1_1_object_1ace5bf5d0a7fd82d953d058df65d0c85e" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>getScene</name></member>
+      <member refid="structofbx_1_1_object_1a351a55f8f04b3ead907280f3a4dcc48c" prot="public" virt="pure-virtual"><scope>ofbx::Mesh</scope><name>getType</name></member>
+      <member refid="structofbx_1_1_object_1aa9389f53bde91f138df49e48e0447b0b" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>id</name></member>
+      <member refid="structofbx_1_1_object_1accbd64c9e29189111ece33831d0ffe91" prot="protected" virt="non-virtual"><scope>ofbx::Mesh</scope><name>is_node</name></member>
+      <member refid="structofbx_1_1_object_1ae214d85b80db101df3e1b8f46a837722" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>isNode</name></member>
+      <member refid="structofbx_1_1_mesh_1a1cc4437f333a52f89028528fdce7c1fd" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>Mesh</name></member>
+      <member refid="structofbx_1_1_object_1a805b47b5743d377e8b5939ed8c42a5c4" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>name</name></member>
+      <member refid="structofbx_1_1_object_1aa88660f2cb7b584b7feaf208e633863e" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>node_attribute</name></member>
+      <member refid="structofbx_1_1_object_1ad3852f1bb90c811e9d4b3775d1e40a14" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>Object</name></member>
+      <member refid="structofbx_1_1_object_1a3baace736ac9954b9369faeb94dc4fc3" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1a0f01e46c82d9d3e0c5673d9f53c2b7fe" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1a7d9f54c95d761ca7b24a8b18b39ae39d" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1ab3c2a9ad2afc5436079603ca57c35ea0" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>resolveObjectLinkReverse</name></member>
+      <member refid="structofbx_1_1_mesh_1a3036acb99093feccd7928b38ed17e2fc" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>s_type</name></member>
+      <member refid="structofbx_1_1_object_1aa8b8ff6f452ed54e032c9e657ceb4f62" prot="protected" virt="non-virtual"><scope>ofbx::Mesh</scope><name>scene</name></member>
+      <member refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" prot="public" virt="non-virtual"><scope>ofbx::Mesh</scope><name>Type</name></member>
+      <member refid="structofbx_1_1_object_1ae05540cc4f719253808195263452fe57" prot="public" virt="virtual"><scope>ofbx::Mesh</scope><name>~Object</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

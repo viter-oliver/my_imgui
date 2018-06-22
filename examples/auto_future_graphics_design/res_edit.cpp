@@ -21,13 +21,13 @@ res_edit::~res_edit()
 void res_edit::draw_res_list()
 {
 	int isize=g_vres_texture_list.size();
-	static const char* texture_res_show[]{"texture res0", "texture res1", "texture res2", "texture res3", "texture res4",};
-	ImGui::Combo("texture resource list", &_tmp_current_txt_id_index, texture_res_show, isize);
+	static const char* texture_res_show[]{"texture0", "texture1", "texture2", "texture3", "texture4",};
+	ImGui::Combo("Spliced texture list", &_tmp_current_txt_id_index, texture_res_show, isize);
 	if (_tmp_current_txt_id_index != g_cur_texture_id_index)
 	{
 		g_cur_texture_id_index = _tmp_current_txt_id_index;
 	}
-	ImGui::Text("add new texture resource:");
+	ImGui::Text("Add new spliced texture:");
 	static char texture_pack_name_str[FILE_NAME_LEN] = "";
 	static char texture_data_name_str[FILE_NAME_LEN] = "";
 	if (isize < sizeof(texture_res_show))
@@ -58,10 +58,18 @@ void res_edit::draw_res_list()
 
 void res_edit::draw_res_item_property()
 {
-	ImGui::Text("texture pack file:");
-	ImGui::SameLine();
-	ImGui::Text(g_vres_texture_list[g_cur_texture_id_index].texture_pack_file.c_str());
-	ImGui::Text("texture data file:");
-	ImGui::SameLine();
-	ImGui::Text(g_vres_texture_list[g_cur_texture_id_index].texture_data_file.c_str());
+	if (g_vres_texture_list.size()>0)
+	{
+		ImGui::Text("texture pack file:");
+		ImGui::SameLine();
+		ImGui::Text(g_vres_texture_list[g_cur_texture_id_index].texture_pack_file.c_str());
+		ImGui::Text("texture data file:");
+		ImGui::SameLine();
+		ImGui::Text(g_vres_texture_list[g_cur_texture_id_index].texture_data_file.c_str());
+	}
+	else
+	{
+		ImGui::Text("texture file is empty");
+	}
+
 }

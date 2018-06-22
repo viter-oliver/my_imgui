@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="project__edit_8h" kind="file" language="C++">
+    <compoundname>project_edit.h</compoundname>
+    <includes refid="ft__base_8h" local="yes">ft_base.h</includes>
+    <includedby refid="main_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main.cpp</includedby>
+    <includedby refid="project__edit_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/project_edit.cpp</includedby>
+    <incdepgraph>
+      <node id="1071">
+        <label>functional</label>
+      </node>
+      <node id="1075">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="1070">
+        <label>string</label>
+      </node>
+      <node id="1069">
+        <label>map</label>
+      </node>
+      <node id="1077">
+        <label>json.h</label>
+      </node>
+      <node id="1067">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="1068" relation="include">
+        </childnode>
+      </node>
+      <node id="1076">
+        <label>vector</label>
+      </node>
+      <node id="1073">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="1074" relation="include">
+        </childnode>
+        <childnode refid="1075" relation="include">
+        </childnode>
+        <childnode refid="1076" relation="include">
+        </childnode>
+        <childnode refid="1070" relation="include">
+        </childnode>
+        <childnode refid="1077" relation="include">
+        </childnode>
+        <childnode refid="1078" relation="include">
+        </childnode>
+      </node>
+      <node id="1068">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="1069" relation="include">
+        </childnode>
+        <childnode refid="1070" relation="include">
+        </childnode>
+        <childnode refid="1071" relation="include">
+        </childnode>
+        <childnode refid="1072" relation="include">
+        </childnode>
+        <childnode refid="1073" relation="include">
+        </childnode>
+      </node>
+      <node id="1074">
+        <label>imgui.h</label>
+      </node>
+      <node id="1078">
+        <label>algorithm</label>
+      </node>
+      <node id="1066">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/project_edit.h</label>
+        <link refid="project_edit.h"/>
+        <childnode refid="1067" relation="include">
+        </childnode>
+      </node>
+      <node id="1072">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1081">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/project_edit.cpp</label>
+        <link refid="project__edit_8cpp"/>
+      </node>
+      <node id="1080">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+      <node id="1079">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/project_edit.h</label>
+        <link refid="project_edit.h"/>
+        <childnode refid="1080" relation="include">
+        </childnode>
+        <childnode refid="1081" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classproject__edit" prot="public">project_edit</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__base_8h" kindref="compound">ft_base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="classproject__edit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classproject__edit" kindref="compound">project_edit</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5" refid="classproject__edit_1aa653bf988c271af5a06cd385422718ae" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref>&amp;<sp/><ref refid="classproject__edit_1aa653bf988c271af5a06cd385422718ae" kindref="member">_root</ref>;</highlight></codeline>
+<codeline lineno="6" refid="classproject__edit_1a63378360a3f2bad51a48c313e5be8d2b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref>*<sp/><ref refid="classproject__edit_1a63378360a3f2bad51a48c313e5be8d2b" kindref="member">_pcurrent_object</ref>;</highlight></codeline>
+<codeline lineno="7" refid="classproject__edit_1aa88d3b1f7f35c321ed3cb8da961a83e2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref>*<sp/><ref refid="classproject__edit_1aa88d3b1f7f35c321ed3cb8da961a83e2" kindref="member">_pcopy_object</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classproject__edit_1acc10510b507ec8c64d17bc1e3fc064d3" kindref="member">view_object</ref>(<ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref>&amp;<sp/>fb);</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="10" refid="classproject__edit_1a63ead519ecca5557bec222aa8f96e982" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classproject__edit_1a63ead519ecca5557bec222aa8f96e982" kindref="member">project_edit</ref>(<ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref>&amp;<sp/>fb)<sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>:_root(fb),<sp/>_pcurrent_object(NULL),<sp/>_pcopy_object(NULL)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>{}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classproject__edit_1a7b165c42d7ff8377db92f0b64d8f903b" kindref="member">objects_view</ref>();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classproject__edit_1a7f10082d70196835120197f36cd3e9ba" kindref="member">popup_context_menu</ref>();</highlight></codeline>
+<codeline lineno="15" refid="classproject__edit_1a70b9ff063bd32b004e5b1f7d7358aeb3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classproject__edit_1a70b9ff063bd32b004e5b1f7d7358aeb3" kindref="member">clear_sel_item</ref>(){<sp/>_pcopy_object<sp/>=<sp/>NULL;<sp/>}</highlight></codeline>
+<codeline lineno="16" refid="classproject__edit_1a215c73453b8e758b5edd02e6f97bcd01" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref>*<sp/><ref refid="classproject__edit_1a215c73453b8e758b5edd02e6f97bcd01" kindref="member">current_object</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="classproject__edit_1a63378360a3f2bad51a48c313e5be8d2b" kindref="member">_pcurrent_object</ref>;<sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/project_edit.h"/>
+  </compounddef>
+</doxygen>

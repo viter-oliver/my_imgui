@@ -35,15 +35,15 @@ typedef map<string, shader_variable> mshader_variable_list;
 */
 class af_shader
 {
-	/*!< all the type of attribute variables  of shader */
+	/** all the type of attribute variables  of shader */
 	mshader_variable_list _att_list;
-	/*!< all the type of uniform variables of shader */
+	/** all the type of uniform variables of shader */
 	mshader_variable_list _unf_list;
 	GLuint _shader_program_id, _vertex_shader, _fragment_shader;
 	string _name;
-	/*!< whether shader is valid */
+	/** whether shader is valid */
 	bool _valid{ true };
-	/*!< vertex shader source code and fragment shader source code */
+	/** vertex shader source code and fragment shader source code */
 	string _vs_code, _fs_code;
 public:
 	af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source);

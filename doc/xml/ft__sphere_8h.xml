@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__sphere_8h" kind="file" language="C++">
+    <compoundname>ft_sphere.h</compoundname>
+    <includes refid="ft__base_8h" local="yes">ft_base.h</includes>
+    <includedby refid="ft__sphere_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_sphere.cpp</includedby>
+    <incdepgraph>
+      <node id="739">
+        <label>functional</label>
+      </node>
+      <node id="743">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="738">
+        <label>string</label>
+      </node>
+      <node id="737">
+        <label>map</label>
+      </node>
+      <node id="745">
+        <label>json.h</label>
+      </node>
+      <node id="735">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="736" relation="include">
+        </childnode>
+      </node>
+      <node id="744">
+        <label>vector</label>
+      </node>
+      <node id="741">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="742" relation="include">
+        </childnode>
+        <childnode refid="743" relation="include">
+        </childnode>
+        <childnode refid="744" relation="include">
+        </childnode>
+        <childnode refid="738" relation="include">
+        </childnode>
+        <childnode refid="745" relation="include">
+        </childnode>
+        <childnode refid="746" relation="include">
+        </childnode>
+      </node>
+      <node id="736">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="737" relation="include">
+        </childnode>
+        <childnode refid="738" relation="include">
+        </childnode>
+        <childnode refid="739" relation="include">
+        </childnode>
+        <childnode refid="740" relation="include">
+        </childnode>
+        <childnode refid="741" relation="include">
+        </childnode>
+      </node>
+      <node id="734">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_sphere.h</label>
+        <link refid="ft_sphere.h"/>
+        <childnode refid="735" relation="include">
+        </childnode>
+      </node>
+      <node id="742">
+        <label>imgui.h</label>
+      </node>
+      <node id="746">
+        <label>algorithm</label>
+      </node>
+      <node id="740">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="748">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_sphere.cpp</label>
+        <link refid="ft__sphere_8cpp"/>
+      </node>
+      <node id="747">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_sphere.h</label>
+        <link refid="ft_sphere.h"/>
+        <childnode refid="748" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classft__sphere" prot="public">ft_sphere</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__base_8h" kindref="compound">ft_base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="classft__sphere" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classft__sphere" kindref="compound">ft_sphere</ref><sp/>:</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classft__base" kindref="compound">ft_base</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__sphere_1aa74b5e1ebe8302a3942764d99953aa0a" kindref="member">ft_sphere</ref>();</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__sphere_1a04b57fb4c4c0986a2fb2eafcec435117" kindref="member">~ft_sphere</ref>();</highlight></codeline>
+<codeline lineno="9"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><ref refid="afb__load_8cpp_1a464695366cb3e9683ab9cd7091409f68" kindref="member">REGISTER_CONTROL</ref>(<ref refid="classft__sphere" kindref="compound">ft_sphere</ref>)</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_sphere.h"/>
+  </compounddef>
+</doxygen>

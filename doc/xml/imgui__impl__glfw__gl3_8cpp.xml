@@ -1,0 +1,1194 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="imgui__impl__glfw__gl3_8cpp" kind="file" language="C++">
+    <compoundname>imgui_impl_glfw_gl3.cpp</compoundname>
+    <includes local="yes">imgui.h</includes>
+    <includes refid="imgui__impl__glfw__gl3_8h" local="yes">imgui_impl_glfw_gl3.h</includes>
+    <includes local="no">GL/gl3w.h</includes>
+    <includes local="no">GLFW/glfw3.h</includes>
+    <incdepgraph>
+      <node id="813">
+        <label>GLFW/glfw3.h</label>
+      </node>
+      <node id="811">
+        <label>imgui_impl_glfw_gl3.h</label>
+        <link refid="imgui__impl__glfw__gl3_8h"/>
+      </node>
+      <node id="810">
+        <label>imgui.h</label>
+      </node>
+      <node id="812">
+        <label>GL/gl3w.h</label>
+      </node>
+      <node id="809">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp</label>
+        <link refid="imgui_impl_glfw_gl3.cpp"/>
+        <childnode refid="810" relation="include">
+        </childnode>
+        <childnode refid="811" relation="include">
+        </childnode>
+        <childnode refid="812" relation="include">
+        </childnode>
+        <childnode refid="813" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" prot="public" static="no">
+        <name>MAP_BUTTON</name>
+        <param><defname>NAV_NO</defname></param>
+        <param><defname>BUTTON_NO</defname></param>
+        <initializer>{ if (buttons_count &gt; BUTTON_NO &amp;&amp; buttons[BUTTON_NO] == GLFW_PRESS) io.NavInputs[NAV_NO] = 1.0f; }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="583" column="17"/>
+      </memberdef>
+      <memberdef kind="define" id="imgui__impl__glfw__gl3_8cpp_1ad181101ed89f4155bbc97eccffea135b" prot="public" static="no">
+        <name>MAP_ANALOG</name>
+        <param><defname>NAV_NO</defname></param>
+        <param><defname>AXIS_NO</defname></param>
+        <param><defname>V0</defname></param>
+        <param><defname>V1</defname></param>
+        <initializer>{ float v = (axes_count &gt; AXIS_NO) ? axes[AXIS_NO] : V0; v = (v - V0) / (V1 - V0); if (v &gt; 1.0f) v = 1.0f; if (io.NavInputs[NAV_NO] &lt; v) io.NavInputs[NAV_NO] = v; }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="584" column="17"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" prot="public" static="yes" mutable="no">
+        <type>GLFWwindow *</type>
+        <definition>GLFWwindow* g_Window</definition>
+        <argsstring></argsstring>
+        <name>g_Window</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="59" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1aeadcd9b9799016abf222f5cb112c9997" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double g_Time</definition>
+        <argsstring></argsstring>
+        <name>g_Time</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="60" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a8ac7fe7ceede6d4e607fdd5d2b5f5e5d" prot="public" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool g_MouseJustPressed[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>g_MouseJustPressed</name>
+        <initializer>= { false, false, false }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="61" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" prot="public" static="yes" mutable="no">
+        <type>GLFWcursor *</type>
+        <definition>GLFWcursor* g_MouseCursors[ImGuiMouseCursor_COUNT]</definition>
+        <argsstring>[ImGuiMouseCursor_COUNT]</argsstring>
+        <name>g_MouseCursors</name>
+        <initializer>= { 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="62" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1afd5d660b40efbef81d1a76dc05fd1d6b" prot="public" static="yes" mutable="no">
+        <type>char</type>
+        <definition>char g_GlslVersion[32]</definition>
+        <argsstring>[32]</argsstring>
+        <name>g_GlslVersion</name>
+        <initializer>= &quot;#version 150&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="65" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" prot="public" static="yes" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint g_FontTexture</definition>
+        <argsstring></argsstring>
+        <name>g_FontTexture</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="66" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_ShaderHandle</definition>
+        <argsstring></argsstring>
+        <name>g_ShaderHandle</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="67" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_VertHandle</definition>
+        <argsstring></argsstring>
+        <name>g_VertHandle</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="67" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_FragHandle</definition>
+        <argsstring></argsstring>
+        <name>g_FragHandle</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="67" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a5442c37443169f6c2b7483a0818a653f" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_AttribLocationTex</definition>
+        <argsstring></argsstring>
+        <name>g_AttribLocationTex</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="68" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a723abd9d65c0a97f57cf0bebb7f83e4b" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_AttribLocationProjMtx</definition>
+        <argsstring></argsstring>
+        <name>g_AttribLocationProjMtx</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="68" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_AttribLocationPosition</definition>
+        <argsstring></argsstring>
+        <name>g_AttribLocationPosition</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="69" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_AttribLocationUV</definition>
+        <argsstring></argsstring>
+        <name>g_AttribLocationUV</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="69" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int g_AttribLocationColor</definition>
+        <argsstring></argsstring>
+        <name>g_AttribLocationColor</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="69" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" prot="public" static="yes" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int g_VboHandle</definition>
+        <argsstring></argsstring>
+        <name>g_VboHandle</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="70" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" prot="public" static="yes" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int g_VaoHandle</definition>
+        <argsstring></argsstring>
+        <name>g_VaoHandle</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="70" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" prot="public" static="yes" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int g_ElementsHandle</definition>
+        <argsstring></argsstring>
+        <name>g_ElementsHandle</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="70" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a02d9bc6823f054af9540659b6f04b859" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfwGL3_RenderDrawData</definition>
+        <argsstring>(ImDrawData *draw_data)</argsstring>
+        <name>ImGui_ImplGlfwGL3_RenderDrawData</name>
+        <param>
+          <type>ImDrawData *</type>
+          <declname>draw_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="75" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="75" bodyend="263"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a8ae88d9f191d32cc5e1a32063ea4f4ab" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>const char *</type>
+        <definition>static const char* ImGui_ImplGlfwGL3_GetClipboardText</definition>
+        <argsstring>(void *user_data)</argsstring>
+        <name>ImGui_ImplGlfwGL3_GetClipboardText</name>
+        <param>
+          <type>void *</type>
+          <declname>user_data</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="265" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="265" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1ac3ef5d5751e8c1a41aeb4d84f17f52a2" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ImGui_ImplGlfwGL3_SetClipboardText</definition>
+        <argsstring>(void *user_data, const char *text)</argsstring>
+        <name>ImGui_ImplGlfwGL3_SetClipboardText</name>
+        <param>
+          <type>void *</type>
+          <declname>user_data</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>text</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="270" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="270" bodyend="273"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a7e2f4161d656b233ce0fb093bd7b73f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfw_MouseButtonCallback</definition>
+        <argsstring>(GLFWwindow *, int button, int action, int)</argsstring>
+        <name>ImGui_ImplGlfw_MouseButtonCallback</name>
+        <param>
+          <type>GLFWwindow *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>button</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>action</declname>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="275" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="275" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a2824e65fa25cf3906feef67cfb864787" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfw_ScrollCallback</definition>
+        <argsstring>(GLFWwindow *, double xoffset, double yoffset)</argsstring>
+        <name>ImGui_ImplGlfw_ScrollCallback</name>
+        <param>
+          <type>GLFWwindow *</type>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>xoffset</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yoffset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="281" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="281" bodyend="286"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a87ff0a6084161760006ea22e5afe7a4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfw_KeyCallback</definition>
+        <argsstring>(GLFWwindow *, int key, int, int action, int mods)</argsstring>
+        <name>ImGui_ImplGlfw_KeyCallback</name>
+        <param>
+          <type>GLFWwindow *</type>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>int</type>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>action</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>mods</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="288" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="288" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a9081dfebdfc735ac037191d1cad33791" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfw_CharCallback</definition>
+        <argsstring>(GLFWwindow *, unsigned int c)</argsstring>
+        <name>ImGui_ImplGlfw_CharCallback</name>
+        <param>
+          <type>GLFWwindow *</type>
+        </param>
+        <param>
+          <type>unsigned int</type>
+          <declname>c</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="303" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="303" bodyend="308"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1abe76ab7bb3e4224cd05311b45ee34419" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ImGui_ImplGlfwGL3_CreateFontsTexture</definition>
+        <argsstring>()</argsstring>
+        <name>ImGui_ImplGlfwGL3_CreateFontsTexture</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="310" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="310" bodyend="335"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a0b153d286c774e2100ed26bb88df2014" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ImGui_ImplGlfwGL3_CreateDeviceObjects</definition>
+        <argsstring>()</argsstring>
+        <name>ImGui_ImplGlfwGL3_CreateDeviceObjects</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="337" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="337" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a205a8eb691882cdcc04f7fd45cbba448" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfwGL3_InvalidateDeviceObjects</definition>
+        <argsstring>()</argsstring>
+        <name>ImGui_ImplGlfwGL3_InvalidateDeviceObjects</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="415" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="415" bodyend="439"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a82ee61c0a1620023c9c9983676f6f5b8" prot="public" static="yes" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>static void ImGui_ImplGlfw_InstallCallbacks</definition>
+        <argsstring>(GLFWwindow *window)</argsstring>
+        <name>ImGui_ImplGlfw_InstallCallbacks</name>
+        <param>
+          <type>GLFWwindow *</type>
+          <declname>window</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="441" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="441" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a3056f834e494497bdec6cbbdac177014" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ImGui_ImplGlfwGL3_Init</definition>
+        <argsstring>(GLFWwindow *window, bool install_callbacks, const char *glsl_version)</argsstring>
+        <name>ImGui_ImplGlfwGL3_Init</name>
+        <param>
+          <type>GLFWwindow *</type>
+          <declname>window</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>install_callbacks</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>glsl_version</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="449" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="449" bodyend="502"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1a034756d657dceda4a9e6df6cbae93dff" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfwGL3_Shutdown</definition>
+        <argsstring>()</argsstring>
+        <name>ImGui_ImplGlfwGL3_Shutdown</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="504" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="504" bodyend="513"/>
+      </memberdef>
+      <memberdef kind="function" id="imgui__impl__glfw__gl3_8cpp_1ab337e0626b4c8503d682dc82ee5fa1f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ImGui_ImplGlfwGL3_NewFrame</definition>
+        <argsstring>()</argsstring>
+        <name>ImGui_ImplGlfwGL3_NewFrame</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" line="515" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" bodystart="515" bodyend="614"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//<sp/>ImGui<sp/>GLFW<sp/>binding<sp/>with<sp/>OpenGL3<sp/>+<sp/>shaders</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(GLFW<sp/>is<sp/>a<sp/>cross-platform<sp/>general<sp/>purpose<sp/>library<sp/>for<sp/>handling<sp/>windows,<sp/>inputs,<sp/>OpenGL/Vulkan<sp/>graphics<sp/>context<sp/>creation,<sp/>etc.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(GL3W<sp/>is<sp/>a<sp/>helper<sp/>library<sp/>to<sp/>access<sp/>OpenGL<sp/>functions<sp/>since<sp/>there<sp/>is<sp/>no<sp/>standard<sp/>header<sp/>to<sp/>access<sp/>modern<sp/>OpenGL<sp/>functions<sp/>easily.<sp/>Alternatives<sp/>are<sp/>GLEW,<sp/>Glad,<sp/>etc.)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Implemented<sp/>features:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>[X]<sp/>User<sp/>texture<sp/>binding.<sp/>Cast<sp/>&apos;GLuint&apos;<sp/>OpenGL<sp/>texture<sp/>identifier<sp/>as<sp/>void*/ImTextureID.<sp/>Read<sp/>the<sp/>FAQ<sp/>about<sp/>ImTextureID<sp/>in<sp/>imgui.cpp.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>[X]<sp/>Gamepad<sp/>navigation<sp/>mapping.<sp/>Enable<sp/>with<sp/>&apos;io.ConfigFlags<sp/>|=<sp/>ImGuiConfigFlags_NavEnableGamepad&apos;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>can<sp/>copy<sp/>and<sp/>use<sp/>unmodified<sp/>imgui_impl_*<sp/>files<sp/>in<sp/>your<sp/>project.<sp/>See<sp/>main.cpp<sp/>for<sp/>an<sp/>example<sp/>of<sp/>using<sp/>this.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>you<sp/>use<sp/>this<sp/>binding<sp/>you&apos;ll<sp/>need<sp/>to<sp/>call<sp/>4<sp/>functions:<sp/>ImGui_ImplXXXX_Init(),<sp/>ImGui_ImplXXXX_NewFrame(),<sp/>ImGui::Render()<sp/>and<sp/>ImGui_ImplXXXX_Shutdown().</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>you<sp/>are<sp/>new<sp/>to<sp/>ImGui,<sp/>see<sp/>examples/README.txt<sp/>and<sp/>documentation<sp/>at<sp/>the<sp/>top<sp/>of<sp/>imgui.cpp.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/>https://github.com/ocornut/imgui</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>CHANGELOG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(minor<sp/>and<sp/>older<sp/>changes<sp/>stripped<sp/>away,<sp/>please<sp/>see<sp/>git<sp/>history<sp/>for<sp/>details)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-03-20:<sp/>Misc:<sp/>Setup<sp/>io.BackendFlags<sp/>ImGuiBackendFlags_HasMouseCursors<sp/>and<sp/>ImGuiBackendFlags_HasSetMousePos<sp/>flags<sp/>+<sp/>honor<sp/>ImGuiConfigFlags_NoSetMouseCursor<sp/>flag.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-03-06:<sp/>OpenGL:<sp/>Added<sp/>const<sp/>char*<sp/>glsl_version<sp/>parameter<sp/>to<sp/>ImGui_ImplGlfwGL3_Init()<sp/>so<sp/>user<sp/>can<sp/>override<sp/>the<sp/>GLSL<sp/>version<sp/>e.g.<sp/>&quot;#version<sp/>150&quot;.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-02-23:<sp/>OpenGL:<sp/>Create<sp/>the<sp/>VAO<sp/>in<sp/>the<sp/>render<sp/>function<sp/>so<sp/>the<sp/>setup<sp/>can<sp/>more<sp/>easily<sp/>be<sp/>used<sp/>with<sp/>multiple<sp/>shared<sp/>GL<sp/>context.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-02-20:<sp/>Inputs:<sp/>Added<sp/>support<sp/>for<sp/>mouse<sp/>cursors<sp/>(ImGui::GetMouseCursor()<sp/>value<sp/>and<sp/>WM_SETCURSOR<sp/>message<sp/>handling).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-02-20:<sp/>Inputs:<sp/>Renamed<sp/>GLFW<sp/>callbacks<sp/>exposed<sp/>in<sp/>.h<sp/>to<sp/>not<sp/>include<sp/>GL3<sp/>in<sp/>their<sp/>name.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-02-16:<sp/>Misc:<sp/>Obsoleted<sp/>the<sp/>io.RenderDrawListsFn<sp/>callback<sp/>and<sp/>exposed<sp/>ImGui_ImplGlfwGL3_RenderDrawData()<sp/>in<sp/>the<sp/>.h<sp/>file<sp/>so<sp/>you<sp/>can<sp/>call<sp/>it<sp/>yourself.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-02-06:<sp/>Misc:<sp/>Removed<sp/>call<sp/>to<sp/>ImGui::Shutdown()<sp/>which<sp/>is<sp/>not<sp/>available<sp/>from<sp/>1.60<sp/>WIP,<sp/>user<sp/>needs<sp/>to<sp/>call<sp/>CreateContext/DestroyContext<sp/>themselves.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-02-06:<sp/>Inputs:<sp/>Added<sp/>mapping<sp/>for<sp/>ImGuiKey_Space.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-01-25:<sp/>Inputs:<sp/>Added<sp/>gamepad<sp/>support<sp/>if<sp/>ImGuiConfigFlags_NavEnableGamepad<sp/>is<sp/>set.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-01-25:<sp/>Inputs:<sp/>Honoring<sp/>the<sp/>io.WantSetMousePos<sp/>flag<sp/>by<sp/>repositioning<sp/>the<sp/>mouse<sp/>(ImGuiConfigFlags_NavEnableSetMousePos<sp/>is<sp/>set).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-01-20:<sp/>Inputs:<sp/>Added<sp/>Horizontal<sp/>Mouse<sp/>Wheel<sp/>support.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-01-18:<sp/>Inputs:<sp/>Added<sp/>mapping<sp/>for<sp/>ImGuiKey_Insert.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2018-01-07:<sp/>OpenGL:<sp/>Changed<sp/>GLSL<sp/>shader<sp/>version<sp/>from<sp/>330<sp/>to<sp/>150.<sp/>(Also<sp/>changed<sp/>GL<sp/>context<sp/>from<sp/>3.3<sp/>to<sp/>3.2<sp/>in<sp/>example&apos;s<sp/>main.cpp)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2017-09-01:<sp/>OpenGL:<sp/>Save<sp/>and<sp/>restore<sp/>current<sp/>bound<sp/>sampler.<sp/>Save<sp/>and<sp/>restore<sp/>current<sp/>polygon<sp/>mode.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2017-08-25:<sp/>Inputs:<sp/>MousePos<sp/>set<sp/>to<sp/>-FLT_MAX,-FLT_MAX<sp/>when<sp/>mouse<sp/>is<sp/>unavailable/missing<sp/>(instead<sp/>of<sp/>-1,-1).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2017-05-01:<sp/>OpenGL:<sp/>Fixed<sp/>save<sp/>and<sp/>restore<sp/>of<sp/>current<sp/>blend<sp/>function<sp/>state.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2016-10-15:<sp/>Misc:<sp/>Added<sp/>a<sp/>void*<sp/>user_data<sp/>parameter<sp/>to<sp/>Clipboard<sp/>function<sp/>handlers.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2016-09-05:<sp/>OpenGL:<sp/>Fixed<sp/>save<sp/>and<sp/>restore<sp/>of<sp/>current<sp/>scissor<sp/>rectangle.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>2016-04-30:<sp/>OpenGL:<sp/>Fixed<sp/>save<sp/>and<sp/>restore<sp/>of<sp/>current<sp/>GL_ACTIVE_TEXTURE.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>defined(_MSC_VER)<sp/>&amp;&amp;<sp/>!defined(_CRT_SECURE_NO_WARNINGS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>_CRT_SECURE_NO_WARNINGS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;imgui.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="imgui__impl__glfw__gl3_8h" kindref="compound">imgui_impl_glfw_gl3.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GL3W/GLFW</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_WAYLAND)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GL/gl3w.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor">#include&quot;../../deps/glad/glad.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>example<sp/>is<sp/>using<sp/>gl3w<sp/>to<sp/>access<sp/>OpenGL<sp/>functions<sp/>(because<sp/>it<sp/>is<sp/>small).<sp/>You<sp/>may<sp/>use<sp/>glew/glad/glLoadGen/etc.<sp/>whatever<sp/>already<sp/>works<sp/>for<sp/>you.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GLFW/glfw3.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>APIENTRY</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GLFW_EXPOSE_NATIVE_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>GLFW_EXPOSE_NATIVE_WGL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GLFW/glfw3native.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GLFW<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>GLFWwindow*<sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aeadcd9b9799016abf222f5cb112c9997" kindref="member">g_Time</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a8ac7fe7ceede6d4e607fdd5d2b5f5e5d" kindref="member">g_MouseJustPressed</ref>[3]<sp/>=<sp/>{<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>GLFWcursor*<sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_COUNT]<sp/>=<sp/>{<sp/>0<sp/>};</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OpenGL3<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1afd5d660b40efbef81d1a76dc05fd1d6b" kindref="member">g_GlslVersion</ref>[32]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;#version<sp/>150&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>GLuint<sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref><sp/>=<sp/>0,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref><sp/>=<sp/>0,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a5442c37443169f6c2b7483a0818a653f" kindref="member">g_AttribLocationTex</ref><sp/>=<sp/>0,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a723abd9d65c0a97f57cf0bebb7f83e4b" kindref="member">g_AttribLocationProjMtx</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" kindref="member">g_AttribLocationPosition</ref><sp/>=<sp/>0,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" kindref="member">g_AttribLocationUV</ref><sp/>=<sp/>0,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" kindref="member">g_AttribLocationColor</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref><sp/>=<sp/>0,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" kindref="member">g_VaoHandle</ref><sp/>=<sp/>0,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" kindref="member">g_ElementsHandle</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight><highlight class="comment">//<sp/>OpenGL3<sp/>Render<sp/>function.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(this<sp/>used<sp/>to<sp/>be<sp/>set<sp/>in<sp/>io.RenderDrawListsFn<sp/>and<sp/>called<sp/>by<sp/>ImGui::Render(),<sp/>but<sp/>you<sp/>can<sp/>now<sp/>call<sp/>this<sp/>directly<sp/>from<sp/>your<sp/>main<sp/>loop)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Note<sp/>that<sp/>this<sp/>implementation<sp/>is<sp/>little<sp/>overcomplicated<sp/>because<sp/>we<sp/>are<sp/>saving/setting<sp/>up/restoring<sp/>every<sp/>OpenGL<sp/>state<sp/>explicitly,<sp/>in<sp/>order<sp/>to<sp/>be<sp/>able<sp/>to<sp/>run<sp/>within<sp/>any<sp/>OpenGL<sp/>engine<sp/>that<sp/>doesn&apos;t<sp/>do<sp/>so.<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a02d9bc6823f054af9540659b6f04b859" kindref="member">ImGui_ImplGlfwGL3_RenderDrawData</ref>(ImDrawData*<sp/>draw_data)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Avoid<sp/>rendering<sp/>when<sp/>minimized,<sp/>scale<sp/>coordinates<sp/>for<sp/>retina<sp/>displays<sp/>(screen<sp/>coordinates<sp/>!=<sp/>framebuffer<sp/>coordinates)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fb_width<sp/>=<sp/>(int)(io.DisplaySize.x<sp/>*<sp/>io.DisplayFramebufferScale.x);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>fb_height<sp/>=<sp/>(int)(io.DisplaySize.y<sp/>*<sp/>io.DisplayFramebufferScale.y);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(fb_width<sp/>==<sp/>0<sp/>||<sp/>fb_height<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>draw_data-&gt;ScaleClipRects(io.DisplayFramebufferScale);</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Backup<sp/>GL<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/>last_active_texture;<sp/>glGetIntegerv(GL_ACTIVE_TEXTURE,<sp/>(GLint*)&amp;last_active_texture);</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>glActiveTexture(GL_TEXTURE0);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_program;<sp/>glGetIntegerv(GL_CURRENT_PROGRAM,<sp/>&amp;last_program);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_texture;<sp/>glGetIntegerv(GL_TEXTURE_BINDING_2D,<sp/>&amp;last_texture);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_sampler;<sp/>glGetIntegerv(GL_SAMPLER_BINDING,<sp/>&amp;last_sampler);</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_array_buffer;<sp/>glGetIntegerv(GL_ARRAY_BUFFER_BINDING,<sp/>&amp;last_array_buffer);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_element_array_buffer;<sp/>glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING,<sp/>&amp;last_element_array_buffer);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_vertex_array;<sp/>glGetIntegerv(GL_VERTEX_ARRAY_BINDING,<sp/>&amp;last_vertex_array);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_polygon_mode[2];<sp/>glGetIntegerv(GL_POLYGON_MODE,<sp/>last_polygon_mode);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_viewport[4];<sp/>glGetIntegerv(GL_VIEWPORT,<sp/>last_viewport);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_scissor_box[4];<sp/>glGetIntegerv(GL_SCISSOR_BOX,<sp/>last_scissor_box);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/>last_blend_src_rgb;<sp/>glGetIntegerv(GL_BLEND_SRC_RGB,<sp/>(GLint*)&amp;last_blend_src_rgb);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/>last_blend_dst_rgb;<sp/>glGetIntegerv(GL_BLEND_DST_RGB,<sp/>(GLint*)&amp;last_blend_dst_rgb);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/>last_blend_src_alpha;<sp/>glGetIntegerv(GL_BLEND_SRC_ALPHA,<sp/>(GLint*)&amp;last_blend_src_alpha);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/>last_blend_dst_alpha;<sp/>glGetIntegerv(GL_BLEND_DST_ALPHA,<sp/>(GLint*)&amp;last_blend_dst_alpha);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/>last_blend_equation_rgb;<sp/>glGetIntegerv(GL_BLEND_EQUATION_RGB,<sp/>(GLint*)&amp;last_blend_equation_rgb);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/>last_blend_equation_alpha;<sp/>glGetIntegerv(GL_BLEND_EQUATION_ALPHA,<sp/>(GLint*)&amp;last_blend_equation_alpha);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>GLboolean<sp/>last_enable_blend<sp/>=<sp/>glIsEnabled(GL_BLEND);</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>GLboolean<sp/>last_enable_cull_face<sp/>=<sp/>glIsEnabled(GL_CULL_FACE);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>GLboolean<sp/>last_enable_depth_test<sp/>=<sp/>glIsEnabled(GL_DEPTH_TEST);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>GLboolean<sp/>last_enable_scissor_test<sp/>=<sp/>glIsEnabled(GL_SCISSOR_TEST);</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>render<sp/>state:<sp/>alpha-blending<sp/>enabled,<sp/>no<sp/>face<sp/>culling,<sp/>no<sp/>depth<sp/>testing,<sp/>scissor<sp/>enabled,<sp/>polygon<sp/>fill</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnable(GL_BLEND);</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>glBlendEquation(GL_FUNC_ADD);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>glBlendFunc(GL_SRC_ALPHA,<sp/>GL_ONE_MINUS_SRC_ALPHA);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisable(GL_CULL_FACE);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisable(GL_DEPTH_TEST);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnable(GL_SCISSOR_TEST);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>glPolygonMode(GL_FRONT_AND_BACK,<sp/>GL_FILL);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>viewport,<sp/>orthographic<sp/>projection<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/>glViewport(0,<sp/>0,<sp/>(GLsizei)fb_width,<sp/>(GLsizei)fb_height);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>ortho_projection[4][4]<sp/>=</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>2.0f/io.DisplaySize.x,<sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.0f,<sp/>0.0f<sp/>},</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0f/-io.DisplaySize.y,<sp/>0.0f,<sp/>0.0f<sp/>},</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-1.0f,<sp/>0.0f<sp/>},</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{-1.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.0f,<sp/>1.0f<sp/>},</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/>glUseProgram(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>glUniform1i(<ref refid="imgui__impl__glfw__gl3_8cpp_1a5442c37443169f6c2b7483a0818a653f" kindref="member">g_AttribLocationTex</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/>glUniformMatrix4fv(<ref refid="imgui__impl__glfw__gl3_8cpp_1a723abd9d65c0a97f57cf0bebb7f83e4b" kindref="member">g_AttribLocationProjMtx</ref>,<sp/>1,<sp/>GL_FALSE,<sp/>&amp;ortho_projection[0][0]);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" kindref="member">g_VaoHandle</ref>);</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindSampler(0,<sp/>0);<sp/></highlight><highlight class="comment">//<sp/>Rely<sp/>on<sp/>combined<sp/>texture/sampler<sp/>state.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>draw_data-&gt;CmdListsCount;<sp/>n++)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ImDrawList*<sp/>cmd_list<sp/>=<sp/>draw_data-&gt;CmdLists[n];</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ImDrawIdx*<sp/>idx_buffer_offset<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref>);</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/>(GLsizeiptr)cmd_list-&gt;VtxBuffer.Size<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLvoid*)cmd_list-&gt;VtxBuffer.Data,<sp/>GL_STREAM_DRAW);</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" kindref="member">g_ElementsHandle</ref>);</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBufferData(GL_ELEMENT_ARRAY_BUFFER,<sp/>(GLsizeiptr)cmd_list-&gt;IdxBuffer.Size<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawIdx),<sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLvoid*)cmd_list-&gt;IdxBuffer.Data,<sp/>GL_STREAM_DRAW);</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>cmd_i<sp/>=<sp/>0;<sp/>cmd_i<sp/>&lt;<sp/>cmd_list-&gt;CmdBuffer.Size;<sp/>cmd_i++)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ImDrawCmd*<sp/>pcmd<sp/>=<sp/>&amp;cmd_list-&gt;CmdBuffer[cmd_i];</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pcmd-&gt;UserCallback)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcmd-&gt;UserCallback(cmd_list,<sp/>pcmd);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>(GLuint)(intptr_t)pcmd-&gt;TextureId);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glScissor((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)pcmd-&gt;ClipRect.x,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(fb_height<sp/>-<sp/>pcmd-&gt;ClipRect.w),<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(pcmd-&gt;ClipRect.z<sp/>-<sp/>pcmd-&gt;ClipRect.x),<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(pcmd-&gt;ClipRect.w<sp/>-<sp/>pcmd-&gt;ClipRect.y));</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glDrawElements(GL_TRIANGLES,<sp/>(GLsizei)pcmd-&gt;ElemCount,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawIdx)<sp/>==<sp/>2<sp/>?<sp/>GL_UNSIGNED_SHORT<sp/>:<sp/>GL_UNSIGNED_INT,<sp/>idx_buffer_offset);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx_buffer_offset<sp/>+=<sp/>pcmd-&gt;ElemCount;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Restore<sp/>modified<sp/>GL<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/>glUseProgram(last_program);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>last_texture);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindSampler(0,<sp/>last_sampler);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>glActiveTexture(last_active_texture);</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(last_vertex_array);</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/>last_array_buffer);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,<sp/>last_element_array_buffer);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/>glBlendEquationSeparate(last_blend_equation_rgb,<sp/>last_blend_equation_alpha);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>glBlendFuncSeparate(last_blend_src_rgb,<sp/>last_blend_dst_rgb,<sp/>last_blend_src_alpha,<sp/>last_blend_dst_alpha);</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(last_enable_blend)<sp/>glEnable(GL_BLEND);<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>glDisable(GL_BLEND);</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(last_enable_cull_face)<sp/>glEnable(GL_CULL_FACE);<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>glDisable(GL_CULL_FACE);</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(last_enable_depth_test)<sp/>glEnable(GL_DEPTH_TEST);<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>glDisable(GL_DEPTH_TEST);</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(last_enable_scissor_test)<sp/>glEnable(GL_SCISSOR_TEST);<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>glDisable(GL_SCISSOR_TEST);</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/>glPolygonMode(GL_FRONT_AND_BACK,<sp/>last_polygon_mode[0]);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>glViewport(last_viewport[0],<sp/>last_viewport[1],<sp/>(GLsizei)last_viewport[2],<sp/>(GLsizei)last_viewport[3]);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>glScissor(last_scissor_box[0],<sp/>last_scissor_box[1],<sp/>(GLsizei)last_scissor_box[2],<sp/>(GLsizei)last_scissor_box[3]);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Backup<sp/>GL<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_program,<sp/>last_texture,<sp/>last_array_buffer,<sp/>last_element_array_buffer;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_CURRENT_PROGRAM,<sp/>&amp;last_program);</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_TEXTURE_BINDING_2D,<sp/>&amp;last_texture);</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_ARRAY_BUFFER_BINDING,<sp/>&amp;last_array_buffer);</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_ELEMENT_ARRAY_BUFFER_BINDING,<sp/>&amp;last_element_array_buffer);</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>render<sp/>state:<sp/>alpha-blending<sp/>enabled,<sp/>no<sp/>face<sp/>culling,<sp/>no<sp/>depth<sp/>testing,<sp/>scissor<sp/>enabled</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnable(GL_BLEND);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>glBlendEquation(GL_FUNC_ADD);</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/>glBlendFunc(GL_SRC_ALPHA,<sp/>GL_ONE_MINUS_SRC_ALPHA);</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisable(GL_CULL_FACE);</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisable(GL_DEPTH_TEST);</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnable(GL_SCISSOR_TEST);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>glActiveTexture(GL_TEXTURE0);</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Handle<sp/>cases<sp/>of<sp/>screen<sp/>coordinates<sp/>!=<sp/>from<sp/>framebuffer<sp/>coordinates<sp/>(e.g.<sp/>retina<sp/>displays)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fb_height<sp/>=<sp/>io.DisplaySize.y<sp/>*<sp/>io.DisplayFramebufferScale.y;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>draw_data-&gt;ScaleClipRects(io.DisplayFramebufferScale);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>orthographic<sp/>projection<sp/>matrix</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>ortho_projection[4][4]<sp/>=</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>2.0f/io.DisplaySize.x,<sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.0f,<sp/>0.0f<sp/>},</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2.0f/-io.DisplaySize.y,<sp/>0.0f,<sp/>0.0f<sp/>},</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-1.0f,<sp/>0.0f<sp/>},</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{-1.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1.0f,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.0f,<sp/>1.0f<sp/>},</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>glUseProgram(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>glUniform1i(<ref refid="imgui__impl__glfw__gl3_8cpp_1a5442c37443169f6c2b7483a0818a653f" kindref="member">g_AttribLocationTex</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/>glUniformMatrix4fv(<ref refid="imgui__impl__glfw__gl3_8cpp_1a723abd9d65c0a97f57cf0bebb7f83e4b" kindref="member">g_AttribLocationProjMtx</ref>,<sp/>1,<sp/>GL_FALSE,<sp/>&amp;ortho_projection[0][0]);</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Render<sp/>command<sp/>lists</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref>);</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" kindref="member">g_AttribLocationPosition</ref>);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" kindref="member">g_AttribLocationUV</ref>);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" kindref="member">g_AttribLocationColor</ref>);</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"></highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OFFSETOF(TYPE,<sp/>ELEMENT)<sp/>((size_t)&amp;(((TYPE<sp/>*)0)-&gt;ELEMENT))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" kindref="member">g_AttribLocationPosition</ref>,<sp/>2,<sp/>GL_FLOAT,<sp/>GL_FALSE,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(GLvoid*)OFFSETOF(ImDrawVert,<sp/>pos));</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(<ref refid="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" kindref="member">g_AttribLocationUV</ref>,<sp/>2,<sp/>GL_FLOAT,<sp/>GL_FALSE,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(GLvoid*)OFFSETOF(ImDrawVert,<sp/>uv));</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(<ref refid="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" kindref="member">g_AttribLocationColor</ref>,<sp/>4,<sp/>GL_UNSIGNED_BYTE,<sp/>GL_TRUE,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(GLvoid*)OFFSETOF(ImDrawVert,<sp/>col));</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight><highlight class="preprocessor">#undef<sp/>OFFSETOF</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>n<sp/>=<sp/>0;<sp/>n<sp/>&lt;<sp/>draw_data-&gt;CmdListsCount;<sp/>n++)</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ImDrawList*<sp/>cmd_list<sp/>=<sp/>draw_data-&gt;CmdLists[n];</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ImDrawIdx*<sp/>idx_buffer_offset<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"></highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref>);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/>(GLsizeiptr)cmd_list-&gt;VtxBuffer.size()<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(GLvoid*)&amp;cmd_list-&gt;VtxBuffer.front(),<sp/>GL_STREAM_DRAW);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" kindref="member">g_ElementsHandle</ref>);</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBufferData(GL_ELEMENT_ARRAY_BUFFER,<sp/>(GLsizeiptr)cmd_list-&gt;IdxBuffer.size()<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawIdx),<sp/>(GLvoid*)&amp;cmd_list-&gt;IdxBuffer.front(),<sp/>GL_STREAM_DRAW);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>ImDrawCmd*<sp/>pcmd<sp/>=<sp/>cmd_list-&gt;CmdBuffer.begin();<sp/>pcmd<sp/>!=<sp/>cmd_list-&gt;CmdBuffer.end();<sp/>pcmd++)</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(pcmd-&gt;UserCallback)</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>pcmd-&gt;UserCallback(cmd_list,<sp/>pcmd);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>(GLuint)(intptr_t)pcmd-&gt;TextureId);</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glScissor((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)pcmd-&gt;ClipRect.x,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(fb_height<sp/>-<sp/>pcmd-&gt;ClipRect.w),<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(pcmd-&gt;ClipRect.z<sp/>-<sp/>pcmd-&gt;ClipRect.x),<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(pcmd-&gt;ClipRect.w<sp/>-<sp/>pcmd-&gt;ClipRect.y));</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glDrawElements(GL_TRIANGLES,<sp/>(GLsizei)pcmd-&gt;ElemCount,<sp/>GL_UNSIGNED_SHORT,<sp/>idx_buffer_offset);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>idx_buffer_offset<sp/>+=<sp/>pcmd-&gt;ElemCount;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Restore<sp/>modified<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" kindref="member">g_AttribLocationPosition</ref>);</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" kindref="member">g_AttribLocationUV</ref>);</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" kindref="member">g_AttribLocationColor</ref>);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/>glUseProgram(last_program);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>last_texture);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/>last_array_buffer);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ELEMENT_ARRAY_BUFFER,<sp/>last_element_array_buffer);</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisable(GL_SCISSOR_TEST);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a8ae88d9f191d32cc5e1a32063ea4f4ab" kindref="member">ImGui_ImplGlfwGL3_GetClipboardText</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>user_data)</highlight></codeline>
+<codeline lineno="266"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>glfwGetClipboardString((GLFWwindow*)user_data);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ac3ef5d5751e8c1a41aeb4d84f17f52a2" kindref="member">ImGui_ImplGlfwGL3_SetClipboardText</ref>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*<sp/>user_data,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>text)</highlight></codeline>
+<codeline lineno="271"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwSetClipboardString((GLFWwindow*)user_data,<sp/>text);</highlight></codeline>
+<codeline lineno="273"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a7e2f4161d656b233ce0fb093bd7b73f0" kindref="member">ImGui_ImplGlfw_MouseButtonCallback</ref>(GLFWwindow*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>button,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>action,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">/*mods*/</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="276"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(action<sp/>==<sp/>GLFW_PRESS<sp/>&amp;&amp;<sp/>button<sp/>&gt;=<sp/>0<sp/>&amp;&amp;<sp/>button<sp/>&lt;<sp/>3)</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a8ac7fe7ceede6d4e607fdd5d2b5f5e5d" kindref="member">g_MouseJustPressed</ref>[button]<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a2824e65fa25cf3906feef67cfb864787" kindref="member">ImGui_ImplGlfw_ScrollCallback</ref>(GLFWwindow*,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>xoffset,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yoffset)</highlight></codeline>
+<codeline lineno="282"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>io.MouseWheelH<sp/>+=<sp/>(float)xoffset;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>io.MouseWheel<sp/>+=<sp/>(float)yoffset;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a87ff0a6084161760006ea22e5afe7a4e" kindref="member">ImGui_ImplGlfw_KeyCallback</ref>(GLFWwindow*,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>key,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>action,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>mods)</highlight></codeline>
+<codeline lineno="289"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(action<sp/>==<sp/>GLFW_PRESS)</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.KeysDown[key]<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(action<sp/>==<sp/>GLFW_RELEASE)</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.KeysDown[key]<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/>(void)mods;<sp/></highlight><highlight class="comment">//<sp/>Modifiers<sp/>are<sp/>not<sp/>reliable<sp/>across<sp/>systems</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyCtrl<sp/>=<sp/>io.KeysDown[GLFW_KEY_LEFT_CONTROL]<sp/>||<sp/>io.KeysDown[GLFW_KEY_RIGHT_CONTROL];</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyShift<sp/>=<sp/>io.KeysDown[GLFW_KEY_LEFT_SHIFT]<sp/>||<sp/>io.KeysDown[GLFW_KEY_RIGHT_SHIFT];</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyAlt<sp/>=<sp/>io.KeysDown[GLFW_KEY_LEFT_ALT]<sp/>||<sp/>io.KeysDown[GLFW_KEY_RIGHT_ALT];</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeySuper<sp/>=<sp/>io.KeysDown[GLFW_KEY_LEFT_SUPER]<sp/>||<sp/>io.KeysDown[GLFW_KEY_RIGHT_SUPER];</highlight></codeline>
+<codeline lineno="301"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"></highlight></codeline>
+<codeline lineno="303"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a9081dfebdfc735ac037191d1cad33791" kindref="member">ImGui_ImplGlfw_CharCallback</ref>(GLFWwindow*,<sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>c)</highlight></codeline>
+<codeline lineno="304"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(c<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>c<sp/>&lt;<sp/>0x10000)</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.AddInputCharacter((</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">short</highlight><highlight class="normal">)c);</highlight></codeline>
+<codeline lineno="308"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"></highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1abe76ab7bb3e4224cd05311b45ee34419" kindref="member">ImGui_ImplGlfwGL3_CreateFontsTexture</ref>()</highlight></codeline>
+<codeline lineno="311"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Build<sp/>texture<sp/>atlas</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>pixels;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>width,<sp/>height;</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>io.Fonts-&gt;GetTexDataAsRGBA32(&amp;pixels,<sp/>&amp;width,<sp/>&amp;height);<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Load<sp/>as<sp/>RGBA<sp/>32-bits<sp/>(75%<sp/>of<sp/>the<sp/>memory<sp/>is<sp/>wasted,<sp/>but<sp/>default<sp/>font<sp/>is<sp/>so<sp/>small)<sp/>because<sp/>it<sp/>is<sp/>more<sp/>likely<sp/>to<sp/>be<sp/>compatible<sp/>with<sp/>user&apos;s<sp/>existing<sp/>shaders.<sp/>If<sp/>your<sp/>ImTextureId<sp/>represent<sp/>a<sp/>higher-level<sp/>concept<sp/>than<sp/>just<sp/>a<sp/>GL<sp/>texture<sp/>id,<sp/>consider<sp/>calling<sp/>GetTexDataAsAlpha8()<sp/>instead<sp/>to<sp/>save<sp/>on<sp/>GPU<sp/>memory.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Upload<sp/>texture<sp/>to<sp/>graphics<sp/>system</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_texture;</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_TEXTURE_BINDING_2D,<sp/>&amp;last_texture);</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenTextures(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref>);</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref>);</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_LINEAR);</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_LINEAR);</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/>glPixelStorei(GL_UNPACK_ROW_LENGTH,<sp/>0);</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexImage2D(GL_TEXTURE_2D,<sp/>0,<sp/>GL_RGBA,<sp/>width,<sp/>height,<sp/>0,<sp/>GL_RGBA,<sp/>GL_UNSIGNED_BYTE,<sp/>pixels);</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"></highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Store<sp/>our<sp/>identifier</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/>io.Fonts-&gt;TexID<sp/>=<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>*)(intptr_t)<ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref>;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Restore<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>last_texture);</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"></highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"></highlight></codeline>
+<codeline lineno="337"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0b153d286c774e2100ed26bb88df2014" kindref="member">ImGui_ImplGlfwGL3_CreateDeviceObjects</ref>()</highlight></codeline>
+<codeline lineno="338"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Backup<sp/>GL<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/>GLint<sp/>last_texture,<sp/>last_array_buffer,<sp/>last_vertex_array;</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_TEXTURE_BINDING_2D,<sp/>&amp;last_texture);</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_ARRAY_BUFFER_BINDING,<sp/>&amp;last_array_buffer);</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/>glGetIntegerv(GL_VERTEX_ARRAY_BINDING,<sp/>&amp;last_vertex_array);</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"></highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLchar<sp/>*vertex_shader<sp/>=</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;#version<sp/>150\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;uniform<sp/>mat4<sp/>ProjMtx;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;//uniform<sp/>mat4<sp/>customMtx;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;in<sp/>vec2<sp/>Position;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;in<sp/>vec2<sp/>UV;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;in<sp/>vec4<sp/>Color;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;out<sp/>vec2<sp/>Frag_UV;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;out<sp/>vec4<sp/>Frag_Color;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;void<sp/>main()\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;{\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>Frag_UV<sp/>=<sp/>UV;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>Frag_Color<sp/>=<sp/>Color;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>gl_Position<sp/>=<sp/><sp/>ProjMtx<sp/>*<sp/>vec4(Position.xy,0,1);\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;}\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLchar*<sp/>fragment_shader<sp/>=</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;#version<sp/>150\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;uniform<sp/>sampler2D<sp/>Texture;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;in<sp/>vec2<sp/>Frag_UV;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;in<sp/>vec4<sp/>Frag_Color;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;out<sp/>vec4<sp/>Out_Color;\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;void<sp/>main()\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;{\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;<sp/><sp/><sp/>Out_Color<sp/>=<sp/>Frag_Color<sp/>*<sp/>texture(<sp/>Texture,<sp/>Frag_UV.st);\n&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;}\n&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref><sp/>=<sp/>glCreateProgram();</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref><sp/>=<sp/>glCreateShader(GL_VERTEX_SHADER);</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref><sp/>=<sp/>glCreateShader(GL_FRAGMENT_SHADER);</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/>glShaderSource(<ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref>,<sp/>1,<sp/>&amp;vertex_shader,<sp/>0);</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/>glShaderSource(<ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref>,<sp/>1,<sp/>&amp;fragment_shader,<sp/>0);</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/>glCompileShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref>);</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/>glCompileShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref>);</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/>glAttachShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref>);</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/>glAttachShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref>);</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/>glLinkProgram(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>);</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"></highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a5442c37443169f6c2b7483a0818a653f" kindref="member">g_AttribLocationTex</ref><sp/>=<sp/>glGetUniformLocation(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Texture&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a723abd9d65c0a97f57cf0bebb7f83e4b" kindref="member">g_AttribLocationProjMtx</ref><sp/>=<sp/>glGetUniformLocation(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/></highlight><highlight class="stringliteral">&quot;ProjMtx&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//g_AttribLocationcustomMtx<sp/>=<sp/>glGetUniformLocation(g_ShaderHandle,<sp/>&quot;customMtx&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="386"><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" kindref="member">g_AttribLocationPosition</ref><sp/>=<sp/>glGetAttribLocation(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Position&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" kindref="member">g_AttribLocationUV</ref><sp/>=<sp/>glGetAttribLocation(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/></highlight><highlight class="stringliteral">&quot;UV&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" kindref="member">g_AttribLocationColor</ref><sp/>=<sp/>glGetAttribLocation(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/></highlight><highlight class="stringliteral">&quot;Color&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenBuffers(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref>);</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenBuffers(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" kindref="member">g_ElementsHandle</ref>);</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"></highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenVertexArrays(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" kindref="member">g_VaoHandle</ref>);</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" kindref="member">g_VaoHandle</ref>);</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref>);</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" kindref="member">g_AttribLocationPosition</ref>);</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" kindref="member">g_AttribLocationUV</ref>);</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(<ref refid="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" kindref="member">g_AttribLocationColor</ref>);</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"></highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae6434e637ffdf6aa7ad0918fb4a58796" kindref="member">g_AttribLocationPosition</ref>,<sp/>2,<sp/>GL_FLOAT,<sp/>GL_FALSE,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(GLvoid*)IM_OFFSETOF(ImDrawVert,<sp/>pos));</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(<ref refid="imgui__impl__glfw__gl3_8cpp_1a6e985c89fd4b7d55b9ee4e47d051117d" kindref="member">g_AttribLocationUV</ref>,<sp/>2,<sp/>GL_FLOAT,<sp/>GL_FALSE,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(GLvoid*)IM_OFFSETOF(ImDrawVert,<sp/>uv));</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(<ref refid="imgui__impl__glfw__gl3_8cpp_1a7a1f1cd6858e7be4440755578044cf6b" kindref="member">g_AttribLocationColor</ref>,<sp/>4,<sp/>GL_UNSIGNED_BYTE,<sp/>GL_TRUE,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(ImDrawVert),<sp/>(GLvoid*)IM_OFFSETOF(ImDrawVert,<sp/>col));</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"></highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1abe76ab7bb3e4224cd05311b45ee34419" kindref="member">ImGui_ImplGlfwGL3_CreateFontsTexture</ref>();</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"></highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Restore<sp/>modified<sp/>GL<sp/>state</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>last_texture);</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/>last_array_buffer);</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(last_vertex_array);</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"></highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="413"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"></highlight></codeline>
+<codeline lineno="415"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a205a8eb691882cdcc04f7fd45cbba448" kindref="member">ImGui_ImplGlfwGL3_InvalidateDeviceObjects</ref>()</highlight></codeline>
+<codeline lineno="416"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" kindref="member">g_VaoHandle</ref>)<sp/>glDeleteVertexArrays(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" kindref="member">g_VaoHandle</ref>);</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref>)<sp/>glDeleteBuffers(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref>);</highlight></codeline>
+<codeline lineno="419"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" kindref="member">g_ElementsHandle</ref>)<sp/>glDeleteBuffers(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" kindref="member">g_ElementsHandle</ref>);</highlight></codeline>
+<codeline lineno="420"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a3cefa56ee3fbb2b0e1d7952d7f1d0601" kindref="member">g_VaoHandle</ref><sp/>=<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a137cb22f50258ade706c87cd18d7da60" kindref="member">g_VboHandle</ref><sp/>=<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a26abda8950dc2d4adf6e2a5171c2445a" kindref="member">g_ElementsHandle</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="421"><highlight class="normal"></highlight></codeline>
+<codeline lineno="422"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref><sp/>&amp;&amp;<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref>)<sp/>glDetachShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref>);</highlight></codeline>
+<codeline lineno="423"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref>)<sp/>glDeleteShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref>);</highlight></codeline>
+<codeline lineno="424"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1acedc104460433c4391002d40fad4c4d0" kindref="member">g_VertHandle</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="425"><highlight class="normal"></highlight></codeline>
+<codeline lineno="426"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref><sp/>&amp;&amp;<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref>)<sp/>glDetachShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref>);</highlight></codeline>
+<codeline lineno="427"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref>)<sp/>glDeleteShader(<ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref>);</highlight></codeline>
+<codeline lineno="428"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a14ed8e8e5cae4d7710daad2dbc6e6fa0" kindref="member">g_FragHandle</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="429"><highlight class="normal"></highlight></codeline>
+<codeline lineno="430"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>)<sp/>glDeleteProgram(<ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref>);</highlight></codeline>
+<codeline lineno="431"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a986c3067e2af6817050a8e6e9edb31ab" kindref="member">g_ShaderHandle</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="432"><highlight class="normal"></highlight></codeline>
+<codeline lineno="433"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref>)</highlight></codeline>
+<codeline lineno="434"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="435"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glDeleteTextures(1,<sp/>&amp;<ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref>);</highlight></codeline>
+<codeline lineno="436"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::GetIO().Fonts-&gt;TexID<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="437"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="438"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="439"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="440"><highlight class="normal"></highlight></codeline>
+<codeline lineno="441"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a82ee61c0a1620023c9c9983676f6f5b8" kindref="member">ImGui_ImplGlfw_InstallCallbacks</ref>(GLFWwindow*<sp/>window)</highlight></codeline>
+<codeline lineno="442"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="443"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwSetMouseButtonCallback(window,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a7e2f4161d656b233ce0fb093bd7b73f0" kindref="member">ImGui_ImplGlfw_MouseButtonCallback</ref>);</highlight></codeline>
+<codeline lineno="444"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwSetScrollCallback(window,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a2824e65fa25cf3906feef67cfb864787" kindref="member">ImGui_ImplGlfw_ScrollCallback</ref>);</highlight></codeline>
+<codeline lineno="445"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwSetKeyCallback(window,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a87ff0a6084161760006ea22e5afe7a4e" kindref="member">ImGui_ImplGlfw_KeyCallback</ref>);</highlight></codeline>
+<codeline lineno="446"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwSetCharCallback(window,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a9081dfebdfc735ac037191d1cad33791" kindref="member">ImGui_ImplGlfw_CharCallback</ref>);</highlight></codeline>
+<codeline lineno="447"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="448"><highlight class="normal"></highlight></codeline>
+<codeline lineno="449"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a3056f834e494497bdec6cbbdac177014" kindref="member">ImGui_ImplGlfwGL3_Init</ref>(GLFWwindow*<sp/>window,<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>install_callbacks,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>glsl_version)</highlight></codeline>
+<codeline lineno="450"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="451"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref><sp/>=<sp/>window;</highlight></codeline>
+<codeline lineno="452"><highlight class="normal"></highlight></codeline>
+<codeline lineno="453"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>back-end<sp/>capabilities<sp/>flags</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="454"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="455"><highlight class="normal"><sp/><sp/><sp/><sp/>io.BackendFlags<sp/>|=<sp/>ImGuiBackendFlags_HasMouseCursors;<sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>can<sp/>honor<sp/>GetMouseCursor()<sp/>values<sp/>(optional)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="456"><highlight class="normal"><sp/><sp/><sp/><sp/>io.BackendFlags<sp/>|=<sp/>ImGuiBackendFlags_HasSetMousePos;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>We<sp/>can<sp/>honor<sp/>io.WantSetMousePos<sp/>requests<sp/>(optional,<sp/>rarely<sp/>used)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="457"><highlight class="normal"></highlight></codeline>
+<codeline lineno="458"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Keyboard<sp/>mapping.<sp/>ImGui<sp/>will<sp/>use<sp/>those<sp/>indices<sp/>to<sp/>peek<sp/>into<sp/>the<sp/>io.KeyDown[]<sp/>array.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="459"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Tab]<sp/>=<sp/>GLFW_KEY_TAB;</highlight></codeline>
+<codeline lineno="460"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_LeftArrow]<sp/>=<sp/>GLFW_KEY_LEFT;</highlight></codeline>
+<codeline lineno="461"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_RightArrow]<sp/>=<sp/>GLFW_KEY_RIGHT;</highlight></codeline>
+<codeline lineno="462"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_UpArrow]<sp/>=<sp/>GLFW_KEY_UP;</highlight></codeline>
+<codeline lineno="463"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_DownArrow]<sp/>=<sp/>GLFW_KEY_DOWN;</highlight></codeline>
+<codeline lineno="464"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_PageUp]<sp/>=<sp/>GLFW_KEY_PAGE_UP;</highlight></codeline>
+<codeline lineno="465"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_PageDown]<sp/>=<sp/>GLFW_KEY_PAGE_DOWN;</highlight></codeline>
+<codeline lineno="466"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Home]<sp/>=<sp/>GLFW_KEY_HOME;</highlight></codeline>
+<codeline lineno="467"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_End]<sp/>=<sp/>GLFW_KEY_END;</highlight></codeline>
+<codeline lineno="468"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Insert]<sp/>=<sp/>GLFW_KEY_INSERT;</highlight></codeline>
+<codeline lineno="469"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Delete]<sp/>=<sp/>GLFW_KEY_DELETE;</highlight></codeline>
+<codeline lineno="470"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Backspace]<sp/>=<sp/>GLFW_KEY_BACKSPACE;</highlight></codeline>
+<codeline lineno="471"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Space]<sp/>=<sp/>GLFW_KEY_SPACE;</highlight></codeline>
+<codeline lineno="472"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Enter]<sp/>=<sp/>GLFW_KEY_ENTER;</highlight></codeline>
+<codeline lineno="473"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Escape]<sp/>=<sp/>GLFW_KEY_ESCAPE;</highlight></codeline>
+<codeline lineno="474"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_A]<sp/>=<sp/>GLFW_KEY_A;</highlight></codeline>
+<codeline lineno="475"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_C]<sp/>=<sp/>GLFW_KEY_C;</highlight></codeline>
+<codeline lineno="476"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_V]<sp/>=<sp/>GLFW_KEY_V;</highlight></codeline>
+<codeline lineno="477"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_X]<sp/>=<sp/>GLFW_KEY_X;</highlight></codeline>
+<codeline lineno="478"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Y]<sp/>=<sp/>GLFW_KEY_Y;</highlight></codeline>
+<codeline lineno="479"><highlight class="normal"><sp/><sp/><sp/><sp/>io.KeyMap[ImGuiKey_Z]<sp/>=<sp/>GLFW_KEY_Z;</highlight></codeline>
+<codeline lineno="480"><highlight class="normal"></highlight></codeline>
+<codeline lineno="481"><highlight class="normal"><sp/><sp/><sp/><sp/>io.SetClipboardTextFn<sp/>=<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ac3ef5d5751e8c1a41aeb4d84f17f52a2" kindref="member">ImGui_ImplGlfwGL3_SetClipboardText</ref>;</highlight></codeline>
+<codeline lineno="482"><highlight class="normal"><sp/><sp/><sp/><sp/>io.GetClipboardTextFn<sp/>=<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a8ae88d9f191d32cc5e1a32063ea4f4ab" kindref="member">ImGui_ImplGlfwGL3_GetClipboardText</ref>;</highlight></codeline>
+<codeline lineno="483"><highlight class="normal"><sp/><sp/><sp/><sp/>io.ClipboardUserData<sp/>=<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>;</highlight></codeline>
+<codeline lineno="484"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>_WIN32</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="485"><highlight class="normal"><sp/><sp/><sp/><sp/>io.ImeWindowHandle<sp/>=<sp/>glfwGetWin32Window(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>);</highlight></codeline>
+<codeline lineno="486"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="487"><highlight class="normal"></highlight></codeline>
+<codeline lineno="488"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Load<sp/>cursors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="489"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>FIXME:<sp/>GLFW<sp/>doesn&apos;t<sp/>expose<sp/>suitable<sp/>cursors<sp/>for<sp/>ResizeAll,<sp/>ResizeNESW,<sp/>ResizeNWSE.<sp/>We<sp/>revert<sp/>to<sp/>arrow<sp/>cursor<sp/>for<sp/>those.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="490"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_Arrow]<sp/>=<sp/>glfwCreateStandardCursor(GLFW_ARROW_CURSOR);</highlight></codeline>
+<codeline lineno="491"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_TextInput]<sp/>=<sp/>glfwCreateStandardCursor(GLFW_IBEAM_CURSOR);</highlight></codeline>
+<codeline lineno="492"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_ResizeAll]<sp/>=<sp/>glfwCreateStandardCursor(GLFW_ARROW_CURSOR);</highlight></codeline>
+<codeline lineno="493"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_ResizeNS]<sp/>=<sp/>glfwCreateStandardCursor(GLFW_VRESIZE_CURSOR);</highlight></codeline>
+<codeline lineno="494"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_ResizeEW]<sp/>=<sp/>glfwCreateStandardCursor(GLFW_HRESIZE_CURSOR);</highlight></codeline>
+<codeline lineno="495"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_ResizeNESW]<sp/>=<sp/>glfwCreateStandardCursor(GLFW_ARROW_CURSOR);</highlight></codeline>
+<codeline lineno="496"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_ResizeNWSE]<sp/>=<sp/>glfwCreateStandardCursor(GLFW_ARROW_CURSOR);</highlight></codeline>
+<codeline lineno="497"><highlight class="normal"></highlight></codeline>
+<codeline lineno="498"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(install_callbacks)</highlight></codeline>
+<codeline lineno="499"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a82ee61c0a1620023c9c9983676f6f5b8" kindref="member">ImGui_ImplGlfw_InstallCallbacks</ref>(window);</highlight></codeline>
+<codeline lineno="500"><highlight class="normal"></highlight></codeline>
+<codeline lineno="501"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="502"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="503"><highlight class="normal"></highlight></codeline>
+<codeline lineno="504"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a034756d657dceda4a9e6df6cbae93dff" kindref="member">ImGui_ImplGlfwGL3_Shutdown</ref>()</highlight></codeline>
+<codeline lineno="505"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="506"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Destroy<sp/>GLFW<sp/>mouse<sp/>cursors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="507"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(ImGuiMouseCursor<sp/>cursor_n<sp/>=<sp/>0;<sp/>cursor_n<sp/>&lt;<sp/>ImGuiMouseCursor_COUNT;<sp/>cursor_n++)</highlight></codeline>
+<codeline lineno="508"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwDestroyCursor(<ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[cursor_n]);</highlight></codeline>
+<codeline lineno="509"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(<ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>));</highlight></codeline>
+<codeline lineno="510"><highlight class="normal"></highlight></codeline>
+<codeline lineno="511"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Destroy<sp/>OpenGL<sp/>objects</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="512"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a205a8eb691882cdcc04f7fd45cbba448" kindref="member">ImGui_ImplGlfwGL3_InvalidateDeviceObjects</ref>();</highlight></codeline>
+<codeline lineno="513"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="514"><highlight class="normal"></highlight></codeline>
+<codeline lineno="515"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ab337e0626b4c8503d682dc82ee5fa1f2" kindref="member">ImGui_ImplGlfwGL3_NewFrame</ref>()</highlight></codeline>
+<codeline lineno="516"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="517"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="imgui__impl__glfw__gl3_8cpp_1a76694bfc1e27296421f914cfe8246635" kindref="member">g_FontTexture</ref>)</highlight></codeline>
+<codeline lineno="518"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0b153d286c774e2100ed26bb88df2014" kindref="member">ImGui_ImplGlfwGL3_CreateDeviceObjects</ref>();</highlight></codeline>
+<codeline lineno="519"><highlight class="normal"></highlight></codeline>
+<codeline lineno="520"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGuiIO&amp;<sp/>io<sp/>=<sp/>ImGui::GetIO();</highlight></codeline>
+<codeline lineno="521"><highlight class="normal"></highlight></codeline>
+<codeline lineno="522"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>display<sp/>size<sp/>(every<sp/>frame<sp/>to<sp/>accommodate<sp/>for<sp/>window<sp/>resizing)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="523"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>w,<sp/>h;</highlight></codeline>
+<codeline lineno="524"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>display_w,<sp/>display_h;</highlight></codeline>
+<codeline lineno="525"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwGetWindowSize(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>&amp;w,<sp/>&amp;h);</highlight></codeline>
+<codeline lineno="526"><highlight class="normal"><sp/><sp/><sp/><sp/>glfwGetFramebufferSize(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>&amp;display_w,<sp/>&amp;display_h);</highlight></codeline>
+<codeline lineno="527"><highlight class="normal"><sp/><sp/><sp/><sp/>io.DisplaySize<sp/>=<sp/>ImVec2((</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)w,<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)h);</highlight></codeline>
+<codeline lineno="528"><highlight class="normal"><sp/><sp/><sp/><sp/>io.DisplayFramebufferScale<sp/>=<sp/>ImVec2(w<sp/>&gt;<sp/>0<sp/>?<sp/>((</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)display_w<sp/>/<sp/>w)<sp/>:<sp/>0,<sp/>h<sp/>&gt;<sp/>0<sp/>?<sp/>((</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)display_h<sp/>/<sp/>h)<sp/>:<sp/>0);</highlight></codeline>
+<codeline lineno="529"><highlight class="normal"></highlight></codeline>
+<codeline lineno="530"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>time<sp/>step</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="531"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>current_time<sp/>=<sp/><sp/>glfwGetTime();</highlight></codeline>
+<codeline lineno="532"><highlight class="normal"><sp/><sp/><sp/><sp/>io.DeltaTime<sp/>=<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aeadcd9b9799016abf222f5cb112c9997" kindref="member">g_Time</ref><sp/>&gt;<sp/>0.0<sp/>?<sp/>(float)(current_time<sp/>-<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aeadcd9b9799016abf222f5cb112c9997" kindref="member">g_Time</ref>)<sp/>:<sp/>(float)(1.0f/60.0f);</highlight></codeline>
+<codeline lineno="533"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aeadcd9b9799016abf222f5cb112c9997" kindref="member">g_Time</ref><sp/>=<sp/>current_time;</highlight></codeline>
+<codeline lineno="534"><highlight class="normal"></highlight></codeline>
+<codeline lineno="535"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Setup<sp/>inputs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="536"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(we<sp/>already<sp/>got<sp/>mouse<sp/>wheel,<sp/>keyboard<sp/>keys<sp/>&amp;<sp/>characters<sp/>from<sp/>glfw<sp/>callbacks<sp/>polled<sp/>in<sp/>glfwPollEvents())</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="537"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(glfwGetWindowAttrib(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>GLFW_FOCUSED))</highlight></codeline>
+<codeline lineno="538"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="539"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>OS<sp/>mouse<sp/>position<sp/>if<sp/>requested<sp/>(only<sp/>used<sp/>when<sp/>ImGuiConfigFlags_NavEnableSetMousePos<sp/>is<sp/>enabled<sp/>by<sp/>user)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="540"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(io.WantSetMousePos)</highlight></codeline>
+<codeline lineno="541"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="542"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwSetCursorPos(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)io.MousePos.x,<sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">)io.MousePos.y);</highlight></codeline>
+<codeline lineno="543"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="544"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="545"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="546"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>mouse_x,<sp/>mouse_y;</highlight></codeline>
+<codeline lineno="547"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwGetCursorPos(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>&amp;mouse_x,<sp/>&amp;mouse_y);</highlight></codeline>
+<codeline lineno="548"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.MousePos<sp/>=<sp/>ImVec2((</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)mouse_x,<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)mouse_y);</highlight></codeline>
+<codeline lineno="549"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="550"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="551"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="552"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="553"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.MousePos<sp/>=<sp/>ImVec2(-FLT_MAX,-FLT_MAX);</highlight></codeline>
+<codeline lineno="554"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="555"><highlight class="normal"></highlight></codeline>
+<codeline lineno="556"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>i++)</highlight></codeline>
+<codeline lineno="557"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="558"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>a<sp/>mouse<sp/>press<sp/>event<sp/>came,<sp/>always<sp/>pass<sp/>it<sp/>as<sp/>&quot;mouse<sp/>held<sp/>this<sp/>frame&quot;,<sp/>so<sp/>we<sp/>don&apos;t<sp/>miss<sp/>click-release<sp/>events<sp/>that<sp/>are<sp/>shorter<sp/>than<sp/>1<sp/>frame.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="559"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.MouseDown[i]<sp/>=<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a8ac7fe7ceede6d4e607fdd5d2b5f5e5d" kindref="member">g_MouseJustPressed</ref>[i]<sp/>||<sp/>glfwGetMouseButton(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>i)<sp/>!=<sp/>0;</highlight></codeline>
+<codeline lineno="560"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a8ac7fe7ceede6d4e607fdd5d2b5f5e5d" kindref="member">g_MouseJustPressed</ref>[i]<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="561"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="562"><highlight class="normal"></highlight></codeline>
+<codeline lineno="563"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>OS/hardware<sp/>mouse<sp/>cursor<sp/>if<sp/>imgui<sp/>isn&apos;t<sp/>drawing<sp/>a<sp/>software<sp/>cursor</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="564"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((io.ConfigFlags<sp/>&amp;<sp/>ImGuiConfigFlags_NoSetMouseCursor)<sp/>==<sp/>0<sp/>&amp;&amp;<sp/>glfwGetInputMode(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>GLFW_CURSOR)<sp/>!=<sp/>GLFW_CURSOR_DISABLED)</highlight></codeline>
+<codeline lineno="565"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="566"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGuiMouseCursor<sp/>cursor<sp/>=<sp/>ImGui::GetMouseCursor();</highlight></codeline>
+<codeline lineno="567"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(io.MouseDrawCursor<sp/>||<sp/>cursor<sp/>==<sp/>ImGuiMouseCursor_None)</highlight></codeline>
+<codeline lineno="568"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="569"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwSetInputMode(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>GLFW_CURSOR,<sp/>GLFW_CURSOR_HIDDEN);</highlight></codeline>
+<codeline lineno="570"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="571"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="572"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="573"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwSetCursor(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[cursor]<sp/>?<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[cursor]<sp/>:<sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1aaec363467fd3f45ebc5e7173c965b497" kindref="member">g_MouseCursors</ref>[ImGuiMouseCursor_Arrow]);</highlight></codeline>
+<codeline lineno="574"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glfwSetInputMode(<ref refid="imgui__impl__glfw__gl3_8cpp_1ae8d6764a756d7aae38cef1abf0d30229" kindref="member">g_Window</ref>,<sp/>GLFW_CURSOR,<sp/>GLFW_CURSOR_NORMAL);</highlight></codeline>
+<codeline lineno="575"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="576"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="577"><highlight class="normal"></highlight></codeline>
+<codeline lineno="578"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Gamepad<sp/>navigation<sp/>mapping<sp/>[BETA]</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="579"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(io.NavInputs,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(io.NavInputs));</highlight></codeline>
+<codeline lineno="580"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(io.ConfigFlags<sp/>&amp;<sp/>ImGuiConfigFlags_NavEnableGamepad)</highlight></codeline>
+<codeline lineno="581"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="582"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>gamepad<sp/>inputs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="583"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>MAP_BUTTON(NAV_NO,<sp/>BUTTON_NO)<sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/>if<sp/>(buttons_count<sp/>&gt;<sp/>BUTTON_NO<sp/>&amp;&amp;<sp/>buttons[BUTTON_NO]<sp/>==<sp/>GLFW_PRESS)<sp/>io.NavInputs[NAV_NO]<sp/>=<sp/>1.0f;<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="584"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#define<sp/>MAP_ANALOG(NAV_NO,<sp/>AXIS_NO,<sp/>V0,<sp/>V1)<sp/>{<sp/>float<sp/>v<sp/>=<sp/>(axes_count<sp/>&gt;<sp/>AXIS_NO)<sp/>?<sp/>axes[AXIS_NO]<sp/>:<sp/>V0;<sp/>v<sp/>=<sp/>(v<sp/>-<sp/>V0)<sp/>/<sp/>(V1<sp/>-<sp/>V0);<sp/>if<sp/>(v<sp/>&gt;<sp/>1.0f)<sp/>v<sp/>=<sp/>1.0f;<sp/>if<sp/>(io.NavInputs[NAV_NO]<sp/>&lt;<sp/>v)<sp/>io.NavInputs[NAV_NO]<sp/>=<sp/>v;<sp/>}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="585"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>axes_count<sp/>=<sp/>0,<sp/>buttons_count<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="586"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>axes<sp/>=<sp/>glfwGetJoystickAxes(GLFW_JOYSTICK_1,<sp/>&amp;axes_count);</highlight></codeline>
+<codeline lineno="587"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>buttons<sp/>=<sp/>glfwGetJoystickButtons(GLFW_JOYSTICK_1,<sp/>&amp;buttons_count);</highlight></codeline>
+<codeline lineno="588"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_Activate,<sp/><sp/><sp/>0);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Cross<sp/>/<sp/>A</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="589"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_Cancel,<sp/><sp/><sp/><sp/><sp/>1);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Circle<sp/>/<sp/>B</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="590"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_Menu,<sp/><sp/><sp/><sp/><sp/><sp/><sp/>2);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Square<sp/>/<sp/>X</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="591"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_Input,<sp/><sp/><sp/><sp/><sp/><sp/>3);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Triangle<sp/>/<sp/>Y</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="592"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_DpadLeft,<sp/><sp/><sp/>13);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>D-Pad<sp/>Left</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="593"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_DpadRight,<sp/><sp/>11);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>D-Pad<sp/>Right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="594"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_DpadUp,<sp/><sp/><sp/><sp/><sp/>10);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>D-Pad<sp/>Up</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="595"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_DpadDown,<sp/><sp/><sp/>12);<sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>D-Pad<sp/>Down</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="596"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_FocusPrev,<sp/><sp/>4);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>L1<sp/>/<sp/>LB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="597"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_FocusNext,<sp/><sp/>5);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>R1<sp/>/<sp/>RB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="598"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_TweakSlow,<sp/><sp/>4);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>L1<sp/>/<sp/>LB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="599"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1a0720760ecc7d8768f926a5b2ba4af07d" kindref="member">MAP_BUTTON</ref>(ImGuiNavInput_TweakFast,<sp/><sp/>5);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>R1<sp/>/<sp/>RB</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="600"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ad181101ed89f4155bbc97eccffea135b" kindref="member">MAP_ANALOG</ref>(ImGuiNavInput_LStickLeft,<sp/>0,<sp/><sp/>-0.3f,<sp/><sp/>-0.9f);</highlight></codeline>
+<codeline lineno="601"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ad181101ed89f4155bbc97eccffea135b" kindref="member">MAP_ANALOG</ref>(ImGuiNavInput_LStickRight,0,<sp/><sp/>+0.3f,<sp/><sp/>+0.9f);</highlight></codeline>
+<codeline lineno="602"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ad181101ed89f4155bbc97eccffea135b" kindref="member">MAP_ANALOG</ref>(ImGuiNavInput_LStickUp,<sp/><sp/><sp/>1,<sp/><sp/>+0.3f,<sp/><sp/>+0.9f);</highlight></codeline>
+<codeline lineno="603"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="imgui__impl__glfw__gl3_8cpp_1ad181101ed89f4155bbc97eccffea135b" kindref="member">MAP_ANALOG</ref>(ImGuiNavInput_LStickDown,<sp/>1,<sp/><sp/>-0.3f,<sp/><sp/>-0.9f);</highlight></codeline>
+<codeline lineno="604"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#undef<sp/>MAP_BUTTON</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="605"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#undef<sp/>MAP_ANALOG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="606"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(axes_count<sp/>&gt;<sp/>0<sp/>&amp;&amp;<sp/>buttons_count<sp/>&gt;<sp/>0)<sp/></highlight></codeline>
+<codeline lineno="607"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.BackendFlags<sp/>|=<sp/>ImGuiBackendFlags_HasGamepad;<sp/></highlight></codeline>
+<codeline lineno="608"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="609"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>io.BackendFlags<sp/>&amp;=<sp/>~ImGuiBackendFlags_HasGamepad;</highlight></codeline>
+<codeline lineno="610"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="611"><highlight class="normal"></highlight></codeline>
+<codeline lineno="612"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>the<sp/>frame.<sp/>This<sp/>call<sp/>will<sp/>update<sp/>the<sp/>io.WantCaptureMouse,<sp/>io.WantCaptureKeyboard<sp/>flag<sp/>that<sp/>you<sp/>can<sp/>use<sp/>to<sp/>dispatch<sp/>inputs<sp/>(or<sp/>not)<sp/>to<sp/>your<sp/>application.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="613"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::NewFrame();</highlight></codeline>
+<codeline lineno="614"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp"/>
+  </compounddef>
+</doxygen>

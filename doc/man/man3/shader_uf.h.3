@@ -1,0 +1,91 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <GL/gl3w\&.h>\fP
+.br
+\fC#include 'json/json\&.h'\fP
+.br
+\fC#include <stdexcept>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include 'fab\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBshader_uf\fP"
+.br
+.ti -1c
+.RI "struct \fBshader_uf_assist< T >\fP"
+.br
+.ti -1c
+.RI "class \fBshader_uf_float\fP"
+.br
+.ti -1c
+.RI "class \fBshader_uf_int\fP"
+.br
+.ti -1c
+.RI "class \fBshader_uf_uint\fP"
+.br
+.ti -1c
+.RI "class \fBshader_uf_double\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBASSERT_MESSAGE\fP(condition,  message)   if (!(condition)) throw std::runtime_error(message);"
+.br
+.ti -1c
+.RI "#define \fBREG_SHADER_UF\fP(shd_type)   static \fBshader_uf_assist\fP<shd_type> reg_##shd_type(#shd_type)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "Factory< \fBshader_uf\fP > & \fBget_shader_uf_fc\fP ()"
+.br
+.ti -1c
+.RI "\fBREG_SHADER_UF\fP (\fBshader_uf_float\fP)"
+.br
+.ti -1c
+.RI "\fBREG_SHADER_UF\fP (\fBshader_uf_int\fP)"
+.br
+.ti -1c
+.RI "\fBREG_SHADER_UF\fP (\fBshader_uf_uint\fP)"
+.br
+.ti -1c
+.RI "\fBREG_SHADER_UF\fP (\fBshader_uf_double\fP)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define ASSERT_MESSAGE(condition, message)   if (!(condition)) throw std::runtime_error(message);"
+
+.SS "#define REG_SHADER_UF(shd_type)   static \fBshader_uf_assist\fP<shd_type> reg_##shd_type(#shd_type)"
+
+.SH "Function Documentation"
+.PP 
+.SS "Factory<\fBshader_uf\fP>& get_shader_uf_fc ()"
+
+.SS "REG_SHADER_UF (\fBshader_uf_float\fP)"
+
+.SS "REG_SHADER_UF (\fBshader_uf_int\fP)"
+
+.SS "REG_SHADER_UF (\fBshader_uf_uint\fP)"
+
+.SS "REG_SHADER_UF (\fBshader_uf_double\fP)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

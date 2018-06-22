@@ -1,0 +1,222 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_i_scene" kind="struct" language="C++" prot="public" abstract="yes">
+    <compoundname>ofbx::IScene</compoundname>
+    <derivedcompoundref refid="structofbx_1_1_scene" prot="public" virt="non-virtual">ofbx::Scene</derivedcompoundref>
+    <includes refid="ofbx_8h" local="no">ofbx.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a4b639a59674f2d7a2ea2e41d0ed83952" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>void</type>
+        <definition>virtual void ofbx::IScene::destroy</definition>
+        <argsstring>()=0</argsstring>
+        <name>destroy</name>
+        <reimplementedby refid="structofbx_1_1_scene_1a1d51489e21b0b4f428f55afb0e7c20d9">destroy</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="356" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a5912e4fed9086494cee794adb06fef76" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_i_element" kindref="compound">IElement</ref> *</type>
+        <definition>virtual const IElement* ofbx::IScene::getRootElement</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getRootElement</name>
+        <reimplementedby refid="structofbx_1_1_scene_1ae72058915103cf2402e272244eaf7124">getRootElement</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="357" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a8561fe67b035d1125230e477de5cdb16" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_object" kindref="compound">Object</ref> *</type>
+        <definition>virtual const Object* ofbx::IScene::getRoot</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getRoot</name>
+        <reimplementedby refid="structofbx_1_1_scene_1a9cca68e24532ece406c9ffeaa94a60e2">getRoot</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="358" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1afa34f920458b9a9a18087ab1fe4a554f" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_take_info" kindref="compound">TakeInfo</ref> *</type>
+        <definition>virtual const TakeInfo* ofbx::IScene::getTakeInfo</definition>
+        <argsstring>(const char *name) const =0</argsstring>
+        <name>getTakeInfo</name>
+        <reimplementedby refid="structofbx_1_1_scene_1a27225af4ba2a720291d71a39aadf07d1">getTakeInfo</reimplementedby>
+        <param>
+          <type>const char *</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="359" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a6f508fae9e0b54e25dafa2af113d6440" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int ofbx::IScene::getMeshCount</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getMeshCount</name>
+        <reimplementedby refid="structofbx_1_1_scene_1a330b0e90447b09f47c82f7c566346088">getMeshCount</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="360" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1ae4ee8447f0ccf831edc15eb7766907c6" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>float</type>
+        <definition>virtual float ofbx::IScene::getSceneFrameRate</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getSceneFrameRate</name>
+        <reimplementedby refid="structofbx_1_1_scene_1a78fd3c37b886565a2aa1221dd66c43ed">getSceneFrameRate</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="361" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a998a45d9dbc78707824e62895735856e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_mesh" kindref="compound">Mesh</ref> *</type>
+        <definition>virtual const Mesh* ofbx::IScene::getMesh</definition>
+        <argsstring>(int index) const =0</argsstring>
+        <name>getMesh</name>
+        <reimplementedby refid="structofbx_1_1_scene_1ae6ef337115c49423ad8d60975a229b65">getMesh</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="362" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a72027a0fe9d095a9a7ea993a817dd286" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int ofbx::IScene::getAnimationStackCount</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getAnimationStackCount</name>
+        <reimplementedby refid="structofbx_1_1_scene_1ae3f0fd148f3bba93cf00de65fb0c9871">getAnimationStackCount</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="363" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a3f8f5507aabe7ed88b3b2e91d4509d1e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_animation_stack" kindref="compound">AnimationStack</ref> *</type>
+        <definition>virtual const AnimationStack* ofbx::IScene::getAnimationStack</definition>
+        <argsstring>(int index) const =0</argsstring>
+        <name>getAnimationStack</name>
+        <reimplementedby refid="structofbx_1_1_scene_1a52bf693d5d7163662cb640ced4224186">getAnimationStack</reimplementedby>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="364" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a3312c62459109b97e5f0da4360e808ad" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>const <ref refid="structofbx_1_1_object" kindref="compound">Object</ref> *const *</type>
+        <definition>virtual const Object* const* ofbx::IScene::getAllObjects</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getAllObjects</name>
+        <reimplementedby refid="structofbx_1_1_scene_1a63d1e5e4f1e9a07e9dfb4cfa65ae61b0">getAllObjects</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="365" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1a178e3d8d723e7249d523a6c1d340d98b" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type>int</type>
+        <definition>virtual int ofbx::IScene::getAllObjectCount</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getAllObjectCount</name>
+        <reimplementedby refid="structofbx_1_1_scene_1aa3f095aa31234cb7181813d92c534cab">getAllObjectCount</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="366" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="structofbx_1_1_i_scene_1aee7b536af693f0ab0255fac2703e16a4" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ofbx::IScene::~IScene</definition>
+        <argsstring>()</argsstring>
+        <name>~IScene</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="369" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="369" bodyend="369"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="387">
+        <label>ofbx::IScene</label>
+        <link refid="structofbx_1_1_i_scene"/>
+      </node>
+      <node id="388">
+        <label>ofbx::Scene</label>
+        <link refid="structofbx_1_1_scene"/>
+        <childnode refid="387" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="355" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="354" bodyend="370"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_i_scene_1a4b639a59674f2d7a2ea2e41d0ed83952" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>destroy</name></member>
+      <member refid="structofbx_1_1_i_scene_1a178e3d8d723e7249d523a6c1d340d98b" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getAllObjectCount</name></member>
+      <member refid="structofbx_1_1_i_scene_1a3312c62459109b97e5f0da4360e808ad" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getAllObjects</name></member>
+      <member refid="structofbx_1_1_i_scene_1a3f8f5507aabe7ed88b3b2e91d4509d1e" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getAnimationStack</name></member>
+      <member refid="structofbx_1_1_i_scene_1a72027a0fe9d095a9a7ea993a817dd286" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getAnimationStackCount</name></member>
+      <member refid="structofbx_1_1_i_scene_1a998a45d9dbc78707824e62895735856e" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getMesh</name></member>
+      <member refid="structofbx_1_1_i_scene_1a6f508fae9e0b54e25dafa2af113d6440" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getMeshCount</name></member>
+      <member refid="structofbx_1_1_i_scene_1a8561fe67b035d1125230e477de5cdb16" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getRoot</name></member>
+      <member refid="structofbx_1_1_i_scene_1a5912e4fed9086494cee794adb06fef76" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getRootElement</name></member>
+      <member refid="structofbx_1_1_i_scene_1ae4ee8447f0ccf831edc15eb7766907c6" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getSceneFrameRate</name></member>
+      <member refid="structofbx_1_1_i_scene_1afa34f920458b9a9a18087ab1fe4a554f" prot="public" virt="pure-virtual"><scope>ofbx::IScene</scope><name>getTakeInfo</name></member>
+      <member refid="structofbx_1_1_i_scene_1aee7b536af693f0ab0255fac2703e16a4" prot="protected" virt="virtual"><scope>ofbx::IScene</scope><name>~IScene</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

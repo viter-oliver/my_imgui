@@ -1,0 +1,171 @@
+.TH "ofbx::Scene" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::Scene \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBofbx::IScene\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBConnection\fP"
+.br
+.ti -1c
+.RI "struct \fBObjectPair\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBgetAnimationStackCount\fP () const override"
+.br
+.ti -1c
+.RI "int \fBgetMeshCount\fP () const override"
+.br
+.ti -1c
+.RI "float \fBgetSceneFrameRate\fP () const override"
+.br
+.ti -1c
+.RI "const \fBObject\fP *const * \fBgetAllObjects\fP () const override"
+.br
+.ti -1c
+.RI "int \fBgetAllObjectCount\fP () const override"
+.br
+.ti -1c
+.RI "const \fBAnimationStack\fP * \fBgetAnimationStack\fP (int index) const override"
+.br
+.ti -1c
+.RI "const \fBMesh\fP * \fBgetMesh\fP (int index) const override"
+.br
+.ti -1c
+.RI "const \fBTakeInfo\fP * \fBgetTakeInfo\fP (const char *name) const override"
+.br
+.ti -1c
+.RI "const \fBIElement\fP * \fBgetRootElement\fP () const override"
+.br
+.ti -1c
+.RI "const \fBObject\fP * \fBgetRoot\fP () const override"
+.br
+.ti -1c
+.RI "void \fBdestroy\fP () override"
+.br
+.ti -1c
+.RI "\fB~Scene\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBElement\fP * \fBm_root_element\fP = nullptr"
+.br
+.ti -1c
+.RI "\fBRoot\fP * \fBm_root\fP = nullptr"
+.br
+.ti -1c
+.RI "float \fBm_scene_frame_rate\fP = -1"
+.br
+.ti -1c
+.RI "std::unordered_map< \fBu64\fP, \fBObjectPair\fP > \fBm_object_map\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBObject\fP * > \fBm_all_objects\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBMesh\fP * > \fBm_meshes\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBAnimationStack\fP * > \fBm_animation_stacks\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBConnection\fP > \fBm_connections\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBu8\fP > \fBm_data\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBTakeInfo\fP > \fBm_take_infos\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::Scene::~Scene ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void ofbx::Scene::destroy ()\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "int ofbx::Scene::getAllObjectCount () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "const \fBObject\fP* const* ofbx::Scene::getAllObjects () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "const \fBAnimationStack\fP* ofbx::Scene::getAnimationStack (int index) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "int ofbx::Scene::getAnimationStackCount () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "const \fBMesh\fP* ofbx::Scene::getMesh (int index) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "int ofbx::Scene::getMeshCount () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "const \fBObject\fP* ofbx::Scene::getRoot () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "const \fBIElement\fP* ofbx::Scene::getRootElement () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "float ofbx::Scene::getSceneFrameRate () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SS "const \fBTakeInfo\fP* ofbx::Scene::getTakeInfo (const char * name) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::IScene\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "std::vector<\fBObject\fP*> ofbx::Scene::m_all_objects"
+
+.SS "std::vector<\fBAnimationStack\fP*> ofbx::Scene::m_animation_stacks"
+
+.SS "std::vector<\fBConnection\fP> ofbx::Scene::m_connections"
+
+.SS "std::vector<\fBu8\fP> ofbx::Scene::m_data"
+
+.SS "std::vector<\fBMesh\fP*> ofbx::Scene::m_meshes"
+
+.SS "std::unordered_map<\fBu64\fP, \fBObjectPair\fP> ofbx::Scene::m_object_map"
+
+.SS "\fBRoot\fP* ofbx::Scene::m_root = nullptr"
+
+.SS "\fBElement\fP* ofbx::Scene::m_root_element = nullptr"
+
+.SS "float ofbx::Scene::m_scene_frame_rate = -1"
+
+.SS "std::vector<\fBTakeInfo\fP> ofbx::Scene::m_take_infos"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

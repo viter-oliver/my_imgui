@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structfactory_1_1register__t" kind="struct" language="C++" prot="public">
+    <compoundname>factory::register_t</compoundname>
+    <includes refid="factory_8h" local="no">factory.h</includes>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structfactory_1_1register__t_1a9451974ee553766a83b49014ea10d0dd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>factory::register_t&lt; T &gt;::register_t</definition>
+        <argsstring>(const std::string &amp;key)</argsstring>
+        <name>register_t</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h" line="12" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h" bodystart="12" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="structfactory_1_1register__t_1a77680e3d6721133808b69616b71c141e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename...</type>
+            <declname>Args</declname>
+            <defname>Args</defname>
+          </param>
+        </templateparamlist>
+        <type></type>
+        <definition>factory::register_t&lt; T &gt;::register_t</definition>
+        <argsstring>(const std::string &amp;key, Args...args)</argsstring>
+        <name>register_t</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>key</declname>
+        </param>
+        <param>
+          <type>Args...</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h" line="18" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h" bodystart="18" bodyend="21"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/factory.h" bodystart="10" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structfactory_1_1register__t_1a9451974ee553766a83b49014ea10d0dd" prot="public" virt="non-virtual"><scope>factory::register_t</scope><name>register_t</name></member>
+      <member refid="structfactory_1_1register__t_1a77680e3d6721133808b69616b71c141e" prot="public" virt="non-virtual"><scope>factory::register_t</scope><name>register_t</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

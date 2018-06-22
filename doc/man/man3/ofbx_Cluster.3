@@ -1,0 +1,92 @@
+.TH "ofbx::Cluster" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::Cluster \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherits \fBofbx::Object\fP\&.
+.PP
+Inherited by \fBofbx::ClusterImpl\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBCluster\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "virtual const int * \fBgetIndices\fP () const =0"
+.br
+.ti -1c
+.RI "virtual int \fBgetIndicesCount\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const double * \fBgetWeights\fP () const =0"
+.br
+.ti -1c
+.RI "virtual int \fBgetWeightsCount\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBMatrix\fP \fBgetTransformMatrix\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBMatrix\fP \fBgetTransformLinkMatrix\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBObject\fP * \fBgetLink\fP () const =0"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const \fBType\fP \fBs_type\fP = \fBType::CLUSTER\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::Cluster::Cluster (const \fBScene\fP & _scene, const \fBIElement\fP & _element)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual const int* ofbx::Cluster::getIndices () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::ClusterImpl\fP\&.
+.SS "virtual int ofbx::Cluster::getIndicesCount () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::ClusterImpl\fP\&.
+.SS "virtual const \fBObject\fP* ofbx::Cluster::getLink () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::ClusterImpl\fP\&.
+.SS "virtual \fBMatrix\fP ofbx::Cluster::getTransformLinkMatrix () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::ClusterImpl\fP\&.
+.SS "virtual \fBMatrix\fP ofbx::Cluster::getTransformMatrix () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::ClusterImpl\fP\&.
+.SS "virtual const double* ofbx::Cluster::getWeights () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::ClusterImpl\fP\&.
+.SS "virtual int ofbx::Cluster::getWeightsCount () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::ClusterImpl\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBType\fP ofbx::Cluster::s_type = \fBType::CLUSTER\fP\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

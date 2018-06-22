@@ -32,32 +32,7 @@ ft_model::~ft_model()
 		glDeleteBuffers(1, &_vbo);
 	}
 }
-extern string g_cureent_project_file_path;
-const char* mesh_fold = "mesh_res\\";
-void ft_model::load_mesh_data_2_vertices()
-{
-	string str_texture_file = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-	str_texture_file += mesh_fold;
-	string str_mesh_file = str_texture_file;
-	str_texture_file += _pt._texture_file;
-	_pt._textureId = TextureHelper::load2DTexture(str_texture_file.c_str(), \
-		_pt._txt_width, _pt._txt_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
-	str_mesh_file += _pt._mesh_data_file;
 
-	loadFBXFile(str_mesh_file.c_str(), _vertData);
-
-}
-
-void ft_model::load_vertics_2_vbo()
-{
-
-	//glBindVertexArray(_vao);
-	vector<string> attr_name_list = { "position", "textcoord","normal" };
-	_pshader->loading_shader_attributes_from_avbo(_vao, _vbo, &_vertData[0], sizeof(Vertex)* _vertData.size(), attr_name_list);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, _pt._textureId);
-	_pshader->set_uniform_text(string("text"), 0);
-}
 #include <chrono>
 void ft_model::draw()
 {
@@ -98,6 +73,32 @@ void ft_model::draw_peroperty_page()
 		load_vertics_2_vbo();
 	}
 
+}
+extern string g_cureent_project_file_path;
+const char* mesh_fold = "mesh_res\\";
+void ft_model::load_mesh_data_2_vertices()
+{
+	string str_texture_file = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+	str_texture_file += mesh_fold;
+	string str_mesh_file = str_texture_file;
+	str_texture_file += _pt._texture_file;
+	_pt._textureId = TextureHelper::load2DTexture(str_texture_file.c_str(), \
+		_pt._txt_width, _pt._txt_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
+	str_mesh_file += _pt._mesh_data_file;
+
+	loadFBXFile(str_mesh_file.c_str(), _vertData);
+
+}
+
+void ft_model::load_vertics_2_vbo()
+{
+
+	//glBindVertexArray(_vao);
+	vector<string> attr_name_list = { "position", "textcoord", "normal" };
+	_pshader->loading_shader_attributes_from_avbo(_vao, _vbo, &_vertData[0], sizeof(Vertex)* _vertData.size(), attr_name_list);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, _pt._textureId);
+	_pshader->set_uniform_text(string("text"), 0);
 }
 bool ft_model::init_from_json(Value& jvalue)
 {

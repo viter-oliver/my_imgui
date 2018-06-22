@@ -1,0 +1,115 @@
+.TH "basic_shader" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+basic_shader \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <basic3d\&.h>\fP
+.PP
+Inherited by \fBtexture_shader\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbasic_shader\fP ()"
+.br
+.ti -1c
+.RI "\fB~basic_shader\fP ()"
+.br
+.ti -1c
+.RI "void \fBuse\fP ()"
+.br
+.ti -1c
+.RI "\fBmattr_list\fP & \fBget_attr_list\fP ()"
+.br
+.ti -1c
+.RI "\fBmunf_list\fP & \fBget_unf_list\fP ()"
+.br
+.ti -1c
+.RI "string & \fBobjname\fP ()"
+.br
+.ti -1c
+.RI "void \fBset_obj_name\fP (string &objn)"
+.br
+.ti -1c
+.RI "GLuint \fBshader_program_id\fP ()"
+.br
+.ti -1c
+.RI "bool \fBloading_shader_attributes_from_avbo\fP (GLuint vao, GLuint vbo, const GLvoid *pvertices, int cnt_vertices, vector< string > &attr_name_list, GLuint ebo=0, GLushort *pindices=0, int cnt_indics=0)"
+.br
+.ti -1c
+.RI "bool \fBset_uniform\fP (string &unf_name, GLsizei icnt, float *falue)"
+.br
+.ti -1c
+.RI "bool \fBset_uniform_text\fP (string &unf_name, GLint v0)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmattr_list\fP \fB_mattr_list\fP"
+.br
+.ti -1c
+.RI "\fBmunf_list\fP \fB_munf_list\fP"
+.br
+.ti -1c
+.RI "GLuint \fB_shader_program_id\fP"
+.br
+.ti -1c
+.RI "GLuint \fB_vertex_shader\fP"
+.br
+.ti -1c
+.RI "GLuint \fB_fragment_shader\fP"
+.br
+.ti -1c
+.RI "string \fB_obj_name\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "basic_shader::basic_shader ()\fC [inline]\fP"
+
+.SS "basic_shader::~basic_shader ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBmattr_list\fP& basic_shader::get_attr_list ()\fC [inline]\fP"
+
+.SS "\fBmunf_list\fP& basic_shader::get_unf_list ()\fC [inline]\fP"
+
+.SS "bool basic_shader::loading_shader_attributes_from_avbo (GLuint vao, GLuint vbo, const GLvoid * pvertices, int cnt_vertices, vector< string > & attr_name_list, GLuint ebo = \fC0\fP, GLushort * pindices = \fC0\fP, int cnt_indics = \fC0\fP)"
+
+.SS "string& basic_shader::objname ()\fC [inline]\fP"
+
+.SS "void basic_shader::set_obj_name (string & objn)\fC [inline]\fP"
+
+.SS "bool basic_shader::set_uniform (string & unf_name, GLsizei icnt, float * falue)"
+
+.SS "bool basic_shader::set_uniform_text (string & unf_name, GLint v0)\fC [inline]\fP"
+
+.SS "GLuint basic_shader::shader_program_id ()\fC [inline]\fP"
+
+.SS "void basic_shader::use ()\fC [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "GLuint basic_shader::_fragment_shader\fC [protected]\fP"
+
+.SS "\fBmattr_list\fP basic_shader::_mattr_list\fC [protected]\fP"
+
+.SS "\fBmunf_list\fP basic_shader::_munf_list\fC [protected]\fP"
+
+.SS "string basic_shader::_obj_name\fC [protected]\fP"
+
+.SS "GLuint basic_shader::_shader_program_id\fC [protected]\fP"
+
+.SS "GLuint basic_shader::_vertex_shader\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

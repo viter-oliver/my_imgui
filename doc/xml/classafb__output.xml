@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classafb__output" kind="class" language="C++" prot="public">
+    <compoundname>afb_output</compoundname>
+    <includes refid="afb__output_8h" local="no">afb_output.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classafb__output_1a1eb68cb98000682c530d025d7ba0c76b" prot="private" static="no" mutable="no">
+        <type><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref> &amp;</type>
+        <definition>base_ui_component&amp; afb_output::_pj</definition>
+        <argsstring></argsstring>
+        <name>_pj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" line="5" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classafb__output_1aa62245f520d10d167624e1a0c7e03ff0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>afb_output::afb_output</definition>
+        <argsstring>(base_ui_component &amp;pr_root)</argsstring>
+        <name>afb_output</name>
+        <param>
+          <type><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref> &amp;</type>
+          <declname>pr_root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" line="7" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classafb__output_1a89de4f7d4321d3d7bceecac02123424a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>afb_output::~afb_output</definition>
+        <argsstring>()</argsstring>
+        <name>~afb_output</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" bodystart="8" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classafb__output_1a57fdbf7169663cc353cd167648e2360c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void afb_output::output_afb</definition>
+        <argsstring>(const char *afb_file)</argsstring>
+        <name>output_afb</name>
+        <param>
+          <type>const char *</type>
+          <declname>afb_file</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" line="9" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.cpp" bodystart="46" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="8">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="9" relation="usage">
+          <edgelabel>_in_p</edgelabel>
+        </childnode>
+      </node>
+      <node id="7">
+        <label>afb_output</label>
+        <link refid="classafb__output"/>
+        <childnode refid="8" relation="usage">
+          <edgelabel>_pj</edgelabel>
+        </childnode>
+      </node>
+      <node id="9">
+        <label>base_ui_component::internal_property</label>
+        <link refid="structbase__ui__component_1_1internal__property"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" line="4" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.h" bodystart="3" bodyend="10"/>
+    <listofallmembers>
+      <member refid="classafb__output_1a1eb68cb98000682c530d025d7ba0c76b" prot="private" virt="non-virtual"><scope>afb_output</scope><name>_pj</name></member>
+      <member refid="classafb__output_1aa62245f520d10d167624e1a0c7e03ff0" prot="public" virt="non-virtual"><scope>afb_output</scope><name>afb_output</name></member>
+      <member refid="classafb__output_1a57fdbf7169663cc353cd167648e2360c" prot="public" virt="non-virtual"><scope>afb_output</scope><name>output_afb</name></member>
+      <member refid="classafb__output_1a89de4f7d4321d3d7bceecac02123424a" prot="public" virt="non-virtual"><scope>afb_output</scope><name>~afb_output</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

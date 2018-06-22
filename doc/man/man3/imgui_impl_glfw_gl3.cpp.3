@@ -1,0 +1,203 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/imgui_impl_glfw_gl3.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'imgui\&.h'\fP
+.br
+\fC#include 'imgui_impl_glfw_gl3\&.h'\fP
+.br
+\fC#include <GL/gl3w\&.h>\fP
+.br
+\fC#include <GLFW/glfw3\&.h>\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBMAP_BUTTON\fP(NAV_NO,  BUTTON_NO)   { if (buttons_count > BUTTON_NO && buttons[BUTTON_NO] == GLFW_PRESS) io\&.NavInputs[NAV_NO] = 1\&.0f; }"
+.br
+.ti -1c
+.RI "#define \fBMAP_ANALOG\fP(NAV_NO,  AXIS_NO,  V0,  V1)   { float v = (axes_count > AXIS_NO) ? axes[AXIS_NO] : V0; v = (v - V0) / (V1 - V0); if (v > 1\&.0f) v = 1\&.0f; if (io\&.NavInputs[NAV_NO] < v) io\&.NavInputs[NAV_NO] = v; }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBImGui_ImplGlfwGL3_RenderDrawData\fP (ImDrawData *draw_data)"
+.br
+.ti -1c
+.RI "static const char * \fBImGui_ImplGlfwGL3_GetClipboardText\fP (void *user_data)"
+.br
+.ti -1c
+.RI "static void \fBImGui_ImplGlfwGL3_SetClipboardText\fP (void *user_data, const char *text)"
+.br
+.ti -1c
+.RI "void \fBImGui_ImplGlfw_MouseButtonCallback\fP (GLFWwindow *, int button, int action, int)"
+.br
+.ti -1c
+.RI "void \fBImGui_ImplGlfw_ScrollCallback\fP (GLFWwindow *, double xoffset, double yoffset)"
+.br
+.ti -1c
+.RI "void \fBImGui_ImplGlfw_KeyCallback\fP (GLFWwindow *, int key, int, int action, int mods)"
+.br
+.ti -1c
+.RI "void \fBImGui_ImplGlfw_CharCallback\fP (GLFWwindow *, unsigned int c)"
+.br
+.ti -1c
+.RI "bool \fBImGui_ImplGlfwGL3_CreateFontsTexture\fP ()"
+.br
+.ti -1c
+.RI "bool \fBImGui_ImplGlfwGL3_CreateDeviceObjects\fP ()"
+.br
+.ti -1c
+.RI "void \fBImGui_ImplGlfwGL3_InvalidateDeviceObjects\fP ()"
+.br
+.ti -1c
+.RI "static void \fBImGui_ImplGlfw_InstallCallbacks\fP (GLFWwindow *window)"
+.br
+.ti -1c
+.RI "bool \fBImGui_ImplGlfwGL3_Init\fP (GLFWwindow *window, bool install_callbacks, const char *glsl_version)"
+.br
+.ti -1c
+.RI "void \fBImGui_ImplGlfwGL3_Shutdown\fP ()"
+.br
+.ti -1c
+.RI "void \fBImGui_ImplGlfwGL3_NewFrame\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "static GLFWwindow * \fBg_Window\fP = NULL"
+.br
+.ti -1c
+.RI "static double \fBg_Time\fP = 0\&.0f"
+.br
+.ti -1c
+.RI "static bool \fBg_MouseJustPressed\fP [3] = { false, false, false }"
+.br
+.ti -1c
+.RI "static GLFWcursor * \fBg_MouseCursors\fP [ImGuiMouseCursor_COUNT] = { 0 }"
+.br
+.ti -1c
+.RI "static char \fBg_GlslVersion\fP [32] = '#version 150'"
+.br
+.ti -1c
+.RI "static GLuint \fBg_FontTexture\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_ShaderHandle\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_VertHandle\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_FragHandle\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_AttribLocationTex\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_AttribLocationProjMtx\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_AttribLocationPosition\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_AttribLocationUV\fP = 0"
+.br
+.ti -1c
+.RI "static int \fBg_AttribLocationColor\fP = 0"
+.br
+.ti -1c
+.RI "static unsigned int \fBg_VboHandle\fP = 0"
+.br
+.ti -1c
+.RI "static unsigned int \fBg_VaoHandle\fP = 0"
+.br
+.ti -1c
+.RI "static unsigned int \fBg_ElementsHandle\fP = 0"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define MAP_ANALOG(NAV_NO, AXIS_NO, V0, V1)   { float v = (axes_count > AXIS_NO) ? axes[AXIS_NO] : V0; v = (v - V0) / (V1 - V0); if (v > 1\&.0f) v = 1\&.0f; if (io\&.NavInputs[NAV_NO] < v) io\&.NavInputs[NAV_NO] = v; }"
+
+.SS "#define MAP_BUTTON(NAV_NO, BUTTON_NO)   { if (buttons_count > BUTTON_NO && buttons[BUTTON_NO] == GLFW_PRESS) io\&.NavInputs[NAV_NO] = 1\&.0f; }"
+
+.SH "Function Documentation"
+.PP 
+.SS "void ImGui_ImplGlfw_CharCallback (GLFWwindow *, unsigned int c)"
+
+.SS "static void ImGui_ImplGlfw_InstallCallbacks (GLFWwindow * window)\fC [static]\fP"
+
+.SS "void ImGui_ImplGlfw_KeyCallback (GLFWwindow *, int key, int, int action, int mods)"
+
+.SS "void ImGui_ImplGlfw_MouseButtonCallback (GLFWwindow *, int button, int action, int)"
+
+.SS "void ImGui_ImplGlfw_ScrollCallback (GLFWwindow *, double xoffset, double yoffset)"
+
+.SS "bool ImGui_ImplGlfwGL3_CreateDeviceObjects ()"
+
+.SS "bool ImGui_ImplGlfwGL3_CreateFontsTexture ()"
+
+.SS "static const char* ImGui_ImplGlfwGL3_GetClipboardText (void * user_data)\fC [static]\fP"
+
+.SS "bool ImGui_ImplGlfwGL3_Init (GLFWwindow * window, bool install_callbacks, const char * glsl_version)"
+
+.SS "void ImGui_ImplGlfwGL3_InvalidateDeviceObjects ()"
+
+.SS "void ImGui_ImplGlfwGL3_NewFrame ()"
+
+.SS "void ImGui_ImplGlfwGL3_RenderDrawData (ImDrawData * draw_data)"
+
+.SS "static void ImGui_ImplGlfwGL3_SetClipboardText (void * user_data, const char * text)\fC [static]\fP"
+
+.SS "void ImGui_ImplGlfwGL3_Shutdown ()"
+
+.SH "Variable Documentation"
+.PP 
+.SS "int g_AttribLocationColor = 0\fC [static]\fP"
+
+.SS "int g_AttribLocationPosition = 0\fC [static]\fP"
+
+.SS "int g_AttribLocationProjMtx = 0\fC [static]\fP"
+
+.SS "int g_AttribLocationTex = 0\fC [static]\fP"
+
+.SS "int g_AttribLocationUV = 0\fC [static]\fP"
+
+.SS "unsigned int g_ElementsHandle = 0\fC [static]\fP"
+
+.SS "GLuint g_FontTexture = 0\fC [static]\fP"
+
+.SS "int g_FragHandle = 0\fC [static]\fP"
+
+.SS "char g_GlslVersion[32] = '#version 150'\fC [static]\fP"
+
+.SS "GLFWcursor* g_MouseCursors[ImGuiMouseCursor_COUNT] = { 0 }\fC [static]\fP"
+
+.SS "bool g_MouseJustPressed[3] = { false, false, false }\fC [static]\fP"
+
+.SS "int g_ShaderHandle = 0\fC [static]\fP"
+
+.SS "double g_Time = 0\&.0f\fC [static]\fP"
+
+.SS "unsigned int g_VaoHandle = 0\fC [static]\fP"
+
+.SS "unsigned int g_VboHandle = 0\fC [static]\fP"
+
+.SS "int g_VertHandle = 0\fC [static]\fP"
+
+.SS "GLFWwindow* g_Window = NULL\fC [static]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

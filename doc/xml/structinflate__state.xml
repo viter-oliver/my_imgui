@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structinflate__state" kind="struct" language="C++" prot="public">
+    <compoundname>inflate_state</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structinflate__state_1aa112419e6fc485a0569d89b0dac4c40d" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad5308cf24962df49c8b6a5c91bbbe05e" kindref="member">tinfl_decompressor</ref></type>
+        <definition>tinfl_decompressor inflate_state::m_decomp</definition>
+        <argsstring></argsstring>
+        <name>m_decomp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="352" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="352" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinflate__state_1a26b59390ae38c5a0ee081a729479b89f" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a4195703cf0ade709ddce7f8777fc0cc2" kindref="member">mz_uint</ref></type>
+        <definition>mz_uint inflate_state::m_dict_ofs</definition>
+        <argsstring></argsstring>
+        <name>m_dict_ofs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="353" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinflate__state_1a45eb73702d5588b380842d55633adfa1" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a4195703cf0ade709ddce7f8777fc0cc2" kindref="member">mz_uint</ref></type>
+        <definition>mz_uint inflate_state::m_dict_avail</definition>
+        <argsstring></argsstring>
+        <name>m_dict_avail</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="353" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinflate__state_1a8ed1d9e9a13f5e5f5c4229c67509a5a1" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a4195703cf0ade709ddce7f8777fc0cc2" kindref="member">mz_uint</ref></type>
+        <definition>mz_uint inflate_state::m_first_call</definition>
+        <argsstring></argsstring>
+        <name>m_first_call</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="353" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinflate__state_1a26ee41a3a0d93350c737252334fe783f" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a4195703cf0ade709ddce7f8777fc0cc2" kindref="member">mz_uint</ref></type>
+        <definition>mz_uint inflate_state::m_has_flushed</definition>
+        <argsstring></argsstring>
+        <name>m_has_flushed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="353" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="353" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinflate__state_1a05183fc4ee620dfaac7cdde5c17697a9" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int inflate_state::m_window_bits</definition>
+        <argsstring></argsstring>
+        <name>m_window_bits</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="354" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="354" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinflate__state_1a6d9569803f5139b8bb11b409f69f598b" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a9354eca32f90733aa9bb3738c92da596" kindref="member">mz_uint8</ref></type>
+        <definition>mz_uint8 inflate_state::m_dict[TINFL_LZ_DICT_SIZE]</definition>
+        <argsstring>[TINFL_LZ_DICT_SIZE]</argsstring>
+        <name>m_dict</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="355" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="355" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structinflate__state_1a9d2e5eba1b8c7a5bf78289b7a412f154" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a387ccd3d7a7891c9e1d6ec4f4207c8d4" kindref="member">tinfl_status</ref></type>
+        <definition>tinfl_status inflate_state::m_last_status</definition>
+        <argsstring></argsstring>
+        <name>m_last_status</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="356" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="356" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="367">
+        <label>tinfl_decompressor_tag</label>
+        <link refid="structtinfl__decompressor__tag"/>
+        <childnode refid="368" relation="usage">
+          <edgelabel>m_tables</edgelabel>
+        </childnode>
+      </node>
+      <node id="368">
+        <label>tinfl_huff_table</label>
+        <link refid="structtinfl__huff__table"/>
+      </node>
+      <node id="366">
+        <label>inflate_state</label>
+        <link refid="structinflate__state"/>
+        <childnode refid="367" relation="usage">
+          <edgelabel>m_decomp</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="351" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="350" bodyend="357"/>
+    <listofallmembers>
+      <member refid="structinflate__state_1aa112419e6fc485a0569d89b0dac4c40d" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_decomp</name></member>
+      <member refid="structinflate__state_1a6d9569803f5139b8bb11b409f69f598b" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_dict</name></member>
+      <member refid="structinflate__state_1a45eb73702d5588b380842d55633adfa1" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_dict_avail</name></member>
+      <member refid="structinflate__state_1a26b59390ae38c5a0ee081a729479b89f" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_dict_ofs</name></member>
+      <member refid="structinflate__state_1a8ed1d9e9a13f5e5f5c4229c67509a5a1" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_first_call</name></member>
+      <member refid="structinflate__state_1a26ee41a3a0d93350c737252334fe783f" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_has_flushed</name></member>
+      <member refid="structinflate__state_1a9d2e5eba1b8c7a5bf78289b7a412f154" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_last_status</name></member>
+      <member refid="structinflate__state_1a05183fc4ee620dfaac7cdde5c17697a9" prot="public" virt="non-virtual"><scope>inflate_state</scope><name>m_window_bits</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

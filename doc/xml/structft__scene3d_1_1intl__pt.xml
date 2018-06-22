@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structft__scene3d_1_1intl__pt" kind="struct" language="C++" prot="private">
+    <compoundname>ft_scene3d::intl_pt</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structft__scene3d_1_1intl__pt_1aace81752bd8aafc05b6f2eff3f05040b" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_scene3d::intl_pt::_size</definition>
+        <argsstring></argsstring>
+        <name>_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" line="12" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__scene3d_1_1intl__pt_1a42b490671bdeae3a62cd431845ae5f41" prot="public" static="no" mutable="no">
+        <type>ImVec4</type>
+        <definition>ImVec4 ft_scene3d::intl_pt::_back_color</definition>
+        <argsstring></argsstring>
+        <name>_back_color</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" line="13" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" bodystart="13" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structft__scene3d_1_1intl__pt_1a66ed8570db8ba68dba041e7fd2e0c5b8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ft_scene3d::intl_pt::intl_pt</definition>
+        <argsstring>()</argsstring>
+        <name>intl_pt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" line="14" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" bodystart="14" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_scene3d.h" bodystart="10" bodyend="18"/>
+    <listofallmembers>
+      <member refid="structft__scene3d_1_1intl__pt_1a42b490671bdeae3a62cd431845ae5f41" prot="public" virt="non-virtual"><scope>ft_scene3d::intl_pt</scope><name>_back_color</name></member>
+      <member refid="structft__scene3d_1_1intl__pt_1aace81752bd8aafc05b6f2eff3f05040b" prot="public" virt="non-virtual"><scope>ft_scene3d::intl_pt</scope><name>_size</name></member>
+      <member refid="structft__scene3d_1_1intl__pt_1a66ed8570db8ba68dba041e7fd2e0c5b8" prot="public" virt="non-virtual"><scope>ft_scene3d::intl_pt</scope><name>intl_pt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

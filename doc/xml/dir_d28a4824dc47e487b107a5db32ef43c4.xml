@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="dir_d28a4824dc47e487b107a5db32ef43c4" kind="dir">
+    <compoundname>G:/GitHub/my_imgui/my_imgui/examples</compoundname>
+    <innerdir refid="dir_fdb8b8b889b4ff6a7c96117808888ff5">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/"/>
+  </compounddef>
+</doxygen>

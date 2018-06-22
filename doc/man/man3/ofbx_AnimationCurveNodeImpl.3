@@ -1,0 +1,102 @@
+.TH "ofbx::AnimationCurveNodeImpl" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::AnimationCurveNodeImpl \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBofbx::AnimationCurveNode\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBCurve\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBMode\fP { \fBTRANSLATION\fP, \fBROTATION\fP, \fBSCALE\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAnimationCurveNodeImpl\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "const \fBObject\fP * \fBgetBone\fP () const override"
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetNodeLocalTransform\fP (double time) const override"
+.br
+.ti -1c
+.RI "\fBType\fP \fBgetType\fP () const override"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBCurve\fP \fBcurves\fP [3]"
+.br
+.ti -1c
+.RI "\fBObject\fP * \fBbone\fP = nullptr"
+.br
+.ti -1c
+.RI "\fBDataView\fP \fBbone_link_property\fP"
+.br
+.ti -1c
+.RI "enum \fBofbx::AnimationCurveNodeImpl::Mode\fP \fBmode\fP = \fBTRANSLATION\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBofbx::AnimationCurveNodeImpl::Mode\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITRANSLATION \fP\fP
+.TP
+\fB\fIROTATION \fP\fP
+.TP
+\fB\fISCALE \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::AnimationCurveNodeImpl::AnimationCurveNodeImpl (const \fBScene\fP & _scene, const \fBIElement\fP & _element)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "const \fBObject\fP* ofbx::AnimationCurveNodeImpl::getBone () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::AnimationCurveNode\fP\&.
+.SS "\fBVec3\fP ofbx::AnimationCurveNodeImpl::getNodeLocalTransform (double time) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::AnimationCurveNode\fP\&.
+.SS "\fBType\fP ofbx::AnimationCurveNodeImpl::getType () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Object\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBObject\fP* ofbx::AnimationCurveNodeImpl::bone = nullptr"
+
+.SS "\fBDataView\fP ofbx::AnimationCurveNodeImpl::bone_link_property"
+
+.SS "\fBCurve\fP ofbx::AnimationCurveNodeImpl::curves[3]"
+
+.SS "enum \fBofbx::AnimationCurveNodeImpl::Mode\fP  ofbx::AnimationCurveNodeImpl::mode = \fBTRANSLATION\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

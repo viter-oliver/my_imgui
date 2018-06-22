@@ -1,0 +1,588 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__particles__gravity_8cpp" kind="file" language="C++">
+    <compoundname>ft_particles_gravity.cpp</compoundname>
+    <includes refid="ft__particles__gravity_8h" local="yes">ft_particles_gravity.h</includes>
+    <includes local="no">fstream</includes>
+    <includes local="yes">SOIL.h</includes>
+    <includes local="yes">texture.h</includes>
+    <includes local="no">GLFW/glfw3.h</includes>
+    <incdepgraph>
+      <node id="555">
+        <label>glm/gtx/norm.hpp</label>
+      </node>
+      <node id="543">
+        <label>functional</label>
+      </node>
+      <node id="538">
+        <label>ft_particles_gravity.h</label>
+        <link refid="ft__particles__gravity_8h"/>
+        <childnode refid="539" relation="include">
+        </childnode>
+        <childnode refid="551" relation="include">
+        </childnode>
+      </node>
+      <node id="547">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="559">
+        <label>SOIL.h</label>
+      </node>
+      <node id="551">
+        <label>af_shader.h</label>
+        <link refid="af__shader_8h"/>
+        <childnode refid="548" relation="include">
+        </childnode>
+        <childnode refid="541" relation="include">
+        </childnode>
+        <childnode refid="543" relation="include">
+        </childnode>
+        <childnode refid="552" relation="include">
+        </childnode>
+        <childnode refid="553" relation="include">
+        </childnode>
+        <childnode refid="554" relation="include">
+        </childnode>
+        <childnode refid="555" relation="include">
+        </childnode>
+        <childnode refid="556" relation="include">
+        </childnode>
+        <childnode refid="557" relation="include">
+        </childnode>
+      </node>
+      <node id="542">
+        <label>string</label>
+      </node>
+      <node id="541">
+        <label>map</label>
+      </node>
+      <node id="561">
+        <label>GLFW/glfw3.h</label>
+      </node>
+      <node id="554">
+        <label>gtc/type_ptr.hpp</label>
+      </node>
+      <node id="558">
+        <label>fstream</label>
+      </node>
+      <node id="549">
+        <label>json.h</label>
+      </node>
+      <node id="553">
+        <label>gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="557">
+        <label>fab.h</label>
+      </node>
+      <node id="537">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp</label>
+        <link refid="ft_particles_gravity.cpp"/>
+        <childnode refid="538" relation="include">
+        </childnode>
+        <childnode refid="558" relation="include">
+        </childnode>
+        <childnode refid="559" relation="include">
+        </childnode>
+        <childnode refid="560" relation="include">
+        </childnode>
+        <childnode refid="561" relation="include">
+        </childnode>
+      </node>
+      <node id="539">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="540" relation="include">
+        </childnode>
+      </node>
+      <node id="548">
+        <label>vector</label>
+      </node>
+      <node id="545">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="546" relation="include">
+        </childnode>
+        <childnode refid="547" relation="include">
+        </childnode>
+        <childnode refid="548" relation="include">
+        </childnode>
+        <childnode refid="542" relation="include">
+        </childnode>
+        <childnode refid="549" relation="include">
+        </childnode>
+        <childnode refid="550" relation="include">
+        </childnode>
+      </node>
+      <node id="540">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="541" relation="include">
+        </childnode>
+        <childnode refid="542" relation="include">
+        </childnode>
+        <childnode refid="543" relation="include">
+        </childnode>
+        <childnode refid="544" relation="include">
+        </childnode>
+        <childnode refid="545" relation="include">
+        </childnode>
+      </node>
+      <node id="552">
+        <label>glm.hpp</label>
+      </node>
+      <node id="546">
+        <label>imgui.h</label>
+      </node>
+      <node id="556">
+        <label>GL/gl3w.h</label>
+      </node>
+      <node id="550">
+        <label>algorithm</label>
+      </node>
+      <node id="560">
+        <label>texture.h</label>
+      </node>
+      <node id="544">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="struct_particle" prot="public">Particle</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" prot="public" static="no" mutable="no">
+        <type>const int</type>
+        <definition>const int MaxParticles</definition>
+        <argsstring></argsstring>
+        <name>MaxParticles</name>
+        <initializer>= 100000</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="19" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1a4580fbdfdaa2c5f2a9d7242ee1b9a109" prot="public" static="no" mutable="no">
+        <type><ref refid="struct_particle" kindref="compound">Particle</ref></type>
+        <definition>Particle ParticlesContainer[MaxParticles]</definition>
+        <argsstring>[MaxParticles]</argsstring>
+        <name>ParticlesContainer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="20" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1a7b8b060d72b8456707dd2523ed63f4c7" prot="public" static="no" mutable="no">
+        <type>GLfloat</type>
+        <definition>GLfloat g_particule_position_size_data[MaxParticles *4]</definition>
+        <argsstring>[MaxParticles *4]</argsstring>
+        <name>g_particule_position_size_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="21" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1a634d77232d507a0a24d1112a52f7891a" prot="public" static="no" mutable="no">
+        <type>GLfloat</type>
+        <definition>GLfloat g_particule_color_data[MaxParticles *4]</definition>
+        <argsstring>[MaxParticles *4]</argsstring>
+        <name>g_particule_color_data</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="22" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1a430bc36320f52e3bc0c96ac9e99fad66" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int LastUsedParticle</definition>
+        <argsstring></argsstring>
+        <name>LastUsedParticle</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="24" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1a816a498b7093cea3acb0ba3027bd741c" prot="public" static="yes" mutable="no">
+        <type>const GLfloat</type>
+        <definition>const GLfloat g_vertex_buffer_data[]</definition>
+        <argsstring>[]</argsstring>
+        <name>g_vertex_buffer_data</name>
+        <initializer>= {
+	-0.5f, -0.5f, 0.0f,
+	0.5f, -0.5f, 0.0f,
+	-0.5f, 0.5f, 0.0f,
+	0.5f, 0.5f, 0.0f,
+}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="51" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1a6442f9b3b14f51e8558c73573039e3ee" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string g_cureent_project_file_path</definition>
+        <argsstring></argsstring>
+        <name>g_cureent_project_file_path</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="57" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main.cpp" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="ft__particles__gravity_8cpp_1adf886ae9f3ec5125e6424009af7e0c88" prot="public" static="no" mutable="no">
+        <type>const char *</type>
+        <definition>const char* shaders_fold</definition>
+        <argsstring></argsstring>
+        <name>shaders_fold</name>
+        <initializer>= &quot;shaders\\&quot;</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="58" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="ft__particles__gravity_8cpp_1a6a94cfe4d00f671ac5af1703729a667c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int FindUnusedParticle</definition>
+        <argsstring>()</argsstring>
+        <name>FindUnusedParticle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="28" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="28" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="ft__particles__gravity_8cpp_1ad1519a139b6c4654499f07d4649bb5a5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void SortParticles</definition>
+        <argsstring>()</argsstring>
+        <name>SortParticles</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" line="47" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="47" bodyend="49"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__particles__gravity_8h" kindref="compound">ft_particles_gravity.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;fstream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;SOIL.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;texture.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GLFW/glfw3.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="struct_particle" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_particle" kindref="compound">Particle</ref>{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/><ref refid="struct_particle_1ac6f55dcf2b61777d96661bca388d695f" kindref="member">pos</ref>,<sp/><ref refid="struct_particle_1ac2cc6a45df3caffbde063a29539f253c" kindref="member">speed</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="struct_particle_1ac6e465fd885df766096eb088016023b5" kindref="member">r</ref>,<sp/><ref refid="struct_particle_1a3f6dd15bd44813e567f41599de2b36d2" kindref="member">g</ref>,<sp/><ref refid="struct_particle_1a51cfab8e12d3ee7f3569e390f5b9c7de" kindref="member">b</ref>,<sp/><ref refid="struct_particle_1a8820cc4b7d902fc100a7c4d23dee99ef" kindref="member">a</ref>;<sp/></highlight><highlight class="comment">//<sp/>Color</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_particle_1aad08a7cb8108751b7a49ed65118873f9" kindref="member">size</ref>,<sp/><ref refid="struct_particle_1a5bef07b3e74afef92aeafc17d57268e2" kindref="member">angle</ref>,<sp/><ref refid="struct_particle_1a2a005ed5e23b5d700e05a9438ae0a06a" kindref="member">weight</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_particle_1a1760a331eebb54cbdd6ca280439a36c8" kindref="member">life</ref>;<sp/></highlight><highlight class="comment">//<sp/>Remaining<sp/>life<sp/>of<sp/>the<sp/>particle.<sp/>if<sp/>&lt;0<sp/>:<sp/>dead<sp/>and<sp/>unused.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="struct_particle_1a3829c3810fb1471046cea1a25c71ef6b" kindref="member">cameradistance</ref>;<sp/></highlight><highlight class="comment">//<sp/>*Squared*<sp/>distance<sp/>to<sp/>the<sp/>camera.<sp/>if<sp/>dead<sp/>:<sp/>-1.0f</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="struct_particle_1a1ea5d4a5c5803cf5597ca671f37c97dd" kindref="member">operator&lt;</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/><ref refid="struct_particle" kindref="compound">Particle</ref>&amp;<sp/>that)</highlight><highlight class="keyword"><sp/>const<sp/></highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Sort<sp/>in<sp/>reverse<sp/>order<sp/>:<sp/>far<sp/>particles<sp/>drawn<sp/>first.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this-&gt;cameradistance<sp/>&gt;<sp/>that.<ref refid="struct_particle_1a3829c3810fb1471046cea1a25c71ef6b" kindref="member">cameradistance</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" kindref="member">MaxParticles</ref><sp/>=<sp/>100000;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><ref refid="struct_particle" kindref="compound">Particle</ref><sp/><ref refid="ft__particles__gravity_8cpp_1a4580fbdfdaa2c5f2a9d7242ee1b9a109" kindref="member">ParticlesContainer</ref>[<ref refid="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" kindref="member">MaxParticles</ref>];</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">GLfloat<sp/><ref refid="ft__particles__gravity_8cpp_1a7b8b060d72b8456707dd2523ed63f4c7" kindref="member">g_particule_position_size_data</ref>[<ref refid="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" kindref="member">MaxParticles</ref><sp/>*<sp/>4];</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">GLfloat<sp/><ref refid="ft__particles__gravity_8cpp_1a634d77232d507a0a24d1112a52f7891a" kindref="member">g_particule_color_data</ref>[<ref refid="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" kindref="member">MaxParticles</ref><sp/>*<sp/>4];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ft__particles__gravity_8cpp_1a430bc36320f52e3bc0c96ac9e99fad66" kindref="member">LastUsedParticle</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Finds<sp/>a<sp/>Particle<sp/>in<sp/>ParticlesContainer<sp/>which<sp/>isn&apos;t<sp/>used<sp/>yet.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="comment">//<sp/>(i.e.<sp/>life<sp/>&lt;<sp/>0);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="ft__particles__gravity_8cpp_1a6a94cfe4d00f671ac5af1703729a667c" kindref="member">FindUnusedParticle</ref>(){</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/><ref refid="ft__particles__gravity_8cpp_1a430bc36320f52e3bc0c96ac9e99fad66" kindref="member">LastUsedParticle</ref>;<sp/>i&lt;<ref refid="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" kindref="member">MaxParticles</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ParticlesContainer[i].life<sp/>&lt;<sp/>0){</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a430bc36320f52e3bc0c96ac9e99fad66" kindref="member">LastUsedParticle</ref><sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i&lt;<ref refid="ft__particles__gravity_8cpp_1a430bc36320f52e3bc0c96ac9e99fad66" kindref="member">LastUsedParticle</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ParticlesContainer[i].life<sp/>&lt;<sp/>0){</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>LastUsedParticle<sp/>=<sp/>i;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>i;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;<sp/></highlight><highlight class="comment">//<sp/>All<sp/>particles<sp/>are<sp/>taken,<sp/>override<sp/>the<sp/>first<sp/>one</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="ft__particles__gravity_8cpp_1ad1519a139b6c4654499f07d4649bb5a5" kindref="member">SortParticles</ref>(){</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>std::sort(&amp;ParticlesContainer[0],<sp/>&amp;ParticlesContainer[MaxParticles]);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLfloat<sp/><ref refid="ft__particles__gravity_8cpp_1a816a498b7093cea3acb0ba3027bd741c" kindref="member">g_vertex_buffer_data</ref>[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>-0.5f,<sp/>-0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>0.5f,<sp/>-0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>-0.5f,<sp/>0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>0.5f,<sp/>0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="ft__particles__gravity_8cpp_1a6442f9b3b14f51e8558c73573039e3ee" kindref="member">g_cureent_project_file_path</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/><ref refid="ft__particles__gravity_8cpp_1adf886ae9f3ec5125e6424009af7e0c88" kindref="member">shaders_fold</ref><sp/>=<sp/></highlight><highlight class="stringliteral">&quot;shaders\\&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><ref refid="classft__particles__gravity_1a4db7402b58bef1a6bdb3119bff3093f9" kindref="member">ft_particles_gravity::ft_particles_gravity</ref>()</highlight></codeline>
+<codeline lineno="61"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenVertexArrays(1,<sp/>&amp;<ref refid="classft__particles__gravity_1a7f84ef5027ccf70269782478017ee3fe" kindref="member">_vao</ref>);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(<ref refid="classft__particles__gravity_1a7f84ef5027ccf70269782478017ee3fe" kindref="member">_vao</ref>);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>str_shader_code_path<sp/>=<sp/>g_cureent_project_file_path.substr(0,<sp/>g_cureent_project_file_path.find_last_of(</highlight><highlight class="charliteral">&apos;\\&apos;</highlight><highlight class="normal">)<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>str_shader_code_path<sp/>+=<sp/><ref refid="ft__particles__gravity_8cpp_1adf886ae9f3ec5125e6424009af7e0c88" kindref="member">shaders_fold</ref>;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>particles_vs_path=<sp/>str_shader_code_path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;particles.vs&quot;</highlight><highlight class="normal">,<sp/>particles_fs_path<sp/>=<sp/>str_shader_code_path<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;particles.fs&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>particles_vs_code,<sp/>particles_fs_code;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>ifstream<sp/>ifs;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>ifs.open(particles_vs_path);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>filebuf*<sp/>pbuf<sp/>=<sp/>ifs.rdbuf();</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">size_t</highlight><highlight class="normal"><sp/>sz_code<sp/>=<sp/>pbuf-&gt;pubseekoff(0,<sp/>ifs.end,<sp/>ifs.in);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>pbuf-&gt;pubseekpos(0,<sp/>ifs.in);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>particles_vs_code.reserve(sz_code);</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>particles_vs_code.resize(sz_code);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>pbuf-&gt;sgetn(&amp;particles_vs_code[0],<sp/>sz_code);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>ifs.close();</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>ifs.open(particles_fs_path);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>pbuf<sp/>=<sp/>ifs.rdbuf();</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>sz_code<sp/>=<sp/>pbuf-&gt;pubseekoff(0,<sp/>ifs.end,<sp/>ifs.in);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>pbuf-&gt;pubseekpos(0,<sp/>ifs.in);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>particles_fs_code.reserve(sz_code);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>particles_fs_code.resize(sz_code);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>pbuf-&gt;sgetn(&amp;particles_fs_code[0],<sp/>sz_code);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>ifs.close();</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__particles__gravity_1aa649d7ed76a520d8d20bfd4ea737dc71" kindref="member">_particle_shader</ref><sp/>=<sp/>make_shared&lt;af_shader&gt;(particles_vs_code.c_str(),<sp/>particles_fs_code.c_str());</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>str_texture_file<sp/>=<sp/>g_cureent_project_file_path.substr(0,<sp/>g_cureent_project_file_path.find_last_of(</highlight><highlight class="charliteral">&apos;\\&apos;</highlight><highlight class="normal">)<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>str_texture_file<sp/>+=<sp/></highlight><highlight class="stringliteral">&quot;blue_ring.png&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>iw,<sp/>ih;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__particles__gravity_1a3f1ed4b7a3f4eb8fe0b447479053821f" kindref="member">_txt_unit</ref><sp/>=<sp/>TextureHelper::load2DTexture(str_texture_file.c_str(),<sp/>iw,<sp/>ih,<sp/>GL_RGBA,<sp/>GL_RGBA,<sp/>SOIL_LOAD_RGBA);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>GLfloat<sp/>g_vertex_buffer_data[]<sp/>=<sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.5f,<sp/>-0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5f,<sp/>-0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.5f,<sp/>0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.5f,<sp/>0.5f,<sp/>0.0f,</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenBuffers(1,<sp/>&amp;<ref refid="classft__particles__gravity_1aff873c49a24da92bfe0ca8ca80f31a91" kindref="member">_vbo_uv</ref>);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1aff873c49a24da92bfe0ca8ca80f31a91" kindref="member">_vbo_uv</ref>);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(g_vertex_buffer_data),<sp/>g_vertex_buffer_data,<sp/>GL_STATIC_DRAW);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenBuffers(1,<sp/>&amp;<ref refid="classft__particles__gravity_1afab00074cdd8609100feb2bc60045b23" kindref="member">_vbo_pos</ref>);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1afab00074cdd8609100feb2bc60045b23" kindref="member">_vbo_pos</ref>);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/>MaxParticles<sp/>*<sp/>4<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat),<sp/>NULL,<sp/>GL_STREAM_DRAW);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenBuffers(1,<sp/>&amp;<ref refid="classft__particles__gravity_1a9f7aee39fab75e11aa02c05e7b899a19" kindref="member">_vbo_color</ref>);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1a9f7aee39fab75e11aa02c05e7b899a19" kindref="member">_vbo_color</ref>);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Initialize<sp/>with<sp/>empty<sp/>(NULL)<sp/>buffer<sp/>:<sp/>it<sp/>will<sp/>be<sp/>updated<sp/>later,<sp/>each<sp/>frame.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/>MaxParticles<sp/>*<sp/>4<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLubyte),<sp/>NULL,<sp/>GL_STREAM_DRAW);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i&lt;<ref refid="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" kindref="member">MaxParticles</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[i].<ref refid="struct_particle_1a1760a331eebb54cbdd6ca280439a36c8" kindref="member">life</ref><sp/>=<sp/>-1.0f;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[i].<ref refid="struct_particle_1a3829c3810fb1471046cea1a25c71ef6b" kindref="member">cameradistance</ref><sp/>=<sp/>-1.0f;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__particles__gravity_1a6a30e17a4ec0d1477ddfd5f7ebdca5c5" kindref="member">lastTime</ref><sp/>=<sp/>glfwGetTime();</highlight></codeline>
+<codeline lineno="111"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><ref refid="classft__particles__gravity_1a67f8796e3b3ca65cafa8f4a885c8edba" kindref="member">ft_particles_gravity::~ft_particles_gravity</ref>()</highlight></codeline>
+<codeline lineno="115"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__particles__gravity_1affbe1ae5413edccbe6fbfc91269663ee" kindref="member">ft_particles_gravity::draw</ref>()</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>currentTime<sp/>=<sp/>glfwGetTime();</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>delta<sp/>=<sp/>currentTime<sp/>-<sp/><ref refid="classft__particles__gravity_1a6a30e17a4ec0d1477ddfd5f7ebdca5c5" kindref="member">lastTime</ref>;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>lastTime<sp/>=<sp/>currentTime;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>newparticles<sp/>=<sp/>(int)(delta*10000.0);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(newparticles<sp/>&gt;<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(0.016f*10000.0))</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newparticles<sp/>=<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(0.016f*10000.0);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i&lt;newparticles;<sp/>i++){</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>particleIndex<sp/>=<sp/><ref refid="ft__particles__gravity_8cpp_1a6a94cfe4d00f671ac5af1703729a667c" kindref="member">FindUnusedParticle</ref>();</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1a1760a331eebb54cbdd6ca280439a36c8" kindref="member">life</ref><sp/>=<sp/>5.0f;<sp/></highlight><highlight class="comment">//<sp/>This<sp/>particle<sp/>will<sp/>live<sp/>5<sp/>seconds.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1ac6f55dcf2b61777d96661bca388d695f" kindref="member">pos</ref><sp/>=<sp/>glm::vec3(0,<sp/>0,<sp/>-20.0f);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>spread<sp/>=<sp/>1.5f;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/>maindir<sp/>=<sp/>glm::vec3(0.0f,<sp/>10.0f,<sp/>0.0f);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>glm::vec3<sp/>randomdir<sp/>=<sp/>glm::vec3(</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(rand()<sp/>%<sp/>2000<sp/>-<sp/>1000.0f)<sp/>/<sp/>1000.0f,</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(rand()<sp/>%<sp/>2000<sp/>-<sp/>1000.0f)<sp/>/<sp/>1000.0f,</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(rand()<sp/>%<sp/>2000<sp/>-<sp/>1000.0f)<sp/>/<sp/>1000.0f</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1ac2cc6a45df3caffbde063a29539f253c" kindref="member">speed</ref><sp/>=<sp/>maindir<sp/>+<sp/>randomdir*spread;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Very<sp/>bad<sp/>way<sp/>to<sp/>generate<sp/>a<sp/>random<sp/>color</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1ac6e465fd885df766096eb088016023b5" kindref="member">r</ref><sp/>=<sp/>rand()<sp/>%<sp/>256;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1a3f6dd15bd44813e567f41599de2b36d2" kindref="member">g</ref><sp/>=<sp/>rand()<sp/>%<sp/>256;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1a51cfab8e12d3ee7f3569e390f5b9c7de" kindref="member">b</ref><sp/>=<sp/>rand()<sp/>%<sp/>256;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1a8820cc4b7d902fc100a7c4d23dee99ef" kindref="member">a</ref><sp/>=<sp/>(rand()<sp/>%<sp/>256)<sp/>/<sp/>3;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesContainer[particleIndex].<ref refid="struct_particle_1aad08a7cb8108751b7a49ed65118873f9" kindref="member">size</ref><sp/>=<sp/>(rand()<sp/>%<sp/>1000)<sp/>/<sp/>2000.0f<sp/>+<sp/>0.1f;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>glm::vec3<sp/>CameraPosition(0.f,<sp/>0.f,<sp/>5.f);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Simulate<sp/>all<sp/>particles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ParticlesCount<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i&lt;<ref refid="ft__particles__gravity_8cpp_1afac61e1579168016b366b6b8bc5da737" kindref="member">MaxParticles</ref>;<sp/>i++){</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="struct_particle" kindref="compound">Particle</ref>&amp;<sp/>p<sp/>=<sp/>ParticlesContainer[i];<sp/></highlight><highlight class="comment">//<sp/>shortcut</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p.<ref refid="struct_particle_1a1760a331eebb54cbdd6ca280439a36c8" kindref="member">life</ref><sp/>&gt;<sp/>0.0f){</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"></highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Decrease<sp/>life</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p.<ref refid="struct_particle_1a1760a331eebb54cbdd6ca280439a36c8" kindref="member">life</ref><sp/>-=<sp/>delta;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(p.<ref refid="struct_particle_1a1760a331eebb54cbdd6ca280439a36c8" kindref="member">life</ref><sp/>&gt;<sp/>0.0f){</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Simulate<sp/>simple<sp/>physics<sp/>:<sp/>gravity<sp/>only,<sp/>no<sp/>collisions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p.<ref refid="struct_particle_1ac2cc6a45df3caffbde063a29539f253c" kindref="member">speed</ref><sp/>+=<sp/>glm::vec3(0.0f,<sp/>-9.81f,<sp/>0.0f)<sp/>*<sp/>(float)delta<sp/>*<sp/>0.5f;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p.<ref refid="struct_particle_1ac6f55dcf2b61777d96661bca388d695f" kindref="member">pos</ref><sp/>+=<sp/>p.<ref refid="struct_particle_1ac2cc6a45df3caffbde063a29539f253c" kindref="member">speed</ref><sp/>*<sp/>(float)delta;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p.<ref refid="struct_particle_1a3829c3810fb1471046cea1a25c71ef6b" kindref="member">cameradistance</ref><sp/>=<sp/>glm::length2(p.<ref refid="struct_particle_1ac6f55dcf2b61777d96661bca388d695f" kindref="member">pos</ref><sp/>-<sp/>CameraPosition);</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ParticlesContainer[i].pos<sp/>+=<sp/>glm::vec3(0.0f,10.0f,<sp/>0.0f)<sp/>*<sp/>(float)delta;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Fill<sp/>the<sp/>GPU<sp/>buffer</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a7b8b060d72b8456707dd2523ed63f4c7" kindref="member">g_particule_position_size_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>0]<sp/>=<sp/>p.<ref refid="struct_particle_1ac6f55dcf2b61777d96661bca388d695f" kindref="member">pos</ref>.x;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a7b8b060d72b8456707dd2523ed63f4c7" kindref="member">g_particule_position_size_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>1]<sp/>=<sp/>p.<ref refid="struct_particle_1ac6f55dcf2b61777d96661bca388d695f" kindref="member">pos</ref>.y;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a7b8b060d72b8456707dd2523ed63f4c7" kindref="member">g_particule_position_size_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>2]<sp/>=<sp/>p.<ref refid="struct_particle_1ac6f55dcf2b61777d96661bca388d695f" kindref="member">pos</ref>.z;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a7b8b060d72b8456707dd2523ed63f4c7" kindref="member">g_particule_position_size_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>3]<sp/>=<sp/>p.<ref refid="struct_particle_1aad08a7cb8108751b7a49ed65118873f9" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"></highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a634d77232d507a0a24d1112a52f7891a" kindref="member">g_particule_color_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>0]<sp/>=<sp/>p.<ref refid="struct_particle_1ac6e465fd885df766096eb088016023b5" kindref="member">r</ref>;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a634d77232d507a0a24d1112a52f7891a" kindref="member">g_particule_color_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>1]<sp/>=<sp/>p.<ref refid="struct_particle_1a3f6dd15bd44813e567f41599de2b36d2" kindref="member">g</ref>;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a634d77232d507a0a24d1112a52f7891a" kindref="member">g_particule_color_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>2]<sp/>=<sp/>p.<ref refid="struct_particle_1a51cfab8e12d3ee7f3569e390f5b9c7de" kindref="member">b</ref>;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1a634d77232d507a0a24d1112a52f7891a" kindref="member">g_particule_color_data</ref>[4<sp/>*<sp/>ParticlesCount<sp/>+<sp/>3]<sp/>=<sp/>p.<ref refid="struct_particle_1a8820cc4b7d902fc100a7c4d23dee99ef" kindref="member">a</ref>;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Particles<sp/>that<sp/>just<sp/>died<sp/>will<sp/>be<sp/>put<sp/>at<sp/>the<sp/>end<sp/>of<sp/>the<sp/>buffer<sp/>in<sp/>SortParticles();</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p.<ref refid="struct_particle_1a3829c3810fb1471046cea1a25c71ef6b" kindref="member">cameradistance</ref><sp/>=<sp/>-1.0f;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticlesCount++;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="ft__particles__gravity_8cpp_1ad1519a139b6c4654499f07d4649bb5a5" kindref="member">SortParticles</ref>();</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;particles<sp/>count:%d\n&quot;</highlight><highlight class="normal">,<sp/>ParticlesCount);</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Use<sp/>our<sp/>shader</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__particles__gravity_1aa649d7ed76a520d8d20bfd4ea737dc71" kindref="member">_particle_shader</ref>-&gt;use();</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindVertexArray(<ref refid="classft__particles__gravity_1a7f84ef5027ccf70269782478017ee3fe" kindref="member">_vao</ref>);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1afab00074cdd8609100feb2bc60045b23" kindref="member">_vbo_pos</ref>);</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/>MaxParticles<sp/>*<sp/>4<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat),<sp/>NULL,<sp/>GL_STREAM_DRAW);<sp/></highlight><highlight class="comment">//<sp/>Buffer<sp/>orphaning,<sp/>a<sp/>common<sp/>way<sp/>to<sp/>improve<sp/>streaming<sp/>perf.<sp/>See<sp/>above<sp/>link<sp/>for<sp/>details.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferSubData(GL_ARRAY_BUFFER,<sp/>0,<sp/>ParticlesCount<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLfloat)<sp/>*<sp/>4,<sp/><ref refid="ft__particles__gravity_8cpp_1a7b8b060d72b8456707dd2523ed63f4c7" kindref="member">g_particule_position_size_data</ref>);</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1a9f7aee39fab75e11aa02c05e7b899a19" kindref="member">_vbo_color</ref>);</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferData(GL_ARRAY_BUFFER,<sp/>MaxParticles<sp/>*<sp/>4<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLubyte),<sp/>NULL,<sp/>GL_STREAM_DRAW);<sp/></highlight><highlight class="comment">//<sp/>Buffer<sp/>orphaning,<sp/>a<sp/>common<sp/>way<sp/>to<sp/>improve<sp/>streaming<sp/>perf.<sp/>See<sp/>above<sp/>link<sp/>for<sp/>details.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/>glBufferSubData(GL_ARRAY_BUFFER,<sp/>0,<sp/>ParticlesCount<sp/>*<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(GLubyte)<sp/>*<sp/>4,<sp/><ref refid="ft__particles__gravity_8cpp_1a634d77232d507a0a24d1112a52f7891a" kindref="member">g_particule_color_data</ref>);</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnable(GL_BLEND);</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/>glBlendFunc(GL_SRC_ALPHA,<sp/>GL_ONE_MINUS_SRC_ALPHA);</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"></highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Bind<sp/>our<sp/>texture<sp/>in<sp/>Texture<sp/>Unit<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>glActiveTexture(GL_TEXTURE0);</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/><ref refid="classft__particles__gravity_1a3f1ed4b7a3f4eb8fe0b447479053821f" kindref="member">_txt_unit</ref>);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Set<sp/>our<sp/>&quot;myTextureSampler&quot;<sp/>sampler<sp/>to<sp/>use<sp/>Texture<sp/>Unit<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/>glUniform1i(<ref refid="classft__particles__gravity_1a3f1ed4b7a3f4eb8fe0b447479053821f" kindref="member">_txt_unit</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Same<sp/>as<sp/>the<sp/>billboards<sp/>tutorial</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>cmr_wp[]<sp/>=<sp/>{<sp/>0.999137f,<sp/>-0.000177f,<sp/>0.041540f<sp/>};</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__particles__gravity_1aa649d7ed76a520d8d20bfd4ea737dc71" kindref="member">_particle_shader</ref>-&gt;uniform(</highlight><highlight class="stringliteral">&quot;CameraRight_worldspace&quot;</highlight><highlight class="normal">,<sp/>cmr_wp);</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//glUniform3f(CameraRight_worldspace_ID,<sp/>ViewMatrix[0][0],<sp/>ViewMatrix[1][0],<sp/>ViewMatrix[2][0]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>cmu_wp[]<sp/>=<sp/>{<sp/>-0.009298f,<sp/>0.973666f,<sp/>0.227788f<sp/>};</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__particles__gravity_1aa649d7ed76a520d8d20bfd4ea737dc71" kindref="member">_particle_shader</ref>-&gt;uniform(</highlight><highlight class="stringliteral">&quot;CameraUp_worldspace&quot;</highlight><highlight class="normal">,<sp/>cmu_wp);</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//glUniform3f(CameraUp_worldspace_ID,<sp/>ViewMatrix[0][1],<sp/>ViewMatrix[1][1],<sp/>ViewMatrix[2][1]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>vwpj[]<sp/>=<sp/>{<sp/>1.809097f,<sp/>-0.022448f,<sp/>0.040568f,<sp/>0.040486f,</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.000320f,<sp/>2.350639f,<sp/>0.228434f,<sp/>0.227978f,</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0.075215f,<sp/>0.549929f,<sp/>-0.974772f,<sp/>-0.972824f,</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-0.376075f,<sp/>-2.749644f,<sp/>4.673659f,<sp/>4.864121f<sp/>};</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__particles__gravity_1aa649d7ed76a520d8d20bfd4ea737dc71" kindref="member">_particle_shader</ref>-&gt;uniform(</highlight><highlight class="stringliteral">&quot;VP&quot;</highlight><highlight class="normal">,<sp/>vwpj);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"></highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//glUniformMatrix4fv(ViewProjMatrixID,<sp/>1,<sp/>GL_FALSE,<sp/>&amp;ViewProjectionMatrix[0][0]);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>1rst<sp/>attribute<sp/>buffer<sp/>:<sp/>vertices</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(0);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1aff873c49a24da92bfe0ca8ca80f31a91" kindref="member">_vbo_uv</ref>);</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>attribute.<sp/>No<sp/>particular<sp/>reason<sp/>for<sp/>0,<sp/>but<sp/>must<sp/>match<sp/>the<sp/>layout<sp/>in<sp/>the<sp/>shader.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>3,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>size</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GL_FLOAT,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GL_FALSE,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>normalized?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>stride</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>array<sp/>buffer<sp/>offset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>2nd<sp/>attribute<sp/>buffer<sp/>:<sp/>positions<sp/>of<sp/>particles&apos;<sp/>centers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(1);</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1afab00074cdd8609100feb2bc60045b23" kindref="member">_vbo_pos</ref>);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>1,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>attribute.<sp/>No<sp/>particular<sp/>reason<sp/>for<sp/>1,<sp/>but<sp/>must<sp/>match<sp/>the<sp/>layout<sp/>in<sp/>the<sp/>shader.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>size<sp/>:<sp/>x<sp/>+<sp/>y<sp/>+<sp/>z<sp/>+<sp/>size<sp/>=&gt;<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GL_FLOAT,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GL_FALSE,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>normalized?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>stride</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>array<sp/>buffer<sp/>offset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>3rd<sp/>attribute<sp/>buffer<sp/>:<sp/>particles&apos;<sp/>colors</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/>glEnableVertexAttribArray(2);</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindBuffer(GL_ARRAY_BUFFER,<sp/><ref refid="classft__particles__gravity_1a9f7aee39fab75e11aa02c05e7b899a19" kindref="member">_vbo_color</ref>);</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribPointer(</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>2,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>attribute.<sp/>No<sp/>particular<sp/>reason<sp/>for<sp/>1,<sp/>but<sp/>must<sp/>match<sp/>the<sp/>layout<sp/>in<sp/>the<sp/>shader.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>4,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>size<sp/>:<sp/>r<sp/>+<sp/>g<sp/>+<sp/>b<sp/>+<sp/>a<sp/>=&gt;<sp/>4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GL_UNSIGNED_BYTE,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>type</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GL_TRUE,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>normalized?<sp/><sp/><sp/><sp/>***<sp/>YES,<sp/>this<sp/>means<sp/>that<sp/>the<sp/>unsigned<sp/>char[4]<sp/>will<sp/>be<sp/>accessible<sp/>with<sp/>a<sp/>vec4<sp/>(floats)<sp/>in<sp/>the<sp/>shader<sp/>***</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0,<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>stride</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)0<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>array<sp/>buffer<sp/>offset</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"></highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribDivisor(0,<sp/>0);<sp/></highlight><highlight class="comment">//<sp/>particles<sp/>vertices<sp/>:<sp/>always<sp/>reuse<sp/>the<sp/>same<sp/>4<sp/>vertices<sp/>-&gt;<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribDivisor(1,<sp/>1);<sp/></highlight><highlight class="comment">//<sp/>positions<sp/>:<sp/>one<sp/>per<sp/>quad<sp/>(its<sp/>center)<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-&gt;<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/>glVertexAttribDivisor(2,<sp/>1);<sp/></highlight><highlight class="comment">//<sp/>color<sp/>:<sp/>one<sp/>per<sp/>quad<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-&gt;<sp/>1</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Draw<sp/>the<sp/>particules<sp/>!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>draws<sp/>many<sp/>times<sp/>a<sp/>small<sp/>triangle_strip<sp/>(which<sp/>looks<sp/>like<sp/>a<sp/>quad).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>is<sp/>equivalent<sp/>to<sp/>:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>for(i<sp/>in<sp/>ParticlesCount)<sp/>:<sp/>glDrawArrays(GL_TRIANGLE_STRIP,<sp/>0,<sp/>4),<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>but<sp/>faster.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/>glDrawArraysInstanced(GL_TRIANGLE_STRIP,<sp/>0,<sp/>4,<sp/>ParticlesCount);</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//glDrawArraysInstanced(GL_TRIANGLES,<sp/>0,<sp/>6,<sp/>ParticlesCount);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisableVertexAttribArray(0);</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisableVertexAttribArray(1);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/>glDisableVertexAttribArray(2);</highlight></codeline>
+<codeline lineno="287"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp"/>
+  </compounddef>
+</doxygen>

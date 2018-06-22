@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classshader__uf__double" kind="class" language="C++" prot="public">
+    <compoundname>shader_uf_double</compoundname>
+    <basecompoundref refid="classshader__uf" prot="public" virt="non-virtual">shader_uf</basecompoundref>
+    <includes refid="shader__uf_8h" local="no">shader_uf.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classshader__uf__double_1aa2bc94e8e28e08a88152ee1cf90054b9" prot="private" static="no" mutable="no">
+        <type>double *</type>
+        <definition>double* shader_uf_double::_pdvalue</definition>
+        <argsstring></argsstring>
+        <name>_pdvalue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="247" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" bodystart="247" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classshader__uf__double_1a33d7cadda5a484764b8b7d436a83395b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>shader_uf_double::shader_uf_double</definition>
+        <argsstring>(GLuint usize, GLuint el_sz)</argsstring>
+        <name>shader_uf_double</name>
+        <param>
+          <type>GLuint</type>
+          <declname>usize</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>el_sz</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="249" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" bodystart="249" bodyend="252"/>
+      </memberdef>
+      <memberdef kind="function" id="classshader__uf__double_1a993aa06a0d3fd7f3339a64c5e1d0702e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void *</type>
+        <definition>void* shader_uf_double::get_data_head</definition>
+        <argsstring>()</argsstring>
+        <name>get_data_head</name>
+        <reimplements refid="classshader__uf_1ac73df59e17c29622e9f8603c00980a4d">get_data_head</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="253" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" bodystart="253" bodyend="256"/>
+      </memberdef>
+      <memberdef kind="function" id="classshader__uf__double_1a2497c5ed3c79760df278658a5cc10cf5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>void shader_uf_double::set_to_loaction</definition>
+        <argsstring>(GLuint location)</argsstring>
+        <name>set_to_loaction</name>
+        <reimplements refid="classshader__uf_1a5e5dce4217f4acf4820cf1c69c6a0083">set_to_loaction</reimplements>
+        <param>
+          <type>GLuint</type>
+          <declname>location</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="257" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" bodystart="257" bodyend="301"/>
+      </memberdef>
+      <memberdef kind="function" id="classshader__uf__double_1a5b377250338a212884cf46da5b31bccc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void shader_uf_double::set_dvalue</definition>
+        <argsstring>(double *pdvalue, GLuint len)</argsstring>
+        <name>set_dvalue</name>
+        <param>
+          <type>double *</type>
+          <declname>pdvalue</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>len</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="302" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" bodystart="302" bodyend="306"/>
+      </memberdef>
+      <memberdef kind="function" id="classshader__uf__double_1a51dc88ed526c247c5b4252a479ffa33d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void shader_uf_double::edit</definition>
+        <argsstring>()</argsstring>
+        <name>edit</name>
+        <reimplements refid="classshader__uf_1aafc42ceca35f3c032f08aaf061f7990c">edit</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="308" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.cpp" bodystart="234" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="classshader__uf__double_1a11ab3ec18a29e01824128ada684265cc" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void shader_uf_double::output_2_json</definition>
+        <argsstring>(Value &amp;jvalue)</argsstring>
+        <name>output_2_json</name>
+        <reimplements refid="classshader__uf_1ab6154da91c9a50b386699ca227e4dfb2">output_2_json</reimplements>
+        <param>
+          <type>Value &amp;</type>
+          <declname>jvalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="309" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.cpp" bodystart="273" bodyend="284"/>
+      </memberdef>
+      <memberdef kind="function" id="classshader__uf__double_1a93c9f80442c15dc5523a7a663b9330b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void shader_uf_double::init_from_json</definition>
+        <argsstring>(Value &amp;jvalue)</argsstring>
+        <name>init_from_json</name>
+        <reimplements refid="classshader__uf_1a8521f98b9f7cb6d60cdb99a104ff83df">init_from_json</reimplements>
+        <param>
+          <type>Value &amp;</type>
+          <declname>jvalue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="310" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.cpp" bodystart="285" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="classshader__uf__double_1ab1dcccef438964c64929d6ff499330f2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>shader_uf_double::~shader_uf_double</definition>
+        <argsstring>()</argsstring>
+        <name>~shader_uf_double</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="313" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" bodystart="313" bodyend="316"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="643">
+        <label>shader_uf</label>
+        <link refid="classshader__uf"/>
+      </node>
+      <node id="642">
+        <label>shader_uf_double</label>
+        <link refid="classshader__uf__double"/>
+        <childnode refid="643" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="645">
+        <label>shader_uf</label>
+        <link refid="classshader__uf"/>
+      </node>
+      <node id="644">
+        <label>shader_uf_double</label>
+        <link refid="classshader__uf__double"/>
+        <childnode refid="645" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" line="246" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.h" bodystart="245" bodyend="317"/>
+    <listofallmembers>
+      <member refid="classshader__uf_1a21e58c056b56ec267b1cc99e7aa0435e" prot="protected" virt="non-virtual"><scope>shader_uf_double</scope><name>_el_size</name></member>
+      <member refid="classshader__uf__double_1aa2bc94e8e28e08a88152ee1cf90054b9" prot="private" virt="non-virtual"><scope>shader_uf_double</scope><name>_pdvalue</name></member>
+      <member refid="classshader__uf_1a7be611751f46c5105a5f225522c26757" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>_unf_name</name></member>
+      <member refid="classshader__uf_1a8d0b85575628fbf6e7a5a4aca82101b2" prot="protected" virt="non-virtual"><scope>shader_uf_double</scope><name>_usize</name></member>
+      <member refid="classshader__uf_1ab02efb71121cdde7e62051180340b15e" prot="protected" virt="non-virtual"><scope>shader_uf_double</scope><name>_utype</name></member>
+      <member refid="classshader__uf__double_1a51dc88ed526c247c5b4252a479ffa33d" prot="public" virt="virtual"><scope>shader_uf_double</scope><name>edit</name></member>
+      <member refid="classshader__uf_1a45aa8ac0dde4de1c1c1dd9302a8010e4" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>elsize</name></member>
+      <member refid="classshader__uf__double_1a993aa06a0d3fd7f3339a64c5e1d0702e" prot="public" virt="virtual"><scope>shader_uf_double</scope><name>get_data_head</name></member>
+      <member refid="classshader__uf_1a05e1676a3fdbfe2f8e665e4a85eb0ce3" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>get_type</name></member>
+      <member refid="classshader__uf__double_1a93c9f80442c15dc5523a7a663b9330b0" prot="public" virt="virtual"><scope>shader_uf_double</scope><name>init_from_json</name></member>
+      <member refid="classshader__uf__double_1a11ab3ec18a29e01824128ada684265cc" prot="public" virt="virtual"><scope>shader_uf_double</scope><name>output_2_json</name></member>
+      <member refid="classshader__uf__double_1a5b377250338a212884cf46da5b31bccc" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>set_dvalue</name></member>
+      <member refid="classshader__uf__double_1a2497c5ed3c79760df278658a5cc10cf5" prot="public" virt="virtual"><scope>shader_uf_double</scope><name>set_to_loaction</name></member>
+      <member refid="classshader__uf_1a9c95804594e3be4aa8e0c6862d03d147" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>set_type</name></member>
+      <member refid="classshader__uf_1af42e0daedfb36dae3e7fe948e36487ff" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>shader_uf</name></member>
+      <member refid="classshader__uf__double_1a33d7cadda5a484764b8b7d436a83395b" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>shader_uf_double</name></member>
+      <member refid="classshader__uf_1a7c3dba5668ecf64413f2a251f29c09e3" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>usize</name></member>
+      <member refid="classshader__uf_1ac5b696e1d1b4612f9d9877f266aab0a2" prot="public" virt="virtual"><scope>shader_uf_double</scope><name>~shader_uf</name></member>
+      <member refid="classshader__uf__double_1ab1dcccef438964c64929d6ff499330f2" prot="public" virt="non-virtual"><scope>shader_uf_double</scope><name>~shader_uf_double</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

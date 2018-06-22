@@ -16,6 +16,8 @@ using namespace std;
 struct stt
 {
 	int x, y, z;
+	stt(){}
+	stt(int a, int b, int c) :x(a), y(b), z(c){}
 };
 int sss[2][4][4] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 
 11, 12, 13, 14, 15, 16, 101, 102, 103, 104, 105, 106, 107, 108, 109,
@@ -141,6 +143,13 @@ struct testalias
 		return new MyClass2(i); 
 	}
 
+	void test_vect(vector<int> iv)
+	{
+		for (auto& iu:iv)
+		{
+			cout << iu << endl;
+		}
+	}
 int _tmain(int argc, _TCHAR* argv[])
 {
 	vector<stt> vstt;
@@ -150,6 +159,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	vstt.push_back(st0);
 	vstt.push_back(st1);
 	vstt.push_back(st2);
+	cout << vstt.size() << endl;
+	test_vect({ 0, 2, 3, 4 });
+	vector<stt>* pvstt =&vstt; 
+	cout << pvstt->size() << endl;
+	cout << (*pvstt)[0].x << endl;
+	cout << (*pvstt)[0].y << endl;
+	cout << (*pvstt)[0].z << endl;
+
+	pvstt = new(&vstt)vector<stt>(3);
+	cout << pvstt->size() << endl;
+	cout << (*pvstt)[0].x << endl;
+	cout << (*pvstt)[0].y << endl;
+	cout << (*pvstt)[0].z << endl;
+
+	stt* pst0 = new(&st0) stt();
+	cout << pst0->x << endl;
+	cout << pst0->y << endl;
+	cout << pst0->z << endl;
+
 	//int (*s)[4]= sss;
 	int *p = (int*)sss;
 	for (int ix = 0; ix < 32;ix++)
@@ -272,7 +300,15 @@ int _tmain(int argc, _TCHAR* argv[])
 		cout << iit.first << endl;
 
 	}
-
+	struct test_cvt
+	{
+		vector<int > vint;
+	}; 
+	test_cvt tcvt;
+	cout << sizeof(tcvt) << endl;
+	tcvt.vint.push_back(1);
+	tcvt.vint.push_back(2);
+	cout << sizeof(tcvt) << endl;
 
 	return 0;
 }

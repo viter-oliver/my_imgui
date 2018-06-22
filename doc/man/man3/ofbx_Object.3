@@ -1,0 +1,218 @@
+.TH "ofbx::Object" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::Object \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherited by \fBofbx::AnimationCurve\fP, \fBofbx::AnimationCurveNode\fP, \fBofbx::AnimationLayer\fP, \fBofbx::AnimationStack\fP, \fBofbx::Cluster\fP, \fBofbx::Geometry\fP, \fBofbx::LimbNodeImpl\fP, \fBofbx::Material\fP, \fBofbx::Mesh\fP, \fBofbx::NodeAttribute\fP, \fBofbx::NullImpl\fP, \fBofbx::Root\fP, \fBofbx::Skin\fP, and \fBofbx::Texture\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBType\fP { \fBType::ROOT\fP, \fBType::GEOMETRY\fP, \fBType::MATERIAL\fP, \fBType::MESH\fP, \fBType::TEXTURE\fP, \fBType::LIMB_NODE\fP, \fBType::NULL_NODE\fP, \fBType::NODE_ATTRIBUTE\fP, \fBType::CLUSTER\fP, \fBType::SKIN\fP, \fBType::ANIMATION_STACK\fP, \fBType::ANIMATION_LAYER\fP, \fBType::ANIMATION_CURVE\fP, \fBType::ANIMATION_CURVE_NODE\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBObject\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "virtual \fB~Object\fP ()"
+.br
+.ti -1c
+.RI "virtual \fBType\fP \fBgetType\fP () const =0"
+.br
+.ti -1c
+.RI "const \fBIScene\fP & \fBgetScene\fP () const "
+.br
+.ti -1c
+.RI "\fBObject\fP * \fBresolveObjectLink\fP (int idx) const "
+.br
+.ti -1c
+.RI "\fBObject\fP * \fBresolveObjectLink\fP (\fBType\fP type, const char *property, int idx) const "
+.br
+.ti -1c
+.RI "\fBObject\fP * \fBresolveObjectLinkReverse\fP (\fBType\fP type) const "
+.br
+.ti -1c
+.RI "\fBObject\fP * \fBgetParent\fP () const "
+.br
+.ti -1c
+.RI "\fBRotationOrder\fP \fBgetRotationOrder\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetRotationOffset\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetRotationPivot\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetPostRotation\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetScalingOffset\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetScalingPivot\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetPreRotation\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetLocalTranslation\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetLocalRotation\fP () const "
+.br
+.ti -1c
+.RI "\fBVec3\fP \fBgetLocalScaling\fP () const "
+.br
+.ti -1c
+.RI "\fBMatrix\fP \fBgetGlobalTransform\fP () const "
+.br
+.ti -1c
+.RI "\fBMatrix\fP \fBevalLocal\fP (const \fBVec3\fP &translation, const \fBVec3\fP &rotation) const "
+.br
+.ti -1c
+.RI "bool \fBisNode\fP () const "
+.br
+.ti -1c
+.RI "template<typename T > T * \fBresolveObjectLink\fP (int idx) const "
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBu64\fP \fBid\fP"
+.br
+.ti -1c
+.RI "char \fBname\fP [128]"
+.br
+.ti -1c
+.RI "const \fBIElement\fP & \fBelement\fP"
+.br
+.ti -1c
+.RI "const \fBObject\fP * \fBnode_attribute\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "bool \fBis_node\fP"
+.br
+.ti -1c
+.RI "const \fBScene\fP & \fBscene\fP"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBofbx::Object::Type\fP\fC [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIROOT \fP\fP
+.TP
+\fB\fIGEOMETRY \fP\fP
+.TP
+\fB\fIMATERIAL \fP\fP
+.TP
+\fB\fIMESH \fP\fP
+.TP
+\fB\fITEXTURE \fP\fP
+.TP
+\fB\fILIMB_NODE \fP\fP
+.TP
+\fB\fINULL_NODE \fP\fP
+.TP
+\fB\fINODE_ATTRIBUTE \fP\fP
+.TP
+\fB\fICLUSTER \fP\fP
+.TP
+\fB\fISKIN \fP\fP
+.TP
+\fB\fIANIMATION_STACK \fP\fP
+.TP
+\fB\fIANIMATION_LAYER \fP\fP
+.TP
+\fB\fIANIMATION_CURVE \fP\fP
+.TP
+\fB\fIANIMATION_CURVE_NODE \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::Object::Object (const \fBScene\fP & _scene, const \fBIElement\fP & _element)"
+
+.SS "virtual ofbx::Object::~Object ()\fC [inline]\fP, \fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBMatrix\fP ofbx::Object::evalLocal (const \fBVec3\fP & translation, const \fBVec3\fP & rotation) const"
+
+.SS "\fBMatrix\fP ofbx::Object::getGlobalTransform () const"
+
+.SS "\fBVec3\fP ofbx::Object::getLocalRotation () const"
+
+.SS "\fBVec3\fP ofbx::Object::getLocalScaling () const"
+
+.SS "\fBVec3\fP ofbx::Object::getLocalTranslation () const"
+
+.SS "\fBObject\fP * ofbx::Object::getParent () const"
+
+.SS "\fBVec3\fP ofbx::Object::getPostRotation () const"
+
+.SS "\fBVec3\fP ofbx::Object::getPreRotation () const"
+
+.SS "\fBVec3\fP ofbx::Object::getRotationOffset () const"
+
+.SS "\fBRotationOrder\fP ofbx::Object::getRotationOrder () const"
+
+.SS "\fBVec3\fP ofbx::Object::getRotationPivot () const"
+
+.SS "\fBVec3\fP ofbx::Object::getScalingOffset () const"
+
+.SS "\fBVec3\fP ofbx::Object::getScalingPivot () const"
+
+.SS "const \fBIScene\fP & ofbx::Object::getScene () const"
+
+.SS "virtual \fBType\fP ofbx::Object::getType () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::AnimationLayerImpl\fP, \fBofbx::AnimationCurveNodeImpl\fP, \fBofbx::Root\fP, \fBofbx::TextureImpl\fP, \fBofbx::SkinImpl\fP, \fBofbx::AnimationCurveImpl\fP, \fBofbx::AnimationStackImpl\fP, \fBofbx::ClusterImpl\fP, \fBofbx::GeometryImpl\fP, \fBofbx::NodeAttributeImpl\fP, \fBofbx::NullImpl\fP, \fBofbx::LimbNodeImpl\fP, \fBofbx::MaterialImpl\fP, and \fBofbx::MeshImpl\fP\&.
+.SS "bool ofbx::Object::isNode () const\fC [inline]\fP"
+
+.SS "\fBObject\fP * ofbx::Object::resolveObjectLink (int idx) const"
+
+.SS "\fBObject\fP * ofbx::Object::resolveObjectLink (\fBObject::Type\fP type, const char * property, int idx) const"
+
+.SS "template<typename T > T* ofbx::Object::resolveObjectLink (int idx) const\fC [inline]\fP"
+
+.SS "\fBObject\fP * ofbx::Object::resolveObjectLinkReverse (\fBObject::Type\fP type) const"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBIElement\fP& ofbx::Object::element"
+
+.SS "\fBu64\fP ofbx::Object::id"
+
+.SS "bool ofbx::Object::is_node\fC [protected]\fP"
+
+.SS "char ofbx::Object::name[128]"
+
+.SS "const \fBObject\fP* ofbx::Object::node_attribute"
+
+.SS "const \fBScene\fP& ofbx::Object::scene\fC [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

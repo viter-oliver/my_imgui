@@ -1,0 +1,289 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classft__textblock" kind="class" language="C++" prot="public">
+    <compoundname>ft_textblock</compoundname>
+    <basecompoundref refid="classft__base" prot="public" virt="non-virtual">ft_base</basecompoundref>
+    <includes refid="ft__textblock_8h" local="no">ft_textblock.h</includes>
+    <innerclass refid="structft__textblock_1_1intl__pt" prot="private">ft_textblock::intl_pt</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" prot="private" static="no" mutable="no">
+        <type><ref refid="structft__textblock_1_1intl__pt" kindref="compound">intl_pt</ref></type>
+        <definition>intl_pt ft_textblock::_txt_pt</definition>
+        <argsstring></argsstring>
+        <name>_txt_pt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="21" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classft__textblock_1a4d0ac50bc1ce9090831315a0466cd04a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ft_textblock::ft_textblock</definition>
+        <argsstring>()</argsstring>
+        <name>ft_textblock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="23" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" bodystart="23" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1a39c4344d2c9ba47f4d7bcac44df3ba30" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ft_textblock::~ft_textblock</definition>
+        <argsstring>()</argsstring>
+        <name>~ft_textblock</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="24" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" bodystart="24" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1a3314d8bc1ac20da7e937f8e6a84ce218" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int ft_textblock::collect_property_range</definition>
+        <argsstring>(vproperty_list &amp;vplist)</argsstring>
+        <name>collect_property_range</name>
+        <reimplements refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b">collect_property_range</reimplements>
+        <param>
+          <type><ref refid="control__common__def_8h_1a2829b10b78675304660841f0fb2135d4" kindref="member">vproperty_list</ref> &amp;</type>
+          <declname>vplist</declname>
+        </param>
+        <briefdescription>
+<para>get the memory range of the property data block </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vplist[out]</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a container which the range of property data block will store into </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>length of property data block<itemizedlist>
+<listitem></listitem></itemizedlist>
+</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="25" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" bodystart="25" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1a34cc8147b33e816bd259fb2e61d6e318" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ft_textblock::draw</definition>
+        <argsstring>()</argsstring>
+        <name>draw</name>
+        <reimplements refid="classft__base_1a09062404251d099907ff9d7f2b18b89a">draw</reimplements>
+        <briefdescription>
+<para>draw self on a surface </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="33" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.cpp" bodystart="3" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1a2a7f22b6ffc8613ec8259c5a385a77b2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ft_textblock::set_content</definition>
+        <argsstring>(const char *strct)</argsstring>
+        <name>set_content</name>
+        <param>
+          <type>const char *</type>
+          <declname>strct</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="34" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1a34b325f7b47efaca99fdf67ca75d6038" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>const char *</type>
+        <definition>const char* ft_textblock::content</definition>
+        <argsstring>()</argsstring>
+        <name>content</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="38" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" bodystart="38" bodyend="41"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1aadf7178232db1f6b0e38af2bd056d937" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ft_textblock::draw_peroperty_page</definition>
+        <argsstring>()</argsstring>
+        <name>draw_peroperty_page</name>
+        <reimplements refid="classft__base_1a03bf0cd635d96f8a42686567893c2bd4">draw_peroperty_page</reimplements>
+        <briefdescription>
+<para>draw property on the property page for editing </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="43" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.cpp" bodystart="18" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1a32cb6af33155cf65c185d5cdcdc09ee0" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool ft_textblock::init_from_json</definition>
+        <argsstring>(Value &amp;jvalue)</argsstring>
+        <name>init_from_json</name>
+        <reimplements refid="classft__base_1a2921bac309eb7b6064c8ee2f39876640">init_from_json</reimplements>
+        <param>
+          <type>Value &amp;</type>
+          <declname>jvalue</declname>
+        </param>
+        <briefdescription>
+<para>instancing class from a json value unit </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jvalue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a json value jvalue which contain all the value of the data member of current object </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>result <ndash/>true success <ndash/>false failure </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="44" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.cpp" bodystart="37" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__textblock_1a5049d69de68bc6c6f0a954d377872e7c" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool ft_textblock::init_json_unit</definition>
+        <argsstring>(Value &amp;junit)</argsstring>
+        <name>init_json_unit</name>
+        <reimplements refid="classft__base_1aa7ebbfc073f79a8a383bc7b78af64f91">init_json_unit</reimplements>
+        <param>
+          <type>Value &amp;</type>
+          <declname>junit</declname>
+        </param>
+        <briefdescription>
+<para>init a json unit by some data members </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>junit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a json value junit which will be stored all the value of the data member of current object </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>result -true success -false failure </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="45" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.cpp" bodystart="51" bodyend="64"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="313">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="314" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="314">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+      </node>
+      <node id="312">
+        <label>ft_textblock</label>
+        <link refid="classft__textblock"/>
+        <childnode refid="313" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="316">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="317" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="317">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+        <childnode refid="317" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="318" relation="usage">
+          <edgelabel>_in_p</edgelabel>
+        </childnode>
+      </node>
+      <node id="319">
+        <label>ft_textblock::intl_pt</label>
+        <link refid="structft__textblock_1_1intl__pt"/>
+      </node>
+      <node id="315">
+        <label>ft_textblock</label>
+        <link refid="classft__textblock"/>
+        <childnode refid="316" relation="public-inheritance">
+        </childnode>
+        <childnode refid="319" relation="usage">
+          <edgelabel>_txt_pt</edgelabel>
+        </childnode>
+      </node>
+      <node id="318">
+        <label>base_ui_component::internal_property</label>
+        <link refid="structbase__ui__component_1_1internal__property"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" line="5" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_textblock.h" bodystart="3" bodyend="47"/>
+    <listofallmembers>
+      <member refid="classbase__ui__component_1a544403a2926ccead33f8efab97fbf0fa" prot="protected" virt="non-virtual"><scope>ft_textblock</scope><name>_in_p</name></member>
+      <member refid="classbase__ui__component_1aa1825be2fe793f7bd408d01f3436bc58" prot="protected" virt="non-virtual"><scope>ft_textblock</scope><name>_parent</name></member>
+      <member refid="classbase__ui__component_1a5f97f62b438bc6e39a55f230380b1bcf" prot="protected" virt="non-virtual"><scope>ft_textblock</scope><name>_selected</name></member>
+      <member refid="classft__textblock_1a6210ffaf743b4ed4ece0004e04ff4354" prot="private" virt="non-virtual"><scope>ft_textblock</scope><name>_txt_pt</name></member>
+      <member refid="classbase__ui__component_1a01dc8ef82c5151bf027971069350916c" prot="protected" virt="non-virtual"><scope>ft_textblock</scope><name>_vchilds</name></member>
+      <member refid="classbase__ui__component_1ae7efd3132e7d8c3bc59b3b8cbbdbed58" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>absolute_coordinate_of_base_pos</name></member>
+      <member refid="classbase__ui__component_1a0ed950da68a94238cfef7483cf0d3f20" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>add_child</name></member>
+      <member refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>base_pos</name></member>
+      <member refid="classbase__ui__component_1a65a95f5414eb2d7be2757fa6c97ad566" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>base_ui_component</name></member>
+      <member refid="classbase__ui__component_1a9329fc1712f79bbb1f09b7fcf9506598" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>child_count</name></member>
+      <member refid="classft__textblock_1a3314d8bc1ac20da7e937f8e6a84ce218" prot="public" virt="virtual"><scope>ft_textblock</scope><name>collect_property_range</name></member>
+      <member refid="classft__textblock_1a34b325f7b47efaca99fdf67ca75d6038" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>content</name></member>
+      <member refid="classft__textblock_1a34cc8147b33e816bd259fb2e61d6e318" prot="public" virt="virtual"><scope>ft_textblock</scope><name>draw</name></member>
+      <member refid="classft__textblock_1aadf7178232db1f6b0e38af2bd056d937" prot="public" virt="virtual"><scope>ft_textblock</scope><name>draw_peroperty_page</name></member>
+      <member refid="classft__base_1ae9872ac2cd2aa700a1e91f2537cca075" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>ft_base</name></member>
+      <member refid="classft__textblock_1a4d0ac50bc1ce9090831315a0466cd04a" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>ft_textblock</name></member>
+      <member refid="classbase__ui__component_1a9ecd8f35cc9aa4b5133514a3b06b7ff3" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>get_child</name></member>
+      <member refid="classbase__ui__component_1a4d3b7f9887b863a5607e43ac4f29c9d5" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>get_child_count</name></member>
+      <member refid="classft__base_1a8ac04e73e38ebcf7b30c76bd88aff07d" prot="public" virt="virtual"><scope>ft_textblock</scope><name>get_copy_of_object</name></member>
+      <member refid="classbase__ui__component_1ad09db0a28ea8a64dea8751b965f372d8" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>get_name</name></member>
+      <member refid="classbase__ui__component_1a31cba9202f2e1832c0762de72a79e417" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>get_parent</name></member>
+      <member refid="classft__base_1a9fff220865b2aeb2d7dedd1dd07c4a90" prot="public" virt="virtual"><scope>ft_textblock</scope><name>handle_mouse</name></member>
+      <member refid="classft__textblock_1a32cb6af33155cf65c185d5cdcdc09ee0" prot="public" virt="virtual"><scope>ft_textblock</scope><name>init_from_json</name></member>
+      <member refid="classft__textblock_1a5049d69de68bc6c6f0a954d377872e7c" prot="public" virt="virtual"><scope>ft_textblock</scope><name>init_json_unit</name></member>
+      <member refid="classbase__ui__component_1a7e049f196571b69481efc09d874e9a86" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>is_selected</name></member>
+      <member refid="classbase__ui__component_1ac0e5e289b0bc4f3f80c0d4cea794f5c7" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>is_visible</name></member>
+      <member refid="classbase__ui__component_1aea0946d8e113fbeaf37855e740ee8dcc" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>offset</name></member>
+      <member refid="classbase__ui__component_1a177f92647397b122c7b9709f3fa4331f" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>remove_child</name></member>
+      <member refid="classbase__ui__component_1aca508bf254f0b9c55d29c68c8249e2d3" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>screenh</name></member>
+      <member refid="classbase__ui__component_1a1027bcda32d3f479b6d14c0cbbcc184b" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>screenw</name></member>
+      <member refid="classft__textblock_1a2a7f22b6ffc8613ec8259c5a385a77b2" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>set_content</name></member>
+      <member refid="classbase__ui__component_1af543d0a51ac1ba57d9611edcb0e67800" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>set_name</name></member>
+      <member refid="classbase__ui__component_1ac68d1904c07807f3003df632a118ad3f" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>set_selected</name></member>
+      <member refid="classbase__ui__component_1af7a2c9107435cd51b952cf2a0d1c3b50" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>set_visible</name></member>
+      <member refid="classbase__ui__component_1a6d4e9322ad1ea5c1c7010fbae0963839" prot="public" virt="virtual"><scope>ft_textblock</scope><name>~base_ui_component</name></member>
+      <member refid="classft__textblock_1a39c4344d2c9ba47f4d7bcac44df3ba30" prot="public" virt="non-virtual"><scope>ft_textblock</scope><name>~ft_textblock</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

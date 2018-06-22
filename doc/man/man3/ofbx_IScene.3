@@ -1,0 +1,110 @@
+.TH "ofbx::IScene" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::IScene \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherited by \fBofbx::Scene\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBdestroy\fP ()=0"
+.br
+.ti -1c
+.RI "virtual const \fBIElement\fP * \fBgetRootElement\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBObject\fP * \fBgetRoot\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBTakeInfo\fP * \fBgetTakeInfo\fP (const char *name) const =0"
+.br
+.ti -1c
+.RI "virtual int \fBgetMeshCount\fP () const =0"
+.br
+.ti -1c
+.RI "virtual float \fBgetSceneFrameRate\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBMesh\fP * \fBgetMesh\fP (int index) const =0"
+.br
+.ti -1c
+.RI "virtual int \fBgetAnimationStackCount\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBAnimationStack\fP * \fBgetAnimationStack\fP (int index) const =0"
+.br
+.ti -1c
+.RI "virtual const \fBObject\fP *const * \fBgetAllObjects\fP () const =0"
+.br
+.ti -1c
+.RI "virtual int \fBgetAllObjectCount\fP () const =0"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual \fB~IScene\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "virtual ofbx::IScene::~IScene ()\fC [inline]\fP, \fC [protected]\fP, \fC [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void ofbx::IScene::destroy ()\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual int ofbx::IScene::getAllObjectCount () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual const \fBObject\fP* const* ofbx::IScene::getAllObjects () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual const \fBAnimationStack\fP* ofbx::IScene::getAnimationStack (int index) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual int ofbx::IScene::getAnimationStackCount () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual const \fBMesh\fP* ofbx::IScene::getMesh (int index) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual int ofbx::IScene::getMeshCount () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual const \fBObject\fP* ofbx::IScene::getRoot () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual const \fBIElement\fP* ofbx::IScene::getRootElement () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual float ofbx::IScene::getSceneFrameRate () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+.SS "virtual const \fBTakeInfo\fP* ofbx::IScene::getTakeInfo (const char * name) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::Scene\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

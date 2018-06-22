@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__listbox_8h" kind="file" language="C++">
+    <compoundname>ft_listbox.h</compoundname>
+    <includes refid="ft__base_8h" local="yes">ft_base.h</includes>
+    <includedby refid="ft__listbox_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_listbox.cpp</includedby>
+    <incdepgraph>
+      <node id="470">
+        <label>functional</label>
+      </node>
+      <node id="474">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="465">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_listbox.h</label>
+        <link refid="ft_listbox.h"/>
+        <childnode refid="466" relation="include">
+        </childnode>
+      </node>
+      <node id="469">
+        <label>string</label>
+      </node>
+      <node id="468">
+        <label>map</label>
+      </node>
+      <node id="476">
+        <label>json.h</label>
+      </node>
+      <node id="466">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="467" relation="include">
+        </childnode>
+      </node>
+      <node id="475">
+        <label>vector</label>
+      </node>
+      <node id="472">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="473" relation="include">
+        </childnode>
+        <childnode refid="474" relation="include">
+        </childnode>
+        <childnode refid="475" relation="include">
+        </childnode>
+        <childnode refid="469" relation="include">
+        </childnode>
+        <childnode refid="476" relation="include">
+        </childnode>
+        <childnode refid="477" relation="include">
+        </childnode>
+      </node>
+      <node id="467">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="468" relation="include">
+        </childnode>
+        <childnode refid="469" relation="include">
+        </childnode>
+        <childnode refid="470" relation="include">
+        </childnode>
+        <childnode refid="471" relation="include">
+        </childnode>
+        <childnode refid="472" relation="include">
+        </childnode>
+      </node>
+      <node id="473">
+        <label>imgui.h</label>
+      </node>
+      <node id="477">
+        <label>algorithm</label>
+      </node>
+      <node id="471">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="478">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_listbox.h</label>
+        <link refid="ft_listbox.h"/>
+        <childnode refid="479" relation="include">
+        </childnode>
+      </node>
+      <node id="479">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_listbox.cpp</label>
+        <link refid="ft__listbox_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classft__listbox" prot="public">ft_listbox</innerclass>
+    <innerclass refid="structft__listbox_1_1intl__pt" prot="private">ft_listbox::intl_pt</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__base_8h" kindref="compound">ft_base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="classft__listbox" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classft__listbox" kindref="compound">ft_listbox</ref><sp/>:</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classft__base" kindref="compound">ft_base</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6" refid="structft__listbox_1_1intl__pt" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structft__listbox_1_1intl__pt" kindref="compound">intl_pt</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="8" refid="structft__listbox_1_1intl__pt_1ad15101f92cf5d0c542d3470bc2d4b752" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/><ref refid="structft__listbox_1_1intl__pt_1ad15101f92cf5d0c542d3470bc2d4b752" kindref="member">_vertical</ref>;</highlight></codeline>
+<codeline lineno="9" refid="structft__listbox_1_1intl__pt_1a23774f6d5f95cfcd8d19e9f1b4f04dd5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structft__listbox_1_1intl__pt_1a23774f6d5f95cfcd8d19e9f1b4f04dd5" kindref="member">_width</ref>,<sp/><ref refid="structft__listbox_1_1intl__pt_1a88aadfb5445fcf1eca8450c37114b052" kindref="member">_height</ref>;</highlight></codeline>
+<codeline lineno="10" refid="structft__listbox_1_1intl__pt_1a15a8a985b38c9e63e80cfd909f081cbf" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structft__listbox_1_1intl__pt_1a15a8a985b38c9e63e80cfd909f081cbf" kindref="member">intl_pt</ref>()<sp/>:_vertical(true),<sp/>_width(0),<sp/>_height(0){}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="12" refid="classft__listbox_1a5bc038766c8a45a2f20d112a844a30a4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structft__listbox_1_1intl__pt" kindref="compound">intl_pt</ref><sp/><ref refid="classft__listbox_1a5bc038766c8a45a2f20d112a844a30a4" kindref="member">_lt_pt</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__listbox_1ab6632e6e47726d18c8518cb8b8c82a3b" kindref="member">ft_listbox</ref>();</highlight></codeline>
+<codeline lineno="15" refid="classft__listbox_1a696fbdcffa1c30d2132e8f20bd8bff8c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classft__listbox_1a696fbdcffa1c30d2132e8f20bd8bff8c" kindref="member">collect_property_range</ref>(<ref refid="control__common__def_8h_1a2829b10b78675304660841f0fb2135d4" kindref="member">vproperty_list</ref>&amp;<sp/>vplist)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>plen<sp/>=<sp/><ref refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b" kindref="member">ft_base::collect_property_range</ref>(vplist);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structft__listbox_1_1intl__pt" kindref="compound">intl_pt</ref>);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vplist.emplace_back(&amp;_lt_pt,<sp/>len);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len<sp/>+=<sp/>plen;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>len;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__listbox_1a18e7f3884dd065d1842d6522a625a7c3" kindref="member">draw</ref>();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__listbox_1a5ac246b15cacf7a5378c67291aa7eda7" kindref="member">draw_peroperty_page</ref>();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__listbox_1ab993cc451c6264ff8d0a4f4aefe6c983" kindref="member">init_from_json</ref>(Value&amp;<sp/>jvalue);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__listbox_1ab95ad5b60ea99e57497a669ffefec2bd" kindref="member">handle_mouse</ref>();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><ref refid="afb__load_8cpp_1a464695366cb3e9683ab9cd7091409f68" kindref="member">REGISTER_CONTROL</ref>(<ref refid="classft__listbox" kindref="compound">ft_listbox</ref>)</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_listbox.h"/>
+  </compounddef>
+</doxygen>

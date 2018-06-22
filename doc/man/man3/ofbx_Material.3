@@ -1,0 +1,57 @@
+.TH "ofbx::Material" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::Material \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherits \fBofbx::Object\fP\&.
+.PP
+Inherited by \fBofbx::MaterialImpl\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMaterial\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "virtual \fBColor\fP \fBgetDiffuseColor\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBTexture\fP * \fBgetTexture\fP (\fBTexture::TextureType\fP type) const =0"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const \fBType\fP \fBs_type\fP = \fBType::MATERIAL\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::Material::Material (const \fBScene\fP & _scene, const \fBIElement\fP & _element)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBColor\fP ofbx::Material::getDiffuseColor () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::MaterialImpl\fP\&.
+.SS "virtual const \fBTexture\fP* ofbx::Material::getTexture (\fBTexture::TextureType\fP type) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::MaterialImpl\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBType\fP ofbx::Material::s_type = \fBType::MATERIAL\fP\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

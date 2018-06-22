@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__polygon__image_8cpp" kind="file" language="C++">
+    <compoundname>ft_polygon_image.cpp</compoundname>
+    <includes refid="ft__polygon__image_8h" local="yes">ft_polygon_image.h</includes>
+    <incdepgraph>
+      <node id="616">
+        <label>ft_polygon_image.h</label>
+        <link refid="ft__polygon__image_8h"/>
+        <childnode refid="617" relation="include">
+        </childnode>
+      </node>
+      <node id="621">
+        <label>functional</label>
+      </node>
+      <node id="625">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="620">
+        <label>string</label>
+      </node>
+      <node id="619">
+        <label>map</label>
+      </node>
+      <node id="627">
+        <label>json.h</label>
+      </node>
+      <node id="617">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="618" relation="include">
+        </childnode>
+      </node>
+      <node id="626">
+        <label>vector</label>
+      </node>
+      <node id="623">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="624" relation="include">
+        </childnode>
+        <childnode refid="625" relation="include">
+        </childnode>
+        <childnode refid="626" relation="include">
+        </childnode>
+        <childnode refid="620" relation="include">
+        </childnode>
+        <childnode refid="627" relation="include">
+        </childnode>
+        <childnode refid="628" relation="include">
+        </childnode>
+      </node>
+      <node id="618">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="619" relation="include">
+        </childnode>
+        <childnode refid="620" relation="include">
+        </childnode>
+        <childnode refid="621" relation="include">
+        </childnode>
+        <childnode refid="622" relation="include">
+        </childnode>
+        <childnode refid="623" relation="include">
+        </childnode>
+      </node>
+      <node id="615">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_polygon_image.cpp</label>
+        <link refid="ft_polygon_image.cpp"/>
+        <childnode refid="616" relation="include">
+        </childnode>
+      </node>
+      <node id="624">
+        <label>imgui.h</label>
+      </node>
+      <node id="628">
+        <label>algorithm</label>
+      </node>
+      <node id="622">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__polygon__image_8h" kindref="compound">ft_polygon_image.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__polygon__image_1a4e9fff922f65b9ef8b78b85f6765536d" kindref="member">ft_polygon_image::draw</ref>()</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__polygon__image_1a2bb4fb6a3aabdc2463cc464aab4e2cd4" kindref="member">ft_polygon_image::draw_peroperty_page</ref>()</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">fields:</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">texture_id_index,</highlight></codeline>
+<codeline lineno="16"><highlight class="comment">vertexes:</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/><sp/>{x,y,z,u,v,col}</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__polygon__image_1acff5a3577246377ef2bf87fba3de2249" kindref="member">ft_polygon_image::init_from_json</ref>(Value&amp;<sp/>jvalue)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__base_1a2921bac309eb7b6064c8ee2f39876640" kindref="member">ft_base::init_from_json</ref>(jvalue);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>Value&amp;<sp/>jvertexes<sp/>=<sp/>jvalue[</highlight><highlight class="stringliteral">&quot;vertexes&quot;</highlight><highlight class="normal">];</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isize<sp/>=<sp/>jvertexes.size();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ix<sp/>=<sp/>0;<sp/>ix<sp/>&lt;<sp/>isize;<sp/>ix++)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Value&amp;<sp/>jvertex<sp/>=<sp/>jvertexes[ix];</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structft__vertex" kindref="compound">ft_vertex</ref><sp/>vertex;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex.<ref refid="structft__vertex_1a22e9fd21f89300a75932ab01f1ca5719" kindref="member">pos</ref>.x<sp/>=<sp/>jvertex[</highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex.<ref refid="structft__vertex_1a22e9fd21f89300a75932ab01f1ca5719" kindref="member">pos</ref>.y<sp/>=<sp/>jvertex[</highlight><highlight class="stringliteral">&quot;y&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex.<ref refid="structft__vertex_1a22e9fd21f89300a75932ab01f1ca5719" kindref="member">pos</ref>.z<sp/>=<sp/>jvertex[</highlight><highlight class="stringliteral">&quot;z&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex.<ref refid="structft__vertex_1ad8df4bfeb0da564a5306c4ab2699da50" kindref="member">uv</ref>.x=<sp/>jvertex[</highlight><highlight class="stringliteral">&quot;u&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex.<ref refid="structft__vertex_1ad8df4bfeb0da564a5306c4ab2699da50" kindref="member">uv</ref>.x<sp/>=<sp/>jvertex[</highlight><highlight class="stringliteral">&quot;v&quot;</highlight><highlight class="normal">].asDouble();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertex.<ref refid="structft__vertex_1a22d3fd9a3f515eabd24bef2b4464d88a" kindref="member">col</ref><sp/>=<sp/>jvertex[</highlight><highlight class="stringliteral">&quot;col&quot;</highlight><highlight class="normal">].asUInt();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="classft__polygon__image_1ab4147fbc94dc8446d64d08b3ab540886" kindref="member">_vertexes</ref>.push_back(vertex);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__polygon__image_1ae73a06c8c9951cdbeaccacb8975d60ed" kindref="member">ft_polygon_image::handle_mouse</ref>()</highlight></codeline>
+<codeline lineno="41"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_polygon_image.cpp"/>
+  </compounddef>
+</doxygen>

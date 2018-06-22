@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structprimitive__object" kind="struct" language="C++" prot="public">
+    <compoundname>primitive_object</compoundname>
+    <derivedcompoundref refid="structprimitive__cube" prot="public" virt="non-virtual">primitive_cube</derivedcompoundref>
+    <includes refid="primitive__object_8h" local="no">primitive_object.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structprimitive__object_1a09948537288d334992fe69f31afa431e" prot="public" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint primitive_object::_vao</definition>
+        <argsstring></argsstring>
+        <name>_vao</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" line="18" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structprimitive__object_1a5b193548a3a9c37d474a56405024ed81" prot="public" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint primitive_object::_vbo</definition>
+        <argsstring></argsstring>
+        <name>_vbo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" line="18" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structprimitive__object_1aede10d88e0ea47e16c592c5b5e125609" prot="public" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint primitive_object::_ebo</definition>
+        <argsstring></argsstring>
+        <name>_ebo</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" line="18" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structprimitive__object_1a37aaa7bc3cd55d5a03df7debaf6bc9d9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>primitive_object::primitive_object</definition>
+        <argsstring>()</argsstring>
+        <name>primitive_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" line="21" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" bodystart="21" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="structprimitive__object_1a57d221e38e8e7a4a8e6e4a1c4d8919cf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual primitive_object::~primitive_object</definition>
+        <argsstring>()</argsstring>
+        <name>~primitive_object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" line="28" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" bodystart="28" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="structprimitive__object" kindref="compound">primitive_object</ref> represent basic data struct which will be inputed into<linebreak/>
+a vertex shader </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="581">
+        <label>primitive_cube</label>
+        <link refid="structprimitive__cube"/>
+        <childnode refid="580" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="580">
+        <label>primitive_object</label>
+        <link refid="structprimitive__object"/>
+      </node>
+    </inheritancegraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" line="17" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" bodystart="16" bodyend="34"/>
+    <listofallmembers>
+      <member refid="structprimitive__object_1aede10d88e0ea47e16c592c5b5e125609" prot="public" virt="non-virtual"><scope>primitive_object</scope><name>_ebo</name></member>
+      <member refid="structprimitive__object_1a09948537288d334992fe69f31afa431e" prot="public" virt="non-virtual"><scope>primitive_object</scope><name>_vao</name></member>
+      <member refid="structprimitive__object_1a5b193548a3a9c37d474a56405024ed81" prot="public" virt="non-virtual"><scope>primitive_object</scope><name>_vbo</name></member>
+      <member refid="structprimitive__object_1a37aaa7bc3cd55d5a03df7debaf6bc9d9" prot="public" virt="non-virtual"><scope>primitive_object</scope><name>primitive_object</name></member>
+      <member refid="structprimitive__object_1a57d221e38e8e7a4a8e6e4a1c4d8919cf" prot="public" virt="virtual"><scope>primitive_object</scope><name>~primitive_object</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

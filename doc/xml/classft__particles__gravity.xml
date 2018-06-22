@@ -1,0 +1,236 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classft__particles__gravity" kind="class" language="C++" prot="public">
+    <compoundname>ft_particles_gravity</compoundname>
+    <basecompoundref refid="classft__base" prot="public" virt="non-virtual">ft_base</basecompoundref>
+    <includes refid="ft__particles__gravity_8h" local="no">ft_particles_gravity.h</includes>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classft__particles__gravity_1aff873c49a24da92bfe0ca8ca80f31a91" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint ft_particles_gravity::_vbo_uv</definition>
+        <argsstring></argsstring>
+        <name>_vbo_uv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classft__particles__gravity_1afab00074cdd8609100feb2bc60045b23" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint ft_particles_gravity::_vbo_pos</definition>
+        <argsstring></argsstring>
+        <name>_vbo_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classft__particles__gravity_1a9f7aee39fab75e11aa02c05e7b899a19" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint ft_particles_gravity::_vbo_color</definition>
+        <argsstring></argsstring>
+        <name>_vbo_color</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classft__particles__gravity_1a3f1ed4b7a3f4eb8fe0b447479053821f" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint ft_particles_gravity::_txt_unit</definition>
+        <argsstring></argsstring>
+        <name>_txt_unit</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="9" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classft__particles__gravity_1a7f84ef5027ccf70269782478017ee3fe" prot="private" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint ft_particles_gravity::_vao</definition>
+        <argsstring></argsstring>
+        <name>_vao</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="10" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classft__particles__gravity_1aa649d7ed76a520d8d20bfd4ea737dc71" prot="private" static="no" mutable="no">
+        <type>shared_ptr&lt; <ref refid="classaf__shader" kindref="compound">af_shader</ref> &gt;</type>
+        <definition>shared_ptr&lt;af_shader&gt; ft_particles_gravity::_particle_shader</definition>
+        <argsstring></argsstring>
+        <name>_particle_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classft__particles__gravity_1a6a30e17a4ec0d1477ddfd5f7ebdca5c5" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ft_particles_gravity::lastTime</definition>
+        <argsstring></argsstring>
+        <name>lastTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="12" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="12" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classft__particles__gravity_1a4db7402b58bef1a6bdb3119bff3093f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ft_particles_gravity::ft_particles_gravity</definition>
+        <argsstring>()</argsstring>
+        <name>ft_particles_gravity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="14" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="60" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__particles__gravity_1a67f8796e3b3ca65cafa8f4a885c8edba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ft_particles_gravity::~ft_particles_gravity</definition>
+        <argsstring>()</argsstring>
+        <name>~ft_particles_gravity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="15" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="114" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__particles__gravity_1affbe1ae5413edccbe6fbfc91269663ee" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ft_particles_gravity::draw</definition>
+        <argsstring>()</argsstring>
+        <name>draw</name>
+        <reimplements refid="classft__base_1a09062404251d099907ff9d7f2b18b89a">draw</reimplements>
+        <briefdescription>
+<para>draw self on a surface </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="16" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp" bodystart="118" bodyend="287"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="268">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="269" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="269">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+      </node>
+      <node id="267">
+        <label>ft_particles_gravity</label>
+        <link refid="classft__particles__gravity"/>
+        <childnode refid="268" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="271">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="272" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="272">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+        <childnode refid="272" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="273" relation="usage">
+          <edgelabel>_in_p</edgelabel>
+        </childnode>
+      </node>
+      <node id="270">
+        <label>ft_particles_gravity</label>
+        <link refid="classft__particles__gravity"/>
+        <childnode refid="271" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="273">
+        <label>base_ui_component::internal_property</label>
+        <link refid="structbase__ui__component_1_1internal__property"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" line="7" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h" bodystart="5" bodyend="17"/>
+    <listofallmembers>
+      <member refid="classbase__ui__component_1a544403a2926ccead33f8efab97fbf0fa" prot="protected" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_in_p</name></member>
+      <member refid="classbase__ui__component_1aa1825be2fe793f7bd408d01f3436bc58" prot="protected" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_parent</name></member>
+      <member refid="classft__particles__gravity_1aa649d7ed76a520d8d20bfd4ea737dc71" prot="private" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_particle_shader</name></member>
+      <member refid="classbase__ui__component_1a5f97f62b438bc6e39a55f230380b1bcf" prot="protected" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_selected</name></member>
+      <member refid="classft__particles__gravity_1a3f1ed4b7a3f4eb8fe0b447479053821f" prot="private" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_txt_unit</name></member>
+      <member refid="classft__particles__gravity_1a7f84ef5027ccf70269782478017ee3fe" prot="private" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_vao</name></member>
+      <member refid="classft__particles__gravity_1a9f7aee39fab75e11aa02c05e7b899a19" prot="private" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_vbo_color</name></member>
+      <member refid="classft__particles__gravity_1afab00074cdd8609100feb2bc60045b23" prot="private" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_vbo_pos</name></member>
+      <member refid="classft__particles__gravity_1aff873c49a24da92bfe0ca8ca80f31a91" prot="private" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_vbo_uv</name></member>
+      <member refid="classbase__ui__component_1a01dc8ef82c5151bf027971069350916c" prot="protected" virt="non-virtual"><scope>ft_particles_gravity</scope><name>_vchilds</name></member>
+      <member refid="classbase__ui__component_1ae7efd3132e7d8c3bc59b3b8cbbdbed58" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>absolute_coordinate_of_base_pos</name></member>
+      <member refid="classbase__ui__component_1a0ed950da68a94238cfef7483cf0d3f20" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>add_child</name></member>
+      <member refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>base_pos</name></member>
+      <member refid="classbase__ui__component_1a65a95f5414eb2d7be2757fa6c97ad566" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>base_ui_component</name></member>
+      <member refid="classbase__ui__component_1a9329fc1712f79bbb1f09b7fcf9506598" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>child_count</name></member>
+      <member refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>collect_property_range</name></member>
+      <member refid="classft__particles__gravity_1affbe1ae5413edccbe6fbfc91269663ee" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>draw</name></member>
+      <member refid="classft__base_1a03bf0cd635d96f8a42686567893c2bd4" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>draw_peroperty_page</name></member>
+      <member refid="classft__base_1ae9872ac2cd2aa700a1e91f2537cca075" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>ft_base</name></member>
+      <member refid="classft__particles__gravity_1a4db7402b58bef1a6bdb3119bff3093f9" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>ft_particles_gravity</name></member>
+      <member refid="classbase__ui__component_1a9ecd8f35cc9aa4b5133514a3b06b7ff3" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>get_child</name></member>
+      <member refid="classbase__ui__component_1a4d3b7f9887b863a5607e43ac4f29c9d5" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>get_child_count</name></member>
+      <member refid="classft__base_1a8ac04e73e38ebcf7b30c76bd88aff07d" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>get_copy_of_object</name></member>
+      <member refid="classbase__ui__component_1ad09db0a28ea8a64dea8751b965f372d8" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>get_name</name></member>
+      <member refid="classbase__ui__component_1a31cba9202f2e1832c0762de72a79e417" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>get_parent</name></member>
+      <member refid="classft__base_1a9fff220865b2aeb2d7dedd1dd07c4a90" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>handle_mouse</name></member>
+      <member refid="classft__base_1a2921bac309eb7b6064c8ee2f39876640" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>init_from_json</name></member>
+      <member refid="classft__base_1aa7ebbfc073f79a8a383bc7b78af64f91" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>init_json_unit</name></member>
+      <member refid="classbase__ui__component_1a7e049f196571b69481efc09d874e9a86" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>is_selected</name></member>
+      <member refid="classbase__ui__component_1ac0e5e289b0bc4f3f80c0d4cea794f5c7" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>is_visible</name></member>
+      <member refid="classft__particles__gravity_1a6a30e17a4ec0d1477ddfd5f7ebdca5c5" prot="private" virt="non-virtual"><scope>ft_particles_gravity</scope><name>lastTime</name></member>
+      <member refid="classbase__ui__component_1aea0946d8e113fbeaf37855e740ee8dcc" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>offset</name></member>
+      <member refid="classbase__ui__component_1a177f92647397b122c7b9709f3fa4331f" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>remove_child</name></member>
+      <member refid="classbase__ui__component_1aca508bf254f0b9c55d29c68c8249e2d3" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>screenh</name></member>
+      <member refid="classbase__ui__component_1a1027bcda32d3f479b6d14c0cbbcc184b" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>screenw</name></member>
+      <member refid="classbase__ui__component_1af543d0a51ac1ba57d9611edcb0e67800" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>set_name</name></member>
+      <member refid="classbase__ui__component_1ac68d1904c07807f3003df632a118ad3f" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>set_selected</name></member>
+      <member refid="classbase__ui__component_1af7a2c9107435cd51b952cf2a0d1c3b50" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>set_visible</name></member>
+      <member refid="classbase__ui__component_1a6d4e9322ad1ea5c1c7010fbae0963839" prot="public" virt="virtual"><scope>ft_particles_gravity</scope><name>~base_ui_component</name></member>
+      <member refid="classft__particles__gravity_1a67f8796e3b3ca65cafa8f4a885c8edba" prot="public" virt="non-virtual"><scope>ft_particles_gravity</scope><name>~ft_particles_gravity</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

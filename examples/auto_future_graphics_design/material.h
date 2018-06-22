@@ -53,5 +53,5 @@ public:
 #endif
 };
 typedef map<string,shared_ptr<material>> mmaterial;
-/*!< material of g_material_list will be referenced by some ui components*/
+/** material of g_material_list will be referenced by some ui components*/
 extern mmaterial g_material_list;

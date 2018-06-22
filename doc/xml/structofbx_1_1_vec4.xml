@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_vec4" kind="struct" language="C++" prot="public">
+    <compoundname>ofbx::Vec4</compoundname>
+    <includes refid="ofbx_8h" local="no">ofbx.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_vec4_1a2fbea6289dd0e573bacc68cac4b456af" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Vec4::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="33" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_vec4_1aca91be8e62f06f34e00e2691a339589b" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Vec4::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="33" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_vec4_1a589fb49590af015cb2e4e6a64ba615d3" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Vec4::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="33" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_vec4_1a03d46dfd088b4f9a3c2cad3603c1ec93" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Vec4::w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="33" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="32" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="31" bodyend="34"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_vec4_1a03d46dfd088b4f9a3c2cad3603c1ec93" prot="public" virt="non-virtual"><scope>ofbx::Vec4</scope><name>w</name></member>
+      <member refid="structofbx_1_1_vec4_1a2fbea6289dd0e573bacc68cac4b456af" prot="public" virt="non-virtual"><scope>ofbx::Vec4</scope><name>x</name></member>
+      <member refid="structofbx_1_1_vec4_1aca91be8e62f06f34e00e2691a339589b" prot="public" virt="non-virtual"><scope>ofbx::Vec4</scope><name>y</name></member>
+      <member refid="structofbx_1_1_vec4_1a589fb49590af015cb2e4e6a64ba615d3" prot="public" virt="non-virtual"><scope>ofbx::Vec4</scope><name>z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

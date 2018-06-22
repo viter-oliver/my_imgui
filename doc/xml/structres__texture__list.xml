@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structres__texture__list" kind="struct" language="C++" prot="public">
+    <compoundname>res_texture_list</compoundname>
+    <includes refid="res__output_8h" local="no">res_output.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structres__texture__list_1af2cd36ca0a23d793e61bc1a440202d0e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int res_texture_list::texture_width</definition>
+        <argsstring></argsstring>
+        <name>texture_width</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="17" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structres__texture__list_1aef0df35e456a54dd4676d1d901fdd2f5" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int res_texture_list::texture_height</definition>
+        <argsstring></argsstring>
+        <name>texture_height</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="18" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structres__texture__list_1a4e9a381c0fe74cb6968f5f88e034f375" prot="public" static="no" mutable="no">
+        <type>unsigned int</type>
+        <definition>unsigned int res_texture_list::texture_id</definition>
+        <argsstring></argsstring>
+        <name>texture_id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="19" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structres__texture__list_1a001dbdf75fce4de679e387bf7acf4ff8" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string res_texture_list::texture_pack_file</definition>
+        <argsstring></argsstring>
+        <name>texture_pack_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="20" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structres__texture__list_1ad2cfffcd7eadf3c0e1241e35516a4474" prot="public" static="no" mutable="no">
+        <type>string</type>
+        <definition>string res_texture_list::texture_data_file</definition>
+        <argsstring></argsstring>
+        <name>texture_data_file</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="21" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structres__texture__list_1a45b8ee6e9f1cf326c610b7a1dff5dbea" prot="public" static="no" mutable="no">
+        <type><ref refid="res__output_8h_1a4c8dadcc7988266b4b23d4b2096da321" kindref="member">vres_txt_cd</ref></type>
+        <definition>vres_txt_cd res_texture_list::vtexture_coordinates</definition>
+        <argsstring></argsstring>
+        <name>vtexture_coordinates</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="23" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structres__texture__list_1a91a9826c567c3cb13afa2423387719d5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>res_texture_list::res_texture_list</definition>
+        <argsstring>()</argsstring>
+        <name>res_texture_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="24" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="24" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="structres__texture__list_1a947630a1ee0effe67380b4053397cb82" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>res_texture_list::~res_texture_list</definition>
+        <argsstring>()</argsstring>
+        <name>~res_texture_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="27" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="27" bodyend="29"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" line="16" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_output.h" bodystart="15" bodyend="30"/>
+    <listofallmembers>
+      <member refid="structres__texture__list_1a91a9826c567c3cb13afa2423387719d5" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>res_texture_list</name></member>
+      <member refid="structres__texture__list_1ad2cfffcd7eadf3c0e1241e35516a4474" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>texture_data_file</name></member>
+      <member refid="structres__texture__list_1aef0df35e456a54dd4676d1d901fdd2f5" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>texture_height</name></member>
+      <member refid="structres__texture__list_1a4e9a381c0fe74cb6968f5f88e034f375" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>texture_id</name></member>
+      <member refid="structres__texture__list_1a001dbdf75fce4de679e387bf7acf4ff8" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>texture_pack_file</name></member>
+      <member refid="structres__texture__list_1af2cd36ca0a23d793e61bc1a440202d0e" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>texture_width</name></member>
+      <member refid="structres__texture__list_1a45b8ee6e9f1cf326c610b7a1dff5dbea" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>vtexture_coordinates</name></member>
+      <member refid="structres__texture__list_1a947630a1ee0effe67380b4053397cb82" prot="public" virt="non-virtual"><scope>res_texture_list</scope><name>~res_texture_list</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -173,7 +173,8 @@
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="ft_cube.cpp" />
     <ClCompile Include="ft_model.cpp" />
-    <ClCompile Include="ft_particles_gravity.cpp" />
+    <ClCompile Include="ft_particles.cpp" />
+    <ClCompile Include="ft_particles1.cpp" />
     <ClCompile Include="ft_plane.cpp" />
     <ClCompile Include="ft_slider.cpp" />
     <ClCompile Include="ft_sphere.cpp" />
@@ -195,12 +196,14 @@
     <ClCompile Include="miniz.c" />
     <ClCompile Include="ofbx.cpp" />
     <ClCompile Include="primitive_object.cpp" />
+    <ClCompile Include="primitve_edit.cpp" />
     <ClCompile Include="project_edit.cpp" />
     <ClCompile Include="res_edit.cpp" />
     <ClCompile Include="res_internal.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
     <ClCompile Include="shader_uf.cpp" />
+    <ClCompile Include="texture_edit.cpp" />
     <ClCompile Include="texture_res_load.cpp" />
     <ClCompile Include="texture_shader.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
@@ -233,7 +236,8 @@
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="ft_cube.h" />
     <ClInclude Include="ft_model.h" />
-    <ClInclude Include="ft_particles_gravity.h" />
+    <ClInclude Include="ft_particles.h" />
+    <ClInclude Include="ft_particles1.h" />
     <ClInclude Include="ft_plane.h" />
     <ClInclude Include="ft_slider.h" />
     <ClInclude Include="ft_sphere.h" />
@@ -255,6 +259,7 @@
     <ClInclude Include="miniz.h" />
     <ClInclude Include="ofbx.h" />
     <ClInclude Include="primitive_object.h" />
+    <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="project_edit.h" />
     <ClInclude Include="renderTransform.h" />
     <ClInclude Include="resource.h" />
@@ -262,6 +267,7 @@
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="shader_uf.h" />
+    <ClInclude Include="texture_edit.h" />
     <ClInclude Include="texture_res_load.h" />
     <ClInclude Include="texture_shader.h" />
     <ClInclude Include="ui_assembler.h" />

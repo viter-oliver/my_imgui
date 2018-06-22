@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="af__shader_8h" kind="file" language="C++">
+    <compoundname>af_shader.h</compoundname>
+    <includes local="no">vector</includes>
+    <includes local="no">map</includes>
+    <includes local="no">functional</includes>
+    <includes local="no">glm.hpp</includes>
+    <includes local="no">gtc/matrix_transform.hpp</includes>
+    <includes local="no">gtc/type_ptr.hpp</includes>
+    <includes local="no">glm/gtx/norm.hpp</includes>
+    <includes local="no">GL/gl3w.h</includes>
+    <includes local="yes">fab.h</includes>
+    <includedby refid="af__shader_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.cpp</includedby>
+    <includedby refid="afb__load_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.cpp</includedby>
+    <includedby refid="material_8h" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h</includedby>
+    <includedby refid="afb__output_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.cpp</includedby>
+    <includedby refid="ft__particles__gravity_8h" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h</includedby>
+    <includedby refid="material__shader__edit_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material_shader_edit.cpp</includedby>
+    <includedby refid="ui__assembler_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ui_assembler.cpp</includedby>
+    <incdepgraph>
+      <node id="19">
+        <label>glm/gtx/norm.hpp</label>
+      </node>
+      <node id="15">
+        <label>functional</label>
+      </node>
+      <node id="12">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h</label>
+        <link refid="af_shader.h"/>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+      </node>
+      <node id="14">
+        <label>map</label>
+      </node>
+      <node id="18">
+        <label>gtc/type_ptr.hpp</label>
+      </node>
+      <node id="17">
+        <label>gtc/matrix_transform.hpp</label>
+      </node>
+      <node id="21">
+        <label>fab.h</label>
+      </node>
+      <node id="13">
+        <label>vector</label>
+      </node>
+      <node id="16">
+        <label>glm.hpp</label>
+      </node>
+      <node id="20">
+        <label>GL/gl3w.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="23">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.cpp</label>
+        <link refid="af__shader_8cpp"/>
+      </node>
+      <node id="32">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.h</label>
+        <link refid="ft__particles__gravity_8h"/>
+        <childnode refid="33" relation="include">
+        </childnode>
+      </node>
+      <node id="26">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_output.cpp</label>
+        <link refid="afb__output_8cpp"/>
+      </node>
+      <node id="22">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h</label>
+        <link refid="af_shader.h"/>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="30">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material_shader_edit.cpp</label>
+        <link refid="material__shader__edit_8cpp"/>
+      </node>
+      <node id="24">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/afb_load.cpp</label>
+        <link refid="afb__load_8cpp"/>
+      </node>
+      <node id="27">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_cube.h</label>
+        <link refid="ft__cube_8h"/>
+        <childnode refid="28" relation="include">
+        </childnode>
+      </node>
+      <node id="33">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_particles_gravity.cpp</label>
+        <link refid="ft__particles__gravity_8cpp"/>
+      </node>
+      <node id="29">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp</label>
+        <link refid="material_8cpp"/>
+      </node>
+      <node id="28">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_cube.cpp</label>
+        <link refid="ft__cube_8cpp"/>
+      </node>
+      <node id="25">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.h</label>
+        <link refid="material_8h"/>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+      </node>
+      <node id="31">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ui_assembler.cpp</label>
+        <link refid="ui__assembler_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="structshader__variable" prot="public">shader_variable</innerclass>
+    <innerclass refid="classaf__shader" prot="public">af_shader</innerclass>
+    <innernamespace refid="namespacefab">fab</innernamespace>
+    <innernamespace refid="namespacestd">std</innernamespace>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="af__shader_8h_1a3c666d43c270ef8158eeb87f01bee42a" prot="public" static="no">
+        <type>map&lt; string, <ref refid="structshader__variable" kindref="compound">shader_variable</ref> &gt;</type>
+        <definition>typedef map&lt;string, shader_variable&gt; mshader_variable_list</definition>
+        <argsstring></argsstring>
+        <name>mshader_variable_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="32" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="af__shader_8h_1a273fa95b39fcbc29f4c0ee1ddf408912" prot="public" static="no">
+        <type>map&lt; string, shared_ptr&lt; <ref refid="classaf__shader" kindref="compound">af_shader</ref> &gt; &gt;</type>
+        <definition>typedef map&lt;string,shared_ptr&lt;af_shader&gt; &gt; maf_shader</definition>
+        <argsstring></argsstring>
+        <name>maf_shader</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="78" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="af__shader_8h_1af0ab9139334e7f9f0886c7af66dd1d7c" prot="public" static="no" mutable="no">
+        <type><ref refid="af__shader_8h_1a273fa95b39fcbc29f4c0ee1ddf408912" kindref="member">maf_shader</ref></type>
+        <definition>maf_shader g_af_shader_list</definition>
+        <argsstring></argsstring>
+        <name>g_af_shader_list</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="79" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.cpp" bodystart="470" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="3"><highlight class="comment">#include<sp/>&quot;imgui.h&quot;</highlight></codeline>
+<codeline lineno="4"><highlight class="comment">#define<sp/>IMGUI_DEFINE_MATH_OPERATORS</highlight></codeline>
+<codeline lineno="5"><highlight class="comment">#include<sp/>&quot;imgui_internal.h&quot;*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;map&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;functional&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/matrix_transform.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;gtc/type_ptr.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;glm/gtx/norm.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_WAYLAND)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;GL/gl3w.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#include&quot;../../deps/glad/glad.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;fab.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacefab" kindref="compound">fab</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal"><ref refid="namespacestd" kindref="compound">std</ref>;</highlight></codeline>
+<codeline lineno="24" refid="structshader__variable" refkind="compound"><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structshader__variable" kindref="compound">shader_variable</ref></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26" refid="structshader__variable_1aa483c2cc05bdc22a0183e85081ce36bb" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>GLenum<sp/><ref refid="structshader__variable_1aa483c2cc05bdc22a0183e85081ce36bb" kindref="member">_variable_type</ref>;</highlight></codeline>
+<codeline lineno="27" refid="structshader__variable_1ab29cfed126e5a58dd62db42c0c466e5e" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/><ref refid="structshader__variable_1ab29cfed126e5a58dd62db42c0c466e5e" kindref="member">_location</ref>;</highlight></codeline>
+<codeline lineno="28" refid="structshader__variable_1aab4d7ace41b312d044734a5b59c40c63" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/><ref refid="structshader__variable_1aab4d7ace41b312d044734a5b59c40c63" kindref="member">_size</ref>;</highlight></codeline>
+<codeline lineno="29" refid="structshader__variable_1a7e7b8a621a4bd6cdcc75aacb72f2b806" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structshader__variable_1a7e7b8a621a4bd6cdcc75aacb72f2b806" kindref="member">shader_variable</ref>(){}</highlight></codeline>
+<codeline lineno="30" refid="structshader__variable_1a60640a37475af30229957acfdf276694" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structshader__variable_1a60640a37475af30229957acfdf276694" kindref="member">shader_variable</ref>(GLenum<sp/>vtp,<sp/>GLuint<sp/>loc,<sp/>GLuint<sp/>size)<sp/>:_variable_type(vtp),<sp/>_location(loc),_size(size){}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32" refid="af__shader_8h_1a3c666d43c270ef8158eeb87f01bee42a" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>map&lt;string,<sp/>shader_variable&gt;<sp/><ref refid="af__shader_8h_1a3c666d43c270ef8158eeb87f01bee42a" kindref="member">mshader_variable_list</ref>;</highlight></codeline>
+<codeline lineno="36" refid="classaf__shader" refkind="compound"><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classaf__shader" kindref="compound">af_shader</ref></highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39" refid="classaf__shader_1a8ab747d05c8d0e5e95cc40759627ba87" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="af__shader_8h_1a3c666d43c270ef8158eeb87f01bee42a" kindref="member">mshader_variable_list</ref><sp/><ref refid="classaf__shader_1a8ab747d05c8d0e5e95cc40759627ba87" kindref="member">_att_list</ref>;</highlight></codeline>
+<codeline lineno="41" refid="classaf__shader_1a3f935ae5acb8d11eb6c65e0b1931cb9f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="af__shader_8h_1a3c666d43c270ef8158eeb87f01bee42a" kindref="member">mshader_variable_list</ref><sp/><ref refid="classaf__shader_1a3f935ae5acb8d11eb6c65e0b1931cb9f" kindref="member">_unf_list</ref>;</highlight></codeline>
+<codeline lineno="42" refid="classaf__shader_1a4b8048b24b6a16b18f930eb079ef3d8f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/>_shader_program_id,<sp/><ref refid="classaf__shader_1a4b8048b24b6a16b18f930eb079ef3d8f" kindref="member">_vertex_shader</ref>,<sp/>_fragment_shader;</highlight></codeline>
+<codeline lineno="43" refid="classaf__shader_1a14703df13c51394f1c6f8aed2c90c0a3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a14703df13c51394f1c6f8aed2c90c0a3" kindref="member">_name</ref>;</highlight></codeline>
+<codeline lineno="45" refid="classaf__shader_1aa7ce19779c983d89a397e32ca3e88e61" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_valid{<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="47" refid="classaf__shader_1a90cf611ca8657170e5ef31c257db9c47" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a90cf611ca8657170e5ef31c257db9c47" kindref="member">_vs_code</ref>,<sp/>_fs_code;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classaf__shader" kindref="compound">af_shader</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLchar*<sp/>vertex_shader_source,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>GLchar*<sp/>fragment_shader_source);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>~<ref refid="classaf__shader" kindref="compound">af_shader</ref>();</highlight></codeline>
+<codeline lineno="51" refid="classaf__shader_1a1223e465745544168f485753899711a6" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a1223e465745544168f485753899711a6" kindref="member">get_name</ref>()<sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_name;<sp/>}</highlight></codeline>
+<codeline lineno="52" refid="classaf__shader_1a1fc61216aae1becd7ac20dae8630eb34" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a1fc61216aae1becd7ac20dae8630eb34" kindref="member">set_name</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>name){<sp/>_name<sp/>=<sp/>name;<sp/>};</highlight></codeline>
+<codeline lineno="53" refid="classaf__shader_1acbd253f79d8db6711ef8a22914894c59" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="af__shader_8h_1a3c666d43c270ef8158eeb87f01bee42a" kindref="member">mshader_variable_list</ref>&amp;<sp/><ref refid="classaf__shader_1acbd253f79d8db6711ef8a22914894c59" kindref="member">get_uf_defs</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_unf_list;<sp/>}</highlight></codeline>
+<codeline lineno="54" refid="classaf__shader_1a334d6e9b227faea6302ba6a286af7a1c" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a334d6e9b227faea6302ba6a286af7a1c" kindref="member">get_vs_code</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_vs_code;<sp/>}</highlight></codeline>
+<codeline lineno="55" refid="classaf__shader_1a7a400c6966e1f2508f4fb035f8628a58" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a7a400c6966e1f2508f4fb035f8628a58" kindref="member">get_fs_code</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_fs_code;<sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="59" refid="classaf__shader_1a8c04adffbda2cac06b346e549986d530" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a8c04adffbda2cac06b346e549986d530" kindref="member">compile_error_info</ref>;</highlight></codeline>
+<codeline lineno="60" refid="classaf__shader_1a57f061966d244a29cd32fb04a8b14801" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a57f061966d244a29cd32fb04a8b14801" kindref="member">_vs_name</ref>,<sp/>_fs_name;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="62" refid="classaf__shader_1a11555915ae91ad0fec23d62e38073744" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_vs_selected{<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="63" refid="classaf__shader_1a0e9dd4e26a2f29459d33cf6a438f6335" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>_fs_selected{<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal"><sp/>};</highlight></codeline>
+<codeline lineno="64" refid="classaf__shader_1af8dfdbe1f8d3b951110c7444933bf195" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1af8dfdbe1f8d3b951110c7444933bf195" kindref="member">reset_sel</ref>(){<sp/>_vs_selected<sp/>=<sp/>_fs_selected<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;<sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66" refid="classaf__shader_1a2607d1c863176c444885d529fecada35" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a2607d1c863176c444885d529fecada35" kindref="member">is_valid</ref>(){<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>_valid;<sp/>}</highlight></codeline>
+<codeline lineno="67" refid="classaf__shader_1a7014308a5f8ce033fd8fa770ad176bbe" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classaf__shader_1a7014308a5f8ce033fd8fa770ad176bbe" kindref="member">use</ref>(){<sp/>glUseProgram(_shader_program_id);<sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>vertex_att_pointer(initializer_list&lt;string&gt;<sp/>att_name_list);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//template&lt;typename<sp/>T&gt;<sp/>bool<sp/>uniform(string<sp/>unf_name,<sp/>GLsizei<sp/>icnt,<sp/>T*<sp/>pvalue);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniform(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>unf_name,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal">*<sp/>pvalue);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniform(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>unf_name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">*<sp/>pvalue);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniform(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>unf_name,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal">*<sp/>pvalue);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>uniform(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>unf_name,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ivalue);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78" refid="af__shader_8h_1a273fa95b39fcbc29f4c0ee1ddf408912" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/>map&lt;string,shared_ptr&lt;af_shader&gt;&gt;<sp/><ref refid="af__shader_8h_1a273fa95b39fcbc29f4c0ee1ddf408912" kindref="member">maf_shader</ref>;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="af__shader_8h_1a273fa95b39fcbc29f4c0ee1ddf408912" kindref="member">maf_shader</ref><sp/><ref refid="af__shader_8h_1af0ab9139334e7f9f0886c7af66dd1d7c" kindref="member">g_af_shader_list</ref>;</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h"/>
+  </compounddef>
+</doxygen>

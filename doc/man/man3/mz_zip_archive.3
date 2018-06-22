@@ -1,0 +1,100 @@
+.TH "mz_zip_archive" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+mz_zip_archive \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <miniz\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmz_uint64\fP \fBm_archive_size\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBm_central_directory_file_ofs\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint32\fP \fBm_total_files\fP"
+.br
+.ti -1c
+.RI "\fBmz_zip_mode\fP \fBm_zip_mode\fP"
+.br
+.ti -1c
+.RI "\fBmz_zip_type\fP \fBm_zip_type\fP"
+.br
+.ti -1c
+.RI "\fBmz_zip_error\fP \fBm_last_error\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBm_file_offset_alignment\fP"
+.br
+.ti -1c
+.RI "\fBmz_alloc_func\fP \fBm_pAlloc\fP"
+.br
+.ti -1c
+.RI "\fBmz_free_func\fP \fBm_pFree\fP"
+.br
+.ti -1c
+.RI "\fBmz_realloc_func\fP \fBm_pRealloc\fP"
+.br
+.ti -1c
+.RI "void * \fBm_pAlloc_opaque\fP"
+.br
+.ti -1c
+.RI "\fBmz_file_read_func\fP \fBm_pRead\fP"
+.br
+.ti -1c
+.RI "\fBmz_file_write_func\fP \fBm_pWrite\fP"
+.br
+.ti -1c
+.RI "\fBmz_file_needs_keepalive\fP \fBm_pNeeds_keepalive\fP"
+.br
+.ti -1c
+.RI "void * \fBm_pIO_opaque\fP"
+.br
+.ti -1c
+.RI "\fBmz_zip_internal_state\fP * \fBm_pState\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBmz_uint64\fP mz_zip_archive::m_archive_size"
+
+.SS "\fBmz_uint64\fP mz_zip_archive::m_central_directory_file_ofs"
+
+.SS "\fBmz_uint64\fP mz_zip_archive::m_file_offset_alignment"
+
+.SS "\fBmz_zip_error\fP mz_zip_archive::m_last_error"
+
+.SS "\fBmz_alloc_func\fP mz_zip_archive::m_pAlloc"
+
+.SS "void* mz_zip_archive::m_pAlloc_opaque"
+
+.SS "\fBmz_free_func\fP mz_zip_archive::m_pFree"
+
+.SS "void* mz_zip_archive::m_pIO_opaque"
+
+.SS "\fBmz_file_needs_keepalive\fP mz_zip_archive::m_pNeeds_keepalive"
+
+.SS "\fBmz_file_read_func\fP mz_zip_archive::m_pRead"
+
+.SS "\fBmz_realloc_func\fP mz_zip_archive::m_pRealloc"
+
+.SS "\fBmz_zip_internal_state\fP* mz_zip_archive::m_pState"
+
+.SS "\fBmz_file_write_func\fP mz_zip_archive::m_pWrite"
+
+.SS "\fBmz_uint32\fP mz_zip_archive::m_total_files"
+
+.SS "\fBmz_zip_mode\fP mz_zip_archive::m_zip_mode"
+
+.SS "\fBmz_zip_type\fP mz_zip_archive::m_zip_type"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

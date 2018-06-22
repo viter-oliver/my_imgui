@@ -1,0 +1,829 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_object" kind="struct" language="C++" prot="public" abstract="yes">
+    <compoundname>ofbx::Object</compoundname>
+    <derivedcompoundref refid="structofbx_1_1_animation_curve" prot="public" virt="non-virtual">ofbx::AnimationCurve</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_animation_curve_node" prot="public" virt="non-virtual">ofbx::AnimationCurveNode</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_animation_layer" prot="public" virt="non-virtual">ofbx::AnimationLayer</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_animation_stack" prot="public" virt="non-virtual">ofbx::AnimationStack</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_cluster" prot="public" virt="non-virtual">ofbx::Cluster</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_geometry" prot="public" virt="non-virtual">ofbx::Geometry</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_limb_node_impl" prot="public" virt="non-virtual">ofbx::LimbNodeImpl</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_material" prot="public" virt="non-virtual">ofbx::Material</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_mesh" prot="public" virt="non-virtual">ofbx::Mesh</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_node_attribute" prot="public" virt="non-virtual">ofbx::NodeAttribute</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_null_impl" prot="public" virt="non-virtual">ofbx::NullImpl</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_root" prot="public" virt="non-virtual">ofbx::Root</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_skin" prot="public" virt="non-virtual">ofbx::Skin</derivedcompoundref>
+    <derivedcompoundref refid="structofbx_1_1_texture" prot="public" virt="non-virtual">ofbx::Texture</derivedcompoundref>
+    <includes refid="ofbx_8h" local="no">ofbx.h</includes>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" prot="public" static="no">
+        <name>Type</name>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5aea2adde5c377cb5e09d14b71935c6f32" prot="public">
+          <name>ROOT</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5ab22957ad8078e8d73de61aef53d13a74" prot="public">
+          <name>GEOMETRY</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5ac740ce1ae95095daaa5eb2362f3151b3" prot="public">
+          <name>MATERIAL</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a5b65fe46c5dd90ebcec69c472c3be1d9" prot="public">
+          <name>MESH</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a3f92f542bd9ec48f912b9350e22736ac" prot="public">
+          <name>TEXTURE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5ae516e2b21ac9da5befd2ee911f2dead4" prot="public">
+          <name>LIMB_NODE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a1f5c528e358237e971269f9ae0fe84b1" prot="public">
+          <name>NULL_NODE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a2aa20dce35c977bad91d6dec58914b4a" prot="public">
+          <name>NODE_ATTRIBUTE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a425d2057e82f8858378dfe7008cbabb6" prot="public">
+          <name>CLUSTER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a017ef937cce02f08a30f875ebcb80a60" prot="public">
+          <name>SKIN</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5aacc320672665a65d405ed53bf1314a78" prot="public">
+          <name>ANIMATION_STACK</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5af569a034f032bdb179e70f565e1abe81" prot="public">
+          <name>ANIMATION_LAYER</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5a6da7353024d0dc2f12d9edf6784f91cc" prot="public">
+          <name>ANIMATION_CURVE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5abe49562d37b80e26f00c80cfa5a94589" prot="public">
+          <name>ANIMATION_CURVE_NODE</name>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="143" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="142" bodyend="158"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_object_1aa9389f53bde91f138df49e48e0447b0b" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceofbx_1af4065f2803c4319bc66e848823cedccf" kindref="member">u64</ref></type>
+        <definition>u64 ofbx::Object::id</definition>
+        <argsstring></argsstring>
+        <name>id</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="191" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="191" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_object_1a805b47b5743d377e8b5939ed8c42a5c4" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ofbx::Object::name[128]</definition>
+        <argsstring>[128]</argsstring>
+        <name>name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="192" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="192" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_object_1a37c36cf361d6b9783348f2dbdc1462c8" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structofbx_1_1_i_element" kindref="compound">IElement</ref> &amp;</type>
+        <definition>const IElement&amp; ofbx::Object::element</definition>
+        <argsstring></argsstring>
+        <name>element</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="193" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="193" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_object_1aa88660f2cb7b584b7feaf208e633863e" prot="public" static="no" mutable="no">
+        <type>const <ref refid="structofbx_1_1_object" kindref="compound">Object</ref> *</type>
+        <definition>const Object* ofbx::Object::node_attribute</definition>
+        <argsstring></argsstring>
+        <name>node_attribute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="194" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="194" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_object_1accbd64c9e29189111ece33831d0ffe91" prot="protected" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ofbx::Object::is_node</definition>
+        <argsstring></argsstring>
+        <name>is_node</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="197" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_object_1aa8b8ff6f452ed54e032c9e657ceb4f62" prot="protected" static="no" mutable="no">
+        <type>const <ref refid="structofbx_1_1_scene" kindref="compound">Scene</ref> &amp;</type>
+        <definition>const Scene&amp; ofbx::Object::scene</definition>
+        <argsstring></argsstring>
+        <name>scene</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="198" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="198" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structofbx_1_1_object_1ad3852f1bb90c811e9d4b3775d1e40a14" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>ofbx::Object::Object</definition>
+        <argsstring>(const Scene &amp;_scene, const IElement &amp;_element)</argsstring>
+        <name>Object</name>
+        <param>
+          <type>const <ref refid="structofbx_1_1_scene" kindref="compound">Scene</ref> &amp;</type>
+          <declname>_scene</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structofbx_1_1_i_element" kindref="compound">IElement</ref> &amp;</type>
+          <declname>_element</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="160" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="432" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1ae05540cc4f719253808195263452fe57" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type></type>
+        <definition>virtual ofbx::Object::~Object</definition>
+        <argsstring>()</argsstring>
+        <name>~Object</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="162" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="162" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a351a55f8f04b3ead907280f3a4dcc48c" prot="public" static="no" const="yes" explicit="no" inline="no" virt="pure-virtual">
+        <type><ref refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" kindref="member">Type</ref></type>
+        <definition>virtual Type ofbx::Object::getType</definition>
+        <argsstring>() const =0</argsstring>
+        <name>getType</name>
+        <reimplementedby refid="structofbx_1_1_mesh_impl_1a8ba7958770d6974f0606e64b2143543f">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_material_impl_1a68d4fd367fd585a98b51b262fc318b0c">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_limb_node_impl_1aa6603e9e74eb9d4341bac6e1901e12d1">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_null_impl_1a7e7ee99673c53592d76d280a616ee770">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_node_attribute_impl_1a642e4186ef8277add181ae2aa3013704">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_geometry_impl_1aede58c8ff9b86e9eae0bf4156ca10eb9">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_cluster_impl_1aa730b44920c0eb92d8ab0f77b9df6a0c">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_animation_stack_impl_1aa9e4a2c8ab009c4587b9d12dbdf5ffc9">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_animation_curve_impl_1ad4c81852c011fb8eeca229781b4364de">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_skin_impl_1a843df659cbe2f9ef7226bf9ad35e4245">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_texture_impl_1a89386eea337a7e902254ba1cf6d5dce0">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_root_1ace58f2e22f595d1f334ae5f96cd681e5">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_animation_curve_node_impl_1aba9ef4194ea2e4dcf851916b45747e37">getType</reimplementedby>
+        <reimplementedby refid="structofbx_1_1_animation_layer_impl_1a06e194050ab45e8ed3536d26abc0939b">getType</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="163" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1ace5bf5d0a7fd82d953d058df65d0c85e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const <ref refid="structofbx_1_1_i_scene" kindref="compound">IScene</ref> &amp;</type>
+        <definition>const IScene &amp; ofbx::Object::getScene</definition>
+        <argsstring>() const </argsstring>
+        <name>getScene</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="165" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2837" bodyend="2840"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a3baace736ac9954b9369faeb94dc4fc3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_object" kindref="compound">Object</ref> *</type>
+        <definition>Object * ofbx::Object::resolveObjectLink</definition>
+        <argsstring>(int idx) const </argsstring>
+        <name>resolveObjectLink</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="166" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2843" bodyend="2859"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a0f01e46c82d9d3e0c5673d9f53c2b7fe" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_object" kindref="compound">Object</ref> *</type>
+        <definition>Object * ofbx::Object::resolveObjectLink</definition>
+        <argsstring>(Type type, const char *property, int idx) const </argsstring>
+        <name>resolveObjectLink</name>
+        <param>
+          <type><ref refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" kindref="member">Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>property</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="167" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2862" bodyend="2881"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1ab3c2a9ad2afc5436079603ca57c35ea0" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_object" kindref="compound">Object</ref> *</type>
+        <definition>Object * ofbx::Object::resolveObjectLinkReverse</definition>
+        <argsstring>(Type type) const </argsstring>
+        <name>resolveObjectLinkReverse</name>
+        <param>
+          <type><ref refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" kindref="member">Type</ref></type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="168" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2822" bodyend="2834"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a117b5609981c4c3f45f77c758de097a3" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_object" kindref="compound">Object</ref> *</type>
+        <definition>Object * ofbx::Object::getParent</definition>
+        <argsstring>() const </argsstring>
+        <name>getParent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="169" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2884" bodyend="2900"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1ae5325426051bc9083973e7db6ed10b73" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="namespaceofbx_1a4019779f155facfcc3382f7c5df1661d" kindref="member">RotationOrder</ref></type>
+        <definition>RotationOrder ofbx::Object::getRotationOrder</definition>
+        <argsstring>() const </argsstring>
+        <name>getRotationOrder</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="171" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2710" bodyend="2714"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a7434e37ced967fb1bf8c8bb6a12a674e" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getRotationOffset</definition>
+        <argsstring>() const </argsstring>
+        <name>getRotationOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="172" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2717" bodyend="2720"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a554fe3984a6ddf1b5a03a811633591b5" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getRotationPivot</definition>
+        <argsstring>() const </argsstring>
+        <name>getRotationPivot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="173" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2723" bodyend="2726"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a52008edb38ebc35269d1523b0cb4599a" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getPostRotation</definition>
+        <argsstring>() const </argsstring>
+        <name>getPostRotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="174" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2729" bodyend="2732"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a066556d7b2361538093050d3422b6676" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getScalingOffset</definition>
+        <argsstring>() const </argsstring>
+        <name>getScalingOffset</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="175" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2735" bodyend="2738"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a0c528f1e34f6c9287d2e389488d5dc39" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getScalingPivot</definition>
+        <argsstring>() const </argsstring>
+        <name>getScalingPivot</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="176" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2741" bodyend="2744"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1ac80b1e2e54a0325397505abcdb40b254" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getPreRotation</definition>
+        <argsstring>() const </argsstring>
+        <name>getPreRotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="177" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2795" bodyend="2798"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1aa3de47089adf9fd9e19b674b7eeb4923" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getLocalTranslation</definition>
+        <argsstring>() const </argsstring>
+        <name>getLocalTranslation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="178" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2789" bodyend="2792"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1afe2a2a4f6998a42eb5de7bd04fb93f2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getLocalRotation</definition>
+        <argsstring>() const </argsstring>
+        <name>getLocalRotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="179" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2801" bodyend="2804"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a91007293b823fea15253a32ef6a8df2d" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref></type>
+        <definition>Vec3 ofbx::Object::getLocalScaling</definition>
+        <argsstring>() const </argsstring>
+        <name>getLocalScaling</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="180" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2807" bodyend="2810"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1abbe7839bd1a2e6469c05fd82e4fa3334" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_matrix" kindref="compound">Matrix</ref></type>
+        <definition>Matrix ofbx::Object::getGlobalTransform</definition>
+        <argsstring>() const </argsstring>
+        <name>getGlobalTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="181" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2813" bodyend="2819"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a265dd11d0863c60bd537f18ef7a8e028" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type><ref refid="structofbx_1_1_matrix" kindref="compound">Matrix</ref></type>
+        <definition>Matrix ofbx::Object::evalLocal</definition>
+        <argsstring>(const Vec3 &amp;translation, const Vec3 &amp;rotation) const </argsstring>
+        <name>evalLocal</name>
+        <param>
+          <type>const <ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref> &amp;</type>
+          <declname>translation</declname>
+        </param>
+        <param>
+          <type>const <ref refid="structofbx_1_1_vec3" kindref="compound">Vec3</ref> &amp;</type>
+          <declname>rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="182" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="2747" bodyend="2786"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1ae214d85b80db101df3e1b8f46a837722" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ofbx::Object::isNode</definition>
+        <argsstring>() const </argsstring>
+        <name>isNode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="183" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="183" bodyend="183"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_object_1a7d9f54c95d761ca7b24a8b18b39ae39d" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename T</type>
+          </param>
+        </templateparamlist>
+        <type>T *</type>
+        <definition>T* ofbx::Object::resolveObjectLink</definition>
+        <argsstring>(int idx) const </argsstring>
+        <name>resolveObjectLink</name>
+        <param>
+          <type>int</type>
+          <declname>idx</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="186" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="186" bodyend="189"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="540">
+        <label>ofbx::Mesh</label>
+        <link refid="structofbx_1_1_mesh"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="525">
+        <label>ofbx::AnimationCurve</label>
+        <link refid="structofbx_1_1_animation_curve"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="524">
+        <label>ofbx::Object</label>
+        <link refid="structofbx_1_1_object"/>
+      </node>
+      <node id="538">
+        <label>ofbx::Material</label>
+        <link refid="structofbx_1_1_material"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="545">
+        <label>ofbx::Root</label>
+        <link refid="structofbx_1_1_root"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="533">
+        <label>ofbx::Cluster</label>
+        <link refid="structofbx_1_1_cluster"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="541">
+        <label>ofbx::MeshImpl</label>
+        <link refid="structofbx_1_1_mesh_impl"/>
+        <childnode refid="540" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="527">
+        <label>ofbx::AnimationCurveNode</label>
+        <link refid="structofbx_1_1_animation_curve_node"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="536">
+        <label>ofbx::GeometryImpl</label>
+        <link refid="structofbx_1_1_geometry_impl"/>
+        <childnode refid="535" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="548">
+        <label>ofbx::Texture</label>
+        <link refid="structofbx_1_1_texture"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="532">
+        <label>ofbx::AnimationStackImpl</label>
+        <link refid="structofbx_1_1_animation_stack_impl"/>
+        <childnode refid="531" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="528">
+        <label>ofbx::AnimationCurveNodeImpl</label>
+        <link refid="structofbx_1_1_animation_curve_node_impl"/>
+        <childnode refid="527" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="544">
+        <label>ofbx::NullImpl</label>
+        <link refid="structofbx_1_1_null_impl"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="529">
+        <label>ofbx::AnimationLayer</label>
+        <link refid="structofbx_1_1_animation_layer"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="535">
+        <label>ofbx::Geometry</label>
+        <link refid="structofbx_1_1_geometry"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="539">
+        <label>ofbx::MaterialImpl</label>
+        <link refid="structofbx_1_1_material_impl"/>
+        <childnode refid="538" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="543">
+        <label>ofbx::NodeAttributeImpl</label>
+        <link refid="structofbx_1_1_node_attribute_impl"/>
+        <childnode refid="542" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="531">
+        <label>ofbx::AnimationStack</label>
+        <link refid="structofbx_1_1_animation_stack"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="549">
+        <label>ofbx::TextureImpl</label>
+        <link refid="structofbx_1_1_texture_impl"/>
+        <childnode refid="548" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="542">
+        <label>ofbx::NodeAttribute</label>
+        <link refid="structofbx_1_1_node_attribute"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="537">
+        <label>ofbx::LimbNodeImpl</label>
+        <link refid="structofbx_1_1_limb_node_impl"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="547">
+        <label>ofbx::SkinImpl</label>
+        <link refid="structofbx_1_1_skin_impl"/>
+        <childnode refid="546" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="546">
+        <label>ofbx::Skin</label>
+        <link refid="structofbx_1_1_skin"/>
+        <childnode refid="524" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="530">
+        <label>ofbx::AnimationLayerImpl</label>
+        <link refid="structofbx_1_1_animation_layer_impl"/>
+        <childnode refid="529" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="526">
+        <label>ofbx::AnimationCurveImpl</label>
+        <link refid="structofbx_1_1_animation_curve_impl"/>
+        <childnode refid="525" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="534">
+        <label>ofbx::ClusterImpl</label>
+        <link refid="structofbx_1_1_cluster_impl"/>
+        <childnode refid="533" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="556">
+        <label>ofbx::Property</label>
+        <link refid="structofbx_1_1_property"/>
+        <childnode refid="557" relation="public-inheritance">
+        </childnode>
+        <childnode refid="556" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="558" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+      <node id="550">
+        <label>ofbx::Object</label>
+        <link refid="structofbx_1_1_object"/>
+        <childnode refid="550" relation="usage">
+          <edgelabel>node_attribute</edgelabel>
+        </childnode>
+        <childnode refid="551" relation="usage">
+          <edgelabel>scene</edgelabel>
+        </childnode>
+        <childnode refid="555" relation="usage">
+          <edgelabel>element</edgelabel>
+        </childnode>
+      </node>
+      <node id="553">
+        <label>ofbx::Root</label>
+        <link refid="structofbx_1_1_root"/>
+        <childnode refid="550" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="557">
+        <label>ofbx::IElementProperty</label>
+        <link refid="structofbx_1_1_i_element_property"/>
+      </node>
+      <node id="552">
+        <label>ofbx::IScene</label>
+        <link refid="structofbx_1_1_i_scene"/>
+      </node>
+      <node id="555">
+        <label>ofbx::IElement</label>
+        <link refid="structofbx_1_1_i_element"/>
+      </node>
+      <node id="551">
+        <label>ofbx::Scene</label>
+        <link refid="structofbx_1_1_scene"/>
+        <childnode refid="552" relation="public-inheritance">
+        </childnode>
+        <childnode refid="553" relation="usage">
+          <edgelabel>m_root</edgelabel>
+        </childnode>
+        <childnode refid="554" relation="usage">
+          <edgelabel>m_root_element</edgelabel>
+        </childnode>
+      </node>
+      <node id="554">
+        <label>ofbx::Element</label>
+        <link refid="structofbx_1_1_element"/>
+        <childnode refid="555" relation="public-inheritance">
+        </childnode>
+        <childnode refid="556" relation="usage">
+          <edgelabel>first_property</edgelabel>
+        </childnode>
+        <childnode refid="558" relation="usage">
+          <edgelabel>id</edgelabel>
+        </childnode>
+        <childnode refid="554" relation="usage">
+          <edgelabel>sibling</edgelabel>
+          <edgelabel>child</edgelabel>
+        </childnode>
+      </node>
+      <node id="558">
+        <label>ofbx::DataView</label>
+        <link refid="structofbx_1_1_data_view"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="141" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="140" bodyend="199"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_object_1a37c36cf361d6b9783348f2dbdc1462c8" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>element</name></member>
+      <member refid="structofbx_1_1_object_1a265dd11d0863c60bd537f18ef7a8e028" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>evalLocal</name></member>
+      <member refid="structofbx_1_1_object_1abbe7839bd1a2e6469c05fd82e4fa3334" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getGlobalTransform</name></member>
+      <member refid="structofbx_1_1_object_1afe2a2a4f6998a42eb5de7bd04fb93f2d" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getLocalRotation</name></member>
+      <member refid="structofbx_1_1_object_1a91007293b823fea15253a32ef6a8df2d" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getLocalScaling</name></member>
+      <member refid="structofbx_1_1_object_1aa3de47089adf9fd9e19b674b7eeb4923" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getLocalTranslation</name></member>
+      <member refid="structofbx_1_1_object_1a117b5609981c4c3f45f77c758de097a3" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getParent</name></member>
+      <member refid="structofbx_1_1_object_1a52008edb38ebc35269d1523b0cb4599a" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getPostRotation</name></member>
+      <member refid="structofbx_1_1_object_1ac80b1e2e54a0325397505abcdb40b254" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getPreRotation</name></member>
+      <member refid="structofbx_1_1_object_1a7434e37ced967fb1bf8c8bb6a12a674e" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getRotationOffset</name></member>
+      <member refid="structofbx_1_1_object_1ae5325426051bc9083973e7db6ed10b73" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getRotationOrder</name></member>
+      <member refid="structofbx_1_1_object_1a554fe3984a6ddf1b5a03a811633591b5" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getRotationPivot</name></member>
+      <member refid="structofbx_1_1_object_1a066556d7b2361538093050d3422b6676" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getScalingOffset</name></member>
+      <member refid="structofbx_1_1_object_1a0c528f1e34f6c9287d2e389488d5dc39" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getScalingPivot</name></member>
+      <member refid="structofbx_1_1_object_1ace5bf5d0a7fd82d953d058df65d0c85e" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>getScene</name></member>
+      <member refid="structofbx_1_1_object_1a351a55f8f04b3ead907280f3a4dcc48c" prot="public" virt="pure-virtual"><scope>ofbx::Object</scope><name>getType</name></member>
+      <member refid="structofbx_1_1_object_1aa9389f53bde91f138df49e48e0447b0b" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>id</name></member>
+      <member refid="structofbx_1_1_object_1accbd64c9e29189111ece33831d0ffe91" prot="protected" virt="non-virtual"><scope>ofbx::Object</scope><name>is_node</name></member>
+      <member refid="structofbx_1_1_object_1ae214d85b80db101df3e1b8f46a837722" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>isNode</name></member>
+      <member refid="structofbx_1_1_object_1a805b47b5743d377e8b5939ed8c42a5c4" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>name</name></member>
+      <member refid="structofbx_1_1_object_1aa88660f2cb7b584b7feaf208e633863e" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>node_attribute</name></member>
+      <member refid="structofbx_1_1_object_1ad3852f1bb90c811e9d4b3775d1e40a14" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>Object</name></member>
+      <member refid="structofbx_1_1_object_1a3baace736ac9954b9369faeb94dc4fc3" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1a0f01e46c82d9d3e0c5673d9f53c2b7fe" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1a7d9f54c95d761ca7b24a8b18b39ae39d" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>resolveObjectLink</name></member>
+      <member refid="structofbx_1_1_object_1ab3c2a9ad2afc5436079603ca57c35ea0" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>resolveObjectLinkReverse</name></member>
+      <member refid="structofbx_1_1_object_1aa8b8ff6f452ed54e032c9e657ceb4f62" prot="protected" virt="non-virtual"><scope>ofbx::Object</scope><name>scene</name></member>
+      <member refid="structofbx_1_1_object_1a97a0620e9e5df23dcb848b63f2a471f5" prot="public" virt="non-virtual"><scope>ofbx::Object</scope><name>Type</name></member>
+      <member refid="structofbx_1_1_object_1ae05540cc4f719253808195263452fe57" prot="public" virt="virtual"><scope>ofbx::Object</scope><name>~Object</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

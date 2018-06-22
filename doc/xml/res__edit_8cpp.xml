@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="res__edit_8cpp" kind="file" language="C++">
+    <compoundname>res_edit.cpp</compoundname>
+    <includes refid="res__edit_8h" local="yes">res_edit.h</includes>
+    <includes refid="res__output_8h" local="yes">res_output.h</includes>
+    <includes refid="user__control__imgui_8h" local="yes">user_control_imgui.h</includes>
+    <includes local="no">windows.h</includes>
+    <includes local="no">locale.h</includes>
+    <includes local="no">ShlObj.h</includes>
+    <includes local="no">Commdlg.h</includes>
+    <includes refid="texture__res__load_8h" local="yes">texture_res_load.h</includes>
+    <incdepgraph>
+      <node id="1099">
+        <label>res_internal.h</label>
+        <link refid="res__internal_8h"/>
+        <childnode refid="1100" relation="include">
+        </childnode>
+        <childnode refid="1089" relation="include">
+        </childnode>
+      </node>
+      <node id="1093">
+        <label>windows.h</label>
+      </node>
+      <node id="1098">
+        <label>json/json.h</label>
+      </node>
+      <node id="1092">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="1089">
+        <label>string</label>
+      </node>
+      <node id="1097">
+        <label>texture_res_load.h</label>
+        <link refid="texture__res__load_8h"/>
+        <childnode refid="1087" relation="include">
+        </childnode>
+        <childnode refid="1098" relation="include">
+        </childnode>
+        <childnode refid="1099" relation="include">
+        </childnode>
+      </node>
+      <node id="1100">
+        <label>map</label>
+      </node>
+      <node id="1086">
+        <label>res_edit.h</label>
+        <link refid="res__edit_8h"/>
+      </node>
+      <node id="1088">
+        <label>vector</label>
+      </node>
+      <node id="1095">
+        <label>ShlObj.h</label>
+      </node>
+      <node id="1091">
+        <label>imgui.h</label>
+      </node>
+      <node id="1090">
+        <label>user_control_imgui.h</label>
+        <link refid="user__control__imgui_8h"/>
+        <childnode refid="1091" relation="include">
+        </childnode>
+        <childnode refid="1092" relation="include">
+        </childnode>
+      </node>
+      <node id="1096">
+        <label>Commdlg.h</label>
+      </node>
+      <node id="1085">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_edit.cpp</label>
+        <link refid="res_edit.cpp"/>
+        <childnode refid="1086" relation="include">
+        </childnode>
+        <childnode refid="1087" relation="include">
+        </childnode>
+        <childnode refid="1090" relation="include">
+        </childnode>
+        <childnode refid="1093" relation="include">
+        </childnode>
+        <childnode refid="1094" relation="include">
+        </childnode>
+        <childnode refid="1095" relation="include">
+        </childnode>
+        <childnode refid="1096" relation="include">
+        </childnode>
+        <childnode refid="1097" relation="include">
+        </childnode>
+      </node>
+      <node id="1094">
+        <label>locale.h</label>
+      </node>
+      <node id="1087">
+        <label>res_output.h</label>
+        <link refid="res__output_8h"/>
+        <childnode refid="1088" relation="include">
+        </childnode>
+        <childnode refid="1089" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="res__edit_8h" kindref="compound">res_edit.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="res__output_8h" kindref="compound">res_output.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="user__control__imgui_8h" kindref="compound">user_control_imgui.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;windows.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;locale.h&gt;</highlight><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;ShlObj.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;Commdlg.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="texture__res__load_8h" kindref="compound">texture_res_load.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><ref refid="classres__edit_1a169579c8cee72cd7bf5a2bd6d8bc2229" kindref="member">res_edit::res_edit</ref>()</highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classres__edit_1a567f8c7316883e4867040bf4ff75dfde" kindref="member">_tmp_current_txt_id_index</ref><sp/>=<sp/><ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><ref refid="classres__edit_1af11fed6261894ab5d2405c04822b0727" kindref="member">res_edit::~res_edit</ref>()</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classres__edit_1a71f30b72b2ffafa6283dc9ca90cc51ec" kindref="member">res_edit::draw_res_list</ref>()</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isize=<ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>.size();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>texture_res_show[]{</highlight><highlight class="stringliteral">&quot;texture<sp/>res0&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;texture<sp/>res1&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;texture<sp/>res2&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;texture<sp/>res3&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;texture<sp/>res4&quot;</highlight><highlight class="normal">,};</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Combo(</highlight><highlight class="stringliteral">&quot;texture<sp/>resource<sp/>list&quot;</highlight><highlight class="normal">,<sp/>&amp;<ref refid="classres__edit_1a567f8c7316883e4867040bf4ff75dfde" kindref="member">_tmp_current_txt_id_index</ref>,<sp/>texture_res_show,<sp/>isize);</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="classres__edit_1a567f8c7316883e4867040bf4ff75dfde" kindref="member">_tmp_current_txt_id_index</ref><sp/>!=<sp/><ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref><sp/>=<sp/><ref refid="classres__edit_1a567f8c7316883e4867040bf4ff75dfde" kindref="member">_tmp_current_txt_id_index</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;add<sp/>new<sp/>texture<sp/>resource:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>texture_pack_name_str[<ref refid="basic3d_8h_1afddfc0468a0fb0d80c116b5e16b9be17" kindref="member">FILE_NAME_LEN</ref>]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal"><sp/>texture_data_name_str[<ref refid="basic3d_8h_1afddfc0468a0fb0d80c116b5e16b9be17" kindref="member">FILE_NAME_LEN</ref>]<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(isize<sp/>&lt;<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(texture_res_show))</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::InputText(</highlight><highlight class="stringliteral">&quot;texture<sp/>pack<sp/>file:&quot;</highlight><highlight class="normal">,<sp/>texture_pack_name_str,<sp/><ref refid="basic3d_8h_1afddfc0468a0fb0d80c116b5e16b9be17" kindref="member">FILE_NAME_LEN</ref>);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImGui::InputText(</highlight><highlight class="stringliteral">&quot;texture<sp/>data<sp/>file:&quot;</highlight><highlight class="normal">,<sp/>texture_data_name_str,<sp/><ref refid="basic3d_8h_1afddfc0468a0fb0d80c116b5e16b9be17" kindref="member">FILE_NAME_LEN</ref>);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ImGui::Button(</highlight><highlight class="stringliteral">&quot;new<sp/>texture<sp/>resource&quot;</highlight><highlight class="normal">))</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>.push_back(<ref refid="structres__texture__list" kindref="compound">res_texture_list</ref>());</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>isize<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>.size();</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structres__texture__list" kindref="compound">res_texture_list</ref>&amp;<sp/>retxt<sp/>=<sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[isize<sp/>-<sp/>1];</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retxt.<ref refid="structres__texture__list_1a001dbdf75fce4de679e387bf7acf4ff8" kindref="member">texture_pack_file</ref><sp/>=<sp/>texture_pack_name_str;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>retxt.<ref refid="structres__texture__list_1ad2cfffcd7eadf3c0e1241e35516a4474" kindref="member">texture_data_file</ref><sp/>=<sp/>texture_data_name_str;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="texture__res__load_8cpp_1a6691362e9a4e9046320b19aabc3ffcee" kindref="member">load_texture_info</ref>(retxt,<sp/>retxt.<ref refid="structres__texture__list_1a001dbdf75fce4de679e387bf7acf4ff8" kindref="member">texture_pack_file</ref>,<sp/>retxt.<ref refid="structres__texture__list_1ad2cfffcd7eadf3c0e1241e35516a4474" kindref="member">texture_data_file</ref>))</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MessageBox(GetForegroundWindow(),<sp/></highlight><highlight class="stringliteral">&quot;fail<sp/>to<sp/>loading<sp/>texture<sp/>information!<sp/>&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;Error<sp/>info&quot;</highlight><highlight class="normal">,<sp/>MB_OK);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>.erase(<ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>.begin()+<sp/>(isize<sp/>-<sp/>1));</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(texture_pack_name_str,<sp/>0,<sp/><ref refid="basic3d_8h_1afddfc0468a0fb0d80c116b5e16b9be17" kindref="member">FILE_NAME_LEN</ref>);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>memset(texture_data_name_str,<sp/>0,<sp/><ref refid="basic3d_8h_1afddfc0468a0fb0d80c116b5e16b9be17" kindref="member">FILE_NAME_LEN</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classres__edit_1a9963faa046ceef7581cbf08524b0b056" kindref="member">res_edit::draw_res_item_property</ref>()</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;texture<sp/>pack<sp/>file:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SameLine();</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(<ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_pack_file.c_str());</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(</highlight><highlight class="stringliteral">&quot;texture<sp/>data<sp/>file:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::SameLine();</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>ImGui::Text(<ref refid="res__output_8cpp_1a7dfb9d14c70eaac507d4bf4cae7e7360" kindref="member">g_vres_texture_list</ref>[<ref refid="res__output_8cpp_1a71767b9aa6ebf3c8383faab8b7212d38" kindref="member">g_cur_texture_id_index</ref>].texture_data_file.c_str());</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_edit.cpp"/>
+  </compounddef>
+</doxygen>

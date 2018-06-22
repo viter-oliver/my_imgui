@@ -3,6 +3,12 @@
 #include "json.h"
 namespace auto_future_utilities
 {
+	/**
+	* @brief  message filter is designed as a chain of responsibility model, \n
+	*every filter only handle the special type of message, if the message is \n
+	*not what he is interested in, he will simply transfer the message to his \n
+	*successor  
+	*/
 	class base_filter_n
 	{
 	protected:

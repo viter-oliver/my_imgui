@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structbase__ui__component_1_1internal__property" kind="struct" language="C++" prot="protected">
+    <compoundname>base_ui_component::internal_property</compoundname>
+    <includes refid="control__common__def_8h" local="no">control_common_def.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structbase__ui__component_1_1internal__property_1a0bed4fc7821cc2344ccc2e366ac6b177" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char base_ui_component::internal_property::_name[name_len]</definition>
+        <argsstring>[name_len]</argsstring>
+        <name>_name</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="65" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase__ui__component_1_1internal__property_1a60f9800929102c3b840bf4766d9f30c3" prot="public" static="no" mutable="no">
+        <type>ImVec3</type>
+        <definition>ImVec3 base_ui_component::internal_property::_pos</definition>
+        <argsstring></argsstring>
+        <name>_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="66" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structbase__ui__component_1_1internal__property_1ab585eca43cb5ae833f05bf5efa3c2401" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool base_ui_component::internal_property::_visible</definition>
+        <argsstring></argsstring>
+        <name>_visible</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="67" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structbase__ui__component_1_1internal__property_1a6b442ebe34fb2c54558e155d51b7f685" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>base_ui_component::internal_property::internal_property</definition>
+        <argsstring>()</argsstring>
+        <name>internal_property</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="68" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="68" bodyend="68"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>define the property data block<linebreak/>
+</para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="64" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="63" bodyend="69"/>
+    <listofallmembers>
+      <member refid="structbase__ui__component_1_1internal__property_1a0bed4fc7821cc2344ccc2e366ac6b177" prot="public" virt="non-virtual"><scope>base_ui_component::internal_property</scope><name>_name</name></member>
+      <member refid="structbase__ui__component_1_1internal__property_1a60f9800929102c3b840bf4766d9f30c3" prot="public" virt="non-virtual"><scope>base_ui_component::internal_property</scope><name>_pos</name></member>
+      <member refid="structbase__ui__component_1_1internal__property_1ab585eca43cb5ae833f05bf5efa3c2401" prot="public" virt="non-virtual"><scope>base_ui_component::internal_property</scope><name>_visible</name></member>
+      <member refid="structbase__ui__component_1_1internal__property_1a6b442ebe34fb2c54558e155d51b7f685" prot="public" virt="non-virtual"><scope>base_ui_component::internal_property</scope><name>internal_property</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

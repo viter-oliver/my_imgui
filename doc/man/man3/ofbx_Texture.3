@@ -1,0 +1,77 @@
+.TH "ofbx::Texture" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::Texture \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherits \fBofbx::Object\fP\&.
+.PP
+Inherited by \fBofbx::TextureImpl\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBTextureType\fP { \fBDIFFUSE\fP, \fBNORMAL\fP, \fBCOUNT\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBTexture\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "virtual \fBDataView\fP \fBgetFileName\fP () const =0"
+.br
+.ti -1c
+.RI "virtual \fBDataView\fP \fBgetRelativeFileName\fP () const =0"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const \fBType\fP \fBs_type\fP = \fBType::TEXTURE\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBofbx::Texture::TextureType\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIDIFFUSE \fP\fP
+.TP
+\fB\fINORMAL \fP\fP
+.TP
+\fB\fICOUNT \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::Texture::Texture (const \fBScene\fP & _scene, const \fBIElement\fP & _element)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual \fBDataView\fP ofbx::Texture::getFileName () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::TextureImpl\fP\&.
+.SS "virtual \fBDataView\fP ofbx::Texture::getRelativeFileName () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::TextureImpl\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBType\fP ofbx::Texture::s_type = \fBType::TEXTURE\fP\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

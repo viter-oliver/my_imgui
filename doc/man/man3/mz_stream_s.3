@@ -1,0 +1,90 @@
+.TH "mz_stream_s" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+mz_stream_s \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <miniz\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "const unsigned char * \fBnext_in\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBavail_in\fP"
+.br
+.ti -1c
+.RI "\fBmz_ulong\fP \fBtotal_in\fP"
+.br
+.ti -1c
+.RI "unsigned char * \fBnext_out\fP"
+.br
+.ti -1c
+.RI "unsigned int \fBavail_out\fP"
+.br
+.ti -1c
+.RI "\fBmz_ulong\fP \fBtotal_out\fP"
+.br
+.ti -1c
+.RI "char * \fBmsg\fP"
+.br
+.ti -1c
+.RI "struct mz_internal_state * \fBstate\fP"
+.br
+.ti -1c
+.RI "\fBmz_alloc_func\fP \fBzalloc\fP"
+.br
+.ti -1c
+.RI "\fBmz_free_func\fP \fBzfree\fP"
+.br
+.ti -1c
+.RI "void * \fBopaque\fP"
+.br
+.ti -1c
+.RI "int \fBdata_type\fP"
+.br
+.ti -1c
+.RI "\fBmz_ulong\fP \fBadler\fP"
+.br
+.ti -1c
+.RI "\fBmz_ulong\fP \fBreserved\fP"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBmz_ulong\fP mz_stream_s::adler"
+
+.SS "unsigned int mz_stream_s::avail_in"
+
+.SS "unsigned int mz_stream_s::avail_out"
+
+.SS "int mz_stream_s::data_type"
+
+.SS "char* mz_stream_s::msg"
+
+.SS "const unsigned char* mz_stream_s::next_in"
+
+.SS "unsigned char* mz_stream_s::next_out"
+
+.SS "void* mz_stream_s::opaque"
+
+.SS "\fBmz_ulong\fP mz_stream_s::reserved"
+
+.SS "struct mz_internal_state* mz_stream_s::state"
+
+.SS "\fBmz_ulong\fP mz_stream_s::total_in"
+
+.SS "\fBmz_ulong\fP mz_stream_s::total_out"
+
+.SS "\fBmz_alloc_func\fP mz_stream_s::zalloc"
+
+.SS "\fBmz_free_func\fP mz_stream_s::zfree"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

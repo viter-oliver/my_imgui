@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 	g_current_run_path = buffer;
 	g_current_run_path += "\\";
 	instantiating_internal_shader();
-	init_primitive_list();
+	init_internal_primitive_list();
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 	base_ui_component* _proot = NULL;

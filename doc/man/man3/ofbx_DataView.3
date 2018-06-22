@@ -1,0 +1,86 @@
+.TH "ofbx::DataView" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::DataView \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBoperator!=\fP (const char *rhs) const "
+.br
+.ti -1c
+.RI "bool \fBoperator==\fP (const char *rhs) const "
+.br
+.ti -1c
+.RI "\fBu64\fP \fBtoU64\fP () const "
+.br
+.ti -1c
+.RI "\fBi64\fP \fBtoI64\fP () const "
+.br
+.ti -1c
+.RI "int \fBtoInt\fP () const "
+.br
+.ti -1c
+.RI "\fBu32\fP \fBtoU32\fP () const "
+.br
+.ti -1c
+.RI "double \fBtoDouble\fP () const "
+.br
+.ti -1c
+.RI "float \fBtoFloat\fP () const "
+.br
+.ti -1c
+.RI "template<int N> void \fBtoString\fP (char(&out)[N]) const "
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "const \fBu8\fP * \fBbegin\fP = nullptr"
+.br
+.ti -1c
+.RI "const \fBu8\fP * \fBend\fP = nullptr"
+.br
+.ti -1c
+.RI "bool \fBis_binary\fP = true"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "bool ofbx::DataView::operator!= (const char * rhs) const\fC [inline]\fP"
+
+.SS "bool ofbx::DataView::operator== (const char * rhs) const"
+
+.SS "double ofbx::DataView::toDouble () const"
+
+.SS "float ofbx::DataView::toFloat () const"
+
+.SS "\fBi64\fP ofbx::DataView::toI64 () const"
+
+.SS "int ofbx::DataView::toInt () const"
+
+.SS "template<int N> void ofbx::DataView::toString (char(&) out[N]) const\fC [inline]\fP"
+
+.SS "\fBu32\fP ofbx::DataView::toU32 () const"
+
+.SS "\fBu64\fP ofbx::DataView::toU64 () const"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBu8\fP* ofbx::DataView::begin = nullptr"
+
+.SS "const \fBu8\fP* ofbx::DataView::end = nullptr"
+
+.SS "bool ofbx::DataView::is_binary = true"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

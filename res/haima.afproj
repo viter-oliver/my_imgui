@@ -189,32 +189,6 @@
 						"y" : 0.4582278430461884,
 						"z" : 0.1999999880790710
 					},
-					"childs" : 
-					[
-						
-						{
-							"name" : "ft_cube",
-							"scale" : 
-							{
-								"x" : 1.0,
-								"y" : 1.0,
-								"z" : 1.0
-							},
-							"screen_pos" : 
-							{
-								"x" : 0.0,
-								"y" : 0.0,
-								"z" : 0.0
-							},
-							"translation" : 
-							{
-								"x" : 0.0,
-								"y" : 0.0,
-								"z" : 0.0
-							},
-							"type" : "ft_cube"
-						}
-					],
 					"name" : "ft_scene3d",
 					"screen_pos" : 
 					{
@@ -372,6 +346,7 @@
 			"vs_name" : "particles.vs"
 		}
 	],
+	"texture_list" : [ "1.png", "VW_Golf_VII_2013.png", "blue_ring.png" ],
 	"texture_res_list" : 
 	[
 		

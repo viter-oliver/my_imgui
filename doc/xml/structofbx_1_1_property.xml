@@ -1,0 +1,309 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_property" kind="struct" language="C++" prot="public">
+    <compoundname>ofbx::Property</compoundname>
+    <basecompoundref refid="structofbx_1_1_i_element_property" prot="public" virt="non-virtual">ofbx::IElementProperty</basecompoundref>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_property_1a14a72c176959efce5c1f5ac50cdae9df" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ofbx::Property::count</definition>
+        <argsstring></argsstring>
+        <name>count</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="349" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="349" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_property_1a60c35b26e434879f97823e7cd829037f" prot="public" static="no" mutable="no">
+        <type><ref refid="namespaceofbx_1a945a0ff1279eb02e17a3eadfb947ad0d" kindref="member">u8</ref></type>
+        <definition>u8 ofbx::Property::type</definition>
+        <argsstring></argsstring>
+        <name>type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="350" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="350" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_property_1a61fd573357446f69593e473161009597" prot="public" static="no" mutable="no">
+        <type><ref refid="structofbx_1_1_data_view" kindref="compound">DataView</ref></type>
+        <definition>DataView ofbx::Property::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="351" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="351" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_property_1abd232c2d85fd872ed5f877555b2f7239" prot="public" static="no" mutable="no">
+        <type><ref refid="structofbx_1_1_property" kindref="compound">Property</ref> *</type>
+        <definition>Property* ofbx::Property::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <initializer>= nullptr</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="352" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="352" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structofbx_1_1_property_1a67c9c0f87729294c121df751c462b375" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ofbx::Property::~Property</definition>
+        <argsstring>()</argsstring>
+        <name>~Property</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="325" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="325" bodyend="325"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1a0ca2fbf6cc5275c60bd3ba7facc8660e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9" kindref="member">Type</ref></type>
+        <definition>Type ofbx::Property::getType</definition>
+        <argsstring>() const override</argsstring>
+        <name>getType</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1ab5e5091dca604c3b73daedbc208a94f6">getType</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="326" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="326" bodyend="326"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1ae2c71d3351ee742902c1ae23eaadd18b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structofbx_1_1_i_element_property" kindref="compound">IElementProperty</ref> *</type>
+        <definition>IElementProperty* ofbx::Property::getNext</definition>
+        <argsstring>() const override</argsstring>
+        <name>getNext</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1a14d21d841c11e1d8d7dd8c287afe0d8e">getNext</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="327" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="327" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1aeac072c0bbc821646d137c80dc9552b2" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type><ref refid="structofbx_1_1_data_view" kindref="compound">DataView</ref></type>
+        <definition>DataView ofbx::Property::getValue</definition>
+        <argsstring>() const override</argsstring>
+        <name>getValue</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1ae40f386d07f413303688c57e6ebc86c9">getValue</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="328" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="328" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1aa335b52a5533ff865502771a4c72b71e" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>int</type>
+        <definition>int ofbx::Property::getCount</definition>
+        <argsstring>() const override</argsstring>
+        <name>getCount</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1a93113eb8fd73212fc7377fd7cb4208a1">getCount</reimplements>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="329" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="329" bodyend="337"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1aebc59747d7ed94757345f88e22e28561" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool ofbx::Property::getValues</definition>
+        <argsstring>(double *values, int max_size) const override</argsstring>
+        <name>getValues</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1a33f9cde9ecae0d0770e2d1258bf67bda">getValues</reimplements>
+        <param>
+          <type>double *</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="339" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="339" bodyend="339"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1aa7bc2436cfc3c27e62cbf081b3d35e4b" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool ofbx::Property::getValues</definition>
+        <argsstring>(float *values, int max_size) const override</argsstring>
+        <name>getValues</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1a7deca119f27faf48d8bbd4d1b8388c3e">getValues</reimplements>
+        <param>
+          <type>float *</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="341" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="341" bodyend="341"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1a2ae5c7ecaba21550400a81758a7eb1d7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool ofbx::Property::getValues</definition>
+        <argsstring>(u64 *values, int max_size) const override</argsstring>
+        <name>getValues</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1a0bf16e0f023c1db047af4a60f9370206">getValues</reimplements>
+        <param>
+          <type><ref refid="namespaceofbx_1af4065f2803c4319bc66e848823cedccf" kindref="member">u64</ref> *</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="343" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="343" bodyend="343"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1a590c38f60fe3a246656800ce34875235" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool ofbx::Property::getValues</definition>
+        <argsstring>(i64 *values, int max_size) const override</argsstring>
+        <name>getValues</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1a74806d215690c1ed9bb27928468d9b13">getValues</reimplements>
+        <param>
+          <type><ref refid="namespaceofbx_1a8d3ee2e17d76ee54cc59dbce4c102f48" kindref="member">i64</ref> *</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="345" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="345" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_property_1a6cc392c6fc2650dbec78f8e12c6648c7" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="virtual">
+        <type>bool</type>
+        <definition>bool ofbx::Property::getValues</definition>
+        <argsstring>(int *values, int max_size) const override</argsstring>
+        <name>getValues</name>
+        <reimplements refid="structofbx_1_1_i_element_property_1a142029027ea73f98ae21efd173430902">getValues</reimplements>
+        <param>
+          <type>int *</type>
+          <declname>values</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>max_size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="347" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="347" bodyend="347"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="587">
+        <label>ofbx::Property</label>
+        <link refid="structofbx_1_1_property"/>
+        <childnode refid="588" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="588">
+        <label>ofbx::IElementProperty</label>
+        <link refid="structofbx_1_1_i_element_property"/>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="589">
+        <label>ofbx::Property</label>
+        <link refid="structofbx_1_1_property"/>
+        <childnode refid="590" relation="public-inheritance">
+        </childnode>
+        <childnode refid="589" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+        <childnode refid="591" relation="usage">
+          <edgelabel>value</edgelabel>
+        </childnode>
+      </node>
+      <node id="590">
+        <label>ofbx::IElementProperty</label>
+        <link refid="structofbx_1_1_i_element_property"/>
+      </node>
+      <node id="591">
+        <label>ofbx::DataView</label>
+        <link refid="structofbx_1_1_data_view"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="324" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="323" bodyend="353"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9a961e20031d519c346030865043cb3892" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>ARRAY_DOUBLE</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9adca6aded63d42711ca5caa5fa73953be" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>ARRAY_FLOAT</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9a370a431b51d6d09d156cbfd6f4500b2a" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>ARRAY_INT</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9a8a370dcf01dbe5e64b0fb948c98274d2" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>ARRAY_LONG</name></member>
+      <member refid="structofbx_1_1_property_1a14a72c176959efce5c1f5ac50cdae9df" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>count</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9aa6d27f8f90e91e4502e482bc6971e216" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>DOUBLE</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9ae1dde3fc4df1895f6ce36bca57aa26c7" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>FLOAT</name></member>
+      <member refid="structofbx_1_1_property_1aa335b52a5533ff865502771a4c72b71e" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getCount</name></member>
+      <member refid="structofbx_1_1_property_1ae2c71d3351ee742902c1ae23eaadd18b" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getNext</name></member>
+      <member refid="structofbx_1_1_property_1a0ca2fbf6cc5275c60bd3ba7facc8660e" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getType</name></member>
+      <member refid="structofbx_1_1_property_1aeac072c0bbc821646d137c80dc9552b2" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getValue</name></member>
+      <member refid="structofbx_1_1_property_1aebc59747d7ed94757345f88e22e28561" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getValues</name></member>
+      <member refid="structofbx_1_1_property_1aa7bc2436cfc3c27e62cbf081b3d35e4b" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getValues</name></member>
+      <member refid="structofbx_1_1_property_1a2ae5c7ecaba21550400a81758a7eb1d7" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getValues</name></member>
+      <member refid="structofbx_1_1_property_1a590c38f60fe3a246656800ce34875235" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getValues</name></member>
+      <member refid="structofbx_1_1_property_1a6cc392c6fc2650dbec78f8e12c6648c7" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>getValues</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9a6e3bbc9ee4849d29985befa708c7d23d" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>INTEGER</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9a7e259309ab6113e8b3cb644c0068c2e7" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>LONG</name></member>
+      <member refid="structofbx_1_1_property_1abd232c2d85fd872ed5f877555b2f7239" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>next</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9ada983d55217e588f403d17796824269f" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>STRING</name></member>
+      <member refid="structofbx_1_1_property_1a60c35b26e434879f97823e7cd829037f" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>type</name></member>
+      <member refid="structofbx_1_1_i_element_property_1ad6fe68bfd4124de5be4e5224771740a9" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>Type</name></member>
+      <member refid="structofbx_1_1_property_1a61fd573357446f69593e473161009597" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>value</name></member>
+      <member refid="structofbx_1_1_i_element_property_1a097b84441eb6dcb022f56237528c5316" prot="public" virt="virtual"><scope>ofbx::Property</scope><name>~IElementProperty</name></member>
+      <member refid="structofbx_1_1_property_1a67c9c0f87729294c121df751c462b375" prot="public" virt="non-virtual"><scope>ofbx::Property</scope><name>~Property</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

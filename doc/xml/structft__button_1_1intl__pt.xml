@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structft__button_1_1intl__pt" kind="struct" language="C++" prot="private">
+    <compoundname>ft_button::intl_pt</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structft__button_1_1intl__pt_1a6180c797c1658b037a02dd9f889037b7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ft_button::intl_pt::_texture_indices[2]</definition>
+        <argsstring>[2]</argsstring>
+        <name>_texture_indices</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__button_1_1intl__pt_1a7ed6560475bb37edb943d9a56198cc16" prot="public" static="no" mutable="no">
+        <type>char</type>
+        <definition>char ft_button::intl_pt::_label[FILENAME_MAX]</definition>
+        <argsstring>[FILENAME_MAX]</argsstring>
+        <name>_label</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="9" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" line="7" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_button.h" bodystart="6" bodyend="10"/>
+    <listofallmembers>
+      <member refid="structft__button_1_1intl__pt_1a7ed6560475bb37edb943d9a56198cc16" prot="public" virt="non-virtual"><scope>ft_button::intl_pt</scope><name>_label</name></member>
+      <member refid="structft__button_1_1intl__pt_1a6180c797c1658b037a02dd9f889037b7" prot="public" virt="non-virtual"><scope>ft_button::intl_pt</scope><name>_texture_indices</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

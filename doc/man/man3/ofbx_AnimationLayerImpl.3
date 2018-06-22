@@ -1,0 +1,60 @@
+.TH "ofbx::AnimationLayerImpl" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::AnimationLayerImpl \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBofbx::AnimationLayer\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAnimationLayerImpl\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "\fBType\fP \fBgetType\fP () const override"
+.br
+.ti -1c
+.RI "const \fBAnimationCurveNode\fP * \fBgetCurveNode\fP (int index) const override"
+.br
+.ti -1c
+.RI "const \fBAnimationCurveNode\fP * \fBgetCurveNode\fP (const \fBObject\fP &bone, const char *prop) const override"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBAnimationCurveNodeImpl\fP * > \fBcurve_nodes\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::AnimationLayerImpl::AnimationLayerImpl (const \fBScene\fP & _scene, const \fBIElement\fP & _element)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "const \fBAnimationCurveNode\fP* ofbx::AnimationLayerImpl::getCurveNode (int index) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::AnimationLayer\fP\&.
+.SS "const \fBAnimationCurveNode\fP* ofbx::AnimationLayerImpl::getCurveNode (const \fBObject\fP & bone, const char * prop) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::AnimationLayer\fP\&.
+.SS "\fBType\fP ofbx::AnimationLayerImpl::getType () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Object\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "std::vector<\fBAnimationCurveNodeImpl\fP*> ofbx::AnimationLayerImpl::curve_nodes"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

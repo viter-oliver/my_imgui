@@ -1,0 +1,442 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="common__functions_8cpp" kind="file" language="C++">
+    <compoundname>common_functions.cpp</compoundname>
+    <includes refid="common__functions_8h" local="yes">common_functions.h</includes>
+    <includes local="no">math.h</includes>
+    <includes local="yes">SOIL.h</includes>
+    <includes local="yes">texture.h</includes>
+    <incdepgraph>
+      <node id="156">
+        <label>common_functions.h</label>
+        <link refid="common__functions_8h"/>
+        <childnode refid="157" relation="include">
+        </childnode>
+        <childnode refid="158" relation="include">
+        </childnode>
+        <childnode refid="159" relation="include">
+        </childnode>
+      </node>
+      <node id="161">
+        <label>SOIL.h</label>
+      </node>
+      <node id="158">
+        <label>string</label>
+      </node>
+      <node id="160">
+        <label>math.h</label>
+      </node>
+      <node id="157">
+        <label>imgui.h</label>
+      </node>
+      <node id="159">
+        <label>GL/gl3w.h</label>
+      </node>
+      <node id="155">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp</label>
+        <link refid="common_functions.cpp"/>
+        <childnode refid="156" relation="include">
+        </childnode>
+        <childnode refid="160" relation="include">
+        </childnode>
+        <childnode refid="161" relation="include">
+        </childnode>
+        <childnode refid="162" relation="include">
+        </childnode>
+      </node>
+      <node id="162">
+        <label>texture.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="common__functions_8cpp_1a447a8f285289bb5b32229fd8fbd3e124" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ImVec2</type>
+        <definition>ImVec2 rotate_point_by_zaxis</definition>
+        <argsstring>(ImVec2 &amp;tar, float angle, ImVec2 &amp;basePoint)</argsstring>
+        <name>rotate_point_by_zaxis</name>
+        <param>
+          <type>ImVec2 &amp;</type>
+          <declname>tar</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>angle</declname>
+        </param>
+        <param>
+          <type>ImVec2 &amp;</type>
+          <declname>basePoint</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" bodystart="11" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="common__functions_8cpp_1a8190f2fde52b1d38b3d05f4a2a7c5922" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool prepareFBO1</definition>
+        <argsstring>(GLuint &amp;colorTextId, GLuint &amp;depthStencilTextId, GLuint &amp;fboId, GLuint frame_width, GLuint frame_height)</argsstring>
+        <name>prepareFBO1</name>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>colorTextId</declname>
+        </param>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>depthStencilTextId</declname>
+        </param>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>fboId</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>frame_width</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>frame_height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" line="18" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" bodystart="18" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="common__functions_8cpp_1a5b402a4212432c695bb1e98297f729a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool af_prepareFBO1</definition>
+        <argsstring>(GLuint &amp;colorTextId, GLuint &amp;depthStencilTextId, GLuint &amp;fboId, GLuint frame_width, GLuint frame_height)</argsstring>
+        <name>af_prepareFBO1</name>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>colorTextId</declname>
+        </param>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>depthStencilTextId</declname>
+        </param>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>fboId</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>frame_width</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>frame_height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" line="37" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" bodystart="37" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="common__functions_8cpp_1aa41b823ef3b592524460820228e9fcd4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool frame_buffer</definition>
+        <argsstring>()</argsstring>
+        <name>frame_buffer</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" line="68" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" bodystart="68" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="common__functions_8cpp_1a3fe1230e6767fc31a2ab11044aa5b50f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool prepareFBO2</definition>
+        <argsstring>(GLuint &amp;textId, GLuint &amp;fboId, GLuint frame_width, GLuint frame_height)</argsstring>
+        <name>prepareFBO2</name>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>textId</declname>
+        </param>
+        <param>
+          <type>GLuint &amp;</type>
+          <declname>fboId</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>frame_width</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>frame_height</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" line="90" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp" bodystart="90" bodyend="110"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="common__functions_8h" kindref="compound">common_functions.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;SOIL.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;texture.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="7"><highlight class="comment">x&apos;=(x-a)cosα+(y-b)sinα+a</highlight></codeline>
+<codeline lineno="8"><highlight class="comment">y&apos;=-(x-a)sinα+(y-b)cosα+b</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">ImVec2<sp/><ref refid="common__functions_8cpp_1a447a8f285289bb5b32229fd8fbd3e124" kindref="member">rotate_point_by_zaxis</ref>(ImVec2&amp;<sp/>tar,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle,<sp/>ImVec2&amp;<sp/>basePoint)</highlight></codeline>
+<codeline lineno="12"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>ImVec2<sp/>des;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>des.x<sp/>=<sp/>(tar.x<sp/>-<sp/>basePoint.x)*cos(angle)<sp/>+<sp/>(tar.y<sp/>-<sp/>basePoint.y)*sin(angle)<sp/>+<sp/>basePoint.x;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>des.y<sp/>=<sp/>-(tar.x<sp/>-<sp/>basePoint.x)*sin(angle)<sp/>+<sp/>(tar.y<sp/>-<sp/>basePoint.y)*cos(angle)<sp/>+<sp/>basePoint.y;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>des;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="common__functions_8cpp_1a8190f2fde52b1d38b3d05f4a2a7c5922" kindref="member">prepareFBO1</ref>(GLuint&amp;<sp/>colorTextId,<sp/>GLuint&amp;<sp/>depthStencilTextId,<sp/>GLuint&amp;<sp/>fboId,<sp/>GLuint<sp/>frame_width,<sp/>GLuint<sp/>frame_height)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenFramebuffers(1,<sp/>&amp;fboId);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>fboId);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>附加 纹理<sp/>color<sp/>attachment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>colorTextId<sp/>=<sp/>TextureHelper::makeAttachmentTexture(0,<sp/>GL_RGBA,<sp/>frame_width,<sp/>frame_height,<sp/>GL_RGBA,<sp/>GL_UNSIGNED_BYTE);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,<sp/>colorTextId,<sp/>0);</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>附加 depth<sp/>stencil<sp/>texture<sp/>attachment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>depthStencilTextId<sp/>=<sp/>TextureHelper::makeAttachmentTexture(0,<sp/>GL_DEPTH24_STENCIL8,<sp/>frame_width,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame_height,<sp/>GL_DEPTH_STENCIL,<sp/>GL_UNSIGNED_INT_24_8);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_DEPTH_STENCIL_ATTACHMENT,<sp/>GL_TEXTURE_2D,<sp/>depthStencilTextId,<sp/>0);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>检测完整性 <sp/><sp/><sp/>if<sp/>(glCheckFramebufferStatus(GL_FRAMEBUFFER)<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)
+<sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/>}
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);
+<sp/><sp/>return<sp/>true;
+}
+bool<sp/>af_prepareFBO1(GLuint&amp;<sp/>colorTextId,<sp/>GLuint&amp;<sp/>depthStencilTextId,<sp/>GLuint&amp;<sp/>fboId,<sp/>GLuint<sp/>frame_width,<sp/>GLuint<sp/>frame_height)
+{
+<sp/><sp/>glGenFramebuffers(1,<sp/>&amp;fboId);
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>fboId);
+<sp/><sp/>//<sp/>附加 纹理<sp/>color<sp/>attachment
+<sp/>glGenTextures(1,<sp/>&amp;colorTextId);
+<sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>colorTextId);
+<sp/>glTexImage2D(GL_TEXTURE_2D,<sp/>0,<sp/>GL_DEPTH_COMPONENT32,<sp/>frame_width,<sp/>frame_height,<sp/>0,<sp/>GL_DEPTH_COMPONENT,GL_FLOAT,<sp/>0);
+<sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_NEAREST);
+<sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_NEAREST);
+<sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,colorTextId,<sp/>0);
+
+<sp/><sp/><sp/>//<sp/>附加 depth<sp/>stencil<sp/>texture<sp/>attachment
+<sp/><sp/><sp/><sp/>glGenTextures(1,<sp/>&amp;depthStencilTextId);
+<sp/>glBindTexture(GL_TEXTURE_2D,<sp/>depthStencilTextId);
+<sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_LINEAR);
+<sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_LINEAR);
+<sp/><sp/>glTexStorage2D(GL_TEXTURE_2D,<sp/>1,<sp/>GL_DEPTH24_STENCIL8,<sp/>frame_width,<sp/>frame_height);
+<sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_DEPTH_ATTACHMENT,<sp/>GL_TEXTURE_2D,<sp/>depthStencilTextId,<sp/>0);
+<sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_STENCIL_ATTACHMENT,<sp/>GL_TEXTURE_2D,<sp/>depthStencilTextId,<sp/>0);
+
+<sp/><sp/>//<sp/>检测完整性
+<sp/><sp/><sp/>auto<sp/>chk<sp/>=<sp/>glCheckFramebufferStatus(GL_FRAMEBUFFER);
+<sp/><sp/><sp/>if<sp/>(chk<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)
+<sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>printf(&quot;chk=0x%x\n&quot;,<sp/>chk);
+<sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/>}
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);
+<sp/><sp/>return<sp/>true;
+}
+bool<sp/>frame_buffer()
+{
+<sp/><sp/><sp/>GLuint<sp/>frameBuffer;
+<sp/><sp/><sp/><sp/>glGenFramebuffers(1,<sp/>&amp;frameBuffer);
+<sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>frameBuffer);
+<sp/><sp/><sp/><sp/>GLuint<sp/>texColorBuffer;
+<sp/>glGenTextures(1,<sp/>&amp;texColorBuffer);
+<sp/>glBindTexture(GL_TEXTURE_2D,<sp/>texColorBuffer);
+<sp/><sp/>glTexImage2D(GL_TEXTURE_2D,<sp/>0,<sp/>GL_RGBA,<sp/>800,<sp/>600,<sp/>0,<sp/>GL_RGBA,<sp/>GL_UNSIGNED_BYTE,<sp/>NULL);
+<sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_LINEAR);
+<sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_LINEAR);
+<sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,<sp/>texColorBuffer,<sp/>0);
+<sp/><sp/><sp/><sp/>GLuint<sp/>rboDepthStencil;
+<sp/><sp/><sp/><sp/>glGenRenderbuffers(1,<sp/>&amp;rboDepthStencil);
+<sp/><sp/><sp/>glBindRenderbuffer(GL_RENDERBUFFER,<sp/>rboDepthStencil);
+<sp/><sp/>glRenderbufferStorage(GL_RENDERBUFFER,<sp/>GL_DEPTH24_STENCIL8,<sp/>800,<sp/>600);
+<sp/>return<sp/>true;
+}
+/*
+*<sp/>附加纹理到Color<sp/>Attachment
+*<sp/>同时附加RBO到depth<sp/>stencil<sp/>Attachment
+*/
+bool<sp/>prepareFBO2(GLuint&amp;<sp/>textId,<sp/>GLuint&amp;<sp/>fboId,<sp/>GLuint<sp/>frame_width,<sp/>GLuint<sp/>frame_height)
+{
+<sp/>glGenFramebuffers(1,<sp/>&amp;fboId);
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>fboId);
+<sp/><sp/>//<sp/>附加纹理 color<sp/>attachment
+<sp/><sp/>textId<sp/>=<sp/>TextureHelper::makeAttachmentTexture(0,<sp/>GL_RGB,<sp/>frame_width,<sp/>frame_height,<sp/>GL_RGB,<sp/>GL_UNSIGNED_BYTE);
+<sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,<sp/>textId,<sp/>0);
+<sp/><sp/><sp/><sp/>//<sp/>附加 depth<sp/>stencil<sp/>RBO<sp/>attachment
+<sp/><sp/><sp/><sp/>GLuint<sp/>rboId;
+<sp/><sp/>glGenRenderbuffers(1,<sp/>&amp;rboId);
+<sp/>glBindRenderbuffer(GL_RENDERBUFFER,<sp/>rboId);
+<sp/><sp/><sp/><sp/>glRenderbufferStorage(GL_RENDERBUFFER,<sp/>GL_DEPTH24_STENCIL8,
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame_width,<sp/>frame_height);<sp/>//<sp/>预分配内存
+<sp/><sp/><sp/>glFramebufferRenderbuffer(GL_FRAMEBUFFER,<sp/>GL_DEPTH_STENCIL_ATTACHMENT,<sp/>GL_RENDERBUFFER,<sp/>rboId);
+<sp/><sp/><sp/><sp/>if<sp/>(glCheckFramebufferStatus(GL_FRAMEBUFFER)<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)
+<sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/>}
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);
+<sp/><sp/>return<sp/>true;
+}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(glCheckFramebufferStatus(GL_FRAMEBUFFER)<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="common__functions_8cpp_1a5b402a4212432c695bb1e98297f729a0" kindref="member">af_prepareFBO1</ref>(GLuint&amp;<sp/>colorTextId,<sp/>GLuint&amp;<sp/>depthStencilTextId,<sp/>GLuint&amp;<sp/>fboId,<sp/>GLuint<sp/>frame_width,<sp/>GLuint<sp/>frame_height)</highlight></codeline>
+<codeline lineno="38"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenFramebuffers(1,<sp/>&amp;fboId);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>fboId);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>附加 纹理<sp/>color<sp/>attachment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenTextures(1,<sp/>&amp;colorTextId);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>colorTextId);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexImage2D(GL_TEXTURE_2D,<sp/>0,<sp/>GL_DEPTH_COMPONENT32,<sp/>frame_width,<sp/>frame_height,<sp/>0,<sp/>GL_DEPTH_COMPONENT,GL_FLOAT,<sp/>0);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_NEAREST);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_NEAREST);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,colorTextId,<sp/>0);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>附加 depth<sp/>stencil<sp/>texture<sp/>attachment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenTextures(1,<sp/>&amp;depthStencilTextId);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>depthStencilTextId);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_LINEAR);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_LINEAR);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexStorage2D(GL_TEXTURE_2D,<sp/>1,<sp/>GL_DEPTH24_STENCIL8,<sp/>frame_width,<sp/>frame_height);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_DEPTH_ATTACHMENT,<sp/>GL_TEXTURE_2D,<sp/>depthStencilTextId,<sp/>0);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_STENCIL_ATTACHMENT,<sp/>GL_TEXTURE_2D,<sp/>depthStencilTextId,<sp/>0);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>检测完整性 <sp/><sp/><sp/>auto<sp/>chk<sp/>=<sp/>glCheckFramebufferStatus(GL_FRAMEBUFFER);
+<sp/><sp/><sp/>if<sp/>(chk<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)
+<sp/><sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>printf(&quot;chk=0x%x\n&quot;,<sp/>chk);
+<sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/>}
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);
+<sp/><sp/>return<sp/>true;
+}
+bool<sp/>frame_buffer()
+{
+<sp/><sp/><sp/>GLuint<sp/>frameBuffer;
+<sp/><sp/><sp/><sp/>glGenFramebuffers(1,<sp/>&amp;frameBuffer);
+<sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>frameBuffer);
+<sp/><sp/><sp/><sp/>GLuint<sp/>texColorBuffer;
+<sp/>glGenTextures(1,<sp/>&amp;texColorBuffer);
+<sp/>glBindTexture(GL_TEXTURE_2D,<sp/>texColorBuffer);
+<sp/><sp/>glTexImage2D(GL_TEXTURE_2D,<sp/>0,<sp/>GL_RGBA,<sp/>800,<sp/>600,<sp/>0,<sp/>GL_RGBA,<sp/>GL_UNSIGNED_BYTE,<sp/>NULL);
+<sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_LINEAR);
+<sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_LINEAR);
+<sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,<sp/>texColorBuffer,<sp/>0);
+<sp/><sp/><sp/><sp/>GLuint<sp/>rboDepthStencil;
+<sp/><sp/><sp/><sp/>glGenRenderbuffers(1,<sp/>&amp;rboDepthStencil);
+<sp/><sp/><sp/>glBindRenderbuffer(GL_RENDERBUFFER,<sp/>rboDepthStencil);
+<sp/><sp/>glRenderbufferStorage(GL_RENDERBUFFER,<sp/>GL_DEPTH24_STENCIL8,<sp/>800,<sp/>600);
+<sp/>return<sp/>true;
+}
+/*
+*<sp/>附加纹理到Color<sp/>Attachment
+*<sp/>同时附加RBO到depth<sp/>stencil<sp/>Attachment
+*/
+bool<sp/>prepareFBO2(GLuint&amp;<sp/>textId,<sp/>GLuint&amp;<sp/>fboId,<sp/>GLuint<sp/>frame_width,<sp/>GLuint<sp/>frame_height)
+{
+<sp/>glGenFramebuffers(1,<sp/>&amp;fboId);
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>fboId);
+<sp/><sp/>//<sp/>附加纹理 color<sp/>attachment
+<sp/><sp/>textId<sp/>=<sp/>TextureHelper::makeAttachmentTexture(0,<sp/>GL_RGB,<sp/>frame_width,<sp/>frame_height,<sp/>GL_RGB,<sp/>GL_UNSIGNED_BYTE);
+<sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,<sp/>textId,<sp/>0);
+<sp/><sp/><sp/><sp/>//<sp/>附加 depth<sp/>stencil<sp/>RBO<sp/>attachment
+<sp/><sp/><sp/><sp/>GLuint<sp/>rboId;
+<sp/><sp/>glGenRenderbuffers(1,<sp/>&amp;rboId);
+<sp/>glBindRenderbuffer(GL_RENDERBUFFER,<sp/>rboId);
+<sp/><sp/><sp/><sp/>glRenderbufferStorage(GL_RENDERBUFFER,<sp/>GL_DEPTH24_STENCIL8,
+<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame_width,<sp/>frame_height);<sp/>//<sp/>预分配内存
+<sp/><sp/><sp/>glFramebufferRenderbuffer(GL_FRAMEBUFFER,<sp/>GL_DEPTH_STENCIL_ATTACHMENT,<sp/>GL_RENDERBUFFER,<sp/>rboId);
+<sp/><sp/><sp/><sp/>if<sp/>(glCheckFramebufferStatus(GL_FRAMEBUFFER)<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)
+<sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/>}
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);
+<sp/><sp/>return<sp/>true;
+}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">auto</highlight><highlight class="normal"><sp/>chk<sp/>=<sp/>glCheckFramebufferStatus(GL_FRAMEBUFFER);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(chk<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;chk=0x%x\n&quot;</highlight><highlight class="normal">,<sp/>chk);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="common__functions_8cpp_1aa41b823ef3b592524460820228e9fcd4" kindref="member">frame_buffer</ref>()</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/>frameBuffer;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenFramebuffers(1,<sp/>&amp;frameBuffer);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>frameBuffer);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/>texColorBuffer;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenTextures(1,<sp/>&amp;texColorBuffer);</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindTexture(GL_TEXTURE_2D,<sp/>texColorBuffer);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexImage2D(GL_TEXTURE_2D,<sp/>0,<sp/>GL_RGBA,<sp/>800,<sp/>600,<sp/>0,<sp/>GL_RGBA,<sp/>GL_UNSIGNED_BYTE,<sp/>NULL);</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MIN_FILTER,<sp/>GL_LINEAR);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>glTexParameteri(GL_TEXTURE_2D,<sp/>GL_TEXTURE_MAG_FILTER,<sp/>GL_LINEAR);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,<sp/>texColorBuffer,<sp/>0);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/>rboDepthStencil;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenRenderbuffers(1,<sp/>&amp;rboDepthStencil);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindRenderbuffer(GL_RENDERBUFFER,<sp/>rboDepthStencil);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>glRenderbufferStorage(GL_RENDERBUFFER,<sp/>GL_DEPTH24_STENCIL8,<sp/>800,<sp/>600);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="87"><highlight class="comment">*<sp/>附加纹理到Color<sp/>Attachment</highlight></codeline>
+<codeline lineno="88"><highlight class="comment">*<sp/>同时附加RBO到depth<sp/>stencil<sp/>Attachment</highlight></codeline>
+<codeline lineno="89"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="common__functions_8cpp_1a3fe1230e6767fc31a2ab11044aa5b50f" kindref="member">prepareFBO2</ref>(GLuint&amp;<sp/>textId,<sp/>GLuint&amp;<sp/>fboId,<sp/>GLuint<sp/>frame_width,<sp/>GLuint<sp/>frame_height)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenFramebuffers(1,<sp/>&amp;fboId);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>fboId);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>附加纹理 color<sp/>attachment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>textId<sp/>=<sp/>TextureHelper::makeAttachmentTexture(0,<sp/>GL_RGB,<sp/>frame_width,<sp/>frame_height,<sp/>GL_RGB,<sp/>GL_UNSIGNED_BYTE);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferTexture2D(GL_FRAMEBUFFER,<sp/>GL_COLOR_ATTACHMENT0,<sp/>GL_TEXTURE_2D,<sp/>textId,<sp/>0);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>附加 depth<sp/>stencil<sp/>RBO<sp/>attachment</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>GLuint<sp/>rboId;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>glGenRenderbuffers(1,<sp/>&amp;rboId);</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindRenderbuffer(GL_RENDERBUFFER,<sp/>rboId);</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>glRenderbufferStorage(GL_RENDERBUFFER,<sp/>GL_DEPTH24_STENCIL8,</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>frame_width,<sp/>frame_height);<sp/></highlight><highlight class="comment">//<sp/>预分配内存 <sp/><sp/><sp/>glFramebufferRenderbuffer(GL_FRAMEBUFFER,<sp/>GL_DEPTH_STENCIL_ATTACHMENT,<sp/>GL_RENDERBUFFER,<sp/>rboId);
+<sp/><sp/><sp/><sp/>if<sp/>(glCheckFramebufferStatus(GL_FRAMEBUFFER)<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)
+<sp/><sp/><sp/>{
+<sp/><sp/><sp/><sp/><sp/><sp/>return<sp/>false;
+<sp/><sp/>}
+<sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);
+<sp/><sp/>return<sp/>true;
+}</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>glFramebufferRenderbuffer(GL_FRAMEBUFFER,<sp/>GL_DEPTH_STENCIL_ATTACHMENT,<sp/>GL_RENDERBUFFER,<sp/>rboId);</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(glCheckFramebufferStatus(GL_FRAMEBUFFER)<sp/>!=<sp/>GL_FRAMEBUFFER_COMPLETE)</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>glBindFramebuffer(GL_FRAMEBUFFER,<sp/>0);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/common_functions.cpp"/>
+  </compounddef>
+</doxygen>

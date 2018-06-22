@@ -1,0 +1,339 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="classft__base" kind="class" language="C++" prot="public">
+    <compoundname>ft_base</compoundname>
+    <basecompoundref refid="classbase__ui__component" prot="public" virt="non-virtual">base_ui_component</basecompoundref>
+    <derivedcompoundref refid="classft__button" prot="public" virt="non-virtual">ft_button</derivedcompoundref>
+    <derivedcompoundref refid="classft__cube" prot="public" virt="non-virtual">ft_cube</derivedcompoundref>
+    <derivedcompoundref refid="classft__image" prot="public" virt="non-virtual">ft_image</derivedcompoundref>
+    <derivedcompoundref refid="classft__listbox" prot="public" virt="non-virtual">ft_listbox</derivedcompoundref>
+    <derivedcompoundref refid="classft__model" prot="public" virt="non-virtual">ft_model</derivedcompoundref>
+    <derivedcompoundref refid="classft__particles__gravity" prot="public" virt="non-virtual">ft_particles_gravity</derivedcompoundref>
+    <derivedcompoundref refid="classft__plane" prot="public" virt="non-virtual">ft_plane</derivedcompoundref>
+    <derivedcompoundref refid="classft__polygon__image" prot="public" virt="non-virtual">ft_polygon_image</derivedcompoundref>
+    <derivedcompoundref refid="classft__scene3d" prot="public" virt="non-virtual">ft_scene3d</derivedcompoundref>
+    <derivedcompoundref refid="classft__slider" prot="public" virt="non-virtual">ft_slider</derivedcompoundref>
+    <derivedcompoundref refid="classft__sphere" prot="public" virt="non-virtual">ft_sphere</derivedcompoundref>
+    <derivedcompoundref refid="classft__textblock" prot="public" virt="non-virtual">ft_textblock</derivedcompoundref>
+    <derivedcompoundref refid="classft__trajectory__box" prot="public" virt="non-virtual">ft_trajectory_box</derivedcompoundref>
+    <includes refid="ft__base_8h" local="no">ft_base.h</includes>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classft__base_1ae9872ac2cd2aa700a1e91f2537cca075" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ft_base::ft_base</definition>
+        <argsstring>()</argsstring>
+        <name>ft_base</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="7" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" bodystart="7" bodyend="7"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__base_1a09062404251d099907ff9d7f2b18b89a" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ft_base::draw</definition>
+        <argsstring>()</argsstring>
+        <name>draw</name>
+        <reimplements refid="classbase__ui__component_1a5fc23a6332571a078b6c15b320460252">draw</reimplements>
+        <reimplementedby refid="classft__polygon__image_1a4e9fff922f65b9ef8b78b85f6765536d">draw</reimplementedby>
+        <reimplementedby refid="classft__trajectory__box_1ab3f718b1859d5b522025a61a724fdf8c">draw</reimplementedby>
+        <reimplementedby refid="classft__button_1a8492630647dfd6925f7883017135ff12">draw</reimplementedby>
+        <reimplementedby refid="classft__particles__gravity_1affbe1ae5413edccbe6fbfc91269663ee">draw</reimplementedby>
+        <reimplementedby refid="classft__listbox_1a18e7f3884dd065d1842d6522a625a7c3">draw</reimplementedby>
+        <reimplementedby refid="classft__image_1a5fa45bb2ecf50acba2533aa37ed736f6">draw</reimplementedby>
+        <reimplementedby refid="classft__scene3d_1a80483181d052d99bf8c289c43a1b8d89">draw</reimplementedby>
+        <reimplementedby refid="classft__textblock_1a34cc8147b33e816bd259fb2e61d6e318">draw</reimplementedby>
+        <reimplementedby refid="classft__cube_1a2a563341dd322d79faab8d6edd9f4000">draw</reimplementedby>
+        <reimplementedby refid="classft__model_1ab3f8dca7aaec51eaec88a24b2118e8a0">draw</reimplementedby>
+        <reimplementedby refid="classft__slider_1ad653f7e28dcfdffd72a88ad9498686d5">draw</reimplementedby>
+        <briefdescription>
+<para>draw self on a surface </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="9" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.cpp" bodystart="3" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__base_1a03bf0cd635d96f8a42686567893c2bd4" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>void</type>
+        <definition>void ft_base::draw_peroperty_page</definition>
+        <argsstring>()</argsstring>
+        <name>draw_peroperty_page</name>
+        <reimplements refid="classbase__ui__component_1a4f7f67181a15ddc85b838baf2cc268dd">draw_peroperty_page</reimplements>
+        <reimplementedby refid="classft__polygon__image_1a2bb4fb6a3aabdc2463cc464aab4e2cd4">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__trajectory__box_1a122c0f9836f58af2e8502f166a1f1a50">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__listbox_1a5ac246b15cacf7a5378c67291aa7eda7">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__button_1aa894670085c04c79d0d6e264adaa4f82">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__image_1ab2b48245dde10cf9ca28b96352349c80">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__cube_1a79f0d97a408536f164a3c158f978b47f">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__scene3d_1a91c97b4fa3145deab33d7871487bea15">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__textblock_1aadf7178232db1f6b0e38af2bd056d937">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__model_1a63d5bba53459d5646f5a7ea8269c8f7e">draw_peroperty_page</reimplementedby>
+        <reimplementedby refid="classft__slider_1a5002fe5bc83d50ad16ca48f5316d92e9">draw_peroperty_page</reimplementedby>
+        <briefdescription>
+<para>draw property on the property page for editing </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.cpp" bodystart="18" bodyend="27"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__base_1a2921bac309eb7b6064c8ee2f39876640" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool ft_base::init_from_json</definition>
+        <argsstring>(Value &amp;jvalue)</argsstring>
+        <name>init_from_json</name>
+        <reimplements refid="classbase__ui__component_1ac6d1f4a871c317070fcab2104f06b88d">init_from_json</reimplements>
+        <reimplementedby refid="classft__polygon__image_1acff5a3577246377ef2bf87fba3de2249">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__trajectory__box_1ab2a3c2db72007c030769fae35755b93c">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__listbox_1ab993cc451c6264ff8d0a4f4aefe6c983">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__button_1ad74e3d75af1176fffbd583bfd9a4b3b6">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__image_1ad896e67de420c04a9cac378b62f76dad">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__cube_1a113905257e61864a6df55d0990560c78">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__scene3d_1a57177793cad5a91632c0723c69454c73">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__textblock_1a32cb6af33155cf65c185d5cdcdc09ee0">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__model_1a897510ba27e454f5b127cc7b311175e9">init_from_json</reimplementedby>
+        <reimplementedby refid="classft__slider_1a64b3b85a727d03c27f3c18ec10c77d28">init_from_json</reimplementedby>
+        <param>
+          <type>Value &amp;</type>
+          <declname>jvalue</declname>
+        </param>
+        <briefdescription>
+<para>instancing class from a json value unit </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>jvalue</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a json value jvalue which contain all the value of the data member of current object </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>result <ndash/>true success <ndash/>false failure </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="12" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.cpp" bodystart="31" bodyend="52"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__base_1aa7ebbfc073f79a8a383bc7b78af64f91" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool ft_base::init_json_unit</definition>
+        <argsstring>(Value &amp;junit)</argsstring>
+        <name>init_json_unit</name>
+        <reimplements refid="classbase__ui__component_1ab7335717106ea34851e0e80c268d49e3">init_json_unit</reimplements>
+        <reimplementedby refid="classft__image_1a3d315d85b17e9a30d9849a414c66cc81">init_json_unit</reimplementedby>
+        <reimplementedby refid="classft__cube_1a7a61d55533508c0e0c7f25acdfc9d945">init_json_unit</reimplementedby>
+        <reimplementedby refid="classft__scene3d_1afd8a847d2583a35f75431ce36a376ea9">init_json_unit</reimplementedby>
+        <reimplementedby refid="classft__textblock_1a5049d69de68bc6c6f0a954d377872e7c">init_json_unit</reimplementedby>
+        <reimplementedby refid="classft__model_1a0ad0702034ab8c25f2402cac97f0fc9d">init_json_unit</reimplementedby>
+        <reimplementedby refid="classft__slider_1aa3e4d0fa996bc090987a9db31100ae73">init_json_unit</reimplementedby>
+        <param>
+          <type>Value &amp;</type>
+          <declname>junit</declname>
+        </param>
+        <briefdescription>
+<para>init a json unit by some data members </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>junit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>a json value junit which will be stored all the value of the data member of current object </para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>result -true success -false failure </para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="13" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.cpp" bodystart="54" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__base_1a9fff220865b2aeb2d7dedd1dd07c4a90" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>bool</type>
+        <definition>bool ft_base::handle_mouse</definition>
+        <argsstring>()</argsstring>
+        <name>handle_mouse</name>
+        <reimplements refid="classbase__ui__component_1a03a4a87fa237b1972ff892120e9d9538">handle_mouse</reimplements>
+        <reimplementedby refid="classft__polygon__image_1ae73a06c8c9951cdbeaccacb8975d60ed">handle_mouse</reimplementedby>
+        <reimplementedby refid="classft__trajectory__box_1a537be95b420f19691660768d6a511e0f">handle_mouse</reimplementedby>
+        <reimplementedby refid="classft__listbox_1ab95ad5b60ea99e57497a669ffefec2bd">handle_mouse</reimplementedby>
+        <reimplementedby refid="classft__button_1ab6667a655aec64b9bca5470cb1ee075e">handle_mouse</reimplementedby>
+        <reimplementedby refid="classft__scene3d_1a150a07a95a824d3096f641f8d3a4d360">handle_mouse</reimplementedby>
+        <reimplementedby refid="classft__slider_1a5e84abd05ef1f22b57c5b115b0abb196">handle_mouse</reimplementedby>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="15" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.cpp" bodystart="82" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="classft__base_1a8ac04e73e38ebcf7b30c76bd88aff07d" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type><ref refid="classbase__ui__component" kindref="compound">base_ui_component</ref> *</type>
+        <definition>base_ui_component * ft_base::get_copy_of_object</definition>
+        <argsstring>()</argsstring>
+        <name>get_copy_of_object</name>
+        <reimplements refid="classbase__ui__component_1aaa048327346b11439448e7e7a30a918e">get_copy_of_object</reimplements>
+        <briefdescription>
+<para>get a copy of a ui component object </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="16" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.cpp" bodystart="95" bodyend="112"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="220">
+        <label>ft_sphere</label>
+        <link refid="classft__sphere"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="208">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="209" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="209">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+      </node>
+      <node id="214">
+        <label>ft_model</label>
+        <link refid="classft__model"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="213">
+        <label>ft_listbox</label>
+        <link refid="classft__listbox"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="210">
+        <label>ft_button</label>
+        <link refid="classft__button"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="216">
+        <label>ft_plane</label>
+        <link refid="classft__plane"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="212">
+        <label>ft_image</label>
+        <link refid="classft__image"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="215">
+        <label>ft_particles_gravity</label>
+        <link refid="classft__particles__gravity"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="221">
+        <label>ft_textblock</label>
+        <link refid="classft__textblock"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="218">
+        <label>ft_scene3d</label>
+        <link refid="classft__scene3d"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="222">
+        <label>ft_trajectory_box</label>
+        <link refid="classft__trajectory__box"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="219">
+        <label>ft_slider</label>
+        <link refid="classft__slider"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="211">
+        <label>ft_cube</label>
+        <link refid="classft__cube"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="217">
+        <label>ft_polygon_image</label>
+        <link refid="classft__polygon__image"/>
+        <childnode refid="208" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="223">
+        <label>ft_base</label>
+        <link refid="classft__base"/>
+        <childnode refid="224" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="224">
+        <label>base_ui_component</label>
+        <link refid="classbase__ui__component"/>
+        <childnode refid="224" relation="usage">
+          <edgelabel>_parent</edgelabel>
+        </childnode>
+        <childnode refid="225" relation="usage">
+          <edgelabel>_in_p</edgelabel>
+        </childnode>
+      </node>
+      <node id="225">
+        <label>base_ui_component::internal_property</label>
+        <link refid="structbase__ui__component_1_1internal__property"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" line="5" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_base.h" bodystart="3" bodyend="17"/>
+    <listofallmembers>
+      <member refid="classbase__ui__component_1a544403a2926ccead33f8efab97fbf0fa" prot="protected" virt="non-virtual"><scope>ft_base</scope><name>_in_p</name></member>
+      <member refid="classbase__ui__component_1aa1825be2fe793f7bd408d01f3436bc58" prot="protected" virt="non-virtual"><scope>ft_base</scope><name>_parent</name></member>
+      <member refid="classbase__ui__component_1a5f97f62b438bc6e39a55f230380b1bcf" prot="protected" virt="non-virtual"><scope>ft_base</scope><name>_selected</name></member>
+      <member refid="classbase__ui__component_1a01dc8ef82c5151bf027971069350916c" prot="protected" virt="non-virtual"><scope>ft_base</scope><name>_vchilds</name></member>
+      <member refid="classbase__ui__component_1ae7efd3132e7d8c3bc59b3b8cbbdbed58" prot="public" virt="non-virtual"><scope>ft_base</scope><name>absolute_coordinate_of_base_pos</name></member>
+      <member refid="classbase__ui__component_1a0ed950da68a94238cfef7483cf0d3f20" prot="public" virt="non-virtual"><scope>ft_base</scope><name>add_child</name></member>
+      <member refid="classbase__ui__component_1a4a4e1d8fffd99869d7b3f8047049987e" prot="public" virt="non-virtual"><scope>ft_base</scope><name>base_pos</name></member>
+      <member refid="classbase__ui__component_1a65a95f5414eb2d7be2757fa6c97ad566" prot="public" virt="non-virtual"><scope>ft_base</scope><name>base_ui_component</name></member>
+      <member refid="classbase__ui__component_1a9329fc1712f79bbb1f09b7fcf9506598" prot="public" virt="non-virtual"><scope>ft_base</scope><name>child_count</name></member>
+      <member refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b" prot="public" virt="virtual"><scope>ft_base</scope><name>collect_property_range</name></member>
+      <member refid="classft__base_1a09062404251d099907ff9d7f2b18b89a" prot="public" virt="virtual"><scope>ft_base</scope><name>draw</name></member>
+      <member refid="classft__base_1a03bf0cd635d96f8a42686567893c2bd4" prot="public" virt="virtual"><scope>ft_base</scope><name>draw_peroperty_page</name></member>
+      <member refid="classft__base_1ae9872ac2cd2aa700a1e91f2537cca075" prot="public" virt="non-virtual"><scope>ft_base</scope><name>ft_base</name></member>
+      <member refid="classbase__ui__component_1a9ecd8f35cc9aa4b5133514a3b06b7ff3" prot="public" virt="non-virtual"><scope>ft_base</scope><name>get_child</name></member>
+      <member refid="classbase__ui__component_1a4d3b7f9887b863a5607e43ac4f29c9d5" prot="public" virt="non-virtual"><scope>ft_base</scope><name>get_child_count</name></member>
+      <member refid="classft__base_1a8ac04e73e38ebcf7b30c76bd88aff07d" prot="public" virt="virtual"><scope>ft_base</scope><name>get_copy_of_object</name></member>
+      <member refid="classbase__ui__component_1ad09db0a28ea8a64dea8751b965f372d8" prot="public" virt="non-virtual"><scope>ft_base</scope><name>get_name</name></member>
+      <member refid="classbase__ui__component_1a31cba9202f2e1832c0762de72a79e417" prot="public" virt="non-virtual"><scope>ft_base</scope><name>get_parent</name></member>
+      <member refid="classft__base_1a9fff220865b2aeb2d7dedd1dd07c4a90" prot="public" virt="virtual"><scope>ft_base</scope><name>handle_mouse</name></member>
+      <member refid="classft__base_1a2921bac309eb7b6064c8ee2f39876640" prot="public" virt="virtual"><scope>ft_base</scope><name>init_from_json</name></member>
+      <member refid="classft__base_1aa7ebbfc073f79a8a383bc7b78af64f91" prot="public" virt="virtual"><scope>ft_base</scope><name>init_json_unit</name></member>
+      <member refid="classbase__ui__component_1a7e049f196571b69481efc09d874e9a86" prot="public" virt="non-virtual"><scope>ft_base</scope><name>is_selected</name></member>
+      <member refid="classbase__ui__component_1ac0e5e289b0bc4f3f80c0d4cea794f5c7" prot="public" virt="non-virtual"><scope>ft_base</scope><name>is_visible</name></member>
+      <member refid="classbase__ui__component_1aea0946d8e113fbeaf37855e740ee8dcc" prot="public" virt="non-virtual"><scope>ft_base</scope><name>offset</name></member>
+      <member refid="classbase__ui__component_1a177f92647397b122c7b9709f3fa4331f" prot="public" virt="non-virtual"><scope>ft_base</scope><name>remove_child</name></member>
+      <member refid="classbase__ui__component_1aca508bf254f0b9c55d29c68c8249e2d3" prot="public" virt="non-virtual"><scope>ft_base</scope><name>screenh</name></member>
+      <member refid="classbase__ui__component_1a1027bcda32d3f479b6d14c0cbbcc184b" prot="public" virt="non-virtual"><scope>ft_base</scope><name>screenw</name></member>
+      <member refid="classbase__ui__component_1af543d0a51ac1ba57d9611edcb0e67800" prot="public" virt="non-virtual"><scope>ft_base</scope><name>set_name</name></member>
+      <member refid="classbase__ui__component_1ac68d1904c07807f3003df632a118ad3f" prot="public" virt="non-virtual"><scope>ft_base</scope><name>set_selected</name></member>
+      <member refid="classbase__ui__component_1af7a2c9107435cd51b952cf2a0d1c3b50" prot="public" virt="non-virtual"><scope>ft_base</scope><name>set_visible</name></member>
+      <member refid="classbase__ui__component_1a6d4e9322ad1ea5c1c7010fbae0963839" prot="public" virt="virtual"><scope>ft_base</scope><name>~base_ui_component</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

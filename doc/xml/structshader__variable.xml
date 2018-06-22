@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structshader__variable" kind="struct" language="C++" prot="public">
+    <compoundname>shader_variable</compoundname>
+    <includes refid="af__shader_8h" local="no">af_shader.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structshader__variable_1aa483c2cc05bdc22a0183e85081ce36bb" prot="public" static="no" mutable="no">
+        <type>GLenum</type>
+        <definition>GLenum shader_variable::_variable_type</definition>
+        <argsstring></argsstring>
+        <name>_variable_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="26" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structshader__variable_1ab29cfed126e5a58dd62db42c0c466e5e" prot="public" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint shader_variable::_location</definition>
+        <argsstring></argsstring>
+        <name>_location</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="27" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structshader__variable_1aab4d7ace41b312d044734a5b59c40c63" prot="public" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint shader_variable::_size</definition>
+        <argsstring></argsstring>
+        <name>_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="28" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structshader__variable_1a7e7b8a621a4bd6cdcc75aacb72f2b806" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>shader_variable::shader_variable</definition>
+        <argsstring>()</argsstring>
+        <name>shader_variable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="29" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="29" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="structshader__variable_1a60640a37475af30229957acfdf276694" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>shader_variable::shader_variable</definition>
+        <argsstring>(GLenum vtp, GLuint loc, GLuint size)</argsstring>
+        <name>shader_variable</name>
+        <param>
+          <type>GLenum</type>
+          <declname>vtp</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>loc</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>size</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="30" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>basic variable type of the shader <linebreak/>
+</para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" line="25" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.h" bodystart="24" bodyend="31"/>
+    <listofallmembers>
+      <member refid="structshader__variable_1ab29cfed126e5a58dd62db42c0c466e5e" prot="public" virt="non-virtual"><scope>shader_variable</scope><name>_location</name></member>
+      <member refid="structshader__variable_1aab4d7ace41b312d044734a5b59c40c63" prot="public" virt="non-virtual"><scope>shader_variable</scope><name>_size</name></member>
+      <member refid="structshader__variable_1aa483c2cc05bdc22a0183e85081ce36bb" prot="public" virt="non-virtual"><scope>shader_variable</scope><name>_variable_type</name></member>
+      <member refid="structshader__variable_1a7e7b8a621a4bd6cdcc75aacb72f2b806" prot="public" virt="non-virtual"><scope>shader_variable</scope><name>shader_variable</name></member>
+      <member refid="structshader__variable_1a60640a37475af30229957acfdf276694" prot="public" virt="non-virtual"><scope>shader_variable</scope><name>shader_variable</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

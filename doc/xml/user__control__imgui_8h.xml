@@ -1,0 +1,157 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="user__control__imgui_8h" kind="file" language="C++">
+    <compoundname>user_control_imgui.h</compoundname>
+    <includes local="yes">imgui.h</includes>
+    <includes local="yes">imgui_internal.h</includes>
+    <includedby refid="material_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp</includedby>
+    <includedby refid="material__shader__edit_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material_shader_edit.cpp</includedby>
+    <includedby refid="project__edit_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/project_edit.cpp</includedby>
+    <includedby refid="res__edit_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_edit.cpp</includedby>
+    <includedby refid="shader__uf_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.cpp</includedby>
+    <includedby refid="user__control__imgui_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.cpp</includedby>
+    <incdepgraph>
+      <node id="1287">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="1286">
+        <label>imgui.h</label>
+      </node>
+      <node id="1285">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.h</label>
+        <link refid="user_control_imgui.h"/>
+        <childnode refid="1286" relation="include">
+        </childnode>
+        <childnode refid="1287" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="1291">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/project_edit.cpp</label>
+        <link refid="project__edit_8cpp"/>
+      </node>
+      <node id="1290">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material_shader_edit.cpp</label>
+        <link refid="material__shader__edit_8cpp"/>
+      </node>
+      <node id="1293">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/shader_uf.cpp</label>
+        <link refid="shader__uf_8cpp"/>
+      </node>
+      <node id="1289">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/material.cpp</label>
+        <link refid="material_8cpp"/>
+      </node>
+      <node id="1288">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.h</label>
+        <link refid="user_control_imgui.h"/>
+        <childnode refid="1289" relation="include">
+        </childnode>
+        <childnode refid="1290" relation="include">
+        </childnode>
+        <childnode refid="1291" relation="include">
+        </childnode>
+        <childnode refid="1292" relation="include">
+        </childnode>
+        <childnode refid="1293" relation="include">
+        </childnode>
+        <childnode refid="1294" relation="include">
+        </childnode>
+      </node>
+      <node id="1292">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/res_edit.cpp</label>
+        <link refid="res__edit_8cpp"/>
+      </node>
+      <node id="1294">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.cpp</label>
+        <link refid="user__control__imgui_8cpp"/>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="user__control__imgui_8h_1adf4d73301961430d50d7edd96f92ce38" prot="public" static="no">
+        <name>IMGUI_DEFINE_MATH_OPERATORS</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.h" line="3" column="11" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.h" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="user__control__imgui_8h_1aa638ce27e2e02d31079ac4d13107af25" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IconTreeNode</definition>
+        <argsstring>(string &amp;icon_name, const char *label, ImGuiTreeNodeFlags flags)</argsstring>
+        <name>IconTreeNode</name>
+        <param>
+          <type>string &amp;</type>
+          <declname>icon_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>ImGuiTreeNodeFlags</type>
+          <declname>flags</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.h" line="5" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.cpp" bodystart="5" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="user__control__imgui_8h_1a295a100769820351b1312ea9d2bd09a2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool IconTreeNodeBehavior</definition>
+        <argsstring>(ImGuiID id, ImGuiTreeNodeFlags flags, string &amp;icon_name, const char *label, const char *label_end)</argsstring>
+        <name>IconTreeNodeBehavior</name>
+        <param>
+          <type>ImGuiID</type>
+          <declname>id</declname>
+        </param>
+        <param>
+          <type>ImGuiTreeNodeFlags</type>
+          <declname>flags</declname>
+        </param>
+        <param>
+          <type>string &amp;</type>
+          <declname>icon_name</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>label</declname>
+        </param>
+        <param>
+          <type>const char *</type>
+          <declname>label_end</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.h" line="6" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.cpp" bodystart="16" bodyend="187"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;imgui.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="user__control__imgui_8h_1adf4d73301961430d50d7edd96f92ce38" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IMGUI_DEFINE_MATH_OPERATORS</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;imgui_internal.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="user__control__imgui_8h_1aa638ce27e2e02d31079ac4d13107af25" kindref="member">IconTreeNode</ref>(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">&amp;<sp/>icon_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>label,<sp/>ImGuiTreeNodeFlags<sp/>flags);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="user__control__imgui_8h_1a295a100769820351b1312ea9d2bd09a2" kindref="member">IconTreeNodeBehavior</ref>(ImGuiID<sp/></highlight><highlight class="keywordtype">id</highlight><highlight class="normal">,<sp/>ImGuiTreeNodeFlags<sp/>flags,</highlight><highlight class="keywordtype">string</highlight><highlight class="normal">&amp;<sp/>icon_name,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>label,<sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">char</highlight><highlight class="normal">*<sp/>label_end);</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/user_control_imgui.h"/>
+  </compounddef>
+</doxygen>

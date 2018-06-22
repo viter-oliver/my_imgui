@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structft__slider_1_1intl__pt" kind="struct" language="C++" prot="private">
+    <compoundname>ft_slider::intl_pt</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1a78f053479ee757db1cd545cc23d868fb" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ft_slider::intl_pt::_position</definition>
+        <argsstring></argsstring>
+        <name>_position</name>
+        <initializer>{0.f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="26" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1a884233a1c665a4ce4c2bfe60e7d888f6" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ft_slider::intl_pt::_direction_item</definition>
+        <argsstring></argsstring>
+        <name>_direction_item</name>
+        <initializer>{ 0 }</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="27" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1a5e3b8f289e13fed481d64d7800873c64" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_slider::intl_pt::_bg_axi_pos</definition>
+        <argsstring></argsstring>
+        <name>_bg_axi_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="28" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1aab597359bf1dcaa36d5edadefb8b5843" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ft_slider::intl_pt::_bg_angle</definition>
+        <argsstring></argsstring>
+        <name>_bg_angle</name>
+        <initializer>{0.f}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="29" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1a46f8b7182c53f651dab6db50e00ec4ec" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ft_slider::intl_pt::_texture_bg_index</definition>
+        <argsstring></argsstring>
+        <name>_texture_bg_index</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1a0b345095d7a9c459ff1fa6e9f0fb4493" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_slider::intl_pt::_head_pos</definition>
+        <argsstring></argsstring>
+        <name>_head_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="32" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1a1b53eca7ae12e0d0fe96fdfeeeda0664" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ft_slider::intl_pt::_texture_head_index</definition>
+        <argsstring></argsstring>
+        <name>_texture_head_index</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="33" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1a68fe91a77e7724c574611aa0a626b32a" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_slider::intl_pt::_thumb_pos</definition>
+        <argsstring></argsstring>
+        <name>_thumb_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="35" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1intl__pt_1aad804c8de7fd7d308c962ffa2526d26f" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ft_slider::intl_pt::_texture_thumb_index</definition>
+        <argsstring></argsstring>
+        <name>_texture_thumb_index</name>
+        <initializer>{0}</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="36" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="25" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="24" bodyend="37"/>
+    <listofallmembers>
+      <member refid="structft__slider_1_1intl__pt_1aab597359bf1dcaa36d5edadefb8b5843" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_bg_angle</name></member>
+      <member refid="structft__slider_1_1intl__pt_1a5e3b8f289e13fed481d64d7800873c64" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_bg_axi_pos</name></member>
+      <member refid="structft__slider_1_1intl__pt_1a884233a1c665a4ce4c2bfe60e7d888f6" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_direction_item</name></member>
+      <member refid="structft__slider_1_1intl__pt_1a0b345095d7a9c459ff1fa6e9f0fb4493" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_head_pos</name></member>
+      <member refid="structft__slider_1_1intl__pt_1a78f053479ee757db1cd545cc23d868fb" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_position</name></member>
+      <member refid="structft__slider_1_1intl__pt_1a46f8b7182c53f651dab6db50e00ec4ec" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_texture_bg_index</name></member>
+      <member refid="structft__slider_1_1intl__pt_1a1b53eca7ae12e0d0fe96fdfeeeda0664" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_texture_head_index</name></member>
+      <member refid="structft__slider_1_1intl__pt_1aad804c8de7fd7d308c962ffa2526d26f" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_texture_thumb_index</name></member>
+      <member refid="structft__slider_1_1intl__pt_1a68fe91a77e7724c574611aa0a626b32a" prot="public" virt="non-virtual"><scope>ft_slider::intl_pt</scope><name>_thumb_pos</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,104 @@
+.TH "ofbx::Geometry" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::Geometry \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherits \fBofbx::Object\fP\&.
+.PP
+Inherited by \fBofbx::GeometryImpl\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGeometry\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "virtual const \fBVec3\fP * \fBgetVertices\fP () const =0"
+.br
+.ti -1c
+.RI "virtual int \fBgetVertexCount\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBVec3\fP * \fBgetNormals\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBVec2\fP * \fBgetUVs\fP (int index=0) const =0"
+.br
+.ti -1c
+.RI "virtual const \fBVec4\fP * \fBgetColors\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBVec3\fP * \fBgetTangents\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBSkin\fP * \fBgetSkin\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const int * \fBgetMaterials\fP () const =0"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const \fBType\fP \fBs_type\fP = \fBType::GEOMETRY\fP"
+.br
+.ti -1c
+.RI "static const int \fBs_uvs_max\fP = 4"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::Geometry::Geometry (const \fBScene\fP & _scene, const \fBIElement\fP & _element)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual const \fBVec4\fP* ofbx::Geometry::getColors () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SS "virtual const int* ofbx::Geometry::getMaterials () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SS "virtual const \fBVec3\fP* ofbx::Geometry::getNormals () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SS "virtual const \fBSkin\fP* ofbx::Geometry::getSkin () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SS "virtual const \fBVec3\fP* ofbx::Geometry::getTangents () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SS "virtual const \fBVec2\fP* ofbx::Geometry::getUVs (int index = \fC0\fP) const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SS "virtual int ofbx::Geometry::getVertexCount () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SS "virtual const \fBVec3\fP* ofbx::Geometry::getVertices () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::GeometryImpl\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBType\fP ofbx::Geometry::s_type = \fBType::GEOMETRY\fP\fC [static]\fP"
+
+.SS "const int ofbx::Geometry::s_uvs_max = 4\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

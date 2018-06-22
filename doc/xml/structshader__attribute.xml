@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structshader__attribute" kind="struct" language="C++" prot="public">
+    <compoundname>shader_attribute</compoundname>
+    <includes refid="basic3d_8h" local="no">basic3d.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structshader__attribute_1a685d7bf94037e4da750b4653422bf9d0" prot="public" static="no" mutable="no">
+        <type><ref refid="basic3d_8h_1a252706f7952dafcfc760e178d156f100" kindref="member">en_attribute_type</ref></type>
+        <definition>en_attribute_type shader_attribute::_type</definition>
+        <argsstring></argsstring>
+        <name>_type</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structshader__attribute_1abe29a6ef9f387f8a8125b57e05b227e8" prot="public" static="no" mutable="no">
+        <type>GLuint</type>
+        <definition>GLuint shader_attribute::_location</definition>
+        <argsstring></argsstring>
+        <name>_location</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" line="31" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structshader__attribute_1a4454f06bcf3d2e033e7a250c16db30c9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>shader_attribute::shader_attribute</definition>
+        <argsstring>()</argsstring>
+        <name>shader_attribute</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" line="32" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" bodystart="32" bodyend="32"/>
+      </memberdef>
+      <memberdef kind="function" id="structshader__attribute_1acca4e12c97aac01400616a5a5d42332f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>shader_attribute::shader_attribute</definition>
+        <argsstring>(en_attribute_type type, GLuint location)</argsstring>
+        <name>shader_attribute</name>
+        <param>
+          <type><ref refid="basic3d_8h_1a252706f7952dafcfc760e178d156f100" kindref="member">en_attribute_type</ref></type>
+          <declname>type</declname>
+        </param>
+        <param>
+          <type>GLuint</type>
+          <declname>location</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" line="33" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" bodystart="33" bodyend="33"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" line="29" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" bodystart="28" bodyend="34"/>
+    <listofallmembers>
+      <member refid="structshader__attribute_1abe29a6ef9f387f8a8125b57e05b227e8" prot="public" virt="non-virtual"><scope>shader_attribute</scope><name>_location</name></member>
+      <member refid="structshader__attribute_1a685d7bf94037e4da750b4653422bf9d0" prot="public" virt="non-virtual"><scope>shader_attribute</scope><name>_type</name></member>
+      <member refid="structshader__attribute_1a4454f06bcf3d2e033e7a250c16db30c9" prot="public" virt="non-virtual"><scope>shader_attribute</scope><name>shader_attribute</name></member>
+      <member refid="structshader__attribute_1acca4e12c97aac01400616a5a5d42332f" prot="public" virt="non-virtual"><scope>shader_attribute</scope><name>shader_attribute</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structft__vertex" kind="struct" language="C++" prot="public">
+    <compoundname>ft_vertex</compoundname>
+    <includes refid="control__common__def_8h" local="no">control_common_def.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structft__vertex_1a22e9fd21f89300a75932ab01f1ca5719" prot="public" static="no" mutable="no">
+        <type>ImVec3</type>
+        <definition>ImVec3 ft_vertex::pos</definition>
+        <argsstring></argsstring>
+        <name>pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="28" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__vertex_1ad8df4bfeb0da564a5306c4ab2699da50" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_vertex::uv</definition>
+        <argsstring></argsstring>
+        <name>uv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="29" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__vertex_1a22d3fd9a3f515eabd24bef2b4464d88a" prot="public" static="no" mutable="no">
+        <type>ImU32</type>
+        <definition>ImU32 ft_vertex::col</definition>
+        <argsstring></argsstring>
+        <name>col</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" line="26" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" bodystart="25" bodyend="31"/>
+    <listofallmembers>
+      <member refid="structft__vertex_1a22d3fd9a3f515eabd24bef2b4464d88a" prot="public" virt="non-virtual"><scope>ft_vertex</scope><name>col</name></member>
+      <member refid="structft__vertex_1a22e9fd21f89300a75932ab01f1ca5719" prot="public" virt="non-virtual"><scope>ft_vertex</scope><name>pos</name></member>
+      <member refid="structft__vertex_1ad8df4bfeb0da564a5306c4ab2699da50" prot="public" virt="non-virtual"><scope>ft_vertex</scope><name>uv</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

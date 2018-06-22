@@ -1,0 +1,158 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/basic3d.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'imgui\&.h'\fP
+.br
+\fC#include 'imgui_internal\&.h'\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include <map>\fP
+.br
+\fC#include <functional>\fP
+.br
+\fC#include <glm\&.hpp>\fP
+.br
+\fC#include <gtc/matrix_transform\&.hpp>\fP
+.br
+\fC#include <gtc/type_ptr\&.hpp>\fP
+.br
+\fC#include <GL/gl3w\&.h>\fP
+.br
+\fC#include 'fab\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBshader_attribute\fP"
+.br
+.ti -1c
+.RI "struct \fBshader_uniform\fP"
+.br
+.ti -1c
+.RI "class \fBbasic_shader\fP"
+.br
+.ti -1c
+.RI "struct \fBshader_assist< T >\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBIMGUI_DEFINE_MATH_OPERATORS\fP"
+.br
+.ti -1c
+.RI "#define \fBFILE_NAME_LEN\fP   50"
+.br
+.ti -1c
+.RI "#define \fBREG_SHADER\fP(shd_type)   static \fBshader_assist\fP<shd_type> reg_##shd_type(#shd_type)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef map< string, \fBshader_attribute\fP > \fBmattr_list\fP"
+.br
+.ti -1c
+.RI "typedef map< string, \fBshader_uniform\fP > \fBmunf_list\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBen_attribute_type\fP { \fBen_attr_float\fP, \fBen_attr_vec2\fP, \fBen_attr_vec3\fP, \fBen_attr_vec4\fP, \fBen_attr_type_count\fP }"
+.br
+.ti -1c
+.RI "enum \fBen_uniform_type\fP { \fBen_unf_float\fP, \fBen_unf_vec2\fP, \fBen_unf_vec3\fP, \fBen_unf_vec4\fP, \fBen_unf_mat4\fP, \fBen_unf_tex\fP, \fBen_unf_count\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinstantiating_internal_shader\fP ()"
+.br
+.ti -1c
+.RI "Factory< \fBbasic_shader\fP > & \fBget_shader_fc\fP ()"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "map< string, vector< unique_ptr< \fBbasic_shader\fP > > > \fBg_shader_list\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define FILE_NAME_LEN   50"
+
+.SS "#define IMGUI_DEFINE_MATH_OPERATORS"
+
+.SS "#define REG_SHADER(shd_type)   static \fBshader_assist\fP<shd_type> reg_##shd_type(#shd_type)"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef map<string,\fBshader_attribute\fP> \fBmattr_list\fP"
+
+.SS "typedef map<string, \fBshader_uniform\fP> \fBmunf_list\fP"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "enum \fBen_attribute_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIen_attr_float \fP\fP
+.TP
+\fB\fIen_attr_vec2 \fP\fP
+.TP
+\fB\fIen_attr_vec3 \fP\fP
+.TP
+\fB\fIen_attr_vec4 \fP\fP
+.TP
+\fB\fIen_attr_type_count \fP\fP
+.SS "enum \fBen_uniform_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIen_unf_float \fP\fP
+.TP
+\fB\fIen_unf_vec2 \fP\fP
+.TP
+\fB\fIen_unf_vec3 \fP\fP
+.TP
+\fB\fIen_unf_vec4 \fP\fP
+.TP
+\fB\fIen_unf_mat4 \fP\fP
+.TP
+\fB\fIen_unf_tex \fP\fP
+.TP
+\fB\fIen_unf_count \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "Factory<\fBbasic_shader\fP>& get_shader_fc ()"
+
+.SS "void instantiating_internal_shader ()"
+
+.SH "Variable Documentation"
+.PP 
+.SS "map<string, vector<unique_ptr<\fBbasic_shader\fP> > > g_shader_list"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

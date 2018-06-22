@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structft__image_1_1intl__pt" kind="struct" language="C++" prot="private">
+    <compoundname>ft_image::intl_pt</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_image::intl_pt::_size</definition>
+        <argsstring></argsstring>
+        <name>_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" line="8" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_image::intl_pt::_axis_pos</definition>
+        <argsstring></argsstring>
+        <name>_axis_pos</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" line="9" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int ft_image::intl_pt::_texture_index</definition>
+        <argsstring></argsstring>
+        <name>_texture_index</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" line="10" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" prot="public" static="no" mutable="no">
+        <type>float</type>
+        <definition>float ft_image::intl_pt::_angle</definition>
+        <argsstring></argsstring>
+        <name>_angle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" line="11" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structft__image_1_1intl__pt_1a4313804ce358730f101d09b8c63feef3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ft_image::intl_pt::intl_pt</definition>
+        <argsstring>()</argsstring>
+        <name>intl_pt</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" line="12" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" bodystart="12" bodyend="12"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" line="7" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h" bodystart="6" bodyend="13"/>
+    <listofallmembers>
+      <member refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" prot="public" virt="non-virtual"><scope>ft_image::intl_pt</scope><name>_angle</name></member>
+      <member refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" prot="public" virt="non-virtual"><scope>ft_image::intl_pt</scope><name>_axis_pos</name></member>
+      <member refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" prot="public" virt="non-virtual"><scope>ft_image::intl_pt</scope><name>_size</name></member>
+      <member refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" prot="public" virt="non-virtual"><scope>ft_image::intl_pt</scope><name>_texture_index</name></member>
+      <member refid="structft__image_1_1intl__pt_1a4313804ce358730f101d09b8c63feef3" prot="public" virt="non-virtual"><scope>ft_image::intl_pt</scope><name>intl_pt</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

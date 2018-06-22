@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_quat" kind="struct" language="C++" prot="public">
+    <compoundname>ofbx::Quat</compoundname>
+    <includes refid="ofbx_8h" local="no">ofbx.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_quat_1aeb1df17a933f7025b008b6981dab7084" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Quat::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="45" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_quat_1a7740fb1053361ff092fcc43ba02d68f0" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Quat::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="45" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_quat_1a9b31ad070f2e037f91273bae4ad7f65c" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Quat::z</definition>
+        <argsstring></argsstring>
+        <name>z</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="45" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_quat_1aab77f65a92e3213aa279a8819b1a2dae" prot="public" static="no" mutable="no">
+        <type>double</type>
+        <definition>double ofbx::Quat::w</definition>
+        <argsstring></argsstring>
+        <name>w</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="45" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" line="44" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.h" bodystart="43" bodyend="46"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_quat_1aab77f65a92e3213aa279a8819b1a2dae" prot="public" virt="non-virtual"><scope>ofbx::Quat</scope><name>w</name></member>
+      <member refid="structofbx_1_1_quat_1aeb1df17a933f7025b008b6981dab7084" prot="public" virt="non-virtual"><scope>ofbx::Quat</scope><name>x</name></member>
+      <member refid="structofbx_1_1_quat_1a7740fb1053361ff092fcc43ba02d68f0" prot="public" virt="non-virtual"><scope>ofbx::Quat</scope><name>y</name></member>
+      <member refid="structofbx_1_1_quat_1a9b31ad070f2e037f91273bae4ad7f65c" prot="public" virt="non-virtual"><scope>ofbx::Quat</scope><name>z</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

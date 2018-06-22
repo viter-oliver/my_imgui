@@ -1,0 +1,126 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/control_common_def.h \- the head file provide basic definition of control class, all control class inherited from the class \fBbase_ui_component\fP  
+
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <imgui\&.h>\fP
+.br
+\fC#include 'imgui_internal\&.h'\fP
+.br
+\fC#include <vector>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include 'json\&.h'\fP
+.br
+\fC#include <algorithm>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBft_vertex\fP"
+.br
+.ti -1c
+.RI "struct \fBproperty_range\fP"
+.br
+.ti -1c
+.RI "class \fBbase_ui_component\fP"
+.br
+.RI "\fI\fBbase_ui_component\fP is the base class of control class 
+.br
+description: \fBbase_ui_component\fP is designed as a recursive composition design pattern, including all the basic features of graphics element, such as drawing, parenting, childing and identity, \fP"
+.ti -1c
+.RI "struct \fBbase_ui_component::internal_property\fP"
+.br
+.RI "\fIdefine the property data block
+.br
+\fP"
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBIMGUI_DEFINE_MATH_OPERATORS\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef vector< \fBproperty_range\fP > \fBvproperty_list\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbase_ui_component\fP * \fBfind_a_uc_from_uc\fP (\fBbase_ui_component\fP &tar_ui, const char *uname)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "const unsigned char \fBname_len\fP = 20"
+.br
+.ti -1c
+.RI "const float \fBedit_unit_len\fP = 5\&.0f"
+.br
+.ti -1c
+.RI "const float \fBimge_edit_view_width\fP = 300\&.f"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+the head file provide basic definition of control class, all control class inherited from the class \fBbase_ui_component\fP 
+
+
+.PP
+\fBAuthor:\fP
+.RS 4
+Viter 
+.RE
+.PP
+\fBVersion:\fP
+.RS 4
+V1\&.0\&.0 
+.RE
+.PP
+\fBDate:\fP
+.RS 4
+6/13/2018   
+.PP
+.RE
+.PP
+description: 
+.PP
+
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define IMGUI_DEFINE_MATH_OPERATORS"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef vector<\fBproperty_range\fP> \fBvproperty_list\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBbase_ui_component\fP* find_a_uc_from_uc (\fBbase_ui_component\fP & tar_ui, const char * uname)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "const float edit_unit_len = 5\&.0f"
+
+.SS "const float imge_edit_view_width = 300\&.f"
+
+.SS "const unsigned char name_len = 20"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

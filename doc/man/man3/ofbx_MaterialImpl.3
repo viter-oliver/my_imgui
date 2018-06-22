@@ -1,0 +1,65 @@
+.TH "ofbx::MaterialImpl" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::MaterialImpl \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBofbx::Material\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMaterialImpl\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "\fBType\fP \fBgetType\fP () const override"
+.br
+.ti -1c
+.RI "const \fBTexture\fP * \fBgetTexture\fP (\fBTexture::TextureType\fP type) const override"
+.br
+.ti -1c
+.RI "\fBColor\fP \fBgetDiffuseColor\fP () const override"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "const \fBTexture\fP * \fBtextures\fP [Texture::TextureType::COUNT]"
+.br
+.ti -1c
+.RI "\fBColor\fP \fBdiffuse_color\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::MaterialImpl::MaterialImpl (const \fBScene\fP & _scene, const \fBIElement\fP & _element)\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBColor\fP ofbx::MaterialImpl::getDiffuseColor () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Material\fP\&.
+.SS "const \fBTexture\fP* ofbx::MaterialImpl::getTexture (\fBTexture::TextureType\fP type) const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Material\fP\&.
+.SS "\fBType\fP ofbx::MaterialImpl::getType () const\fC [inline]\fP, \fC [override]\fP, \fC [virtual]\fP"
+
+.PP
+Implements \fBofbx::Object\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBColor\fP ofbx::MaterialImpl::diffuse_color"
+
+.SS "const \fBTexture\fP* ofbx::MaterialImpl::textures[Texture::TextureType::COUNT]"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

@@ -1,4 +1,9 @@
 #pragma once
+#if !defined(IMGUI_WAYLAND)
+#include <GL/gl3w.h>
+#else
+#include"../../deps/glad/glad.h"
+#endif 
 #include <vector>
 #include <string>
 //ÎÆÀí×ÊÔ´
@@ -31,3 +36,16 @@ struct res_texture_list
 typedef vector<res_texture_list> vres_txt_list;
 extern vres_txt_list g_vres_texture_list;
 extern int g_cur_texture_id_index;
+
+struct af_texture
+{
+	GLuint _txt_id{ 0 }, _width{ 0 }, _height{ 0 };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	bool _sel{ false };
+#endif
+};
+#include<map>
+#include <memory>
+typedef map<string, shared_ptr<af_texture>> mtexture_list;
+extern mtexture_list g_mtexture_list;
+

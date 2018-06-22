@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="class_custom_render_translation" kind="class" language="C++" prot="public">
+    <compoundname>CustomRenderTranslation</compoundname>
+    <includes refid="render_transform_8h" local="no">renderTransform.h</includes>
+    <innerclass refid="struct_custom_render_translation_1_1_render_transformation" prot="public">CustomRenderTranslation::RenderTransformation</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_custom_render_translation_1aae92c811cab8e2fdcdf0bee6d16e8cd3" prot="private" static="no" mutable="no">
+        <type><ref refid="struct_custom_render_translation_1_1_render_transformation" kindref="compound">RenderTransformation</ref></type>
+        <definition>RenderTransformation CustomRenderTranslation::m_nRenderTransformationObj</definition>
+        <argsstring></argsstring>
+        <name>m_nRenderTransformationObj</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="126" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_custom_render_translation_1a0cee21a17613079db12ff20a154fe91d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setRenderTransformation</definition>
+        <argsstring>(RenderTransformation &amp;_obj)</argsstring>
+        <name>setRenderTransformation</name>
+        <param>
+          <type><ref refid="struct_custom_render_translation_1_1_render_transformation" kindref="compound">RenderTransformation</ref> &amp;</type>
+          <declname>_obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="13" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="13" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a7b7fddca86e2d511a384e72613e39c9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_custom_render_translation_1_1_render_transformation" kindref="compound">RenderTransformation</ref></type>
+        <definition>RenderTransformation CustomRenderTranslation::getRenderTransformation</definition>
+        <argsstring>()</argsstring>
+        <name>getRenderTransformation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="17" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="17" bodyend="20"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1afee9cbab8c0f6d26cd529711c7dea344" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setScale</definition>
+        <argsstring>(glm::vec3 &amp;_scale)</argsstring>
+        <name>setScale</name>
+        <param>
+          <type>glm::vec3 &amp;</type>
+          <declname>_scale</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="22" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="22" bodyend="25"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1ab29b443774a9b3ad54642c3eb9a7b095" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setScaleX</definition>
+        <argsstring>(float &amp;fval)</argsstring>
+        <name>setScaleX</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="26" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="26" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1af66c47614c2bd4cabdf43f805cdea451" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setScaleY</definition>
+        <argsstring>(float &amp;fval)</argsstring>
+        <name>setScaleY</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="30" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="30" bodyend="33"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a98db8203432412437f009a6330541403" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setScaleZ</definition>
+        <argsstring>(float &amp;fval)</argsstring>
+        <name>setScaleZ</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="34" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="34" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1af997c035f3d9c9eb746a02750ed657a4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setRotation</definition>
+        <argsstring>(glm::vec3 &amp;_rotation)</argsstring>
+        <name>setRotation</name>
+        <param>
+          <type>glm::vec3 &amp;</type>
+          <declname>_rotation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="39" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1af8bcc518f3473589a2a44360382ce12d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setRotationX</definition>
+        <argsstring>(float &amp;_fval)</argsstring>
+        <name>setRotationX</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>_fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="43" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="43" bodyend="46"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1aa339644cdb78099f96e980c51d71ca29" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setRotationY</definition>
+        <argsstring>(float &amp;_fval)</argsstring>
+        <name>setRotationY</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>_fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="47" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a113dd072da47d12cb293ba66e0c62150" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setRotationZ</definition>
+        <argsstring>(float &amp;_fval)</argsstring>
+        <name>setRotationZ</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>_fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="51" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="51" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1ac868353ae2e210651d5e4768d10272be" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setTranslation</definition>
+        <argsstring>(glm::vec3 &amp;_translation)</argsstring>
+        <name>setTranslation</name>
+        <param>
+          <type>glm::vec3 &amp;</type>
+          <declname>_translation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="56" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="56" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a11c62ecd4962ffd5db03a4c0e417b407" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setTranslationX</definition>
+        <argsstring>(float &amp;_fval)</argsstring>
+        <name>setTranslationX</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>_fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="60" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="60" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a2f8b018b127e58b45e66ef4de84ccb9f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setTranslationY</definition>
+        <argsstring>(float &amp;_fval)</argsstring>
+        <name>setTranslationY</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>_fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="64" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="64" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a4b7a01e5d5d3f2a2ba3026c8c3114e5e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void CustomRenderTranslation::setTranslationZ</definition>
+        <argsstring>(float &amp;_fval)</argsstring>
+        <name>setTranslationZ</name>
+        <param>
+          <type>float &amp;</type>
+          <declname>_fval</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="68" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a8c647ff2528455c4259412209842b851" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 CustomRenderTranslation::getScale</definition>
+        <argsstring>()</argsstring>
+        <name>getScale</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="74" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="74" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a670702f531ab1cf3e0ca88b32389ff4d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getScaleX</definition>
+        <argsstring>()</argsstring>
+        <name>getScaleX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="78" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="78" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a4db19426ad79311fdc0288f0b385887b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getScaleY</definition>
+        <argsstring>()</argsstring>
+        <name>getScaleY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="82" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="82" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1afcaf4ebbb80e41ac42df17a668cdf24c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getScaleZ</definition>
+        <argsstring>()</argsstring>
+        <name>getScaleZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="86" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="86" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1aedd30702ea818d2ac56706c97b77ad61" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 CustomRenderTranslation::getRotation</definition>
+        <argsstring>()</argsstring>
+        <name>getRotation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="91" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="91" bodyend="94"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a8ac5eefd6bd634d551c5560d753c8c2a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getRotationX</definition>
+        <argsstring>()</argsstring>
+        <name>getRotationX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="95" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="95" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a383e66ce787734a1dfad13da24464bb5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getRotationY</definition>
+        <argsstring>()</argsstring>
+        <name>getRotationY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="99" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="99" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1aff0c5e3277a065349383f3a2d996ccee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getRotationZ</definition>
+        <argsstring>()</argsstring>
+        <name>getRotationZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="103" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="103" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a33e4ef72328c90a350d617f564973b35" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 CustomRenderTranslation::getTraslation</definition>
+        <argsstring>()</argsstring>
+        <name>getTraslation</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="108" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a20f64b8c2f6fd37eae8791d7b6fa24c6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getTranslationX</definition>
+        <argsstring>()</argsstring>
+        <name>getTranslationX</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="112" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="112" bodyend="115"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1a4b3f1223e6e0c595208f6b87e60d4932" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getTranslationY</definition>
+        <argsstring>()</argsstring>
+        <name>getTranslationY</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="116" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="116" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_custom_render_translation_1ae066c64a6936f6868a590998de25ccd3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float CustomRenderTranslation::getTranslationZ</definition>
+        <argsstring>()</argsstring>
+        <name>getTranslationZ</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="120" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="120" bodyend="123"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="193">
+        <label>CustomRenderTranslation</label>
+        <link refid="class_custom_render_translation"/>
+        <childnode refid="194" relation="usage">
+          <edgelabel>m_nRenderTransformationObj</edgelabel>
+        </childnode>
+      </node>
+      <node id="194">
+        <label>CustomRenderTranslation::RenderTransformation</label>
+        <link refid="struct_custom_render_translation_1_1_render_transformation"/>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" line="5" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/renderTransform.h" bodystart="5" bodyend="127"/>
+    <listofallmembers>
+      <member refid="class_custom_render_translation_1a7b7fddca86e2d511a384e72613e39c9f" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getRenderTransformation</name></member>
+      <member refid="class_custom_render_translation_1aedd30702ea818d2ac56706c97b77ad61" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getRotation</name></member>
+      <member refid="class_custom_render_translation_1a8ac5eefd6bd634d551c5560d753c8c2a" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getRotationX</name></member>
+      <member refid="class_custom_render_translation_1a383e66ce787734a1dfad13da24464bb5" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getRotationY</name></member>
+      <member refid="class_custom_render_translation_1aff0c5e3277a065349383f3a2d996ccee" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getRotationZ</name></member>
+      <member refid="class_custom_render_translation_1a8c647ff2528455c4259412209842b851" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getScale</name></member>
+      <member refid="class_custom_render_translation_1a670702f531ab1cf3e0ca88b32389ff4d" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getScaleX</name></member>
+      <member refid="class_custom_render_translation_1a4db19426ad79311fdc0288f0b385887b" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getScaleY</name></member>
+      <member refid="class_custom_render_translation_1afcaf4ebbb80e41ac42df17a668cdf24c" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getScaleZ</name></member>
+      <member refid="class_custom_render_translation_1a20f64b8c2f6fd37eae8791d7b6fa24c6" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getTranslationX</name></member>
+      <member refid="class_custom_render_translation_1a4b3f1223e6e0c595208f6b87e60d4932" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getTranslationY</name></member>
+      <member refid="class_custom_render_translation_1ae066c64a6936f6868a590998de25ccd3" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getTranslationZ</name></member>
+      <member refid="class_custom_render_translation_1a33e4ef72328c90a350d617f564973b35" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>getTraslation</name></member>
+      <member refid="class_custom_render_translation_1aae92c811cab8e2fdcdf0bee6d16e8cd3" prot="private" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>m_nRenderTransformationObj</name></member>
+      <member refid="class_custom_render_translation_1a0cee21a17613079db12ff20a154fe91d" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setRenderTransformation</name></member>
+      <member refid="class_custom_render_translation_1af997c035f3d9c9eb746a02750ed657a4" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setRotation</name></member>
+      <member refid="class_custom_render_translation_1af8bcc518f3473589a2a44360382ce12d" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setRotationX</name></member>
+      <member refid="class_custom_render_translation_1aa339644cdb78099f96e980c51d71ca29" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setRotationY</name></member>
+      <member refid="class_custom_render_translation_1a113dd072da47d12cb293ba66e0c62150" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setRotationZ</name></member>
+      <member refid="class_custom_render_translation_1afee9cbab8c0f6d26cd529711c7dea344" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setScale</name></member>
+      <member refid="class_custom_render_translation_1ab29b443774a9b3ad54642c3eb9a7b095" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setScaleX</name></member>
+      <member refid="class_custom_render_translation_1af66c47614c2bd4cabdf43f805cdea451" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setScaleY</name></member>
+      <member refid="class_custom_render_translation_1a98db8203432412437f009a6330541403" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setScaleZ</name></member>
+      <member refid="class_custom_render_translation_1ac868353ae2e210651d5e4768d10272be" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setTranslation</name></member>
+      <member refid="class_custom_render_translation_1a11c62ecd4962ffd5db03a4c0e417b407" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setTranslationX</name></member>
+      <member refid="class_custom_render_translation_1a2f8b018b127e58b45e66ef4de84ccb9f" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setTranslationY</name></member>
+      <member refid="class_custom_render_translation_1a4b7a01e5d5d3f2a2ba3026c8c3114e5e" prot="public" virt="non-virtual"><scope>CustomRenderTranslation</scope><name>setTranslationZ</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

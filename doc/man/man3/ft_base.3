@@ -1,0 +1,123 @@
+.TH "ft_base" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ft_base \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ft_base\&.h>\fP
+.PP
+Inherits \fBbase_ui_component\fP\&.
+.PP
+Inherited by \fBft_button\fP, \fBft_cube\fP, \fBft_image\fP, \fBft_listbox\fP, \fBft_model\fP, \fBft_particles_gravity\fP, \fBft_plane\fP, \fBft_polygon_image\fP, \fBft_scene3d\fP, \fBft_slider\fP, \fBft_sphere\fP, \fBft_textblock\fP, and \fBft_trajectory_box\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBft_base\fP ()"
+.br
+.ti -1c
+.RI "void \fBdraw\fP ()"
+.br
+.RI "\fIdraw self on a surface \fP"
+.ti -1c
+.RI "void \fBdraw_peroperty_page\fP ()"
+.br
+.RI "\fIdraw property on the property page for editing \fP"
+.ti -1c
+.RI "bool \fBinit_from_json\fP (Value &jvalue)"
+.br
+.RI "\fIinstancing class from a json value unit \fP"
+.ti -1c
+.RI "bool \fBinit_json_unit\fP (Value &junit)"
+.br
+.RI "\fIinit a json unit by some data members \fP"
+.ti -1c
+.RI "bool \fBhandle_mouse\fP ()"
+.br
+.ti -1c
+.RI "\fBbase_ui_component\fP * \fBget_copy_of_object\fP ()"
+.br
+.RI "\fIget a copy of a ui component object \fP"
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ft_base::ft_base ()\fC [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void ft_base::draw ()\fC [virtual]\fP"
+
+.PP
+draw self on a surface 
+.PP
+Implements \fBbase_ui_component\fP\&.
+.PP
+Reimplemented in \fBft_slider\fP, \fBft_model\fP, \fBft_cube\fP, \fBft_textblock\fP, \fBft_scene3d\fP, \fBft_image\fP, \fBft_listbox\fP, \fBft_particles_gravity\fP, \fBft_button\fP, \fBft_trajectory_box\fP, and \fBft_polygon_image\fP\&.
+.SS "void ft_base::draw_peroperty_page ()\fC [virtual]\fP"
+
+.PP
+draw property on the property page for editing 
+.PP
+Implements \fBbase_ui_component\fP\&.
+.PP
+Reimplemented in \fBft_slider\fP, \fBft_model\fP, \fBft_textblock\fP, \fBft_scene3d\fP, \fBft_cube\fP, \fBft_image\fP, \fBft_button\fP, \fBft_listbox\fP, \fBft_trajectory_box\fP, and \fBft_polygon_image\fP\&.
+.SS "\fBbase_ui_component\fP * ft_base::get_copy_of_object ()\fC [virtual]\fP"
+
+.PP
+get a copy of a ui component object 
+.PP
+Reimplemented from \fBbase_ui_component\fP\&.
+.SS "bool ft_base::handle_mouse ()\fC [virtual]\fP"
+
+.PP
+Reimplemented from \fBbase_ui_component\fP\&.
+.PP
+Reimplemented in \fBft_slider\fP, \fBft_scene3d\fP, \fBft_button\fP, \fBft_listbox\fP, \fBft_trajectory_box\fP, and \fBft_polygon_image\fP\&.
+.SS "bool ft_base::init_from_json (Value & jvalue)\fC [virtual]\fP"
+
+.PP
+instancing class from a json value unit 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIjvalue\fP a json value jvalue which contain all the value of the data member of current object 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+result --true success --false failure 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBbase_ui_component\fP\&.
+.PP
+Reimplemented in \fBft_slider\fP, \fBft_model\fP, \fBft_textblock\fP, \fBft_scene3d\fP, \fBft_cube\fP, \fBft_image\fP, \fBft_button\fP, \fBft_listbox\fP, \fBft_trajectory_box\fP, and \fBft_polygon_image\fP\&.
+.SS "bool ft_base::init_json_unit (Value & junit)\fC [virtual]\fP"
+
+.PP
+init a json unit by some data members 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIjunit\fP a json value junit which will be stored all the value of the data member of current object 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+result -true success -false failure 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBbase_ui_component\fP\&.
+.PP
+Reimplemented in \fBft_slider\fP, \fBft_model\fP, \fBft_textblock\fP, \fBft_scene3d\fP, \fBft_cube\fP, and \fBft_image\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

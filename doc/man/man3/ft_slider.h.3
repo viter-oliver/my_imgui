@@ -1,0 +1,78 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <vector>\fP
+.br
+\fC#include <math\&.h>\fP
+.br
+\fC#include 'ft_base\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBft_slider\fP"
+.br
+.ti -1c
+.RI "struct \fBft_slider::intl_pt\fP"
+.br
+.ti -1c
+.RI "struct \fBft_slider::random_point_array\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#define \fBqu1et_thr_length\fP(a,  b)   sqrt(\fBqu1et_square\fP<float>(a) + \fBqu1et_square\fP<float>(b))"
+.br
+.ti -1c
+.RI "#define \fBqu1et_one_quadrangle_length\fP(a,  b,  c,  d)   (\fBqu1et_thr_length\fP(d\&.x-a\&.x, d\&.y-a\&.y) + \fBqu1et_thr_length\fP(b\&.x-c\&.x, b\&.y-c\&.y))/2"
+.br
+.ti -1c
+.RI "#define \fBqu1et_top_point_pos_x_of_square\fP(a,  b,  c,  d,  l,  h)   l*abs(d\&.x - a\&.x)/h + a\&.x"
+.br
+.ti -1c
+.RI "#define \fBqu1et_top_point_pos_y_of_square\fP(a,  b,  c,  d,  l,  h)   l*abs(d\&.y - a\&.y)/h + a\&.y"
+.br
+.ti -1c
+.RI "#define \fBqu1et_bottom_point_pos_x_of_square\fP(a,  b,  c,  d,  l,  h)   l*abs(c\&.x - b\&.x)/h + b\&.x"
+.br
+.ti -1c
+.RI "#define \fBqu1et_bottom_point_pos_y_of_square\fP(a,  b,  c,  d,  l,  h)   l*abs(c\&.y - b\&.y)/h + b\&.y"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<class T > T \fBqu1et_square\fP (T val)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#define qu1et_bottom_point_pos_x_of_square(a, b, c, d, l, h)   l*abs(c\&.x - b\&.x)/h + b\&.x"
+
+.SS "#define qu1et_bottom_point_pos_y_of_square(a, b, c, d, l, h)   l*abs(c\&.y - b\&.y)/h + b\&.y"
+
+.SS "#define qu1et_one_quadrangle_length(a, b, c, d)   (\fBqu1et_thr_length\fP(d\&.x-a\&.x, d\&.y-a\&.y) + \fBqu1et_thr_length\fP(b\&.x-c\&.x, b\&.y-c\&.y))/2"
+
+.SS "#define qu1et_thr_length(a, b)   sqrt(\fBqu1et_square\fP<float>(a) + \fBqu1et_square\fP<float>(b))"
+
+.SS "#define qu1et_top_point_pos_x_of_square(a, b, c, d, l, h)   l*abs(d\&.x - a\&.x)/h + a\&.x"
+
+.SS "#define qu1et_top_point_pos_y_of_square(a, b, c, d, l, h)   l*abs(d\&.y - a\&.y)/h + a\&.y"
+
+.SH "Function Documentation"
+.PP 
+.SS "template<class T > T qu1et_square (T val)\fC [inline]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

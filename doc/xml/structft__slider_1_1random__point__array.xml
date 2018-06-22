@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structft__slider_1_1random__point__array" kind="struct" language="C++" prot="private">
+    <compoundname>ft_slider::random_point_array</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structft__slider_1_1random__point__array_1a5aa0d7eba0ed5b88100eca5fd0fe8ef8" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_slider::random_point_array::top_point</definition>
+        <argsstring></argsstring>
+        <name>top_point</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="68" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structft__slider_1_1random__point__array_1a83d6f6c46dd62015d7a9f8104ebb8058" prot="public" static="no" mutable="no">
+        <type>ImVec2</type>
+        <definition>ImVec2 ft_slider::random_point_array::bottom_point</definition>
+        <argsstring></argsstring>
+        <name>bottom_point</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="69" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structft__slider_1_1random__point__array_1a1ead5439d30e0a158854fac2d4a73ff8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ft_slider::random_point_array::random_point_array</definition>
+        <argsstring>()</argsstring>
+        <name>random_point_array</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="70" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="70" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="structft__slider_1_1random__point__array_1ad1960f0fe5804161254ed2c2feb1c6a7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ft_slider::random_point_array::random_point_array</definition>
+        <argsstring>(ImVec2 &amp;itop, ImVec2 &amp;ibottom)</argsstring>
+        <name>random_point_array</name>
+        <param>
+          <type>ImVec2 &amp;</type>
+          <declname>itop</declname>
+        </param>
+        <param>
+          <type>ImVec2 &amp;</type>
+          <declname>ibottom</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="71" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="71" bodyend="73"/>
+      </memberdef>
+      <memberdef kind="function" id="structft__slider_1_1random__point__array_1a911ddc2530566c6e44222abb94c4becf" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void ft_slider::random_point_array::operator=</definition>
+        <argsstring>(random_point_array &amp;it)</argsstring>
+        <name>operator=</name>
+        <param>
+          <type><ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref> &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="75" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="75" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="structft__slider_1_1random__point__array_1a1528bdca9eb56624a90fd227b327f908" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ft_slider::random_point_array::operator==</definition>
+        <argsstring>(random_point_array &amp;it)</argsstring>
+        <name>operator==</name>
+        <param>
+          <type><ref refid="structft__slider_1_1random__point__array" kindref="compound">random_point_array</ref> &amp;</type>
+          <declname>it</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="81" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="81" bodyend="88"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" line="67" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_slider.h" bodystart="66" bodyend="89"/>
+    <listofallmembers>
+      <member refid="structft__slider_1_1random__point__array_1a83d6f6c46dd62015d7a9f8104ebb8058" prot="public" virt="non-virtual"><scope>ft_slider::random_point_array</scope><name>bottom_point</name></member>
+      <member refid="structft__slider_1_1random__point__array_1a911ddc2530566c6e44222abb94c4becf" prot="public" virt="non-virtual"><scope>ft_slider::random_point_array</scope><name>operator=</name></member>
+      <member refid="structft__slider_1_1random__point__array_1a1528bdca9eb56624a90fd227b327f908" prot="public" virt="non-virtual"><scope>ft_slider::random_point_array</scope><name>operator==</name></member>
+      <member refid="structft__slider_1_1random__point__array_1a1ead5439d30e0a158854fac2d4a73ff8" prot="public" virt="non-virtual"><scope>ft_slider::random_point_array</scope><name>random_point_array</name></member>
+      <member refid="structft__slider_1_1random__point__array_1ad1960f0fe5804161254ed2c2feb1c6a7" prot="public" virt="non-virtual"><scope>ft_slider::random_point_array</scope><name>random_point_array</name></member>
+      <member refid="structft__slider_1_1random__point__array_1a5aa0d7eba0ed5b88100eca5fd0fe8ef8" prot="public" virt="non-virtual"><scope>ft_slider::random_point_array</scope><name>top_point</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

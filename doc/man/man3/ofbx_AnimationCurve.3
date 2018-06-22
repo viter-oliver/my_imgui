@@ -1,0 +1,64 @@
+.TH "ofbx::AnimationCurve" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+ofbx::AnimationCurve \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <ofbx\&.h>\fP
+.PP
+Inherits \fBofbx::Object\fP\&.
+.PP
+Inherited by \fBofbx::AnimationCurveImpl\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBAnimationCurve\fP (const \fBScene\fP &_scene, const \fBIElement\fP &_element)"
+.br
+.ti -1c
+.RI "virtual int \fBgetKeyCount\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const \fBi64\fP * \fBgetKeyTime\fP () const =0"
+.br
+.ti -1c
+.RI "virtual const float * \fBgetKeyValue\fP () const =0"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "static const \fBType\fP \fBs_type\fP = \fBType::ANIMATION_CURVE\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "ofbx::AnimationCurve::AnimationCurve (const \fBScene\fP & _scene, const \fBIElement\fP & _element)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual int ofbx::AnimationCurve::getKeyCount () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::AnimationCurveImpl\fP\&.
+.SS "virtual const \fBi64\fP* ofbx::AnimationCurve::getKeyTime () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::AnimationCurveImpl\fP\&.
+.SS "virtual const float* ofbx::AnimationCurve::getKeyValue () const\fC [pure virtual]\fP"
+
+.PP
+Implemented in \fBofbx::AnimationCurveImpl\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "const \fBType\fP ofbx::AnimationCurve::s_type = \fBType::ANIMATION_CURVE\fP\fC [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

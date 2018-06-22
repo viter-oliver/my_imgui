@@ -67,16 +67,16 @@ protected:
 		bool _visible;
 		internal_property() :_visible(true){ memset(_name, 0, name_len); }
     };
-	/*!< the member will be serialized */
+	/// the member will be serialized 
 	internal_property _in_p;
-	/*!< the member contain all of the components which is the object
+	/** the member contain all of the components which is the object
 	of the child class of base_ui_componnet */
 	vector<base_ui_component*> _vchilds;
-	/*!< the parent object, this member will NULL if current object is root */
+	/** the parent object, this member will NULL if current object is root */
 	base_ui_component* _parent;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 protected:
-	/*!< used for selecting a object in project edit for property editing */
+	/** used for selecting a object in project edit for property editing */
 	bool _selected;
 public:
 	/**
@@ -111,9 +111,9 @@ public:
 	virtual bool init_json_unit(Value& junit){ return true; }
 #endif
 public:
-	/*!< define the width of screen */
+	/** define the width of screen */
 	static float screenw;
-	/*!< define the height of screen */
+	/** define the height of screen */
 	static float screenh;
 	/**
 	*@brief draw self on a surface

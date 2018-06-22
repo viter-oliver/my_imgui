@@ -42,11 +42,11 @@ public:
 		return len;
 
 	}
-	void load_mesh_data_2_vertices();
-	void load_vertics_2_vbo();
 	void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();
+	void load_mesh_data_2_vertices();
+	void load_vertics_2_vbo();
 	bool init_from_json(Value& jvalue);
 	bool init_json_unit(Value& junit);
 #endif

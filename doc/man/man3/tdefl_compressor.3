@@ -1,0 +1,235 @@
+.TH "tdefl_compressor" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tdefl_compressor \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <miniz\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBtdefl_put_buf_func_ptr\fP \fBm_pPut_buf_func\fP"
+.br
+.ti -1c
+.RI "void * \fBm_pPut_buf_user\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_flags\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_max_probes\fP [2]"
+.br
+.ti -1c
+.RI "int \fBm_greedy_parsing\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_adler32\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_lookahead_pos\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_lookahead_size\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_dict_size\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP * \fBm_pLZ_code_buf\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP * \fBm_pLZ_flags\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP * \fBm_pOutput_buf\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP * \fBm_pOutput_buf_end\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_num_flags_left\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_total_lz_bytes\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_lz_code_buf_dict_pos\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_bits_in\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_bit_buffer\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_saved_match_dist\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_saved_match_len\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_saved_lit\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_output_flush_ofs\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_output_flush_remaining\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_finished\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_block_index\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint\fP \fBm_wants_to_finish\fP"
+.br
+.ti -1c
+.RI "\fBtdefl_status\fP \fBm_prev_return_status\fP"
+.br
+.ti -1c
+.RI "const void * \fBm_pIn_buf\fP"
+.br
+.ti -1c
+.RI "void * \fBm_pOut_buf\fP"
+.br
+.ti -1c
+.RI "size_t * \fBm_pIn_buf_size\fP"
+.br
+.ti -1c
+.RI "size_t * \fBm_pOut_buf_size\fP"
+.br
+.ti -1c
+.RI "\fBtdefl_flush\fP \fBm_flush\fP"
+.br
+.ti -1c
+.RI "const \fBmz_uint8\fP * \fBm_pSrc\fP"
+.br
+.ti -1c
+.RI "size_t \fBm_src_buf_left\fP"
+.br
+.ti -1c
+.RI "size_t \fBm_out_buf_ofs\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP \fBm_dict\fP [\fBTDEFL_LZ_DICT_SIZE\fP+\fBTDEFL_MAX_MATCH_LEN\fP-1]"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_huff_count\fP [\fBTDEFL_MAX_HUFF_TABLES\fP][\fBTDEFL_MAX_HUFF_SYMBOLS\fP]"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_huff_codes\fP [\fBTDEFL_MAX_HUFF_TABLES\fP][\fBTDEFL_MAX_HUFF_SYMBOLS\fP]"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP \fBm_huff_code_sizes\fP [\fBTDEFL_MAX_HUFF_TABLES\fP][\fBTDEFL_MAX_HUFF_SYMBOLS\fP]"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP \fBm_lz_code_buf\fP [\fBTDEFL_LZ_CODE_BUF_SIZE\fP]"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_next\fP [\fBTDEFL_LZ_DICT_SIZE\fP]"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_hash\fP [\fBTDEFL_LZ_HASH_SIZE\fP]"
+.br
+.ti -1c
+.RI "\fBmz_uint8\fP \fBm_output_buf\fP [\fBTDEFL_OUT_BUF_SIZE\fP]"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBmz_uint\fP tdefl_compressor::m_adler32"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_bit_buffer"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_bits_in"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_block_index"
+
+.SS "\fBmz_uint8\fP tdefl_compressor::m_dict[\fBTDEFL_LZ_DICT_SIZE\fP+\fBTDEFL_MAX_MATCH_LEN\fP-1]"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_dict_size"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_finished"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_flags"
+
+.SS "\fBtdefl_flush\fP tdefl_compressor::m_flush"
+
+.SS "int tdefl_compressor::m_greedy_parsing"
+
+.SS "\fBmz_uint16\fP tdefl_compressor::m_hash[\fBTDEFL_LZ_HASH_SIZE\fP]"
+
+.SS "\fBmz_uint8\fP tdefl_compressor::m_huff_code_sizes[\fBTDEFL_MAX_HUFF_TABLES\fP][\fBTDEFL_MAX_HUFF_SYMBOLS\fP]"
+
+.SS "\fBmz_uint16\fP tdefl_compressor::m_huff_codes[\fBTDEFL_MAX_HUFF_TABLES\fP][\fBTDEFL_MAX_HUFF_SYMBOLS\fP]"
+
+.SS "\fBmz_uint16\fP tdefl_compressor::m_huff_count[\fBTDEFL_MAX_HUFF_TABLES\fP][\fBTDEFL_MAX_HUFF_SYMBOLS\fP]"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_lookahead_pos"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_lookahead_size"
+
+.SS "\fBmz_uint8\fP tdefl_compressor::m_lz_code_buf[\fBTDEFL_LZ_CODE_BUF_SIZE\fP]"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_lz_code_buf_dict_pos"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_max_probes[2]"
+
+.SS "\fBmz_uint16\fP tdefl_compressor::m_next[\fBTDEFL_LZ_DICT_SIZE\fP]"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_num_flags_left"
+
+.SS "size_t tdefl_compressor::m_out_buf_ofs"
+
+.SS "\fBmz_uint8\fP tdefl_compressor::m_output_buf[\fBTDEFL_OUT_BUF_SIZE\fP]"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_output_flush_ofs"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_output_flush_remaining"
+
+.SS "const void* tdefl_compressor::m_pIn_buf"
+
+.SS "size_t* tdefl_compressor::m_pIn_buf_size"
+
+.SS "\fBmz_uint8\fP* tdefl_compressor::m_pLZ_code_buf"
+
+.SS "\fBmz_uint8\fP * tdefl_compressor::m_pLZ_flags"
+
+.SS "void* tdefl_compressor::m_pOut_buf"
+
+.SS "size_t * tdefl_compressor::m_pOut_buf_size"
+
+.SS "\fBmz_uint8\fP * tdefl_compressor::m_pOutput_buf"
+
+.SS "\fBmz_uint8\fP * tdefl_compressor::m_pOutput_buf_end"
+
+.SS "\fBtdefl_put_buf_func_ptr\fP tdefl_compressor::m_pPut_buf_func"
+
+.SS "void* tdefl_compressor::m_pPut_buf_user"
+
+.SS "\fBtdefl_status\fP tdefl_compressor::m_prev_return_status"
+
+.SS "const \fBmz_uint8\fP* tdefl_compressor::m_pSrc"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_saved_lit"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_saved_match_dist"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_saved_match_len"
+
+.SS "size_t tdefl_compressor::m_src_buf_left"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_total_lz_bytes"
+
+.SS "\fBmz_uint\fP tdefl_compressor::m_wants_to_finish"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

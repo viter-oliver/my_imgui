@@ -1,0 +1,69 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/primitive_object.h \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <map>\fP
+.br
+\fC#include <string>\fP
+.br
+\fC#include <memory>\fP
+.br
+\fC#include <GL/gl3w\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBprimitive_object\fP"
+.br
+.RI "\fI\fBprimitive_object\fP represent basic data struct which will be inputed into
+.br
+a vertex shader \fP"
+.ti -1c
+.RI "struct \fBprimitive_cube\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "typedef map< string, shared_ptr< \fBprimitive_object\fP > > \fBmp_primitive\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "void \fBinit_primitive_list\fP ()"
+.br
+.RI "\fIput all primitive defined object into g_primitive_list \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBmp_primitive\fP \fBg_primitive_list\fP"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "typedef map<string, shared_ptr<\fBprimitive_object\fP> > \fBmp_primitive\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "void init_primitive_list ()"
+
+.PP
+put all primitive defined object into g_primitive_list 
+.SH "Variable Documentation"
+.PP 
+.SS "\fBmp_primitive\fP g_primitive_list"
+the primitive object of g_primitive_list will be referenced by some ui components 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

@@ -1,0 +1,115 @@
+.TH "mz_zip_archive_file_stat" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+mz_zip_archive_file_stat \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <miniz\&.h>\fP
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBmz_uint32\fP \fBm_file_index\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBm_central_dir_ofs\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_version_made_by\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_version_needed\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_bit_flag\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_method\fP"
+.br
+.ti -1c
+.RI "\fBMZ_TIME_T\fP \fBm_time\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint32\fP \fBm_crc32\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBm_comp_size\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBm_uncomp_size\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint16\fP \fBm_internal_attr\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint32\fP \fBm_external_attr\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint64\fP \fBm_local_header_ofs\fP"
+.br
+.ti -1c
+.RI "\fBmz_uint32\fP \fBm_comment_size\fP"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBm_is_directory\fP"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBm_is_encrypted\fP"
+.br
+.ti -1c
+.RI "\fBmz_bool\fP \fBm_is_supported\fP"
+.br
+.ti -1c
+.RI "char \fBm_filename\fP [\fBMZ_ZIP_MAX_ARCHIVE_FILENAME_SIZE\fP]"
+.br
+.ti -1c
+.RI "char \fBm_comment\fP [\fBMZ_ZIP_MAX_ARCHIVE_FILE_COMMENT_SIZE\fP]"
+.br
+.in -1c
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBmz_uint16\fP mz_zip_archive_file_stat::m_bit_flag"
+
+.SS "\fBmz_uint64\fP mz_zip_archive_file_stat::m_central_dir_ofs"
+
+.SS "char mz_zip_archive_file_stat::m_comment[\fBMZ_ZIP_MAX_ARCHIVE_FILE_COMMENT_SIZE\fP]"
+
+.SS "\fBmz_uint32\fP mz_zip_archive_file_stat::m_comment_size"
+
+.SS "\fBmz_uint64\fP mz_zip_archive_file_stat::m_comp_size"
+
+.SS "\fBmz_uint32\fP mz_zip_archive_file_stat::m_crc32"
+
+.SS "\fBmz_uint32\fP mz_zip_archive_file_stat::m_external_attr"
+
+.SS "\fBmz_uint32\fP mz_zip_archive_file_stat::m_file_index"
+
+.SS "char mz_zip_archive_file_stat::m_filename[\fBMZ_ZIP_MAX_ARCHIVE_FILENAME_SIZE\fP]"
+
+.SS "\fBmz_uint16\fP mz_zip_archive_file_stat::m_internal_attr"
+
+.SS "\fBmz_bool\fP mz_zip_archive_file_stat::m_is_directory"
+
+.SS "\fBmz_bool\fP mz_zip_archive_file_stat::m_is_encrypted"
+
+.SS "\fBmz_bool\fP mz_zip_archive_file_stat::m_is_supported"
+
+.SS "\fBmz_uint64\fP mz_zip_archive_file_stat::m_local_header_ofs"
+
+.SS "\fBmz_uint16\fP mz_zip_archive_file_stat::m_method"
+
+.SS "\fBMZ_TIME_T\fP mz_zip_archive_file_stat::m_time"
+
+.SS "\fBmz_uint64\fP mz_zip_archive_file_stat::m_uncomp_size"
+
+.SS "\fBmz_uint16\fP mz_zip_archive_file_stat::m_version_made_by"
+
+.SS "\fBmz_uint16\fP mz_zip_archive_file_stat::m_version_needed"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

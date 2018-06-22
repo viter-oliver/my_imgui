@@ -1,0 +1,296 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="class_camera" kind="class" language="C++" prot="public">
+    <compoundname>Camera</compoundname>
+    <includes refid="camera_8h" local="no">camera.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 Camera::forward</definition>
+        <argsstring></argsstring>
+        <name>forward</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="115" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a3fe5f351380fb118ffc600591769f049" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 Camera::up</definition>
+        <argsstring></argsstring>
+        <name>up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="115" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a3190dbe45430d67ec1859f67b75b1a28" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 Camera::side</definition>
+        <argsstring></argsstring>
+        <name>side</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="115" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1aeed12d28097f13307412171277b04091" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 Camera::viewUp</definition>
+        <argsstring></argsstring>
+        <name>viewUp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="115" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" prot="public" static="no" mutable="no">
+        <type>glm::vec3</type>
+        <definition>glm::vec3 Camera::position</definition>
+        <argsstring></argsstring>
+        <name>position</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="115" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" prot="public" static="no" mutable="no">
+        <type>GLfloat</type>
+        <definition>GLfloat Camera::yawAngle</definition>
+        <argsstring></argsstring>
+        <name>yawAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="116" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" prot="public" static="no" mutable="no">
+        <type>GLfloat</type>
+        <definition>GLfloat Camera::pitchAngle</definition>
+        <argsstring></argsstring>
+        <name>pitchAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="116" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1aabe2ce10d7abfe8011a51394c6e0d863" prot="public" static="no" mutable="no">
+        <type>GLfloat</type>
+        <definition>GLfloat Camera::moveSpeed</definition>
+        <argsstring></argsstring>
+        <name>moveSpeed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="117" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a0658cc8b38fc33f092f196648e00e724" prot="public" static="no" mutable="no">
+        <type>GLfloat</type>
+        <definition>GLfloat Camera::mouse_sensitivity</definition>
+        <argsstring></argsstring>
+        <name>mouse_sensitivity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="117" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" prot="public" static="no" mutable="no">
+        <type>GLfloat</type>
+        <definition>GLfloat Camera::mouse_zoom</definition>
+        <argsstring></argsstring>
+        <name>mouse_zoom</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="117" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_camera_1a39fe27704ae6b1ace959e8311c37ffc2" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Camera::Camera</definition>
+        <argsstring>(glm::vec3 pos=glm::vec3(0.0, 0.0, 2.0), glm::vec3 up=glm::vec3(0.0, 1.0, 0.0), GLfloat yaw=YAW, GLfloat pitch=PITCH)</argsstring>
+        <name>Camera</name>
+        <param>
+          <type>glm::vec3</type>
+          <declname>pos</declname>
+          <defval>glm::vec3(0.0, 0.0, 2.0)</defval>
+        </param>
+        <param>
+          <type>glm::vec3</type>
+          <declname>up</declname>
+          <defval>glm::vec3(0.0, 1.0, 0.0)</defval>
+        </param>
+        <param>
+          <type>GLfloat</type>
+          <declname>yaw</declname>
+          <defval><ref refid="camera_8h_1aad8ef0922adf3ff721892dfc8eb806d6" kindref="member">YAW</ref></defval>
+        </param>
+        <param>
+          <type>GLfloat</type>
+          <declname>pitch</declname>
+          <defval><ref refid="camera_8h_1a4ce864ea1227b9e112d693f8c282290c" kindref="member">PITCH</ref></defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="29" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="29" bodyend="37"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a5569ca5967e01d3344fbf6aba36d9820" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>glm::mat4</type>
+        <definition>glm::mat4 Camera::getViewMatrix</definition>
+        <argsstring>()</argsstring>
+        <name>getViewMatrix</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="40" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="40" bodyend="43"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1ad5c19624ed750472ae37fa93ca6a89e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::handleKeyPress</definition>
+        <argsstring>(Camera_Movement direction, GLfloat deltaTime)</argsstring>
+        <name>handleKeyPress</name>
+        <param>
+          <type><ref refid="camera_8h_1a605494501af59c9191e7e4d6f9a0ebcb" kindref="member">Camera_Movement</ref></type>
+          <declname>direction</declname>
+        </param>
+        <param>
+          <type>GLfloat</type>
+          <declname>deltaTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="45" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="45" bodyend="65"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a448f93ac228e149ebb5c8ab7888201fc" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::handleMouseMove</definition>
+        <argsstring>(GLfloat xoffset, GLfloat yoffset)</argsstring>
+        <name>handleMouseMove</name>
+        <param>
+          <type>GLfloat</type>
+          <declname>xoffset</declname>
+        </param>
+        <param>
+          <type>GLfloat</type>
+          <declname>yoffset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="67" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="67" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a06bded94e9b7454ff02dc7780277dc6f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::handleMouseScroll</definition>
+        <argsstring>(GLfloat yoffset)</argsstring>
+        <name>handleMouseScroll</name>
+        <param>
+          <type>GLfloat</type>
+          <declname>yoffset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="80" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="80" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1a86981d6c020d92e8f14ed8c73dbb0eab" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::normalizeAngle</definition>
+        <argsstring>()</argsstring>
+        <name>normalizeAngle</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="90" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="90" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_camera_1ad424b8b92e580508caf21337b69b93fa" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Camera::updateCameraVectors</definition>
+        <argsstring>()</argsstring>
+        <name>updateCameraVectors</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="100" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="100" bodyend="113"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" line="27" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/camera.h" bodystart="26" bodyend="118"/>
+    <listofallmembers>
+      <member refid="class_camera_1a39fe27704ae6b1ace959e8311c37ffc2" prot="public" virt="non-virtual"><scope>Camera</scope><name>Camera</name></member>
+      <member refid="class_camera_1aa98ee9f3a770f03ebca0cde9f7b8ab50" prot="public" virt="non-virtual"><scope>Camera</scope><name>forward</name></member>
+      <member refid="class_camera_1a5569ca5967e01d3344fbf6aba36d9820" prot="public" virt="non-virtual"><scope>Camera</scope><name>getViewMatrix</name></member>
+      <member refid="class_camera_1ad5c19624ed750472ae37fa93ca6a89e7" prot="public" virt="non-virtual"><scope>Camera</scope><name>handleKeyPress</name></member>
+      <member refid="class_camera_1a448f93ac228e149ebb5c8ab7888201fc" prot="public" virt="non-virtual"><scope>Camera</scope><name>handleMouseMove</name></member>
+      <member refid="class_camera_1a06bded94e9b7454ff02dc7780277dc6f" prot="public" virt="non-virtual"><scope>Camera</scope><name>handleMouseScroll</name></member>
+      <member refid="class_camera_1a0658cc8b38fc33f092f196648e00e724" prot="public" virt="non-virtual"><scope>Camera</scope><name>mouse_sensitivity</name></member>
+      <member refid="class_camera_1a8e4f8a5f2037acef5c0904eb4f012f10" prot="public" virt="non-virtual"><scope>Camera</scope><name>mouse_zoom</name></member>
+      <member refid="class_camera_1aabe2ce10d7abfe8011a51394c6e0d863" prot="public" virt="non-virtual"><scope>Camera</scope><name>moveSpeed</name></member>
+      <member refid="class_camera_1a86981d6c020d92e8f14ed8c73dbb0eab" prot="public" virt="non-virtual"><scope>Camera</scope><name>normalizeAngle</name></member>
+      <member refid="class_camera_1a1086c6bc3201df5844e30e8834e8b9cc" prot="public" virt="non-virtual"><scope>Camera</scope><name>pitchAngle</name></member>
+      <member refid="class_camera_1a04b5db2c530d8630660e8cfb93a4b3b5" prot="public" virt="non-virtual"><scope>Camera</scope><name>position</name></member>
+      <member refid="class_camera_1a3190dbe45430d67ec1859f67b75b1a28" prot="public" virt="non-virtual"><scope>Camera</scope><name>side</name></member>
+      <member refid="class_camera_1a3fe5f351380fb118ffc600591769f049" prot="public" virt="non-virtual"><scope>Camera</scope><name>up</name></member>
+      <member refid="class_camera_1ad424b8b92e580508caf21337b69b93fa" prot="public" virt="non-virtual"><scope>Camera</scope><name>updateCameraVectors</name></member>
+      <member refid="class_camera_1aeed12d28097f13307412171277b04091" prot="public" virt="non-virtual"><scope>Camera</scope><name>viewUp</name></member>
+      <member refid="class_camera_1a7edba6b12f38c884082ebc6ecd282d26" prot="public" virt="non-virtual"><scope>Camera</scope><name>yawAngle</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

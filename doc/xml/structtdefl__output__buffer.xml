@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structtdefl__output__buffer" kind="struct" language="C++" prot="public">
+    <compoundname>tdefl_output_buffer</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structtdefl__output__buffer_1ab506aa434be983761db4cca43d2ebc9e" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t tdefl_output_buffer::m_size</definition>
+        <argsstring></argsstring>
+        <name>m_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="1956" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="1956" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtdefl__output__buffer_1ab0705ebff551ebede28640ada5a9d2ab" prot="public" static="no" mutable="no">
+        <type>size_t</type>
+        <definition>size_t tdefl_output_buffer::m_capacity</definition>
+        <argsstring></argsstring>
+        <name>m_capacity</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="1956" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="1956" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtdefl__output__buffer_1a60119e1ddcb4fb92149189bed7cb8250" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a9354eca32f90733aa9bb3738c92da596" kindref="member">mz_uint8</ref> *</type>
+        <definition>mz_uint8* tdefl_output_buffer::m_pBuf</definition>
+        <argsstring></argsstring>
+        <name>m_pBuf</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="1957" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="1957" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structtdefl__output__buffer_1a26e5da3f933edc1a218afbe7838e9d22" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1a896b8bd8958fd11932180d7c9e247986" kindref="member">mz_bool</ref></type>
+        <definition>mz_bool tdefl_output_buffer::m_expandable</definition>
+        <argsstring></argsstring>
+        <name>m_expandable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="1958" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="1958" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="1955" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="1954" bodyend="1959"/>
+    <listofallmembers>
+      <member refid="structtdefl__output__buffer_1ab0705ebff551ebede28640ada5a9d2ab" prot="public" virt="non-virtual"><scope>tdefl_output_buffer</scope><name>m_capacity</name></member>
+      <member refid="structtdefl__output__buffer_1a26e5da3f933edc1a218afbe7838e9d22" prot="public" virt="non-virtual"><scope>tdefl_output_buffer</scope><name>m_expandable</name></member>
+      <member refid="structtdefl__output__buffer_1a60119e1ddcb4fb92149189bed7cb8250" prot="public" virt="non-virtual"><scope>tdefl_output_buffer</scope><name>m_pBuf</name></member>
+      <member refid="structtdefl__output__buffer_1ab506aa434be983761db4cca43d2ebc9e" prot="public" virt="non-virtual"><scope>tdefl_output_buffer</scope><name>m_size</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

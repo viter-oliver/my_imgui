@@ -1,0 +1,54 @@
+.TH "G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.cpp" 3 "Thu Jun 14 2018" "afd" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/af_shader.cpp \- 
+.SH SYNOPSIS
+.br
+.PP
+\fC#include 'af_shader\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBvtype_size\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "map< GLenum, \fBvtype_size\fP > \fBshader_variable_type_size\fP"
+.br
+.ti -1c
+.RI "\fBmaf_shader\fP \fBg_af_shader_list\fP"
+.br
+.in -1c
+.SH "Variable Documentation"
+.PP 
+.SS "\fBmaf_shader\fP g_af_shader_list"
+
+.SS "map< GLenum, \fBvtype_size\fP> shader_variable_type_size"
+\fBInitial value:\fP
+.PP
+.nf
+= 
+{
+    { GL_FLOAT, { sizeof(float), 1 } }, { GL_FLOAT_VEC2, { sizeof(float), 2 } }, { GL_FLOAT_VEC3, { sizeof(float), 3 } }, { GL_FLOAT_VEC3, { sizeof(float), 3 } }, { GL_FLOAT_VEC4, { sizeof(float), 4 } }, 
+    { GL_DOUBLE,{ sizeof(double), 1} }, { GL_DOUBLE_VEC2, { sizeof(double), 2 } }, { GL_DOUBLE_VEC3, { sizeof(double), 3 } }, { GL_DOUBLE_VEC3, { sizeof(double), 3 } }, { GL_DOUBLE_VEC4, { sizeof(double), 4 } }, 
+    { GL_INT, { sizeof(int), 1 }}, { GL_INT_VEC2, { sizeof(int), 2 } }, { GL_INT_VEC3, { sizeof(int), 3 } }, { GL_INT_VEC3, { sizeof(int), 3 } }, { GL_INT_VEC4, { sizeof(int), 4 } }, 
+    { GL_UNSIGNED_INT, { sizeof(unsigned int), 1 } }, { GL_UNSIGNED_INT_VEC2, { sizeof(unsigned int), 2 } }, { GL_UNSIGNED_INT_VEC3, { sizeof(unsigned int), 3 } }, { GL_UNSIGNED_INT_VEC3, { sizeof(unsigned int), 3 } }, { GL_UNSIGNED_INT_VEC4, { sizeof(unsigned int), 4 } }, 
+    { GL_BOOL, { sizeof(bool), 1 }}, { GL_BOOL_VEC2, { sizeof(bool), 2 } }, { GL_BOOL_VEC3, { sizeof(bool), 3 } }, { GL_BOOL_VEC4, { sizeof(bool), 4 } }, 
+    { GL_FLOAT_MAT2, {sizeof(float), 2 * 2 } }, { GL_FLOAT_MAT3, { sizeof(float), 3 * 3 } }, { GL_FLOAT_MAT4, { sizeof(float), 4 * 4 } }, 
+    { GL_FLOAT_MAT2x3, { sizeof(float), 2 * 3 } }, { GL_FLOAT_MAT2x4, { sizeof(float), 2 * 4 } }, { GL_FLOAT_MAT3x2, { sizeof(float), 3 * 2 } }, 
+    { GL_FLOAT_MAT3x4, { sizeof(float), 3 * 4 } }, { GL_FLOAT_MAT4x2, { sizeof(float), 4 * 2 } }, { GL_FLOAT_MAT4x3, { sizeof(float), 4 * 3 } }, 
+    { GL_DOUBLE_MAT2, { sizeof(double), 2 * 2 }}, { GL_DOUBLE_MAT3, { sizeof(double), 3 * 3 } }, { GL_DOUBLE_MAT4, { sizeof(double), 4 * 4 } }, 
+    { GL_DOUBLE_MAT2x3,{ sizeof(double), 2 * 3 }}, { GL_DOUBLE_MAT2x4, { sizeof(double), 2 * 4 } }, { GL_DOUBLE_MAT3x2, { sizeof(double), 3 * 2 } }, 
+    { GL_DOUBLE_MAT3x4, { sizeof(double), 3 * 4 } }, { GL_DOUBLE_MAT4x2, { sizeof(double), 4 * 2 } }, { GL_DOUBLE_MAT4x3, { sizeof(double), 4 * 3 } },
+}
+.fi
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for afd from the source code\&.

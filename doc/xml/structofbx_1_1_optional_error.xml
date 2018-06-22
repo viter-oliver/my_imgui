@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structofbx_1_1_optional_error" kind="struct" language="C++" prot="public">
+    <compoundname>ofbx::OptionalError</compoundname>
+    <templateparamlist>
+      <param>
+        <type>typename T</type>
+      </param>
+    </templateparamlist>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="structofbx_1_1_optional_error_1a354de2dd57a144658de99a01ee15761b" prot="private" static="no" mutable="no">
+        <type>T</type>
+        <definition>T ofbx::OptionalError&lt; T &gt;::value</definition>
+        <argsstring></argsstring>
+        <name>value</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="60" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="60" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structofbx_1_1_optional_error_1a0781bc0f7b9ce91c039fe94d961bb86a" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool ofbx::OptionalError&lt; T &gt;::is_error</definition>
+        <argsstring></argsstring>
+        <name>is_error</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="61" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="structofbx_1_1_optional_error_1a59f9025ccba41ed54523efee9646e262" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ofbx::OptionalError&lt; T &gt;::OptionalError</definition>
+        <argsstring>(Error error)</argsstring>
+        <name>OptionalError</name>
+        <param>
+          <type><ref refid="structofbx_1_1_error" kindref="compound">Error</ref></type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="28" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="28" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_optional_error_1a7688ec3bd80d20d05f3270bc3b7f8404" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>ofbx::OptionalError&lt; T &gt;::OptionalError</definition>
+        <argsstring>(T _value)</argsstring>
+        <name>OptionalError</name>
+        <param>
+          <type>T</type>
+          <declname>_value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="34" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="34" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_optional_error_1a8876d3bf68eb6535d0f68083555e2067" prot="public" static="no" const="yes" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>T ofbx::OptionalError&lt; T &gt;::getValue</definition>
+        <argsstring>() const </argsstring>
+        <name>getValue</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="41" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="41" bodyend="47"/>
+      </memberdef>
+      <memberdef kind="function" id="structofbx_1_1_optional_error_1ac58380cf53ad27382a4fe362d44c0b97" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool ofbx::OptionalError&lt; T &gt;::isError</definition>
+        <argsstring>()</argsstring>
+        <name>isError</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="50" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="50" bodyend="56"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" line="27" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ofbx.cpp" bodystart="26" bodyend="65"/>
+    <listofallmembers>
+      <member refid="structofbx_1_1_optional_error_1a8876d3bf68eb6535d0f68083555e2067" prot="public" virt="non-virtual"><scope>ofbx::OptionalError</scope><name>getValue</name></member>
+      <member refid="structofbx_1_1_optional_error_1a0781bc0f7b9ce91c039fe94d961bb86a" prot="private" virt="non-virtual"><scope>ofbx::OptionalError</scope><name>is_error</name></member>
+      <member refid="structofbx_1_1_optional_error_1ac58380cf53ad27382a4fe362d44c0b97" prot="public" virt="non-virtual"><scope>ofbx::OptionalError</scope><name>isError</name></member>
+      <member refid="structofbx_1_1_optional_error_1a59f9025ccba41ed54523efee9646e262" prot="public" virt="non-virtual"><scope>ofbx::OptionalError</scope><name>OptionalError</name></member>
+      <member refid="structofbx_1_1_optional_error_1a7688ec3bd80d20d05f3270bc3b7f8404" prot="public" virt="non-virtual"><scope>ofbx::OptionalError</scope><name>OptionalError</name></member>
+      <member refid="structofbx_1_1_optional_error_1a354de2dd57a144658de99a01ee15761b" prot="private" virt="non-virtual"><scope>ofbx::OptionalError</scope><name>value</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

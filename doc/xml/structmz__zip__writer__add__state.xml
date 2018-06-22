@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="structmz__zip__writer__add__state" kind="struct" language="C++" prot="public">
+    <compoundname>mz_zip_writer_add_state</compoundname>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structmz__zip__writer__add__state_1a8beb0e578862314a35cc724aeb95e709" prot="public" static="no" mutable="no">
+        <type><ref refid="structmz__zip__archive" kindref="compound">mz_zip_archive</ref> *</type>
+        <definition>mz_zip_archive* mz_zip_writer_add_state::m_pZip</definition>
+        <argsstring></argsstring>
+        <name>m_pZip</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="5514" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="5514" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__writer__add__state_1a305f9fa7f47b583ee53b8ee0401edd9e" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad1ec3c4964d89baaf6427b699bf71f3f" kindref="member">mz_uint64</ref></type>
+        <definition>mz_uint64 mz_zip_writer_add_state::m_cur_archive_file_ofs</definition>
+        <argsstring></argsstring>
+        <name>m_cur_archive_file_ofs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="5515" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="5515" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structmz__zip__writer__add__state_1a4736843d8fbef3a1d323451bb29ae3cd" prot="public" static="no" mutable="no">
+        <type><ref refid="miniz_8h_1ad1ec3c4964d89baaf6427b699bf71f3f" kindref="member">mz_uint64</ref></type>
+        <definition>mz_uint64 mz_zip_writer_add_state::m_comp_size</definition>
+        <argsstring></argsstring>
+        <name>m_comp_size</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="5516" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="5516" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="480">
+        <label>mz_zip_archive</label>
+        <link refid="structmz__zip__archive"/>
+        <childnode refid="481" relation="usage">
+          <edgelabel>m_pState</edgelabel>
+        </childnode>
+      </node>
+      <node id="479">
+        <label>mz_zip_writer_add_state</label>
+        <link refid="structmz__zip__writer__add__state"/>
+        <childnode refid="480" relation="usage">
+          <edgelabel>m_pZip</edgelabel>
+        </childnode>
+      </node>
+      <node id="482">
+        <label>mz_zip_array</label>
+        <link refid="structmz__zip__array"/>
+      </node>
+      <node id="481">
+        <label>mz_zip_internal_state_tag</label>
+        <link refid="structmz__zip__internal__state__tag"/>
+        <childnode refid="482" relation="usage">
+          <edgelabel>m_central_dir_offsets</edgelabel>
+          <edgelabel>m_sorted_central_dir_offsets</edgelabel>
+          <edgelabel>m_central_dir</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" line="5513" column="1" bodyfile="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/miniz.c" bodystart="5512" bodyend="5517"/>
+    <listofallmembers>
+      <member refid="structmz__zip__writer__add__state_1a4736843d8fbef3a1d323451bb29ae3cd" prot="public" virt="non-virtual"><scope>mz_zip_writer_add_state</scope><name>m_comp_size</name></member>
+      <member refid="structmz__zip__writer__add__state_1a305f9fa7f47b583ee53b8ee0401edd9e" prot="public" virt="non-virtual"><scope>mz_zip_writer_add_state</scope><name>m_cur_archive_file_ofs</name></member>
+      <member refid="structmz__zip__writer__add__state_1a8beb0e578862314a35cc724aeb95e709" prot="public" virt="non-virtual"><scope>mz_zip_writer_add_state</scope><name>m_pZip</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

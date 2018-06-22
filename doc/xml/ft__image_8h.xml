@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.9">
+  <compounddef id="ft__image_8h" kind="file" language="C++">
+    <compoundname>ft_image.h</compoundname>
+    <includes refid="ft__base_8h" local="yes">ft_base.h</includes>
+    <includedby refid="ft__image_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp</includedby>
+    <includedby refid="main_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main.cpp</includedby>
+    <includedby refid="main__app_8cpp" local="yes">G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp</includedby>
+    <incdepgraph>
+      <node id="438">
+        <label>functional</label>
+      </node>
+      <node id="442">
+        <label>imgui_internal.h</label>
+      </node>
+      <node id="437">
+        <label>string</label>
+      </node>
+      <node id="436">
+        <label>map</label>
+      </node>
+      <node id="444">
+        <label>json.h</label>
+      </node>
+      <node id="433">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h</label>
+        <link refid="ft_image.h"/>
+        <childnode refid="434" relation="include">
+        </childnode>
+      </node>
+      <node id="434">
+        <label>ft_base.h</label>
+        <link refid="ft__base_8h"/>
+        <childnode refid="435" relation="include">
+        </childnode>
+      </node>
+      <node id="443">
+        <label>vector</label>
+      </node>
+      <node id="440">
+        <label>control_common_def.h</label>
+        <link refid="control__common__def_8h"/>
+        <childnode refid="441" relation="include">
+        </childnode>
+        <childnode refid="442" relation="include">
+        </childnode>
+        <childnode refid="443" relation="include">
+        </childnode>
+        <childnode refid="437" relation="include">
+        </childnode>
+        <childnode refid="444" relation="include">
+        </childnode>
+        <childnode refid="445" relation="include">
+        </childnode>
+      </node>
+      <node id="435">
+        <label>factory.h</label>
+        <link refid="factory_8h"/>
+        <childnode refid="436" relation="include">
+        </childnode>
+        <childnode refid="437" relation="include">
+        </childnode>
+        <childnode refid="438" relation="include">
+        </childnode>
+        <childnode refid="439" relation="include">
+        </childnode>
+        <childnode refid="440" relation="include">
+        </childnode>
+      </node>
+      <node id="441">
+        <label>imgui.h</label>
+      </node>
+      <node id="445">
+        <label>algorithm</label>
+      </node>
+      <node id="439">
+        <label>memory</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="446">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h</label>
+        <link refid="ft_image.h"/>
+        <childnode refid="447" relation="include">
+        </childnode>
+        <childnode refid="448" relation="include">
+        </childnode>
+        <childnode refid="449" relation="include">
+        </childnode>
+      </node>
+      <node id="447">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.cpp</label>
+        <link refid="ft__image_8cpp"/>
+      </node>
+      <node id="449">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main_app.cpp</label>
+        <link refid="main__app_8cpp"/>
+      </node>
+      <node id="448">
+        <label>G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/main.cpp</label>
+        <link refid="main_8cpp"/>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="classft__image" prot="public">ft_image</innerclass>
+    <innerclass refid="structft__image_1_1intl__pt" prot="private">ft_image::intl_pt</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#pragma<sp/>once</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="ft__base_8h" kindref="compound">ft_base.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="classft__image" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classft__image" kindref="compound">ft_image</ref><sp/>:</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="classft__base" kindref="compound">ft_base</ref></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6" refid="structft__image_1_1intl__pt" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="structft__image_1_1intl__pt" kindref="compound">intl_pt</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="8" refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__image_1_1intl__pt_1a0de7275e665f0e390b9ddac7c4a31d12" kindref="member">_size</ref>;</highlight></codeline>
+<codeline lineno="9" refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ImVec2<sp/><ref refid="structft__image_1_1intl__pt_1ab90ac069668b645beec97f654afa7fc7" kindref="member">_axis_pos</ref>;</highlight></codeline>
+<codeline lineno="10" refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="structft__image_1_1intl__pt_1af99839ab4096de6fa227507bcc1f687b" kindref="member">_texture_index</ref>;</highlight></codeline>
+<codeline lineno="11" refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref>;</highlight></codeline>
+<codeline lineno="12" refid="structft__image_1_1intl__pt_1a4313804ce358730f101d09b8c63feef3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="structft__image_1_1intl__pt_1a4313804ce358730f101d09b8c63feef3" kindref="member">intl_pt</ref>()<sp/>:_texture_index(0),<sp/>_angle(0.0){}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>};</highlight></codeline>
+<codeline lineno="14" refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="structft__image_1_1intl__pt" kindref="compound">intl_pt</ref><sp/><ref refid="classft__image_1a8a12cc4131c84e8c08ad7de48b97d4e3" kindref="member">_img_pt</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="16" refid="classft__image_1a8d8cd7390c77f9a2131356c269a219ed" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="classft__image_1a8d8cd7390c77f9a2131356c269a219ed" kindref="member">ft_image</ref>()<sp/>:<ref refid="classft__base" kindref="compound">ft_base</ref>(),<sp/>_img_pt(){}</highlight></codeline>
+<codeline lineno="17" refid="classft__image_1a69b0febc2ea7647fc210d9ddb5fa7be2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="classft__image_1a69b0febc2ea7647fc210d9ddb5fa7be2" kindref="member">collect_property_range</ref>(<ref refid="control__common__def_8h_1a2829b10b78675304660841f0fb2135d4" kindref="member">vproperty_list</ref>&amp;<sp/>vplist)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>plen<sp/>=<sp/><ref refid="classbase__ui__component_1a06d0db12e47a5e27c00c59918d90685b" kindref="member">ft_base::collect_property_range</ref>(vplist);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>len<sp/>=<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="structft__image_1_1intl__pt" kindref="compound">intl_pt</ref>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vplist.emplace_back(&amp;_img_pt,<sp/>len);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>len<sp/>+=<sp/>plen;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>len;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__image_1a5fa45bb2ecf50acba2533aa37ed736f6" kindref="member">draw</ref>();</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!defined(IMGUI_DISABLE_DEMO_WINDOWS)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__image_1ab2b48245dde10cf9ca28b96352349c80" kindref="member">draw_peroperty_page</ref>();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__image_1ad896e67de420c04a9cac378b62f76dad" kindref="member">init_from_json</ref>(Value&amp;<sp/>jvalue);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="classft__image_1a3d315d85b17e9a30d9849a414c66cc81" kindref="member">init_json_unit</ref>(Value&amp;<sp/>junit);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="classft__image_1a1eb2317adc41c97259f5991239421e51" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="classft__image_1a1eb2317adc41c97259f5991239421e51" kindref="member">rotate</ref>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>angle){<sp/>_img_pt.<ref refid="structft__image_1_1intl__pt_1a19cc62e48a85680f59e8266b7598193a" kindref="member">_angle</ref><sp/>=<sp/>angle;<sp/>}</highlight></codeline>
+<codeline lineno="33"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><ref refid="afb__load_8cpp_1a464695366cb3e9683ab9cd7091409f68" kindref="member">REGISTER_CONTROL</ref>(<ref refid="classft__image" kindref="compound">ft_image</ref>)</highlight></codeline>
+    </programlisting>
+    <location file="G:/GitHub/my_imgui/my_imgui/examples/auto_future_graphics_design/ft_image.h"/>
+  </compounddef>
+</doxygen>

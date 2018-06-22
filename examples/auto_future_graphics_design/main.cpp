@@ -34,6 +34,7 @@
 #include "afb_output.h"
 #include "primitive_object.h"
 #include "material_shader_edit.h"
+#include "texture_edit.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -111,7 +112,7 @@ int main(int argc, char* argv[])
 	g_current_run_path += "\\";
 	load_internal_texture_res(g_mtxt_intl, IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
 	instantiating_internal_shader();
-	init_primitive_list();
+	init_internal_primitive_list();
     bool show_demo_window = true;
     bool show_another_window = false;
 	bool show_edit_window = true;
@@ -125,13 +126,13 @@ int main(int argc, char* argv[])
 	base_ui_component* _pselect = NULL;
 	shared_ptr<res_edit> _pres_mg;
 	shared_ptr<material_shader_edit> _pml_shd_mg;
-	if (!g_cureent_project_file_path.empty())
-	{
-		_proot = new ft_base;
-		ui_assembler _ui_as(*_proot);
-		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
-		_pres_mg = make_shared< res_edit>();
-		_pml_shd_mg = make_shared<material_shader_edit>();
+	//if (!g_cureent_project_file_path.empty())
+	//{
+	//	_proot = new ft_base;
+	//	ui_assembler _ui_as(*_proot);
+	//	_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
+	//	_pres_mg = make_shared< res_edit>();
+	//	_pml_shd_mg = make_shared<material_shader_edit>();
 
 	//class rotate_pointer
 	//{
@@ -152,9 +153,22 @@ int main(int argc, char* argv[])
 	//	}
 	//}_rt_pointer(*_proot);
 	//_app.register_update_fun("rotate_pointer", bind(&rotate_pointer::rotate, &_rt_pointer));
+	//}
+
+	_proot = new ft_base;
+	ui_assembler _ui_as(*_proot);
+	if (!g_cureent_project_file_path.empty())
+	{
+		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 	}
-	project_edit pjedit(*_proot);
-	function<void(en_short_cut_item)> fun_shortct = [_proot, pjedit, &fun_shortct](en_short_cut_item enshort) mutable {
+	_pres_mg = make_shared< res_edit>();
+	_pml_shd_mg = make_shared<material_shader_edit>();
+	auto ptexture = make_shared<texture_edit>();
+	//project_edit pjedit(*_proot);
+	auto pjedit = make_shared<project_edit>(*_proot);
+
+
+	function<void(en_short_cut_item)> fun_shortct = [&](en_short_cut_item enshort) mutable {
 		if (!_proot)
 		{
 			return;
@@ -175,7 +189,7 @@ int main(int argc, char* argv[])
 				{
 					fun_shortct(en_ctrl_s);
 				}
-				pjedit.clear_sel_item();
+				pjedit->clear_sel_item();
 				delete _proot;
 				_proot = NULL;
 
@@ -183,7 +197,7 @@ int main(int argc, char* argv[])
 			g_cureent_project_file_path = "";
 			_proot = new ft_base;
 			_proot->set_name(string("screen"));
-
+			pjedit.reset(new project_edit(*_proot));
 		}
 		break;
 		case en_ctrl_o:
@@ -212,15 +226,17 @@ int main(int argc, char* argv[])
 					{
 						fun_shortct(en_ctrl_s);
 					}
-					pjedit.clear_sel_item();
+					pjedit->clear_sel_item();				
 					delete _proot;
 					_proot = NULL;
 				}
 				g_cureent_project_file_path = strFileName;
+
 				_proot = new ft_base;
 				ui_assembler _ui_as(*_proot);
 				_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
-
+				
+				pjedit.reset(new project_edit(*_proot));
 			}
 		}
 		break;
@@ -466,15 +482,15 @@ int main(int argc, char* argv[])
 			ImGui::Begin("project");
 			if (_proot)
 			{
-				pjedit.objects_view();
-				pjedit.popup_context_menu();
+				pjedit->objects_view();
+				pjedit->popup_context_menu();
 			}
 			ImGui::End();
 		}
 		if (show_property_window)
 		{
 			ImGui::Begin("property");
-			_pselect = pjedit.current_object();
+			_pselect = pjedit->current_object();
 			if (_pselect)
 			{
 				_pselect->draw_peroperty_page();
@@ -501,7 +517,7 @@ int main(int argc, char* argv[])
 			//ImGui::BeginDock("resource list:");
 			ImGui::BeginChild("res_list",ImVec2(1000, 160), true);
 			ImGui::Columns(2);
-			ImGui::Text("resources list:");
+			ImGui::Text("Spliced texture list:");
 			if (_pres_mg)
 			{
 				_pres_mg->draw_res_list();
@@ -515,7 +531,7 @@ int main(int argc, char* argv[])
 			
 			if(_pml_shd_mg)
 			{
-				ImGui::BeginChild("shaders", ImVec2(1000, 600), true);
+				ImGui::BeginChild("shaders", ImVec2(1000, 500), true);
 			//ImGui::Separator();
 				ImGui::Columns(2);
 				ImGui::Text("shaders:");
@@ -526,7 +542,7 @@ int main(int argc, char* argv[])
 				_pml_shd_mg->draw_shader_item_property();
 				ImGui::NextColumn();
 				ImGui::EndChild();
-				ImGui::BeginChild("materials", ImVec2(1000, 600), true);
+				ImGui::BeginChild("materials", ImVec2(1000, 500), true);
 				ImGui::Columns(2);
 				ImGui::Text("materials:");
 				_pml_shd_mg->draw_material();
@@ -535,6 +551,14 @@ int main(int argc, char* argv[])
 				ImGui::NextColumn();
 			//ImGui::Separator();
 				ImGui::EndChild();
+				ImGui::BeginChild("textures", ImVec2(1000, 500), true);
+				ImGui::Columns(2);
+				ptexture->draw_texture_list();
+				ImGui::NextColumn();
+				ptexture->draw_texture_item_property();
+				ImGui::NextColumn();
+				ImGui::EndChild();
+
 			}
 			/**/
 			ImGui::End();
