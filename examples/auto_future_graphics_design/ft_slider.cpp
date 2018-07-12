@@ -69,7 +69,7 @@ void ft_slider::draw()
 	int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 	float sizew = _bg_texture_size.x;
 	float sizeh = _bg_texture_size.y;
-	ImVec3 abpos = absolute_coordinate_of_base_pos();
+	ImVec2 abpos = absolute_coordinate_of_base_pos();
 	ImVec2 winpos = ImGui::GetWindowPos();
 	ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
 	ImVec2 pos2 = { pos1.x, pos1.y + sizeh };

@@ -2,8 +2,8 @@
 
 {
 	"filename": "bg_583_54.png",
-	"frame": {"x":757,"y":723,"w":754,"h":565},
-	"rotated": false,
+	"frame": {"x":568,"y":766,"w":754,"h":565},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":754,"h":565},
 	"sourceSize": {"w":754,"h":754},
@@ -20,7 +20,7 @@
 },
 {
 	"filename": "biaopan_di_0_13.png",
-	"frame": {"x":1513,"y":723,"w":452,"h":472},
+	"frame": {"x":1,"y":1522,"w":452,"h":472},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":452,"h":472},
@@ -29,7 +29,7 @@
 },
 {
 	"filename": "chesubiao_di_1211_12.png",
-	"frame": {"x":1536,"y":1197,"w":451,"h":472},
+	"frame": {"x":455,"y":1522,"w":451,"h":472},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":21,"y":0,"w":451,"h":472},
@@ -38,7 +38,7 @@
 },
 {
 	"filename": "chesubiao_gaosubiao_1752_214.png",
-	"frame": {"x":1967,"y":681,"w":37,"h":187},
+	"frame": {"x":1994,"y":388,"w":37,"h":187},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":4,"y":2,"w":37,"h":187},
@@ -47,7 +47,7 @@
 },
 {
 	"filename": "chesubiao_guagntiao_1211_12.png",
-	"frame": {"x":1220,"y":1290,"w":399,"h":314},
+	"frame": {"x":1698,"y":766,"w":399,"h":314},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":36,"y":36,"w":399,"h":314},
@@ -56,7 +56,7 @@
 },
 {
 	"filename": "chesubiao_zhizhen_1542_83.png",
-	"frame": {"x":1513,"y":1197,"w":14,"h":65},
+	"frame": {"x":1994,"y":55,"w":14,"h":65},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":4,"y":3,"w":14,"h":65},
@@ -65,8 +65,8 @@
 },
 {
 	"filename": "chesubiao_zhuandongbiaopan_1211_12.png",
-	"frame": {"x":1,"y":1290,"w":407,"h":379},
-	"rotated": false,
+	"frame": {"x":908,"y":1522,"w":407,"h":379},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":32,"y":32,"w":407,"h":379},
 	"sourceSize": {"w":471,"h":471},
@@ -74,8 +74,8 @@
 },
 {
 	"filename": "gaosubiao_548_245.png",
-	"frame": {"x":1042,"y":1608,"w":39,"h":175},
-	"rotated": true,
+	"frame": {"x":1994,"y":211,"w":39,"h":175},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":1,"w":39,"h":175},
 	"sourceSize": {"w":41,"h":177},
@@ -83,8 +83,8 @@
 },
 {
 	"filename": "kmh.png",
-	"frame": {"x":1967,"y":1059,"w":93,"h":32},
-	"rotated": true,
+	"frame": {"x":1923,"y":21,"w":93,"h":32},
+	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":93,"h":32},
 	"sourceSize": {"w":93,"h":32},
@@ -92,7 +92,7 @@
 },
 {
 	"filename": "shuiwenbiao_di_0_13.png",
-	"frame": {"x":1923,"y":1,"w":227,"h":69},
+	"frame": {"x":1923,"y":55,"w":227,"h":69},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":124,"y":366,"w":227,"h":69},
@@ -101,8 +101,8 @@
 },
 {
 	"filename": "shuiwenbiao_liang_0_13.png",
-	"frame": {"x":1923,"y":457,"w":222,"h":66},
-	"rotated": true,
+	"frame": {"x":908,"y":1931,"w":222,"h":66},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":125,"y":369,"w":222,"h":66},
 	"sourceSize": {"w":471,"h":472},
@@ -110,7 +110,7 @@
 },
 {
 	"filename": "shuiwenbiao_liang_suoxiao_580_652.png",
-	"frame": {"x":1536,"y":1671,"w":117,"h":8},
+	"frame": {"x":1923,"y":1,"w":117,"h":8},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":11,"w":117,"h":8},
@@ -119,7 +119,7 @@
 },
 {
 	"filename": "shuiwenbiao_suoxiao_580_652.png",
-	"frame": {"x":1967,"y":870,"w":187,"h":30},
+	"frame": {"x":1992,"y":577,"w":187,"h":30},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":3,"y":0,"w":187,"h":30},
@@ -128,8 +128,8 @@
 },
 {
 	"filename": "Tachometer_583_54.png",
-	"frame": {"x":1,"y":723,"w":754,"h":565},
-	"rotated": false,
+	"frame": {"x":1,"y":766,"w":754,"h":565},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":0,"w":754,"h":565},
 	"sourceSize": {"w":754,"h":754},
@@ -137,7 +137,7 @@
 },
 {
 	"filename": "xuanzhuanbiaopan_0_13.png",
-	"frame": {"x":410,"y":1290,"w":407,"h":372},
+	"frame": {"x":1289,"y":723,"w":407,"h":372},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":33,"y":31,"w":407,"h":372},
@@ -146,7 +146,7 @@
 },
 {
 	"filename": "youbiao_an_1211_12.png",
-	"frame": {"x":1923,"y":230,"w":225,"h":69},
+	"frame": {"x":1923,"y":284,"w":225,"h":69},
 	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":124,"y":366,"w":225,"h":69},
@@ -155,7 +155,7 @@
 },
 {
 	"filename": "youbiao_liang_1050_650.png",
-	"frame": {"x":1,"y":1671,"w":117,"h":8},
+	"frame": {"x":1923,"y":11,"w":117,"h":8},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":14,"w":117,"h":8},
@@ -164,8 +164,8 @@
 },
 {
 	"filename": "youbiao_suoxiao_liang_1050_650.png",
-	"frame": {"x":410,"y":1664,"w":188,"h":29},
-	"rotated": false,
+	"frame": {"x":2018,"y":21,"w":188,"h":29},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":3,"y":2,"w":188,"h":29},
 	"sourceSize": {"w":192,"h":31},
@@ -173,8 +173,8 @@
 },
 {
 	"filename": "youbiaoliang_1211_12.png",
-	"frame": {"x":819,"y":1608,"w":221,"h":67},
-	"rotated": false,
+	"frame": {"x":1923,"y":511,"w":221,"h":67},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":127,"y":368,"w":221,"h":67},
 	"sourceSize": {"w":471,"h":471},
@@ -182,8 +182,8 @@
 },
 {
 	"filename": "zhuansu_guangdai_0_13.png",
-	"frame": {"x":819,"y":1290,"w":399,"h":316},
-	"rotated": false,
+	"frame": {"x":1135,"y":1097,"w":399,"h":316},
+	"rotated": true,
 	"trimmed": true,
 	"spriteSourceSize": {"x":36,"y":35,"w":399,"h":316},
 	"sourceSize": {"w":470,"h":471},
@@ -191,8 +191,8 @@
 },
 {
 	"filename": "zhuansu_zhizhen_330_83.png",
-	"frame": {"x":600,"y":1664,"w":14,"h":64},
-	"rotated": true,
+	"frame": {"x":1994,"y":122,"w":14,"h":64},
+	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":4,"y":3,"w":14,"h":64},
 	"sourceSize": {"w":31,"h":189},
@@ -203,8 +203,8 @@
 	"version": "1.0",
 	"image": "mainview.png",
 	"format": "RGBA8888",
-	"size": {"w":2005,"h":1694},
+	"size": {"w":2048,"h":2048},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:06e6cf680ab23057649bdd709ff60321:93c55045d4f8a2bc602b20ad0f7ea6a1:401554f983cf82e5da20d340c10f7940$"
+	"smartupdate": "$TexturePacker:SmartUpdate:40087f40c0ee68763345e992fb978d4c:93c55045d4f8a2bc602b20ad0f7ea6a1:401554f983cf82e5da20d340c10f7940$"
 }
 }

@@ -3,13 +3,13 @@
 #include "SOIL.h"
 #include "texture.h"
 #include <GLFW/glfw3.h>
+enum dimensions { X, Y, Z };
 struct Particle{
 	glm::vec3 pos, speed;
-	unsigned char r, g, b, a; // Color
-	float size, angle, weight;
+	unsigned char r, g, b, age; // Color
+	float size, angle, weight,ax;
 	float life; // Remaining life of the particle. if <0 : dead and unused.
 	float cameradistance; // *Squared* distance to the camera. if dead : -1.0f
-
 	bool operator<(const Particle& that) const {
 		// Sort in reverse order : far particles drawn first.
 		return this->cameradistance > that.cameradistance;
@@ -172,7 +172,7 @@ ft_particles1::ft_particles1()
 	_particle_shader->uniform("VP", vwpj);
 	_particle_shader->uniform("uvcol[0]", uvs);
 	string str_texture_file = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-	str_texture_file += "explosion_magic.png";
+	str_texture_file += "flame_fire.png";
 	int iw, ih;
 	_txt_unit = TextureHelper::load2DTexture(str_texture_file.c_str(), iw, ih, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
 
@@ -191,6 +191,7 @@ ft_particles1::ft_particles1()
 		ParticlesContainer[i].cameradistance = -1.0f;
 	}
 	lastTime = glfwGetTime();
+
 }
 
 
@@ -198,7 +199,16 @@ ft_particles1::~ft_particles1()
 {
 }
 #include <chrono>
-#define _calcu_color
+#include <random>
+default_random_engine generator;
+uniform_real_distribution<float> distribution(-5.f, 5.f);
+uniform_real_distribution<float> distribution1(-3.f, 0.f);
+//#define _calcu_color
+unsigned char ptclsize[] = 
+{
+	0, 1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 26, 27, 28, 29,
+};
+
 void ft_particles1::draw()
 {
 	double currentTime = glfwGetTime();
@@ -207,33 +217,95 @@ void ft_particles1::draw()
 	int newparticles = (int)(delta*10000.0);
 	if (newparticles > (int)(0.016f*10000.0))
 		newparticles = (int)(0.016f*10000.0);
-
 	for (int i = 0; i<newparticles; i++){
 		int particleIndex = FindUnusedParticle();
-		ParticlesContainer[particleIndex].life = _pt._life; // This particle will live 5 seconds.
-		ParticlesContainer[particleIndex].pos = glm::vec3(_pt._pos0.x, _pt._pos0.y, _pt._pos0.z);
+		Particle& p = ParticlesContainer[particleIndex];
+		p.age = 0;
+		switch (_pt._pa)
+		{
+		case en_fire:
+		{
+			p.pos.x = _pt._pos0.x;
+			p.pos.y = _pt._pos0.y;
+			p.pos.z = _pt._pos0.z;
+			p.life = _pt._life;
+			//ParticlesContainer[particleIndex].life =rand() % 20 + 1.f;
+			//printf("life=%f\n", ParticlesContainer[particleIndex].life);
+			p.speed.x = distribution(generator);
+			
+			p.speed.y = distribution1(generator);
+			p.speed.z = 0;// distribution1(generator);
+			p.ax = -p.speed.x/10000;
+			//cout << "(" << p.speed.x << "," << p.speed.y << "," << p.speed.z << ")" << endl;
+			//glm::vec3 postg(_pt._pos0.x, _pt._pos0.y-_pt._y1, _pt._pos0.z);
+			//p.speed = postg - p.pos;
+		}
+		break;
+		case en_fire_with_smoke:
+		{
+			p.pos.z = _pt._pos0.z;
+			p.life = 2.f;
+			//ParticlesContainer[particleIndex].life =rand() % 20 + 1.f;
+			//printf("life=%f\n", ParticlesContainer[particleIndex].life);
+			p.pos.x = _pt._pos0.x + distribution(generator);
+			
+			p.pos.y = _pt._pos0.y + distribution1(generator);
+			
+			glm::vec3 postg(_pt._pos0.x, _pt._pos0.y-_pt._y1, _pt._pos0.z);
+			p.speed = postg - p.pos;
+			//p.pos.x = (rand() % 30);
+			//p.pos.y = _pt._pos0.y;
+			//p.pos.z = _pt._pos0.z;
+			//p.size = rand() % 30;// (rand() % 1000) / 2000.0f + 0.1f;
+			//p.speed.x = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
+			//p.speed.y = ((((((5) * rand() % 11) + 5)) * rand() % 11) + 1) * 0.02;
+			//p.speed.z = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
+			//cout << "pos:" << p.pos.x << " " <<p.pos.y << endl;
+			//cout << "speed:" << p.speed.x << " " << p.speed.y << " " << p.speed.z << endl;
 
-		float spread = 1.5f;
-		glm::vec3 maindir = glm::vec3(_pt._v0.x, _pt._v0.y, _pt._v0.z);
-		glm::vec3 randomdir = glm::vec3(
-			(rand() % 2000 - 1000.0f) / 1000.0f,
-			(rand() % 2000 - 1000.0f) / 1000.0f,
-			(rand() % 2000 - 1000.0f) / 1000.0f
-			);
 
-		ParticlesContainer[particleIndex].speed = maindir + randomdir*spread;
+		}
+			
+			break;
+		case en_fountain:
+			p.life= (((rand() % 125 + 1) / 10.0) + 5);
+			p.pos.x = (rand() % 30);
+			p.pos.y = _pt._pos0.y;
+			p.pos.z = _pt._pos0.z;
+			p.speed.x = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
+			p.speed.y = ((((((5) * rand() % 11) + 5)) * rand() % 11) + 10) * 0.02;
+			p.speed.z = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
 
+			break;
+
+		default:
+			{
+				p.life = _pt._life; // This particle will live 5 seconds.
+				p.pos = glm::vec3(_pt._pos0.x, _pt._pos0.y, _pt._pos0.z);
+
+				//float spread = 1.5f;
+				glm::vec3 maindir = glm::vec3(_pt._v0.x, _pt._v0.y, _pt._v0.z);
+				glm::vec3 randomdir = glm::vec3(
+					(rand() % 2000 - 1000.0f) / 1000.0f,
+					(rand() % 2000 - 1000.0f) / 1000.0f,
+					(rand() % 2000 - 1000.0f) / 1000.0f
+					);
+
+				p.speed = maindir + randomdir*_pt._spread;
+				p.size = rand() % 30;// (rand() % 1000) / 2000.0f + 0.1f;
+			}
+			break;
+		}
 
 		// Very bad way to generate a random color
-		ParticlesContainer[particleIndex].r = rand() % 256;
-		ParticlesContainer[particleIndex].g = rand() % 256;
-		ParticlesContainer[particleIndex].b = rand() % 256;
-		ParticlesContainer[particleIndex].a = (rand() % 256) / 3;
-
-		ParticlesContainer[particleIndex].size = rand() % 30;// (rand() % 1000) / 2000.0f + 0.1f;
+		//ParticlesContainer[particleIndex].r = rand() % 256;
+		//ParticlesContainer[particleIndex].g = rand() % 256;
+		//ParticlesContainer[particleIndex].b = rand() % 256;
+		//ParticlesContainer[particleIndex].a = (rand() % 256) / 3;
+		//printf("{%f,%f,%f} {%f,%f,%f}\n", p.pos.x, p.pos.y, p.pos.z, p.speed.x, p.speed.x, p.speed.x);
+		
 
 	}
-
 	glm::vec3 CameraPosition(0.f, 0.f, 5.f);
 
 	// Simulate all particles
@@ -245,7 +317,25 @@ void ft_particles1::draw()
 		if (p.life > 0.0f){
 
 			// Decrease life
-			p.life -= delta;
+			//if (_pt._pa == en_fire)
+			//{
+			//	p.life -= 0.02;
+			//}
+			//else
+			{
+				p.life -= delta;
+			}
+			p.age++; 
+			if (p.age >= sizeof(ptclsize))
+			{
+				p.age = sizeof(ptclsize) - 1;
+			}
+			p.size = ptclsize[p.age];
+			if (i == 100)
+			{
+				printf("particle[%d].age=%d \n", i, p.age);
+
+			}
 			if (p.life > 0.0f){
 
 				// Simulate simple physics : gravity only, no collisions
@@ -272,16 +362,17 @@ void ft_particles1::draw()
 
 				    }
 					break;
+				case en_fire:
+					p.speed += glm::vec3(p.ax, _pt._a0.y, _pt._a0.z) * (float)delta * 0.5f;
+					p.pos += p.speed * (float)delta;
+					break;
+				case en_fountain:
+				case en_fire_with_smoke:
 				case en_gravity:
 					p.speed += glm::vec3(_pt._a0.x, _pt._a0.y, _pt._a0.z) * (float)delta * 0.5f;
 					p.pos += p.speed * (float)delta;
 					break;
-				case en_fire:
-					break;
-				case en_fire_with_smoke:
-					break;
-				case en_fountain:
-					break;
+
 				}
 
 				p.cameradistance = glm::length2(p.pos - CameraPosition);
@@ -312,8 +403,8 @@ void ft_particles1::draw()
 		}
 	}
 
-	SortParticles();
-	printf("particles count:%d\n", ParticlesCount);
+	//SortParticles();
+	//printf("particles count:%d\n", ParticlesCount);
 // Use our shader
 	_particle_shader->use();
 	glBindVertexArray(_vao);
@@ -412,6 +503,8 @@ void ft_particles1::draw_peroperty_page()
 	ImGui::SliderFloat("az", &_pt._a0.z, -100.f, 100.f);
 	ImGui::Text("Life(seconds):");
 	ImGui::SliderFloat("life", &_pt._life, 0.f, 20.f);
+	ImGui::SliderFloat("spread", &_pt._spread, 0.f, 50.f);
+	ImGui::SliderFloat("y1", &_pt._y1, -40.f, 40);
 
 }
 bool ft_particles1::init_from_json(Value& jvalue)

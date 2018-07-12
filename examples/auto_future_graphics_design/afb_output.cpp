@@ -9,6 +9,8 @@
 #include <GL/gl3w.h>
 #include "af_shader.h"
 #include "material.h"
+#define STB_DXT_IMPLEMENTATION
+#include "dxt5_compress.h"
 void pack_ui_component_data(base_ui_component& tar, msgpack::packer<ofstream>& pk)
 {
 	int chldcnt = tar.child_count();
@@ -59,10 +61,24 @@ void afb_output::output_afb(const char* afb_file)
 		pk.pack_int(res_unit.texture_height);
 		int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
 		uint8_t* txtdata = new uint8_t[txt_size];
+
 		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
 		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
-		pk.pack_bin(txt_size);
-		pk.pack_bin_body(reinterpret_cast<char const*>(txtdata), txt_size);
+		
+		uint32_t blockDim[2] = { 4, 4 };
+
+		const uint32_t blocksWide = (res_unit.texture_width + blockDim[0] - 1) / blockDim[0];
+		const uint32_t blocksHigh = (res_unit.texture_height + blockDim[1] - 1) / blockDim[1];
+		const uint32_t uncompBlockSize = blockDim[0] * blockDim[1] * sizeof(uint32_t);
+		const uint32_t nBlocks = blocksWide * blocksHigh;
+		const uint32_t blockSz = 16;
+		uint32_t linear_size =nBlocks * blockSz;
+		uint8_t* txtdata_compress = new uint8_t[linear_size];
+		compress_image_2_dxt5(txtdata_compress, txtdata, res_unit.texture_width, res_unit.texture_height);
+
+		/*uint8_t* txtdata_compress = DXT5Compress(txtdata, linear_size, txt_size, res_unit.texture_width, res_unit.texture_height);*/
+		pk.pack_bin(linear_size);
+		pk.pack_bin_body(reinterpret_cast<char const*>(txtdata_compress), linear_size);
 
 		pk.pack_array(res_unit.vtexture_coordinates.size());
 		for (auto& tcd_unit : res_unit.vtexture_coordinates)
@@ -75,7 +91,8 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_float(tcd_unit._y0);
 			pk.pack_float(tcd_unit._y1);
 		}
-		delete txtdata;
+		delete[] txtdata_compress;
+		delete[] txtdata;
 	}
 	pk.pack_array(g_af_shader_list.size());
 	for (auto& shd_ut : g_af_shader_list)

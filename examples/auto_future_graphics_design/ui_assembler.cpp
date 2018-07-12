@@ -3,6 +3,13 @@
 #include "texture_res_load.h"
 #include "af_shader.h"
 #include "material.h"
+#ifdef IMGUI_WAYLAND
+#include "../../deps/glad/glad.h"
+#else
+#include <GL/gl3w.h> 
+#endif
+#include "SOIL.h"
+
 bool ui_assembler::load_ui_component_from_file(const char* file_path)
 {
 	ifstream fin;
@@ -34,9 +41,57 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 
 			texture_res_load tresload(g_vres_texture_list);
 			tresload.load_res_from_json(jroot);
-			Value& shader_list = jroot["shader_list"];
-			auto isize = shader_list.size();
+			Value& texture_list = jroot["texture_list"];
+			auto isize = texture_list.size();
 			UInt ix = 0;
+			extern string g_cureent_project_file_path;
+			string str_img_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+			str_img_path += "images\\";
+
+			for (ix = 0; ix < isize;ix++)
+			{
+				Value& txt_unit = texture_list[ix];
+				auto& kname = txt_unit.asString();
+				auto img_file_path = str_img_path + kname;
+				GLubyte* imgdata = NULL;
+				int width, height, channels;
+
+				imgdata = SOIL_load_image(img_file_path.c_str(), &width, &height, &channels, SOIL_LOAD_RGBA);
+				if (imgdata == NULL)
+				{
+					printf("Fail to load texture file:%s\n", img_file_path.c_str());
+					break;
+				}
+				GLuint textureId = 0;
+				glGenTextures(1, &textureId);
+				glBindTexture(GL_TEXTURE_2D, textureId);
+				if (channels == SOIL_LOAD_RGBA)
+				{
+					glEnable(GL_BLEND);
+					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+				}
+				// Step2 设定wrap参数
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+				// Step3 设定filter参数
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+					GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				// Step4 加载纹理
+
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
+					0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
+				glGenerateMipmap(GL_TEXTURE_2D);
+				// Step5 释放纹理图片资源
+				SOIL_free_image_data(imgdata);
+				auto pimge = make_shared<af_texture>();
+				pimge->_txt_id = textureId;
+				pimge->_width = width;
+				pimge->_height = height;
+				g_mtexture_list[kname] = pimge;
+			}
+			Value& shader_list = jroot["shader_list"];
+			isize = shader_list.size();
 			for (ix = 0; ix < isize; ix++)
 			{
 				Value& shd_unit = shader_list[ix];
@@ -87,6 +142,15 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		jtexture.append(jtext_res_unit);
 	}
 	jroot["texture_res_list"] = jtexture;
+	Value texture_list(arrayValue);
+	for (auto& txt : g_mtexture_list)
+	{
+		auto& kname = txt.first;
+		Value txt_unit(kname);
+		//auto& af_txt = txt.second;
+		texture_list.append(txt_unit);
+	}
+	jroot["texture_list"] = texture_list;
 	Value jshader(arrayValue);
 	for (auto& shd_ut : g_af_shader_list)
 	{

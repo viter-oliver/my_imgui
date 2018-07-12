@@ -14,8 +14,7 @@
 			"screen_pos" : 
 			{
 				"x" : 0.0,
-				"y" : 0.0,
-				"z" : 0.0
+				"y" : 0.0
 			},
 			"size" : 
 			{
@@ -38,8 +37,7 @@
 			"screen_pos" : 
 			{
 				"x" : 104.0,
-				"y" : 67.0,
-				"z" : 0.0
+				"y" : 67.0
 			},
 			"size" : 
 			{
@@ -62,8 +60,7 @@
 			"screen_pos" : 
 			{
 				"x" : 576.0,
-				"y" : 67.0,
-				"z" : 0.0
+				"y" : 67.0
 			},
 			"size" : 
 			{
@@ -86,8 +83,7 @@
 			"screen_pos" : 
 			{
 				"x" : 104.0,
-				"y" : 67.0,
-				"z" : 0.0
+				"y" : 67.0
 			},
 			"size" : 
 			{
@@ -120,8 +116,7 @@
 					"screen_pos" : 
 					{
 						"x" : 0.0,
-						"y" : 0.0,
-						"z" : 0.0
+						"y" : 0.0
 					},
 					"size" : 
 					{
@@ -137,8 +132,7 @@
 			"screen_pos" : 
 			{
 				"x" : 576.0,
-				"y" : 67.0,
-				"z" : 0.0
+				"y" : 67.0
 			},
 			"size" : 
 			{
@@ -166,8 +160,7 @@
 					"screen_pos" : 
 					{
 						"x" : 146.5790100097656,
-						"y" : 45.62800216674805,
-						"z" : 0.0
+						"y" : 45.62800216674805
 					},
 					"txt_color" : 
 					{
@@ -193,8 +186,7 @@
 					"screen_pos" : 
 					{
 						"x" : 238.3450164794922,
-						"y" : 0.0,
-						"z" : 0.0
+						"y" : 0.0
 					},
 					"size" : 
 					{
@@ -208,8 +200,7 @@
 			"screen_pos" : 
 			{
 				"x" : 854.62402343750,
-				"y" : 65.46200561523438,
-				"z" : 0.0
+				"y" : 65.46200561523438
 			},
 			"size" : 
 			{
@@ -219,6 +210,122 @@
 			"texture_id_index" : 0,
 			"texture_index" : 3,
 			"type" : "ft_image"
+		},
+		
+		{
+			"childs" : 
+			[
+				
+				{
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 801.50,
+						"y" : 303.0
+					},
+					"name" : "pointer_right",
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"size" : 
+					{
+						"h" : 69.0,
+						"w" : 225.0
+					},
+					"texture_id_index" : 0,
+					"texture_index" : 16,
+					"type" : "ft_image"
+				},
+				
+				{
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 801.50,
+						"y" : 303.0
+					},
+					"name" : "pointer_right",
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 69.0
+					},
+					"size" : 
+					{
+						"h" : 69.0,
+						"w" : 225.0
+					},
+					"texture_id_index" : 0,
+					"texture_index" : 16,
+					"type" : "ft_image"
+				},
+				
+				{
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 801.50,
+						"y" : 303.0
+					},
+					"name" : "pointer_right",
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 138.0
+					},
+					"size" : 
+					{
+						"h" : 69.0,
+						"w" : 225.0
+					},
+					"texture_id_index" : 0,
+					"texture_index" : 16,
+					"type" : "ft_image"
+				},
+				
+				{
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 801.50,
+						"y" : 303.0
+					},
+					"name" : "pointer_right",
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 207.0
+					},
+					"size" : 
+					{
+						"h" : 69.0,
+						"w" : 225.0
+					},
+					"texture_id_index" : 0,
+					"texture_index" : 16,
+					"type" : "ft_image"
+				}
+			],
+			"name" : "ft_listbox",
+			"range" : 
+			{
+				"max" : 100.0,
+				"min" : 1.0
+			},
+			"screen_pos" : 
+			{
+				"x" : 145.6550140380859,
+				"y" : 104.2760086059570
+			},
+			"size" : 
+			{
+				"h" : 191.1720123291016,
+				"w" : 337.6550292968750
+			},
+			"type" : "ft_listbox",
+			"vertical" : true
 		}
 	],
 	"material_list" : 
@@ -314,8 +421,7 @@
 	"screen_pos" : 
 	{
 		"x" : 0.0,
-		"y" : 0.0,
-		"z" : 0.0
+		"y" : 0.0
 	},
 	"screenh" : 720.0,
 	"screenw" : 1920.0,

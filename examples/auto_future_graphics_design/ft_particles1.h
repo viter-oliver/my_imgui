@@ -17,18 +17,19 @@ class ft_particles1 :
 		en_fountain,
 		en_fire,
 		en_fire_with_smoke,
+		en_alg_cnt
 	};
 	struct pcl_intl
 	{
 		ImVec3 _pos0,_v0,_a0;
-		float _life;
+		float _life,_spread,_y1;
 		particles_algorithm _pa;
 		pcl_intl() 
 			:_pos0(0.f, 7.f, -20.f)
 			,_v0(0.f,-7.f,0.f)
 			, _a0(0.f, 9.81f, 0.f)
-			, _life(5.f)
-			, _pa(en_normal)
+			, _life(5.f), _spread(1.5f), _y1(10)
+			, _pa(en_fire)
 		{}
 	};
 	pcl_intl _pt;

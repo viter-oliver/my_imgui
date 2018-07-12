@@ -90,7 +90,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\dds_file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -104,7 +104,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\dds_file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -121,7 +121,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\dds_file;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
     </ClCompile>
     <Link>
@@ -175,6 +175,7 @@
     <ClCompile Include="ft_model.cpp" />
     <ClCompile Include="ft_particles.cpp" />
     <ClCompile Include="ft_particles1.cpp" />
+    <ClCompile Include="ft_particles_effect.cpp" />
     <ClCompile Include="ft_plane.cpp" />
     <ClCompile Include="ft_slider.cpp" />
     <ClCompile Include="ft_sphere.cpp" />
@@ -195,6 +196,7 @@
     <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="miniz.c" />
     <ClCompile Include="ofbx.cpp" />
+    <ClCompile Include="paricles_system.cpp" />
     <ClCompile Include="primitive_object.cpp" />
     <ClCompile Include="primitve_edit.cpp" />
     <ClCompile Include="project_edit.cpp" />
@@ -234,10 +236,12 @@
     <ClInclude Include="afb_load.h" />
     <ClInclude Include="afb_output.h" />
     <ClInclude Include="af_shader.h" />
+    <ClInclude Include="dxt5_compress.h" />
     <ClInclude Include="ft_cube.h" />
     <ClInclude Include="ft_model.h" />
     <ClInclude Include="ft_particles.h" />
     <ClInclude Include="ft_particles1.h" />
+    <ClInclude Include="ft_particles_effect.h" />
     <ClInclude Include="ft_plane.h" />
     <ClInclude Include="ft_slider.h" />
     <ClInclude Include="ft_sphere.h" />
@@ -258,6 +262,7 @@
     <ClInclude Include="Mesh.h" />
     <ClInclude Include="miniz.h" />
     <ClInclude Include="ofbx.h" />
+    <ClInclude Include="paricles_system.h" />
     <ClInclude Include="primitive_object.h" />
     <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="project_edit.h" />

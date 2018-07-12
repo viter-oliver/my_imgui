@@ -150,6 +150,27 @@ struct testalias
 			cout << iu << endl;
 		}
 	}
+#include <random>
+	int roll_a_fair_die()
+	{
+		static std::default_random_engine e{};
+		static std::uniform_int_distribution<int> d{ 1, 6 };
+		return d(e);
+	}	struct stp0
+	{
+		int j;
+		virtual ~stp0()
+		{
+			j = 0;
+		}
+	};
+	struct stp1 :public stp0
+	{
+		~stp1()
+		{
+			j = 2;
+		}
+	};
 int _tmain(int argc, _TCHAR* argv[])
 {
 	vector<stt> vstt;
@@ -309,7 +330,67 @@ int _tmain(int argc, _TCHAR* argv[])
 	tcvt.vint.push_back(1);
 	tcvt.vint.push_back(2);
 	cout << sizeof(tcvt) << endl;
+	cout << " rand0:";
+	for (int ii = 0; ii < 100; ii++)
+	{
+		cout << rand()<<" ";
+		if (ii&& ii % 20 == 0)
+		{
+			cout << endl;
+		}
+	}
+	cout << endl;
+	random_device rd;
+	mt19937 mt(rd());
+	cout << " rand1:";
+	for (int ii = 0; ii < 100; ii++)
+	{
+		cout << mt()<<" ";
+		if (ii&&ii % 20 == 0)
+		{
+			cout << endl;
+		}
+	}
+	cout << endl;
+	cout << " rand2:";
+	for (int ii = 0; ii < 100; ii++)
+	{
+		cout << roll_a_fair_die() << " ";
+		if (ii&&ii % 20 == 0)
+		{
+			cout << endl;
+		}
+	}	
+	const int nrolls = 10000;  // number of experiments
+	const int nstars = 95;     // maximum number of stars to distribute
+	const int nintervals = 10; // number of intervals
 
+	std::default_random_engine generator;
+	std::uniform_real_distribution<double> distribution(0.0, 1.0);
+	std::uniform_real_distribution<double> distribution2(-25.0, 25.0);
+
+	int p1[nintervals] = {};
+
+	for (int i = 0; i < nrolls; ++i) {
+		double number = distribution(generator);
+		++p1[int(nintervals*number)];
+	}
+
+	std::cout << "uniform_real_distribution (0.0,1.0):" << std::endl;
+	std::cout << std::fixed; std::cout.precision(1);
+
+	for (int i = 0; i < nintervals; ++i) {
+		std::cout << float(i) / nintervals << "-" << float(i + 1) / nintervals << ": ";
+		std::cout << std::string(p1[i] * nstars / nrolls, '*') << std::endl;
+	}
+	std::cout << "uniform_real_distribution (0-25.0, 25.0):" << std::endl;
+	for (int ii = 0; ii <100;ii++)
+	{
+		std::cout << distribution2(generator) << endl;
+	}
+	vector<shared_ptr<stp0>> vstp;
+	vstp.emplace_back(make_shared<stp1>());
+	vstp.erase(vstp.begin()+0);
 	return 0;
 }
 

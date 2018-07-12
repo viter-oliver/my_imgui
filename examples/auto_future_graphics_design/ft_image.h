@@ -22,6 +22,10 @@ public:
 		len += plen;
 		return len;
 	}
+	ImVec2 get_size()
+	{
+		return _img_pt._size;
+	}
 	void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void draw_peroperty_page();

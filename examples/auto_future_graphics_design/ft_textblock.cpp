@@ -3,7 +3,7 @@
 void ft_textblock::draw()
 {
 	ft_base::draw();
-	ImVec3 abpos = absolute_coordinate_of_base_pos();
+	ImVec2 abpos = absolute_coordinate_of_base_pos();
 	//ImVec2 winpos = ImGui::GetWindowPos();
 	ImGui::SetCursorPosX(abpos.x );
 	ImGui::SetCursorPosY(abpos.y);

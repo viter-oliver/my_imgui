@@ -63,7 +63,7 @@ protected:
 	struct internal_property
 	{
 		char _name[name_len];
-		ImVec3 _pos;
+		ImVec2 _pos;
 		bool _visible;
 		internal_property() :_visible(true){ memset(_name, 0, name_len); }
     };
@@ -74,10 +74,11 @@ protected:
 	vector<base_ui_component*> _vchilds;
 	/** the parent object, this member will NULL if current object is root */
 	base_ui_component* _parent;
+	//bool _be_window = { false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 protected:
 	/** used for selecting a object in project edit for property editing */
-	bool _selected;
+	bool _selected = { false };
 public:
 	/**
 	*@brief draw property on the property page for editing
@@ -90,6 +91,14 @@ public:
 	void set_selected(bool beselected)
 	{
 		_selected = beselected;
+	}
+	//virtual ImVec2 range_radius_vector(ImVec2 direction)
+	//{
+	//	return ImVec2();
+	//}
+	virtual ImVec2 get_size()
+	{
+		return ImVec2();
 	}
 	/**
 	*@brief instancing class from a json value unit
@@ -151,9 +160,6 @@ public:
 	base_ui_component()
 		:_in_p()
 		, _parent(NULL)
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		, _selected(false)
-#endif
 	{
 
 	}
@@ -165,8 +171,8 @@ public:
 			delete it;
 		}
 	}
-	void add_child(base_ui_component* pchild){ pchild->_parent = this; _vchilds.push_back(pchild); }
-	void remove_child(base_ui_component* pchild)
+	virtual void add_child(base_ui_component* pchild){ pchild->_parent = this; _vchilds.push_back(pchild); }
+	virtual void remove_child(base_ui_component* pchild)
 	{
 		auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
 		if (it!=_vchilds.end())
@@ -186,17 +192,17 @@ public:
 	/**
 	*@brief get relative coordinates of current object
 	*/
-	ImVec3 base_pos(){ return _in_p._pos; }
+	ImVec2& base_pos(){ return _in_p._pos; }
 	/**
 	*@brief get absolute coordinates of current object
 	*/
-	ImVec3 absolute_coordinate_of_base_pos()
+	ImVec2 absolute_coordinate_of_base_pos()
 	{
-		ImVec3 base_pos = _in_p._pos;
+		ImVec2 base_pos = _in_p._pos;
 		base_ui_component* parent = get_parent();
-		while (parent)
+		while (parent/*&&!parent->_be_window*/)
 		{
-			ImVec3 pbase_pos = parent->base_pos();
+			ImVec2& pbase_pos = parent->base_pos();
 			base_pos += pbase_pos;
 			parent = parent->get_parent();
 		}

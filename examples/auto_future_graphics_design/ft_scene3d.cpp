@@ -30,7 +30,7 @@ void ft_scene3d::draw()
 	ft_base::draw();
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	glViewport(last_viewport[0], last_viewport[1], (GLsizei)last_viewport[2], (GLsizei)last_viewport[3]);
-	ImVec3 abpos = absolute_coordinate_of_base_pos();
+	ImVec2 abpos = absolute_coordinate_of_base_pos();
 	ImVec2 winpos = ImGui::GetWindowPos();
 	float sizew = _sn_pt._size.x;
 	float sizeh = _sn_pt._size.y;

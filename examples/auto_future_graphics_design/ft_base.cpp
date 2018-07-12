@@ -34,7 +34,6 @@ bool ft_base::init_from_json(Value& jvalue)
 	Value& jscreen_pos = jvalue["screen_pos"];
 	_in_p._pos.x = jscreen_pos["x"].asDouble();
 	_in_p._pos.y = jscreen_pos["y"].asDouble();
-	_in_p._pos.z = jscreen_pos["z"].asDouble();
 	Value& childs = jvalue["childs"];
 	if (childs.isNull())
 	{
@@ -60,7 +59,6 @@ bool ft_base::init_json_unit(Value& junit)
 	Value jscreen_pos(objectValue);
 	jscreen_pos["x"] = _in_p._pos.x;
 	jscreen_pos["y"] = _in_p._pos.y;
-	jscreen_pos["z"] = _in_p._pos.z;
 	junit["screen_pos"] = jscreen_pos;
 	Value jchilds(arrayValue);
 	size_t chcnt = child_count();

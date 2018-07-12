@@ -74,6 +74,7 @@ void afb_load::load_afb(const char* afb_file)
 		res_texture_list& res_unit = g_vres_texture_list[cur_pos];
 		glGenTextures(1, &res_unit.texture_id);
 		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
+		//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
@@ -87,8 +88,10 @@ void afb_load::load_afb(const char* afb_file)
 		res_unit.texture_height = bin_res_unit.via.array.ptr[1].as<int>();
 		auto res_bin = bin_res_unit.via.array.ptr[2];
 		auto bin_sz = res_bin.via.bin.size;
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, res_unit.texture_width, res_unit.texture_height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, res_bin.via.bin.ptr);
+		/*glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, res_unit.texture_width, res_unit.texture_height,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, res_bin.via.bin.ptr);*/
+#define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
+		glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, res_unit.texture_width, res_unit.texture_height, 0, bin_sz, res_bin.via.bin.ptr);
 		glGenerateMipmap(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		auto res_data = bin_res_unit.via.array.ptr[3];

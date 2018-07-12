@@ -50,6 +50,9 @@
     <Filter Include="afb_manager">
       <UniqueIdentifier>{1eed8a52-3174-4df9-b74a-a6938f17dde9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dds_file">
+      <UniqueIdentifier>{16a66edc-ee8c-4df9-b723-2147b8cb28f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -196,9 +199,6 @@
     <ClCompile Include="texture_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
-    <ClCompile Include="primitve_edit.cpp">
-      <Filter>sources</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
@@ -207,6 +207,15 @@
     </ClCompile>
     <ClCompile Include="ft_particles1.cpp">
       <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_particles_effect.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="paricles_system.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="primitve_edit.cpp">
+      <Filter>res_manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -384,7 +393,6 @@
     <ClInclude Include="texture_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="Mesh.h">
       <Filter>render_utilities</Filter>
     </ClInclude>
@@ -393,6 +401,18 @@
     </ClInclude>
     <ClInclude Include="ft_particles1.h">
       <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_particles_effect.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="paricles_system.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="dxt5_compress.h">
+      <Filter>afb_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="primitve_edit.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
