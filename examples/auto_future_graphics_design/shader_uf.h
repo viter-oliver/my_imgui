@@ -38,21 +38,29 @@ public:
 	virtual void set_to_loaction(GLuint location)=0;
 
 };
-
-extern  Factory<shader_uf>& get_shader_uf_fc();
-template<typename T>
-struct shader_uf_assist
+struct fac_shader_uf
 {
-	static T* create_new_obj(GLuint usize, GLuint el_sz)
+	template<typename T>
+	struct shader_uf_assist
 	{
-		return new T(usize, el_sz);
-	}
-	shader_uf_assist(string key)
+		static T* create_new_obj(GLuint usize, GLuint el_sz)
+		{
+			return new T(usize, el_sz);
+		}
+		shader_uf_assist(string key)
+		{
+			get().Register(key, shader_uf_assist<T>::create_new_obj);
+		}
+	
+	};
+	static Factory<shader_uf>& get()
 	{
-		get_shader_uf_fc().Register(key, shader_uf_assist<T>::create_new_obj);
+		static Factory<shader_uf> instance;
+		return instance;
 	}
 };
-#define REG_SHADER_UF(shd_type) static shader_uf_assist<shd_type> reg_##shd_type(#shd_type)
+
+#define REG_SHADER_UF(shd_type) static fac_shader_uf::shader_uf_assist<shd_type> reg_##shd_type(#shd_type)
 
 
 class shader_uf_float :public shader_uf

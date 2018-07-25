@@ -42,7 +42,7 @@ class af_shader
 	GLuint _shader_program_id, _vertex_shader, _fragment_shader;
 	string _name;
 	/** whether shader is valid */
-	bool _valid{ true };
+	bool _valid{ false };
 	/** vertex shader source code and fragment shader source code */
 	string _vs_code, _fs_code;
 public:
@@ -53,7 +53,10 @@ public:
 	mshader_variable_list& get_uf_defs(){ return _unf_list; }
 	string get_vs_code(){ return _vs_code; }
 	string get_fs_code(){ return _fs_code; }
-
+	void refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source);
+	
+	void build();
+	void refresh_viarable_list();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 public:
 	string compile_error_info;

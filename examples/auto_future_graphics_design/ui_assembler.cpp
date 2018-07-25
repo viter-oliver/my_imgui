@@ -9,7 +9,9 @@
 #include <GL/gl3w.h> 
 #endif
 #include "SOIL.h"
-
+extern string g_cureent_project_file_path;
+extern bool show_project_window, show_edit_window, \
+show_property_window, show_resource_manager, show_fonts_manager, show_file_manager;
 bool ui_assembler::load_ui_component_from_file(const char* file_path)
 {
 	ifstream fin;
@@ -38,7 +40,37 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			{
 				base_ui_component::screenh = 1000.0f;
 			}
+			Value& window_show = jroot["window_show"];
+			if (!window_show.isNull())
+			{
+				show_project_window = window_show["show_project_window"].asBool();
+				show_edit_window=window_show["show_edit_window"].asBool();
+				show_property_window = window_show["show_property_window"].asBool();
+				show_resource_manager = window_show["show_resource_manager"].asBool();
+				show_fonts_manager = window_show["show_fonts_manager"].asBool();
+				show_file_manager=window_show["show_file_manager"].asBool();
+			}
+			Value& fonts = jroot["fonts"];
+			if (!fonts.isNull())
+			{
+				string str_font_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+				str_font_path += "fonts\\";
+				int isz = fonts.size();
+				for (int ix = 0; ix < isz;ix++)
+				{
+					Value& jfont = fonts[ix];
+					string font_name = jfont["name"].asString();
+					font_name = str_font_path + font_name;
+					float SizePixels = jfont["SizePixels"].asDouble();
+					ImFont* nfont=ImGui::GetIO().Fonts->AddFontFromFileTTF(font_name.c_str(), SizePixels, NULL, ImGui::GetIO().Fonts->GetGlyphRangesChinese());
+					Value jdefault = jfont["default"];
+					if (!jdefault.isNull())
+					{
+						ImGui::GetIO().FontDefault = nfont;
+					}
+				}
 
+			}
 			texture_res_load tresload(g_vres_texture_list);
 			tresload.load_res_from_json(jroot);
 			Value& texture_list = jroot["texture_list"];
@@ -46,8 +78,8 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			UInt ix = 0;
 			extern string g_cureent_project_file_path;
 			string str_img_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+			string str_files_path = str_img_path + "files\\";
 			str_img_path += "images\\";
-
 			for (ix = 0; ix < isize;ix++)
 			{
 				Value& txt_unit = texture_list[ix];
@@ -89,6 +121,22 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				pimge->_width = width;
 				pimge->_height = height;
 				g_mtexture_list[kname] = pimge;
+			}
+			Value& file_list = jroot["file_list"];
+			auto fsize = file_list.size();
+			for (ix = 0; ix < fsize; ix++)
+			{
+				Value& filse_unit = file_list[ix];
+				auto& kname = filse_unit.asString();
+				auto file_path = str_files_path + kname;
+				ifstream ifs;
+				ifs.open(file_path);
+				filebuf* pbuf = ifs.rdbuf();
+				size_t sz_file = pbuf->pubseekoff(0, ifs.end, ifs.in);
+				pbuf->pubseekpos(0, ifs.in);
+				g_mfiles_list[kname] = make_shared<af_file>(sz_file);
+				pbuf->sgetn((char*)g_mfiles_list[kname]->_pbin, sz_file);
+				ifs.close();
 			}
 			Value& shader_list = jroot["shader_list"];
 			isize = shader_list.size();
@@ -133,6 +181,34 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	Value jroot(objectValue);
 	jroot["screenw"] = base_ui_component::screenw;
 	jroot["screenh"] = base_ui_component::screenh;
+	Value window_show(objectValue);
+	window_show["show_project_window"] = show_project_window;
+	window_show["show_edit_window"] = show_edit_window;
+	window_show["show_property_window"] = show_property_window;
+	window_show["show_resource_manager"] = show_resource_manager;
+	window_show["show_fonts_manager"] = show_fonts_manager;
+	window_show["show_file_manager"] = show_file_manager;
+
+	jroot["window_show"] = window_show;
+	Value fonts(arrayValue);
+	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+	
+	for (size_t i = 0; i < atlas->Fonts.size(); i++)
+	{
+		auto& cfg_data = atlas->ConfigData[i];
+		ImFont* font = atlas->Fonts[i];
+		Value jfont(objectValue);
+		jfont["SizePixels"] = cfg_data.SizePixels;
+		string fontname = cfg_data.Name;
+		fontname = fontname.substr(0, fontname.find_first_of(','));
+		jfont["name"] = fontname;
+		if (ImGui::GetIO().FontDefault==font)
+		{
+			jfont["default"] = true;
+		}
+		fonts.append(jfont);
+	}
+	jroot["fonts"] = fonts;
 	Value jtexture(arrayValue);
 	for (auto& reslist:g_vres_texture_list)
 	{
@@ -151,6 +227,14 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		texture_list.append(txt_unit);
 	}
 	jroot["texture_list"] = texture_list;
+	Value file_list(arrayValue);
+	for (auto& fileu:g_mfiles_list)
+	{
+		auto& kname = fileu.first;
+		Value jfile(kname);
+		file_list.append(jfile);
+	}
+	jroot["file_list"] = file_list;
 	Value jshader(arrayValue);
 	for (auto& shd_ut : g_af_shader_list)
 	{

@@ -277,7 +277,6 @@ int _tmain(int argc, _TCHAR* argv[])
 
 	std::vector<int> myvector = { 10, 20, 30 };
 
-
 	auto it = myvector.emplace(myvector.begin() + 1, 100);
 	myvector.emplace(it, 200);
 	myvector.emplace(myvector.end(), 300);
@@ -340,6 +339,13 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	}
 	cout << endl;
+	for (auto i = 1; i <= 100;i++)
+	{
+		if (i%2==0||i%3==0&&(printf("i/3=%d\n",i/3),true))
+		{
+			printf("i=%d\n", i);
+		}
+	}
 	random_device rd;
 	mt19937 mt(rd());
 	cout << " rand1:";

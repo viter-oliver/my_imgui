@@ -171,6 +171,8 @@
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="afb_output.cpp" />
     <ClCompile Include="af_shader.cpp" />
+    <ClCompile Include="file_res_edit.cpp" />
+    <ClCompile Include="fonts_edit.cpp" />
     <ClCompile Include="ft_cube.cpp" />
     <ClCompile Include="ft_model.cpp" />
     <ClCompile Include="ft_particles.cpp" />
@@ -179,7 +181,6 @@
     <ClCompile Include="ft_plane.cpp" />
     <ClCompile Include="ft_slider.cpp" />
     <ClCompile Include="ft_sphere.cpp" />
-    <ClCompile Include="basic3d.cpp" />
     <ClCompile Include="common_functions.cpp" />
     <ClCompile Include="ft_base.cpp" />
     <ClCompile Include="ft_button.cpp" />
@@ -207,11 +208,11 @@
     <ClCompile Include="shader_uf.cpp" />
     <ClCompile Include="texture_edit.cpp" />
     <ClCompile Include="texture_res_load.cpp" />
-    <ClCompile Include="texture_shader.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
     <ClCompile Include="user_control_imgui.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\dds_file\stb_dxt.h" />
     <ClInclude Include="..\..\imconfig.h" />
     <ClInclude Include="..\..\imgui.h" />
     <ClInclude Include="..\..\imguidock.h" />
@@ -237,6 +238,8 @@
     <ClInclude Include="afb_output.h" />
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="dxt5_compress.h" />
+    <ClInclude Include="file_res_edit.h" />
+    <ClInclude Include="fonts_edit.h" />
     <ClInclude Include="ft_cube.h" />
     <ClInclude Include="ft_model.h" />
     <ClInclude Include="ft_particles.h" />
@@ -245,7 +248,6 @@
     <ClInclude Include="ft_plane.h" />
     <ClInclude Include="ft_slider.h" />
     <ClInclude Include="ft_sphere.h" />
-    <ClInclude Include="basic3d.h" />
     <ClInclude Include="common_functions.h" />
     <ClInclude Include="control_common_def.h" />
     <ClInclude Include="ft_base.h" />
@@ -274,7 +276,6 @@
     <ClInclude Include="shader_uf.h" />
     <ClInclude Include="texture_edit.h" />
     <ClInclude Include="texture_res_load.h" />
-    <ClInclude Include="texture_shader.h" />
     <ClInclude Include="ui_assembler.h" />
     <ClInclude Include="user_control_imgui.h" />
   </ItemGroup>

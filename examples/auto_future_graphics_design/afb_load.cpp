@@ -65,7 +65,25 @@ void afb_load::load_afb(const char* afb_file)
 	auto obj_w = oh.get();
 	base_ui_component::screenw = obj_w.via.array.ptr[0].as<float>();
 	base_ui_component::screenh = obj_w.via.array.ptr[1].as<float>();
-	auto obj_res = obj_w.via.array.ptr[2];
+	auto font_res = obj_w.via.array.ptr[2];
+	auto font_cnt = font_res.via.array.size;
+	auto& font_atlas = ImGui::GetIO().Fonts;
+	for (size_t ix = 0; ix < font_cnt; ix++)
+	{
+		auto font_unit = font_res.via.array.ptr[ix];
+		auto font_data = font_unit.via.array.ptr[0];
+		auto font_data_sz = font_data.via.bin.size;
+		auto size_pixel = font_unit.via.array.ptr[1].as<float>();
+		void* pfont_data = new char[font_data_sz];
+		memcpy(pfont_data, font_data.via.bin.ptr, font_data_sz);
+		ImFont* nfont = font_atlas->AddFontFromMemoryTTF(pfont_data, font_data_sz, size_pixel, NULL, font_atlas->GetGlyphRangesChinese());
+		auto be_cur_font = font_unit.via.array.ptr[2].as<bool>();
+		if (be_cur_font)
+		{
+			ImGui::GetIO().FontDefault = nfont;
+		}
+	}
+	auto obj_res = obj_w.via.array.ptr[3];
 	auto re_cnt = obj_res.via.array.size;
 	for (size_t ix = 0; ix < re_cnt; ix++)
 	{
@@ -113,7 +131,60 @@ void afb_load::load_afb(const char* afb_file)
 		}
 
 	}
-	auto obj_shader_list = obj_w.via.array.ptr[3];
+	auto obj_txt_list = obj_w.via.array.ptr[4];
+	auto txt_cnt = obj_txt_list.via.array.size;
+	for (size_t ix = 0; ix < txt_cnt;ix++)
+	{
+		auto txt_unit = obj_txt_list.via.array.ptr[ix];
+		auto txt_name = txt_unit.via.array.ptr[0];
+		auto txt_width = txt_unit.via.array.ptr[1].as<uint32_t>();
+		auto txt_height = txt_unit.via.array.ptr[2].as<uint32_t>();
+		auto txt_bin = txt_unit.via.array.ptr[3];
+		auto txt_name_sz = txt_name.via.str.size;
+		char* txt_kname = new char[txt_name_sz+1];
+		memset(txt_kname, 0, txt_name_sz + 1);
+		memcpy(txt_kname, txt_name.via.str.ptr, txt_name_sz);
+		auto txt_bin_sz = txt_bin.via.bin.size;
+		auto a_txt = make_shared<af_texture>();
+		glGenTextures(1, &a_txt->_txt_id);
+		glBindTexture(GL_TEXTURE_2D, a_txt->_txt_id);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		// Step3 设定filter参数
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+			GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+		// Step4 加载纹理
+
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, txt_width, txt_height,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, txt_bin.via.bin.ptr);
+		glGenerateMipmap(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, 0);
+		a_txt->_width = txt_width;
+		a_txt->_height = txt_height;
+		g_mtexture_list[txt_kname] = a_txt;
+		delete[] txt_kname;
+
+	}
+	auto obj_file_list = obj_w.via.array.ptr[5];
+	auto file_cnt = obj_file_list.via.array.size;
+	for (size_t ix = 0; ix < file_cnt;ix++)
+	{
+		auto file_unit = obj_file_list.via.array.ptr[ix];
+		auto file_name = file_unit.via.array.ptr[0];
+		auto file_bin = file_unit.via.array.ptr[1];
+		auto file_name_size = file_name.via.str.size;
+		char* file_kname = new char[file_name_size + 1];
+		memset(file_kname, 0, file_name_size + 1);
+		memcpy(file_kname, file_name.via.str.ptr, file_name_size);
+		auto a_file = make_shared<af_file>(file_bin.via.bin.size);
+		memcpy(a_file->_pbin, file_bin.via.bin.ptr, a_file->_fsize);
+		g_mfiles_list[file_kname] = a_file;
+		delete[] file_kname;
+	}
+	auto obj_shader_list = obj_w.via.array.ptr[6];
 	auto shd_cnt = obj_shader_list.via.array.size;
 	for (size_t ix = 0; ix < shd_cnt; ix++)
 	{
@@ -138,7 +209,7 @@ void afb_load::load_afb(const char* afb_file)
 		delete[] psd_vs_code;
 		delete[] psd_fs_code;
 	}
-	auto obj_material_list = obj_w.via.array.ptr[4];
+	auto obj_material_list = obj_w.via.array.ptr[7];
 	auto mtl_cnt = obj_material_list.via.array.size;
 	for (size_t ix = 0; ix < mtl_cnt; ix++)
 	{
@@ -181,7 +252,7 @@ void afb_load::load_afb(const char* afb_file)
 			auto shd_uf_el_size=shd_uf_unit.via.array.ptr[3];
 			auto shd_uf_utype=shd_uf_unit.via.array.ptr[4];
 			
-			shared_ptr<shader_uf> pnunf = std::move(get_shader_uf_fc().Create(pshd_uf_type, shd_uf_usize.as<GLuint>(), shd_uf_el_size.as<GLuint>()));
+			shared_ptr<shader_uf> pnunf = std::move(fac_shader_uf::get().Create(pshd_uf_type, shd_uf_usize.as<GLuint>(), shd_uf_el_size.as<GLuint>()));
 			pnunf->set_type(shd_uf_utype.as<GLenum>());
 			auto shd_data = shd_uf_unit.via.array.ptr[5];
 			auto wsize = shd_uf_usize.as<GLuint>()*shd_uf_el_size.as<GLuint>();
@@ -192,6 +263,6 @@ void afb_load::load_afb(const char* afb_file)
 		}
 		delete[] pstr_mtl_name;
 	}
-	auto obj_ui = obj_w.via.array.ptr[5];
+	auto obj_ui = obj_w.via.array.ptr[8];
 	init_ui_component_by_mgo(_pj, obj_ui);
 }

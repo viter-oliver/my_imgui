@@ -4,6 +4,7 @@
 #include <functional>
 #include <memory>
 #include "control_common_def.h"
+using namespace auto_future;
 struct factory
 {
 	template<typename T>

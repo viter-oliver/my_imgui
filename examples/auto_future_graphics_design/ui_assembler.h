@@ -4,6 +4,7 @@
 * @brief ui_assembler is responsible for transferring project file to ui components
 *        or transferring ui components to project file\n
 */
+using namespace auto_future;
 class ui_assembler
 {
 	base_ui_component& _root;

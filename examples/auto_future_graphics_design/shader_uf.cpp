@@ -4,11 +4,7 @@
 using namespace std;
 #include "user_control_imgui.h"
 
-Factory<shader_uf>& get_shader_uf_fc()
-{
-	static Factory<shader_uf> _fac_shader_ur;
-	return _fac_shader_ur;
-}
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void shader_uf::output_2_json(Value& jvalue)
 {
@@ -293,3 +289,4 @@ void shader_uf_double::init_from_json(Value& jvalue)
 	}
 }
 #endif
+

@@ -7792,27 +7792,28 @@ void ImGui::ImageQuad(ImTextureID user_texture_id, const ImVec2& vp0, const ImVe
 	ImGuiWindow* window = GetCurrentWindow();
 	if (window->SkipItems)
 		return;
-	//float xmin = vp0.x;
-	//if (xmin > vp1.x) xmin = vp1.x;
-	//if (xmin > vp2.x) xmin = vp2.x;
-	//if (xmin > vp3.x) xmin = vp3.x;
-	//float xmax = vp0.x;
-	//if (xmax < vp1.x) xmax = vp1.x;
-	//if (xmax < vp2.x) xmax = vp2.x;
-	//if (xmax < vp3.x) xmax = vp3.x;
-	//float ymin = vp0.y;
-	//if (ymin > vp1.y) ymin = vp1.y;
-	//if (ymin > vp2.y) ymin = vp2.y;
-	//if (ymin > vp3.y) ymin = vp3.y;
-	//float ymax = vp0.y;
-	//if (ymax < vp1.y) ymax = vp1.y;
-	//if (ymax < vp2.x) ymax = vp2.y;
-	//if (ymax<vp3.y) ymax = vp3.y;
+	/*float xmin = vp0.x;
+	if (xmin > vp1.x) xmin = vp1.x;
+	if (xmin > vp2.x) xmin = vp2.x;
+	if (xmin > vp3.x) xmin = vp3.x;
+	float xmax = vp0.x;
+	if (xmax < vp1.x) xmax = vp1.x;
+	if (xmax < vp2.x) xmax = vp2.x;
+	if (xmax < vp3.x) xmax = vp3.x;
+	float ymin = vp0.y;
+	if (ymin > vp1.y) ymin = vp1.y;
+	if (ymin > vp2.y) ymin = vp2.y;
+	if (ymin > vp3.y) ymin = vp3.y;
+	float ymax = vp0.y;
+	if (ymax < vp1.y) ymax = vp1.y;
+	if (ymax < vp2.x) ymax = vp2.y;
+	if (ymax<vp3.y) ymax = vp3.y;
 
-	//ImRect bb(xmin + window->DC.CursorPos.x, ymin + window->DC.CursorPos.y, xmax + window->DC.CursorPos.x, ymax + window->DC.CursorPos.y);
-	//ItemSize(bb);
-	//if (!ItemAdd(bb, 0))
-	//	return;
+	ImRect bb(xmin, ymin, xmax, ymax);
+
+	ItemSize(bb);
+	if (!ItemAdd(bb, 0))
+		return;*/
 	if (border_col.w > 0.0f)
 	{
 		window->DrawList->AddQuad(vp0, vp1, vp2, vp3, GetColorU32(border_col), 0.0f);

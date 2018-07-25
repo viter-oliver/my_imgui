@@ -29,9 +29,6 @@
     <Filter Include="user_imgui">
       <UniqueIdentifier>{e6f8508e-b52e-415c-a22a-78b2d55e923d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3dutility">
-      <UniqueIdentifier>{0e970a76-dad5-441e-b0ce-699d7656d61a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="res">
       <UniqueIdentifier>{4563ab87-9f09-4267-a43d-fda2a4512162}</UniqueIdentifier>
     </Filter>
@@ -49,9 +46,6 @@
     </Filter>
     <Filter Include="afb_manager">
       <UniqueIdentifier>{1eed8a52-3174-4df9-b74a-a6938f17dde9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="dds_file">
-      <UniqueIdentifier>{16a66edc-ee8c-4df9-b723-2147b8cb28f5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -115,9 +109,6 @@
     <ClCompile Include="ft_scene3d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="basic3d.cpp">
-      <Filter>3dutility</Filter>
-    </ClCompile>
     <ClCompile Include="ft_cube.cpp">
       <Filter>controls</Filter>
     </ClCompile>
@@ -138,9 +129,6 @@
     </ClCompile>
     <ClCompile Include="..\..\imgui_demo.cpp">
       <Filter>imgui</Filter>
-    </ClCompile>
-    <ClCompile Include="texture_shader.cpp">
-      <Filter>3dutility</Filter>
     </ClCompile>
     <ClCompile Include="miniz.c">
       <Filter>fbx</Filter>
@@ -217,6 +205,12 @@
     <ClCompile Include="primitve_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="fonts_edit.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="file_res_edit.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -285,9 +279,6 @@
     <ClInclude Include="ft_scene3d.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="basic3d.h">
-      <Filter>3dutility</Filter>
-    </ClInclude>
     <ClInclude Include="ft_cube.h">
       <Filter>controls</Filter>
     </ClInclude>
@@ -308,9 +299,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>res</Filter>
-    </ClInclude>
-    <ClInclude Include="texture_shader.h">
-      <Filter>3dutility</Filter>
     </ClInclude>
     <ClInclude Include="miniz.h">
       <Filter>fbx</Filter>
@@ -412,6 +400,15 @@
       <Filter>afb_manager</Filter>
     </ClInclude>
     <ClInclude Include="primitve_edit.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dds_file\stb_dxt.h">
+      <Filter>afb_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="file_res_edit.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="fonts_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>

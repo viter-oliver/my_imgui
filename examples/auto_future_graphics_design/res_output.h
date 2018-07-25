@@ -44,8 +44,23 @@ struct af_texture
 	bool _sel{ false };
 #endif
 };
+struct af_file
+{
+	void* _pbin = {NULL};
+	GLuint _fsize = { 0 };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	bool _sel{ false };
+#endif
+	af_file(GLuint fsize);
+	~af_file();
+};
 #include<map>
 #include <memory>
 typedef map<string, shared_ptr<af_texture>> mtexture_list;
+typedef map<string, shared_ptr<af_file>>mfile_list;
 extern mtexture_list g_mtexture_list;
-
+extern mfile_list g_mfiles_list;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+extern void add_image_to_mtexure_list(string& imgPath);
+extern void add_file_to_mfiles_list(string& file_path);
+#endif

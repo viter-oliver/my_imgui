@@ -1,5 +1,6 @@
 #pragma once
 #include "control_common_def.h"
+using namespace auto_future;
 class afb_load
 {
 	base_ui_component*& _pj;

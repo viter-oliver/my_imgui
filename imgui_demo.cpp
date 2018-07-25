@@ -386,7 +386,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
                 // List box
                 const char* listbox_items[] = { "Apple", "Banana", "Cherry", "Kiwi", "Mango", "Orange", "Pineapple", "Strawberry", "Watermelon" };
                 static int listbox_item_current = 1;
-				ImGui::ListBox("listbox\n(single select)", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items) , 4);
+                ImGui::ListBox("listbox\n(single select)", &listbox_item_current, listbox_items, IM_ARRAYSIZE(listbox_items), 4);
 
                 //static int listbox_item_current2 = 2;
                 //ImGui::PushItemWidth(-1);

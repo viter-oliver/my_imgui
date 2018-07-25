@@ -19,7 +19,7 @@ void pack_ui_component_data(base_ui_component& tar, msgpack::packer<ofstream>& p
 	else
         pk.pack_array(2);
 	string cname = typeid(tar).name();
-	cname = cname.substr(sizeof("class"));
+	cname = cname.substr(sizeof("class autofuture::"));
 	pk.pack_str(cname.size());
 	pk.pack_str_body(cname.c_str(), cname.size());
 	vproperty_list vplist;
@@ -50,9 +50,33 @@ void afb_output::output_afb(const char* afb_file)
 	ofstream fout;
 	fout.open(afb_file, ios::binary);
 	msgpack::packer<ofstream> pk(&fout);
-	pk.pack_array(6);
+	pk.pack_array(9);
 	pk.pack_float(base_ui_component::screenw);
 	pk.pack_float(base_ui_component::screenh);
+	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+	int font_cnt = atlas->ConfigData.size();
+	pk.pack_array(font_cnt);
+	for (size_t ii = 0; ii < font_cnt; ii++)
+	{
+		auto& cfg_data = atlas->ConfigData[ii];
+		ImFont* font = atlas->Fonts[ii];
+		bool is_current_font= ImGui::GetIO().FontDefault == font;
+		string fontname = cfg_data.Name;
+		fontname = fontname.substr(0, fontname.find_first_of(','));
+		pk.pack_array(3);
+		pk.pack_bin(cfg_data.FontDataSize);
+		pk.pack_bin_body(reinterpret_cast<char const*>(cfg_data.FontData), cfg_data.FontDataSize);
+		pk.pack_float(cfg_data.SizePixels);
+		if (is_current_font)
+		{
+			pk.pack_true();
+		}
+		else
+		{
+			pk.pack_false();
+		}
+		
+	}
 	pk.pack_array(g_vres_texture_list.size());
 	for (auto& res_unit : g_vres_texture_list)
 	{
@@ -93,6 +117,35 @@ void afb_output::output_afb(const char* afb_file)
 		}
 		delete[] txtdata_compress;
 		delete[] txtdata;
+	}
+	pk.pack_array(g_mtexture_list.size());
+	for (auto& txt_unit : g_mtexture_list)
+	{
+		auto& kname = txt_unit.first;
+		auto& txtv = txt_unit.second;
+		pk.pack_array(4);
+		pk.pack_str(kname.size());
+		pk.pack_str_body(kname.c_str(), kname.size());
+		pk.pack_uint32(txtv->_width);
+		pk.pack_uint32(txtv->_height);
+		uint32_t txt_size = txtv->_width*txtv->_height * 4;
+		uint8_t* txt_data = new uint8_t[txt_size];
+		glBindTexture(GL_TEXTURE_2D, txtv->_txt_id);
+		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt_data);
+		pk.pack_bin(txt_size);
+		pk.pack_bin_body(reinterpret_cast<char const*>(txt_data), txt_size);
+
+	}
+	pk.pack_array(g_mfiles_list.size());
+	for (auto& file_unit : g_mfiles_list)
+	{
+		auto& kname = file_unit.first;
+		auto& filev = file_unit.second;
+		pk.pack_array(2);
+		pk.pack_str(kname.size());
+		pk.pack_str_body(kname.c_str(), kname.size());
+		pk.pack_bin(filev->_fsize);
+		pk.pack_bin_body(reinterpret_cast<char const*>(filev->_pbin), filev->_fsize);
 	}
 	pk.pack_array(g_af_shader_list.size());
 	for (auto& shd_ut : g_af_shader_list)

@@ -43,15 +43,20 @@ public:
 	void set_value(string unf_name, int* pivalue, GLuint len);
 	void set_value(string unf_name, unsigned int* puivalue, GLuint len);
 	void set_value(string unf_name, double* pdvalue, GLuint len);
-
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void edit_ufs();
 	bool _sel{ false };
 
 	void output_2_json(Value& jvalue);
 	void init_from_json(Value& jvalue);
+	void refresh();
+
 #endif
 };
 typedef map<string,shared_ptr<material>> mmaterial;
 /** material of g_material_list will be referenced by some ui components*/
 extern mmaterial g_material_list;
+extern bool create_material(string& shader_name, string& material_name, string& real_material_name);
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+extern void refresh_material(shared_ptr<af_shader> pshd);
+#endif

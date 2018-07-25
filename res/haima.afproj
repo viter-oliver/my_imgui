@@ -56,151 +56,34 @@
 				"x" : 801.50,
 				"y" : 303.0
 			},
-			"name" : "pointer_right",
-			"screen_pos" : 
-			{
-				"x" : 576.0,
-				"y" : 67.0
-			},
-			"size" : 
-			{
-				"h" : 69.0,
-				"w" : 225.0
-			},
-			"texture_id_index" : 0,
-			"texture_index" : 16,
-			"type" : "ft_image"
-		},
-		
-		{
-			"axipos" : 
-			{
-				"angle" : 0.0,
-				"x" : 330.0,
-				"y" : 303.0
-			},
-			"name" : "pointer_left",
-			"screen_pos" : 
-			{
-				"x" : 104.0,
-				"y" : 67.0
-			},
-			"size" : 
-			{
-				"h" : 472.0,
-				"w" : 452.0
-			},
-			"texture_id_index" : 0,
-			"texture_index" : 2,
-			"type" : "ft_image"
-		},
-		
-		{
-			"axipos" : 
-			{
-				"angle" : 0.0,
-				"x" : 801.50,
-				"y" : 303.0
-			},
 			"childs" : 
 			[
 				
 				{
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "ft_image",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 65.0,
-						"w" : 14.0
-					},
-					"texture_id_index" : 0,
-					"texture_index" : 6,
-					"type" : "ft_image"
-				}
-			],
-			"name" : "pointer_right",
-			"screen_pos" : 
-			{
-				"x" : 576.0,
-				"y" : 67.0
-			},
-			"size" : 
-			{
-				"h" : 472.0,
-				"w" : 451.0
-			},
-			"texture_id_index" : 0,
-			"texture_index" : 3,
-			"type" : "ft_image"
-		},
-		
-		{
-			"axipos" : 
-			{
-				"angle" : 0.0,
-				"x" : 801.50,
-				"y" : 303.0
-			},
-			"childs" : 
-			[
-				
-				{
-					"content" : "gfdgdgfdgfd",
+					"content" : "hello world!",
 					"name" : "ft_textblock",
 					"screen_pos" : 
 					{
-						"x" : 146.5790100097656,
-						"y" : 45.62800216674805
+						"x" : 0.0,
+						"y" : 0.0
 					},
 					"txt_color" : 
 					{
 						"w" : 1.0,
-						"x" : 0.5051184892654419,
-						"y" : 0.6189618110656738,
-						"z" : 0.7299578189849854
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
 					},
 					"type" : "ft_textblock",
 					"width" : 560.0,
 					"wrapped" : false
-				},
-				
-				{
-					"background color" : 
-					{
-						"w" : 0.50,
-						"x" : 0.50,
-						"y" : 0.4582278430461884,
-						"z" : 0.1999999880790710
-					},
-					"name" : "ft_scene3d",
-					"screen_pos" : 
-					{
-						"x" : 238.3450164794922,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 600.0,
-						"w" : 800.0
-					},
-					"type" : "ft_scene3d"
 				}
 			],
 			"name" : "pointer_right",
 			"screen_pos" : 
 			{
-				"x" : 854.62402343750,
-				"y" : 65.46200561523438
+				"x" : 576.0,
+				"y" : 67.0
 			},
 			"size" : 
 			{
@@ -213,127 +96,1735 @@
 		},
 		
 		{
-			"childs" : 
-			[
-				
-				{
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 801.50,
-						"y" : 303.0
-					},
-					"name" : "pointer_right",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 69.0,
-						"w" : 225.0
-					},
-					"texture_id_index" : 0,
-					"texture_index" : 16,
-					"type" : "ft_image"
-				},
-				
-				{
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 801.50,
-						"y" : 303.0
-					},
-					"name" : "pointer_right",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 69.0
-					},
-					"size" : 
-					{
-						"h" : 69.0,
-						"w" : 225.0
-					},
-					"texture_id_index" : 0,
-					"texture_index" : 16,
-					"type" : "ft_image"
-				},
-				
-				{
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 801.50,
-						"y" : 303.0
-					},
-					"name" : "pointer_right",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 138.0
-					},
-					"size" : 
-					{
-						"h" : 69.0,
-						"w" : 225.0
-					},
-					"texture_id_index" : 0,
-					"texture_index" : 16,
-					"type" : "ft_image"
-				},
-				
-				{
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 801.50,
-						"y" : 303.0
-					},
-					"name" : "pointer_right",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 207.0
-					},
-					"size" : 
-					{
-						"h" : 69.0,
-						"w" : 225.0
-					},
-					"texture_id_index" : 0,
-					"texture_index" : 16,
-					"type" : "ft_image"
-				}
-			],
-			"name" : "ft_listbox",
-			"range" : 
+			"background color" : 
 			{
-				"max" : 100.0,
-				"min" : 1.0
+				"w" : 0.50,
+				"x" : 0.2000000029802322,
+				"y" : 0.2000000029802322,
+				"z" : 0.50
 			},
+			"name" : "ft_scene3d",
 			"screen_pos" : 
 			{
-				"x" : 145.6550140380859,
+				"x" : 436.9650268554688,
 				"y" : 104.2760086059570
 			},
 			"size" : 
 			{
-				"h" : 191.1720123291016,
-				"w" : 337.6550292968750
+				"h" : 600.0,
+				"w" : 800.0
 			},
-			"type" : "ft_listbox",
-			"vertical" : true
+			"type" : "ft_scene3d"
+		}
+	],
+	"file_list" : [ "flame_blueish_smoke.js", "flame_fire.js", "flame_fire_smoke.js" ],
+	"fonts" : 
+	[
+		
+		{
+			"SizePixels" : 16.0,
+			"name" : "DejaVuSans.ttf"
+		},
+		
+		{
+			"SizePixels" : 16.0,
+			"default" : true,
+			"name" : "DejaVuSans-Bold.ttf"
+		},
+		
+		{
+			"SizePixels" : 16.0,
+			"name" : "DejaVuSerif-BoldOblique.ttf"
 		}
 	],
 	"material_list" : 
 	[
 		
 		{
-			"name" : "color1",
-			"shader" : "color",
+			"name" : "PhongCube0",
+			"shader" : "PhongCube",
+			"uniform_list" : 
+			{
+				"Ambient" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"BlendIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"CubemapColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"Diffuse" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightDirection[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"Emissive" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightAttenuation[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightPosition[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularExponent" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"kzCameraPosition" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"kzNormalMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzProjectionCameraWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "PhongSkinned",
+			"shader" : "PhongSkinned",
+			"uniform_list" : 
+			{
+				"Ambient" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"BlendIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"Diffuse" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightDirection[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"Emissive" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightAttenuation[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightPosition[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularExponent" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"kzCameraMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzCameraPosition" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"kzMatrixPalette[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 64,
+					"utype" : 35666,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzProjectionMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "PhongTextured",
+			"shader" : "PhongTextured",
+			"uniform_list" : 
+			{
+				"Ambient" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"BlendIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"Diffuse" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightDirection[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"Emissive" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightAttenuation[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightPosition[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularExponent" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"kzCameraPosition" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"kzNormalMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzProjectionCameraWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "PhongTexturedCube",
+			"shader" : "PhongTexturedCube",
+			"uniform_list" : 
+			{
+				"Ambient" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"BlendIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"CubemapColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"Diffuse" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightDirection[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"Emissive" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightAttenuation[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightPosition[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularExponent" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"kzCameraPosition" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"kzNormalMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzProjectionCameraWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "PhongTexturedShadowMap0",
+			"shader" : "PhongTexturedShadowMap",
+			"uniform_list" : 
+			{
+				"Ambient" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"BlendIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"Diffuse" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightDirection[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"Emissive" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightAttenuation[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightPosition[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"ShadowBias" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"ShadowIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"SpecularColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularExponent" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"kzCameraPosition" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"kzLightShadowProjectionMatrix0" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzNormalMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzProjectionCameraWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "PhongTexturedSkinned",
+			"shader" : "PhongTexturedSkinned",
+			"uniform_list" : 
+			{
+				"Ambient" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"BlendIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"Diffuse" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightDirection[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"Emissive" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightAttenuation[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightPosition[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularExponent" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"kzCameraMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzCameraPosition" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"kzMatrixPalette[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 64,
+					"utype" : 35666,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzProjectionMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "atexture",
+			"shader" : "atexture",
 			"uniform_list" : 
 			{
 				"model" : 
@@ -344,22 +1835,22 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						1.0,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						1.0,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						1.0,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						1.0
+						0.0,
+						0.0,
+						0.0,
+						0.0
 					]
 				},
 				"proj" : 
@@ -370,21 +1861,21 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						1.299038052558899,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						1.732050895690918,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						-1.222222208976746,
-						-1.0,
 						0.0,
 						0.0,
-						-2.222222328186035,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
 						0.0
 					]
 				},
@@ -396,22 +1887,640 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						-0.7071068286895752,
-						0.0,
-						-0.7071068286895752,
 						0.0,
 						0.0,
-						1.000000119209290,
-						-0.0,
 						0.0,
-						0.7071068286895752,
-						-0.0,
-						-0.7071068286895752,
 						0.0,
-						-0.0,
-						-0.0,
-						-2.121320486068726,
-						1.0
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "mtl_color",
+			"shader" : "color",
+			"uniform_list" : 
+			{
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "particles",
+			"shader" : "particles",
+			"uniform_list" : 
+			{
+				"CameraRight_worldspace" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.9991369843482971, -0.0001769999944372103, 0.04154000058770180 ]
+				},
+				"CameraUp_worldspace" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ -0.009297999553382397, 0.9736660122871399, 0.2277880012989044 ]
+				},
+				"VP" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						1.809097051620483,
+						-0.02244799956679344,
+						0.04056800156831741,
+						0.04048600047826767,
+						-0.0003199999919161201,
+						2.350639104843140,
+						0.2284339964389801,
+						0.2279780060052872,
+						0.07521499693393707,
+						0.5499290227890015,
+						-0.9747719764709473,
+						-0.9728239774703980,
+						-0.3760749995708466,
+						-2.749644041061401,
+						4.673658847808838,
+						4.864120960235596
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "particles1",
+			"shader" : "particles1",
+			"uniform_list" : 
+			{
+				"CameraRight_worldspace" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.9991369843482971, -0.0001769999944372103, 0.04154000058770180 ]
+				},
+				"CameraUp_worldspace" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ -0.009297999553382397, 0.9736660122871399, 0.2277880012989044 ]
+				},
+				"VP" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						1.809097051620483,
+						-0.02244799956679344,
+						0.04056800156831741,
+						0.04048600047826767,
+						-0.0003199999919161201,
+						2.350639104843140,
+						0.2284339964389801,
+						0.2279780060052872,
+						0.07521499693393707,
+						0.5499290227890015,
+						-0.9747719764709473,
+						-0.9728239774703980,
+						-0.3760749995708466,
+						-2.749644041061401,
+						4.673658847808838,
+						4.864120960235596
+					]
+				},
+				"uvcol[0]" : 
+				{
+					"el_size" : 2,
+					"type" : "shader_uf_float",
+					"usize" : 120,
+					"utype" : 35664,
+					"value_list" : 
+					[
+						0.0,
+						0.9885386824607849,
+						0.002932551316916943,
+						0.9885386824607849,
+						0.0,
+						0.9914039969444275,
+						0.002932551316916943,
+						0.9914039969444275,
+						0.1700879782438278,
+						0.1318051517009735,
+						0.2668621838092804,
+						0.1318051517009735,
+						0.1700879782438278,
+						0.2005730718374252,
+						0.2668621838092804,
+						0.2005730718374252,
+						0.3108504414558411,
+						0.8939828276634216,
+						0.4340175986289978,
+						0.8939828276634216,
+						0.3108504414558411,
+						0.9856733679771423,
+						0.4340175986289978,
+						0.9856733679771423,
+						0.0,
+						0.8710601925849915,
+						0.1348973661661148,
+						0.8710601925849915,
+						0.0,
+						0.9828079938888550,
+						0.1348973661661148,
+						0.9828079938888550,
+						0.1700879782438278,
+						0.0,
+						0.3079178929328919,
+						0.0,
+						0.1700879782438278,
+						0.1289398223161697,
+						0.3079178929328919,
+						0.1289398223161697,
+						0.1583577692508698,
+						0.5214899778366089,
+						0.3049853444099426,
+						0.5214899778366089,
+						0.1583577692508698,
+						0.6762177944183350,
+						0.3049853444099426,
+						0.6762177944183350,
+						0.0,
+						0.6905444264411926,
+						0.1524926722049713,
+						0.6905444264411926,
+						0.0,
+						0.8681948184967041,
+						0.1524926722049713,
+						0.8681948184967041,
+						0.0,
+						0.2206303775310516,
+						0.1612903177738190,
+						0.2206303775310516,
+						0.0,
+						0.4183381199836731,
+						0.1612903177738190,
+						0.4183381199836731,
+						0.0,
+						0.0,
+						0.1671554297208786,
+						0.0,
+						0.0,
+						0.2177650481462479,
+						0.1671554297208786,
+						0.2177650481462479,
+						0.1554252207279205,
+						0.6905444264411926,
+						0.3079178929328919,
+						0.6905444264411926,
+						0.1554252207279205,
+						0.9312320947647095,
+						0.3079178929328919,
+						0.9312320947647095,
+						0.6070381402969360,
+						0.2893982827663422,
+						0.7302052974700928,
+						0.2893982827663422,
+						0.6070381402969360,
+						0.5472779273986816,
+						0.7302052974700928,
+						0.5472779273986816,
+						0.6041055917739868,
+						0.0,
+						0.7390029430389404,
+						0.0,
+						0.6041055917739868,
+						0.2865329384803772,
+						0.7390029430389404,
+						0.2865329384803772,
+						0.7390029430389404,
+						0.2893982827663422,
+						0.8709677457809448,
+						0.2893982827663422,
+						0.7390029430389404,
+						0.5988538861274719,
+						0.8709677457809448,
+						0.5988538861274719,
+						0.7419354915618897,
+						0.0,
+						0.8709677457809448,
+						0.0,
+						0.7419354915618897,
+						0.2750716209411621,
+						0.8709677457809448,
+						0.2750716209411621,
+						0.6011730432510376,
+						0.5530086159706116,
+						0.7360703945159912,
+						0.5530086159706116,
+						0.6011730432510376,
+						0.8653295040130615,
+						0.7360703945159912,
+						0.8653295040130615,
+						0.4604105651378632,
+						0.2922635972499847,
+						0.6041055917739868,
+						0.2922635972499847,
+						0.4604105651378632,
+						0.5501432418823242,
+						0.6041055917739868,
+						0.5501432418823242,
+						0.3167155385017395,
+						0.0,
+						0.4633431136608124,
+						0.0,
+						0.3167155385017395,
+						0.2893982827663422,
+						0.4633431136608124,
+						0.2893982827663422,
+						0.4662756621837616,
+						0.0,
+						0.6011730432510376,
+						0.0,
+						0.4662756621837616,
+						0.2893982827663422,
+						0.6011730432510376,
+						0.2893982827663422,
+						0.4604105651378632,
+						0.5530086159706116,
+						0.5982404947280884,
+						0.5530086159706116,
+						0.4604105651378632,
+						0.8882521390914917,
+						0.5982404947280884,
+						0.8882521390914917,
+						0.1642228811979294,
+						0.2206303775310516,
+						0.3137829899787903,
+						0.2206303775310516,
+						0.1642228811979294,
+						0.5186246633529663,
+						0.3137829899787903,
+						0.5186246633529663,
+						0.0,
+						0.4212034344673157,
+						0.1554252207279205,
+						0.4212034344673157,
+						0.0,
+						0.6876791119575501,
+						0.1554252207279205,
+						0.6876791119575501,
+						0.3108504414558411,
+						0.5214899778366089,
+						0.4574780166149139,
+						0.5214899778366089,
+						0.3108504414558411,
+						0.8080229163169861,
+						0.4574780166149139,
+						0.8080229163169861,
+						0.8739002943038940,
+						0.0,
+						0.9970674514770508,
+						0.0,
+						0.8739002943038940,
+						0.2750716209411621,
+						0.9970674514770508,
+						0.2750716209411621,
+						0.8709677457809448,
+						0.6017192006111145,
+						0.9941349029541016,
+						0.6017192006111145,
+						0.8709677457809448,
+						0.8911174535751343,
+						0.9941349029541016,
+						0.8911174535751343,
+						0.7390029430389404,
+						0.6017192006111145,
+						0.8680351972579956,
+						0.6017192006111145,
+						0.7390029430389404,
+						0.8681948184967041,
+						0.8680351972579956,
+						0.8681948184967041,
+						0.3167155385017395,
+						0.2922635972499847,
+						0.4398826956748962,
+						0.2922635972499847,
+						0.3167155385017395,
+						0.5157592892646790,
+						0.4398826956748962,
+						0.5157592892646790,
+						0.8739002943038940,
+						0.2779369652271271,
+						0.9941349029541016,
+						0.2779369652271271,
+						0.8739002943038940,
+						0.4584527313709259,
+						0.9941349029541016,
+						0.4584527313709259,
+						0.6011730432510376,
+						0.8681948184967041,
+						0.7214076519012451,
+						0.8681948184967041,
+						0.6011730432510376,
+						0.9971346855163574,
+						0.7214076519012451,
+						0.9971346855163574,
+						0.8739002943038940,
+						0.4613180458545685,
+						0.9853372573852539,
+						0.4613180458545685,
+						0.8739002943038940,
+						0.5931231975555420,
+						0.9853372573852539,
+						0.5931231975555420,
+						0.7243402004241943,
+						0.8710601925849915,
+						0.8299120068550110,
+						0.8710601925849915,
+						0.7243402004241943,
+						0.9914039969444275,
+						0.8299120068550110,
+						0.9914039969444275
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "phong",
+			"shader" : "phong",
+			"uniform_list" : 
+			{
+				"Ambient" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"BlendIntensity" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"Diffuse" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"DirectionalLightDirection[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"Emissive" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightAttenuation[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightColor[0]" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"PointLightPosition[0]" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 2,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularColor" : 
+				{
+					"el_size" : 4,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35666,
+					"value_list" : [ 0.0, 0.0, 0.0, 0.0 ]
+				},
+				"SpecularExponent" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 0.0 ]
+				},
+				"kzCameraPosition" : 
+				{
+					"el_size" : 3,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35665,
+					"value_list" : [ 0.0, 0.0, 0.0 ]
+				},
+				"kzNormalMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzProjectionCameraWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
+					]
+				},
+				"kzWorldMatrix" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0
 					]
 				}
 			}
@@ -429,15 +2538,63 @@
 	[
 		
 		{
-			"fs_code" : "varying lowp vec4 vColor;\n\nvoid main()\n{\n    precision lowp float;\n    \n    gl_FragColor.rgba = vColor;\n}\n",
-			"fs_name" : "Phong.frag.glsl",
-			"name" : "Phong",
-			"vs_code" : "attribute vec3 kzPosition;\nattribute vec3 kzNormal;\nuniform highp mat4 kzProjectionCameraWorldMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform lowp float BlendIntensity;\nuniform lowp vec4 Emissive;\n\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying lowp vec4 vColor;\n\nvoid main()\n{\n    precision mediump float;\n    \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = kzWorldMatrix * vec4(kzPosition.xyz, 1.0);\n    vec3 V = normalize(positionWorld.xyz - kzCameraPosition);\n    vec4 Norm = kzNormalMatrix * vec4(kzNormal, 1.0);\n    vec3 N = normalize(Norm.xyz);\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n    \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n    \n    lowp vec3 vAmbDif = vec3(0.0);\n    lowp vec3 vSpec = vec3(0.0);\n    \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n    \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n    \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n    \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n\n    vColor.rgb = (vAmbDif.rgb + vSpec.rgb + Emissive.rgb) * BlendIntensity;\n    vColor.a = BlendIntensity;\n    gl_Position = kzProjectionCameraWorldMatrix * vec4(kzPosition.xyz, 1.0);\n}",
-			"vs_name" : "Phong.vert.glsl"
+			"fs_code" : "uniform samplerCube TextureCube;\n\nuniform lowp vec4 CubemapColor;\nuniform lowp float BlendIntensity;\n\nvarying mediump vec3 vNormal;\nvarying mediump vec3 vViewDirection;\nvarying lowp vec4 vColor;\n\nvoid main()\n{\n    precision mediump float;\n    \n    vec3 R = reflect(normalize(vViewDirection), normalize(vNormal));\n    lowp vec4 baseColor = textureCube(TextureCube, R) * CubemapColor;\n    lowp vec4 color = vColor + baseColor;\n\n    gl_FragColor.rgba = color * BlendIntensity;\n}\n",
+			"fs_name" : "PhongCube.frag.glsl",
+			"name" : "PhongCube",
+			"vs_code" : "layout(location = 0)attribute vec3 kzPosition;\nlayout(location = 2)attribute vec3 kzNormal;\nuniform highp mat4 kzProjectionCameraWorldMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform lowp vec4 Emissive;\n\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying mediump vec3 vNormal;\nvarying mediump vec3 vViewDirection;\nvarying lowp vec4 vColor;\n\nvoid main()\n{\n    precision mediump float;\n    \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = kzWorldMatrix * vec4(kzPosition.xyz, 1.0);\n    vViewDirection = positionWorld.xyz - kzCameraPosition;\n    vec3 V = normalize(vViewDirection);\n    vec4 Norm = kzNormalMatrix * vec4(kzNormal, 1.0);\n    vec3 N = normalize(Norm.xyz);\n    vNormal = N;\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n    \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n    \n    lowp vec3 vAmbDif = vec3(0.0);\n    lowp vec3 vSpec = vec3(0.0);\n    \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n    \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n    \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n    \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n    vColor.rgb = (vAmbDif.rgb + vSpec.rgb + Emissive.rgb);\n    vColor.a = 1.0;\n    gl_Position = kzProjectionCameraWorldMatrix * vec4(kzPosition.xyz, 1.0);\n}\n",
+			"vs_name" : "PhongCube.vert.glsl"
 		},
 		
 		{
-			"fs_code" : "varying vec3 Color;\nvarying vec2 Texcoord;\n//out vec4 outColor;\n//uniform sampler2D texPuppy;\nvoid main()\n{\n\t//outColor = texture(texPuppy, Texcoord);\n\tgl_FragColor = vec4(Color, 1.0);\n}\n",
+			"fs_code" : "varying lowp vec4 vColor;\n\nvoid main()\n{\n    precision lowp float;\n    \n    gl_FragColor.rgba = vColor;\n}\n",
+			"fs_name" : "PhongSkinned.frag.glsl",
+			"name" : "PhongSkinned",
+			"vs_code" : "layout(location = 0)attribute vec3 kzPosition;\nlayout(location = 1)attribute vec3 kzNormal;\nlayout(location = 2)attribute vec4 kzWeight;\nlayout(location = 3)attribute vec4 kzMatrixIndices;\n\nuniform highp mat4 kzProjectionMatrix;\nuniform highp mat4 kzCameraMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform highp vec4 kzMatrixPalette[64];\nuniform lowp float BlendIntensity;\nuniform lowp vec4 Emissive;\n\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying lowp vec4 vColor;\n\nvoid main()\n{\n    precision mediump float;\n    mat4 localToSkinMatrix;\n    int i1 = 3 * int(kzMatrixIndices.x);\n    int i2 = 3 * int(kzMatrixIndices.y);\n    int i3 = 3 * int(kzMatrixIndices.z);\n    int i4 = 3 * int(kzMatrixIndices.w);\n    vec4 b1 = kzWeight.x * kzMatrixPalette[i1] + kzWeight.y * kzMatrixPalette[i2]\n        + kzWeight.z * kzMatrixPalette[i3] + kzWeight.w * kzMatrixPalette[i4];\n    vec4 b2 = kzWeight.x * kzMatrixPalette[i1 + 1] + kzWeight.y * kzMatrixPalette[i2 + 1]\n        + kzWeight.z * kzMatrixPalette[i3 + 1] + kzWeight.w * kzMatrixPalette[i4 + 1];\n    vec4 b3 = kzWeight.x * kzMatrixPalette[i1 + 2] + kzWeight.y * kzMatrixPalette[i2 + 2]\n        + kzWeight.z * kzMatrixPalette[i3 + 2] + kzWeight.w * kzMatrixPalette[i4 + 2];\n    \n    localToSkinMatrix[0] = vec4(b1.xyz, 0.0);\n    localToSkinMatrix[1] = vec4(b2.xyz, 0.0);\n    localToSkinMatrix[2] = vec4(b3.xyz, 0.0);\n    localToSkinMatrix[3] = vec4(b1.w, b2.w, b3.w, 1.0);\n    localToSkinMatrix = kzWorldMatrix * localToSkinMatrix;\n    \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = localToSkinMatrix * vec4(kzPosition.xyz, 1.0);\n    vec3 V = normalize(positionWorld.xyz - kzCameraPosition);\n    vec4 Norm = mat4(localToSkinMatrix[0], \n        localToSkinMatrix[1], \n        localToSkinMatrix[2], \n        vec4(0.0, 0.0, 0.0, 1.0)) * vec4(kzNormal.xyz, 1.0);\n    vec3 N = normalize(Norm.xyz);\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n    \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n    \n    lowp vec3 vAmbDif = vec3(0.0);\n    lowp vec3 vSpec = vec3(0.0);\n    \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n    \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n    \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n    \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n    \n     vColor.rgb = (vAmbDif.rgb + vSpec.rgb + Emissive.rgb) * BlendIntensity;\n    vColor.a = BlendIntensity;\n\n    gl_Position = kzProjectionMatrix * kzCameraMatrix * positionWorld;\n}\n",
+			"vs_name" : "PhongSkinned.vert.glsl"
+		},
+		
+		{
+			"fs_code" : "uniform sampler2D Texture;\n\nuniform lowp float BlendIntensity;\n\nvarying mediump vec2 vTexCoord;\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\n\nvoid main()\n{\n    precision mediump float;\n\n    lowp vec4 baseColor = texture2D(Texture, vTexCoord).rgba;\n    lowp vec3 color = vAmbDif * baseColor.rgb + vSpec;\n\n    gl_FragColor.rgb = color * BlendIntensity;\n    gl_FragColor.a = baseColor.a * BlendIntensity;\n}\n",
+			"fs_name" : "PhongTextured.frag.glsl",
+			"name" : "PhongTextured",
+			"vs_code" : "layout(location = 0)attribute vec3 kzPosition;\nlayout(location = 1)attribute vec3 kzNormal;\nlayout(location = 2)attribute vec2 kzTextureCoordinate0;\n\nuniform highp mat4 kzProjectionCameraWorldMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform lowp vec4 Emissive;\n\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying mediump vec2 vTexCoord;\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\n\nvoid main()\n{\n    precision mediump float;\n    \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = kzWorldMatrix * vec4(kzPosition.xyz, 1.0);\n    vec3 V = normalize(positionWorld.xyz - kzCameraPosition);\n    vec4 Norm = kzNormalMatrix * vec4(kzNormal, 1.0);\n    vec3 N = normalize(Norm.xyz);\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n    \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n    \n    vAmbDif = vec3(0.0);\n    vSpec = vec3(0.0);\n    \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n    \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n    \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n    \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n     vSpec += Emissive.rgb;\n    vTexCoord = kzTextureCoordinate0;\n    gl_Position = kzProjectionCameraWorldMatrix * vec4(kzPosition.xyz, 1.0);\n}\n",
+			"vs_name" : "PhongTextured.vert.glsl"
+		},
+		
+		{
+			"fs_code" : "uniform sampler2D Texture;\nuniform samplerCube TextureCube;\n\nuniform lowp vec4 CubemapColor;\nuniform lowp float BlendIntensity;\n\nvarying mediump vec3 vNormal;\nvarying mediump vec3 vViewDirection;\nvarying mediump vec2 vTexCoord;\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\n\nvoid main()\n{\n    precision mediump float;\n\n    vec3 R = reflect(normalize(vViewDirection), normalize(vNormal));\n    lowp vec3 cubemapColor = textureCube(TextureCube, R).rgb * CubemapColor.rgb;\n    lowp vec4 baseColor = texture2D(Texture, vTexCoord).rgba;\n    lowp vec3 color = vAmbDif * baseColor.rgb + vSpec + cubemapColor;\n\n    gl_FragColor.rgb = color * BlendIntensity;\n    gl_FragColor.a = baseColor.a * BlendIntensity;\n}\n",
+			"fs_name" : "PhongTexturedCube.frag.glsl",
+			"name" : "PhongTexturedCube",
+			"vs_code" : "layout(location = 0)attribute vec3 kzPosition;\nlayout(location = 1)attribute vec3 kzNormal;\nlayout(location = 2)attribute vec2 kzTextureCoordinate0;\n\nuniform highp mat4 kzProjectionCameraWorldMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform lowp vec4 Emissive;\n\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying mediump vec3 vNormal;\nvarying mediump vec3 vViewDirection;\nvarying mediump vec2 vTexCoord;\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\n\nvoid main()\n{\n    precision mediump float;\n    \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = kzWorldMatrix * vec4(kzPosition.xyz, 1.0);\n    vViewDirection = positionWorld.xyz - kzCameraPosition;\n    vec3 V = normalize(vViewDirection);\n    vec4 Norm = kzNormalMatrix * vec4(kzNormal, 1.0);\n    vec3 N = normalize(Norm.xyz);\n    vNormal = N;\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n    \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n    \n    vAmbDif = vec3(0.0);\n    vSpec = vec3(0.0);\n    \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n    \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n    \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n    \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n     vSpec += Emissive.rgb;\n    vTexCoord = kzTextureCoordinate0;\n    gl_Position = kzProjectionCameraWorldMatrix * vec4(kzPosition.xyz, 1.0);\n}\n",
+			"vs_name" : "PhongTexturedCube.vert.glsl"
+		},
+		
+		{
+			"fs_code" : "uniform sampler2D Texture;\nuniform sampler2D ShadowMapTexture0;\n\n\nuniform mediump float ShadowBias;\nuniform lowp float ShadowIntensity;\nuniform lowp float BlendIntensity;\n\n\nvarying mediump vec2 vTexCoord;\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\nvarying mediump vec4 vShadowPosition[1];\n\nvoid main()\n{\n    precision mediump float;\n    \n    lowp vec4 baseColor = texture2D(Texture, vTexCoord).rgba;\n    lowp vec3 color = vAmbDif * baseColor.rgb + vSpec;\n   \n    vec2 coord = vShadowPosition[0].xy / vShadowPosition[0].w;\n    float bias = 1.0 / 512.0 * ShadowBias / vShadowPosition[0].w;\n    float biasX = 1.0 * bias;\n    if(vShadowPosition[0].w > 1.0 && coord.x >= 0.0 && coord.x < 1.0 && coord.y >= 0.0 && coord.y < 1.0)\n    {\n        lowp float depth = ((vShadowPosition[0].z - 1.0)/ vShadowPosition[0].w);\n\n        color *= depth > texture2D(ShadowMapTexture0, coord.xy).r ? ShadowIntensity : 1.0;\n        color *= depth > texture2D(ShadowMapTexture0, coord.xy + vec2(biasX, 0.0)).r ? ShadowIntensity : 1.0;\n        color *= depth > texture2D(ShadowMapTexture0, coord.xy - vec2(biasX, 0.0)).r ? ShadowIntensity : 1.0;\n        color *= depth > texture2D(ShadowMapTexture0, coord.xy + vec2(0.0, biasX)).r ? ShadowIntensity : 1.0;\n        color *= depth > texture2D(ShadowMapTexture0, coord.xy - vec2(0.0, biasX)).r ? ShadowIntensity : 1.0;\n    }\n   \n    gl_FragColor.rgb = color * BlendIntensity;\n    gl_FragColor.a = baseColor.a * BlendIntensity;\n}\n",
+			"fs_name" : "PhongTexturedShadowMap.frag.glsl",
+			"name" : "PhongTexturedShadowMap",
+			"vs_code" : "layout(location = 0)attribute vec3 kzPosition;\nlayout(location = 1)attribute vec3 kzNormal;\nlayout(location = 2)attribute vec2 kzTextureCoordinate0;\n\nuniform highp mat4 kzLightShadowProjectionMatrix0;\nuniform highp mat4 kzProjectionCameraWorldMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform mediump vec3 kzLightShadowViewPosition0;\n\nuniform lowp vec4 Emissive;\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\nvarying mediump vec2 vTexCoord;\nvarying mediump vec3 vShadowDirection;\nvarying mediump vec4 vShadowPosition[1];\n\nvoid main()\n{\n    precision mediump float;\n   \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = kzWorldMatrix * vec4(kzPosition.xyz, 1.0);\n    vec3 V = normalize(positionWorld.xyz - kzCameraPosition);\n    vec4 Norm = kzNormalMatrix * vec4(kzNormal, 1.0);\n    vec3 N = normalize(Norm.xyz);\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n   \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n   \n    vAmbDif = vec3(0.0);\n    vSpec = vec3(0.0);\n   \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n   \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n   \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n   \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n   \n    vec4 positionShadow = kzLightShadowProjectionMatrix0 * kzWorldMatrix * vec4(kzPosition.xyz, 1.0);\n    vShadowPosition[0] = vec4(positionShadow.xyzw);\n    vSpec += Emissive.rgb;\n\n    vTexCoord = kzTextureCoordinate0;\n    gl_Position = kzProjectionCameraWorldMatrix * vec4(kzPosition.xyz, 1.0);\n}\n",
+			"vs_name" : "PhongTexturedShadowMap.vert.glsl"
+		},
+		
+		{
+			"fs_code" : "uniform sampler2D Texture;\n\nuniform lowp vec4 Emissive;\nuniform lowp float BlendIntensity;\n\nvarying mediump vec2 vTexCoord;\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\n\nvoid main()\n{\n    precision mediump float;\n\n    lowp vec4 baseColor = texture2D(Texture, vTexCoord).rgba;\n    lowp vec3 color = vAmbDif * baseColor.rgb + vSpec + Emissive.rgb;\n\n    gl_FragColor.rgb = color * BlendIntensity;\n    gl_FragColor.a = baseColor.a * BlendIntensity;\n}\n",
+			"fs_name" : "PhongTexturedSkinned.frag.glsl",
+			"name" : "PhongTexturedSkinned",
+			"vs_code" : "layout(location = 0)attribute vec3 kzPosition;\nlayout(location = 1)attribute vec3 kzNormal;\nlayout(location = 2)attribute vec2 kzTextureCoordinate0;\nlayout(location = 3)attribute vec4 kzWeight;\nlayout(location = 4)attribute vec4 kzMatrixIndices;\n\nuniform highp mat4 kzProjectionMatrix;\nuniform highp mat4 kzCameraMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform highp vec4 kzMatrixPalette[64];\n\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying mediump vec2 vTexCoord;\nvarying lowp vec3 vAmbDif;\nvarying lowp vec3 vSpec;\n\nvoid main()\n{\n    precision mediump float;\n    mat4 localToSkinMatrix;\n    int i1 = 3 * int(kzMatrixIndices.x);\n    int i2 = 3 * int(kzMatrixIndices.y);\n    int i3 = 3 * int(kzMatrixIndices.z);\n    int i4 = 3 * int(kzMatrixIndices.w);\n    vec4 b1 = kzWeight.x * kzMatrixPalette[i1] + kzWeight.y * kzMatrixPalette[i2]\n        + kzWeight.z * kzMatrixPalette[i3] + kzWeight.w * kzMatrixPalette[i4];\n    vec4 b2 = kzWeight.x * kzMatrixPalette[i1 + 1] + kzWeight.y * kzMatrixPalette[i2 + 1]\n        + kzWeight.z * kzMatrixPalette[i3 + 1] + kzWeight.w * kzMatrixPalette[i4 + 1];\n    vec4 b3 = kzWeight.x * kzMatrixPalette[i1 + 2] + kzWeight.y * kzMatrixPalette[i2 + 2]\n        + kzWeight.z * kzMatrixPalette[i3 + 2] + kzWeight.w * kzMatrixPalette[i4 + 2];\n    \n    localToSkinMatrix[0] = vec4(b1.xyz, 0.0);\n    localToSkinMatrix[1] = vec4(b2.xyz, 0.0);\n    localToSkinMatrix[2] = vec4(b3.xyz, 0.0);\n    localToSkinMatrix[3] = vec4(b1.w, b2.w, b3.w, 1.0);\n    localToSkinMatrix = kzWorldMatrix * localToSkinMatrix;\n    \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = localToSkinMatrix * vec4(kzPosition.xyz, 1.0);\n    vec3 V = normalize(positionWorld.xyz - kzCameraPosition);\n    vec4 Norm = mat4(localToSkinMatrix[0], \n        localToSkinMatrix[1], \n        localToSkinMatrix[2], \n        vec4(0.0, 0.0, 0.0, 1.0)) * vec4(kzNormal.xyz, 1.0);\n    vec3 N = normalize(Norm.xyz);\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n    \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n    \n    vAmbDif = vec3(0.0);\n    vSpec = vec3(0.0);\n    \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n    \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n    \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n    \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n\n    vTexCoord = kzTextureCoordinate0;\n    gl_Position = kzProjectionMatrix * kzCameraMatrix * positionWorld;\n}\n",
+			"vs_name" : "PhongTexturedSkinned.vert.glsl"
+		},
+		
+		{
+			"fs_code" : "varying vec2 Textcoord;\nuniform sampler2D text;\nvoid main()\n{\n   gl_FragColor = texture(text, Textcoord);\n}\n",
+			"fs_name" : "atexture.fs",
+			"name" : "atexture",
+			"vs_code" : "layout(location = 0)attribute vec3 position;\nlayout(location = 1)attribute vec2 textcoord;\nlayout(location = 2)attribute vec3 normal;\n\nvarying vec2 Textcoord;\nuniform mat4 proj;\nuniform mat4 view;\nuniform mat4 model;\nvoid main()\n{\n    gl_Position = proj * view * model * vec4(position, 1.0);\n    Textcoord = textcoord;\n}\n",
+			"vs_name" : "atexture.vs"
+		},
+		
+		{
+			"fs_code" : "varying vec3 Color;\nvarying vec2 Texcoord;\n//out vec4 outColor;\n//uniform sampler2D texPuppy;\nvoid main()\n{\n\t//outColor = texture(texPuppy, Texcoord);\n\tgl_FragColor = vec4(Color, 0.0);\n}\n",
 			"fs_name" : "color.fs",
 			"name" : "color",
 			"vs_code" : "layout(location = 0) attribute vec3 position;\nlayout(location = 1) attribute vec3 color;\nlayout(location = 2) attribute vec2 texcoord;\nvarying vec3 Color;\nvarying vec2 Texcoord;\nuniform highp mat4 model;\nuniform highp mat4 view;\nuniform highp mat4 proj;\nvoid main()\n{\n\tColor = color;\n\tTexcoord = texcoord;\n\tgl_Position = proj * view * model * vec4(position, 1.0);\n\t//gl_Position =  vec4(position, 1.0);\n}\n",
@@ -448,34 +2605,53 @@
 			"fs_code" : "#version 330 core\n\n// Interpolated values from the vertex shaders\nin vec2 UV;\nin vec4 particlecolor;\n\n// Ouput data\nout vec4 color;\n\nuniform sampler2D myTextureSampler;\n\nvoid main(){\n\t// Output color = color of the texture at the specified UV\n\t//color = texture( myTextureSampler, UV ) * particlecolor;\n\tcolor = texture( myTextureSampler, UV );\n}\n",
 			"fs_name" : "particles.fs",
 			"name" : "particles",
-			"vs_code" : "#version 330 core\n\n// Input vertex data, different for all executions of this shader.\nlayout(location = 0) in vec3 squareVertices;\nlayout(location = 1) in vec4 xyzs; // Position of the center of the particule and size of the square\nlayout(location = 2) in vec4 color; // Position of the center of the particule and size of the square\n\n// Output data ; will be interpolated for each fragment.\nout vec2 UV;\nout vec4 particlecolor;\n\n// Values that stay constant for the whole mesh.\nuniform vec3 CameraRight_worldspace;\nuniform vec3 CameraUp_worldspace;\nuniform mat4 VP; // Model-View-Projection matrix, but without the Model (the position is in BillboardPos; the orientation depends on the camera)\n\nvoid main()\n{\n\tfloat particleSize = xyzs.w; // because we encoded it this way.\n\tvec3 particleCenter_wordspace = xyzs.xyz;\n\t\n\tvec3 vertexPosition_worldspace = \n\t\tparticleCenter_wordspace\n\t\t+ CameraRight_worldspace * squareVertices.x * particleSize\n\t\t+ CameraUp_worldspace * squareVertices.y * particleSize;\n\n\t// Output position of the vertex\n\tgl_Position = VP * vec4(vertexPosition_worldspace, 1.0f);\n\n\t// UV of the vertex. No special space for this one.\n\tUV = squareVertices.xy + vec2(0.5, 0.5);\n\tparticlecolor = color;\n}\n\n",
+			"vs_code" : "#version 330 core\n\n// Input vertex data, different for all executions of this shader.\nlayout(location = 0) in vec3 squareVertices;\nlayout(location = 1) in vec4 xyzs; // Position of the center of the particule and size of the square\nlayout(location = 2) in vec4 color; \n\n// Output data ; will be interpolated for each fragment.\nout vec2 UV;\nout vec4 particlecolor;\n\n// Values that stay constant for the whole mesh.\nuniform vec3 CameraRight_worldspace;\nuniform vec3 CameraUp_worldspace;\nuniform mat4 VP; // Model-View-Projection matrix, but without the Model (the position is in BillboardPos; the orientation depends on the camera)\n\nvoid main()\n{\n\tfloat particleSize = xyzs.w; // because we encoded it this way.\n\tvec3 particleCenter_wordspace = xyzs.xyz;\n\t\n\tvec3 vertexPosition_worldspace = \n\t\tparticleCenter_wordspace\n\t\t+ CameraRight_worldspace * squareVertices.x * particleSize\n\t\t+ CameraUp_worldspace * squareVertices.y * particleSize;\n\n\t// Output position of the vertex\n\tgl_Position = VP * vec4(vertexPosition_worldspace, 1.0f);\n\n\t// UV of the vertex. No special space for this one.\n\tUV = squareVertices.xy + vec2(0.5, 0.5);\n\tparticlecolor = color;\n}\n\n",
 			"vs_name" : "particles.vs"
+		},
+		
+		{
+			"fs_code" : "#version 330 core\n\n// Interpolated values from the vertex shaders\nin vec2 UV;\n//in vec4 particlecolor;\n//in int gggid;\n// Ouput data\nout vec4 color;\n\nuniform sampler2D myTextureSampler;\n\nvoid main(){\n\t// Output color = color of the texture at the specified UV\n\t//color = texture( myTextureSampler, UV ) * particlecolor;\n\tcolor = texture( myTextureSampler, UV );\n}\n",
+			"fs_name" : "particles1.fg.glsl",
+			"name" : "particles1",
+			"vs_code" : "#version 330 core\n\n// Input vertex data, different for all executions of this shader.\nlayout(location = 0) in vec3 squareVertices;\nlayout(location = 1) in vec4 xyzs; // Position of the center of the particule and size of the square\nlayout(location = 2) in vec4 color; \n\n// Output data ; will be interpolated for each fragment.\nout vec2 UV;\n//out vec4 particlecolor;\n//in int gggid;\n// Values that stay constant for the whole mesh.\nuniform vec2 uvcol[120];\nuniform vec3 CameraRight_worldspace;\nuniform vec3 CameraUp_worldspace;\nuniform mat4 VP; // Model-View-Projection matrix, but without the Model (the position is in BillboardPos; the orientation depends on the camera)\nvoid main()\n{\n\tfloat particleSize = xyzs.w;\n\tint uv_index = int(particleSize); // because we encoded it this way.\n\tuv_index=uv_index*4;\n\t//gggid=gl_VertexID;\n\tuv_index=uv_index+gl_VertexID%4;\n\tparticleSize=particleSize/20;\n\tvec3 particleCenter_wordspace = xyzs.xyz;\n\t\n\tvec3 vertexPosition_worldspace = \n\t\tparticleCenter_wordspace\n\t\t+ CameraRight_worldspace * squareVertices.x * particleSize\n\t\t+ CameraUp_worldspace * squareVertices.y * particleSize;\n\n\t// Output position of the vertex\n\tgl_Position = VP * vec4(vertexPosition_worldspace, 1.0f);\n\n\t// UV of the vertex. No special space for this one.\n\tUV = uvcol[uv_index];\n\t//UV = squareVertices.xy + vec2(0.5, 0.5);\n\t//particlecolor = color;\n}\n\n",
+			"vs_name" : "particles1.vt.glsl"
+		},
+		
+		{
+			"fs_code" : "varying lowp vec4 vColor;\n\nvoid main()\n{\n    precision lowp float;\n    \n    gl_FragColor.rgba = vColor;\n}\n",
+			"fs_name" : "Phong.frag.glsl",
+			"name" : "phong",
+			"vs_code" : "attribute vec3 kzPosition;\nattribute vec3 kzNormal;\nuniform highp mat4 kzProjectionCameraWorldMatrix;\nuniform highp mat4 kzWorldMatrix;\nuniform highp mat4 kzNormalMatrix;\nuniform highp vec3 kzCameraPosition;\nuniform mediump vec3 PointLightPosition[2];\nuniform lowp vec4 PointLightColor[2];\nuniform mediump vec3 PointLightAttenuation[2];\nuniform lowp vec4 DirectionalLightColor[1];\nuniform mediump vec3 DirectionalLightDirection[1];\nuniform lowp float BlendIntensity;\nuniform lowp vec4 Emissive;\n\nuniform lowp vec4 Ambient;\nuniform lowp vec4 Diffuse;\nuniform lowp vec4 SpecularColor;\nuniform mediump float SpecularExponent;\n\nvarying lowp vec4 vColor;\n\nvoid main()\n{\n    precision mediump float;\n    \n    vec3 pointLightDirection[2];\n    vec4 positionWorld = kzWorldMatrix * vec4(kzPosition.xyz, 1.0);\n    vec3 V = normalize(positionWorld.xyz - kzCameraPosition);\n    vec4 Norm = kzNormalMatrix * vec4(kzNormal, 1.0);\n    vec3 N = normalize(Norm.xyz);\n\n    pointLightDirection[0] = positionWorld.xyz - PointLightPosition[0];\n    pointLightDirection[1] = positionWorld.xyz - PointLightPosition[1];\n    \n    vec3 L[3];\n    vec3 H[3];\n    float LdotN, NdotH;\n    float specular;\n    vec3 c;\n    float d, attenuation;\n    \n    lowp vec3 vAmbDif = vec3(0.0);\n    lowp vec3 vSpec = vec3(0.0);\n    \n    L[0] = vec3(1.0, 0.0, 0.0);\n    if(length(DirectionalLightDirection[0]) > 0.01)\n    {\n        L[0] = normalize(-DirectionalLightDirection[0]);\n    }\n    H[0] = normalize(-V + L[0]);\n    \n    L[1] = normalize(-pointLightDirection[0]);\n    H[1] = normalize(-V + L[1]);\n    \n    L[2] = normalize(-pointLightDirection[1]);\n    H[2] = normalize(-V + L[2]);\n\n    vAmbDif += Ambient.rgb;\n  \n    // Apply directional light 0.\n    {\n        LdotN = max(0.0, dot(L[0], N));\n        NdotH = max(0.0, dot(N, H[0]));\n        specular = pow(NdotH, SpecularExponent);\n        vAmbDif += (LdotN * Diffuse.rgb) * DirectionalLightColor[0].rgb;\n        vSpec += SpecularColor.rgb * specular * DirectionalLightColor[0].rgb;\n    }\n    \n    // Apply point light 0.\n    {\n        LdotN = max(0.0, dot(L[1], N));\n        NdotH = max(0.0, dot(N, H[1]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[0];\n        d = length(pointLightDirection[0]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[0].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[0].rgb;\n    }\n\n    // Apply point light 1.\n    {\n        LdotN = max(0.0, dot(L[2], N));\n        NdotH = max(0.0, dot(N, H[2]));\n        specular = pow(NdotH, SpecularExponent);\n        c = PointLightAttenuation[1];\n        d = length(pointLightDirection[1]);\n        attenuation = 1.0 / max(0.001, (c.x + c.y * d + c.z * d * d));\n        vAmbDif += (LdotN * Diffuse.rgb) * attenuation * PointLightColor[1].rgb;\n        vSpec +=  SpecularColor.rgb * specular * attenuation * PointLightColor[1].rgb;\n    }\n\n    vColor.rgb = (vAmbDif.rgb + vSpec.rgb + Emissive.rgb) * BlendIntensity;\n    vColor.a = BlendIntensity;\n    gl_Position = kzProjectionCameraWorldMatrix * vec4(kzPosition.xyz, 1.0);\n}",
+			"vs_name" : "Phong.vert.glsl"
 		}
 	],
-	"texture_list" : [ "1.png", "VW_Golf_VII_2013.png", "blue_ring.png" ],
+	"texture_list" : 
+	[
+		"1.png",
+		"VW_Golf_VII_2013.png",
+		"blue_ring.png",
+		"flame_blueish_smoke.png",
+		"flame_fire.png",
+		"flame_fire1.png",
+		"flame_fire_smoke.png"
+	],
 	"texture_res_list" : 
 	[
 		
 		{
 			"texture_data_file" : "mainview.json",
 			"texture_pack_file" : "mainview.png"
-		},
-		
-		{
-			"texture_data_file" : "sportview.json",
-			"texture_pack_file" : "sportview.png"
-		},
-		
-		{
-			"texture_data_file" : "sportview.json",
-			"texture_pack_file" : "sportview.png"
-		},
-		
-		{
-			"texture_data_file" : "sportview.json",
-			"texture_pack_file" : "sportview.png"
 		}
 	],
-	"type" : "ft_base"
+	"type" : "ft_base",
+	"window_show" : 
+	{
+		"show_edit_window" : true,
+		"show_file_manager" : true,
+		"show_fonts_manager" : false,
+		"show_project_window" : true,
+		"show_property_window" : true,
+		"show_resource_manager" : true
+	}
 }
 

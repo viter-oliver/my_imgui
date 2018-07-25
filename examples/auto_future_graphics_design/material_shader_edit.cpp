@@ -103,39 +103,38 @@ void material_shader_edit::load_shader()
 			str_shader_file += str_shaders_fold;
 			string vs_file = str_shader_file + vs_name_str;
 			string fs_file = str_shader_file + fs_name_str;
+			string vs_code, fs_code;
 			ifstream ifs;
 			ifs.open(vs_file);
 			filebuf* pbuf = ifs.rdbuf();
 			size_t sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
 			pbuf->pubseekpos(0, ifs.in);
-			vs_file.reserve(sz_code);
-			vs_file.resize(sz_code);
-			pbuf->sgetn(&vs_file[0], sz_code);
+			vs_code.reserve(sz_code);
+			vs_code.resize(sz_code);
+			pbuf->sgetn(&vs_code[0], sz_code);
 			ifs.close();
 			ifs.open(fs_file);
 			pbuf = ifs.rdbuf();
 			sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
 			pbuf->pubseekpos(0, ifs.in);
-			fs_file.reserve(sz_code);
-			fs_file.resize(sz_code);
-			pbuf->sgetn(&fs_file[0], sz_code);
+			fs_code.reserve(sz_code);
+			fs_code.resize(sz_code);
+			pbuf->sgetn(&fs_code[0], sz_code);
 			ifs.close();
-			shared_ptr<af_shader> pshd = make_shared<af_shader>(vs_file.c_str(), fs_file.c_str());
-			if (!pshd->is_valid())
+			shared_ptr<af_shader> pshd = make_shared<af_shader>(vs_code.c_str(), fs_code.c_str());
+			if (pshd->is_valid())
+			
 			{
-				compile_info = pshd->compile_error_info;
-			}
-			else
-			{
-				compile_info = "";
+				//compile_info = "";
 				pshd->set_name(shd_name_str);
 				g_af_shader_list[shd_name_str]=pshd;
 				pshd->_vs_name = vs_name_str;
 				pshd->_fs_name = fs_name_str;
-				memset(vs_name_str, 0, FILE_NAME_LEN);
-				memset(fs_name_str, 0, FILE_NAME_LEN);
-				memset(shd_name_str, 0, FILE_NAME_LEN);
+				
 			}
+			memset(vs_name_str, 0, FILE_NAME_LEN);
+			memset(fs_name_str, 0, FILE_NAME_LEN);
+			memset(shd_name_str, 0, FILE_NAME_LEN);
 			ImGui::CloseCurrentPopup();
 		}
 		ImGui::EndPopup();
@@ -149,14 +148,54 @@ void material_shader_edit::draw_shader_item_property()
 {
 	if (pshd_sel)
 	{
-		if (pshd_sel->_vs_selected)
+		if (ImGui::Button("Refresh"))
 		{
-			ImGui::TextWrapped(pshd_sel->get_vs_code().c_str());
+			string str_shader_file = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+			str_shader_file += str_shaders_fold;
+			string vs_file = str_shader_file + pshd_sel->_vs_name;
+			string fs_file = str_shader_file + pshd_sel->_fs_name;
+			string vs_code, fs_code;
+			ifstream ifs;
+			ifs.open(vs_file);
+			filebuf* pbuf = ifs.rdbuf();
+			size_t sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
+			pbuf->pubseekpos(0, ifs.in);
+			vs_code.reserve(sz_code);
+			vs_code.resize(sz_code);
+			pbuf->sgetn(&vs_code[0], sz_code);
+			ifs.close();
+			ifs.open(fs_file);
+			pbuf = ifs.rdbuf();
+			sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
+			pbuf->pubseekpos(0, ifs.in);
+			fs_code.reserve(sz_code);
+			fs_code.resize(sz_code);
+			pbuf->sgetn(&fs_code[0], sz_code);
+			ifs.close();
+			pshd_sel->refresh_sourcecode(vs_code, fs_code);
+			refresh_material(pshd_sel);
 		}
-		if (pshd_sel->_fs_selected)
+		if (pshd_sel->is_valid())
 		{
-			ImGui::TextWrapped(pshd_sel->get_fs_code().c_str());
+			if (pshd_sel->_vs_selected)
+			{
+				ImGui::TextWrapped(pshd_sel->get_vs_code().c_str());
+			}
+			else
+			if (pshd_sel->_fs_selected)
+			{
+				ImGui::TextWrapped(pshd_sel->get_fs_code().c_str());
+			}
 		}
+		else
+		{
+			if (pshd_sel->_vs_selected || pshd_sel->_fs_selected)
+			{
+				ImGui::TextWrapped(pshd_sel->compile_error_info.c_str());
+			}
+		}
+		
+		
 	}
 }
 void material_shader_edit::draw_material()

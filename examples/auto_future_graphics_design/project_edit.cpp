@@ -11,7 +11,7 @@ void project_edit::view_object(base_ui_component& fb)
 {
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;// | ImGuiTreeNodeFlags_Selected;
 	string cname = typeid(fb).name();
-	cname = cname.substr(sizeof("class"));
+	cname = cname.substr(sizeof("class autofuture::"));
 	string objname = fb.get_name();
 	bool beparent = fb.get_child_count() > 0;
 	if (!beparent)

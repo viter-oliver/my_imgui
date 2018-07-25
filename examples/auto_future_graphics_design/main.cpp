@@ -35,13 +35,14 @@
 #include "primitive_object.h"
 #include "material_shader_edit.h"
 #include "texture_edit.h"
+#include "fonts_edit.h"
+#include "file_res_edit.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
 }
-extern void instantiating_internal_shader();
 string g_cureent_project_file_path;
-string g_current_run_path;
+//string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
 {
@@ -51,6 +52,9 @@ enum en_short_cut_item
 	en_ctrl_b,
 	an_alt_f4,
 };
+bool show_project_window = true, show_edit_window = true, \
+show_property_window = true, show_resource_manager = true,\
+show_fonts_manager=true,show_file_manager=true;
 int main(int argc, char* argv[])
 {
     // Setup window
@@ -102,16 +106,41 @@ int main(int argc, char* argv[])
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-	io.Fonts->AddFontFromFileTTF("D:\\Qt\\Qt5.6.2\\5.6\\Src\\qtbase\\lib\\fonts\\DejaVuSerif-BoldOblique.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+	if (0)//!g_cureent_project_file_path.empty())
+	{
+		string str_font_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+		str_font_path += "fonts\\";
+		string DejaVuSans1 = str_font_path + "DejaVuSans.ttf";
+		string DejaVuSans2 = str_font_path + "DejaVuSans-Bold.ttf";
+		string DejaVuSans3 = str_font_path + "DejaVuSans-BoldOblique.ttf";
+		string DejaVuSans4 = str_font_path + "DejaVuSansMono.ttf";
+		string DejaVuSans5 = str_font_path + "DejaVuSansMono-Bold.ttf";
+		string DejaVuSans6 = str_font_path + "DejaVuSansMono-BoldOblique.ttf";
+		string DejaVuSans7 = str_font_path + "DejaVuSansMono-Oblique.ttf";
+		string DejaVuSans8 = str_font_path + "DejaVuSans-Oblique.ttf";
+
+		string DejaVuSerif1 = str_font_path + "DejaVuSerif.ttf";
+		string DejaVuSerif2 = str_font_path + "DejaVuSerif-Bold.ttf";
+		string DejaVuSerif3 = str_font_path + "DejaVuSerif-BoldOblique.ttf";
+		string DejaVuSerif4 = str_font_path + "DejaVuSerif-Oblique.ttf";
+
+		io.Fonts->AddFontFromFileTTF(DejaVuSans1.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		io.Fonts->AddFontFromFileTTF(DejaVuSans2.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		//io.Fonts->AddFontFromFileTTF(DejaVuSans3.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		//io.Fonts->AddFontFromFileTTF(DejaVuSerif1.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		//io.Fonts->AddFontFromFileTTF(DejaVuSerif2.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		//io.Fonts->AddFontFromFileTTF(DejaVuSerif3.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+	}
+	
 
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
-	char buffer[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, buffer);
-	g_current_run_path = buffer;
-	g_current_run_path += "\\";
+	//char buffer[MAX_PATH];
+	//GetCurrentDirectory(MAX_PATH, buffer);
+	//g_current_run_path = buffer;
+	//g_current_run_path += "\\";
 	load_internal_texture_res(g_mtxt_intl, IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
-	instantiating_internal_shader();
+	//instantiating_internal_shader();
 	init_internal_primitive_list();
     bool show_demo_window = true;
     bool show_another_window = false;
@@ -167,7 +196,8 @@ int main(int argc, char* argv[])
 	//project_edit pjedit(*_proot);
 	auto pjedit = make_shared<project_edit>(*_proot);
 
-
+	auto pfonts_edit = make_shared<fonts_edit>();
+	auto pfiles_edit = make_shared<file_res_edit>();
 	function<void(en_short_cut_item)> fun_shortct = [&](en_short_cut_item enshort) mutable {
 		if (!_proot)
 		{
@@ -376,7 +406,7 @@ int main(int argc, char* argv[])
         }
 #elif defined(_MY_IMGUI__)
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
-		static bool show_project_window=true,show_edit_window=true,show_property_window=true,show_resource_manager=true;
+
 		if (ImGui::GetIO().KeyCtrl)
 		{
 			if (ImGui::GetIO().KeysDown[GLFW_KEY_S])
@@ -471,6 +501,8 @@ int main(int argc, char* argv[])
 				if (ImGui::MenuItem("Edit Window", NULL, show_edit_window)) { show_edit_window = !show_edit_window; }
 				if (ImGui::MenuItem("Property Window", NULL, show_property_window)) { show_property_window = !show_property_window; }
 				if (ImGui::MenuItem("Resource Manager", NULL, show_resource_manager)) { show_resource_manager = !show_resource_manager; }
+				if (ImGui::MenuItem("Fonts Manager", NULL, show_fonts_manager)) { show_fonts_manager = !show_fonts_manager; }
+				if (ImGui::MenuItem("Files Manager", NULL, show_file_manager)) { show_file_manager = !show_file_manager; }
 
 
 				ImGui::EndMenu();
@@ -561,6 +593,22 @@ int main(int argc, char* argv[])
 
 			}
 			/**/
+			ImGui::End();
+		}
+		if (show_fonts_manager)
+		{
+			ImGui::Begin("Fonts Manager", &show_fonts_manager);
+			//
+			pfonts_edit->draw_fonts_list();
+			ImGui::End();
+		}
+		if (show_file_manager)
+		{
+			ImGui::Begin("Files Manager", &show_file_manager);
+			ImGui::Columns(2);
+			pfiles_edit->draw_file_res_list();
+			ImGui::NextColumn();
+			pfiles_edit->draw_file_res_item_property();
 			ImGui::End();
 		}
 		

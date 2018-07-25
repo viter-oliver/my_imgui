@@ -1,9 +1,11 @@
 #include "ft_sphere.h"
-
-ft_sphere::ft_sphere()
+namespace auto_future
 {
-}
+	ft_sphere::ft_sphere()
+	{
+	}
 
-ft_sphere::~ft_sphere()
-{
+	ft_sphere::~ft_sphere()
+	{
+	}
 }

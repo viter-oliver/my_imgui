@@ -14,10 +14,7 @@ msg_filter_by_priority_n::msg_filter_by_priority_n()
 msg_filter_by_priority_n::~msg_filter_by_priority_n()
 {
 }
-/*
-为什么不用Json::value 作为参数类型？
-是为了通用性，不想把对协议数据的控制限制在json数据格式
-*/
+
 void msg_filter_by_priority_n::parse_protocol_from_json_unit(Json::Value& junit)
 {
     using namespace Json;

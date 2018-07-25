@@ -18,12 +18,7 @@
 #include "res_output.h"
 #include "ft_image.h"
 #include <functional>
-#if !defined(IMGUI_WAYLAND)
-#include <windows.h>
-#include <locale.h>  
-#include <ShlObj.h>
-#include <Commdlg.h>
-#endif
+
 #include "Resource.h"
 #include "afb_load.h"
 #include "primitive_object.h"
@@ -33,7 +28,7 @@ static void error_callback(int error, const char* description)
 }
 extern void instantiating_internal_shader();
 string g_cureent_project_file_path;
-string g_current_run_path;
+//string g_current_run_path;
 #include <windows.h>
 
 int main(int argc, char* argv[])
@@ -58,14 +53,15 @@ int main(int argc, char* argv[])
 	iw = mode->width;
 	ih = mode->height;
 
-    GLFWwindow* window = glfwCreateWindow(iw, ih, "Graphics app", NULL, NULL);
+	//GLFWwindow* window = glfwCreateWindow(iw, ih, "Graphics app", pmornitor, NULL);//full screen
+	GLFWwindow* window = glfwCreateWindow(iw, ih, "Graphics app", NULL, NULL);
     glfwMakeContextCurrent(window);
     glfwSwapInterval(1); // Enable vsync
     gl3wInit();
 
     // Setup ImGui binding
     ImGui::CreateContext();
-    ImGuiIO& io = ImGui::GetIO(); //(void)io;
+    //ImGuiIO& io = ImGui::GetIO(); //(void)io;
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
     //io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
     ImGui_ImplGlfwGL3_Init(window, true);
@@ -87,14 +83,14 @@ int main(int argc, char* argv[])
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-	io.Fonts->AddFontFromFileTTF("D:\\Qt\\Qt5.6.2\\5.6\\Src\\qtbase\\lib\\fonts\\DejaVuSerif-BoldOblique.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+	//io.Fonts->AddFontFromFileTTF("D:\\Qt\\Qt5.6.2\\5.6\\Src\\qtbase\\lib\\fonts\\DejaVuSerif-BoldOblique.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
 
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
-	char buffer[MAX_PATH];
+/*	char buffer[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, buffer);
 	g_current_run_path = buffer;
-	g_current_run_path += "\\";
+	g_current_run_path += "\\";*/
 	instantiating_internal_shader();
 	init_internal_primitive_list();
 	//ImVec2 edit_window_size = ImVec2()
