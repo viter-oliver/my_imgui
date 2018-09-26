@@ -16,7 +16,7 @@ using namespace std;
 using namespace Json;
 typedef vector<u8> vdata_list;
 //typedef unsigned char u8;
-class msg_host_n
+class AFG_EXPORT msg_host_n
 {
 
 	struct key_unit

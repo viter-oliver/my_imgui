@@ -28,7 +28,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_cube.png",
+	"filename": "ft_cube_3d.png",
 	"frame": {"x":1,"y":69,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -55,7 +55,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_model.png",
+	"filename": "ft_model_3d.png",
 	"frame": {"x":1,"y":171,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -64,7 +64,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_plane.png",
+	"filename": "ft_plane_3d.png",
 	"frame": {"x":1,"y":439,"w":32,"h":22},
 	"rotated": false,
 	"trimmed": true,
@@ -82,7 +82,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_scene3d.png",
+	"filename": "ft_scene.png",
 	"frame": {"x":1,"y":205,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -100,7 +100,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_sphere.png",
+	"filename": "ft_sphere_3d.png",
 	"frame": {"x":1,"y":273,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -127,7 +127,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_trajectory_box.png",
+	"filename": "ft_trajectory_box_3d.png",
 	"frame": {"x":1,"y":463,"w":28,"h":30},
 	"rotated": true,
 	"trimmed": true,
@@ -136,7 +136,7 @@
 	"pivot": {"x":0.5,"y":0.5}
 },
 {
-	"filename": "ft_viewport.png",
+	"filename": "ft_viewport_3d.png",
 	"frame": {"x":1,"y":375,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,

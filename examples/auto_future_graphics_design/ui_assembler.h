@@ -1,5 +1,10 @@
 #pragma once
 #include "control_common_def.h"
+#ifdef IMGUI_WAYLAND
+#include "../../deps/glad/glad.h"
+#else
+#include <GL/gl3w.h> 
+#endif
 /**
 * @brief ui_assembler is responsible for transferring project file to ui components
 *        or transferring ui components to project file\n
@@ -23,5 +28,10 @@ public:
 	*@return true if success,false if failure
 	*/
 	bool output_ui_component_to_file(const char* file_path);
+
+private:
+	void output_primitive_to_file();
+
+	void load_primitive_from_file(string &kname, vector<GLubyte> ele_format, int vbo_len, int ebo_len);
 };
 

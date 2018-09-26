@@ -18,7 +18,7 @@ namespace auto_future_utilities
 	基于优先级的调度，必须假定所有调度数据是开关量，也就是说value非0即1
 	*/
 	using namespace std;
-	class msg_filter_by_priority_n :public base_filter_n
+	class AFG_EXPORT msg_filter_by_priority_n :public base_filter_n
 	{
 	struct msg_consume_unit 
 	{

@@ -12,9 +12,11 @@ namespace auto_future
 			float _width;
 			char _content[MAX_CONTENT_LEN];
 			bool _wrapped;
+			int _font_id;
+			float _font_scale;
 			intl_pt()
 				:_width(ImGui::GetFontSize() * 35.0f),
-				_txt_color(1.f, 1.f, 1.f, 1.f),
+				_txt_color(1.f, 1.f, 1.f, 1.f), _font_id(0), _font_scale(1.0f),
 				_wrapped(false)
 			{
 				memset(_content, 0, MAX_CONTENT_LEN);
@@ -42,7 +44,7 @@ namespace auto_future
 			return _txt_pt._content;
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page();
+		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

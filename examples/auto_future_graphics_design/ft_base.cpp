@@ -15,11 +15,27 @@ namespace auto_future
 				it->draw();
 			}
 		}
+		/*for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
+		{
+
+			if ((*it)->is_visible())
+			{
+				(*it)->draw();
+			}
+		}*/
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_base::draw_peroperty_page()
+	void ft_base::draw_peroperty_page(int property_part)
 	{
-		ImGui::InputText("object name", _in_p._name, name_len);
+		if (ImGui::InputText("object name", _in_p._name, name_len))
+		{
+			auto pparent = get_parent();
+			if (pparent)
+			{
+				string nname = pparent->try_create_a_child_name(_in_p._name, this);
+				set_name(nname);
+			}
+		}
 		ImGui::Text("base pos:");
 		//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
 		//ImGui::SameLine();
@@ -36,6 +52,7 @@ namespace auto_future
 		Value& jscreen_pos = jvalue["screen_pos"];
 		_in_p._pos.x = jscreen_pos["x"].asDouble();
 		_in_p._pos.y = jscreen_pos["y"].asDouble();
+		_in_p._visible = jvalue["visible"].asBool();
 		Value& childs = jvalue["childs"];
 		if (childs.isNull())
 		{
@@ -63,6 +80,7 @@ namespace auto_future
 		jscreen_pos["x"] = _in_p._pos.x;
 		jscreen_pos["y"] = _in_p._pos.y;
 		junit["screen_pos"] = jscreen_pos;
+		junit["visible"] = _in_p._visible;
 		Value jchilds(arrayValue);
 		size_t chcnt = child_count();
 		for (size_t ix = 0; ix < chcnt; ix++)
@@ -127,8 +145,8 @@ namespace auto_future
 		}
 		return NULL;
 	}
-	float base_ui_component::screenw = 0.0f;
-	float base_ui_component::screenh = 0.0f;
+	float base_ui_component::screenw = 1920.f;
+	float base_ui_component::screenh =720.f;
 
 	void property_copy(vproperty_list& vdest, vproperty_list& vsource)
 	{

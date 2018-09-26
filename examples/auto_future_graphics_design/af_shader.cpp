@@ -158,6 +158,7 @@ void af_shader::build()
 	{
 		glGetShaderInfoLog(_fragment_shader, 512, NULL, buffer);
 		compile_error_info = buffer;
+		printf("er:%s\n", compile_error_info.c_str());
 		_valid = false;
 		glDeleteShader(_vertex_shader);
 		glDeleteShader(_fragment_shader);

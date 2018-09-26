@@ -9,9 +9,21 @@
 #include <GL/gl3w.h>
 #include "af_shader.h"
 #include "material.h"
+#include "file_outputor.h"
+#define _DX5_COMPRESS
+#ifdef _DX5_COMPRESS
 #define STB_DXT_IMPLEMENTATION
 #include "dxt5_compress.h"
-void pack_ui_component_data(base_ui_component& tar, msgpack::packer<ofstream>& pk)
+#else
+#include "miniz.h"
+#endif
+void pack_ui_component_data(base_ui_component& tar,
+#ifdef _DX5_COMPRESS
+	msgpack::packer<ofstream>& pk
+#else
+	msgpack::packer<msgpack::sbuffer>& pk
+#endif
+	)
 {
 	int chldcnt = tar.child_count();
 	if (chldcnt > 0)
@@ -45,28 +57,71 @@ void pack_ui_component_data(base_ui_component& tar, msgpack::packer<ofstream>& p
 		}
 	}
 }
+extern GLuint       g_FontTexture;
+extern string g_cureent_directory;
 void afb_output::output_afb(const char* afb_file)
 {
 	ofstream fout;
 	fout.open(afb_file, ios::binary);
+#ifdef _DX5_COMPRESS
 	msgpack::packer<ofstream> pk(&fout);
-	pk.pack_array(9);
+#else
+	msgpack::sbuffer sbuff;
+	msgpack::packer<msgpack::sbuffer> pk(sbuff);
+#endif
+	pk.pack_array(12);
 	pk.pack_float(base_ui_component::screenw);
 	pk.pack_float(base_ui_component::screenh);
 	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-	int font_cnt = atlas->ConfigData.size();
+
+	pk.pack_int32(atlas->TexWidth);
+	pk.pack_int32(atlas->TexHeight);
+    int txt_size = atlas->TexWidth*atlas->TexHeight * 4;
+	uint8_t* ttx_f_data = new uint8_t[txt_size];
+	glBindTexture(GL_TEXTURE_2D, g_FontTexture);
+	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, ttx_f_data);
+#ifdef _DX5_COMPRESS
+	uint32_t blockDim[2] = { 4, 4 };
+	const uint32_t fblocksWide = (atlas->TexWidth + blockDim[0] - 1) / blockDim[0];
+	const uint32_t fblocksHigh = (atlas->TexHeight + blockDim[1] - 1) / blockDim[1];
+	const uint32_t funcompBlockSize = blockDim[0] * blockDim[1] * sizeof(uint32_t);
+	const uint32_t nfBlocks = fblocksWide * fblocksHigh;
+	const uint32_t blockSz = 16;
+	uint32_t flinear_size = nfBlocks * blockSz;
+	uint8_t* ftxtdata_compress = new uint8_t[flinear_size];
+	compress_image_2_dxt5(ftxtdata_compress, ttx_f_data, atlas->TexWidth, atlas->TexHeight);
+
+	pk.pack_bin(flinear_size);
+	pk.pack_bin_body(reinterpret_cast<char const*>(ftxtdata_compress), flinear_size);
+	delete[] ttx_f_data;
+	delete[] ftxtdata_compress;
+#else
+	pk.pack_bin(txt_size);
+	pk.pack_bin_body(reinterpret_cast<char const*>(ttx_f_data), txt_size);
+	delete[] ttx_f_data;
+#endif
+	int font_cnt = atlas->Fonts.size();
 	pk.pack_array(font_cnt);
 	for (size_t ii = 0; ii < font_cnt; ii++)
 	{
-		auto& cfg_data = atlas->ConfigData[ii];
+		//auto& cfg_data = atlas->ConfigData[ii];
 		ImFont* font = atlas->Fonts[ii];
+		pk.pack_array(8);
+		pk.pack_float(font->FontSize);
+		pk.pack_float(font->Ascent);
+		pk.pack_float(font->Descent);
+		pk.pack_int(font->MetricsTotalSurface);
+		int glyph_sz = font->Glyphs.size()*sizeof(ImFontGlyph);
+		pk.pack_bin(glyph_sz);
+		pk.pack_bin_body(reinterpret_cast<char const*>(font->Glyphs.Data), glyph_sz);
+		int index_sz = font->IndexAdvanceX.size()*sizeof(float);
+		pk.pack_bin(index_sz);
+		pk.pack_bin_body(reinterpret_cast<char const*>(font->IndexAdvanceX.Data), index_sz);
+		int index_lkp_sz = font->IndexLookup.size()*sizeof(USHORT);
+		pk.pack_bin(index_lkp_sz);
+		pk.pack_bin_body(reinterpret_cast<char const*>(font->IndexLookup.Data), index_lkp_sz);
 		bool is_current_font= ImGui::GetIO().FontDefault == font;
-		string fontname = cfg_data.Name;
-		fontname = fontname.substr(0, fontname.find_first_of(','));
-		pk.pack_array(3);
-		pk.pack_bin(cfg_data.FontDataSize);
-		pk.pack_bin_body(reinterpret_cast<char const*>(cfg_data.FontData), cfg_data.FontDataSize);
-		pk.pack_float(cfg_data.SizePixels);
+
 		if (is_current_font)
 		{
 			pk.pack_true();
@@ -77,6 +132,9 @@ void afb_output::output_afb(const char* afb_file)
 		}
 		
 	}
+	string output_file_path = g_cureent_directory + "afb\\";
+	int idx = 0;
+	file_outputor fout_put(output_file_path);
 	pk.pack_array(g_vres_texture_list.size());
 	for (auto& res_unit : g_vres_texture_list)
 	{
@@ -88,23 +146,29 @@ void afb_output::output_afb(const char* afb_file)
 
 		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
 		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
-		
-		uint32_t blockDim[2] = { 4, 4 };
-
+#if 0//def _DX5_COMPRESS
 		const uint32_t blocksWide = (res_unit.texture_width + blockDim[0] - 1) / blockDim[0];
 		const uint32_t blocksHigh = (res_unit.texture_height + blockDim[1] - 1) / blockDim[1];
 		const uint32_t uncompBlockSize = blockDim[0] * blockDim[1] * sizeof(uint32_t);
 		const uint32_t nBlocks = blocksWide * blocksHigh;
-		const uint32_t blockSz = 16;
 		uint32_t linear_size =nBlocks * blockSz;
 		uint8_t* txtdata_compress = new uint8_t[linear_size];
 		compress_image_2_dxt5(txtdata_compress, txtdata, res_unit.texture_width, res_unit.texture_height);
-
-		/*uint8_t* txtdata_compress = DXT5Compress(txtdata, linear_size, txt_size, res_unit.texture_width, res_unit.texture_height);*/
 		pk.pack_bin(linear_size);
 		pk.pack_bin_body(reinterpret_cast<char const*>(txtdata_compress), linear_size);
-
+		
+		delete[] txtdata_compress;
+#else
+		pk.pack_bin(txt_size);
+		pk.pack_bin_body(reinterpret_cast<char const*>(txtdata), txt_size);
+#endif
 		pk.pack_array(res_unit.vtexture_coordinates.size());
+		string enum_file = "enum_txt_name";
+		char str_ix[20] = { 0 };
+		sprintf(str_ix, "%d.h", idx);
+		enum_file += str_ix;
+		idx++;
+		fout_put.begin_enum_file(enum_file);
 		for (auto& tcd_unit : res_unit.vtexture_coordinates)
 		{
 			pk.pack_array(5);
@@ -114,8 +178,9 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_float(tcd_unit._x1);
 			pk.pack_float(tcd_unit._y0);
 			pk.pack_float(tcd_unit._y1);
+			fout_put.push_enum_name(tcd_unit._file_name);
 		}
-		delete[] txtdata_compress;
+		fout_put.end_enum_file();
 		delete[] txtdata;
 	}
 	pk.pack_array(g_mtexture_list.size());
@@ -187,5 +252,28 @@ void afb_output::output_afb(const char* afb_file)
 		}
 	}
 	pack_ui_component_data(_pj, pk);
+#ifndef _DX5_COMPRESS
+	uint8_t* pout_buff = new uint8_t[sbuff.size()];
+	mz_stream stream = {};
+	mz_deflateInit(&stream, MZ_BEST_SPEED);
+	stream.avail_in = (int)sbuff.size();
+	stream.next_in = reinterpret_cast<const unsigned char*>( sbuff.data()) ;
+	stream.avail_out = (int)sbuff.size();
+	stream.next_out = pout_buff;
+	int status = mz_deflate(&stream, Z_SYNC_FLUSH);
+
+	if (mz_deflateEnd(&stream) != Z_OK)
+	{
+		//delete[] pout_buff;
+		printf("fail to compress\n");
+
+	}
+	else
+	{
+		fout.write((const char*)pout_buff, stream.total_out);
+	}
+	delete[] pout_buff;
+#endif
 	fout.close();
+
 }

@@ -16,6 +16,7 @@ namespace auto_future
 		application(int argc, char **argv);
 		~application();
 		bool prepare();
+		virtual void init_ui_component(base_ui_component* pobj){}
 		virtual void resLoaded(){}
 		bool create_run();
 		virtual void preRender(){}

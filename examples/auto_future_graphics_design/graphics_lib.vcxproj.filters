@@ -29,12 +29,6 @@
     <Filter Include="render_utilities">
       <UniqueIdentifier>{8c38a201-8098-494d-9e3b-5dd3905a6a26}</UniqueIdentifier>
     </Filter>
-    <Filter Include="msg_host">
-      <UniqueIdentifier>{5efb9bf8-4968-408a-a0c5-aa0362efa76e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="msg_filter">
-      <UniqueIdentifier>{41e7c38b-8281-4f24-bdf1-06c88a6832d0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="afb_manager">
       <UniqueIdentifier>{1eed8a52-3174-4df9-b74a-a6938f17dde9}</UniqueIdentifier>
     </Filter>
@@ -64,9 +58,6 @@
     <ClCompile Include="ft_polygon_image.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="ft_trajectory_box.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="ft_listbox.cpp">
       <Filter>controls</Filter>
     </ClCompile>
@@ -75,21 +66,6 @@
     </ClCompile>
     <ClCompile Include="common_functions.cpp">
       <Filter>common</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_scene3d.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_cube.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_model.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_plane.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_sphere.cpp">
-      <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="miniz.c">
       <Filter>fbx</Filter>
@@ -102,27 +78,6 @@
     </ClCompile>
     <ClCompile Include="ft_textblock.cpp">
       <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\msg_host\msg_host_n.cpp">
-      <Filter>msg_host</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\json\json_reader.cpp">
-      <Filter>json</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\json\json_value.cpp">
-      <Filter>json</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\json\json_writer.cpp">
-      <Filter>json</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\msg_filters_n\base_filter_n.cpp">
-      <Filter>msg_filter</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\msg_filters_n\msg_filter_by_priority_n.cpp">
-      <Filter>msg_filter</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp">
-      <Filter>msg_filter</Filter>
     </ClCompile>
     <ClCompile Include="afb_load.cpp">
       <Filter>afb_manager</Filter>
@@ -139,15 +94,6 @@
     <ClCompile Include="shader_uf.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
-    <ClCompile Include="ft_particles.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_particles_effect.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_particles1.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="paricles_system.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
@@ -156,6 +102,45 @@
     </ClCompile>
     <ClCompile Include="imgui_impl_glfw_gl3.cpp">
       <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_scene.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_cube_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_model_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_particles_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_particles_effect_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_particles1_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_plane_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_sphere_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_trajectory_box_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_block.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_image_play.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_slider_thumb.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_plot_lines.cpp">
+      <Filter>controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,9 +177,6 @@
     <ClInclude Include="ft_polygon_image.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="ft_trajectory_box.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="ft_listbox.h">
       <Filter>controls</Filter>
     </ClInclude>
@@ -203,21 +185,6 @@
     </ClInclude>
     <ClInclude Include="common_functions.h">
       <Filter>common</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_scene3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_cube.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_model.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_plane.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_sphere.h">
-      <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="miniz.h">
       <Filter>fbx</Filter>
@@ -233,9 +200,6 @@
     </ClInclude>
     <ClInclude Include="ft_textblock.h">
       <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\msg_host\msg_host_n.h">
-      <Filter>msg_host</Filter>
     </ClInclude>
     <ClInclude Include="..\..\json\autolink.h">
       <Filter>json</Filter>
@@ -264,18 +228,6 @@
     <ClInclude Include="..\..\json\writer.h">
       <Filter>json</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\msg_filters_n\base_filter_n.h">
-      <Filter>msg_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\msg_filters_n\msg_filter_by_priority_n.h">
-      <Filter>msg_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\msg_filters_n\msg_filter_circle_call_n.h">
-      <Filter>msg_filter</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\msg_filters_n\priority_filter_def.h">
-      <Filter>msg_filter</Filter>
-    </ClInclude>
     <ClInclude Include="afb_load.h">
       <Filter>afb_manager</Filter>
     </ClInclude>
@@ -290,15 +242,6 @@
     </ClInclude>
     <ClInclude Include="shader_uf.h">
       <Filter>render_utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_particles.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_particles_effect.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_particles1.h">
-      <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="paricles_system.h">
       <Filter>render_utilities</Filter>
@@ -316,6 +259,45 @@
       <Filter>imgui</Filter>
     </ClInclude>
     <ClInclude Include="afg.h" />
+    <ClInclude Include="ft_scene.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_cube_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_model_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_particles_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_particles_effect_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_particles1_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_plane_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_sphere_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_trajectory_box_3d.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_block.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_image_play.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_slider_thumb.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_plot_lines.h">
+      <Filter>controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

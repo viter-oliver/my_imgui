@@ -3,13 +3,12 @@
 #include "texture_res_load.h"
 #include "af_shader.h"
 #include "material.h"
-#ifdef IMGUI_WAYLAND
-#include "../../deps/glad/glad.h"
-#else
-#include <GL/gl3w.h> 
-#endif
+
 #include "SOIL.h"
-extern string g_cureent_project_file_path;
+#include "dir_output.h"
+#include "primitive_object.h"
+#include "./fbx_save_info.h"
+extern string g_cureent_directory;
 extern bool show_project_window, show_edit_window, \
 show_property_window, show_resource_manager, show_fonts_manager, show_file_manager;
 bool ui_assembler::load_ui_component_from_file(const char* file_path)
@@ -53,8 +52,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			Value& fonts = jroot["fonts"];
 			if (!fonts.isNull())
 			{
-				string str_font_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-				str_font_path += "fonts\\";
+				string str_font_path = g_cureent_directory+font_fold;
 				int isz = fonts.size();
 				for (int ix = 0; ix < isz;ix++)
 				{
@@ -76,10 +74,8 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			Value& texture_list = jroot["texture_list"];
 			auto isize = texture_list.size();
 			UInt ix = 0;
-			extern string g_cureent_project_file_path;
-			string str_img_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-			string str_files_path = str_img_path + "files\\";
-			str_img_path += "images\\";
+			string str_img_path = g_cureent_directory+image_fold;
+			string str_files_path = g_cureent_directory + files_fold;
 			for (ix = 0; ix < isize;ix++)
 			{
 				Value& txt_unit = texture_list[ix];
@@ -102,19 +98,19 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					glEnable(GL_BLEND);
 					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 				}
-				// Step2 设定wrap参数
+				// Step2 璁惧畾wrap鍙傛暟
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-				// Step3 设定filter参数
+				// Step3 璁惧畾filter鍙傛暟
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-					GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
-				// Step4 加载纹理
+					GL_LINEAR_MIPMAP_LINEAR); // 涓篗ipMap璁惧畾filter鏂规硶
+				// Step4 鍔犺浇绾圭悊
 
 				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
 					0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
 				glGenerateMipmap(GL_TEXTURE_2D);
-				// Step5 释放纹理图片资源
+				// Step5 閲婃斁绾圭悊鍥剧墖璧勬簮
 				SOIL_free_image_data(imgdata);
 				auto pimge = make_shared<af_texture>();
 				pimge->_txt_id = textureId;
@@ -161,6 +157,26 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				g_material_list[pmtl->get_name()]=pmtl;
 
 			}
+			Value& primitive_list = jroot["primitive_list"];
+			isize = primitive_list.size();
+			for (ix = 0; ix < isize; ix++)
+			{
+				Value& jpm = primitive_list[ix];
+				auto& kname = jpm["name"].asString();
+
+				Value& vformat = jpm["format"];
+				int ebo_len = vformat.size();
+				vector<GLubyte> ele_format;
+				for (int ii = 0; ii < ebo_len; ii++)
+				{
+					Value& fmu = vformat[ii];
+					ele_format.emplace_back(fmu.asInt());
+				}
+
+				int vbo_len = jpm["vbo_len"].asInt();
+				ebo_len = jpm["ebo_len"].asInt();
+				load_primitive_from_file(kname, ele_format, vbo_len, ebo_len);
+			}
 			_root.init_from_json(jroot);
 		}
 		fin.close();
@@ -170,11 +186,13 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 		printf("invalid file_path:%s\n", file_path);
 		return false;
 	}
+
 	return true;
 }
 
 bool ui_assembler::output_ui_component_to_file(const char* file_path)
 {
+	output_primitive_to_file();
 
 	ofstream fout;
 	fout.open(file_path);
@@ -198,9 +216,13 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		auto& cfg_data = atlas->ConfigData[i];
 		ImFont* font = atlas->Fonts[i];
 		Value jfont(objectValue);
-		jfont["SizePixels"] = cfg_data.SizePixels;
 		string fontname = cfg_data.Name;
 		fontname = fontname.substr(0, fontname.find_first_of(','));
+		if ("ProggyClean.ttf" == fontname)//榛樿瀛椾綋涓嶉渶瑕佸瓨
+		{
+			continue;
+		}
+		jfont["SizePixels"] = cfg_data.SizePixels;
 		jfont["name"] = fontname;
 		if (ImGui::GetIO().FontDefault==font)
 		{
@@ -258,9 +280,104 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		jmaterial.append(jmtl_ut);
 	}
 	jroot["material_list"] = jmaterial;
+	Value jprimitive_list(arrayValue);
+	for (auto& pm:g_primitive_list)
+	{
+		Value jpm(objectValue);
+		jpm["name"] = pm.first; 
+		
+		auto& pmu = pm.second;	
+		Value jformat(arrayValue);
+		for (auto& fmu:pmu->_ele_format)
+		{
+			jformat.append(fmu);
+		}
+		jpm["format"] = jformat;
+		jpm["vbo_len"] = pmu->_vertex_buf_len;
+		jpm["ebo_len"] = pmu->_ele_buf_len;
+		jprimitive_list.append(jpm);
+	}
+	jroot["primitive_list"] = jprimitive_list;
 
+	jroot["texture_id_index"] = g_cur_texture_id_index;
 	_root.init_json_unit(jroot);
 	fout << jroot << endl;
 	fout.close();
+
+	save_fbx_file();
+
 	return true;
+}
+
+void ui_assembler::output_primitive_to_file()
+{
+	for (auto& pm : g_primitive_list)
+	{
+		auto& pmu = pm.second;
+		if (pmu->_vertex_buf_len)
+		{
+			ofstream ofin(g_cureent_directory + files_fold + pm.first + ".vbo", ios::trunc | ios::out | ios::binary);
+			if (ofin.is_open())
+			{
+				glBindBuffer(GL_ARRAY_BUFFER, pmu->_vbo);
+				GLfloat* pvbo = (GLfloat*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY);
+
+				printf("%f\n", pvbo[pmu->_vertex_buf_len-1]);
+
+				ofin.write((char *)pvbo, pmu->_vertex_buf_len * sizeof(GLfloat));
+				glUnmapBuffer(GL_ARRAY_BUFFER);
+				ofin.close();
+			}
+		}
+
+		if (pmu->_ele_buf_len)
+		{
+			ofstream ofin(g_cureent_directory + files_fold + pm.first + ".ebo", ios::trunc | ios::out | ios::binary);
+			if (ofin.is_open())
+			{
+				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pmu->_ebo);
+				GLshort* pebo = (GLshort*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_READ_ONLY);
+				ofin.write((const char *)pebo, pmu->_ele_buf_len * sizeof(GLshort));
+				glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
+				ofin.close();
+			}
+		}
+	}
+}
+
+void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_format, int vbo_len, int ebo_len)
+{
+	GLfloat* pvbo = 0;
+	if (vbo_len)
+	{
+		ifstream ivfin(g_cureent_directory + files_fold + kname + ".vbo", ios::binary);
+		if (ivfin.is_open())
+		{
+			pvbo = new GLfloat[vbo_len];
+			ivfin.read((char *)pvbo, vbo_len*sizeof(GLfloat));
+			ivfin.close();
+		}
+	}
+
+	GLushort* pebo = 0;
+	if (ebo_len)
+	{
+		ifstream iefin(g_cureent_directory + files_fold + kname + ".ebo", ios::binary);
+		if (iefin.is_open())
+		{
+			pebo = new GLushort[ebo_len];
+			iefin.seekg(0, ios::beg);
+			iefin.read((char *)pebo, ebo_len*sizeof(GLushort));
+			iefin.close();
+		}
+	}
+
+	g_primitive_list[kname] = make_shared<primitive_object>();
+	g_primitive_list[kname]->set_ele_format(ele_format);
+	g_primitive_list[kname]->load_vertex_data(pvbo, vbo_len, pebo, ebo_len);
+	delete[] pvbo;
+	if (pebo)
+	{
+		delete[] pebo;
+	}
 }

@@ -28,6 +28,8 @@
 #include <ShlObj.h>
 #include <Commdlg.h>
 #include "imguidock.h"
+//add fbximport include
+#include "./fbx_save_info.h"
 #endif
 #include "Resource.h"
 #include "res_edit.h"
@@ -37,11 +39,14 @@
 #include "texture_edit.h"
 #include "fonts_edit.h"
 #include "file_res_edit.h"
+#include "common_functions.h"
+#include "dir_output.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
 }
 string g_cureent_project_file_path;
+string g_cureent_directory;
 //string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
@@ -50,17 +55,20 @@ enum en_short_cut_item
 	en_ctrl_o,
 	en_ctrl_s,
 	en_ctrl_b,
+	en_ctrl_f2,
 	an_alt_f4,
 };
 bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true;
+#define _MY_IMGUI__//_DEMO_
 int main(int argc, char* argv[])
 {
     // Setup window
 	if (argc>1)
 	{
 		g_cureent_project_file_path = argv[1];
+		g_cureent_directory=g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
 	}
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
@@ -108,7 +116,7 @@ int main(int argc, char* argv[])
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
 	if (0)//!g_cureent_project_file_path.empty())
 	{
-		string str_font_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+		string str_font_path = g_cureent_directory;
 		str_font_path += "fonts\\";
 		string DejaVuSans1 = str_font_path + "DejaVuSans.ttf";
 		string DejaVuSans2 = str_font_path + "DejaVuSans-Bold.ttf";
@@ -139,22 +147,29 @@ int main(int argc, char* argv[])
 	//GetCurrentDirectory(MAX_PATH, buffer);
 	//g_current_run_path = buffer;
 	//g_current_run_path += "\\";
-	load_internal_texture_res(g_mtxt_intl, IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
+
+	
 	//instantiating_internal_shader();
-	init_internal_primitive_list();
     bool show_demo_window = true;
     bool show_another_window = false;
 	bool show_edit_window = true;
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+#ifdef _MY_IMGUI__
+	load_internal_texture_res(g_mtxt_intl, IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
+
 	//g_res_texture_list[0].texture_id = TextureHelper::load2DTexture(g_res_texture_list[0].texture_path, g_res_texture_list[0].texture_width, g_res_texture_list[0].texture_height);
 	//g_vres_texture_list[0].texture_id = \
 	//	TextureHelper::load2DTexture(g_vres_texture_list[0].texture_path, g_vres_texture_list[0].texture_width, g_vres_texture_list[0].texture_height,\
 	//	GL_RGBA,GL_RGBA,SOIL_LOAD_RGBA);
+	int max_txt_size;
+	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max_txt_size);
+	printf("max texture size=%d\n", max_txt_size);
 	base_ui_component* _proot = NULL;
 	base_ui_component* _pselect = NULL;
 	shared_ptr<res_edit> _pres_mg;
 	shared_ptr<material_shader_edit> _pml_shd_mg;
+
 	//if (!g_cureent_project_file_path.empty())
 	//{
 	//	_proot = new ft_base;
@@ -184,12 +199,16 @@ int main(int argc, char* argv[])
 	//_app.register_update_fun("rotate_pointer", bind(&rotate_pointer::rotate, &_rt_pointer));
 	//}
 
+	load_fbx_file();
+
 	_proot = new ft_base;
 	ui_assembler _ui_as(*_proot);
 	if (!g_cureent_project_file_path.empty())
 	{
 		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 	}
+	init_internal_primitive_list();
+
 	_pres_mg = make_shared< res_edit>();
 	_pml_shd_mg = make_shared<material_shader_edit>();
 	auto ptexture = make_shared<texture_edit>();
@@ -288,6 +307,22 @@ int main(int argc, char* argv[])
 				if (GetSaveFileName(&sfn))
 				{
 					g_cureent_project_file_path = strFileName;
+					g_cureent_directory = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+					string mesh_path=g_cureent_directory + mesh_fold;
+					string font_path = g_cureent_directory + font_fold;
+					string files_path = g_cureent_directory + files_fold;
+					string image_path = g_cureent_directory + image_fold;
+					string shader_path = g_cureent_directory + shaders_fold;
+					string text_res_path = g_cureent_directory + text_res_fold;
+					string afb_path = g_cureent_directory + afb_fold; 
+					createDirectory(mesh_path.c_str());
+					createDirectory(font_path.c_str());
+					createDirectory(files_path.c_str());
+					createDirectory(image_path.c_str());
+					createDirectory(shader_path.c_str());
+					createDirectory(text_res_path.c_str());
+					createDirectory(afb_path.c_str());
+
 				}
 				else
 				{
@@ -306,7 +341,7 @@ int main(int argc, char* argv[])
 				string str_proj_file_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
 				string str_proj_file_name = g_cureent_project_file_path.substr(g_cureent_project_file_path.find_last_of('\\') + 1);
 				str_proj_file_name = str_proj_file_name.substr(0, str_proj_file_name.find('.'));
-				string str_afb_file = str_proj_file_path + "afb\\";
+				string str_afb_file = str_proj_file_path + afb_fold;
 				str_afb_file += str_proj_file_name;
 				str_afb_file += ".AFB";
 				printf("afbfile:%s\n", str_afb_file.c_str());
@@ -315,12 +350,40 @@ int main(int argc, char* argv[])
 			}
 		}
 		break;
+		case en_ctrl_f2:
+		{
+			OPENFILENAME ofn = { sizeof(OPENFILENAME) };
+			ofn.hwndOwner = GetForegroundWindow();
+			ofn.lpstrFilter = "valid file(.fbx):\0*.fbx\0\0";
+			char strFileName[MAX_PATH] = { 0 };
+			ofn.nFilterIndex = 1;
+			ofn.lpstrFile = strFileName;
+			ofn.nMaxFile = sizeof(strFileName);
+			ofn.lpstrTitle = "select a fbx file(*.fbx) please!";
+			ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+			if (GetOpenFileName(&ofn))
+			{
+				printf("open file:%s\n", strFileName);
+				int result = MessageBox(GetForegroundWindow(), "Import this fbx model?", "Import", MB_YESNOCANCEL);
+				if (result == IDCANCEL)
+				{
+					return;
+				}
+				else
+					if (result == IDYES)
+					{
+						import_fbx_info(strFileName);
+					}
+			}
+		}
+		break;
 		case an_alt_f4:
 		exit(0);
 		break;
 		}
 	};
-
+#endif
+	
 	// Main loop
     while (!glfwWindowShouldClose(window))
     {
@@ -331,7 +394,7 @@ int main(int argc, char* argv[])
         glfwPollEvents();
         ImGui_ImplGlfwGL3_NewFrame();
 		//socketpair
-#define _MY_IMGUI__
+
 #if defined(_Dockable_)
 
 		if (ImGui::Begin("imguidock window (= lumix engine's dock system)",NULL,ImVec2(500, 500),0.95f,ImGuiWindowFlags_NoScrollbar)) {
@@ -428,8 +491,13 @@ int main(int argc, char* argv[])
 			{
 				fun_shortct(en_ctrl_b);
 			}
+			else
+			if (ImGui::GetIO().KeysDown[GLFW_KEY_F2])
+			{
+				fun_shortct(en_ctrl_f2);
+			}
 		}
-
+		
 		if (ImGui::BeginMainMenuBar())
 		{
 			if (ImGui::BeginMenu("File"))
@@ -458,6 +526,14 @@ int main(int argc, char* argv[])
 				}
 				if (ImGui::MenuItem("Save As..")) 
 				{
+				}
+				if (ImGui::BeginMenu("Import"))
+				{
+					if (ImGui::MenuItem("Import 3D Assert", "Alt+F2"))
+					{
+						fun_shortct(en_ctrl_f2);
+					}
+					ImGui::EndMenu();
 				}
 				ImGui::Separator();
 				if (ImGui::MenuItem("Export AFB", "Ctrl+B"))
@@ -532,13 +608,18 @@ int main(int argc, char* argv[])
 		if (show_edit_window)
 		{
 			ImGui::SetNextWindowSize(ImVec2(1920, 720), ImGuiCond_FirstUseEver);
-			ImGui::Begin("edit window", &show_edit_window);
+			ImGuiStyle& style = ImGui::GetStyle();
+			//style.Alpha = 1.f;
+			const float old_rounding=style.WindowRounding;
+			style.WindowRounding = 0.f;
+			ImGui::Begin("edit window", &show_edit_window,ImGuiWindowFlags_NoTitleBar);
 			//
 			if (_proot)
 			{
 				_proot->draw();
 			}
 			ImGui::End();
+			style.WindowRounding = old_rounding;
 		}
 		if (show_resource_manager)
 		{

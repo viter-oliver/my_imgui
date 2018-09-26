@@ -92,13 +92,13 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\graphics_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;graphics_lib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\graphics_lib;$(SolutionDir)\..\msg_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;graphics_lib_d.lib;message_manager_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -124,16 +124,16 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;..\..;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\graphics_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;graphics_lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\graphics_lib;$(SolutionDir)\..\msg_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;graphics_lib.lib;message_manager.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -160,9 +160,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\rcf_service\idata_collect.h" />
     <ClInclude Include="afg.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="main_menu_controller.h" />
     <ClInclude Include="my_application.h" />
     <ClInclude Include="platform_def.h" />
   </ItemGroup>
@@ -170,7 +172,10 @@
     <None Include="..\README.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\rcf\src\RCF\RCF.cpp" />
+    <ClCompile Include="..\..\rcf_service\idata_collect.cpp" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
+    <ClCompile Include="main_menu_controller.cpp" />
     <ClCompile Include="my_application.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

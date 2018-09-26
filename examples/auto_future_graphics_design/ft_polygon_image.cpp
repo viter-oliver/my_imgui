@@ -6,7 +6,7 @@ namespace auto_future
 
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_polygon_image::draw_peroperty_page()
+	void ft_polygon_image::draw_peroperty_page(int property_part)
 	{
 
 	}

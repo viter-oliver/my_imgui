@@ -45,7 +45,7 @@ namespace auto_future
 
 	using namespace Json;
 	class base_ui_component;
-	const unsigned char name_len = 20;
+	const unsigned char name_len = 40;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
@@ -87,7 +87,7 @@ namespace auto_future
 		/**
 		*@brief draw property on the property page for editing
 		*/
-		virtual void draw_peroperty_page() = 0;
+		virtual void draw_peroperty_page(int property_part = -1) = 0;
 		bool is_selected()
 		{
 			return _selected;
@@ -146,6 +146,11 @@ namespace auto_future
 		{
 			return ImVec2();
 		}
+		virtual void set_size(float w, float h)
+		{
+
+		}
+		virtual void link(){}
 		/**
 		*@brief get a copy of a ui component object
 		*/
@@ -155,8 +160,12 @@ namespace auto_future
 		}
 
 		//virtual base_ui_component* get_new_instance() = 0;
-		void set_name(string& name)
+		void set_name(string name)
 		{
+			if (name.length()>name_len)
+			{
+				name.erase(name.begin() + name_len, name.end());
+			}
 			strcpy(_in_p._name, name.c_str());
 
 		}
@@ -186,9 +195,51 @@ namespace auto_future
 				delete pchild;
 			}
 		}
+		bool move_pre(base_ui_component* pchild)
+		{
+			auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
+			if (it == _vchilds.end())
+			{
+				return false;
+			}
+			if (it==_vchilds.begin())
+			{
+				return false;
+			}
+			auto itp = it - 1;
+			swap(*it, *itp);
+			return true;
+		}
+		bool move_next(base_ui_component* pchild)
+		{
+			auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
+			if (it == _vchilds.end())
+			{
+				return false;
+			}
+			auto ilast = _vchilds.end() - 1;
+			if (it==ilast)
+			{
+				return false;
+			}
+			auto inext = it + 1;
+			swap(*it, *inext);
+			return true;
+		}
 		base_ui_component* get_child(int index)
 		{
 			return _vchilds[index];
+		}
+		string try_create_a_child_name(string attempt_name,base_ui_component* pcur=NULL)
+		{
+			for (auto& ichd:_vchilds)
+			{
+				if (ichd!=pcur&& ichd->get_name()==attempt_name)
+				{
+					attempt_name += '_';
+				}
+			}
+			return attempt_name;
 		}
 
 		size_t get_child_count(){ return _vchilds.size(); }

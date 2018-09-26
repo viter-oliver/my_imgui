@@ -134,7 +134,7 @@ namespace auto_future
 		}
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_listbox::draw_peroperty_page()
+	void ft_listbox::draw_peroperty_page(int property_part)
 	{
 		ft_base::draw_peroperty_page();
 		ImGui::SliderFloat("lw", &_lt_pt._size.x, 0.f, base_ui_component::screenw);

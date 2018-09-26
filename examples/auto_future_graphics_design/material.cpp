@@ -383,6 +383,7 @@ bool create_material(string& shader_name, string& material_name, string& real_ma
 	}
 	
 	g_material_list[real_material_name]=make_shared<material>(shd->second);
+	g_material_list[real_material_name]->set_name(real_material_name);
 	return true;
 }
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

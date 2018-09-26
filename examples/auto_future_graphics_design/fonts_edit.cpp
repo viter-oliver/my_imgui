@@ -15,6 +15,7 @@
 #include "SOIL.h"
 #include <stdio.h>
 #include <iostream>  
+#include "dir_output.h"
 using namespace std;
 fonts_edit::fonts_edit()
 {
@@ -41,6 +42,8 @@ void fonts_edit::draw_fonts_list()
 	
 	try
 	{
+		static float font_size = 16.f;
+		ImGui::InputFloat("load font size:", &font_size, 0.1, 10.f, 32.f);
 		if (ImGui::Button("Load new font from ttf file..."))
 		{
 			OPENFILENAME ofn = { sizeof(OPENFILENAME) };
@@ -70,9 +73,8 @@ void fonts_edit::draw_fonts_list()
 				}
 				string ttf_file_path = ttf_file.substr(0, ttf_file.find_last_of('\\') + 1);
 			
-				extern string g_cureent_project_file_path;
-				string str_ttf_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-				str_ttf_path += "fonts\\";
+				extern string g_cureent_directory;
+				string str_ttf_path = g_cureent_directory+font_fold;
 				if (ttf_file_path != str_ttf_path)
 				{
 					string str_cmd = "copy ";
@@ -81,8 +83,8 @@ void fonts_edit::draw_fonts_list()
 					str_cmd += str_ttf_path;
 					system(str_cmd.c_str());
 				}
-				atlas->AddFontFromFileTTF(strFileName, 16.f, NULL, atlas->GetGlyphRangesChinese());
-
+				atlas->AddFontFromFileTTF(strFileName, font_size, NULL, atlas->GetGlyphRangesChinese());
+				font_size = 16.f;
 			}
 		}
 	}

@@ -2,12 +2,158 @@
 #include <math.h>
 #include "SOIL.h"
 #include "texture.h"
-
+#include "json.h"
 /*
 x'=(x-a)cos¦Á+(y-b)sin¦Á+a
 y'=-(x-a)sin¦Á+(y-b)cos¦Á+b
 */
+using namespace Json;
 
+GLfloat* get_txt_uvs(const char* data_file, int& retn_len)
+{
+	GLfloat* puvs = NULL;
+	Reader reader;
+	Value jvalue;
+	if (reader.parse(data_file, jvalue, false))
+	{
+		Value& meta = jvalue["meta"];
+		Value& jsize = meta["size"];
+		float w = jsize["w"].asInt();
+		float h = jsize["h"].asInt();
+		Value& frames = jvalue["frames"];
+		if (frames.isArray())
+		{
+			int isize = frames.size();
+			retn_len = isize * 8;
+			puvs = new GLfloat[retn_len];
+			for (int ix = 0; ix < isize; ix++)
+			{
+				Value& frame_unit = frames[ix];
+				Value& frame = frame_unit["frame"];
+				int sbidx = ix * 8;
+				float x0 = frame["x"].asInt();
+				float y0 = frame["y"].asInt();
+				float x1 = x0 + frame["w"].asInt();
+				float y1 = y0 + frame["h"].asInt();
+
+				puvs[sbidx + 0] = x0 / w;
+				puvs[sbidx + 1] = y0 / h;
+
+				puvs[sbidx + 2] = x1 / w;
+				puvs[sbidx + 3] = y0 / h;
+				puvs[sbidx + 4] = x0 / w;
+				puvs[sbidx + 5] = y1 / h;
+				puvs[sbidx + 6] = x1 / w;
+				puvs[sbidx + 7] = y1 / h;
+			}
+		}
+		if (frames.isObject())
+		{
+			Value::Members memb(frames.getMemberNames());
+			retn_len = memb.size() * 8;
+			puvs = new GLfloat[retn_len];
+			int idx = 0;
+			for (auto itmem = memb.begin(); itmem != memb.end(); ++itmem, ++idx)
+			{
+				auto& mname = *itmem;
+				Value& junif = frames[mname];
+				Value& frame = junif["frame"];
+				int sbidx = idx * 8;
+				float x0 = frame["x"].asInt();
+				float y0 = frame["y"].asInt();
+				float x1 = x0 + frame["w"].asInt();
+				float y1 = y0 + frame["h"].asInt();
+
+				puvs[sbidx + 0] = x0 / w;
+				puvs[sbidx + 1] = y0 / h;
+
+				puvs[sbidx + 2] = x1 / w;
+				puvs[sbidx + 3] = y0 / h;
+				puvs[sbidx + 4] = x0 / w;
+				puvs[sbidx + 5] = y1 / h;
+				puvs[sbidx + 6] = x1 / w;
+				puvs[sbidx + 7] = y1 / h;
+				/*puvs[sbidx + 0] = x1 / w;
+				puvs[sbidx + 1] = y0 / h;
+				puvs[sbidx + 2] = x1 / w;
+				puvs[sbidx + 3] = y1 / h;
+				puvs[sbidx + 4] = x0 / w;
+				puvs[sbidx + 5] = y0 / h;
+				puvs[sbidx + 6] = x1 / w;
+				puvs[sbidx + 7] = y0 / h;*/
+
+			}
+		}
+		
+	}
+	return puvs;
+}
+void get_txt_uv_vector(const char* data_file, vres_txt_cd& vtxt_cd)
+{
+	Reader reader;
+	Value jvalue;
+	if (reader.parse(data_file, jvalue, false))
+	{
+		Value& meta = jvalue["meta"];
+		Value& jsize = meta["size"];
+		float w = jsize["w"].asInt();
+		float h = jsize["h"].asInt();
+		Value& frames = jvalue["frames"];
+		if (frames.isArray())
+		{
+			int isize = frames.size();
+			for (int ix = 0; ix < isize; ix++)
+			{
+				vtxt_cd.emplace_back();
+				res_texture_coordinate& res_txt_cd = vtxt_cd[ix];
+				Value& frame_unit = frames[ix];
+				Value& frame = frame_unit["frame"];
+				Value& filename = frame_unit["filename"];
+				res_txt_cd._file_name = filename.asString();
+
+				bool rotated = frame["rotated"].asBool();
+				res_txt_cd._x0 = frame["x"].asInt();
+				res_txt_cd._y0 = frame["y"].asInt();
+				res_txt_cd._x1 = frame["x"].asInt() + frame["w"].asInt();
+				res_txt_cd._y1 = frame["y"].asInt() + frame["h"].asInt();
+
+				if (rotated)
+				{
+					res_txt_cd._x1 = frame["x"].asInt() + frame["h"].asInt();;
+					res_txt_cd._y1 = frame["y"].asInt() + frame["w"].asInt();
+				}
+			}
+		}
+		if (frames.isObject())
+		{
+			Value::Members memb(frames.getMemberNames());
+			int idx = 0;
+			for (auto itmem = memb.begin(); itmem != memb.end(); ++itmem, ++idx)
+			{
+				vtxt_cd.emplace_back();
+				res_texture_coordinate& res_txt_cd = vtxt_cd[idx];
+				auto& mname = *itmem;
+				Value& junif = frames[mname];
+				Value& frame = junif["frame"];
+				Value& filename = junif["filename"];
+				res_txt_cd._file_name = filename.asString();
+
+				bool rotated = frame["rotated"].asBool();
+				res_txt_cd._x0 = frame["x"].asInt();
+				res_txt_cd._y0 = frame["y"].asInt();
+				res_txt_cd._x1 = frame["x"].asInt() + frame["w"].asInt();
+				res_txt_cd._y1 = frame["y"].asInt() + frame["h"].asInt();
+
+				if (rotated)
+				{
+					res_txt_cd._x1 = frame["x"].asInt() + frame["h"].asInt();;
+					res_txt_cd._y1 = frame["y"].asInt() + frame["w"].asInt();
+				}
+			}
+		}
+
+	}
+}
 ImVec2 rotate_point_by_zaxis(ImVec2& tar, float angle, ImVec2& basePoint)
 {
 	ImVec2 des;
@@ -107,4 +253,100 @@ bool prepareFBO2(GLuint& textId, GLuint& fboId, GLuint frame_width, GLuint frame
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	return true;
+}
+
+#include <io.h>
+#include<direct.h>
+
+bool fileExist(const char* fileName)
+{
+	WIN32_FIND_DATA wfd;
+	HANDLE hHandle = ::FindFirstFile(fileName, &wfd);
+	if (hHandle == INVALID_HANDLE_VALUE)
+		return false;
+	else
+		return (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0;
+
+}
+
+bool directoryExist(const char* dir)
+{
+	WIN32_FIND_DATA wfd;
+	HANDLE hHandle = ::FindFirstFile(dir, &wfd);
+	if (hHandle == INVALID_HANDLE_VALUE)
+		return access(dir, 0) == 0; // if dir is a drive disk path like c:\,we thought is a directory too.  	
+	else
+		return (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
+}
+
+
+bool createDirectory(const char* pathName)
+{
+	char path[MAX_PATH] = { 0 };
+	const char* pos = pathName;
+	while ((pos = strchr(pos, '\\')) != NULL)
+	{
+		memcpy(path, pathName, pos - pathName + 1);
+		pos++;
+		if (directoryExist(path))
+		{
+			continue;
+		}
+		else
+		{
+			int ret = _mkdir(path);
+			if (ret == -1)
+			{
+				return false;
+			}
+		}
+	}
+	pos = pathName + strlen(pathName) - 1;
+	if (*pos != '\\')
+	{
+		return _mkdir(pathName) == 0;
+	}
+	return true;
+}
+
+
+
+bool createFileWithDirectory(const char* pathName)
+{
+	if (fileExist(pathName))
+		return true;
+	int len = strlen(pathName);
+	if (len <= 0)
+		return false;
+
+	char strTmpPath[MAX_PATH] = { 0 };
+	strcpy(strTmpPath, pathName);
+	char* q = strTmpPath + len - 1;
+	for (int i = 0; i < len - 1; i++, q--)
+	{
+		if (*q == '\\')
+		{
+			*q = '\0';
+			q++;
+			break;
+		}
+	}
+	if (strlen(strTmpPath) > 0 && strlen(q) > 0)
+	{
+		createDirectory(strTmpPath);
+		FILE* hFile = fopen(pathName, "w");
+		if (hFile)
+		{
+			fclose(hFile);
+			return true;
+		}
+		else
+			return false;
+
+	}
+	else
+	{
+		return false;
+	}
+
 }

@@ -3,9 +3,9 @@
 #include "material.h"
 #include "user_control_imgui.h"
 #include <fstream>
+#include "dir_output.h"
 #define FILE_NAME_LEN 50
-extern string g_cureent_project_file_path;
-const char* str_shaders_fold = "shaders\\";
+extern string g_cureent_directory;
 
 shared_ptr<af_shader> pshd_sel = nullptr;
 shared_ptr<material> pmateral_sel = nullptr;
@@ -99,13 +99,18 @@ void material_shader_edit::load_shader()
 		ImGui::InputText("fragment shader file", fs_name_str, FILE_NAME_LEN);			
 		if (ImGui::Button("add new shader"))
 		{
-			string str_shader_file = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-			str_shader_file += str_shaders_fold;
+			string str_shader_file = g_cureent_directory+shaders_fold;
 			string vs_file = str_shader_file + vs_name_str;
 			string fs_file = str_shader_file + fs_name_str;
 			string vs_code, fs_code;
 			ifstream ifs;
 			ifs.open(vs_file);
+			if (!ifs)
+			{
+				ifs.close();
+				MessageBox(GetForegroundWindow(), vs_file.c_str(), "compair vertex file failed", MB_OK);
+				goto COMPAIR_SHADER_END;
+			}
 			filebuf* pbuf = ifs.rdbuf();
 			size_t sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
 			pbuf->pubseekpos(0, ifs.in);
@@ -114,6 +119,12 @@ void material_shader_edit::load_shader()
 			pbuf->sgetn(&vs_code[0], sz_code);
 			ifs.close();
 			ifs.open(fs_file);
+			if (!ifs)
+			{
+				ifs.close();
+				MessageBox(GetForegroundWindow(), fs_file.c_str(), "compair fragment file failed", MB_OK);
+				goto COMPAIR_SHADER_END;
+			}
 			pbuf = ifs.rdbuf();
 			sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
 			pbuf->pubseekpos(0, ifs.in);
@@ -121,9 +132,9 @@ void material_shader_edit::load_shader()
 			fs_code.resize(sz_code);
 			pbuf->sgetn(&fs_code[0], sz_code);
 			ifs.close();
+COMPAIR_SHADER_END:
 			shared_ptr<af_shader> pshd = make_shared<af_shader>(vs_code.c_str(), fs_code.c_str());
 			if (pshd->is_valid())
-			
 			{
 				//compile_info = "";
 				pshd->set_name(shd_name_str);
@@ -132,9 +143,18 @@ void material_shader_edit::load_shader()
 				pshd->_fs_name = fs_name_str;
 				
 			}
+			else
+			{
+				MessageBox(GetForegroundWindow(), "compair shader file failed, please compair again after check!", "error", MB_OK);
+			}
 			memset(vs_name_str, 0, FILE_NAME_LEN);
 			memset(fs_name_str, 0, FILE_NAME_LEN);
 			memset(shd_name_str, 0, FILE_NAME_LEN);
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("cancel"))
+		{
 			ImGui::CloseCurrentPopup();
 		}
 		ImGui::EndPopup();
@@ -150,8 +170,7 @@ void material_shader_edit::draw_shader_item_property()
 	{
 		if (ImGui::Button("Refresh"))
 		{
-			string str_shader_file = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-			str_shader_file += str_shaders_fold;
+			string str_shader_file = g_cureent_directory+shaders_fold;
 			string vs_file = str_shader_file + pshd_sel->_vs_name;
 			string fs_file = str_shader_file + pshd_sel->_fs_name;
 			string vs_code, fs_code;
@@ -212,6 +231,11 @@ void material_shader_edit::draw_material()
 			pmaterial->set_name(mt_name_str);
 			g_material_list[mt_name_str] = pmaterial;
 			memset(mt_name_str, 0, FILE_NAME_LEN);
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Cancel"))
+		{
 			ImGui::CloseCurrentPopup();
 		}
 		ImGui::EndPopup();

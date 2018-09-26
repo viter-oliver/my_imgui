@@ -10,7 +10,7 @@
 				"x" : 960.0,
 				"y" : 360.0
 			},
-			"name" : "background",
+			"name" : "background123",
 			"screen_pos" : 
 			{
 				"x" : 0.0,
@@ -114,7 +114,53 @@
 				"h" : 600.0,
 				"w" : 800.0
 			},
-			"type" : "ft_scene3d"
+			"type" : "ft_scene"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 330.0,
+				"y" : 303.0
+			},
+			"name" : "pointer_left1",
+			"screen_pos" : 
+			{
+				"x" : 104.0,
+				"y" : 67.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 452.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 2,
+			"type" : "ft_image"
+		},
+		
+		{
+			"axipos" : 
+			{
+				"angle" : 0.0,
+				"x" : 330.0,
+				"y" : 303.0
+			},
+			"name" : "pointer_left2",
+			"screen_pos" : 
+			{
+				"x" : 104.0,
+				"y" : 67.0
+			},
+			"size" : 
+			{
+				"h" : 472.0,
+				"w" : 452.0
+			},
+			"texture_id_index" : 0,
+			"texture_index" : 2,
+			"type" : "ft_image"
 		}
 	],
 	"file_list" : [ "flame_blueish_smoke.js", "flame_fire.js", "flame_fire_smoke.js" ],
@@ -128,13 +174,13 @@
 		
 		{
 			"SizePixels" : 16.0,
-			"default" : true,
 			"name" : "DejaVuSans-Bold.ttf"
 		},
 		
 		{
 			"SizePixels" : 16.0,
-			"name" : "DejaVuSerif-BoldOblique.ttf"
+			"default" : true,
+			"name" : "DejaVuSans-BoldOblique.ttf"
 		}
 	],
 	"material_list" : 

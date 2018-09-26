@@ -10,6 +10,7 @@
 #include "SOIL.h"
 #include "texture.h"
 #include <fstream>
+#include "dir_output.h"
 /*
 field:
 texture_res_list
@@ -35,11 +36,11 @@ void texture_res_load::load_res_from_json(Value& jroot)
 	}
 }
 
-extern string g_cureent_project_file_path;
+extern string g_cureent_directory;
+
 bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, string& str_txt_data_file)
 {
-	string str_texture_pack_file = g_cureent_project_file_path.substr(0,g_cureent_project_file_path.find_last_of('\\')+1);
-	str_texture_pack_file += "texture_res_list\\";
+	string str_texture_pack_file = g_cureent_directory+text_res_fold;
 	string str_texture_data_file = str_texture_pack_file;
 		
 	str_texture_pack_file += str_txt_pack_file;

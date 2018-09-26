@@ -63,7 +63,7 @@ static GLFWcursor*  g_MouseCursors[ImGuiMouseCursor_COUNT] = { 0 };
 
 // OpenGL3 data
 static char         g_GlslVersion[32] = "#version 150";
-static GLuint       g_FontTexture = 0;
+/*static*/ GLuint       g_FontTexture = 0;
 static int          g_ShaderHandle = 0, g_VertHandle = 0, g_FragHandle = 0;
 static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
 static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
@@ -401,8 +401,10 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
     glVertexAttribPointer(g_AttribLocationPosition, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)IM_OFFSETOF(ImDrawVert, pos));
     glVertexAttribPointer(g_AttribLocationUV, 2, GL_FLOAT, GL_FALSE, sizeof(ImDrawVert), (GLvoid*)IM_OFFSETOF(ImDrawVert, uv));
     glVertexAttribPointer(g_AttribLocationColor, 4, GL_UNSIGNED_BYTE, GL_TRUE, sizeof(ImDrawVert), (GLvoid*)IM_OFFSETOF(ImDrawVert, col));
-
-    ImGui_ImplGlfwGL3_CreateFontsTexture();
+    if(!g_FontTexture)
+    {
+	  ImGui_ImplGlfwGL3_CreateFontsTexture();
+    }
 
     // Restore modified GL state
     glBindTexture(GL_TEXTURE_2D, last_texture);
@@ -514,8 +516,8 @@ void ImGui_ImplGlfwGL3_Shutdown()
 
 void ImGui_ImplGlfwGL3_NewFrame()
 {
-    if (!g_FontTexture)
-        ImGui_ImplGlfwGL3_CreateDeviceObjects();
+	if (!g_VboHandle)
+		ImGui_ImplGlfwGL3_CreateDeviceObjects();
 
     ImGuiIO& io = ImGui::GetIO();
 

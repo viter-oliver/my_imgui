@@ -2,6 +2,14 @@
 #include "ft_base.h"
 namespace auto_future
 {
+	enum anchor_type
+	{
+		en_anchor_top_left,
+		en_anchor_top_right,
+		en_anchor_bottom_right,
+		en_anchor_bottom_left,
+		en_anchor_center,
+	};
 	class AFG_EXPORT ft_image :
 		public ft_base
 	{
@@ -9,12 +17,14 @@ namespace auto_future
 		{
 			ImVec2 _size;
 			ImVec2 _axis_pos;
+			int _anchor_type = { en_anchor_top_left };
 			int _texture_index;
 			float _angle;
 			intl_pt() :_texture_index(0), _angle(0.0){}
 		};
 		intl_pt _img_pt;
 	public:
+		
 		ft_image() :ft_base(), _img_pt(){}
 		int collect_property_range(vproperty_list& vplist)
 		{
@@ -28,9 +38,53 @@ namespace auto_future
 		{
 			return _img_pt._size;
 		}
+		void set_size(ImVec2& im_size)
+		{
+			switch (_img_pt._anchor_type)
+			{
+			case en_anchor_top_right:
+				base_pos().x -= (im_size.x - _img_pt._size.x);
+				break;
+			case en_anchor_bottom_right:
+				base_pos().x -= (im_size.x - _img_pt._size.x);
+				base_pos().y -= (im_size.y - _img_pt._size.y);
+				break;
+			case en_anchor_bottom_left:
+				base_pos().y -= (im_size.y - _img_pt._size.y);
+				break;
+			case en_anchor_center:
+				base_pos().x -= (im_size.x - _img_pt._size.x)/2;
+				base_pos().y -= (im_size.y - _img_pt._size.y)/2;
+				break;
+			case en_anchor_top_left:
+			default:
+				break;
+			}
+			_img_pt._size = im_size;
+		}
+		void set_anchor_type(anchor_type antp)
+		{
+			_img_pt._anchor_type = antp;
+		}
+		void set_texture_id(int texture_id)
+		{
+			_img_pt._texture_index = texture_id;
+		}
+		int get_texture_id()
+		{
+			return _img_pt._texture_index;
+		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page();
+		enum 
+		{
+			en_parent_property=1,
+			en_geometry_property=2,
+			en_texture_property=8,
+		};
+		bool befirst_draw = { true };
+		ImVec2 _edit_size;
+		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

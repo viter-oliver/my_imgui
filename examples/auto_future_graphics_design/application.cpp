@@ -88,19 +88,35 @@ namespace auto_future
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
 		ImGui_ImplGlfwGL3_Init(_window, true);
-		init_internal_primitive_list();
-		ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-		base_ui_component* _proot = NULL;
+		
+		ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 1.00f); //ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+		//base_ui_component* _proot = NULL;
 		if (!_cureent_project_file_path.empty())
 		{
 			//_proot = new ft_base;
 			afb_load afl(_proot);
+			//std::bind(&play_back_node::btnclk_##x, this, std::placeholders::_1)
+			afl.set_impl(std::bind(&application::init_ui_component, this, std::placeholders::_1));
 			afl.load_afb(_cureent_project_file_path.c_str());
 			resLoaded();
 		}
+		init_internal_primitive_list();
 		// Setup style
 		//ImGui::StyleColorsLight();
-		ImGui::StyleColorsClassic();
+		ImGui::StyleColorsDark();
+#if 0
+		printf("externsions=%s\n", glGetString(GL_EXTENSIONS));
+		GLint n;
+		glGetIntegerv(GL_NUM_EXTENSIONS, &n);
+		if (n > 0)
+		{
+			GLint i;
+			for (i = 0; i < n; i++)
+			{
+				printf("%s\n", glGetStringi(GL_EXTENSIONS, i));
+			}
+		}
+#endif
 		while (!glfwWindowShouldClose(_window))
 		{
 			// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
@@ -110,10 +126,14 @@ namespace auto_future
 			glfwPollEvents();
 			ImGui_ImplGlfwGL3_NewFrame();
 			ImGui::SetNextWindowSize(ImVec2(1920, 720), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowBgAlpha(1.f);
 			static bool show_app = true;
+			ImGuiStyle& style = ImGui::GetStyle();
+			style.Alpha = 1.f;
+			style.WindowRounding = 0.f;
 			ImGui::Begin("edit window", &show_app, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
 			//
-			preRender();
+			onUpdate();
 			if (_proot)
 			{
 				_proot->draw();

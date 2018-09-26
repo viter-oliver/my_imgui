@@ -12,10 +12,10 @@ namespace auto_future
 		return val * val;
 	}
 #define qu1et_thr_length(a, b) sqrt(qu1et_square<float>(a) + qu1et_square<float>(b))
-	//¼ÆËãµ¥¸öËÄ±ßĞÎ²ÎÓëÖÜ³¤ÔËËãµÄ³¤¶È
+	//è®¡ç®—å•ä¸ªå››è¾¹å½¢å‚ä¸å‘¨é•¿è¿ç®—çš„é•¿åº¦
 #define qu1et_one_quadrangle_length(a, b, c, d) (qu1et_thr_length(d.x-a.x, d.y-a.y) + qu1et_thr_length(b.x-c.x, b.y-c.y))/2
 
-	//¼ÆËãĞ¡¾ØĞÎÖĞÉÏÏÂµÄµã×ø±ê
+	//è®¡ç®—å°çŸ©å½¢ä¸­ä¸Šä¸‹çš„ç‚¹åæ ‡
 #define qu1et_top_point_pos_x_of_square(a, b, c, d, l, h)  l*abs(d.x - a.x)/h + a.x
 #define qu1et_top_point_pos_y_of_square(a, b, c, d, l, h) l*abs(d.y - a.y)/h + a.y
 #define qu1et_bottom_point_pos_x_of_square(a, b, c, d, l, h) l*abs(c.x - b.x)/h + b.x
@@ -33,11 +33,52 @@ namespace auto_future
 	ft_slider::ft_slider()
 		:ft_base(), _slider_pt()
 	{
-		memset(&_cbuffer_random_text, 0, sizeof(_cbuffer_random_text));
+		memset(&_slider_pt._cbuffer_random_text, 0, sizeof(_slider_pt._cbuffer_random_text));
 	}
 
 	bool ft_slider::read_point_position_file(const char *str)
 	{
+		auto ij = g_mfiles_list.find(str);
+		if (ij == g_mfiles_list.end())
+		{
+			return  false;
+		}
+		printf("*****file size %d\n", ij->second->_fsize);
+
+		char *_pData = (char *)ij->second->_pbin;
+
+		string line;
+		int i = 0;
+		while (i<ij->second->_fsize)
+		{
+			if (_pData[i] != '\n')
+			{
+				line += _pData[i];
+			}
+			else
+			{
+				int n, n1, n2;
+				if (line.npos == (n = line.find('/'))) break;
+				//printf("lin.length:%d\n", line.length());
+				std::string str1 = line.substr(0, n);
+				//printf("str1:%s\n", str1.c_str());
+				std::string str2 = line.substr(n + 1, line.length() - n - 1);
+				//printf("str2:%s\n", str2.c_str());
+				if (str1.npos == (n1 = str1.find(','))) break;
+				if (str2.npos == (n2 = str2.find(','))) break;
+
+				ImVec2 _top_point = { (float)atof(str1.substr(0, n1).c_str()), (float)atof(str1.substr(n1 + 1, str1.length()).c_str()) };
+				//printf("top:(%f,%f)\n", _top_point.x, _top_point.y);
+				ImVec2 _bottom_point = { (float)atof(str2.substr(0, n2).c_str()), (float)atof(str2.substr(n2 + 1, str2.length()).c_str()) };
+				//printf("bottom:(%f,%f)\n", _bottom_point.x, _bottom_point.y);
+				ft_slider_random_point_vec.emplace_back(_top_point, _bottom_point);
+
+				line.clear();
+			}
+			i++;
+		}
+
+#if 0 //æ³¨é‡Šè¯»å–æ–‡ä»¶ï¼Œæ–‡æœ¬å†…å®¹ä»æ–‡ä»¶åˆ—è¡¨ä¸­è¯»å–
 		std::ifstream file(str);
 		if (!file)
 		{
@@ -61,7 +102,9 @@ namespace auto_future
 			ImVec2 _bottom_point = { (float)atof(str2.substr(0, n2).c_str()), (float)atof(str2.substr(n2 + 1, str2.length()).c_str()) };
 			ft_slider_random_point_vec.emplace_back(_top_point, _bottom_point);
 		}
-		//¼ÆËãÖÜ³¤
+#endif
+
+		//è®¡ç®—å‘¨é•¿
 		auto it = ft_slider_random_point_vec.begin();
 		for (; it != (ft_slider_random_point_vec.end() - 1); ++it)
 		{
@@ -84,8 +127,8 @@ namespace auto_future
 		}
 		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
 		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
-		float sizew = _bg_texture_size.x;
-		float sizeh = _bg_texture_size.y;
+		float sizew = _slider_pt._bg_texture_size.x;
+		float sizeh = _slider_pt._bg_texture_size.y;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
@@ -122,14 +165,14 @@ namespace auto_future
 		abpos = absolute_coordinate_of_base_pos();
 		winpos = ImGui::GetWindowPos();
 
-		if (2 == _slider_pt._direction_item) //ÈÎÒâ¹ìµÀ
+		if (2 == _slider_pt._direction_item) //ä»»æ„è½¨é“
 		{
-			if (0 == _random_all_length) return; //µÚÒ»´Î½øÈërandomÊ±ÅĞ¶Ï
+			if (0 == _random_all_length) return; //ç¬¬ä¸€æ¬¡è¿›å…¥randomæ—¶åˆ¤æ–­
 			float _tmp_length = 0.f, _tmp_distance = 0.f;
 			int _n_tmp_count = 0;
 
 			auto it = ft_slider_random_point_vec.begin();
-			//³õÊ¼×ø±ê
+			//åˆå§‹åæ ‡
 			_pre_point_2vec2 = *it;
 			_next_point_2vec2 = *(it + 1);
 
@@ -150,45 +193,45 @@ namespace auto_future
 				}
 			}
 
-			//ËÄ±ßĞÎ ÉÏ\ÏÂ\ÖĞ ±ß³¤
+			//å››è¾¹å½¢ ä¸Š\ä¸‹\ä¸­ è¾¹é•¿
 			float _top_distance = 0.f, _bottom_distance = 0.f, _mid_distance = 0.f;
 			_top_distance = qu1et_thr_length(abs(_pre_point_2vec2.top_point.x - _next_point_2vec2.top_point.x), abs(_pre_point_2vec2.top_point.y - _next_point_2vec2.top_point.y));
 			_bottom_distance = qu1et_thr_length(abs(_pre_point_2vec2.bottom_point.x - _next_point_2vec2.bottom_point.x), abs(_pre_point_2vec2.bottom_point.y - _next_point_2vec2.bottom_point.y));
 			_mid_distance = (_top_distance + _bottom_distance) / 2.f;
 
-			//²ÎÓëÔËËãµÄÉÏÏÂ³¤¶È²î
+			//å‚ä¸è¿ç®—çš„ä¸Šä¸‹é•¿åº¦å·®
 			float _top_l_1 = 0.f, _bottom_l_1 = 0.f;
 			_top_l_1 = (_random_all_length*_slider_pt._position - _tmp_length)*_top_distance / _mid_distance;
 			_bottom_l_1 = (_random_all_length*_slider_pt._position - _tmp_length)*_bottom_distance / _mid_distance;
 
-			//ÉÏ×ø±ê()
+			//ä¸Šåæ ‡()
 			_current_point_2vec2_thumb_use.top_point.x = _top_l_1 * (_next_point_2vec2.top_point.x - _pre_point_2vec2.top_point.x) / _top_distance + _pre_point_2vec2.top_point.x;
 			_current_point_2vec2_thumb_use.top_point.y = _top_l_1 * (_next_point_2vec2.top_point.y - _pre_point_2vec2.top_point.y) / _top_distance + _pre_point_2vec2.top_point.y;
 
-			//ÏÂ×ø±ê()
+			//ä¸‹åæ ‡()
 			_current_point_2vec2_thumb_use.bottom_point.x = _bottom_l_1 * (_next_point_2vec2.bottom_point.x - _pre_point_2vec2.bottom_point.x) / _bottom_distance + _pre_point_2vec2.bottom_point.x;
 			_current_point_2vec2_thumb_use.bottom_point.y = _bottom_l_1 * (_next_point_2vec2.bottom_point.y - _pre_point_2vec2.bottom_point.y) / _bottom_distance + _pre_point_2vec2.bottom_point.y;
 
 
 			float tmp_float = 0.f;
-			for (auto it = ft_slider_random_point_vec.begin(); it != ft_slider_random_point_vec.end() - 1; ++it) //»­½ø¶È
+			for (auto it = ft_slider_random_point_vec.begin(); it != ft_slider_random_point_vec.end() - 1; ++it) //ç”»è¿›åº¦
 			{
-				//½«´Ëµã×÷ÎªÔ­µã½øĞĞ¼ÆËã
+				//å°†æ­¤ç‚¹ä½œä¸ºåŸç‚¹è¿›è¡Œè®¡ç®—
 				ImVec2 uv = ImVec2((ptext_cd[_slider_pt._texture_head_index]._x0) / texture_width, (ptext_cd[_slider_pt._texture_head_index]._y0) / texture_height);
 				/*
-				* @brief ÏÈ¼ÆËã³ö¶¥µãÊı¾İ£¬´ÓÍâ²¿µ¼ÈëµÄ¶¥µãÊı¾İÊÇµ¥¸öÍ¼Æ¬µÄÎÆÀí×ø±êÎ»ÖÃµÄÎ»ÖÃ¡£
-				*		 ¼ÆËãÎÆÀí×ø±êÊÇÏà¶ÔÓÚÔ­Ê¼µÄµ¥¸öÍ¼Æ¬×óÉÏ½ÇµÚÒ»¸öµãÀ´¼ÆËã
+				* @brief å…ˆè®¡ç®—å‡ºé¡¶ç‚¹æ•°æ®ï¼Œä»å¤–éƒ¨å¯¼å…¥çš„é¡¶ç‚¹æ•°æ®æ˜¯å•ä¸ªå›¾ç‰‡çš„çº¹ç†åæ ‡ä½ç½®çš„ä½ç½®ã€‚
+				*		 è®¡ç®—çº¹ç†åæ ‡æ˜¯ç›¸å¯¹äºåŸå§‹çš„å•ä¸ªå›¾ç‰‡å·¦ä¸Šè§’ç¬¬ä¸€ä¸ªç‚¹æ¥è®¡ç®—
 				*
 				*/
 				if ((tmp_float += qu1et_one_quadrangle_length(it->top_point, it->bottom_point, (it + 1)->bottom_point, (it + 1)->top_point)) > _random_all_length*_slider_pt._position)
 				{
-					//×ÔÉí×ø±ê
+					//è‡ªèº«åæ ‡
 					pos1 = { abpos.x + winpos.x + it->top_point.x, abpos.y + winpos.y + it->top_point.y };
 					pos2 = { abpos.x + winpos.x + it->bottom_point.x, abpos.y + winpos.y + it->bottom_point.y };
 					pos3 = { abpos.x + winpos.x + _current_point_2vec2_thumb_use.bottom_point.x, abpos.y + winpos.y + _current_point_2vec2_thumb_use.bottom_point.y };
 					pos4 = { abpos.x + winpos.x + _current_point_2vec2_thumb_use.top_point.x, abpos.y + winpos.y + _current_point_2vec2_thumb_use.top_point.y };
 
-					//ÒÀ¿¿¸¸½ÚµãµÄ×ø±êºÍ½Ç¶È¼ÆËã
+					//ä¾é çˆ¶èŠ‚ç‚¹çš„åæ ‡å’Œè§’åº¦è®¡ç®—
 					if (_slider_pt._bg_angle != 0.f)
 					{
 						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
@@ -197,7 +240,7 @@ namespace auto_future
 						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
 					}
 
-					//¼ÓÉÏ×ÔÉíµÄÆ«ÒÆÁ¿
+					//åŠ ä¸Šè‡ªèº«çš„åç§»é‡
 					pos1 += _slider_pt._head_pos;
 					pos2 += _slider_pt._head_pos;
 					pos3 += _slider_pt._head_pos;
@@ -213,13 +256,13 @@ namespace auto_future
 				}
 				else
 				{
-					//×ÔÉí×ø±ê
+					//è‡ªèº«åæ ‡
 					pos1 = { abpos.x + winpos.x + it->top_point.x, abpos.y + winpos.y + it->top_point.y };
 					pos2 = { abpos.x + winpos.x + it->bottom_point.x, abpos.y + winpos.y + it->bottom_point.y };
 					pos3 = { abpos.x + winpos.x + (it + 1)->bottom_point.x, abpos.y + winpos.y + (it + 1)->bottom_point.y };
 					pos4 = { abpos.x + winpos.x + (it + 1)->top_point.x, abpos.y + winpos.y + (it + 1)->top_point.y };
 
-					//ÒÀ¿¿¸¸½ÚµãµÄ×ø±êºÍ½Ç¶È¼ÆËã
+					//ä¾é çˆ¶èŠ‚ç‚¹çš„åæ ‡å’Œè§’åº¦è®¡ç®—
 					if (_slider_pt._bg_angle != 0.f)
 					{
 						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
@@ -228,7 +271,7 @@ namespace auto_future
 						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
 					}
 
-					//¼ÓÉÏ×ÔÉíµÄÆ«ÒÆÁ¿
+					//åŠ ä¸Šè‡ªèº«çš„åç§»é‡
 					pos1 += _slider_pt._head_pos;
 					pos2 += _slider_pt._head_pos;
 					pos3 += _slider_pt._head_pos;
@@ -247,8 +290,8 @@ namespace auto_future
 		{
 			if (0 == _slider_pt._direction_item)
 			{
-				sizew = _head_texture_size.x *_slider_pt._position;
-				sizeh = _head_texture_size.y;
+				sizew = _slider_pt._head_texture_size.x *_slider_pt._position;
+				sizeh = _slider_pt._head_texture_size.y;
 
 				pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
 				pos2 = { pos1.x, pos1.y + sizeh };
@@ -257,8 +300,8 @@ namespace auto_future
 			}
 			else if (1 == _slider_pt._direction_item)
 			{
-				sizew = _head_texture_size.x;
-				sizeh = _head_texture_size.y *_slider_pt._position;
+				sizew = _slider_pt._head_texture_size.x;
+				sizeh = _slider_pt._head_texture_size.y *_slider_pt._position;
 
 				pos1 = { abpos.x + winpos.x, abpos.y + winpos.y - sizeh };
 				pos2 = { pos1.x, abpos.y + winpos.y };
@@ -299,13 +342,14 @@ namespace auto_future
 		}
 		/***********************************************************thumb*********************************************************/
 		//thumb
-		if (2 == _slider_pt._direction_item) //ÈÎÒâ¹ìµÀÊ±£¬Í¼±êÒÆ¶¯¼ÆËã
+		if (!_slider_pt._thumb_visible) return;
+		if (2 == _slider_pt._direction_item) //ä»»æ„è½¨é“æ—¶ï¼Œå›¾æ ‡ç§»åŠ¨è®¡ç®—
 		{
 			/*
-			 * @brief ×Ô¶¨Òå¹ìµÀÊ±ÓÎ±êµÄÎ»ÖÃ£¬Ä¿Ç°×ö·¨²»Âú×ãÒ»°ãĞèÇó£¬Ğè¸Ä±ä¡£
-			 * Ä¿Ç°×ö·¨£ºÈ·¶¨µ±Ç°Î»ÖÃµÄÖĞĞÄµãºó£¬ÒÀ¿¿Í¼Æ¬µÄ³¤ºÍ¿íËã³ö¶ÔÓ¦µÄ¶¨µã×ø±ê
-			 * µ¼ÖÂµÄÎÊÌâ£¬Í¼Æ¬²»ÄÜĞı×ª¡£
-			 * ºóĞø×ö·¨ÔÙÈ·¶¨
+			 * @brief è‡ªå®šä¹‰è½¨é“æ—¶æ¸¸æ ‡çš„ä½ç½®ï¼Œç›®å‰åšæ³•ä¸æ»¡è¶³ä¸€èˆ¬éœ€æ±‚ï¼Œéœ€æ”¹å˜ã€‚
+			 * ç›®å‰åšæ³•ï¼šç¡®å®šå½“å‰ä½ç½®çš„ä¸­å¿ƒç‚¹åï¼Œä¾é å›¾ç‰‡çš„é•¿å’Œå®½ç®—å‡ºå¯¹åº”çš„å®šç‚¹åæ ‡
+			 * å¯¼è‡´çš„é—®é¢˜ï¼Œå›¾ç‰‡ä¸èƒ½æ—‹è½¬ã€‚
+			 * åç»­åšæ³•å†ç¡®å®š
 			 */
 
 			ImVec2 _center_positon_point = ImVec2((_current_point_2vec2_thumb_use.top_point.x + _current_point_2vec2_thumb_use.bottom_point.x) / 2, (_current_point_2vec2_thumb_use.top_point.y + _current_point_2vec2_thumb_use.bottom_point.y) / 2);
@@ -315,13 +359,13 @@ namespace auto_future
 			ImVec2 uv2 = ImVec2((ptext_cd[_slider_pt._texture_thumb_index]._x1) / texture_width, (ptext_cd[_slider_pt._texture_thumb_index]._y1) / texture_height);
 			ImVec2 uv3 = ImVec2((ptext_cd[_slider_pt._texture_thumb_index]._x1) / texture_width, (ptext_cd[_slider_pt._texture_thumb_index]._y0) / texture_height);
 
-			//´°¿Ú×ø±ê¼Ó×ÔÉí×ø±ê
-			pos1 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y - _thumb_texture_size.y / 2);
-			pos2 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y + _thumb_texture_size.y / 2);
-			pos3 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y + _thumb_texture_size.y / 2);
-			pos4 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y - _thumb_texture_size.y / 2);
+			//çª—å£åæ ‡åŠ è‡ªèº«åæ ‡
+			pos1 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._thumb_texture_size.y / 2);
+			pos2 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._thumb_texture_size.y / 2);
+			pos3 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._thumb_texture_size.y / 2);
+			pos4 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._thumb_texture_size.y / 2);
 
-			//ÒÀ¿¿¸¸½ÚµãµÄ×ø±êºÍ½Ç¶È¼ÆËã
+			//ä¾é çˆ¶èŠ‚ç‚¹çš„åæ ‡å’Œè§’åº¦è®¡ç®—
 			if (_slider_pt._bg_angle != 0.f)
 			{
 				pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
@@ -334,6 +378,23 @@ namespace auto_future
 			pos2 += _slider_pt._thumb_pos;
 			pos3 += _slider_pt._thumb_pos;
 			pos4 += _slider_pt._thumb_pos;
+
+			//è®¡ç®—å½“å‰è½¨é“çš„è§’åº¦åæ—‹è½¬å››ä¸ªç‚¹ _next_point_2vec2.top  _pre_point_2vec2.top
+			//æ³¨é‡Šï¼šç”±äºè§’åº¦è®¡ç®—æ˜¯æ ¹æ®é‡‡é›†çš„ç‚¹è¿›è¡Œçš„ï¼Œæ‰€ä»¥å—é‡‡é›†ç‚¹å½±å“æ¯”è¾ƒå¤§ï¼Œè¦åšåˆ°æ—‹è½¬å¾ˆéš¾
+			//
+			//float _ang = atan((_next_point_2vec2.top_point.y - _pre_point_2vec2.top_point.y) / (_next_point_2vec2.top_point.x - _pre_point_2vec2.top_point.x));
+			//ImVec2 _center_tmp(_center_positon_point.x +abpos.x + winpos.x, _center_positon_point.y +abpos.y + winpos.y); //ä¸­å¿ƒç‚¹éœ€åŠ çª—å£åæ ‡
+			//pos1 = rotate_point_by_zaxis(pos1, _ang, _center_tmp);
+			//pos2 = rotate_point_by_zaxis(pos2, _ang, _center_tmp);
+			//pos3 = rotate_point_by_zaxis(pos3, _ang, _center_tmp);
+			//pos4 = rotate_point_by_zaxis(pos4, _ang, _center_tmp);
+
+			//printf("angle:%f\n", _ang);
+			//printf("_center_positon_point:%f,%f\n", _center_tmp.x, _center_tmp.y);
+			//printf("pos1:%f,%f\n", pos1.x, pos1.y);
+			//printf("pos2:%f,%f\n", pos2.x, pos2.y);
+			//printf("pos3:%f,%f\n", pos3.x, pos3.y);
+			//printf("pos4:%f,%f\n", pos4.x, pos4.y);
 
 			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		}
@@ -351,9 +412,9 @@ namespace auto_future
 			winpos = ImGui::GetWindowPos();
 
 			pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
-			pos2 = { pos1.x, pos1.y + _thumb_texture_size.y };
-			pos3 = { pos1.x + _thumb_texture_size.x, pos1.y + _thumb_texture_size.y };
-			pos4 = { pos1.x + _thumb_texture_size.x, pos1.y };
+			pos2 = { pos1.x, pos1.y + _slider_pt._thumb_texture_size.y };
+			pos3 = { pos1.x + _slider_pt._thumb_texture_size.x, pos1.y + _slider_pt._thumb_texture_size.y };
+			pos4 = { pos1.x + _slider_pt._thumb_texture_size.x, pos1.y };
 
 			uv0 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index]._x0 / texture_width, ptext_cd[_slider_pt._texture_thumb_index]._y0 / texture_height);
 			uv1 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index]._x0 / texture_width, (ptext_cd[_slider_pt._texture_thumb_index]._y1) / texture_height);
@@ -370,17 +431,17 @@ namespace auto_future
 			pos4 += _slider_pt._thumb_pos;
 			if (0 == _slider_pt._direction_item)
 			{
-				pos1.x += _head_texture_size.x*_slider_pt._position;
-				pos2.x += _head_texture_size.x*_slider_pt._position;
-				pos3.x += _head_texture_size.x*_slider_pt._position;
-				pos4.x += _head_texture_size.x*_slider_pt._position;
+				pos1.x += _slider_pt._head_texture_size.x*_slider_pt._position;
+				pos2.x += _slider_pt._head_texture_size.x*_slider_pt._position;
+				pos3.x += _slider_pt._head_texture_size.x*_slider_pt._position;
+				pos4.x += _slider_pt._head_texture_size.x*_slider_pt._position;
 			}
 			else if (1 == _slider_pt._direction_item)
 			{
-				pos1.y -= _head_texture_size.y*_slider_pt._position;
-				pos2.y -= _head_texture_size.y*_slider_pt._position;
-				pos3.y -= _head_texture_size.y*_slider_pt._position;
-				pos4.y -= _head_texture_size.y*_slider_pt._position;
+				pos1.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
+				pos2.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
+				pos3.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
+				pos4.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
 			}
 
 			pos1 = rotate_point_by_zaxis(pos1, 0.f, axisBasePos);
@@ -409,7 +470,7 @@ namespace auto_future
 		*out_str = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[idx]._file_name.c_str();
 		return true;
 	}
-	void ft_slider::draw_peroperty_page()
+	void ft_slider::draw_peroperty_page(int property_part)
 	{
 		ft_base::draw_peroperty_page();
 		ImGui::Spacing();
@@ -423,13 +484,18 @@ namespace auto_future
 		if (2 == _slider_pt._direction_item)
 		{
 			ImGui::Text("import file:");
-			ImGui::InputText("", _cbuffer_random_text, sizeof(_cbuffer_random_text));
+			ImGui::InputText("", _slider_pt._cbuffer_random_text, sizeof(_slider_pt._cbuffer_random_text));
 			ImGui::SameLine();
 			if (ImGui::Button("import"))
 			{
-				if (NULL == _cbuffer_random_text) return;
-				read_point_position_file(_cbuffer_random_text);
+				if (NULL == _slider_pt._cbuffer_random_text) return;
+				if (read_point_position_file(_slider_pt._cbuffer_random_text))
+				{
+					MessageBox(GetForegroundWindow(), _slider_pt._cbuffer_random_text, "read point file success", MB_OK);
+				}
 			}
+			ImGui::SameLine();
+			ShowHelpMarker("file must from file list, so we must load file before!\n");
 		}
 		ImGui::Text("axi pos:");
 		ImGui::SliderFloat("ax", &_slider_pt._bg_axi_pos.x, 1.f, base_ui_component::screenw);
@@ -446,8 +512,8 @@ namespace auto_future
 		float reswidth = res_coors[_slider_pt._texture_bg_index].owidth();
 		float resheight = res_coors[_slider_pt._texture_bg_index].oheight();
 		ImGui::Text("original size:%f,%f", reswidth, resheight);
-		_bg_texture_size.x = reswidth;
-		_bg_texture_size.y = resheight;
+		_slider_pt._bg_texture_size.x = reswidth;
+		_slider_pt._bg_texture_size.y = resheight;
 		ImGui::Spacing();
 		if (reswidth > 0)
 		{
@@ -473,8 +539,8 @@ namespace auto_future
 		float reswidth1 = res_coors1[_slider_pt._texture_head_index].owidth();
 		float resheight1 = res_coors1[_slider_pt._texture_head_index].oheight();
 		ImGui::Text("original size:%f,%f", reswidth1, resheight1);
-		_head_texture_size.x = reswidth1;
-		_head_texture_size.y = resheight1;
+		_slider_pt._head_texture_size.x = reswidth1;
+		_slider_pt._head_texture_size.y = resheight1;
 		ImGui::Spacing();
 		if (reswidth1 > 0)
 		{
@@ -489,31 +555,35 @@ namespace auto_future
 			ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 		}
 		/*****************************************************thumb***********************************************************/
-		ImGui::Text("thumb pos:");
-		ImGui::SliderFloat("thumb w", &_slider_pt._thumb_pos.x, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("thumb h", &_slider_pt._thumb_pos.y, 0.f, base_ui_component::screenh);
-		ImGui::Text("thumb image:");
-		auto& res_coors2 = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
-		ImGui::Combo("texture index2:", &_slider_pt._texture_thumb_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
-		ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
-		ImGui::Spacing();
-		float reswidth2 = res_coors2[_slider_pt._texture_thumb_index].owidth();
-		float resheight2 = res_coors2[_slider_pt._texture_thumb_index].oheight();
-		ImGui::Text("original size:%f,%f", reswidth2, resheight2);
-		_thumb_texture_size.x = reswidth2;
-		_thumb_texture_size.y = resheight2;
-		ImGui::Spacing();
-		if (reswidth2 > 0)
+		ImGui::Checkbox("thumb visible", &_slider_pt._thumb_visible);
+		if (_slider_pt._thumb_visible)
 		{
-			float draw_height = imge_edit_view_width*resheight2 / reswidth2;
-			ImVec2 draw_size(imge_edit_view_width, draw_height);
-			int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
-			float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-			float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+			ImGui::Text("thumb pos:");
+			ImGui::SliderFloat("thumb w", &_slider_pt._thumb_pos.x, 0.f, base_ui_component::screenw);
+			ImGui::SliderFloat("thumb h", &_slider_pt._thumb_pos.y, 0.f, base_ui_component::screenh);
+			ImGui::Text("thumb image:");
+			auto& res_coors2 = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+			ImGui::Combo("texture index2:", &_slider_pt._texture_thumb_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+			ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
+			ImGui::Spacing();
+			float reswidth2 = res_coors2[_slider_pt._texture_thumb_index].owidth();
+			float resheight2 = res_coors2[_slider_pt._texture_thumb_index].oheight();
+			ImGui::Text("original size:%f,%f", reswidth2, resheight2);
+			_slider_pt._thumb_texture_size.x = reswidth2;
+			_slider_pt._thumb_texture_size.y = resheight2;
+			ImGui::Spacing();
+			if (reswidth2 > 0)
+			{
+				float draw_height = imge_edit_view_width*resheight2 / reswidth2;
+				ImVec2 draw_size(imge_edit_view_width, draw_height);
+				int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+				float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
+				float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 
-			ImVec2 uv0(res_coors2[_slider_pt._texture_thumb_index]._x0 / wtexture_width, res_coors2[_slider_pt._texture_thumb_index]._y0 / wtexture_height);
-			ImVec2 uv1(res_coors2[_slider_pt._texture_thumb_index]._x1 / wtexture_width, res_coors2[_slider_pt._texture_thumb_index]._y1 / wtexture_height);
-			ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+				ImVec2 uv0(res_coors2[_slider_pt._texture_thumb_index]._x0 / wtexture_width, res_coors2[_slider_pt._texture_thumb_index]._y0 / wtexture_height);
+				ImVec2 uv1(res_coors2[_slider_pt._texture_thumb_index]._x1 / wtexture_width, res_coors2[_slider_pt._texture_thumb_index]._y1 / wtexture_height);
+				ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+			}
 		}
 	}
 
@@ -523,7 +593,7 @@ namespace auto_future
 
 		_slider_pt._position = jvalue["progress_value"].asDouble();
 		_slider_pt._direction_item = jvalue["direction"].asInt();
-		strcpy(_cbuffer_random_text, jvalue["random_point_file"].asString().c_str());
+		strcpy(_slider_pt._cbuffer_random_text, jvalue["random_point_file"].asString().c_str());
 
 		Value& bg = jvalue["bg_pos"];
 		_slider_pt._bg_axi_pos.y = bg["bg_pos_h"].asDouble();
@@ -540,22 +610,23 @@ namespace auto_future
 		_slider_pt._thumb_pos.y = thumb["thumb_pos_h"].asDouble();
 		_slider_pt._thumb_pos.x = thumb["thumb_pos_w"].asDouble();
 		_slider_pt._texture_thumb_index = thumb["thumb_texture_index"].asInt();
+		_slider_pt._thumb_visible = thumb["thumb_visible"].asBool();
 
 		Value& slidersize = jvalue["slider_size"];
-		_bg_texture_size.x = slidersize["bg_texture_size_w"].asDouble();
-		_bg_texture_size.y = slidersize["bg_texture_size_h"].asDouble();
+		_slider_pt._bg_texture_size.x = slidersize["bg_texture_size_w"].asDouble();
+		_slider_pt._bg_texture_size.y = slidersize["bg_texture_size_h"].asDouble();
 
-		_head_texture_size.x = slidersize["head_texture_size_w"].asDouble();
-		_head_texture_size.y = slidersize["head_texture_size_h"].asDouble();
+		_slider_pt._head_texture_size.x = slidersize["head_texture_size_w"].asDouble();
+		_slider_pt._head_texture_size.y = slidersize["head_texture_size_h"].asDouble();
 
-		_thumb_texture_size.x = slidersize["thumb_texture_size_w"].asDouble();
-		_thumb_texture_size.y = slidersize["thumb_texture_size_h"].asDouble();
+		_slider_pt._thumb_texture_size.x = slidersize["thumb_texture_size_w"].asDouble();
+		_slider_pt._thumb_texture_size.y = slidersize["thumb_texture_size_h"].asDouble();
 
-		if (2 == _slider_pt._direction_item) //Èç¹û±£´æµÄÊÇrandom£¬ÕâÊ±ºò¾ÍĞè´ÓÎÄ¼şÖĞ¶Á³öµãÊı¾İ
+		if (2 == _slider_pt._direction_item) //å¦‚æœä¿å­˜çš„æ˜¯randomï¼Œè¿™æ—¶å€™å°±éœ€ä»æ–‡ä»¶ä¸­è¯»å‡ºç‚¹æ•°æ®
 		{
-			printf("filename:%s\n", _cbuffer_random_text);
-			if (NULL == _cbuffer_random_text) return true;
-			read_point_position_file(_cbuffer_random_text);
+			printf("filename:%s\n", _slider_pt._cbuffer_random_text);
+			if (NULL == _slider_pt._cbuffer_random_text) return true;
+			read_point_position_file(_slider_pt._cbuffer_random_text);
 		}
 
 		return true;
@@ -566,7 +637,7 @@ namespace auto_future
 		ft_base::init_json_unit(junit);
 		junit["progress_value"] = _slider_pt._position;
 		junit["direction"] = _slider_pt._direction_item;
-		junit["random_point_file"] = _cbuffer_random_text;
+		junit["random_point_file"] = _slider_pt._cbuffer_random_text;
 
 		Value bg(objectValue);
 		bg["bg_pos_w"] = _slider_pt._bg_axi_pos.x;
@@ -585,25 +656,23 @@ namespace auto_future
 		thumb["thumb_pos_w"] = _slider_pt._thumb_pos.x;
 		thumb["thumb_pos_h"] = _slider_pt._thumb_pos.y;
 		thumb["thumb_texture_index"] = _slider_pt._texture_thumb_index;
+		thumb["thumb_visible"] = _slider_pt._thumb_visible;
 		junit["thumb_pos"] = thumb;
 
 		Value slidersize(objectValue);
-		slidersize["bg_texture_size_w"] = _bg_texture_size.x;
-		slidersize["bg_texture_size_h"] = _bg_texture_size.y;
+		slidersize["bg_texture_size_w"] = _slider_pt._bg_texture_size.x;
+		slidersize["bg_texture_size_h"] = _slider_pt._bg_texture_size.y;
 
-		slidersize["head_texture_size_w"] = _head_texture_size.x;
-		slidersize["head_texture_size_h"] = _head_texture_size.y;
+		slidersize["head_texture_size_w"] = _slider_pt._head_texture_size.x;
+		slidersize["head_texture_size_h"] = _slider_pt._head_texture_size.y;
 
-		slidersize["thumb_texture_size_w"] = _thumb_texture_size.x;
-		slidersize["thumb_texture_size_h"] = _thumb_texture_size.y;
+		slidersize["thumb_texture_size_w"] = _slider_pt._thumb_texture_size.x;
+		slidersize["thumb_texture_size_h"] = _slider_pt._thumb_texture_size.y;
 		junit["slider_size"] = slidersize;
 
 		return true;
 	}
 #endif
 
-	bool ft_slider::handle_mouse()
-	{
-		return false;
-	}
+	
 }

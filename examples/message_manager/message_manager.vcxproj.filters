@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="msg_host">
+      <UniqueIdentifier>{bbbc093f-33d1-4447-baca-f7438a1ad561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="msg_filters_n">
+      <UniqueIdentifier>{cfe0e672-0793-4b81-a0ff-78dba7cb497b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\msg_host\msg_host_n.cpp">
+      <Filter>msg_host</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\base_filter_n.cpp">
+      <Filter>msg_filters_n</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_by_priority_n.cpp">
+      <Filter>msg_filters_n</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp">
+      <Filter>msg_filters_n</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\msg_host\msg_host_n.h">
+      <Filter>msg_host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_host\utilitis_base_def.h">
+      <Filter>msg_host</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\base_filter_n.h">
+      <Filter>msg_filters_n</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_by_priority_n.h">
+      <Filter>msg_filters_n</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\msg_filter_circle_call_n.h">
+      <Filter>msg_filters_n</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\priority_filter_def.h">
+      <Filter>msg_filters_n</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\msg_filters_n\platform_def.h" />
+  </ItemGroup>
+</Project>

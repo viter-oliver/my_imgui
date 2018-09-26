@@ -9,6 +9,12 @@ namespace auto_future
 	{
 		struct intl_pt
 		{
+			char _cbuffer_random_text[128];
+			//save texture size
+			ImVec2 _bg_texture_size;
+			ImVec2 _head_texture_size;
+			ImVec2 _thumb_texture_size;
+
 			float _position{ 0.f };
 			int _direction_item{ 0 };
 			ImVec2 _bg_axi_pos;
@@ -19,6 +25,7 @@ namespace auto_future
 			int _texture_head_index{ 0 };
 
 			ImVec2 _thumb_pos;
+			bool _thumb_visible{false};
 			int _texture_thumb_index{ 0 };
 		};
 		intl_pt _slider_pt;
@@ -32,22 +39,31 @@ namespace auto_future
 			len += plen;
 			return len;
 		}
+
+		void link()
+		{
+			if (2 == _slider_pt._direction_item) //如果保存的是random，这时候就需从文件中读出点数据
+			{
+				if (NULL != _slider_pt._cbuffer_random_text)
+					read_point_position_file(_slider_pt._cbuffer_random_text);
+			}
+		}
+
+		void set_progress(float value){ _slider_pt._position = value; }
+		float set_progress(){ return _slider_pt._position; }
+
+		void set_bg_texture_id(int id){ _slider_pt._texture_bg_index = id; }
+		void set_progress_texture_id(int id){ _slider_pt._texture_head_index = id; }
+		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index = id; }
+
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page();
+		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif
-		bool handle_mouse();
 	private:
-
 		bool read_point_position_file(const char *str);
-		//save texture size
-		ImVec2 _bg_texture_size;
-		ImVec2 _head_texture_size;
-		ImVec2 _thumb_texture_size;
-
-		char _cbuffer_random_text[128];
 
 		struct random_point_array
 		{

@@ -15,7 +15,7 @@
 namespace auto_future_utilities
 {
 	using namespace std;
-	class msg_filter_circle_call_n :
+	class AFG_EXPORT msg_filter_circle_call_n :
 		public base_filter_n
 	{
 		struct msg_consume_unit

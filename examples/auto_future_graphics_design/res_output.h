@@ -6,7 +6,7 @@
 #endif 
 #include <vector>
 #include <string>
-//ÎÆÀí×ÊÔ´
+//çº¹ç†èµ„æº
 using namespace std;
 struct res_texture_coordinate
 {
@@ -36,7 +36,7 @@ struct res_texture_list
 typedef vector<res_texture_list> vres_txt_list;
 extern vres_txt_list g_vres_texture_list;
 extern int g_cur_texture_id_index;
-
+extern bool get_texture_item(void* data, int idx, const char** out_str);
 struct af_texture
 {
 	GLuint _txt_id{ 0 }, _width{ 0 }, _height{ 0 };
@@ -61,6 +61,6 @@ typedef map<string, shared_ptr<af_file>>mfile_list;
 extern mtexture_list g_mtexture_list;
 extern mfile_list g_mfiles_list;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-extern void add_image_to_mtexure_list(string& imgPath);
+extern bool add_image_to_mtexure_list(string& imgPath);
 extern void add_file_to_mfiles_list(string& file_path);
 #endif

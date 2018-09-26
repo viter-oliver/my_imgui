@@ -31,11 +31,24 @@ GLushort _indices[] = {
 	4, 7, 6,
 	6, 5, 4
 };
-void primitive_object::load_vertex_data()
+GLfloat _plain_vertices[] = {
+	-half_side_len, -half_side_len, 0.f, 0.0f, 0.0f,
+	half_side_len, -half_side_len, 0.f, 1.0f, 0.0f,
+	-half_side_len, half_side_len, 0.f, 1.0f, 1.0f,
+	half_side_len, half_side_len, 0.f,  0.0f, 1.0f,
+};
+void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLushort* pele_buff, GLushort ele_cnt)
 {
+	_vertex_buf_len = vetexlen;
+	_ele_buf_len = ele_cnt;
 	glBindVertexArray(_vao);
-
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, GL_STATIC_DRAW);
+	if (pele_buff)
+	{
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLushort)*_ele_buf_len, pele_buff, GL_STATIC_DRAW);
+	}	
 	GLuint idx = 0;
 	GLubyte stride = get_stride();
 	int pointer = 0;
@@ -46,26 +59,27 @@ void primitive_object::load_vertex_data()
 		pointer += el;
 		idx++;
 	}
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, _pvertex_buf, GL_STATIC_DRAW);
-
-	if (_pele_buf)
-	{
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLushort)*_ele_buf_len, _pele_buf, GL_STATIC_DRAW);
-	}
-
 	glBindVertexArray(0);
-
 }
 
 
 void init_internal_primitive_list()
 {
-	g_primitive_list["cube"] = make_shared<primitive_object>();
-	g_primitive_list["cube"]->set_ele_format({ 3, 3, 2 });
-	g_primitive_list["cube"]->prepare_vertex_data(_vertices, sizeof(_vertices) / sizeof(GLfloat), \
-		_indices, sizeof(_indices) / sizeof(GLushort));
-	g_primitive_list["cube"]->load_vertex_data();
+	auto acube = g_primitive_list.find("cube");
+	if (acube==g_primitive_list.end())
+	{
+		g_primitive_list["cube"] = make_shared<primitive_object>();
+		g_primitive_list["cube"]->set_ele_format({ 3, 3, 2 });
+		g_primitive_list["cube"]->load_vertex_data(_vertices, sizeof(_vertices) / sizeof(GLfloat), \
+			_indices, sizeof(_indices) / sizeof(GLushort));
+	}
+	auto aplain = g_primitive_list.find("plain");
+	if (aplain==g_primitive_list.end())
+	{
+		g_primitive_list["plain"] = make_shared<primitive_object>();
+		g_primitive_list["plain"]->set_ele_format({ 3, 2 });
+		g_primitive_list["plain"]->load_vertex_data(_plain_vertices, sizeof(_plain_vertices) / sizeof(GLfloat));
+	}
 	//g_primitive_list["cube"] = make_shared<primitive_cube>();
 }
 mp_primitive g_primitive_list;

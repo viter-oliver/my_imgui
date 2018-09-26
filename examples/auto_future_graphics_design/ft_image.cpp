@@ -12,7 +12,6 @@ namespace auto_future
 {
 	void ft_image::draw()
 	{
-		ft_base::draw();
 		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
 		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 		if (_img_pt._texture_index >= ptext_cd.size())
@@ -49,6 +48,7 @@ namespace auto_future
 		}
 
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+		ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())//draw envelope
@@ -88,48 +88,63 @@ namespace auto_future
 			ImGui::EndTooltip();
 		}
 	}
-	static bool get_texture_item(void* data, int idx, const char** out_str)
+	
+	void ft_image::draw_peroperty_page(int property_part)
 	{
-		*out_str = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[idx]._file_name.c_str();
-		return true;
-	}
-	void ft_image::draw_peroperty_page()
-	{
-		ft_base::draw_peroperty_page();
-		ImGui::Spacing();
-		ImGui::Spacing();
-		ImGui::Text("size:");
-		ImGui::SliderFloat("w", &_img_pt._size.x, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("h", &_img_pt._size.y, 0.f, base_ui_component::screenh);
-
-		ImGui::Text("axis pos:");
-		ImGui::SliderFloat("ax", &_img_pt._axis_pos.x, 1.f, base_ui_component::screenw);
-		ImGui::SliderFloat("ay", &_img_pt._axis_pos.y, 1.f, base_ui_component::screenh);
-		ImGui::Separator();
-		ImGui::Text("angle:");
-		ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);
-		ImGui::Text("image:");
-
-		auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
-		int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
-		ImGui::Combo("texture index:", &_img_pt._texture_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
-		ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
-		ImGui::Spacing();
-		float reswidth = res_coors[_img_pt._texture_index].owidth();
-		float resheight = res_coors[_img_pt._texture_index].oheight();
-		ImGui::Text("original size:%f,%f", reswidth, resheight);
-		ImGui::Spacing();
-		if (reswidth>0)
+		if (property_part&en_parent_property)
 		{
-			float draw_height = imge_edit_view_width*resheight / reswidth;
-			ImVec2 draw_size(imge_edit_view_width, draw_height);
-			int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
-			float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-			float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+			ft_base::draw_peroperty_page();
+			ImGui::Spacing();
+		}
+		if (property_part&en_geometry_property)
+		{
+			if (befirst_draw)
+			{
+				_edit_size = _img_pt._size;
+				befirst_draw = false;
+			}
+			ImGui::Text("size:");
+			ImGui::SliderFloat("w", &_edit_size.x, 0.f, base_ui_component::screenw);
+			ImGui::SliderFloat("h", &_edit_size.y, 0.f, base_ui_component::screenh);
+			if (_edit_size.x != _img_pt._size.x || _edit_size.y != _img_pt._size.y)
+			{
+				set_size(_edit_size);
+			}
+			ImGui::Text("axis pos:");
+			ImGui::SliderFloat("ax", &_img_pt._axis_pos.x, 1.f, base_ui_component::screenw);
+			ImGui::SliderFloat("ay", &_img_pt._axis_pos.y, 1.f, base_ui_component::screenh);
+			ImGui::Separator();
+			ImGui::Text("angle:");
+			ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);
+			ImGui::Separator();
+			ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0");
+			ImGui::Spacing();
+		}
+		if (property_part&en_texture_property)
+		{
 
-			ImVec2 uv0(res_coors[_img_pt._texture_index]._x0 / wtexture_width, res_coors[_img_pt._texture_index]._y0 / wtexture_height);
-			ImVec2 uv1(res_coors[_img_pt._texture_index]._x1 / wtexture_width, res_coors[_img_pt._texture_index]._y1 / wtexture_height);
-			ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+			ImGui::Text("image:");
+			auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+			int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
+			ImGui::Combo("texture index:", &_img_pt._texture_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+			ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
+			ImGui::Spacing();
+			float reswidth = res_coors[_img_pt._texture_index].owidth();
+			float resheight = res_coors[_img_pt._texture_index].oheight();
+			ImGui::Text("original size:%f,%f", reswidth, resheight);
+			ImGui::Spacing();
+			if (reswidth > 0)
+			{
+				float draw_height = imge_edit_view_width*resheight / reswidth;
+				ImVec2 draw_size(imge_edit_view_width, draw_height);
+				int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+				float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
+				float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+
+				ImVec2 uv0(res_coors[_img_pt._texture_index]._x0 / wtexture_width, res_coors[_img_pt._texture_index]._y0 / wtexture_height);
+				ImVec2 uv1(res_coors[_img_pt._texture_index]._x1 / wtexture_width, res_coors[_img_pt._texture_index]._y1 / wtexture_height);
+				ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+			}
 		}
 	}
 
@@ -150,6 +165,7 @@ namespace auto_future
 		{
 			_img_pt._size.x = jsize["w"].asDouble();
 			_img_pt._size.y = jsize["h"].asDouble();
+			_edit_size = _img_pt._size;
 		}
 		if (_img_pt._size.x == 0.f || _img_pt._size.y == 0.f)
 		{
@@ -171,12 +187,13 @@ namespace auto_future
 			_img_pt._axis_pos.x = base_pos().x + aw;
 			_img_pt._axis_pos.y = base_pos().y + ah;
 		}
+		_img_pt._anchor_type = jvalue["anchor_type"].asInt();
 		return true;
 	}
 	bool ft_image::init_json_unit(Value& junit)
 	{
 		ft_base::init_json_unit(junit);
-		junit["texture_id_index"] = g_cur_texture_id_index;
+		//junit["texture_id_index"] = g_cur_texture_id_index;
 		junit["texture_index"] = _img_pt._texture_index;
 		Value jsize(objectValue);
 		jsize["w"] = _img_pt._size.x;
@@ -187,6 +204,7 @@ namespace auto_future
 		jaxispos["y"] = _img_pt._axis_pos.y;
 		jaxispos["angle"] = _img_pt._angle;
 		junit["axipos"] = jaxispos;
+		junit["anchor_type"] = _img_pt._anchor_type;
 		return true;
 	}
 

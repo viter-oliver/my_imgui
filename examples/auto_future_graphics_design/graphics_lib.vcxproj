@@ -91,16 +91,19 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\json_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;json_lib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutputPath)\$(TargetFileName) $(OutputPath)\..\running</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -123,20 +126,23 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\json_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;json_lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>copy $(OutputPath)\$(TargetFileName) $(OutputPath)\..\running</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -161,34 +167,31 @@
   <ItemGroup>
     <ClCompile Include="..\..\imgui.cpp" />
     <ClCompile Include="..\..\imgui_draw.cpp" />
-    <ClCompile Include="..\..\json\json_reader.cpp" />
-    <ClCompile Include="..\..\json\json_value.cpp" />
-    <ClCompile Include="..\..\json\json_writer.cpp" />
-    <ClCompile Include="..\..\msg_filters_n\base_filter_n.cpp" />
-    <ClCompile Include="..\..\msg_filters_n\msg_filter_by_priority_n.cpp" />
-    <ClCompile Include="..\..\msg_filters_n\msg_filter_circle_call_n.cpp" />
-    <ClCompile Include="..\..\msg_host\msg_host_n.cpp" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="application.cpp" />
-    <ClCompile Include="ft_cube.cpp" />
-    <ClCompile Include="ft_model.cpp" />
-    <ClCompile Include="ft_particles.cpp" />
-    <ClCompile Include="ft_particles1.cpp" />
-    <ClCompile Include="ft_particles_effect.cpp" />
-    <ClCompile Include="ft_plane.cpp" />
+    <ClCompile Include="ft_block.cpp" />
+    <ClCompile Include="ft_cube_3d.cpp" />
+    <ClCompile Include="ft_image_play.cpp" />
+    <ClCompile Include="ft_model_3d.cpp" />
+    <ClCompile Include="ft_particles_3d.cpp" />
+    <ClCompile Include="ft_particles1_3d.cpp" />
+    <ClCompile Include="ft_particles_effect_3d.cpp" />
+    <ClCompile Include="ft_plane_3d.cpp" />
+    <ClCompile Include="ft_plot_lines.cpp" />
     <ClCompile Include="ft_slider.cpp" />
-    <ClCompile Include="ft_sphere.cpp" />
+    <ClCompile Include="ft_slider_thumb.cpp" />
+    <ClCompile Include="ft_sphere_3d.cpp" />
     <ClCompile Include="common_functions.cpp" />
     <ClCompile Include="ft_base.cpp" />
     <ClCompile Include="ft_button.cpp" />
     <ClCompile Include="ft_image.cpp" />
     <ClCompile Include="ft_listbox.cpp" />
     <ClCompile Include="ft_polygon_image.cpp" />
-    <ClCompile Include="ft_scene3d.cpp" />
+    <ClCompile Include="ft_scene.cpp" />
     <ClCompile Include="ft_textblock.cpp" />
-    <ClCompile Include="ft_trajectory_box.cpp" />
+    <ClCompile Include="ft_trajectory_box_3d.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="miniz.c" />
@@ -212,11 +215,6 @@
     <ClInclude Include="..\..\json\reader.h" />
     <ClInclude Include="..\..\json\value.h" />
     <ClInclude Include="..\..\json\writer.h" />
-    <ClInclude Include="..\..\msg_filters_n\base_filter_n.h" />
-    <ClInclude Include="..\..\msg_filters_n\msg_filter_by_priority_n.h" />
-    <ClInclude Include="..\..\msg_filters_n\msg_filter_circle_call_n.h" />
-    <ClInclude Include="..\..\msg_filters_n\priority_filter_def.h" />
-    <ClInclude Include="..\..\msg_host\msg_host_n.h" />
     <ClInclude Include="..\..\texture.h" />
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
@@ -224,14 +222,18 @@
     <ClInclude Include="afg.h" />
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="application.h" />
-    <ClInclude Include="ft_cube.h" />
-    <ClInclude Include="ft_model.h" />
-    <ClInclude Include="ft_particles.h" />
-    <ClInclude Include="ft_particles1.h" />
-    <ClInclude Include="ft_particles_effect.h" />
-    <ClInclude Include="ft_plane.h" />
+    <ClInclude Include="ft_block.h" />
+    <ClInclude Include="ft_cube_3d.h" />
+    <ClInclude Include="ft_image_play.h" />
+    <ClInclude Include="ft_model_3d.h" />
+    <ClInclude Include="ft_particles_3d.h" />
+    <ClInclude Include="ft_particles1_3d.h" />
+    <ClInclude Include="ft_particles_effect_3d.h" />
+    <ClInclude Include="ft_plane_3d.h" />
+    <ClInclude Include="ft_plot_lines.h" />
     <ClInclude Include="ft_slider.h" />
-    <ClInclude Include="ft_sphere.h" />
+    <ClInclude Include="ft_slider_thumb.h" />
+    <ClInclude Include="ft_sphere_3d.h" />
     <ClInclude Include="common_functions.h" />
     <ClInclude Include="control_common_def.h" />
     <ClInclude Include="ft_base.h" />
@@ -239,9 +241,9 @@
     <ClInclude Include="ft_image.h" />
     <ClInclude Include="ft_listbox.h" />
     <ClInclude Include="ft_polygon_image.h" />
-    <ClInclude Include="ft_scene3d.h" />
+    <ClInclude Include="ft_scene.h" />
     <ClInclude Include="ft_textblock.h" />
-    <ClInclude Include="ft_trajectory_box.h" />
+    <ClInclude Include="ft_trajectory_box_3d.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="material.h" />

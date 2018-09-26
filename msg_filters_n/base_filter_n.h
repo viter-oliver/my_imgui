@@ -9,7 +9,7 @@ namespace auto_future_utilities
 	*not what he is interested in, he will simply transfer the message to his \n
 	*successor  
 	*/
-	class base_filter_n
+	class AFG_EXPORT base_filter_n
 	{
 	protected:
 		base_filter_n* _psuccessor;

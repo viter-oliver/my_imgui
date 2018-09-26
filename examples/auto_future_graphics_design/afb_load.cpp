@@ -1,5 +1,5 @@
 #include "afb_load.h"
-#include <msgpack.hpp>
+
 #include "factory.h"
 #include "res_output.h"
 #include <fstream>
@@ -11,7 +11,15 @@
 #endif
 #include "af_shader.h"
 #include "material.h"
-void init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
+#define DXT5_DECOMPRESSED
+#ifdef DXT5_DECOMPRESSED
+#define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
+#else
+#include "miniz.h"
+
+#endif // DEBUG
+
+void afb_load::init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
 {
 	auto obj_arr_sz = obj.via.array.size;
 	auto obj_typename = obj.via.array.ptr[0];
@@ -30,6 +38,7 @@ void init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
 		memcpy(munit._p_head_address, pmem, munit._len);
 		pmem += munit._len;
 	}
+	ptar->link();
 	if (obj_arr_sz>2)
 	{
 		auto childs_obj = obj.via.array.ptr[2];
@@ -39,10 +48,15 @@ void init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
 			auto cd_obj = childs_obj.via.array.ptr[ix];
 			base_ui_component* pchild;
 			init_ui_component_by_mgo(pchild, cd_obj);
+			if (_impl)
+			{
+				_impl(pchild);
+			}
 			ptar->add_child(pchild);
 		}
 	}
 }
+extern GLuint       g_FontTexture;
 
 void afb_load::load_afb(const char* afb_file)
 {
@@ -56,34 +70,102 @@ void afb_load::load_afb(const char* afb_file)
 	fin.seekg(0, ios::end);
 	file_size = fin.tellg() - file_size;
 	fin.seekg(0, ios::beg);
+#ifndef DXT5_DECOMPRESSED
+	uint8_t* pbuff = new uint8_t[file_size];
+	fin.read((char*)pbuff, file_size);
+	fin.close();
+
+	int pre_buff_size = file_size * 60;
+	uint8_t* pin_buff = new uint8_t[pre_buff_size];
+	mz_stream stream = {};
+	mz_inflateInit(&stream);
+	stream.avail_in = (int)file_size;
+	stream.next_in = pbuff;
+	stream.avail_out = pre_buff_size;
+	stream.next_out = pin_buff;
+	mz_inflate(&stream, Z_SYNC_FLUSH);
+	if (mz_inflateEnd(&stream) != Z_OK)
+	{
+		printf("fail to inflate!\n");
+		delete[] pbuff;
+		delete[] pin_buff;
+		return;
+	}
+	msgpack::unpacker unpac;
+	unpac.reserve_buffer(stream.total_out);
+	memcpy(unpac.buffer(), pin_buff, stream.total_out);
+	unpac.buffer_consumed(static_cast<size_t>(stream.total_out));
+	delete[] pbuff;
+	delete[] pin_buff;
+#else
 	msgpack::unpacker unpac;
 	unpac.reserve_buffer(file_size);
 	fin.read(unpac.buffer(), unpac.buffer_capacity());
 	unpac.buffer_consumed(static_cast<size_t>(fin.gcount()));
+#endif // !DXT5_DECOMPRESSED
+
 	msgpack::object_handle oh;
 	unpac.next(oh);
 	auto obj_w = oh.get();
 	base_ui_component::screenw = obj_w.via.array.ptr[0].as<float>();
 	base_ui_component::screenh = obj_w.via.array.ptr[1].as<float>();
-	auto font_res = obj_w.via.array.ptr[2];
+	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+	atlas->TexWidth = obj_w.via.array.ptr[2].as<int>();
+	atlas->TexHeight = obj_w.via.array.ptr[3].as<int>();
+	auto font_txt = obj_w.via.array.ptr[4];
+	auto txt_sz = font_txt.via.bin.size;
+	glGenTextures(1, &g_FontTexture);
+	glBindTexture(GL_TEXTURE_2D, g_FontTexture);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
+#ifndef DXT5_DECOMPRESSED
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, atlas->TexWidth, atlas->TexHeight,0, GL_RGBA, GL_UNSIGNED_BYTE, font_txt.via.bin.ptr);
+	//GL_NUM_COMPRESSED_TEXTURE_FORMATS		GL_COMPRESSED_TEXTURE_FORMATS
+#else
+	glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, atlas->TexWidth, atlas->TexHeight, 0, font_txt.via.bin.size, font_txt.via.bin.ptr);
+#endif
+	//glGenerateMipmap(GL_TEXTURE_2D);
+	glBindTexture(GL_TEXTURE_2D, 0);
+	atlas->TexID = (void *)(intptr_t)g_FontTexture;
+
+	auto font_res = obj_w.via.array.ptr[5];
 	auto font_cnt = font_res.via.array.size;
-	auto& font_atlas = ImGui::GetIO().Fonts;
 	for (size_t ix = 0; ix < font_cnt; ix++)
 	{
+		atlas->Fonts.push_back(IM_NEW(ImFont));
+		auto& font = atlas->Fonts.back();
+		font->ContainerAtlas = atlas;
 		auto font_unit = font_res.via.array.ptr[ix];
-		auto font_data = font_unit.via.array.ptr[0];
-		auto font_data_sz = font_data.via.bin.size;
-		auto size_pixel = font_unit.via.array.ptr[1].as<float>();
-		void* pfont_data = new char[font_data_sz];
-		memcpy(pfont_data, font_data.via.bin.ptr, font_data_sz);
-		ImFont* nfont = font_atlas->AddFontFromMemoryTTF(pfont_data, font_data_sz, size_pixel, NULL, font_atlas->GetGlyphRangesChinese());
-		auto be_cur_font = font_unit.via.array.ptr[2].as<bool>();
-		if (be_cur_font)
+		font->FontSize = font_unit.via.array.ptr[0].as<float>();
+		font->Ascent = font_unit.via.array.ptr[1].as<float>();
+		font->Descent = font_unit.via.array.ptr[2].as<float>();
+		font->MetricsTotalSurface=font_unit.via.array.ptr[3].as<int>();
+		auto glyph = font_unit.via.array.ptr[4];
+		auto glyph_sz = glyph.via.bin.size;
+		auto vglph_sz = glyph_sz / sizeof(ImFontGlyph);
+		font->Glyphs.resize(vglph_sz);
+		memcpy(font->Glyphs.Data, glyph.via.bin.ptr, glyph_sz);
+		auto indexAdvance = font_unit.via.array.ptr[5];
+		auto idx_sz = indexAdvance.via.bin.size;
+		auto vidx_sz = idx_sz / sizeof(float);
+		font->IndexAdvanceX.resize(vidx_sz);
+		memcpy(font->IndexAdvanceX.Data, indexAdvance.via.bin.ptr, idx_sz);
+		auto lookup = font_unit.via.array.ptr[6];
+		auto lookup_sz = lookup.via.bin.size;
+		auto vlk_sz = lookup_sz / sizeof(USHORT);
+		font->IndexLookup.resize(vlk_sz);
+		memcpy(font->IndexLookup.Data, lookup.via.bin.ptr, lookup_sz);
+		font->DirtyLookupTables = false;
+		font->FallbackAdvanceX = 7.97315454f;
+		//font->DisplayOffset.y = 3.f;
+		auto is_cur_font = font_unit.via.array.ptr[7].as<bool>();
+		if (is_cur_font)
 		{
-			ImGui::GetIO().FontDefault = nfont;
+			ImGui::GetIO().FontDefault = font;
 		}
 	}
-	auto obj_res = obj_w.via.array.ptr[3];
+	auto obj_res = obj_w.via.array.ptr[6];
 	auto re_cnt = obj_res.via.array.size;
 	for (size_t ix = 0; ix < re_cnt; ix++)
 	{
@@ -106,10 +188,12 @@ void afb_load::load_afb(const char* afb_file)
 		res_unit.texture_height = bin_res_unit.via.array.ptr[1].as<int>();
 		auto res_bin = bin_res_unit.via.array.ptr[2];
 		auto bin_sz = res_bin.via.bin.size;
-		/*glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, res_unit.texture_width, res_unit.texture_height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, res_bin.via.bin.ptr);*/
-#define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
+#if 1//ndef DXT5_DECOMPRESSED
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, res_unit.texture_width, res_unit.texture_height,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, res_bin.via.bin.ptr);
+#else
 		glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, res_unit.texture_width, res_unit.texture_height, 0, bin_sz, res_bin.via.bin.ptr);
+#endif
 		glGenerateMipmap(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		auto res_data = bin_res_unit.via.array.ptr[3];
@@ -131,7 +215,7 @@ void afb_load::load_afb(const char* afb_file)
 		}
 
 	}
-	auto obj_txt_list = obj_w.via.array.ptr[4];
+	auto obj_txt_list = obj_w.via.array.ptr[7];
 	auto txt_cnt = obj_txt_list.via.array.size;
 	for (size_t ix = 0; ix < txt_cnt;ix++)
 	{
@@ -168,7 +252,7 @@ void afb_load::load_afb(const char* afb_file)
 		delete[] txt_kname;
 
 	}
-	auto obj_file_list = obj_w.via.array.ptr[5];
+	auto obj_file_list = obj_w.via.array.ptr[8];
 	auto file_cnt = obj_file_list.via.array.size;
 	for (size_t ix = 0; ix < file_cnt;ix++)
 	{
@@ -184,7 +268,7 @@ void afb_load::load_afb(const char* afb_file)
 		g_mfiles_list[file_kname] = a_file;
 		delete[] file_kname;
 	}
-	auto obj_shader_list = obj_w.via.array.ptr[6];
+	auto obj_shader_list = obj_w.via.array.ptr[9];
 	auto shd_cnt = obj_shader_list.via.array.size;
 	for (size_t ix = 0; ix < shd_cnt; ix++)
 	{
@@ -209,7 +293,7 @@ void afb_load::load_afb(const char* afb_file)
 		delete[] psd_vs_code;
 		delete[] psd_fs_code;
 	}
-	auto obj_material_list = obj_w.via.array.ptr[7];
+	auto obj_material_list = obj_w.via.array.ptr[10];
 	auto mtl_cnt = obj_material_list.via.array.size;
 	for (size_t ix = 0; ix < mtl_cnt; ix++)
 	{
@@ -263,6 +347,6 @@ void afb_load::load_afb(const char* afb_file)
 		}
 		delete[] pstr_mtl_name;
 	}
-	auto obj_ui = obj_w.via.array.ptr[8];
+	auto obj_ui = obj_w.via.array.ptr[11];
 	init_ui_component_by_mgo(_pj, obj_ui);
 }
