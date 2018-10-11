@@ -1,5 +1,7 @@
 #include "ft_base.h"
+#include <GLFW/glfw3.h>
 #include <typeinfo>
+#include "command_element.h"
 namespace auto_future
 {
 	void ft_base::draw()
@@ -39,9 +41,106 @@ namespace auto_future
 		ImGui::Text("base pos:");
 		//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
 		//ImGui::SameLine();
-		ImGui::SliderFloat("x", &_in_p._pos.x, -base_ui_component::screenw, base_ui_component::screenw);
-		ImGui::SliderFloat("y", &_in_p._pos.y, -base_ui_component::screenh, base_ui_component::screenh);
-		ImGui::Checkbox("visibility", &_in_p._visible);
+		if (ImGui::SliderFloat("x", &_in_p._pos.x, -screenw, screenw))
+		{
+			printf("current posx:%f\n", _in_p._pos.x);
+		}
+		/*if (ImGui::IsMouseReleased(1))
+		{
+			printf("mouse 1 is released!\n");
+		}*/
+		ImGui::SliderFloat("y", &_in_p._pos.y, -screenh, screenh);
+		if (ImGui::Checkbox("visibility", &_in_p._visible))
+		{
+			g_ui_edit_command_mg.create_command\
+				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p_bk._visible))));
+			_in_p_bk._visible = _in_p._visible;
+		}
+		ImGuiContext& g = *GImGui;
+		if (ImGui::IsMouseReleased(0)||g.IO.InputContentChanged)
+		{
+			bool pt_modified = false;
+			if (_in_p._pos.x != _in_p_bk._pos.x)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p_bk._pos.x))));
+				_in_p_bk._pos.x = _in_p._pos.x;
+				pt_modified = true;
+			}
+			if (_in_p._pos.y != _in_p_bk._pos.y)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p_bk._pos.y))));
+				_in_p_bk._pos.y = _in_p._pos.y;
+				pt_modified = true;
+			}
+			if (strcmp(_in_p._name, _in_p_bk._name) != 0)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_name, command_value(_in_p_bk._name))));
+				strcpy(_in_p_bk._name, _in_p._name);
+				_in_p_bk._name[strlen(_in_p._name)] = '\0';
+				pt_modified = true;
+
+				g.IO.InputContentChanged = false;
+			}
+			if (pt_modified)
+			{
+				g.IO.InputContentChanged = false;
+			}
+		} 
+	}
+
+	void ft_base::execute_command(command_elemment& ele_cmd)
+	{
+		if (ele_cmd._cmd_type == "ft_base")
+		{
+			switch (ele_cmd._cmd_id)
+			{
+			case en_pt_name:
+				set_name(ele_cmd._cmd_value._value._svalue);
+				strcpy(_in_p_bk._name, _in_p._name);
+				_in_p_bk._name[strlen(_in_p._name)] = '\0';
+				break;
+			case en_pt_pos_x:
+				_in_p._pos.x = ele_cmd._cmd_value._value._fvalue;
+				_in_p_bk._pos.x = _in_p._pos.x;
+				break;
+			case en_pt_pos_y:
+				_in_p._pos.y = ele_cmd._cmd_value._value._fvalue;
+				_in_p_bk._pos.y = _in_p._pos.y;
+				break;
+			case en_pt_visible:
+				_in_p._visible = ele_cmd._cmd_value._value._bvalue;
+				_in_p_bk._visible = _in_p._visible;
+				break;
+			default:
+				break;
+			}
+		}
+	}	
+	command_elemment ft_base::clone_cmd_ele(command_elemment&ele_cmd)
+	{
+		if (ele_cmd._cmd_type=="ft_base")
+		{
+			switch (ele_cmd._cmd_id)
+			{
+			case en_pt_name:
+				
+				return command_elemment(string("ft_base"), en_pt_name, command_value(_in_p._name));
+			case en_pt_pos_x:
+				return command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p._pos.x));
+			case en_pt_pos_y:
+				return command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p._pos.y));
+				
+			case en_pt_visible:
+				return command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p._visible));
+			default:
+				break;
+			}
+		}
+		return command_elemment();
+
 	}
 	/*
 	fields: name,type,childs
@@ -53,6 +152,7 @@ namespace auto_future
 		_in_p._pos.x = jscreen_pos["x"].asDouble();
 		_in_p._pos.y = jscreen_pos["y"].asDouble();
 		_in_p._visible = jvalue["visible"].asBool();
+		_in_p_bk = _in_p;
 		Value& childs = jvalue["childs"];
 		if (childs.isNull())
 		{
@@ -96,6 +196,8 @@ namespace auto_future
 		}
 		return true;
 	}
+
+
 #endif
 
 	bool ft_base::handle_mouse()

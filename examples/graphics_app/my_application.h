@@ -1,6 +1,8 @@
 #pragma once
 #include "application.h"
-
+#include "main_menu_controller.h"
+#include "signal_light_controller.h"
+#include "pop_up_dlg_controller.h"
 class my_application :
 	public auto_future::application
 {
@@ -42,9 +44,14 @@ class my_application :
 	base_ui_component* _signal_light = { NULL };
 	base_ui_component* _popup_dlg = { NULL };
 	bool _being_logo_animation = { true };
+	shared_ptr<main_menu_controller> _pmain_menu;
+	shared_ptr<signal_light_controller> _psignal_light;
+	shared_ptr<pop_up_dlg_controller> _ppop_up_dlg;
+	void register_command_handle();
+	void init_ui_component();
+	void finish_animation();
 public:
 	my_application(int argc, char **argv);
-	void init_ui_component(base_ui_component* pobj);
 	void resLoaded();
 	void onUpdate();
 	virtual ~my_application();

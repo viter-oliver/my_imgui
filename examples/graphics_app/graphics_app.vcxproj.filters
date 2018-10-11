@@ -35,6 +35,12 @@
     <ClInclude Include="..\..\rcf_service\idata_collect.h">
       <Filter>rcf_mcu_service</Filter>
     </ClInclude>
+    <ClInclude Include="signal_light_controller.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="pop_up_dlg_controller.h">
+      <Filter>sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -54,6 +60,12 @@
     </ClCompile>
     <ClCompile Include="..\..\rcf_service\idata_collect.cpp">
       <Filter>rcf_mcu_service</Filter>
+    </ClCompile>
+    <ClCompile Include="signal_light_controller.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="pop_up_dlg_controller.cpp">
+      <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -96,7 +96,7 @@ namespace auto_future
 			//_proot = new ft_base;
 			afb_load afl(_proot);
 			//std::bind(&play_back_node::btnclk_##x, this, std::placeholders::_1)
-			afl.set_impl(std::bind(&application::init_ui_component, this, std::placeholders::_1));
+			//afl.set_impl(std::bind(&application::init_ui_component, this, std::placeholders::_1));
 			afl.load_afb(_cureent_project_file_path.c_str());
 			resLoaded();
 		}

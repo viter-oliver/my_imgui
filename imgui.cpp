@@ -7792,7 +7792,8 @@ void ImGui::ImageQuad(ImTextureID user_texture_id, const ImVec2& vp0, const ImVe
 	ImGuiWindow* window = GetCurrentWindow();
 	if (window->SkipItems)
 		return;
-	/*float xmin = vp0.x;
+	/*
+	float xmin = vp0.x;
 	if (xmin > vp1.x) xmin = vp1.x;
 	if (xmin > vp2.x) xmin = vp2.x;
 	if (xmin > vp3.x) xmin = vp3.x;
@@ -7813,7 +7814,8 @@ void ImGui::ImageQuad(ImTextureID user_texture_id, const ImVec2& vp0, const ImVe
 
 	ItemSize(bb);
 	if (!ItemAdd(bb, 0))
-		return;*/
+		return;
+	*/
 	if (border_col.w > 0.0f)
 	{
 		window->DrawList->AddQuad(vp0, vp1, vp2, vp3, GetColorU32(border_col), 0.0f);
@@ -7825,7 +7827,7 @@ void ImGui::ImageQuad(ImTextureID user_texture_id, const ImVec2& vp0, const ImVe
 // frame_padding = 0: no framing
 // frame_padding > 0: set framing size
 // The color used are the button colors.
-bool ImGui::ImageButton(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0, const ImVec2& uv1, int frame_padding, const ImVec4& bg_col, const ImVec4& tint_col)
+bool ImGui::ImageButton(ImTextureID user_texture_id, const ImVec2& size, const ImVec2& uv0, const ImVec2& uv1,int flags,int frame_padding, const ImVec4& bg_col, const ImVec4& tint_col)
 {
     ImGuiWindow* window = GetCurrentWindow();
     if (window->SkipItems)
@@ -7848,7 +7850,7 @@ bool ImGui::ImageButton(ImTextureID user_texture_id, const ImVec2& size, const I
         return false;
 
     bool hovered, held;
-    bool pressed = ButtonBehavior(bb, id, &hovered, &held);
+	bool pressed = ButtonBehavior(bb, id, &hovered, &held, flags);//
 
     // Render
     const ImU32 col = GetColorU32((hovered && held) ? ImGuiCol_ButtonActive : hovered ? ImGuiCol_ButtonHovered : ImGuiCol_Button);
@@ -10037,6 +10039,7 @@ bool ImGui::InputTextEx(const char* label, char* buf, int buf_size, const ImVec2
 
         if (io.InputCharacters[0])
         {
+			g.IO.InputContentChanged = true;
             // Process text input (before we check for Return because using some IME will effectively send a Return?)
             // We ignore CTRL inputs, but need to allow ALT+CTRL as some keyboards (e.g. German) use AltGR (which _is_ Alt+Ctrl) to input certain characters.
             if (!(io.KeyCtrl && !io.KeyAlt) && is_editable && !user_nav_input_start)
@@ -10074,7 +10077,10 @@ bool ImGui::InputTextEx(const char* label, char* buf, int buf_size, const ImVec2
         else if (IsKeyPressedMap(ImGuiKey_DownArrow) && is_multiline)   { if (io.KeyCtrl) SetWindowScrollY(draw_window, ImMin(draw_window->Scroll.y + g.FontSize, GetScrollMaxY())); else edit_state.OnKeyPressed((is_startend_key_down ? STB_TEXTEDIT_K_TEXTEND : STB_TEXTEDIT_K_DOWN) | k_mask); }
         else if (IsKeyPressedMap(ImGuiKey_Home))                        { edit_state.OnKeyPressed(io.KeyCtrl ? STB_TEXTEDIT_K_TEXTSTART | k_mask : STB_TEXTEDIT_K_LINESTART | k_mask); }
         else if (IsKeyPressedMap(ImGuiKey_End))                         { edit_state.OnKeyPressed(io.KeyCtrl ? STB_TEXTEDIT_K_TEXTEND | k_mask : STB_TEXTEDIT_K_LINEEND | k_mask); }
-        else if (IsKeyPressedMap(ImGuiKey_Delete) && is_editable)       { edit_state.OnKeyPressed(STB_TEXTEDIT_K_DELETE | k_mask); }
+        else if (IsKeyPressedMap(ImGuiKey_Delete) && is_editable)       { 
+			edit_state.OnKeyPressed(STB_TEXTEDIT_K_DELETE | k_mask); 
+			g.IO.InputContentChanged = true;
+		}
         else if (IsKeyPressedMap(ImGuiKey_Backspace) && is_editable)
         {
             if (!edit_state.HasSelection())
@@ -10083,6 +10089,7 @@ bool ImGui::InputTextEx(const char* label, char* buf, int buf_size, const ImVec2
                 else if (io.OptMacOSXBehaviors && io.KeySuper && !io.KeyAlt && !io.KeyCtrl) edit_state.OnKeyPressed(STB_TEXTEDIT_K_LINESTART|STB_TEXTEDIT_K_SHIFT);
             }
             edit_state.OnKeyPressed(STB_TEXTEDIT_K_BACKSPACE | k_mask);
+			g.IO.InputContentChanged = true;
         }
         else if (IsKeyPressedMap(ImGuiKey_Enter))
         {

@@ -10,7 +10,13 @@ namespace auto_future
 
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	private:
+		internal_property _in_p_bk;
+		enum { en_pt_name, en_pt_pos_x, en_pt_pos_y, en_pt_visible };
+	public:
 		void draw_peroperty_page(int property_part=-1);
+		void execute_command(command_elemment& ele_cmd);
+		command_elemment clone_cmd_ele(command_elemment&ele_cmd);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

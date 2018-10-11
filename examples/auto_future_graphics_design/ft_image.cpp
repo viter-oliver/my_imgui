@@ -104,15 +104,15 @@ namespace auto_future
 				befirst_draw = false;
 			}
 			ImGui::Text("size:");
-			ImGui::SliderFloat("w", &_edit_size.x, 0.f, base_ui_component::screenw);
-			ImGui::SliderFloat("h", &_edit_size.y, 0.f, base_ui_component::screenh);
+			ImGui::SliderFloat("w", &_edit_size.x, 0.f, screenw);
+			ImGui::SliderFloat("h", &_edit_size.y, 0.f, screenh);
 			if (_edit_size.x != _img_pt._size.x || _edit_size.y != _img_pt._size.y)
 			{
 				set_size(_edit_size);
 			}
 			ImGui::Text("axis pos:");
-			ImGui::SliderFloat("ax", &_img_pt._axis_pos.x, 1.f, base_ui_component::screenw);
-			ImGui::SliderFloat("ay", &_img_pt._axis_pos.y, 1.f, base_ui_component::screenh);
+			ImGui::SliderFloat("ax", &_img_pt._axis_pos.x, 1.f, screenw);
+			ImGui::SliderFloat("ay", &_img_pt._axis_pos.y, 1.f, screenh);
 			ImGui::Separator();
 			ImGui::Text("angle:");
 			ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);

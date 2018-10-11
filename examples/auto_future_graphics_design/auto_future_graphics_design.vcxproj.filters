@@ -250,6 +250,9 @@
     <ClCompile Include="ft_plot_lines.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="command_element.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -499,6 +502,9 @@
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="ft_plot_lines.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="command_element.h">
       <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>

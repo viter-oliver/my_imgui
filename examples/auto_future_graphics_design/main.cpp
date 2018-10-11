@@ -41,6 +41,7 @@
 #include "file_res_edit.h"
 #include "common_functions.h"
 #include "dir_output.h"
+#include "command_element.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -496,6 +497,17 @@ int main(int argc, char* argv[])
 			{
 				fun_shortct(en_ctrl_f2);
 			}
+			else
+			if (ImGui::GetIO().KeysDown[GLFW_KEY_Z]&&g_ui_edit_command_mg.undo_able())
+			{
+				g_ui_edit_command_mg.undo_command();
+			}
+			else
+			if (ImGui::GetIO().KeysDown[GLFW_KEY_Y]&&g_ui_edit_command_mg.redo_able())
+			{
+				g_ui_edit_command_mg.redo_command();
+			}
+			
 		}
 		
 		if (ImGui::BeginMainMenuBar())
@@ -550,11 +562,13 @@ int main(int argc, char* argv[])
 			}
 			if (ImGui::BeginMenu("Edit"))
 			{
-				if (ImGui::MenuItem("Undo", "CTRL+Z")) 
+				if (ImGui::MenuItem("Undo", "CTRL+Z",false,g_ui_edit_command_mg.undo_able())) 
 				{
+					g_ui_edit_command_mg.undo_command();
 				}
-				if (ImGui::MenuItem("Redo", "CTRL+Y", false, false)) 
+				if (ImGui::MenuItem("Redo", "CTRL+Y", false, g_ui_edit_command_mg.redo_able())) 
 				{
+					g_ui_edit_command_mg.redo_command();
 				}  // Disabled item
 				ImGui::Separator();
 				if (ImGui::MenuItem("Cut", "CTRL+X")) 
@@ -583,6 +597,33 @@ int main(int argc, char* argv[])
 
 				ImGui::EndMenu();
 			}
+			//auto itxt_unit = g_mtxt_intl.find("ft_undo");
+			//if (itxt_unit != g_mtxt_intl.end())
+			//{
+			//	auto& txt_unit = itxt_unit->second;
+			//	ImVec2 uv0(txt_unit._x0 / g_txt_width_intl, txt_unit._y0 / g_txt_height_intl);
+			//	ImVec2 uv1(txt_unit._x1 / g_txt_width_intl, txt_unit._y1 / g_txt_height_intl);
+			//	int flags = g_ui_edit_command_mg.undo_able() ? 0:ImGuiButtonFlags_Disabled;
+			//	//printf("flags=%d\n", flags);
+			//	if (ImGui::ImageButton((ImTextureID)g_txt_id_intl, ImVec2(25.f, 23.f), uv0, uv1,flags))
+			//	{
+			//		g_ui_edit_command_mg.undo_command();
+			//	}
+			//}
+			//itxt_unit = g_mtxt_intl.find("ft_redo");
+			//if (itxt_unit != g_mtxt_intl.end())
+			//{
+			//	auto& txt_unit = itxt_unit->second;
+			//	ImVec2 uv0(txt_unit._x0 / g_txt_width_intl, txt_unit._y0 / g_txt_height_intl);
+			//	ImVec2 uv1(txt_unit._x1 / g_txt_width_intl, txt_unit._y1 / g_txt_height_intl);
+			//	int flags = g_ui_edit_command_mg.redo_able() ? 0 : ImGuiButtonFlags_Disabled;
+			//	//printf("flags1=%d\n", flags);
+			//	if (ImGui::ImageButton((ImTextureID)g_txt_id_intl, ImVec2(25.f, 23.f), uv0, uv1, flags))
+			//	{
+			//		g_ui_edit_command_mg.redo_command();
+			//	}
+			//}
+			
 			ImGui::EndMainMenuBar();
 		}
 		if (show_project_window)

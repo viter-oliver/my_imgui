@@ -6,12 +6,18 @@
 //#include <GLFW/glfw3.h>
 #define _STR(x) #x
 #define STR(x) _STR(x)
-#define BASE_UC_REF(x) if (!_##x&&object_name==STR(x)) {_##x=pobj;_##x->set_visible(false); return;}
-#define SLD_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_slider*> (pobj);_##x->set_visible(false);return;}
-#define SLD_THUMB_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_slider_thumb*> (pobj);_##x->set_visible(false);return;}
-#define IMG_PLAY_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_image_play*> (pobj);_##x->set_visible(false);return;}
-#define IMG_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_image*> (pobj);_##x->set_visible(false);return;}
-#define TXT_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_textblock*> (pobj);_##x->set_visible(false);return;}
+#define BASE_UC_REF(x) _##x=pmain_show->get_child(idx);_##x->set_visible(false);idx++
+#define IMG_REF(x) _##x=static_cast<ft_image*> (pmain_show->get_child(idx));_##x->set_visible(false);idx++
+#define SLD_REF(x) _##x=static_cast<ft_slider*> (pmain_show->get_child(idx));_##x->set_visible(false);idx++
+#define SLD_THUMB_REF(x)  _##x=static_cast<ft_slider_thumb*> (pmain_show->get_child(idx));_##x->set_visible(false);idx++
+#define IMG_PLAY_REF(x)  _##x=static_cast<ft_image_play*> (pmain_show->get_child(idx));_##x->set_visible(false);idx++
+#define TXT_REF(x)  _##x=static_cast<ft_textblock*> (pmain_show->get_child(idx));_##x->set_visible(false);idx++
+//#define BASE_UC_REF(x) if (!_##x&&object_name==STR(x)) {_##x=pobj;_##x->set_visible(false); return;}
+//#define SLD_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_slider*> (pobj);_##x->set_visible(false);return;}
+//#define SLD_THUMB_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_slider_thumb*> (pobj);_##x->set_visible(false);return;}
+//#define IMG_PLAY_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_image_play*> (pobj);_##x->set_visible(false);return;}
+//#define IMG_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_image*> (pobj);_##x->set_visible(false);return;}
+//#define TXT_REF(x) if (!_##x&&object_name==STR(x)) {_##x=static_cast<ft_textblock*> (pobj);_##x->set_visible(false);return;}
 int key_time_pointer[7] = 
 {
 	5, 
@@ -40,9 +46,10 @@ my_application::my_application(int argc, char **argv)
 }
 
 
-void my_application::init_ui_component(base_ui_component* pobj)
+void my_application::init_ui_component()
 {
-	string object_name = pobj->get_name();
+	base_ui_component* pmain_show = _proot->get_child(0);
+	int idx = 2;
 	//printf("get ui componet:%s\n", object_name.c_str());
 	BASE_UC_REF(xedge);
 	SLD_REF(water_temp);
@@ -69,24 +76,138 @@ void my_application::init_ui_component(base_ui_component* pobj)
 	IMG_REF(w120);
 	TXT_REF(time);
 	IMG_REF(icon_turn);
-	TXT_REF(distance);
-	//BASE_UC_REF(gear);
-	IMG_REF(right_decorate_line);
-	IMG_REF(left_decorate_line);
-	TXT_REF(gear_value);
-	TXT_REF(state);
+	_distance = static_cast<ft_textblock*>(_icon_turn->get_child(1));
+	_distance->set_visible(false);
+	base_ui_component* _gear;
+	BASE_UC_REF(gear);
+	_gear->set_visible(true);
+	_right_decorate_line = static_cast<ft_image*>(_gear->get_child(0));
+	_right_decorate_line->set_visible(false);
+	_left_decorate_line = static_cast<ft_image*>(_gear->get_child(1));
+	_left_decorate_line->set_visible(false);
+	_gear_value = static_cast<ft_textblock*>(_gear->get_child(2));
+	_gear_value->set_visible(false);
+	_state=static_cast<ft_textblock*>(_gear->get_child(3));
+	_state->set_visible(false);
 	TXT_REF(speed);
 	TXT_REF(trip);
 	TXT_REF(odo);
-	BASE_UC_REF(main_menu);
-	BASE_UC_REF(signal_light);
-	BASE_UC_REF(popup_dlg);
+	_main_menu = _proot->get_child(1);
+	_signal_light = _proot->get_child(2);
+	_popup_dlg = _proot->get_child(3);
 	//printf("is %s missed?\n", object_name.c_str());
+}
+void my_application::register_command_handle()
+{
+	//total mileage
+	g_msg_host.attach_monitor("total mileage", [this](unsigned char* pbuff, int len){
+		unsigned char DataValid = *pbuff++;
+		int mileage_value = *((int*)pbuff);
+		if (DataValid)
+		{
+			char odo_show[50] = { 0 };
+			sprintf(odo_show, "ODO:%dkm", mileage_value);
+			_odo->set_content(odo_show);
+		}
+	});
+	g_msg_host.attach_monitor("subtotal mileage", [this](unsigned char* pbuff, int len){
+		unsigned char DataValid = *pbuff;
+		*pbuff = 0;
+		int sub_mileage_value = *((int*)pbuff);
+		if (DataValid)
+		{
+			char trip_show[50] = { 0 };
+			sprintf(trip_show, "TRIP:%dkm", sub_mileage_value);
+			_trip->set_content(trip_show);
+		}
+	});
+	g_msg_host.attach_monitor("auto speed", [this](unsigned char* pbuff, int len){
+		unsigned char DataValid = *pbuff++;     // Byte first
+		unsigned char alarm = *pbuff++;         // Byte Second
+		short auto_speed = *((short*)pbuff);
+		if (DataValid)
+		{
+			char auto_speed_show[50] = { 0 };
+			sprintf(auto_speed_show, "%d", auto_speed);
+			_speed->set_content(auto_speed_show);
+			float moto_speed_rate = (float)auto_speed / 3.f;
+			_right_pointer_sl->set_progress_value(moto_speed_rate);
+			if (_being_logo_animation)
+			{
+				_right_pointer_sl->calcu_thumb_pos();
+				ImVec2 bsize = _right_pointer_sl->thumb_size();
+				_right_pointer_play->base_pos() = _right_pointer_sl->thumb_base_pos();
+				_right_pointer_play->set_size(bsize);
+			}
+		}
+	});
+
+	g_msg_host.attach_monitor("motor speed", [this](unsigned char* pbuff, int len){
+		unsigned char DataValid = *pbuff++;     // Byte first
+		unsigned char alarm = *pbuff++;         // Byte Second
+		short motor_speed = *((short*)pbuff);
+		if (DataValid)
+		{
+			/*char motor_speed_show[50] = { 0 };
+			sprintf(motor_speed_show, "ROTATE:%r/m", motor_speed);
+			_trip->set_content(motor_speed_show);*/
+			float moto_speed_rate = (float)motor_speed  / 10.f;
+			_left_pointer_sl->set_progress_value(moto_speed_rate);
+			if (_being_logo_animation)
+			{
+				_left_pointer_sl->calcu_thumb_pos();
+				ImVec2 bsize = _left_pointer_sl->thumb_size();
+				_left_pointer_play->base_pos() = _left_pointer_sl->thumb_base_pos();
+				_left_pointer_play->set_size(bsize);
+			}
+		}
+	});
+
+	// Fuel
+	g_msg_host.attach_monitor("fuel", [this](unsigned char* pbuff, int len){
+		unsigned char DataValid = *pbuff++;     // Byte first
+		unsigned char alarm = *pbuff++;         // Byte Second
+		short fuel_cons_value = *((short*)pbuff);   // Byte third
+		printf("****0x%x,0x%x,0x%x\n", *pbuff, *(pbuff + 1), fuel_cons_value);
+		fuel_cons_value *= 0.1;
+		float fuel_cons_rate = fuel_cons_value / 50.f;
+		if (DataValid)
+		{
+			_fuel_cons->set_progress(fuel_cons_rate);
+		}
+	});
+	// Fuel
+	g_msg_host.attach_monitor("water temperature", [this](unsigned char* pbuff, int len){
+		unsigned char DataValid = *pbuff++;     // Byte first
+		unsigned char alarm = *pbuff++;         // Byte Second
+		short water_temperature_value = *((short*)pbuff);   // Byte third
+		water_temperature_value -= 1000;
+		water_temperature_value *= 0.1;
+		float water_temperature_rate = water_temperature_value / 100;
+		if (DataValid)
+		{
+			_water_temp->set_progress(water_temperature_rate);
+		}
+	});
+	// Gear
+	g_msg_host.attach_monitor("gearbox", [this](unsigned char* pbuff, int len){
+		unsigned char DataValid = *pbuff++;  // Byte first
+		unsigned char GearPosition = *pbuff++;   // 变速档档位
+		unsigned char TargerGear = *pbuff++; // 目标档位
+		unsigned char GearBoxMode = *pbuff++; //变速箱模式：0标准模式，1经济模式，2动力模式，3雪地模式，4手动模式
+		unsigned char ECO_Grade = *pbuff;    // ECO等级
+		static char* gear_show[] = { "P", "R", "N", "D", "M", "S" };
+		const unsigned char gear_position_cnt = sizeof(gear_show) / sizeof(char*);
+		assert(GearPosition < gear_position_cnt);
+		_gear_value->set_content(gear_show[GearPosition]);
+
+	});
 }
 //double lastTime = 0.f;
 std::chrono::high_resolution_clock::time_point lastTime;
 void my_application::resLoaded()
 {
+	init_ui_component();
 	_left_pointer_sl->set_progress_value(40);
 	_left_pointer_sl->calcu_thumb_pos();
 	ImVec2 bsize = _left_pointer_sl->thumb_size();
@@ -111,11 +232,23 @@ void my_application::resLoaded()
 	//lastTime = glfwGetTime();
 	lastTime = std::chrono::high_resolution_clock::now();
 	g_msg_host.load_protocol_from_config(protocol_path);
-	
+	register_command_handle();
 	g_rcf_server.set_cmd_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
 	g_rcf_server.link();
 }
-
+void my_application::finish_animation()
+{
+	_trip_group->set_visible(true);
+	_odo_group->set_visible(true);
+	_speed->set_visible(true);
+	_gear_value->set_visible(true);
+	_trip->set_visible(true);
+	_odo->set_visible(true);
+	_time->set_visible(true);
+	_pmain_menu = make_shared<main_menu_controller>(_main_menu);
+	_psignal_light = make_shared<signal_light_controller>(_signal_light);
+	_ppop_up_dlg = make_shared<pop_up_dlg_controller>(_popup_dlg);
+}
 bool play_image(ft_image_play* pimgp)
 {
 	auto last_fm_id=pimgp->get_frames_count()-1;
@@ -151,10 +284,7 @@ void play_group(base_ui_component* pobj)
 void my_application::onUpdate()
 {
 	g_msg_host.execute_data_handle_cmd();
-	if (!_being_logo_animation)
-	{
-		return;
-	}
+	
 	auto currentTime = std::chrono::high_resolution_clock::now();
 	int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();;
 	if (delta<delta_limit)
@@ -163,6 +293,10 @@ void my_application::onUpdate()
 		return;
 	}
 	lastTime = currentTime;
+	if (!_being_logo_animation)
+	{
+		return;
+	}
 	time_line++;
 	if (time_line == key_time_pointer[0])
 	{
@@ -276,13 +410,7 @@ void my_application::onUpdate()
 	}
 	if (time_line == key_time_pointer[4])
 	{
-		_trip_group->set_visible(true);
-		_odo_group->set_visible(true);
-		_speed->set_visible(true);
-		_gear_value->set_visible(true);
-		_trip->set_visible(true);
-		_odo->set_visible(true);
-		_time->set_visible(true);
+		finish_animation();
 		_being_logo_animation = false;
 	}
 

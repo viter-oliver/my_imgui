@@ -3,9 +3,9 @@
 class main_menu_controller
 {
 	base_ui_component* _root;
+	ft_image* _menu_bg;
 	ft_image* _img_selected;
 	ft_image* _second_level_title;
-	ft_image* _menu_bg;
 	base_ui_component* _first_level_menu;
 	base_ui_component* _media_group;
 	base_ui_component* _tpms_group;

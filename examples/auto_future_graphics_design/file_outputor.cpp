@@ -3,7 +3,7 @@ void point_to_underline(string& target)
 {
 	for (auto& str_u:target)
 	{
-		if (str_u=='.')
+		if (str_u == '.' || str_u == ' ' || str_u == '-')
 		{
 			str_u = '_';
 		}

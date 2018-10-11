@@ -48,10 +48,10 @@ void afb_load::init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::ob
 			auto cd_obj = childs_obj.via.array.ptr[ix];
 			base_ui_component* pchild;
 			init_ui_component_by_mgo(pchild, cd_obj);
-			if (_impl)
+			/*if (_impl)
 			{
-				_impl(pchild);
-			}
+			_impl(pchild);
+			}*/
 			ptar->add_child(pchild);
 		}
 	}

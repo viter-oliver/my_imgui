@@ -2366,6 +2366,30 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
+					"name" : "menu_bg",
+					"screen_pos" : 
+					{
+						"x" : 337.0,
+						"y" : 43.0
+					},
+					"size" : 
+					{
+						"h" : 668.0,
+						"w" : 1566.0
+					},
+					"texture_index" : 85,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
 					"name" : "slope_line",
 					"screen_pos" : 
 					{
@@ -2530,30 +2554,6 @@
 						"w" : 425.0
 					},
 					"texture_index" : 68,
-					"type" : "ft_image",
-					"visible" : true
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "menu_bg",
-					"screen_pos" : 
-					{
-						"x" : 337.0,
-						"y" : 43.0
-					},
-					"size" : 
-					{
-						"h" : 668.0,
-						"w" : 1566.0
-					},
-					"texture_index" : 85,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -3749,7 +3749,7 @@
 				"y" : 0.0
 			},
 			"type" : "ft_base",
-			"visible" : true
+			"visible" : false
 		},
 		
 		{
@@ -3945,7 +3945,7 @@
 					},
 					"texture_index" : 103,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -3969,7 +3969,7 @@
 					},
 					"texture_index" : 165,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -3993,7 +3993,7 @@
 					},
 					"texture_index" : 170,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4017,7 +4017,7 @@
 					},
 					"texture_index" : 163,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4041,7 +4041,7 @@
 					},
 					"texture_index" : 163,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4065,7 +4065,7 @@
 					},
 					"texture_index" : 136,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4089,7 +4089,7 @@
 					},
 					"texture_index" : 163,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4113,7 +4113,7 @@
 					},
 					"texture_index" : 163,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4137,7 +4137,7 @@
 					},
 					"texture_index" : 163,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4161,7 +4161,7 @@
 					},
 					"texture_index" : 160,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4185,7 +4185,7 @@
 					},
 					"texture_index" : 106,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4209,7 +4209,7 @@
 					},
 					"texture_index" : 155,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4233,7 +4233,7 @@
 					},
 					"texture_index" : 114,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4257,7 +4257,7 @@
 					},
 					"texture_index" : 167,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4281,7 +4281,7 @@
 					},
 					"texture_index" : 112,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4305,7 +4305,7 @@
 					},
 					"texture_index" : 190,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4329,7 +4329,7 @@
 					},
 					"texture_index" : 108,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4353,7 +4353,7 @@
 					},
 					"texture_index" : 109,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4377,7 +4377,7 @@
 					},
 					"texture_index" : 139,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4425,7 +4425,7 @@
 					},
 					"texture_index" : 194,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4449,7 +4449,7 @@
 					},
 					"texture_index" : 157,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4473,7 +4473,7 @@
 					},
 					"texture_index" : 169,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4497,7 +4497,7 @@
 					},
 					"texture_index" : 148,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4521,7 +4521,7 @@
 					},
 					"texture_index" : 158,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4545,7 +4545,7 @@
 					},
 					"texture_index" : 176,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4569,7 +4569,7 @@
 					},
 					"texture_index" : 198,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -4593,7 +4593,7 @@
 					},
 					"texture_index" : 96,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				}
 			],
 			"name" : "signal_light",
