@@ -1,8 +1,8 @@
 #include "my_application.h"
 #include "main.h"
 #include "msg_host_n.h"
-#include "idata_collect.h"
 #include <chrono>
+
 //#include <GLFW/glfw3.h>
 #define _STR(x) #x
 #define STR(x) _STR(x)
@@ -39,7 +39,15 @@ using namespace auto_future_utilities;
 msg_host_n g_msg_host;
 const char* protocol_path = "communication_protocol_n.json";
 const char* filter_by_priority_path = "filter_by_priority_protocol.json";
+//#define RCF_COMM
+#ifdef RCF_COMM
+#include "idata_collect.h"
 idata_collect g_rcf_server;
+#endif
+#ifdef _SCOMMM
+#include "scomm.h"
+scomm s_scm;
+#endif
 my_application::my_application(int argc, char **argv)
 	:application(argc,argv)
 {
@@ -93,8 +101,11 @@ void my_application::init_ui_component()
 	TXT_REF(trip);
 	TXT_REF(odo);
 	_main_menu = _proot->get_child(1);
+	_main_menu->set_visible(false);
 	_signal_light = _proot->get_child(2);
+	//_signal_light->set_visible(false);
 	_popup_dlg = _proot->get_child(3);
+	_popup_dlg->set_visible(false);
 	//printf("is %s missed?\n", object_name.c_str());
 }
 void my_application::register_command_handle()
@@ -233,8 +244,18 @@ void my_application::resLoaded()
 	lastTime = std::chrono::high_resolution_clock::now();
 	g_msg_host.load_protocol_from_config(protocol_path);
 	register_command_handle();
+
+#ifdef RCF_COMM
 	g_rcf_server.set_cmd_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
 	g_rcf_server.link();
+#endif
+#ifdef _SCOMMM
+	s_scm.set_msg_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
+	DWORD m_dwThreadId;
+	CreateThread(NULL, 0, ThreadLoadApps, &s_scm, 0, &m_dwThreadId);
+	/*thread scmm_thd([this]{s_scm(); });
+	scmm_thd.detach();*/
+#endif
 }
 void my_application::finish_animation()
 {
@@ -419,4 +440,27 @@ void my_application::onUpdate()
 my_application::~my_application()
 {
 }
+#ifdef _SCOMMM
+
+bool my_application::create_run()
+{
+	if (_arg_list.size()<1)
+	{
+		printf("at least you should provide a serial comm number!\n");
+		return false;
+	}
+	int comm_id = atoi(_arg_list[0].c_str());
+	int baudrate = 115200;
+	if (_arg_list.size()>1)
+	   baudrate=atoi(_arg_list[1].c_str());
+	if (!s_scm.open(comm_id, baudrate))
+	{
+		return false;
+	}
+	
+	return application::create_run();
+}
+#endif
 AFGUI_APP(my_application)
+
+

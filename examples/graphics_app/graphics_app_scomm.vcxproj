@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{C6B31CCF-1977-49CF-8F87-6359FEFC17D8}</ProjectGuid>
+    <ProjectGuid>{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}</ProjectGuid>
     <RootNamespace>graphics_lib</RootNamespace>
-    <ProjectName>graphics_app</ProjectName>
+    <ProjectName>graphics_app_scomm</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -92,8 +92,8 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;WIN32_LEAN_AND_MEAN;RCF_COMM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;_SCOMMM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -124,9 +124,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;WIN32_LEAN_AND_MEAN;NDEBUG;RCF_COMM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;NDEBUG;_SCOMMM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -160,8 +160,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\rcf_service\idata_collect.h" />
     <ClInclude Include="afg.h" />
+    <ClInclude Include="scomm.h" />
     <ClInclude Include="main_menu_controller.h" />
     <ClInclude Include="my_application.h" />
     <ClInclude Include="platform_def.h" />
@@ -172,8 +172,6 @@
     <None Include="..\README.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\rcf\src\RCF\RCF.cpp" />
-    <ClCompile Include="..\..\rcf_service\idata_collect.cpp" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="main_menu_controller.cpp" />
     <ClCompile Include="my_application.cpp" />

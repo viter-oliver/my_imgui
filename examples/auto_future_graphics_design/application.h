@@ -4,12 +4,15 @@
 
 namespace auto_future
 {
-	
+
 	class AFG_EXPORT application
 	{
 	protected:
-		std::string _cureent_project_file_path;
-		int _screen_width = { 0 }, _screen_height = { 0 };
+#define  SCREEN_W 1920
+#define  SCREEN_H 720
+		string _cureent_project_file_path;
+		vector<string> _arg_list;
+		int _screen_width = { SCREEN_W }, _screen_height = { SCREEN_H };
 		base_ui_component* _proot = { NULL };
 		
 	public:
@@ -17,10 +20,10 @@ namespace auto_future
 		~application();
 		bool prepare();
 		//virtual void init_ui_component(base_ui_component* pobj){}
-		virtual void resLoaded(){}
-		bool create_run();
-		virtual void preRender(){}
-		virtual void onUpdate(){}
+		virtual void resLoaded() = 0;
+		virtual bool create_run();
+		//virtual void preRender(){}
+		virtual void onUpdate() = 0;
 		void destroy();
 	};
 }

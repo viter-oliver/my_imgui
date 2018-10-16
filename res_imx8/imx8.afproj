@@ -1776,7 +1776,7 @@
 						"y" : 235.0
 					},
 					"name" : "edge_right_up_sl1",
-					"pg_value" : 100.0000076293945,
+					"pg_value" : 0.0,
 					"screen_pos" : 
 					{
 						"x" : 0.0,
@@ -1794,13 +1794,13 @@
 						"name" : "",
 						"screen_pos" : 
 						{
-							"x" : 1061.511108398438,
-							"y" : 103.0000076293945
+							"x" : 1036.0,
+							"y" : 46.0
 						},
 						"size" : 
 						{
-							"h" : 184.0,
-							"w" : 490.0
+							"h" : 235.0,
+							"w" : 672.0
 						},
 						"texture_index" : 33,
 						"type" : "ft_image",
@@ -1832,7 +1832,7 @@
 						"y" : 184.0
 					},
 					"name" : "edge_right_up_sl2",
-					"pg_value" : 100.0000076293945,
+					"pg_value" : 0.0,
 					"screen_pos" : 
 					{
 						"x" : 0.0,
@@ -1850,13 +1850,13 @@
 						"name" : "",
 						"screen_pos" : 
 						{
-							"x" : 1038.308105468750,
-							"y" : 134.0
+							"x" : 1061.510986328125,
+							"y" : 103.0
 						},
 						"size" : 
 						{
-							"h" : 155.0,
-							"w" : 430.0
+							"h" : 184.0,
+							"w" : 490.0
 						},
 						"texture_index" : 33,
 						"type" : "ft_image",
@@ -3357,6 +3357,29 @@
 									"visible" : true,
 									"width" : 560.0,
 									"wrapped" : false
+								},
+								
+								{
+									"content" : "h",
+									"font_id" : 0,
+									"font_scale" : 1.0,
+									"name" : "unit",
+									"screen_pos" : 
+									{
+										"x" : 48.0,
+										"y" : 78.0
+									},
+									"txt_color" : 
+									{
+										"w" : 1.0,
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
 								}
 							],
 							"direction" : 2,
@@ -3437,6 +3460,29 @@
 									{
 										"x" : 30.96800231933594,
 										"y" : 45.0
+									},
+									"txt_color" : 
+									{
+										"w" : 1.0,
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								},
+								
+								{
+									"content" : "km",
+									"font_id" : 0,
+									"font_scale" : 1.0,
+									"name" : "unit",
+									"screen_pos" : 
+									{
+										"x" : 45.0,
+										"y" : 78.0
 									},
 									"txt_color" : 
 									{
@@ -3541,6 +3587,29 @@
 									"visible" : true,
 									"width" : 560.0,
 									"wrapped" : false
+								},
+								
+								{
+									"content" : "km",
+									"font_id" : 0,
+									"font_scale" : 1.0,
+									"name" : "unit",
+									"screen_pos" : 
+									{
+										"x" : 45.0,
+										"y" : 78.0
+									},
+									"txt_color" : 
+									{
+										"w" : 1.0,
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
 								}
 							],
 							"direction" : 2,
@@ -3585,7 +3654,7 @@
 						"y" : 0.0
 					},
 					"type" : "ft_base",
-					"visible" : false
+					"visible" : true
 				},
 				
 				{
@@ -4401,7 +4470,7 @@
 					},
 					"texture_index" : 146,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{

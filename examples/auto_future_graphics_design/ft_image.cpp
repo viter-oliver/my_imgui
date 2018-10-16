@@ -8,6 +8,9 @@
 x'=(x-a)cos¦Á+(y-b)sin¦Á+a
 y'=-(x-a)sin¦Á+(y-b)cos¦Á+b
 */
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#include "command_element.h"
+#endif
 namespace auto_future
 {
 	void ft_image::draw()
@@ -98,11 +101,6 @@ namespace auto_future
 		}
 		if (property_part&en_geometry_property)
 		{
-			if (befirst_draw)
-			{
-				_edit_size = _img_pt._size;
-				befirst_draw = false;
-			}
 			ImGui::Text("size:");
 			ImGui::SliderFloat("w", &_edit_size.x, 0.f, screenw);
 			ImGui::SliderFloat("h", &_edit_size.y, 0.f, screenh);
@@ -117,7 +115,12 @@ namespace auto_future
 			ImGui::Text("angle:");
 			ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);
 			ImGui::Separator();
-			ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0");
+			if (ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0"))
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_ac_type, command_value(_img_pt_bk._anchor_type))));
+				_img_pt_bk._anchor_type = _img_pt._anchor_type;
+			}
 			ImGui::Spacing();
 		}
 		if (property_part&en_texture_property)
@@ -126,7 +129,12 @@ namespace auto_future
 			ImGui::Text("image:");
 			auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 			int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
-			ImGui::Combo("texture index:", &_img_pt._texture_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+			if (ImGui::Combo("texture index:", &_img_pt._texture_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize))
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_txt_id, command_value(_img_pt_bk._texture_index))));
+				_img_pt_bk._texture_index = _img_pt._texture_index;
+			}
 			ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
 			ImGui::Spacing();
 			float reswidth = res_coors[_img_pt._texture_index].owidth();
@@ -146,8 +154,125 @@ namespace auto_future
 				ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 			}
 		}
+		ImGuiContext& g = *GImGui;
+		if (ImGui::IsMouseReleased(0) || g.IO.InputContentChanged)
+		{
+			bool pt_modified = false;
+			if (_img_pt._size.x != _img_pt_bk._size.x)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_sz_x, command_value(_img_pt_bk._size.x))));
+				_img_pt_bk._size.x = _img_pt._size.x;
+				pt_modified = true;
+			}
+			if (_img_pt._size.y != _img_pt_bk._size.y)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_sz_y, command_value(_img_pt_bk._size.y))));
+				_img_pt_bk._size.y = _img_pt._size.y;
+				pt_modified = true;
+			}
+			if (_img_pt._axis_pos.x != _img_pt_bk._axis_pos.x)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_ax_pos_x, command_value(_img_pt_bk._axis_pos.x))));
+				_img_pt_bk._axis_pos.x = _img_pt._axis_pos.x;
+				pt_modified = true;
+			}
+			if (_img_pt._axis_pos.y != _img_pt_bk._axis_pos.y)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_ax_pos_y, command_value(_img_pt_bk._axis_pos.y))));
+				_img_pt_bk._axis_pos.y = _img_pt._axis_pos.y;
+				pt_modified = true;
+			}
+			if (_img_pt._angle != _img_pt_bk._angle)
+			{
+				g_ui_edit_command_mg.create_command\
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_angle, command_value(_img_pt_bk._angle))));
+				_img_pt_bk._angle = _img_pt._angle;
+				pt_modified = true;
+			}
+			if (pt_modified)
+			{
+				g.IO.InputContentChanged = false;
+			}
+		}
 	}
 
+
+	void ft_image::execute_command(command_elemment& ele_cmd)
+	{
+		if (ele_cmd._cmd_type == "ft_image")
+		{
+			switch (ele_cmd._cmd_id)
+			{
+			case en_pt_sz_x:
+				_img_pt._size.x=ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._size.x = _img_pt._size.x;
+				break;
+			case en_pt_sz_y:
+				_img_pt._size.y = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._size.y = _img_pt._size.y;
+				break;
+			case en_pt_ax_pos_x:
+				_img_pt._axis_pos.x = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._axis_pos.x = _img_pt._axis_pos.x;
+				break;
+			case en_pt_ax_pos_y:
+				_img_pt._axis_pos.y = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._axis_pos.y = _img_pt._axis_pos.y;
+				break;
+			case en_pt_ac_type:
+				_img_pt._anchor_type = ele_cmd._cmd_value._value._ivalue;
+				_img_pt_bk._anchor_type = _img_pt._anchor_type;
+
+				break;
+			case en_pt_txt_id:
+				_img_pt._texture_index = ele_cmd._cmd_value._value._ivalue;
+				_img_pt_bk._texture_index = _img_pt._texture_index;
+				break;
+			case en_pt_angle :
+				_img_pt._angle = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._angle = _img_pt._angle;
+				break;
+			
+			default:
+				break;
+			}
+		}
+		else
+		{
+			ft_base::execute_command(ele_cmd);
+		}
+	}
+
+	command_elemment ft_image::clone_cmd_ele(command_elemment&ele_cmd)
+	{
+		if (ele_cmd._cmd_type == "ft_image")
+		{
+			switch (ele_cmd._cmd_id)
+			{
+			case en_pt_sz_x:
+				return command_elemment(string("ft_mage"), en_pt_sz_x, command_value(_img_pt._size.x));
+			case en_pt_sz_y:
+				return command_elemment(string("ft_mage"), en_pt_sz_y, command_value(_img_pt._size.y));
+			case en_pt_ax_pos_x:
+				return command_elemment(string("ft_mage"), en_pt_ax_pos_x, command_value(_img_pt._axis_pos.x));
+			case en_pt_ax_pos_y:
+				return command_elemment(string("ft_mage"), en_pt_ax_pos_y, command_value(_img_pt._axis_pos.y));
+			case en_pt_ac_type:
+				return command_elemment(string("ft_mage"), en_pt_ac_type, command_value(_img_pt._anchor_type));
+			case en_pt_txt_id:
+				return command_elemment(string("ft_mage"), en_pt_txt_id, command_value(_img_pt._texture_index));
+			case en_pt_angle:
+				return command_elemment(string("ft_mage"), en_pt_angle, command_value(_img_pt._angle));
+			default:
+				break;
+			}
+		}
+		return command_elemment();
+	}
 
 	/*
 	fields:
@@ -160,7 +285,8 @@ namespace auto_future
 		ft_base::init_from_json(jvalue);
 		//g_cur_texture_id_index = jvalue["texture_id_index"].asInt();
 		_img_pt._texture_index = jvalue["texture_index"].asInt();
-		Value& jsize = jvalue["size"];
+		_img_pt_bk._texture_index = jvalue["texture_index"].asInt();
+	   Value& jsize = jvalue["size"];
 		if (!jsize.isNull())
 		{
 			_img_pt._size.x = jsize["w"].asDouble();
@@ -188,6 +314,7 @@ namespace auto_future
 			_img_pt._axis_pos.y = base_pos().y + ah;
 		}
 		_img_pt._anchor_type = jvalue["anchor_type"].asInt();
+		_img_pt_bk = _img_pt;
 		return true;
 	}
 	bool ft_image::init_json_unit(Value& junit)

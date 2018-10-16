@@ -203,7 +203,14 @@ void msg_host_n::pick_valid_data(u8* pbuff, int len)
 		printf("invalid head data:%x \n", *pbuff);
 	}
 	int vlen = len - (pvalue - pbuff);
-	target._data_buff.emplace(vdata_list(pvalue, pvalue+vlen));
+	if (vlen>0)
+	{
+		target._data_buff.emplace(vdata_list(pvalue, pvalue + vlen));
+	}
+	else
+	{
+		printf("cmd:%s is invalid\n", key_name.c_str());
+	}
 	/*if (!_task_entry||!(_task_entry->handle_custom_data(key_name.c_str(),pvalue,vlen)))
 	{
 		if (target._handle)
@@ -235,7 +242,10 @@ void msg_host_n::execute_data_handle_cmd()
 			while (!databf.empty())
 			{
 				auto& datal = databf.front();
-				msg_hdl(&datal.at(0), datal.size());
+				if (datal.size()>0)
+				{
+					msg_hdl(&datal.at(0), datal.size());
+				}
 				databf.pop();
 			}
 		}

@@ -27,6 +27,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "mcu_simulator", "..\mcu_sim
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics_app", "graphics_app\graphics_app.vcxproj", "{C6B31CCF-1977-49CF-8F87-6359FEFC17D8}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "graphics_app_scomm", "graphics_app\graphics_app_scomm.vcxproj", "{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -189,6 +191,20 @@ Global
 		{C6B31CCF-1977-49CF-8F87-6359FEFC17D8}.Release|Win32.Build.0 = Release|Win32
 		{C6B31CCF-1977-49CF-8F87-6359FEFC17D8}.Release|x64.ActiveCfg = Release|x64
 		{C6B31CCF-1977-49CF-8F87-6359FEFC17D8}.Release|x64.Build.0 = Release|x64
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Debug|ARM.ActiveCfg = Debug|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Debug|Win32.Build.0 = Debug|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Debug|x64.ActiveCfg = Debug|x64
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Debug|x64.Build.0 = Debug|x64
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Release|ARM.ActiveCfg = Release|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Release|Win32.ActiveCfg = Release|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Release|Win32.Build.0 = Release|Win32
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Release|x64.ActiveCfg = Release|x64
+		{BEED3121-5A7A-4FE3-90E5-01B419D3AAEF}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

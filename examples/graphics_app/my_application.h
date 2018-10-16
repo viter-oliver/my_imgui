@@ -54,6 +54,10 @@ public:
 	my_application(int argc, char **argv);
 	void resLoaded();
 	void onUpdate();
+
 	virtual ~my_application();
+#ifdef _SCOMMM
+	bool create_run();
+#endif // _SCOMMM
 };
 

@@ -23,8 +23,7 @@ namespace auto_future
 			intl_pt() :_texture_index(0), _angle(0.0){}
 		};
 		intl_pt _img_pt;
-	public:
-		
+	public:	
 		ft_image() :ft_base(), _img_pt(){}
 		int collect_property_range(vproperty_list& vplist)
 		{
@@ -82,9 +81,17 @@ namespace auto_future
 			en_geometry_property=2,
 			en_texture_property=8,
 		};
-		bool befirst_draw = { true };
+	private:
+		enum{ en_pt_sz_x, en_pt_sz_y, en_pt_ax_pos_x, en_pt_ax_pos_y,\
+			en_pt_ac_type,en_pt_txt_id,en_pt_angle};
+		intl_pt _img_pt_bk;
 		ImVec2 _edit_size;
+
+	public:
 		void draw_peroperty_page(int property_part = -1);
+		void execute_command(command_elemment& ele_cmd);
+		command_elemment clone_cmd_ele(command_elemment&ele_cmd);
+
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

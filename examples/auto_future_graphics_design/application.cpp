@@ -32,11 +32,16 @@ namespace auto_future
 		{
 			_cureent_project_file_path = argv[1];//afb
 		}
-		if (argc > 3)
+		for (int ix = 2; ix < argc;ix++)
+		{
+			_arg_list.emplace_back(argv[ix]);
+		}
+		
+		/*if (argc > 3)
 		{
 			_screen_width = atoi(argv[2]);
 			_screen_height = atoi(argv[3]);
-		}
+		}*/
 	}
 
 

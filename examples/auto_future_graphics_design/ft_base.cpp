@@ -1,7 +1,9 @@
 #include "ft_base.h"
 #include <GLFW/glfw3.h>
 #include <typeinfo>
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 #include "command_element.h"
+#endif
 namespace auto_future
 {
 	void ft_base::draw()
