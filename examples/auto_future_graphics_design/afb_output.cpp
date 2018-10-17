@@ -212,16 +212,29 @@ void afb_output::output_afb(const char* afb_file)
 		pk.pack_bin(filev->_fsize);
 		pk.pack_bin_body(reinterpret_cast<char const*>(filev->_pbin), filev->_fsize);
 	}
+	/*GLint formats = 0;
+	glGetIntegerv(GL_NUM_PROGRAM_BINARY_FORMATS, &formats);
+	GLint *binaryFormats = new GLint[formats];
+	glGetIntegerv(GL_PROGRAM_BINARY_FORMATS, binaryFormats);*/
 	pk.pack_array(g_af_shader_list.size());
 	for (auto& shd_ut : g_af_shader_list)
 	{
-		pk.pack_array(3);
+		pk.pack_array(2);
 		pk.pack_str(shd_ut.first.size());
 		pk.pack_str_body(shd_ut.first.c_str(), shd_ut.first.size());
-		pk.pack_str(shd_ut.second->get_vs_code().size());
+		GLuint pid = shd_ut.second->program_id();
+		GLint len = 0;
+		glGetProgramiv(pid, GL_PROGRAM_BINARY_LENGTH, &len);
+		char* binary =new char[len];
+		GLenum *binaryFormats = 0;
+		glGetProgramBinary(pid, len, NULL, (GLenum*)binaryFormats, binary);
+		pk.pack_bin(len);
+		pk.pack_bin_body(binary, len);
+		delete[] binary;
+		/*pk.pack_str(shd_ut.second->get_vs_code().size());
 		pk.pack_str_body(shd_ut.second->get_vs_code().c_str(), shd_ut.second->get_vs_code().size());
 		pk.pack_str(shd_ut.second->get_fs_code().size());
-		pk.pack_str_body(shd_ut.second->get_fs_code().c_str(), shd_ut.second->get_fs_code().size());
+		pk.pack_str_body(shd_ut.second->get_fs_code().c_str(), shd_ut.second->get_fs_code().size());*/
 	}
 	pk.pack_array(g_material_list.size());
 	for (auto& mtl_ut : g_material_list)

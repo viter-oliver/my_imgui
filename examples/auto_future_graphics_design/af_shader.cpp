@@ -89,6 +89,31 @@ GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE	uimage2DMS
 GL_UNSIGNED_INT_IMAGE_2D_MULTISAMPLE_ARRAY	uimage2DMSArray
 GL_UNSIGNED_INT_ATOMIC_COUNTER	atomic_uint
 */
+
+af_shader::af_shader(GLenum binFormat, void* bin, GLsizei binLength)
+{
+	_shader_program_id = glCreateProgram();
+	glProgramBinary(_shader_program_id, binFormat, bin, binLength);
+	GLint success;
+	glGetProgramiv(_shader_program_id, GL_LINK_STATUS, &success);
+	if (success)
+	{
+		_valid = true;
+	}
+}
+
+af_shader::~af_shader()
+{
+	if (is_valid())
+	{
+		glDeleteProgram(_shader_program_id);
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		glDeleteShader(_vertex_shader);
+		glDeleteShader(_fragment_shader);
+#endif
+	}
+}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source)
 {
 	_vs_code = vertex_shader_source;
@@ -99,16 +124,6 @@ af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_
 		refresh_viarable_list();
 	}
 	
-}
-
-af_shader::~af_shader()
-{
-	if (is_valid())
-	{
-		glDeleteProgram(_shader_program_id);
-		glDeleteShader(_vertex_shader);
-		glDeleteShader(_fragment_shader);
-	}
 }
 
 void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source)
@@ -128,13 +143,13 @@ void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragmen
 	}
 }
 
+
 void af_shader::build()
 {
 	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
 	char* pvs = &_vs_code[0];
 	glShaderSource(_vertex_shader, 1, &pvs, NULL);
 	glCompileShader(_vertex_shader);
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	GLint status;
 	char buffer[512];
 	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
@@ -146,13 +161,12 @@ void af_shader::build()
 		glDeleteShader(_vertex_shader);
 		return;
 	}
-#endif
 	//fragment shader
 	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
 	char* pfs = &_fs_code[0];
 	glShaderSource(_fragment_shader, 1, &pfs, NULL);
 	glCompileShader(_fragment_shader);
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+
 	glGetShaderiv(_fragment_shader, GL_COMPILE_STATUS, &status);
 	if (status != GL_TRUE)
 	{
@@ -164,16 +178,17 @@ void af_shader::build()
 		glDeleteShader(_fragment_shader);
 		return;
 	}
-#endif
 	//link
 	_shader_program_id = glCreateProgram();
 	glAttachShader(_shader_program_id, _vertex_shader);
 	glAttachShader(_shader_program_id, _fragment_shader);
 	glBindFragDataLocation(_shader_program_id, 0, "outColor");
 	glLinkProgram(_shader_program_id);
+	glReleaseShaderCompiler();
 	glUseProgram(_shader_program_id);
 	_valid = true;
 }
+#endif
 
 void af_shader::refresh_viarable_list()
 {

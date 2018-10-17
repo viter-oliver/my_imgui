@@ -268,6 +268,10 @@ void afb_load::load_afb(const char* afb_file)
 		g_mfiles_list[file_kname] = a_file;
 		delete[] file_kname;
 	}
+	GLint formats = 0;
+	glGetIntegerv(GL_NUM_PROGRAM_BINARY_FORMATS, &formats);
+	GLint *binaryFormats = new GLint[formats];
+	glGetIntegerv(GL_PROGRAM_BINARY_FORMATS, binaryFormats);
 	auto obj_shader_list = obj_w.via.array.ptr[9];
 	auto shd_cnt = obj_shader_list.via.array.size;
 	for (size_t ix = 0; ix < shd_cnt; ix++)
@@ -278,20 +282,25 @@ void afb_load::load_afb(const char* afb_file)
 		char* pshd_name = new char[str_shd_nm_sz + 1];
 		memset(pshd_name, 0, str_shd_nm_sz + 1);
 		memcpy(pshd_name, shd_name.via.str.ptr, str_shd_nm_sz);
-		auto shd_vs_code = shd_unit.via.array.ptr[1];
-		auto str_vs_code_sz = shd_vs_code.via.str.size;
-		char* psd_vs_code = new char[str_vs_code_sz + 1];
-		memset(psd_vs_code, 0, str_vs_code_sz + 1);
-		memcpy(psd_vs_code, shd_vs_code.via.str.ptr, str_vs_code_sz);
-		auto shd_fs_code = shd_unit.via.array.ptr[2];
-		auto str_fs_code_sz = shd_fs_code.via.str.size;
-		char* psd_fs_code = new char[str_fs_code_sz + 1];
-		memset(psd_fs_code, 0, str_fs_code_sz + 1);
-		memcpy(psd_fs_code, shd_fs_code.via.str.ptr, str_fs_code_sz);
-		g_af_shader_list[pshd_name] = make_shared<af_shader>(psd_vs_code, psd_fs_code);
+		auto binCode = shd_unit.via.array.ptr[1];
+		auto binCodeSize = binCode.via.bin.size;
+		auto pbin = binCode.via.bin.ptr;
+		g_af_shader_list[pshd_name] = make_shared<af_shader>(binaryFormats[0], (void*)pbin, binCodeSize);
+		//auto shd_vs_code = shd_unit.via.array.ptr[1];
+		//auto str_vs_code_sz = shd_vs_code.via.str.size;
+		//char* psd_vs_code = new char[str_vs_code_sz + 1];
+		//memset(psd_vs_code, 0, str_vs_code_sz + 1);
+		//memcpy(psd_vs_code, shd_vs_code.via.str.ptr, str_vs_code_sz);
+		//auto shd_fs_code = shd_unit.via.array.ptr[2];
+		//auto str_fs_code_sz = shd_fs_code.via.str.size;
+		//char* psd_fs_code = new char[str_fs_code_sz + 1];
+		//memset(psd_fs_code, 0, str_fs_code_sz + 1);
+		//memcpy(psd_fs_code, shd_fs_code.via.str.ptr, str_fs_code_sz);
+		//g_af_shader_list[pshd_name] = make_shared<af_shader>(psd_vs_code, psd_fs_code);
+		//delete[] psd_vs_code;
+		//delete[] psd_fs_code;
+
 		delete[] pshd_name;
-		delete[] psd_vs_code;
-		delete[] psd_fs_code;
 	}
 	auto obj_material_list = obj_w.via.array.ptr[10];
 	auto mtl_cnt = obj_material_list.via.array.size;

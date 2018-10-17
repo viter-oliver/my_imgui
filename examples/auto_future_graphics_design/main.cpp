@@ -384,7 +384,25 @@ int main(int argc, char* argv[])
 		}
 	};
 #endif
+	//glShaderBinary GL_NUM_SHADER_BINARY_FORMATS GL_SHADER_BINARY_FORMATS
+	//GL_NUM_PROGRAM_BINARY_FORMATS,GL_PROGRAM_BINARY_FORMATS GL_PROGRAM_BINARY_LENGTH
+//#define CHECK_SHADER_FORMAT
+#ifdef CHECK_SHADER_FORMAT
+	//GLboolean shaderCompiler;
+	//glGetBooleanv(GL_SHADER_COMPILER, &shaderCompiler);
+	GLint numFormats=0;
+	glGetIntegerv(GL_NUM_PROGRAM_BINARY_FORMATS, &numFormats);
+	GLint* formats = new GLint[numFormats];
+	glGetIntegerv(GL_PROGRAM_BINARY_FORMATS, formats);
+	for (int i = 0; i < numFormats; i++)
+	{
+		printf("shader fmt:0x%x\n", formats[i]);
+	}
 	
+	//GL_MALI_SHADER_BINARY_ARM
+	delete[] formats;
+#endif // CHECK_SHADER_FORMAT
+
 	// Main loop
     while (!glfwWindowShouldClose(window))
     {
