@@ -64,3 +64,26 @@ extern mfile_list g_mfiles_list;
 extern bool add_image_to_mtexure_list(string& imgPath);
 extern void add_file_to_mfiles_list(string& file_path);
 #endif
+enum texture_format
+{
+	en_uncompressed_txt,
+	en_dxt5,
+	en_atc,
+	en_etc2,
+	en_pvrtc,
+	en_bptc,
+	en_pallet_txt,
+};
+enum program_format
+{
+	en_shader_code,
+	en_shader_bin_general,
+	en_shader_bin_vivante,
+};
+struct output_bin_format
+{
+	texture_format _txt_fmt;
+	program_format _pgm_fmt;
+	output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
+};
+extern output_bin_format g_output_bin_format;

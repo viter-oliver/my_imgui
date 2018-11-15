@@ -69,7 +69,7 @@ void afb_output::output_afb(const char* afb_file)
 	msgpack::sbuffer sbuff;
 	msgpack::packer<msgpack::sbuffer> pk(sbuff);
 #endif
-	pk.pack_array(12);
+	pk.pack_array(13);
 	pk.pack_float(base_ui_component::screenw);
 	pk.pack_float(base_ui_component::screenh);
 	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
@@ -132,58 +132,100 @@ void afb_output::output_afb(const char* afb_file)
 		}
 		
 	}
+	pk.pack_array(2);
+	pk.pack_int(g_output_bin_format._txt_fmt);
+	pk.pack_int(g_output_bin_format._pgm_fmt);
 	string output_file_path = g_cureent_directory + "afb\\";
 	int idx = 0;
 	file_outputor fout_put(output_file_path);
 	pk.pack_array(g_vres_texture_list.size());
-	for (auto& res_unit : g_vres_texture_list)
+	
+	if (g_output_bin_format._txt_fmt == en_uncompressed_txt)
 	{
-		pk.pack_array(4);
-		pk.pack_int(res_unit.texture_width);
-		pk.pack_int(res_unit.texture_height);
-		int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
-		uint8_t* txtdata = new uint8_t[txt_size];
-
-		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
-		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
-#if 0//def _DX5_COMPRESS
-		const uint32_t blocksWide = (res_unit.texture_width + blockDim[0] - 1) / blockDim[0];
-		const uint32_t blocksHigh = (res_unit.texture_height + blockDim[1] - 1) / blockDim[1];
-		const uint32_t uncompBlockSize = blockDim[0] * blockDim[1] * sizeof(uint32_t);
-		const uint32_t nBlocks = blocksWide * blocksHigh;
-		uint32_t linear_size =nBlocks * blockSz;
-		uint8_t* txtdata_compress = new uint8_t[linear_size];
-		compress_image_2_dxt5(txtdata_compress, txtdata, res_unit.texture_width, res_unit.texture_height);
-		pk.pack_bin(linear_size);
-		pk.pack_bin_body(reinterpret_cast<char const*>(txtdata_compress), linear_size);
-		
-		delete[] txtdata_compress;
-#else
-		pk.pack_bin(txt_size);
-		pk.pack_bin_body(reinterpret_cast<char const*>(txtdata), txt_size);
-#endif
-		pk.pack_array(res_unit.vtexture_coordinates.size());
-		string enum_file = "enum_txt_name";
-		char str_ix[20] = { 0 };
-		sprintf(str_ix, "%d.h", idx);
-		enum_file += str_ix;
-		idx++;
-		fout_put.begin_enum_file(enum_file);
-		for (auto& tcd_unit : res_unit.vtexture_coordinates)
+		for (auto& res_unit : g_vres_texture_list)
 		{
-			pk.pack_array(5);
-			pk.pack_str(tcd_unit._file_name.size());
-			pk.pack_str_body(tcd_unit._file_name.c_str(), tcd_unit._file_name.size());
-			pk.pack_float(tcd_unit._x0);
-			pk.pack_float(tcd_unit._x1);
-			pk.pack_float(tcd_unit._y0);
-			pk.pack_float(tcd_unit._y1);
-			fout_put.push_enum_name(tcd_unit._file_name);
+			pk.pack_array(4);
+			pk.pack_int(res_unit.texture_width);
+			pk.pack_int(res_unit.texture_height);
+			int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
+			uint8_t* txtdata = new uint8_t[txt_size];
+			glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
+			glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
+			pk.pack_bin(txt_size);
+			pk.pack_bin_body(reinterpret_cast<char const*>(txtdata), txt_size);
+			pk.pack_array(res_unit.vtexture_coordinates.size());
+			string enum_file = "enum_txt_name";
+			char str_ix[20] = { 0 };
+			sprintf(str_ix, "%d.h", idx);
+			enum_file += str_ix;
+			idx++;
+			fout_put.begin_enum_file(enum_file);
+			for (auto& tcd_unit : res_unit.vtexture_coordinates)
+			{
+				pk.pack_array(5);
+				pk.pack_str(tcd_unit._file_name.size());
+				pk.pack_str_body(tcd_unit._file_name.c_str(), tcd_unit._file_name.size());
+				pk.pack_float(tcd_unit._x0);
+				pk.pack_float(tcd_unit._x1);
+				pk.pack_float(tcd_unit._y0);
+				pk.pack_float(tcd_unit._y1);
+				fout_put.push_enum_name(tcd_unit._file_name);
+			}
+			fout_put.end_enum_file();
+			delete[] txtdata;
 		}
-		fout_put.end_enum_file();
-		delete[] txtdata;
 	}
-	pk.pack_array(g_mtexture_list.size());
+	else if (g_output_bin_format._txt_fmt == en_dxt5)
+	{
+		for (auto& res_unit : g_vres_texture_list)
+		{
+			pk.pack_array(4);
+			pk.pack_int(res_unit.texture_width);
+			pk.pack_int(res_unit.texture_height);
+			int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
+			uint8_t* txtdata = new uint8_t[txt_size];
+
+			glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
+			glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
+			const uint32_t blocksWide = (res_unit.texture_width + blockDim[0] - 1) / blockDim[0];
+			const uint32_t blocksHigh = (res_unit.texture_height + blockDim[1] - 1) / blockDim[1];
+			const uint32_t uncompBlockSize = blockDim[0] * blockDim[1] * sizeof(uint32_t);
+			const uint32_t nBlocks = blocksWide * blocksHigh;
+			uint32_t linear_size = nBlocks * blockSz;
+			uint8_t* txtdata_compress = new uint8_t[linear_size];
+			compress_image_2_dxt5(txtdata_compress, txtdata, res_unit.texture_width, res_unit.texture_height);
+			pk.pack_bin(linear_size);
+			pk.pack_bin_body(reinterpret_cast<char const*>(txtdata_compress), linear_size);
+			delete[] txtdata_compress;
+			pk.pack_array(res_unit.vtexture_coordinates.size());
+			string enum_file = "enum_txt_name";
+			char str_ix[20] = { 0 };
+			sprintf(str_ix, "%d.h", idx);
+			enum_file += str_ix;
+			idx++;
+			fout_put.begin_enum_file(enum_file);
+			for (auto& tcd_unit : res_unit.vtexture_coordinates)
+			{
+				pk.pack_array(5);
+				pk.pack_str(tcd_unit._file_name.size());
+				pk.pack_str_body(tcd_unit._file_name.c_str(), tcd_unit._file_name.size());
+				pk.pack_float(tcd_unit._x0);
+				pk.pack_float(tcd_unit._x1);
+				pk.pack_float(tcd_unit._y0);
+				pk.pack_float(tcd_unit._y1);
+				fout_put.push_enum_name(tcd_unit._file_name);
+			}
+			fout_put.end_enum_file();
+			delete[] txtdata;
+		}
+	}
+	else
+	{
+		fout.close();
+		printf("unknown texture format:%d", g_output_bin_format._txt_fmt);
+		return;
+	}
+	pk.pack_array(g_mtexture_list.size());//由于动画纹理不是power2（trimed），所以不用压缩算法
 	for (auto& txt_unit : g_mtexture_list)
 	{
 		auto& kname = txt_unit.first;
@@ -199,7 +241,6 @@ void afb_output::output_afb(const char* afb_file)
 		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt_data);
 		pk.pack_bin(txt_size);
 		pk.pack_bin_body(reinterpret_cast<char const*>(txt_data), txt_size);
-
 	}
 	pk.pack_array(g_mfiles_list.size());
 	for (auto& file_unit : g_mfiles_list)
@@ -217,20 +258,34 @@ void afb_output::output_afb(const char* afb_file)
 	GLint *binaryFormats = new GLint[formats];
 	glGetIntegerv(GL_PROGRAM_BINARY_FORMATS, binaryFormats);*/
 	pk.pack_array(g_af_shader_list.size());
+
 	for (auto& shd_ut : g_af_shader_list)
 	{
-		pk.pack_array(2);
+		pk.pack_array(3);
 		pk.pack_str(shd_ut.first.size());
 		pk.pack_str_body(shd_ut.first.c_str(), shd_ut.first.size());
-		GLuint pid = shd_ut.second->program_id();
-		GLint len = 0;
-		glGetProgramiv(pid, GL_PROGRAM_BINARY_LENGTH, &len);
-		char* binary =new char[len];
-		GLenum *binaryFormats = 0;
-		glGetProgramBinary(pid, len, NULL, (GLenum*)binaryFormats, binary);
-		pk.pack_bin(len);
-		pk.pack_bin_body(binary, len);
-		delete[] binary;
+		if (g_output_bin_format._pgm_fmt == en_shader_code)
+		{
+			pk.pack_str(shd_ut.second->get_vs_code().size());
+			pk.pack_str_body(shd_ut.second->get_vs_code().c_str(), shd_ut.second->get_vs_code().size());
+			pk.pack_str(shd_ut.second->get_fs_code().size());
+			pk.pack_str_body(shd_ut.second->get_fs_code().c_str(), shd_ut.second->get_fs_code().size());
+		}
+		else if (g_output_bin_format._pgm_fmt == en_shader_bin_general)
+		{
+	
+			GLuint pid = shd_ut.second->program_id();
+			GLint len = 0;
+			glGetProgramiv(pid, GL_PROGRAM_BINARY_LENGTH, &len);
+			char* binary =new char[len];
+			GLenum binaryFormat = 0;
+			glGetProgramBinary(pid, len, NULL, (GLenum*)&binaryFormat, binary);
+			pk.pack_int(binaryFormat);
+			pk.pack_bin(len);
+			pk.pack_bin_body(binary, len);
+			delete[] binary;
+		}
+
 		/*pk.pack_str(shd_ut.second->get_vs_code().size());
 		pk.pack_str_body(shd_ut.second->get_vs_code().c_str(), shd_ut.second->get_vs_code().size());
 		pk.pack_str(shd_ut.second->get_fs_code().size());

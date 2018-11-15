@@ -253,6 +253,9 @@
     <ClCompile Include="command_element.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="bind_edit.cpp">
+      <Filter>project</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -506,6 +509,9 @@
     </ClInclude>
     <ClInclude Include="command_element.h">
       <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="bind_edit.h">
+      <Filter>project</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

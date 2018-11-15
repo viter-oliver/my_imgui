@@ -1,11 +1,8 @@
 #pragma once
 #include "res_output.h"
+#include <stdlib.h>
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 #include "dir_output.h"
-bool get_texture_item(void* data, int idx, const char** out_str)
-{
-	*out_str = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[idx]._file_name.c_str();
-	return true;
-}
 const char* mesh_fold = "mesh_res\\";
 const char* font_fold = "fonts\\";
 const char* files_fold = "files\\";
@@ -13,9 +10,15 @@ const char* image_fold = "images\\";
 const char* shaders_fold = "shaders\\";
 const char* text_res_fold = "texture_res_list\\";
 const char* afb_fold = "afb\\";
+#endif
 vres_txt_list  g_vres_texture_list;
 int g_cur_texture_id_index=0;
 mtexture_list g_mtexture_list;
+bool get_texture_item(void* data, int idx, const char** out_str)
+{
+	*out_str = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[idx]._file_name.c_str();
+	return true;
+}
 
 af_file::af_file(GLuint fsize)
 	:_fsize(fsize)
@@ -117,3 +120,4 @@ void add_file_to_mfiles_list(string& file_path)
 	ifs.close();
 }
 #endif
+output_bin_format g_output_bin_format;

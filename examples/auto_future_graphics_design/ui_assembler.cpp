@@ -69,6 +69,12 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				}
 
 			}
+			Value& output_bin_fmt = jroot["output_bin_fmt"];
+			if (!output_bin_fmt.isNull())
+			{
+				g_output_bin_format._txt_fmt = static_cast<texture_format> (output_bin_fmt["txt_fmt"].asInt());
+				g_output_bin_format._pgm_fmt = static_cast<program_format> (output_bin_fmt["pgm_fmt"].asInt());
+			}
 			texture_res_load tresload(g_vres_texture_list);
 			tresload.load_res_from_json(jroot);
 			Value& texture_list = jroot["texture_list"];
@@ -231,6 +237,10 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		fonts.append(jfont);
 	}
 	jroot["fonts"] = fonts;
+	Value output_bin_fmt(objectValue);
+	output_bin_fmt["txt_fmt"] = g_output_bin_format._txt_fmt;
+	output_bin_fmt["pgm_fmt"] = g_output_bin_format._pgm_fmt;
+	jroot["output_bin_fmt"] = output_bin_fmt;
 	Value jtexture(arrayValue);
 	for (auto& reslist:g_vres_texture_list)
 	{

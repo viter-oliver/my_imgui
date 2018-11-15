@@ -43,7 +43,7 @@ namespace auto_future
 		{
 			return  false;
 		}
-		printf("*****file size %d\n", ij->second->_fsize);
+		//printf("*****file size %d\n", ij->second->_fsize);
 
 		char *_pData = (char *)ij->second->_pbin;
 
@@ -110,7 +110,7 @@ namespace auto_future
 		{
 			_random_all_length += qu1et_one_quadrangle_length(it->top_point, it->bottom_point, (it + 1)->bottom_point, (it + 1)->top_point);
 		}
-		printf("************length:%f****************\n", _random_all_length);
+		//printf("************length:%f****************\n", _random_all_length);
 		return true;
 	}
 
@@ -195,8 +195,8 @@ namespace auto_future
 
 			//四边形 上\下\中 边长
 			float _top_distance = 0.f, _bottom_distance = 0.f, _mid_distance = 0.f;
-			_top_distance = qu1et_thr_length(abs(_pre_point_2vec2.top_point.x - _next_point_2vec2.top_point.x), abs(_pre_point_2vec2.top_point.y - _next_point_2vec2.top_point.y));
-			_bottom_distance = qu1et_thr_length(abs(_pre_point_2vec2.bottom_point.x - _next_point_2vec2.bottom_point.x), abs(_pre_point_2vec2.bottom_point.y - _next_point_2vec2.bottom_point.y));
+			_top_distance = qu1et_thr_length((_pre_point_2vec2.top_point.x - _next_point_2vec2.top_point.x), (_pre_point_2vec2.top_point.y - _next_point_2vec2.top_point.y));
+			_bottom_distance = qu1et_thr_length((_pre_point_2vec2.bottom_point.x - _next_point_2vec2.bottom_point.x), (_pre_point_2vec2.bottom_point.y - _next_point_2vec2.bottom_point.y));
 			_mid_distance = (_top_distance + _bottom_distance) / 2.f;
 
 			//参与运算的上下长度差

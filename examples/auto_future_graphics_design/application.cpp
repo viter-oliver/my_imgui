@@ -18,6 +18,7 @@
 #include "Resource.h"
 #include "afb_load.h"
 #include "primitive_object.h"
+#include <chrono>
 //extern void instantiating_internal_shader();
 static void error_callback(int error, const char* description)
 {
@@ -99,10 +100,14 @@ namespace auto_future
 		if (!_cureent_project_file_path.empty())
 		{
 			//_proot = new ft_base;
+			auto currentTime = std::chrono::high_resolution_clock::now();
 			afb_load afl(_proot);
 			//std::bind(&play_back_node::btnclk_##x, this, std::placeholders::_1)
 			//afl.set_impl(std::bind(&application::init_ui_component, this, std::placeholders::_1));
 			afl.load_afb(_cureent_project_file_path.c_str());
+			auto afterLoadTime = std::chrono::high_resolution_clock::now();
+			auto tmspan = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(afterLoadTime-currentTime).count();
+			printf("afb load consume %d milli seconds\n", tmspan);
 			resLoaded();
 		}
 		init_internal_primitive_list();

@@ -61,8 +61,9 @@ enum en_short_cut_item
 };
 bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
-show_fonts_manager=true,show_file_manager=true;
-#define _MY_IMGUI__//_DEMO_
+show_fonts_manager=true,show_file_manager=true,show_output_format=false;
+#define _MY_IMGUI__
+//#define _DEMO_
 int main(int argc, char* argv[])
 {
     // Setup window
@@ -615,6 +616,14 @@ int main(int argc, char* argv[])
 
 				ImGui::EndMenu();
 			}
+			if (ImGui::BeginMenu("Setup"))
+			{
+				if (ImGui::MenuItem("OutputBinaryFormat", NULL, show_output_format)){
+					show_output_format = !show_output_format;
+				}
+				ImGui::EndMenu();
+			}
+			
 			//auto itxt_unit = g_mtxt_intl.find("ft_undo");
 			//if (itxt_unit != g_mtxt_intl.end())
 			//{
@@ -643,6 +652,16 @@ int main(int argc, char* argv[])
 			//}
 			
 			ImGui::EndMainMenuBar();
+		}
+		if (show_output_format)
+		{
+			ImGui::Begin("output binary format", &show_output_format, ImVec2(400, 100));
+			static const char* str_txt_fmts[] = { "uncompressed texture", "dxt5", "atc", "etc2", "pvrtc", "bptc", "palleted texture" };
+			ImGui::Combo("texture format", (int*)&g_output_bin_format._txt_fmt, str_txt_fmts, IM_ARRAYSIZE(str_txt_fmts));
+			static const char* str_progrm_fmts[] = { "shader code", "general binary", "vivante binary" };
+			ImGui::Combo("program format", (int*)&g_output_bin_format._pgm_fmt, str_progrm_fmts, IM_ARRAYSIZE(str_progrm_fmts));
+
+			ImGui::End();
 		}
 		if (show_project_window)
 		{

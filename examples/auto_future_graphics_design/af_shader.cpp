@@ -107,13 +107,17 @@ af_shader::~af_shader()
 	if (is_valid())
 	{
 		glDeleteProgram(_shader_program_id);
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		glDeleteShader(_vertex_shader);
-		glDeleteShader(_fragment_shader);
-#endif
+		if (_vertex_shader)
+		{
+			glDeleteShader(_vertex_shader);
+		}
+		if (_fragment_shader)
+		{
+			glDeleteShader(_fragment_shader);
+		}
 	}
 }
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+
 af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source)
 {
 	_vs_code = vertex_shader_source;
@@ -126,6 +130,57 @@ af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_
 	
 }
 
+void af_shader::build()
+{
+	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+	char* pvs = &_vs_code[0];
+	glShaderSource(_vertex_shader, 1, &pvs, NULL);
+	glCompileShader(_vertex_shader);
+	GLint status;
+	char buffer[512];
+	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
+	if (status != GL_TRUE)
+	{
+		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
+		printf("vertex shader error:%s\n", buffer);
+		_valid = false;
+		glDeleteShader(_vertex_shader);
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		compile_error_info = buffer;
+#endif
+		return;
+	}
+	//fragment shader
+	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+	char* pfs = &_fs_code[0];
+	glShaderSource(_fragment_shader, 1, &pfs, NULL);
+	glCompileShader(_fragment_shader);
+
+	glGetShaderiv(_fragment_shader, GL_COMPILE_STATUS, &status);
+	if (status != GL_TRUE)
+	{
+		glGetShaderInfoLog(_fragment_shader, 512, NULL, buffer);
+		printf("fragment shader error:%s\n",buffer);
+		_valid = false;
+		glDeleteShader(_vertex_shader);
+		glDeleteShader(_fragment_shader);
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		compile_error_info = buffer;
+#endif
+		return;
+	}
+	//link
+	_shader_program_id = glCreateProgram();
+	glAttachShader(_shader_program_id, _vertex_shader);
+	glAttachShader(_shader_program_id, _fragment_shader);
+	glBindFragDataLocation(_shader_program_id, 0, "outColor");
+	glLinkProgram(_shader_program_id);
+	glReleaseShaderCompiler();
+	glUseProgram(_shader_program_id);
+	_valid = true;
+}
+
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source)
 {
 	if (is_valid())
@@ -141,52 +196,6 @@ void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragmen
 	{
 		refresh_viarable_list();
 	}
-}
-
-
-void af_shader::build()
-{
-	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-	char* pvs = &_vs_code[0];
-	glShaderSource(_vertex_shader, 1, &pvs, NULL);
-	glCompileShader(_vertex_shader);
-	GLint status;
-	char buffer[512];
-	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
-	if (status != GL_TRUE)
-	{
-		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
-		compile_error_info = buffer;
-		_valid = false;
-		glDeleteShader(_vertex_shader);
-		return;
-	}
-	//fragment shader
-	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	char* pfs = &_fs_code[0];
-	glShaderSource(_fragment_shader, 1, &pfs, NULL);
-	glCompileShader(_fragment_shader);
-
-	glGetShaderiv(_fragment_shader, GL_COMPILE_STATUS, &status);
-	if (status != GL_TRUE)
-	{
-		glGetShaderInfoLog(_fragment_shader, 512, NULL, buffer);
-		compile_error_info = buffer;
-		printf("er:%s\n", compile_error_info.c_str());
-		_valid = false;
-		glDeleteShader(_vertex_shader);
-		glDeleteShader(_fragment_shader);
-		return;
-	}
-	//link
-	_shader_program_id = glCreateProgram();
-	glAttachShader(_shader_program_id, _vertex_shader);
-	glAttachShader(_shader_program_id, _fragment_shader);
-	glBindFragDataLocation(_shader_program_id, 0, "outColor");
-	glLinkProgram(_shader_program_id);
-	glReleaseShaderCompiler();
-	glUseProgram(_shader_program_id);
-	_valid = true;
 }
 #endif
 
@@ -236,7 +245,7 @@ bool af_shader::vertex_att_pointer(initializer_list<string> att_name_list)
 		auto& iatt = _att_list.find(iname);
 		if (iatt==_att_list.end())
 		{
-			printf("fail to find attribute name:%s\n", iname);
+			printf("fail to find attribute name:%s\n", iname.c_str());
 			return false;
 		}
 		auto& shd_atr = iatt->second;

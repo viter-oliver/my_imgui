@@ -11,10 +11,7 @@ class afb_load
 public:
 	afb_load(base_ui_component*&pr_root) :_pj(pr_root){}
 	~afb_load(){}
-	/*void set_impl(function<void(base_ui_component*)> impl)
-	{
-		_impl = impl;
-	}*/
+	
 	void load_afb(const char* afb_file);
 };
 

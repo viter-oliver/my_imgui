@@ -44,10 +44,10 @@ namespace auto_future
 	using namespace std;
 	typedef vector<property_range> vproperty_list;
 
-	using namespace Json;
 	class base_ui_component;
 	const unsigned char name_len = 40;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	using namespace Json;
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
 	struct command_elemment;

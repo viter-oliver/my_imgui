@@ -39,7 +39,9 @@ class af_shader
 	mshader_variable_list _att_list;
 	/** all the type of uniform variables of shader */
 	mshader_variable_list _unf_list;
-	GLuint _shader_program_id;
+	GLuint _shader_program_id = { 0 };
+	string _vs_code, _fs_code;
+	GLuint  _vertex_shader = { 0 }, _fragment_shader = { 0 };
 	string _name;
 	/** whether shader is valid */
 	bool _valid{ false };
@@ -48,7 +50,7 @@ public:
 	af_shader(GLenum binFormat, void* bin, GLsizei binLength);
 	~af_shader();
 	string get_name() { return _name; }
-	void set_name(string name){ _name = name; }
+	void set_name(string name){ _name = name; };
 	GLuint program_id()
 	{
 		return _shader_program_id;
@@ -56,17 +58,13 @@ public:
 	mshader_variable_list& get_uf_defs(){ return _unf_list; }
 	
 	void refresh_viarable_list();
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-private:
-	string _vs_code, _fs_code;
-    GLuint  _vertex_shader, _fragment_shader;
-public:
 	af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source);
+	void build();
 	string get_vs_code(){ return _vs_code; }
 	string get_fs_code(){ return _fs_code; }
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+public:
 	void refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source);
-	void build();
-
 	string compile_error_info;
 	string _vs_name, _fs_name;
 	

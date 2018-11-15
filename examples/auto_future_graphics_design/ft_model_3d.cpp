@@ -1,9 +1,9 @@
 #include "ft_model_3d.h"
 #include "SOIL.h"
 #include "texture.h"
-#include "dir_output.h"
 #include <chrono>
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#include "dir_output.h"
 extern string g_cureent_directory;
 #endif
 namespace auto_future
@@ -11,7 +11,7 @@ namespace auto_future
 	ft_model_3d::ft_model_3d()
 		:ft_base(), _tri_cnt(0)
 	{
-		auto& mut = g_material_list.find("atexture");
+		const auto& mut = g_material_list.find("atexture");
 		_pmaterial = mut->second;
 		glm::mat4 model;
 		model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f));
@@ -25,7 +25,7 @@ namespace auto_future
 		glm::mat4 proj = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 1.0f, 100.0f);
 		_pmaterial->set_value("proj", glm::value_ptr(proj), 16);
 
-		auto& mtx = g_mtexture_list.find("VW_Golf_VII_2013.png");
+		const auto& mtx = g_mtexture_list.find("VW_Golf_VII_2013.png");
 		_texture = mtx->second;
 			//vector<string> attr_name_list = { "position", "qcolor", "texcoord" };
 			//_pshader->loading_shader_attributes_from_avbo(_vao, _vbo, g_vertices, sizeof(g_vertices), \

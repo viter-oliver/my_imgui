@@ -161,7 +161,7 @@ bool msg_host_n::attach_monitor(const char* object_name, msg_handle fn_obj)
 	}
 	else
 	{
-		printf("!!!!!configure object:%s!\n",object_name);
+		//printf("!!!!!configure object:%s!\n",object_name);
 		if (_task_entry)
 		{
 			_task_entry->attach_handle(object_name, fn_obj);

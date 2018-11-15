@@ -37,7 +37,7 @@ namespace auto_future
 		{
 			return _img_pt._size;
 		}
-		void set_size(ImVec2& im_size)
+		void set_size(const ImVec2& im_size)
 		{
 			switch (_img_pt._anchor_type)
 			{

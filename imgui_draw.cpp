@@ -24,7 +24,7 @@
 #if !defined(alloca)
 #define alloca _alloca  // for clang with MS Codegen
 #endif
-#elif defined(__GLIBC__) || defined(__sun)
+#elif defined(__GLIBC__) || defined(__sun) || defined(__QNXNTO__)
 #include <alloca.h>     // alloca
 #else
 #include <stdlib.h>     // alloca

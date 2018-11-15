@@ -11,9 +11,10 @@ class scomm
 	int _baudrate;
 	bool _running = false;
 	msg_handle _msg_handl;
+#ifdef _OVER_LAP_OP
 	OVERLAPPED m_osReader;
 	OVERLAPPED m_osWriter;
-
+#endif
 	uint8_t calc_check_sum(uint8_t * pBuf, int iLen)
 	{
 		int i = 0;
@@ -44,17 +45,24 @@ public:
 		_baudrate = baudrate;
 		char comm_str[50] = { 0 };
 		sprintf(comm_str, "COM%d", _nmb);
-		_hcomm = CreateFile(comm_str, GENERIC_READ | GENERIC_WRITE, 0, NULL, \
-			OPEN_EXISTING, FILE_FLAG_OVERLAPPED, NULL);
+		_hcomm = CreateFile(comm_str, GENERIC_READ | GENERIC_WRITE, 0, NULL,OPEN_EXISTING,
+#ifdef _OVER_LAP_OP
+			FILE_FLAG_OVERLAPPED, 
+#else
+			NULL,
+#endif 
+			NULL);
 		if (_hcomm == INVALID_HANDLE_VALUE)
 		{
 			printf("fail to open%s!\n", comm_str);
 			return false;
 		}
+#ifdef _OVER_LAP_OP
 		FillMemory(&m_osReader, sizeof(OVERLAPPED), 0);
 		FillMemory(&m_osWriter, sizeof(OVERLAPPED), 0);
 		m_osReader.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
 		m_osWriter.hEvent = CreateEvent(NULL, TRUE, FALSE, NULL);
+#endif
 		int byteUsedTime = 14400 / baudrate + 1;
 		COMMTIMEOUTS timeouts = { 20 + byteUsedTime, byteUsedTime, 1000, byteUsedTime, 20 };
 		if (!SetCommTimeouts(_hcomm, &timeouts))
@@ -70,23 +78,23 @@ public:
 		}
 		commParam.BaudRate = _baudrate;				// 设置波特率 
 
-		//commParam.fBinary = TRUE;					// 设置二进制模式，此处必须设置TRUE
-		//commParam.fParity = TRUE;					// 支持奇偶校验 
-		//commParam.ByteSize = 8;						// 数据位,范围:4-8 
-		//commParam.Parity = NOPARITY;				// 校验模式
+		commParam.fBinary = TRUE;					// 设置二进制模式，此处必须设置TRUE
+		commParam.fParity = FALSE;					// 支持奇偶校验 
+		commParam.ByteSize = 8;						// 数据位,范围:4-8 
+		commParam.Parity = NOPARITY;				// 校验模式
 		//commParam.StopBits = ONESTOPBIT;			// 停止位 
 
 		//commParam.fOutxCtsFlow = FALSE;				// No CTS output flow control 
 		//commParam.fOutxDsrFlow = FALSE;				// No DSR output flow control 
-		//commParam.fDtrControl = DTR_CONTROL_ENABLE;
+		commParam.fDtrControl = 0;
 		//// DTR flow control type 
 		//commParam.fDsrSensitivity = FALSE;			// DSR sensitivity 
-		//commParam.fTXContinueOnXoff = TRUE;			// XOFF continues Tx 
-		//commParam.fOutX = FALSE;					// No XON/XOFF out flow control 
-		//commParam.fInX = FALSE;						// No XON/XOFF in flow control 
+		commParam.fTXContinueOnXoff = 0;			// XOFF continues Tx 
+		commParam.fOutX = FALSE;					// No XON/XOFF out flow control 
+		commParam.fInX = FALSE;						// No XON/XOFF in flow control 
 		//commParam.fErrorChar = FALSE;				// Disable error replacement 
 		//commParam.fNull = FALSE;					// Disable null stripping 
-		//commParam.fRtsControl = RTS_CONTROL_ENABLE;
+		commParam.fRtsControl = 0;
 		// RTS flow control 
 		commParam.fAbortOnError = FALSE;			// 当串口发生错误，并不终止串口读写
 
@@ -99,7 +107,7 @@ public:
 	
 
 		//指定端口监测的事件集
-		//SetCommMask(_hcomm, EV_RXCHAR);
+		SetCommMask(_hcomm, EV_RXCHAR);
 
 		//分配设备缓冲区
 		::SetupComm(_hcomm, 4096, 4096);
@@ -121,17 +129,26 @@ public:
 		//TRACE("RRRRRRRRRRRR 00\n"); 
 		if (_hcomm == INVALID_HANDLE_VALUE) return 0;
 		DWORD dwRead;
-		if (ReadFile(_hcomm, lpBuf, dwToRead, &dwRead, &m_osReader)) return dwRead;
+		if (ReadFile(_hcomm, lpBuf, dwToRead, &dwRead,
+#ifdef _OVER_LAP_OP
+			&m_osReader
+#else
+			NULL
+#endif
+			))
+			return dwRead;
+		else
+			return 0;
+#ifdef _OVER_LAP_OP
 		if (GetLastError() != ERROR_IO_PENDING)  return 0;
 
 		if (WaitForSingleObject(m_osReader.hEvent, INFINITE) != WAIT_OBJECT_0)
 			return 0;
-#ifndef WINCE
 		if (!GetOverlappedResult(_hcomm, &m_osReader, &dwRead, FALSE))
 			return 0;
-#endif
 		//TRACE("RRRRRRRRRRRR 11\n");  
 		return dwRead;
+#endif
 	}
 	void thd_process()// operator()()
 	{
@@ -149,13 +166,39 @@ public:
 		uint8_t*data_cmd = new uint8_t[MAX_BYTE_SIZE];
 
 		int ifront = 0, irear = 0;
+		DWORD EventMask = EV_RXCHAR;
+		COMSTAT ComStat;
+		DWORD dwErrorFlags;
+		BOOL bReadState = FALSE;
 		while (_running)
 		{
-			dwBytesRead = ReadData(pdata, 1024);
-			if (dwBytesRead==0)
+			if (WaitCommEvent(_hcomm, &EventMask, NULL) && (EventMask & EV_RXCHAR))
 			{
+				dwBytesRead = 0;
+				ClearCommError(_hcomm, &dwErrorFlags, &ComStat);
+				if (ComStat.cbInQue > 0)
+				{
+					bReadState = ::ReadFile(_hcomm, pdata, ComStat.cbInQue, &dwBytesRead, NULL);
+					if (bReadState && dwBytesRead > 0)
+					{
+						/*printf("get frame:");
+
+						for (int ix = 0; ix < dwBytesRead; ix++)
+						{
+						printf("%0x ", pdata[ix]);
+						}
+						printf("\n");*/
+					}
+					else
+						continue;
+				}
+			}
+			else
+			{
+				Sleep(50);
 				continue;
 			}
+
 			if (ifront + dwBytesRead <= MAX_CACH_SIZE)
 			{
 				memcpy(data_cache + ifront, pdata, dwBytesRead);
@@ -198,10 +241,10 @@ public:
 					if (pick_index == en_pos_frame_length)
 					{
 						frame_len = data_cmd[pick_index];
-						if (frame_len<4)
-						{
-							be_picking_data = false;
-						}
+						//if (frame_len<4)
+						//{
+						//	be_picking_data = false;
+						//}
 						//printf("will get a command frame_len==%d\n", frame_len);
 					}
 					else
@@ -230,7 +273,14 @@ public:
 						}
 						else
 						{
-							printf("fail to checksum1\n");
+							printf("fail to checksum cmd:");
+					
+							for (int ix = 0; ix <= frame_len; ix++)
+							{
+								printf("%0x ", data_cmd[ix]);
+							}
+							printf("\n");
+							printf("chksum==0x%x,cal_chksum=0x%x", fchk_sum, cal_chk_sum);
 						}
 						be_picking_data = false;
 					}

@@ -1,4 +1,5 @@
 #pragma once
+#include <stdexcept>
 #include <map>
 #include <string>
 #include <functional>
@@ -12,14 +13,19 @@ struct factory
 	{
 		register_t(const std::string& key)
 		{
+	#if defined(__QNXNTO__)
+                    factory::get().map_[key]=[]{return new T();};
+        #else
 			factory::get().map_.emplace(key, [] { return new T(); });
+        #endif
 		}
-
+        #if 0
 		template<typename... Args>
 		register_t(const std::string& key, Args... args)
 		{
 			factory::get().map_.emplace(key, [&] { return new T(args...); });
 		}
+        #endif
 	};
 
 	inline base_ui_component* produce(const std::string& key)
@@ -29,6 +35,7 @@ struct factory
 
 		return map_[key]();
 	}
+    #if 0
 	template<typename... Args>
 	base_ui_component* produce(const std::string& key, Args&&... args)
 	{
@@ -37,6 +44,7 @@ struct factory
 
 		return map_[key](std::forward<Args>(args)...);
 	}
+    #endif
 	std::unique_ptr<base_ui_component> produce_unique(const std::string& key)
 	{
 		return std::unique_ptr<base_ui_component>(produce(key));

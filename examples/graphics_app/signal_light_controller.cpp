@@ -51,7 +51,7 @@ signal_light_controller::signal_light_controller(base_ui_component* root)
 #define REGISTER_CMD_HANDLE(tag,ctl) \
 	g_msg_host.attach_monitor(#tag, [this](unsigned char* pbuff, int len){\
 	_##ctl##_state = *pbuff;\
-	_##ctl##->set_visible(_##ctl##_state != en_light_off);\
+	_##ctl->set_visible(_##ctl##_state != en_light_off);\
 	})
 
 	REGISTER_CMD_HANDLE(left turn, left_turn);

@@ -37,7 +37,7 @@ const ImVec2 popup_img_sel_pos[]=
 };
 using namespace auto_future_utilities;
 msg_host_n g_msg_host;
-const char* protocol_path = "communication_protocol_n.json";
+//const char* protocol_path = "communication_protocol_n.json";
 const char* filter_by_priority_path = "filter_by_priority_protocol.json";
 //#define RCF_COMM
 #ifdef RCF_COMM
@@ -179,7 +179,7 @@ void my_application::register_command_handle()
 		unsigned char DataValid = *pbuff++;     // Byte first
 		unsigned char alarm = *pbuff++;         // Byte Second
 		short fuel_cons_value = *((short*)pbuff);   // Byte third
-		printf("****0x%x,0x%x,0x%x\n", *pbuff, *(pbuff + 1), fuel_cons_value);
+		//printf("****0x%x,0x%x,0x%x\n", *pbuff, *(pbuff + 1), fuel_cons_value);
 		fuel_cons_value *= 0.1;
 		float fuel_cons_rate = fuel_cons_value / 50.f;
 		if (DataValid)
@@ -242,17 +242,27 @@ void my_application::resLoaded()
 	_left_decorate_line->set_size(ImVec2(17, 3));//17-77
 	//lastTime = glfwGetTime();
 	lastTime = std::chrono::high_resolution_clock::now();
-	g_msg_host.load_protocol_from_config(protocol_path);
+	g_msg_host.load_protocol_from_config(_arg_list[0].c_str());
 	register_command_handle();
-
+	auto currentTime = std::chrono::high_resolution_clock::now();
+	int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
+	printf("msg_host consume%d milli seconds\n", delta);
+	lastTime = currentTime;
 #ifdef RCF_COMM
 	g_rcf_server.set_cmd_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
 	g_rcf_server.link();
+	currentTime = std::chrono::high_resolution_clock::now();
+	delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
+	printf("rcf server consume %d milli seconds\n",delta);
 #endif
+
 #ifdef _SCOMMM
 	s_scm.set_msg_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
 	DWORD m_dwThreadId;
 	CreateThread(NULL, 0, ThreadLoadApps, &s_scm, 0, &m_dwThreadId);
+	currentTime = std::chrono::high_resolution_clock::now();
+	delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
+	printf("comm consume %d milli seconds\n", delta);
 	/*thread scmm_thd([this]{s_scm(); });
 	scmm_thd.detach();*/
 #endif
@@ -307,7 +317,7 @@ void my_application::onUpdate()
 	g_msg_host.execute_data_handle_cmd();
 	
 	auto currentTime = std::chrono::high_resolution_clock::now();
-	int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();;
+	int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
 	if (delta<delta_limit)
 	{
 		//printf("too fast....%d\n",delta);
@@ -333,7 +343,7 @@ void my_application::onUpdate()
 		}
 		bool b_end = play_image(_edge_left_play);
 		b_end = play_image(_edge_right_play);
-		printf("play_edge...\n");
+		//printf("play_edge...\n");
 		return;
 	}
 	if (time_line >= key_time_pointer[2] && time_line<key_time_pointer[3])
@@ -449,10 +459,10 @@ bool my_application::create_run()
 		printf("at least you should provide a serial comm number!\n");
 		return false;
 	}
-	int comm_id = atoi(_arg_list[0].c_str());
+	int comm_id = atoi(_arg_list[1].c_str());
 	int baudrate = 115200;
-	if (_arg_list.size()>1)
-	   baudrate=atoi(_arg_list[1].c_str());
+	if (_arg_list.size()>2)
+	   baudrate=atoi(_arg_list[2].c_str());
 	if (!s_scm.open(comm_id, baudrate))
 	{
 		return false;

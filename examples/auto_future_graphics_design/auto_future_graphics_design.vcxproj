@@ -168,6 +168,7 @@
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="afb_output.cpp" />
     <ClCompile Include="af_shader.cpp" />
+    <ClCompile Include="bind_edit.cpp" />
     <ClCompile Include="command_element.cpp" />
     <ClCompile Include="fbx_import\FBXColor.cpp" />
     <ClCompile Include="fbx_import\FBXGlobalSettings.cpp" />
@@ -249,6 +250,7 @@
     <ClInclude Include="afb_load.h" />
     <ClInclude Include="afb_output.h" />
     <ClInclude Include="af_shader.h" />
+    <ClInclude Include="bind_edit.h" />
     <ClInclude Include="command_element.h" />
     <ClInclude Include="dir_output.h" />
     <ClInclude Include="dxt5_compress.h" />
