@@ -9,8 +9,8 @@ namespace auto_future
 		struct intl_pt
 		{
 			float _min_point = { 0.f }, _max_point = { 100.f }, _progress_value = {0.f};
-			ImVec2 _pos_min, _pos_max;
-			ImVec2 _size_min, _size_max;
+			float _pos_minx, _pos_miny, _pos_maxx, _pos_maxy;
+			float _size_minw, _size_minh, _size_maxw, _size_maxh;
 			intl_pt(){}
 		};
 		intl_pt _img_pt;
@@ -46,7 +46,7 @@ namespace auto_future
 		{
 			return _img_pt._progress_value;
 		}
-		ImVec2& thumb_base_pos()
+		ImVec2 thumb_base_pos()
 		{
 			return _thumb.base_pos();
 		}

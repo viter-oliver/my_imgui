@@ -9,10 +9,10 @@ namespace auto_future
 		struct intl_pt
 		{
 			bool _vertical;
-			ImVec2 _size;
-			ImVec2 _range;
+			float _sizew,_sizeh;
+			float _rangex,_rangey;
 			intl_pt()
-				:_vertical(true), _size(100.f, 100.f), _range(1.f, 100.f)
+				:_vertical(true), _sizew(100.f),_sizeh(100.f), _rangex(1.f),_rangey(100.f)
 			{}
 		};
 		intl_pt _lt_pt;
@@ -33,9 +33,9 @@ namespace auto_future
 		void draw();
 		void add_child(base_ui_component* pchild);
 		void remove_child(base_ui_component* pchild);
-		ImVec2& get_logic_range()
+		ImVec2 get_logic_range()
 		{
-			return _lt_pt._range;
+			return ImVec2(_lt_pt._rangex, _lt_pt._rangey);
 		}
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

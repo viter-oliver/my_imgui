@@ -11,20 +11,25 @@ namespace auto_future
 		{
 			char _cbuffer_random_text[128];
 			//save texture size
-			ImVec2 _bg_texture_size;
-			ImVec2 _head_texture_size;
-			ImVec2 _thumb_texture_size;
-
+			//ImVec2 _bg_texture_size;
+			float _bg_txtw, _bg_txth;
+			//ImVec2 _head_texture_size;
+			float _hd_txtw, _hd_txth;
+			//ImVec2 _thumb_texture_size;
+			float _tb_txtw, _tb_txth;//thumb size
 			float _position{ 0.f };
 			int _direction_item{ 0 };
-			ImVec2 _bg_axi_pos;
+			//ImVec2 _bg_axi_pos;
+			float _bg_aposx, _bg_aposy;
 			float _bg_angle{ 0.f };
 			int _texture_bg_index{ 0 };
 
-			ImVec2 _head_pos;
+			//ImVec2 _head_pos;
+			float _hd_posx, _hd_posy;
 			int _texture_head_index{ 0 };
 
-			ImVec2 _thumb_pos;
+			//ImVec2 _thumb_pos;
+			float _tb_posx, _tb_posy;
 			bool _thumb_visible{false};
 			int _texture_thumb_index{ 0 };
 		};

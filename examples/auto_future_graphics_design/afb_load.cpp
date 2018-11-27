@@ -14,10 +14,8 @@
 #define DXT5_DECOMPRESSED
 #ifdef DXT5_DECOMPRESSED
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
-#else
-#include "miniz.h"
-
 #endif 
+#include "miniz.h"
 
 
 void afb_load::init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
@@ -86,41 +84,44 @@ void afb_load::load_afb(const char* afb_file)
 	auto file_size=fin.tellg();
 	fin.seekg(0, ios::end);
 	file_size = fin.tellg() - file_size;
-	fin.seekg(0, ios::beg);
-#ifndef DXT5_DECOMPRESSED
-	uint8_t* pbuff = new uint8_t[file_size];
-	fin.read((char*)pbuff, file_size);
-	fin.close();
-
-	int pre_buff_size = file_size * 60;
-	uint8_t* pin_buff = new uint8_t[pre_buff_size];
-	mz_stream stream = {};
-	mz_inflateInit(&stream);
-	stream.avail_in = (int)file_size;
-	stream.next_in = pbuff;
-	stream.avail_out = pre_buff_size;
-	stream.next_out = pin_buff;
-	mz_inflate(&stream, Z_SYNC_FLUSH);
-	if (mz_inflateEnd(&stream) != Z_OK)
+	fin.seekg(0, ios::beg);	
+	msgpack::unpacker unpac;
+	int afb_name_len = strlen(afb_file);
+	if (afb_file[afb_name_len-1]=='C')
 	{
-		printf("fail to inflate!\n");
-		delete[] pbuff;
-		delete[] pin_buff;
-		return;
-	}
-	msgpack::unpacker unpac;
-	unpac.reserve_buffer(stream.total_out);
-	memcpy(unpac.buffer(), pin_buff, stream.total_out);
-	unpac.buffer_consumed(static_cast<size_t>(stream.total_out));
-	delete[] pbuff;
-	delete[] pin_buff;
-#else
-	msgpack::unpacker unpac;
-	unpac.reserve_buffer(file_size);
-	fin.read(unpac.buffer(), unpac.buffer_capacity());
-	unpac.buffer_consumed(static_cast<size_t>(fin.gcount()));
+		uint8_t* pbuff = new uint8_t[file_size];
+		fin.read((char*)pbuff, file_size);
+		fin.close();
 
-#endif // !DXT5_DECOMPRESSED
+		int pre_buff_size = file_size * 60;
+		uint8_t* pin_buff = new uint8_t[pre_buff_size];
+		mz_stream stream = {};
+		mz_inflateInit(&stream);
+		stream.avail_in = (int)file_size;
+		stream.next_in = pbuff;
+		stream.avail_out = pre_buff_size;
+		stream.next_out = pin_buff;
+		mz_inflate(&stream, Z_SYNC_FLUSH);
+		if (mz_inflateEnd(&stream) != Z_OK)
+		{
+			printf("fail to inflate!\n");
+			delete[] pbuff;
+			delete[] pin_buff;
+			return;
+		}
+		unpac.reserve_buffer(stream.total_out);
+		memcpy(unpac.buffer(), pin_buff, stream.total_out);
+		unpac.buffer_consumed(static_cast<size_t>(stream.total_out));
+		delete[] pbuff;
+		delete[] pin_buff;	
+	}
+	else
+	{
+		unpac.reserve_buffer(file_size);
+		fin.read(unpac.buffer(), unpac.buffer_capacity());
+		unpac.buffer_consumed(static_cast<size_t>(fin.gcount()));
+	}
+
 
 	TIME_CHECK(reading afb)
 	msgpack::object_handle oh;

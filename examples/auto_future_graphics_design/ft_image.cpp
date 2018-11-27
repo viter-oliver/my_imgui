@@ -25,8 +25,8 @@ namespace auto_future
 		}
 		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
 		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
-		float sizew = _img_pt._size.x;
-		float sizeh = _img_pt._size.y;
+		float sizew = _img_pt._sizew;
+		float sizeh = _img_pt._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
@@ -41,7 +41,7 @@ namespace auto_future
 
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
-		ImVec2 axisBasePos = { offsetx + _img_pt._axis_pos.x + winpos.x, offsety + _img_pt._axis_pos.y + winpos.y };
+		ImVec2 axisBasePos = { offsetx + _img_pt._aposx + winpos.x, offsety + _img_pt._aposy + winpos.y };
 		if (_img_pt._angle != 0.f)
 		{
 			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle, axisBasePos);
@@ -104,13 +104,13 @@ namespace auto_future
 			ImGui::Text("size:");
 			ImGui::SliderFloat("w", &_edit_size.x, 0.f, screenw);
 			ImGui::SliderFloat("h", &_edit_size.y, 0.f, screenh);
-			if (_edit_size.x != _img_pt._size.x || _edit_size.y != _img_pt._size.y)
+			if (_edit_size.x != _img_pt._sizew || _edit_size.y != _img_pt._sizeh)
 			{
 				set_size(_edit_size);
 			}
 			ImGui::Text("axis pos:");
-			ImGui::SliderFloat("ax", &_img_pt._axis_pos.x, 1.f, screenw);
-			ImGui::SliderFloat("ay", &_img_pt._axis_pos.y, 1.f, screenh);
+			ImGui::SliderFloat("ax", &_img_pt._aposx, 1.f, screenw);
+			ImGui::SliderFloat("ay", &_img_pt._aposy, 1.f, screenh);
 			ImGui::Separator();
 			ImGui::Text("angle:");
 			ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);
@@ -158,32 +158,32 @@ namespace auto_future
 		if (ImGui::IsMouseReleased(0) || g.IO.InputContentChanged)
 		{
 			bool pt_modified = false;
-			if (_img_pt._size.x != _img_pt_bk._size.x)
+			if (_img_pt._sizew != _img_pt_bk._sizew)
 			{
 				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_sz_x, command_value(_img_pt_bk._size.x))));
-				_img_pt_bk._size.x = _img_pt._size.x;
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_sz_x, command_value(_img_pt_bk._sizew))));
+				_img_pt_bk._sizew = _img_pt._sizew;
 				pt_modified = true;
 			}
-			if (_img_pt._size.y != _img_pt_bk._size.y)
+			if (_img_pt._sizeh != _img_pt_bk._sizeh)
 			{
 				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_sz_y, command_value(_img_pt_bk._size.y))));
-				_img_pt_bk._size.y = _img_pt._size.y;
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_sz_y, command_value(_img_pt_bk._sizeh))));
+				_img_pt_bk._sizeh = _img_pt._sizeh;
 				pt_modified = true;
 			}
-			if (_img_pt._axis_pos.x != _img_pt_bk._axis_pos.x)
+			if (_img_pt._aposx != _img_pt_bk._aposx)
 			{
 				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_ax_pos_x, command_value(_img_pt_bk._axis_pos.x))));
-				_img_pt_bk._axis_pos.x = _img_pt._axis_pos.x;
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_ax_pos_x, command_value(_img_pt_bk._aposx))));
+				_img_pt_bk._aposx = _img_pt._aposx;
 				pt_modified = true;
 			}
-			if (_img_pt._axis_pos.y != _img_pt_bk._axis_pos.y)
+			if (_img_pt._aposy != _img_pt_bk._aposy)
 			{
 				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_ax_pos_y, command_value(_img_pt_bk._axis_pos.y))));
-				_img_pt_bk._axis_pos.y = _img_pt._axis_pos.y;
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_ax_pos_y, command_value(_img_pt_bk._aposy))));
+				_img_pt_bk._aposy = _img_pt._aposy;
 				pt_modified = true;
 			}
 			if (_img_pt._angle != _img_pt_bk._angle)
@@ -208,20 +208,20 @@ namespace auto_future
 			switch (ele_cmd._cmd_id)
 			{
 			case en_pt_sz_x:
-				_img_pt._size.x=ele_cmd._cmd_value._value._fvalue;
-				_img_pt_bk._size.x = _img_pt._size.x;
+				_img_pt._sizew=ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._sizew = _img_pt._sizew;
 				break;
 			case en_pt_sz_y:
-				_img_pt._size.y = ele_cmd._cmd_value._value._fvalue;
-				_img_pt_bk._size.y = _img_pt._size.y;
+				_img_pt._sizeh = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._sizeh = _img_pt._sizeh;
 				break;
 			case en_pt_ax_pos_x:
-				_img_pt._axis_pos.x = ele_cmd._cmd_value._value._fvalue;
-				_img_pt_bk._axis_pos.x = _img_pt._axis_pos.x;
+				_img_pt._aposx = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._aposx = _img_pt._aposx;
 				break;
 			case en_pt_ax_pos_y:
-				_img_pt._axis_pos.y = ele_cmd._cmd_value._value._fvalue;
-				_img_pt_bk._axis_pos.y = _img_pt._axis_pos.y;
+				_img_pt._aposy = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._aposy = _img_pt._aposy;
 				break;
 			case en_pt_ac_type:
 				_img_pt._anchor_type = ele_cmd._cmd_value._value._ivalue;
@@ -254,13 +254,13 @@ namespace auto_future
 			switch (ele_cmd._cmd_id)
 			{
 			case en_pt_sz_x:
-				return command_elemment(string("ft_mage"), en_pt_sz_x, command_value(_img_pt._size.x));
+				return command_elemment(string("ft_mage"), en_pt_sz_x, command_value(_img_pt._sizew));
 			case en_pt_sz_y:
-				return command_elemment(string("ft_mage"), en_pt_sz_y, command_value(_img_pt._size.y));
+				return command_elemment(string("ft_mage"), en_pt_sz_y, command_value(_img_pt._sizeh));
 			case en_pt_ax_pos_x:
-				return command_elemment(string("ft_mage"), en_pt_ax_pos_x, command_value(_img_pt._axis_pos.x));
+				return command_elemment(string("ft_mage"), en_pt_ax_pos_x, command_value(_img_pt._aposx));
 			case en_pt_ax_pos_y:
-				return command_elemment(string("ft_mage"), en_pt_ax_pos_y, command_value(_img_pt._axis_pos.y));
+				return command_elemment(string("ft_mage"), en_pt_ax_pos_y, command_value(_img_pt._aposy));
 			case en_pt_ac_type:
 				return command_elemment(string("ft_mage"), en_pt_ac_type, command_value(_img_pt._anchor_type));
 			case en_pt_txt_id:
@@ -289,29 +289,29 @@ namespace auto_future
 	   Value& jsize = jvalue["size"];
 		if (!jsize.isNull())
 		{
-			_img_pt._size.x = jsize["w"].asDouble();
-			_img_pt._size.y = jsize["h"].asDouble();
-			_edit_size = _img_pt._size;
+			_img_pt._sizew = jsize["w"].asDouble();
+			_img_pt._sizeh = jsize["h"].asDouble();
+			_edit_size = ImVec2(_img_pt._sizew, _img_pt._sizeh);
 		}
-		if (_img_pt._size.x == 0.f || _img_pt._size.y == 0.f)
+		if (_img_pt._sizew == 0.f || _img_pt._sizeh == 0.f)
 		{
 			vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
-			_img_pt._size.x = ptext_cd[_img_pt._texture_index]._x1 - ptext_cd[_img_pt._texture_index]._x0;
-			_img_pt._size.y = ptext_cd[_img_pt._texture_index]._y1 - ptext_cd[_img_pt._texture_index]._y0;
+			_img_pt._sizew = ptext_cd[_img_pt._texture_index]._x1 - ptext_cd[_img_pt._texture_index]._x0;
+			_img_pt._sizeh = ptext_cd[_img_pt._texture_index]._y1 - ptext_cd[_img_pt._texture_index]._y0;
 		}
 		Value& jaxispos = jvalue["axipos"];
 		if (!jaxispos.isNull())
 		{
-			_img_pt._axis_pos.x = jaxispos["x"].asDouble();
-			_img_pt._axis_pos.y = jaxispos["y"].asDouble();
+			_img_pt._aposx = jaxispos["x"].asDouble();
+			_img_pt._aposy = jaxispos["y"].asDouble();
 			_img_pt._angle = jaxispos["angle"].asDouble();
 		}
 		else
 		{
-			float aw = _img_pt._size.x / 2;
-			float ah = _img_pt._size.y / 2;
-			_img_pt._axis_pos.x = base_pos().x + aw;
-			_img_pt._axis_pos.y = base_pos().y + ah;
+			float aw = _img_pt._sizew / 2;
+			float ah = _img_pt._sizeh / 2;
+			_img_pt._aposx = base_pos().x + aw;
+			_img_pt._aposy = base_pos().y + ah;
 		}
 		_img_pt._anchor_type = jvalue["anchor_type"].asInt();
 		_img_pt_bk = _img_pt;
@@ -323,12 +323,12 @@ namespace auto_future
 		//junit["texture_id_index"] = g_cur_texture_id_index;
 		junit["texture_index"] = _img_pt._texture_index;
 		Value jsize(objectValue);
-		jsize["w"] = _img_pt._size.x;
-		jsize["h"] = _img_pt._size.y;
+		jsize["w"] = _img_pt._sizew;
+		jsize["h"] = _img_pt._sizeh;
 		junit["size"] = jsize;
 		Value jaxispos(objectValue);
-		jaxispos["x"] = _img_pt._axis_pos.x;
-		jaxispos["y"] = _img_pt._axis_pos.y;
+		jaxispos["x"] = _img_pt._aposx;
+		jaxispos["y"] = _img_pt._aposy;
 		jaxispos["angle"] = _img_pt._angle;
 		junit["axipos"] = jaxispos;
 		junit["anchor_type"] = _img_pt._anchor_type;

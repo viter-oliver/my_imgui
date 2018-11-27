@@ -12,8 +12,8 @@ namespace auto_future
 			char _texture_name[FILE_NAME_LEN];
 			char _texture_fmt_name[FILE_NAME_LEN];
 
-			ImVec2 _size;
-			ImVec2 _axis_pos;
+			float _sizew,_sizeh;
+			float _aposx,_aposy;
 			int _frame_index = { 0 };
 			float _angle = { 0.f };
 			intl_pt() {
@@ -46,11 +46,12 @@ namespace auto_future
 		}
 		ImVec2 get_size()
 		{
-			return _img_pt._size;
+			return ImVec2(_img_pt._sizew, _img_pt._sizeh);
 		}
 		void set_size(ImVec2& im_size)
 		{
-			_img_pt._size = im_size;
+			_img_pt._sizew = im_size.x;
+			_img_pt._sizeh = im_size.y;
 		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

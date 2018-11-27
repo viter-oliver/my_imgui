@@ -19,11 +19,31 @@ namespace auto_future
 			int _ivalue;
 			char* _svalue;
 		}_value;
-		command_value(){ _value._ivalue = 0; }
+		command_value()
+		{
+			command_value(0);
+		}
 		command_value(command_value&tar)
 			:_cmd_value_type(tar._cmd_value_type)
-			, _value(tar._value)
-		{}
+		{
+			switch (tar._cmd_value_type)
+			{
+			case en_cmd_str:
+				{
+					_value._svalue = 0;
+					int sl = strlen(tar._value._svalue);
+					if (sl > 0)
+					{
+						_value._svalue = static_cast<char*>(malloc(sl + 1));
+						memcpy(_value._svalue, tar._value._svalue, sl);
+						_value._svalue[sl] = 0;
+					}
+				}
+				break;
+			default:
+				_value = tar._value;
+			}
+		}
 		command_value(float fvalue)
 			:_cmd_value_type(en_cmd_float)
 		{
@@ -42,17 +62,23 @@ namespace auto_future
 		command_value(char* svalue)
 			:_cmd_value_type(en_cmd_str)
 		{
-			assert(svalue);
+			
+			_value._svalue = 0;
 			int sl = strlen(svalue);
-			_value._svalue =static_cast<char*>(malloc(sl + 1));
-			memcpy(_value._svalue, svalue,sl);
-			_value._svalue[sl] = 0;
+			if (sl>0)
+			{
+				_value._svalue = static_cast<char*>(malloc(sl + 1));
+				memcpy(_value._svalue, svalue, sl);
+				_value._svalue[sl] = 0;
+			}
+
 		}
 		~command_value()
 		{
-			if (_cmd_value_type==en_cmd_str)
+			if (_cmd_value_type == en_cmd_str&&_value._svalue)
 			{
 				free(_value._svalue);
+				_value._svalue=0;
 			}
 		}
 	};
@@ -61,7 +87,11 @@ namespace auto_future
 		string _cmd_type;
 		unsigned char _cmd_id;
 		command_value _cmd_value;
-		command_elemment(){}
+		command_elemment()
+			:_cmd_value(0)
+		{
+
+		}
 		command_elemment(string&cmd_type, unsigned char cmd_id, command_value& cmd_value)
 			:_cmd_type(cmd_type),_cmd_id(cmd_id), _cmd_value(cmd_value){}
 		command_elemment(command_elemment& tar)

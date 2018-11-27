@@ -90,7 +90,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\dds_file;$(SolutionDir)\libs\fbx_sdk\include;./fbx_import;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\dds_file;$(SolutionDir)\libs\fbx_sdk\include;./fbx_import;$(SolutionDir)\..\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -302,6 +302,7 @@
     <ClInclude Include="miniz.h" />
     <ClInclude Include="ofbx.h" />
     <ClInclude Include="paricles_system.h" />
+    <ClInclude Include="property_utilities.h" />
     <ClInclude Include="primitive_object.h" />
     <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="project_edit.h" />

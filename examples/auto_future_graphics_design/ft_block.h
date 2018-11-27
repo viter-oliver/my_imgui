@@ -7,8 +7,8 @@ namespace auto_future
 	{
 		struct intl_pt
 		{
-			ImVec2 _size;
-			ImVec4 _block_color;
+			float _sizew,_sizeh;
+			float _bkr,_bkg,_bkb,_bka;
 			intl_pt(){}
 		};
 		intl_pt _pt;
@@ -25,12 +25,12 @@ namespace auto_future
 		}
 		ImVec2 get_size()
 		{
-			return _pt._size;
+			return ImVec2(_pt._sizew,_pt._sizew);
 		}
 		void set_size(float w, float h)
 		{
-			_pt._size.x = w;
-			_pt._size.y = h;
+			_pt._sizew = w;
+			_pt._sizeh= h;
 		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

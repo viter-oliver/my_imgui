@@ -12,6 +12,10 @@
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
+#include <fstream>
+#include <boost/preprocessor/seq/for_each.hpp>
+#include <boost/preprocessor/tuple/elem.hpp>
+#include <boost/preprocessor/variadic/to_seq.hpp>
 using namespace std;
 struct stt
 {
@@ -118,6 +122,28 @@ struct testalias
 	int& ij = jj;
 };
 
+class dlg1
+{
+	int _slider1_value, _slider2_value;
+   void button1_open(){}
+	void button2_open(){}
+	void slider1_scroll(int){}
+	void slider2_scroll(int){}
+};
+class dlg2
+{
+	int  _slider3_value, _slider4_value;
+	void button3_open(){}
+	void button4_open(){}
+
+	void slider3_scroll(int){}
+	void slider4_scroll(int){}
+};
+class dashboard_controller
+{
+	dlg1 _dlg1;
+	dlg2 _dlg2;
+};
 
 
 //class testc1 :public testc0
@@ -170,6 +196,29 @@ struct testalias
 		{
 			j = 2;
 		}
+	};
+	struct test_cons 
+	{
+		int _ivalue;
+	};
+
+	struct test_cons_host
+	{
+		test_cons _tcons;
+		struct iner_str 
+		{
+			int _iivalue;
+			iner_str(test_cons& tcons)
+			{
+				_iivalue = 10;
+				tcons._ivalue = _iivalue;
+			}
+		};
+		iner_str _instr { _tcons };
+		test_cons_host() {
+			iner_str ssss(_tcons);
+		}
+
 	};
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -397,6 +446,164 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<shared_ptr<stp0>> vstp;
 	vstp.emplace_back(make_shared<stp1>());
 	vstp.erase(vstp.begin()+0);
+	std::vector<int> vtest_swap;
+	for (auto i = 0; i < 100;i++)
+	{
+		vtest_swap.emplace_back(i);
+	}
+	auto ifd = find_if(vtest_swap.begin(), vtest_swap.end(), [](int& ivalue){return ivalue == 50; });
+	cout << "ifd:" << *ifd << endl;
+	swap(*ifd, *(ifd - 1));
+	for (auto& iu:vtest_swap)
+	{
+		cout << "v:" << iu << endl;
+	}
+	fstream fstr("ab.txt", ios::in | ios::out | ios::app);
+	fstr.seekg(0, fstr.end);
+	if (fstr.is_open())
+	{
+		for (auto& iu : vtest_swap)
+		{
+			fstr << "v:" << iu << endl;
+		}
+	}
+	union test_endian
+	{
+		unsigned char buff[4];
+		int rvalue;
+	};
+	test_endian adtest;
+	adtest.rvalue = 0x12345678;
+	for (int ii = 0; ii < 4;++ii)
+	{
+		printf("buff%d:0x%x\n", ii, adtest.buff[ii]);
+	}
+	adtest.rvalue = 0x123456;
+	for (int ii = 0; ii < 4; ++ii)
+	{
+		printf("buff%d:0x%x\n", ii, adtest.buff[ii]);
+	}
+	adtest.rvalue = 0x1234;
+	for (int ii = 0; ii < 4; ++ii)
+	{
+		printf("buff%d:0x%x\n", ii, adtest.buff[ii]);
+	}
+	struct test_this 
+	{
+		virtual void printf_this()
+		{
+			printf("test_this this=%x\n", this);
+		}
+	};
+	struct test_this1:public test_this
+	{
+		void printf_this()
+		{
+			test_this::printf_this();
+
+			printf("test_this1 this=%x\n", this);
+		}
+
+	};
+	struct test_this2 :public test_this1
+	{
+		void printf_this()
+		{
+			test_this1::printf_this();
+
+			printf("test_this2 this=%x\n", this);
+		}
+
+	};
+	test_this2 ts2;
+	ts2.printf_this();
+
+	int iij{ 0 };
+	cout << __cplusplus << endl;
+#define SEQ (int aw=0)(int ax=1)(int ay=2)(int az=3)
+
+#define MACRO(r, data, elem)  elem;
+
+	BOOST_PP_SEQ_FOR_EACH(MACRO, _, SEQ) // expands to w_ x_ y_ z_
+		cout << "aw:" << aw << endl;
+	cout << "ax:" << ax << endl;
+	cout << "ay:" << ay << endl;
+	cout << "az:" << az << endl;
+
+#define _STR(x) #x
+#define STR(x) _STR(x)
+#define GET_ELE(r,data,ele) STR(BOOST_PP_TUPLE_ELEM(2,0,ele)),STR(BOOST_PP_TUPLE_ELEM(2,1,ele)),
+#define GEN_V(r,data,elem) BOOST_PP_TUPLE_ELEM(2,0,elem) BOOST_PP_TUPLE_ELEM(2,1,elem);
+#define DEF_STRUCT(stname,vname,...) struct stname {BOOST_PP_SEQ_FOR_EACH(GEN_V,_,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))\
+	stname(){/*char* ele_name_list[]={BOOST_PP_SEQ_FOR_EACH(GET_ELE,_,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))};*/}\
+	};\
+	stname vname;
+	/*char* ele_name_list[]={BOOST_PP_SEQ_FOR_EACH(GET_ELE,_,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))*/ 
+	DEF_STRUCT(test_pp, my_testpp, (int, _i), (float, _f), (double, _d))
+		my_testpp._d = 0;
+#define ELELIST (int,hh) (float,ff) (double,dd)
+	/*char* ssddd[] = { BOOST_PP_SEQ_FOR_EACH(GET_ELE,_,ELELIST) };
+		cout << "value?:" << ssddd[0] << endl;
+		cout << "value?:" << ssddd[1] << endl;
+		cout << "value?:" << ssddd[2] << endl;
+		cout << "value?:" << ssddd[3] << endl;
+		cout << "value?:" << ssddd[4] << endl;
+		cout << "value?:" << ssddd[5] << endl;
+		*/
+#define GET_SEQ(stname,...) char* stname= STR(BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__));
+	GET_SEQ(astr, int, (int i), (float))
+	cout << astr << endl;
+#define ID_OP(_, func, elem) func(elem)
+#define APPLY_TO_ALL(func, ...)                \
+    BOOST_PP_SEQ_FOR_EACH(                     \
+        ID_OP, func,                           \
+        BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__)  \
+    )
+
+	// example call:
+
+#define SomeTransformation(x) #x // stringize the argument
+
+	char* nstr=APPLY_TO_ALL(SomeTransformation, 1, 2, 3); // expands to "1" "2" "3"
+	cout << nstr << endl;
+	struct test_iner_class
+	{
+		struct  iner_class
+		{
+			int a;
+			int b;
+			int c;
+			iner_class()
+			{
+				a = 1;
+				b = 2;
+				c = 3;
+				printf("this=%x\n", this);
+			}
+		};
+		iner_class my_ineral;
+		test_iner_class()
+		{
+			void* piner = &my_ineral;
+			void* pp;
+			pp = piner;
+			printf("piner=%x\n", piner);
+			int el1 = *((int*)piner);
+			printf("el1=%d\n", el1);
+			//printf("intsize=%d", sizeof(int));
+			int* pel2 = (int*)((char*)piner + sizeof(int));
+			int el2 = *(pel2);
+			printf("el2=%d\n", el2);
+			int* pel3 = (int*)((char*)pel2 + sizeof(int));
+			int el3 = *(pel3);
+			printf("el3=%d\n", el3);
+
+
+		}
+	};
+	test_iner_class tic;
+	
+	int jjj = 0;
 	return 0;
 }
 

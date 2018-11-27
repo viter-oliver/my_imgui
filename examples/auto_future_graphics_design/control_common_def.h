@@ -25,6 +25,9 @@
 #include "platform_def.h"
 //#include "command_element.h"
 //#include <map>
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#include "property_utilities.h"
+#endif
 namespace auto_future
 {
 	struct ft_vertex
@@ -68,13 +71,17 @@ namespace auto_future
 		*/
 		struct internal_property
 		{
-			char _name[name_len];
-			ImVec2 _pos;
+			float _posx, _posy;
 			bool _visible;
+			char _name[name_len];
+
 			internal_property() :_visible(true){ memset(_name, 0, name_len); }
 		};
-		/// the member will be serialized 
-		internal_property _in_p;
+		///// the member will be serialized 
+		//internal_property _in_p;
+		vp_prop_ele _vprop_eles;
+		DEF_STRUCT(base_prop, _in_p, (float, _posx), (float, _posy), (bool, _visible), (char, _name[name_len]))
+
 		/** the member contain all of the components which is the object
 		of the child class of base_ui_componnet */
 		vector<base_ui_component*> _vchilds;
@@ -82,6 +89,7 @@ namespace auto_future
 		base_ui_component* _parent;
 		//bool _be_window = { false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+
 	protected:
 		/** used for selecting a object in project edit for property editing */
 		bool _selected = { false };
@@ -90,6 +98,7 @@ namespace auto_future
 		*@brief draw property on the property page for editing
 		*/
 		virtual void draw_peroperty_page(int property_part = -1) = 0;
+		virtual void back_up_property() = 0;
 		//struct command_elemment;
 		virtual void execute_command(command_elemment&) = 0;
 		virtual command_elemment clone_cmd_ele(command_elemment&)=0;
@@ -178,8 +187,7 @@ namespace auto_future
 		string get_name(){ return string(_in_p._name); }
 		virtual bool handle_mouse(){ return false; }
 		base_ui_component()
-			:_in_p()
-			, _parent(NULL)
+			: _parent(NULL)
 		{
 
 		}
@@ -254,17 +262,29 @@ namespace auto_future
 		/**
 		*@brief get relative coordinates of current object
 		*/
-		ImVec2& base_pos(){ return _in_p._pos; }
+		ImVec2 base_pos(){ return ImVec2(_in_p._posx, _in_p._posy); }
+		void set_base_pos(float posx, float posy)
+		{
+			_in_p._posx = posx; _in_p._posy = posy;
+		}
+		void set_base_posx(float posx)
+		{
+			_in_p._posx = posx;
+		}
+		void set_base_posy(float posy)
+		{
+			_in_p._posy = posy;
+		}
 		/**
 		*@brief get absolute coordinates of current object
 		*/
 		ImVec2 absolute_coordinate_of_base_pos()
 		{
-			ImVec2 base_pos = _in_p._pos;
+			ImVec2 base_pos(_in_p._posx, _in_p._posy);
 			base_ui_component* parent = get_parent();
 			while (parent/*&&!parent->_be_window*/)
 			{
-				ImVec2& pbase_pos = parent->base_pos();
+				ImVec2 pbase_pos = parent->base_pos();
 				base_pos += pbase_pos;
 				parent = parent->get_parent();
 			}
@@ -272,8 +292,7 @@ namespace auto_future
 		}
 		void offset(ImVec2& imof)
 		{
-			_in_p._pos.x += imof.x;
-			_in_p._pos.y += imof.y;
+			set_base_pos(base_pos().x + imof.x, base_pos().y + imof.y);
 		}
 		bool is_visible(){ return _in_p._visible; }
 		void set_visible(bool visible){ _in_p._visible = visible; }

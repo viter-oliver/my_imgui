@@ -6,7 +6,7 @@ namespace auto_future
 		:ft_base()
 		, _fboId(0), _colorTextId(0), _depthStencilTextId(0)
 	{
-		prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, _sn_pt._size.x, _sn_pt._size.y);
+		prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, _sn_pt._sizew, _sn_pt._sizeh);
 	}
 
 	ft_scene::~ft_scene()
@@ -17,7 +17,7 @@ namespace auto_future
 	{
 		GLint last_viewport[4]; glGetIntegerv(GL_VIEWPORT, last_viewport);
 		glBindFramebuffer(GL_FRAMEBUFFER, _fboId);
-		glViewport(0, 0, _sn_pt._size.x, _sn_pt._size.y);
+		glViewport(0, 0, _sn_pt._sizew, _sn_pt._sizeh);
 		glEnable(GL_BLEND);
 		glBlendEquation(GL_FUNC_ADD);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -25,7 +25,7 @@ namespace auto_future
 		glDepthFunc(GL_LESS);
 		//glEnable(GL_CULL_FACE);
 		//glDisable(GL_SCISSOR_TEST);
-		glClearColor(_sn_pt._back_color.x, _sn_pt._back_color.y, _sn_pt._back_color.z, _sn_pt._back_color.z);
+		glClearColor(_sn_pt._bkr, _sn_pt._bkg, _sn_pt._bkb, _sn_pt._bka);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		ft_base::draw();
@@ -33,8 +33,8 @@ namespace auto_future
 		glViewport(last_viewport[0], last_viewport[1], (GLsizei)last_viewport[2], (GLsizei)last_viewport[3]);
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
-		float sizew = _sn_pt._size.x;
-		float sizeh = _sn_pt._size.y;
+		float sizew = _sn_pt._sizew;
+		float sizeh = _sn_pt._sizeh;
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
 		ImVec2 pos2 = { pos1.x, pos1.y + sizeh };
 		ImVec2 pos3 = { pos1.x + sizew, pos1.y + sizeh };
@@ -67,10 +67,10 @@ namespace auto_future
 	{
 		ft_base::draw_peroperty_page();
 		ImGui::Text("Size:");
-		ImGui::SliderFloat("###w", &_sn_pt._size.x, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("###h", &_sn_pt._size.y, 0.f, base_ui_component::screenw);
+		ImGui::SliderFloat("###w", &_sn_pt._sizew, 0.f, base_ui_component::screenw);
+		ImGui::SliderFloat("###h", &_sn_pt._sizeh, 0.f, base_ui_component::screenw);
 		ImGui::Text("Background color:");
-		ImGui::ColorEdit4("text color:", (float*)&_sn_pt._back_color);
+		ImGui::ColorEdit4("text color:", (float*)&_sn_pt._bkg);
 
 	}
 
@@ -78,13 +78,13 @@ namespace auto_future
 	{
 		ft_base::init_from_json(jvalue);
 		Value& jsize = jvalue["size"];
-		_sn_pt._size.x = jsize["w"].asDouble();
-		_sn_pt._size.y = jsize["h"].asDouble();
+		_sn_pt._sizew = jsize["w"].asDouble();
+		_sn_pt._sizeh = jsize["h"].asDouble();
 		Value& jbgcolor = jvalue["background color"];
-		_sn_pt._back_color.x = jbgcolor["x"].asDouble();
-		_sn_pt._back_color.y = jbgcolor["y"].asDouble();
-		_sn_pt._back_color.z = jbgcolor["z"].asDouble();
-		_sn_pt._back_color.w = jbgcolor["w"].asDouble();
+		_sn_pt._bkr = jbgcolor["x"].asDouble();
+		_sn_pt._bkg = jbgcolor["y"].asDouble();
+		_sn_pt._bkb = jbgcolor["z"].asDouble();
+		_sn_pt._bka = jbgcolor["w"].asDouble();
 
 		return true;
 	}
@@ -93,14 +93,14 @@ namespace auto_future
 	{
 		ft_base::init_json_unit(junit);
 		Value jsize(objectValue);
-		jsize["w"] = _sn_pt._size.x;
-		jsize["h"] = _sn_pt._size.y;
+		jsize["w"] = _sn_pt._sizew;
+		jsize["h"] = _sn_pt._sizeh;
 		junit["size"] = jsize;
 		Value jbgcolor(objectValue);
-		jbgcolor["x"] = _sn_pt._back_color.x;
-		jbgcolor["y"] = _sn_pt._back_color.y;
-		jbgcolor["z"] = _sn_pt._back_color.z;
-		jbgcolor["w"] = _sn_pt._back_color.w;
+		jbgcolor["x"] = _sn_pt._bkr;
+		jbgcolor["y"] = _sn_pt._bkg;
+		jbgcolor["z"] = _sn_pt._bkb;
+		jbgcolor["w"] = _sn_pt._bka;
 		junit["background color"] = jbgcolor;
 		return true;
 	}

@@ -114,33 +114,41 @@ void my_application::register_command_handle()
 	g_msg_host.attach_monitor("total mileage", [this](unsigned char* pbuff, int len){
 		unsigned char DataValid = *pbuff++;
 		int mileage_value = *((int*)pbuff);
-		if (DataValid)
+		char odo_show[50] = { 0 };
+		if (DataValid==1)
 		{
-			char odo_show[50] = { 0 };
 			sprintf(odo_show, "ODO:%dkm", mileage_value);
-			_odo->set_content(odo_show);
 		}
+		else
+		{
+			strcpy(odo_show, "ODO:--");
+		}
+		_odo->set_content(odo_show);
+		
 	});
 	g_msg_host.attach_monitor("subtotal mileage", [this](unsigned char* pbuff, int len){
-		unsigned char DataValid = *pbuff;
-		*pbuff = 0;
+		unsigned char DataValid = *pbuff++;
+		*(pbuff+3) = 0;
 		int sub_mileage_value = *((int*)pbuff);
-		if (DataValid)
+		char trip_show[50] = { 0 };
+		if (DataValid == 1)
 		{
-			char trip_show[50] = { 0 };
 			sprintf(trip_show, "TRIP:%dkm", sub_mileage_value);
-			_trip->set_content(trip_show);
 		}
+		else
+		{
+			strcpy(trip_show,"TRIP:--");
+		}
+		_trip->set_content(trip_show);
 	});
 	g_msg_host.attach_monitor("auto speed", [this](unsigned char* pbuff, int len){
 		unsigned char DataValid = *pbuff++;     // Byte first
 		unsigned char alarm = *pbuff++;         // Byte Second
 		short auto_speed = *((short*)pbuff);
-		if (DataValid)
+		char auto_speed_show[50] = { 0 };
+		if (DataValid == 1)
 		{
-			char auto_speed_show[50] = { 0 };
 			sprintf(auto_speed_show, "%d", auto_speed);
-			_speed->set_content(auto_speed_show);
 			float moto_speed_rate = (float)auto_speed / 3.f;
 			_right_pointer_sl->set_progress_value(moto_speed_rate);
 			if (_being_logo_animation)
@@ -151,13 +159,18 @@ void my_application::register_command_handle()
 				_right_pointer_play->set_size(bsize);
 			}
 		}
+		else
+		{
+			strcpy(auto_speed_show, "--");
+		}
+		_speed->set_content(auto_speed_show);
 	});
 
 	g_msg_host.attach_monitor("motor speed", [this](unsigned char* pbuff, int len){
 		unsigned char DataValid = *pbuff++;     // Byte first
 		unsigned char alarm = *pbuff++;         // Byte Second
 		short motor_speed = *((short*)pbuff);
-		if (DataValid)
+		if (DataValid == 1)
 		{
 			/*char motor_speed_show[50] = { 0 };
 			sprintf(motor_speed_show, "ROTATE:%r/m", motor_speed);
@@ -182,7 +195,7 @@ void my_application::register_command_handle()
 		//printf("****0x%x,0x%x,0x%x\n", *pbuff, *(pbuff + 1), fuel_cons_value);
 		fuel_cons_value *= 0.1;
 		float fuel_cons_rate = fuel_cons_value / 50.f;
-		if (DataValid)
+		if (DataValid == 1)
 		{
 			_fuel_cons->set_progress(fuel_cons_rate);
 		}
@@ -195,7 +208,7 @@ void my_application::register_command_handle()
 		water_temperature_value -= 1000;
 		water_temperature_value *= 0.1;
 		float water_temperature_rate = water_temperature_value / 100;
-		if (DataValid)
+		if (DataValid == 1)
 		{
 			_water_temp->set_progress(water_temperature_rate);
 		}

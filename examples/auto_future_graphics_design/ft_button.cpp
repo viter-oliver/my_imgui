@@ -11,8 +11,8 @@ namespace auto_future
 		
 		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
 		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
-		float sizew = _pt._size.x;
-		float sizeh = _pt._size.y;
+		float sizew = _pt._sizew;
+		float sizeh = _pt._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
@@ -55,8 +55,8 @@ namespace auto_future
 	{
 		ft_base::draw_peroperty_page();
 		ImGui::Spacing();
-		ImGui::SliderFloat("width", &_pt._size.x, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("height", &_pt._size.y, 0.f, base_ui_component::screenh);
+		ImGui::SliderFloat("width", &_pt._sizew, 0.f, base_ui_component::screenw);
+		ImGui::SliderFloat("height", &_pt._sizeh, 0.f, base_ui_component::screenh);
 		ImGui::Spacing();
 
 		auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
@@ -120,8 +120,8 @@ namespace auto_future
 		_pt._texture_indices[en_pressed] = texture_indices["pressed"].asInt();
 		_pt._texture_indices[en_selected] = texture_indices["selected"].asInt();
 		Value& bsize = jvalue["size"];
-		_pt._size.x = bsize["x"].asDouble();
-		_pt._size.y = bsize["y"].asDouble();
+		_pt._sizew = bsize["x"].asDouble();
+		_pt._sizeh = bsize["y"].asDouble();
 		return true;
 	}
 	bool ft_button::init_json_unit(Value& junit)
@@ -133,8 +133,8 @@ namespace auto_future
 		jtexture_indices["selected"] = _pt._texture_indices[en_selected];
 		junit["texture_indices"] = jtexture_indices;
 		Value jsize(objectValue);
-		jsize["x"] = _pt._size.x;
-		jsize["y"] = _pt._size.y;
+		jsize["x"] = _pt._sizew;
+		jsize["y"] = _pt._sizeh;
 		junit["size"] = jsize;
 		return true;
 	}

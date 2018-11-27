@@ -28,8 +28,8 @@ namespace auto_future
 		int texture_id =_texture->_txt_id;
 		int texture_width = _texture->_width;
 		int texture_height = _texture->_height;
-		float sizew = _img_pt._size.x;
-		float sizeh = _img_pt._size.y;
+		float sizew = _img_pt._sizew;
+		float sizeh = _img_pt._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
@@ -44,7 +44,7 @@ namespace auto_future
 
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
-		ImVec2 axisBasePos = { offsetx + _img_pt._axis_pos.x + winpos.x, offsety + _img_pt._axis_pos.y + winpos.y };
+		ImVec2 axisBasePos = { offsetx + _img_pt._aposx + winpos.x, offsety + _img_pt._aposy + winpos.y };
 		if (_img_pt._angle != 0.f)
 		{
 			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle, axisBasePos);
@@ -106,12 +106,12 @@ namespace auto_future
 		if (property_part&en_geometry_property)
 		{
 			ImGui::Text("size:");
-			ImGui::SliderFloat("w", &_img_pt._size.x, 0.f, base_ui_component::screenw);
-			ImGui::SliderFloat("h", &_img_pt._size.y, 0.f, base_ui_component::screenh);
+			ImGui::SliderFloat("w", &_img_pt._sizew, 0.f, base_ui_component::screenw);
+			ImGui::SliderFloat("h", &_img_pt._sizeh, 0.f, base_ui_component::screenh);
 
 			ImGui::Text("axis pos:");
-			ImGui::SliderFloat("ax", &_img_pt._axis_pos.x, 1.f, base_ui_component::screenw);
-			ImGui::SliderFloat("ay", &_img_pt._axis_pos.y, 1.f, base_ui_component::screenh);
+			ImGui::SliderFloat("ax", &_img_pt._aposx, 1.f, base_ui_component::screenw);
+			ImGui::SliderFloat("ay", &_img_pt._aposy, 1.f, base_ui_component::screenh);
 			ImGui::Separator();
 			ImGui::Text("angle:");
 			ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);
@@ -193,8 +193,8 @@ namespace auto_future
 		Value& jsize = jvalue["size"];
 		if (!jsize.isNull())
 		{
-			_img_pt._size.x = jsize["w"].asDouble();
-			_img_pt._size.y = jsize["h"].asDouble();
+			_img_pt._sizew = jsize["w"].asDouble();
+			_img_pt._sizeh = jsize["h"].asDouble();
 		}
 		/*if (_img_pt._size.x == 0.f || _img_pt._size.y == 0.f)
 		{
@@ -205,16 +205,16 @@ namespace auto_future
 		Value& jaxispos = jvalue["axipos"];
 		if (!jaxispos.isNull())
 		{
-			_img_pt._axis_pos.x = jaxispos["x"].asDouble();
-			_img_pt._axis_pos.y = jaxispos["y"].asDouble();
+			_img_pt._aposx = jaxispos["x"].asDouble();
+			_img_pt._aposy = jaxispos["y"].asDouble();
 			_img_pt._angle = jaxispos["angle"].asDouble();
 		}
 		else
 		{
-			float aw = _img_pt._size.x / 2;
-			float ah = _img_pt._size.y / 2;
-			_img_pt._axis_pos.x = base_pos().x + aw;
-			_img_pt._axis_pos.y = base_pos().y + ah;
+			float aw = _img_pt._sizew / 2;
+			float ah = _img_pt._sizeh / 2;
+			_img_pt._aposx = base_pos().x + aw;
+			_img_pt._aposy = base_pos().y + ah;
 		}
 		link();
 		return true;
@@ -226,12 +226,12 @@ namespace auto_future
 		junit["texture format"] = _img_pt._texture_fmt_name;
 		junit["frame_index"] = _img_pt._frame_index;
 		Value jsize(objectValue);
-		jsize["w"] = _img_pt._size.x;
-		jsize["h"] = _img_pt._size.y;
+		jsize["w"] = _img_pt._sizew;
+		jsize["h"] = _img_pt._sizeh;
 		junit["size"] = jsize;
 		Value jaxispos(objectValue);
-		jaxispos["x"] = _img_pt._axis_pos.x;
-		jaxispos["y"] = _img_pt._axis_pos.y;
+		jaxispos["x"] = _img_pt._aposx;
+		jaxispos["y"] = _img_pt._aposy;
 		jaxispos["angle"] = _img_pt._angle;
 		junit["axipos"] = jaxispos;
 		return true;

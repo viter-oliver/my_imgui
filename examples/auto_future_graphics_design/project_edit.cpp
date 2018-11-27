@@ -117,6 +117,7 @@ void project_edit::popup_context_menu()
 					base_ui_component* pchild = infun();
 					string chd_name = _pcurrent_object->try_create_a_child_name(cname);
 					pchild->set_name(chd_name);
+					pchild->back_up_property();
 					_pcurrent_object->add_child(pchild);
 				}
 				

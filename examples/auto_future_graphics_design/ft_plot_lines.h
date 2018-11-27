@@ -8,7 +8,7 @@ namespace auto_future
 	{
 		struct intl_pt
 		{
-			ImVec2 _size = { 400, 200 };
+			float _sizew = 400,_sizeh= 200;
 			int _v_count = { 10 };
 			intl_pt()
 			{

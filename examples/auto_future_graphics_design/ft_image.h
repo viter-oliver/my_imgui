@@ -15,8 +15,8 @@ namespace auto_future
 	{
 		struct intl_pt
 		{
-			ImVec2 _size;
-			ImVec2 _axis_pos;
+			float _sizew,_sizeh;
+			float _aposx,_aposy;
 			int _anchor_type = { en_anchor_top_left };
 			int _texture_index;
 			float _angle;
@@ -35,31 +35,32 @@ namespace auto_future
 		}
 		ImVec2 get_size()
 		{
-			return _img_pt._size;
+			return ImVec2(_img_pt._sizew, _img_pt._sizeh);
 		}
 		void set_size(const ImVec2& im_size)
 		{
 			switch (_img_pt._anchor_type)
 			{
 			case en_anchor_top_right:
-				base_pos().x -= (im_size.x - _img_pt._size.x);
+				set_base_posx( base_pos().x - (im_size.x - _img_pt._sizew));
 				break;
 			case en_anchor_bottom_right:
-				base_pos().x -= (im_size.x - _img_pt._size.x);
-				base_pos().y -= (im_size.y - _img_pt._size.y);
+				set_base_posx(base_pos().x - (im_size.x - _img_pt._sizew));
+				set_base_posy(base_pos().y - (im_size.y - _img_pt._sizeh));
 				break;
 			case en_anchor_bottom_left:
-				base_pos().y -= (im_size.y - _img_pt._size.y);
+				set_base_posy(base_pos().y - (im_size.y - _img_pt._sizeh));
 				break;
 			case en_anchor_center:
-				base_pos().x -= (im_size.x - _img_pt._size.x)/2;
-				base_pos().y -= (im_size.y - _img_pt._size.y)/2;
+				set_base_posx(base_pos().x - (im_size.x - _img_pt._sizew)/2);
+				set_base_posy(base_pos().y - (im_size.y - _img_pt._sizeh)/2);
 				break;
 			case en_anchor_top_left:
 			default:
 				break;
 			}
-			_img_pt._size = im_size;
+			_img_pt._sizew = im_size.x;
+			_img_pt._sizeh = im_size.y;
 		}
 		void set_anchor_type(anchor_type antp)
 		{

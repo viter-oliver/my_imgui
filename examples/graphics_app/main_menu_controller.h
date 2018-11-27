@@ -14,6 +14,8 @@ class main_menu_controller
 	base_ui_component* _info_group;
 	base_ui_component* _drive_mode_group;
 	base_ui_component* _navi_group;
+	int _first_level_menu_index;
+	int _menu_level;
 public:
 	main_menu_controller(base_ui_component* root);
 	~main_menu_controller(){}

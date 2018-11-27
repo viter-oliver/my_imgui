@@ -2025,13 +2025,18 @@
 				},
 				
 				{
+					"align" : 
+					{
+						"h" : 0.50,
+						"v" : 0.0
+					},
 					"content" : "18:20",
 					"font_id" : 0,
-					"font_scale" : 2.200000047683716,
+					"font_scale" : 2.0,
 					"name" : "time",
 					"screen_pos" : 
 					{
-						"x" : 920.0,
+						"x" : 935.3850708007813,
 						"y" : 12.0
 					},
 					"txt_color" : 
@@ -2083,6 +2088,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "500",
 							"font_id" : 1,
 							"font_scale" : 2.100000143051148,
@@ -2106,6 +2116,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "m",
 							"font_id" : 1,
 							"font_scale" : 1.50,
@@ -2129,6 +2144,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "next turn street",
 							"font_id" : 1,
 							"font_scale" : 1.50,
@@ -2220,6 +2240,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "P",
 							"font_id" : 2,
 							"font_scale" : 1.899999976158142,
@@ -2243,6 +2268,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "NORMAL",
 							"font_id" : 1,
 							"font_scale" : 1.300000071525574,
@@ -2276,13 +2306,49 @@
 				},
 				
 				{
-					"content" : "90",
+					"align" : 
+					{
+						"h" : 0.50,
+						"v" : 0.0
+					},
+					"childs" : 
+					[
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "km/h",
+							"font_id" : 0,
+							"font_scale" : 1.899999976158142,
+							"name" : "unit",
+							"screen_pos" : 
+							{
+								"x" : 65.64100646972656,
+								"y" : 24.61500167846680
+							},
+							"txt_color" : 
+							{
+								"w" : 1.0,
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						}
+					],
+					"content" : "100",
 					"font_id" : 2,
 					"font_scale" : 3.0,
 					"name" : "speed",
 					"screen_pos" : 
 					{
-						"x" : 903.0,
+						"x" : 951.7950439453125,
 						"y" : 192.0000152587891
 					},
 					"txt_color" : 
@@ -2299,6 +2365,11 @@
 				},
 				
 				{
+					"align" : 
+					{
+						"h" : 0.0,
+						"v" : 0.0
+					},
 					"content" : "TRIP:",
 					"font_id" : 0,
 					"font_scale" : 1.899999976158142,
@@ -2322,6 +2393,11 @@
 				},
 				
 				{
+					"align" : 
+					{
+						"h" : 0.0,
+						"v" : 0.0
+					},
 					"content" : "ODO:",
 					"font_id" : 0,
 					"font_scale" : 1.899999976158142,
@@ -2478,7 +2554,7 @@
 					},
 					"texture_index" : 71,
 					"type" : "ft_image",
-					"visible" : false
+					"visible" : true
 				},
 				
 				{
@@ -2504,6 +2580,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "Media",
 									"font_id" : 2,
 									"font_scale" : 1.0,
@@ -2555,7 +2636,7 @@
 					},
 					"texture_index" : 68,
 					"type" : "ft_image",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -2574,6 +2655,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "DRIVE MODEL",
 									"font_id" : 0,
 									"font_scale" : 1.50,
@@ -2624,6 +2710,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "MEDIA",
 									"font_id" : 0,
 									"font_scale" : 1.50,
@@ -2674,6 +2765,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "MAP",
 									"font_id" : 0,
 									"font_scale" : 1.50,
@@ -2724,6 +2820,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "TPMS",
 									"font_id" : 0,
 									"font_scale" : 1.50,
@@ -2774,6 +2875,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "FUEL CONSUMPTION",
 									"font_id" : 0,
 									"font_scale" : 1.50,
@@ -2824,6 +2930,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "MILEAGE",
 									"font_id" : 0,
 									"font_scale" : 1.50,
@@ -2874,6 +2985,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "INFOMATION",
 									"font_id" : 0,
 									"font_scale" : 1.50,
@@ -2919,7 +3035,7 @@
 						"y" : 0.0
 					},
 					"type" : "ft_base",
-					"visible" : false
+					"visible" : true
 				},
 				
 				{
@@ -2938,6 +3054,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "Radio",
 									"font_id" : 2,
 									"font_scale" : 1.0,
@@ -2988,6 +3109,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "USB",
 									"font_id" : 2,
 									"font_scale" : 1.0,
@@ -3038,6 +3164,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "My",
 									"font_id" : 2,
 									"font_scale" : 1.0,
@@ -3225,6 +3356,11 @@
 					[
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "Reset",
 							"font_id" : 2,
 							"font_scale" : 1.0,
@@ -3314,6 +3450,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "Time",
 									"font_id" : 2,
 									"font_scale" : 1.0,
@@ -3337,6 +3478,11 @@
 								},
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "4.5",
 									"font_id" : 2,
 									"font_scale" : 1.399999976158142,
@@ -3360,6 +3506,11 @@
 								},
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "h",
 									"font_id" : 0,
 									"font_scale" : 1.0,
@@ -3429,6 +3580,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "Trip",
 									"font_id" : 2,
 									"font_scale" : 1.0,
@@ -3452,6 +3608,11 @@
 								},
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "129",
 									"font_id" : 2,
 									"font_scale" : 1.399999976158142,
@@ -3475,6 +3636,11 @@
 								},
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "km",
 									"font_id" : 0,
 									"font_scale" : 1.0,
@@ -3544,6 +3710,11 @@
 							[
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "Endurance",
 									"font_id" : 2,
 									"font_scale" : 1.0,
@@ -3567,6 +3738,11 @@
 								},
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "260",
 									"font_id" : 2,
 									"font_scale" : 1.399999976158142,
@@ -3590,6 +3766,11 @@
 								},
 								
 								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
 									"content" : "km",
 									"font_id" : 0,
 									"font_scale" : 1.0,
@@ -3654,7 +3835,7 @@
 						"y" : 0.0
 					},
 					"type" : "ft_base",
-					"visible" : true
+					"visible" : false
 				},
 				
 				{
@@ -3662,6 +3843,11 @@
 					[
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "Us",
 							"font_id" : 0,
 							"font_scale" : 1.0,
@@ -3685,6 +3871,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "System",
 							"font_id" : 0,
 							"font_scale" : 1.0,
@@ -3708,6 +3899,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "Auto-future graphics designerr",
 							"font_id" : 0,
 							"font_scale" : 1.0,
@@ -3745,6 +3941,11 @@
 					[
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "Normal",
 							"font_id" : 2,
 							"font_scale" : 1.0,
@@ -3768,6 +3969,11 @@
 						},
 						
 						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
 							"content" : "Sport",
 							"font_id" : 2,
 							"font_scale" : 1.0,
@@ -4752,6 +4958,11 @@
 				},
 				
 				{
+					"align" : 
+					{
+						"h" : 0.0,
+						"v" : 0.0
+					},
 					"content" : "Do you delete the data?",
 					"font_id" : 2,
 					"font_scale" : 1.0,
@@ -4775,6 +4986,11 @@
 				},
 				
 				{
+					"align" : 
+					{
+						"h" : 0.0,
+						"v" : 0.0
+					},
 					"content" : "Ok",
 					"font_id" : 2,
 					"font_scale" : 1.0,
@@ -4798,6 +5014,11 @@
 				},
 				
 				{
+					"align" : 
+					{
+						"h" : 0.0,
+						"v" : 0.0
+					},
 					"content" : "Cancel",
 					"font_id" : 2,
 					"font_scale" : 1.0,
@@ -4900,6 +5121,11 @@
 		}
 	],
 	"name" : "screen",
+	"output_bin_fmt" : 
+	{
+		"pgm_fmt" : 0,
+		"txt_fmt" : 0
+	},
 	"primitive_list" : 
 	[
 		

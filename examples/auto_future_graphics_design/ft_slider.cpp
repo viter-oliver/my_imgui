@@ -127,8 +127,8 @@ namespace auto_future
 		}
 		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
 		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
-		float sizew = _slider_pt._bg_texture_size.x;
-		float sizeh = _slider_pt._bg_texture_size.y;
+		float sizew = _slider_pt._bg_txtw;
+		float sizeh = _slider_pt._bg_txth;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
@@ -143,7 +143,7 @@ namespace auto_future
 
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
-		ImVec2 axisBasePos = { offsetx + _slider_pt._bg_axi_pos.x + winpos.x, offsety + _slider_pt._bg_axi_pos.y + winpos.y };
+		ImVec2 axisBasePos = { offsetx + _slider_pt._bg_aposx + winpos.x, offsety + _slider_pt._bg_aposy + winpos.y };
 		if (_slider_pt._bg_angle != 0.f)
 		{
 			pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
@@ -152,6 +152,7 @@ namespace auto_future
 			pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
 		}
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+		ImVec2 head_pos(_slider_pt._hd_posx, _slider_pt._hd_posy);
 
 		/***********************************************************progress*********************************************************/
 		if (_slider_pt._texture_head_index >= ptext_cd.size())
@@ -241,10 +242,11 @@ namespace auto_future
 					}
 
 					//加上自身的偏移量
-					pos1 += _slider_pt._head_pos;
-					pos2 += _slider_pt._head_pos;
-					pos3 += _slider_pt._head_pos;
-					pos4 += _slider_pt._head_pos;
+					
+					pos1 += head_pos;
+					pos2 += head_pos;
+					pos3 += head_pos;
+					pos4 += head_pos;
 
 					uv0 = ImVec2(uv.x + it->top_point.x / texture_width, uv.y + it->top_point.y / texture_height);
 					uv1 = ImVec2(uv.x + it->bottom_point.x / texture_width, uv.y + it->bottom_point.y / texture_height);
@@ -272,10 +274,10 @@ namespace auto_future
 					}
 
 					//加上自身的偏移量
-					pos1 += _slider_pt._head_pos;
-					pos2 += _slider_pt._head_pos;
-					pos3 += _slider_pt._head_pos;
-					pos4 += _slider_pt._head_pos;
+					pos1 += head_pos;
+					pos2 += head_pos;
+					pos3 += head_pos;
+					pos4 += head_pos;
 
 					uv0 = ImVec2(uv.x + it->top_point.x / texture_width, uv.y + it->top_point.y / texture_height);
 					uv1 = ImVec2(uv.x + it->bottom_point.x / texture_width, uv.y + it->bottom_point.y / texture_height);
@@ -290,8 +292,8 @@ namespace auto_future
 		{
 			if (0 == _slider_pt._direction_item)
 			{
-				sizew = _slider_pt._head_texture_size.x *_slider_pt._position;
-				sizeh = _slider_pt._head_texture_size.y;
+				sizew = _slider_pt._hd_txtw *_slider_pt._position;
+				sizeh = _slider_pt._hd_txth;
 
 				pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
 				pos2 = { pos1.x, pos1.y + sizeh };
@@ -300,8 +302,8 @@ namespace auto_future
 			}
 			else if (1 == _slider_pt._direction_item)
 			{
-				sizew = _slider_pt._head_texture_size.x;
-				sizeh = _slider_pt._head_texture_size.y *_slider_pt._position;
+				sizew = _slider_pt._hd_txtw;
+				sizeh = _slider_pt._hd_txth *_slider_pt._position;
 
 				pos1 = { abpos.x + winpos.x, abpos.y + winpos.y - sizeh };
 				pos2 = { pos1.x, abpos.y + winpos.y };
@@ -327,21 +329,22 @@ namespace auto_future
 
 			offsetx = abpos.x - base_pos().x;
 			offsety = abpos.y - base_pos().y;
-			axisBasePos = { offsetx + _slider_pt._bg_axi_pos.x + winpos.x, offsety + _slider_pt._bg_axi_pos.y + winpos.y };
+			axisBasePos = { offsetx + _slider_pt._bg_aposx + winpos.x, offsety + _slider_pt._bg_aposy + winpos.y };
 			pos1 = rotate_point_by_zaxis(pos1, 0.f, axisBasePos);
 			pos2 = rotate_point_by_zaxis(pos2, 0.f, axisBasePos);
 			pos3 = rotate_point_by_zaxis(pos3, 0.f, axisBasePos);
 			pos4 = rotate_point_by_zaxis(pos4, 0.f, axisBasePos);
 
-			pos1 += _slider_pt._head_pos;
-			pos2 += _slider_pt._head_pos;
-			pos3 += _slider_pt._head_pos;
-			pos4 += _slider_pt._head_pos;
+			pos1 += head_pos;
+			pos2 += head_pos;
+			pos3 += head_pos;
+			pos4 += head_pos;
 
 			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		}
 		/***********************************************************thumb*********************************************************/
 		//thumb
+		ImVec2 thumb_pos(_slider_pt._tb_posx, _slider_pt._tb_posy);
 		if (!_slider_pt._thumb_visible) return;
 		if (2 == _slider_pt._direction_item) //任意轨道时，图标移动计算
 		{
@@ -360,10 +363,10 @@ namespace auto_future
 			ImVec2 uv3 = ImVec2((ptext_cd[_slider_pt._texture_thumb_index]._x1) / texture_width, (ptext_cd[_slider_pt._texture_thumb_index]._y0) / texture_height);
 
 			//窗口坐标加自身坐标
-			pos1 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._thumb_texture_size.y / 2);
-			pos2 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._thumb_texture_size.y / 2);
-			pos3 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._thumb_texture_size.y / 2);
-			pos4 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._thumb_texture_size.x / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._thumb_texture_size.y / 2);
+			pos1 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._tb_txth / 2);
+			pos2 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._tb_txth / 2);
+			pos3 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._tb_txth / 2);
+			pos4 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._tb_txth / 2);
 
 			//依靠父节点的坐标和角度计算
 			if (_slider_pt._bg_angle != 0.f)
@@ -373,11 +376,11 @@ namespace auto_future
 				pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle, axisBasePos);
 				pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
 			}
-
-			pos1 += _slider_pt._thumb_pos;
-			pos2 += _slider_pt._thumb_pos;
-			pos3 += _slider_pt._thumb_pos;
-			pos4 += _slider_pt._thumb_pos;
+			
+			pos1 += thumb_pos;
+			pos2 += thumb_pos;
+			pos3 += thumb_pos;
+			pos4 += thumb_pos;
 
 			//计算当前轨道的角度后旋转四个点 _next_point_2vec2.top  _pre_point_2vec2.top
 			//注释：由于角度计算是根据采集的点进行的，所以受采集点影响比较大，要做到旋转很难
@@ -412,9 +415,9 @@ namespace auto_future
 			winpos = ImGui::GetWindowPos();
 
 			pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
-			pos2 = { pos1.x, pos1.y + _slider_pt._thumb_texture_size.y };
-			pos3 = { pos1.x + _slider_pt._thumb_texture_size.x, pos1.y + _slider_pt._thumb_texture_size.y };
-			pos4 = { pos1.x + _slider_pt._thumb_texture_size.x, pos1.y };
+			pos2 = { pos1.x, pos1.y + _slider_pt._tb_txth };
+			pos3 = { pos1.x + _slider_pt._tb_txtw, pos1.y + _slider_pt._tb_txth };
+			pos4 = { pos1.x + _slider_pt._tb_txtw, pos1.y };
 
 			uv0 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index]._x0 / texture_width, ptext_cd[_slider_pt._texture_thumb_index]._y0 / texture_height);
 			uv1 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index]._x0 / texture_width, (ptext_cd[_slider_pt._texture_thumb_index]._y1) / texture_height);
@@ -423,25 +426,25 @@ namespace auto_future
 
 			offsetx = abpos.x - base_pos().x;
 			offsety = abpos.y - base_pos().y;
-			axisBasePos = { offsetx + _slider_pt._bg_axi_pos.x + winpos.x, offsety + _slider_pt._bg_axi_pos.y + winpos.y };
+			axisBasePos = { offsetx + _slider_pt._bg_aposx + winpos.x, offsety + _slider_pt._bg_aposy + winpos.y };
 
-			pos1 += _slider_pt._thumb_pos;
-			pos2 += _slider_pt._thumb_pos;
-			pos3 += _slider_pt._thumb_pos;
-			pos4 += _slider_pt._thumb_pos;
+			pos1 += thumb_pos;
+			pos2 += thumb_pos;
+			pos3 += thumb_pos;
+			pos4 += thumb_pos;
 			if (0 == _slider_pt._direction_item)
 			{
-				pos1.x += _slider_pt._head_texture_size.x*_slider_pt._position;
-				pos2.x += _slider_pt._head_texture_size.x*_slider_pt._position;
-				pos3.x += _slider_pt._head_texture_size.x*_slider_pt._position;
-				pos4.x += _slider_pt._head_texture_size.x*_slider_pt._position;
+				pos1.x += _slider_pt._hd_txtw*_slider_pt._position;
+				pos2.x += _slider_pt._hd_txtw*_slider_pt._position;
+				pos3.x += _slider_pt._hd_txtw*_slider_pt._position;
+				pos4.x += _slider_pt._hd_txtw*_slider_pt._position;
 			}
 			else if (1 == _slider_pt._direction_item)
 			{
-				pos1.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
-				pos2.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
-				pos3.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
-				pos4.y -= _slider_pt._head_texture_size.y*_slider_pt._position;
+				pos1.y -= _slider_pt._hd_txth*_slider_pt._position;
+				pos2.y -= _slider_pt._hd_txth*_slider_pt._position;
+				pos3.y -= _slider_pt._hd_txth*_slider_pt._position;
+				pos4.y -= _slider_pt._hd_txth*_slider_pt._position;
 			}
 
 			pos1 = rotate_point_by_zaxis(pos1, 0.f, axisBasePos);
@@ -498,8 +501,8 @@ namespace auto_future
 			ShowHelpMarker("file must from file list, so we must load file before!\n");
 		}
 		ImGui::Text("axi pos:");
-		ImGui::SliderFloat("ax", &_slider_pt._bg_axi_pos.x, 1.f, base_ui_component::screenw);
-		ImGui::SliderFloat("ay", &_slider_pt._bg_axi_pos.y, 1.f, base_ui_component::screenh);
+		ImGui::SliderFloat("ax", &_slider_pt._bg_aposx, 1.f, base_ui_component::screenw);
+		ImGui::SliderFloat("ay", &_slider_pt._bg_aposy, 1.f, base_ui_component::screenh);
 		ImGui::Text("angle:");
 		ImGui::SliderFloat("a", &_slider_pt._bg_angle, 0.f, 1.f);
 		ImGui::Text("bg image:");
@@ -512,8 +515,8 @@ namespace auto_future
 		float reswidth = res_coors[_slider_pt._texture_bg_index].owidth();
 		float resheight = res_coors[_slider_pt._texture_bg_index].oheight();
 		ImGui::Text("original size:%f,%f", reswidth, resheight);
-		_slider_pt._bg_texture_size.x = reswidth;
-		_slider_pt._bg_texture_size.y = resheight;
+		_slider_pt._bg_txtw = reswidth;
+		_slider_pt._bg_txth = resheight;
 		ImGui::Spacing();
 		if (reswidth > 0)
 		{
@@ -529,8 +532,8 @@ namespace auto_future
 		}
 		/***************************************************head*************************************************************/
 		ImGui::Text("head pos:");
-		ImGui::SliderFloat("head w", &_slider_pt._head_pos.x, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("head h", &_slider_pt._head_pos.y, 0.f, base_ui_component::screenh);
+		ImGui::SliderFloat("head w", &_slider_pt._hd_posx, 0.f, base_ui_component::screenw);
+		ImGui::SliderFloat("head h", &_slider_pt._hd_posy, 0.f, base_ui_component::screenh);
 		ImGui::Text("head image:");
 		auto& res_coors1 = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 		ImGui::Combo("texture index1:", &_slider_pt._texture_head_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
@@ -539,8 +542,8 @@ namespace auto_future
 		float reswidth1 = res_coors1[_slider_pt._texture_head_index].owidth();
 		float resheight1 = res_coors1[_slider_pt._texture_head_index].oheight();
 		ImGui::Text("original size:%f,%f", reswidth1, resheight1);
-		_slider_pt._head_texture_size.x = reswidth1;
-		_slider_pt._head_texture_size.y = resheight1;
+		_slider_pt._hd_txtw = reswidth1;
+		_slider_pt._hd_txth = resheight1;
 		ImGui::Spacing();
 		if (reswidth1 > 0)
 		{
@@ -559,8 +562,8 @@ namespace auto_future
 		if (_slider_pt._thumb_visible)
 		{
 			ImGui::Text("thumb pos:");
-			ImGui::SliderFloat("thumb w", &_slider_pt._thumb_pos.x, 0.f, base_ui_component::screenw);
-			ImGui::SliderFloat("thumb h", &_slider_pt._thumb_pos.y, 0.f, base_ui_component::screenh);
+			ImGui::SliderFloat("thumb w", &_slider_pt._tb_posx, 0.f, base_ui_component::screenw);
+			ImGui::SliderFloat("thumb h", &_slider_pt._tb_posy, 0.f, base_ui_component::screenh);
 			ImGui::Text("thumb image:");
 			auto& res_coors2 = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 			ImGui::Combo("texture index2:", &_slider_pt._texture_thumb_index, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
@@ -569,8 +572,8 @@ namespace auto_future
 			float reswidth2 = res_coors2[_slider_pt._texture_thumb_index].owidth();
 			float resheight2 = res_coors2[_slider_pt._texture_thumb_index].oheight();
 			ImGui::Text("original size:%f,%f", reswidth2, resheight2);
-			_slider_pt._thumb_texture_size.x = reswidth2;
-			_slider_pt._thumb_texture_size.y = resheight2;
+			_slider_pt._tb_txtw = reswidth2;
+			_slider_pt._tb_txth = resheight2;
 			ImGui::Spacing();
 			if (reswidth2 > 0)
 			{
@@ -596,31 +599,31 @@ namespace auto_future
 		strcpy(_slider_pt._cbuffer_random_text, jvalue["random_point_file"].asString().c_str());
 
 		Value& bg = jvalue["bg_pos"];
-		_slider_pt._bg_axi_pos.y = bg["bg_pos_h"].asDouble();
-		_slider_pt._bg_axi_pos.x = bg["bg_pos_w"].asDouble();
+		_slider_pt._bg_aposy = bg["bg_pos_h"].asDouble();
+		_slider_pt._bg_aposx = bg["bg_pos_w"].asDouble();
 		_slider_pt._texture_bg_index = bg["bg_texture_index"].asInt();
 		_slider_pt._bg_angle = bg["bg_angle"].asDouble();
 
 		Value& head = jvalue["head_pos"];
-		_slider_pt._head_pos.y = head["head_pos_h"].asDouble();
-		_slider_pt._head_pos.x = head["head_pos_w"].asDouble();
+		_slider_pt._hd_posy = head["head_pos_h"].asDouble();
+		_slider_pt._hd_posx = head["head_pos_w"].asDouble();
 		_slider_pt._texture_head_index = head["head_texture_index"].asInt();
 
 		Value& thumb = jvalue["thumb_pos"];
-		_slider_pt._thumb_pos.y = thumb["thumb_pos_h"].asDouble();
-		_slider_pt._thumb_pos.x = thumb["thumb_pos_w"].asDouble();
+		_slider_pt._tb_posy = thumb["thumb_pos_h"].asDouble();
+		_slider_pt._tb_posx = thumb["thumb_pos_w"].asDouble();
 		_slider_pt._texture_thumb_index = thumb["thumb_texture_index"].asInt();
 		_slider_pt._thumb_visible = thumb["thumb_visible"].asBool();
 
 		Value& slidersize = jvalue["slider_size"];
-		_slider_pt._bg_texture_size.x = slidersize["bg_texture_size_w"].asDouble();
-		_slider_pt._bg_texture_size.y = slidersize["bg_texture_size_h"].asDouble();
+		_slider_pt._bg_txtw = slidersize["bg_texture_size_w"].asDouble();
+		_slider_pt._bg_txth = slidersize["bg_texture_size_h"].asDouble();
 
-		_slider_pt._head_texture_size.x = slidersize["head_texture_size_w"].asDouble();
-		_slider_pt._head_texture_size.y = slidersize["head_texture_size_h"].asDouble();
+		_slider_pt._bg_txtw = slidersize["head_texture_size_w"].asDouble();
+		_slider_pt._bg_txth = slidersize["head_texture_size_h"].asDouble();
 
-		_slider_pt._thumb_texture_size.x = slidersize["thumb_texture_size_w"].asDouble();
-		_slider_pt._thumb_texture_size.y = slidersize["thumb_texture_size_h"].asDouble();
+		_slider_pt._tb_txtw = slidersize["thumb_texture_size_w"].asDouble();
+		_slider_pt._tb_txth = slidersize["thumb_texture_size_h"].asDouble();
 
 		if (2 == _slider_pt._direction_item) //如果保存的是random，这时候就需从文件中读出点数据
 		{
@@ -640,34 +643,34 @@ namespace auto_future
 		junit["random_point_file"] = _slider_pt._cbuffer_random_text;
 
 		Value bg(objectValue);
-		bg["bg_pos_w"] = _slider_pt._bg_axi_pos.x;
-		bg["bg_pos_h"] = _slider_pt._bg_axi_pos.y;
+		bg["bg_pos_w"] = _slider_pt._bg_aposx;
+		bg["bg_pos_h"] = _slider_pt._bg_aposy;
 		bg["bg_texture_index"] = _slider_pt._texture_bg_index;
 		bg["bg_angle"] = _slider_pt._bg_angle;
 		junit["bg_pos"] = bg;
 
 		Value head(objectValue);
-		head["head_pos_w"] = _slider_pt._head_pos.x;
-		head["head_pos_h"] = _slider_pt._head_pos.y;
+		head["head_pos_w"] = _slider_pt._hd_posx;
+		head["head_pos_h"] = _slider_pt._hd_posy;
 		head["head_texture_index"] = _slider_pt._texture_head_index;
 		junit["head_pos"] = head;
 
 		Value thumb(objectValue);
-		thumb["thumb_pos_w"] = _slider_pt._thumb_pos.x;
-		thumb["thumb_pos_h"] = _slider_pt._thumb_pos.y;
+		thumb["thumb_pos_w"] = _slider_pt._tb_posx;
+		thumb["thumb_pos_h"] = _slider_pt._tb_posy;
 		thumb["thumb_texture_index"] = _slider_pt._texture_thumb_index;
 		thumb["thumb_visible"] = _slider_pt._thumb_visible;
 		junit["thumb_pos"] = thumb;
 
 		Value slidersize(objectValue);
-		slidersize["bg_texture_size_w"] = _slider_pt._bg_texture_size.x;
-		slidersize["bg_texture_size_h"] = _slider_pt._bg_texture_size.y;
+		slidersize["bg_texture_size_w"] = _slider_pt._bg_txtw;
+		slidersize["bg_texture_size_h"] = _slider_pt._bg_txth;
 
-		slidersize["head_texture_size_w"] = _slider_pt._head_texture_size.x;
-		slidersize["head_texture_size_h"] = _slider_pt._head_texture_size.y;
+		slidersize["head_texture_size_w"] = _slider_pt._hd_txtw;
+		slidersize["head_texture_size_h"] = _slider_pt._hd_txth;
 
-		slidersize["thumb_texture_size_w"] = _slider_pt._thumb_texture_size.x;
-		slidersize["thumb_texture_size_h"] = _slider_pt._thumb_texture_size.y;
+		slidersize["thumb_texture_size_w"] = _slider_pt._tb_txtw;
+		slidersize["thumb_texture_size_h"] = _slider_pt._tb_txth;
 		junit["slider_size"] = slidersize;
 
 		return true;

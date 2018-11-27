@@ -513,6 +513,9 @@
     <ClInclude Include="bind_edit.h">
       <Filter>project</Filter>
     </ClInclude>
+    <ClInclude Include="property_utilities.h">
+      <Filter>controls</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

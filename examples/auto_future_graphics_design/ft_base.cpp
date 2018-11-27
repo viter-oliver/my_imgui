@@ -43,15 +43,15 @@ namespace auto_future
 		ImGui::Text("base pos:");
 		//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
 		//ImGui::SameLine();
-		if (ImGui::SliderFloat("x", &_in_p._pos.x, -screenw, screenw))
+		if (ImGui::SliderFloat("x", &_in_p._posx, -screenw, screenw))
 		{
-			printf("current posx:%f\n", _in_p._pos.x);
+			printf("current posx:%f\n", _in_p._posx);
 		}
 		/*if (ImGui::IsMouseReleased(1))
 		{
 			printf("mouse 1 is released!\n");
 		}*/
-		ImGui::SliderFloat("y", &_in_p._pos.y, -screenh, screenh);
+		ImGui::SliderFloat("y", &_in_p._posy, -screenh, screenh);
 		if (ImGui::Checkbox("visibility", &_in_p._visible))
 		{
 			g_ui_edit_command_mg.create_command\
@@ -62,18 +62,18 @@ namespace auto_future
 		if (ImGui::IsMouseReleased(0)||g.IO.InputContentChanged)
 		{
 			bool pt_modified = false;
-			if (_in_p._pos.x != _in_p_bk._pos.x)
+			if (_in_p._posx != _in_p_bk._posx)
 			{
 				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p_bk._pos.x))));
-				_in_p_bk._pos.x = _in_p._pos.x;
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p_bk._posx))));
+				_in_p_bk._posx = _in_p._posx;
 				pt_modified = true;
 			}
-			if (_in_p._pos.y != _in_p_bk._pos.y)
+			if (_in_p._posy != _in_p_bk._posy)
 			{
 				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p_bk._pos.y))));
-				_in_p_bk._pos.y = _in_p._pos.y;
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p_bk._posy))));
+				_in_p_bk._posy = _in_p._posy;
 				pt_modified = true;
 			}
 			if (strcmp(_in_p._name, _in_p_bk._name) != 0)
@@ -92,7 +92,14 @@ namespace auto_future
 			}
 		} 
 	}
-
+	void ft_base::back_up_property()
+	{
+		_in_p_bk=_in_p;
+		for (auto it : _vchilds)
+		{
+			it->back_up_property();
+		}
+	}
 	void ft_base::execute_command(command_elemment& ele_cmd)
 	{
 		if (ele_cmd._cmd_type == "ft_base")
@@ -105,12 +112,12 @@ namespace auto_future
 				_in_p_bk._name[strlen(_in_p._name)] = '\0';
 				break;
 			case en_pt_pos_x:
-				_in_p._pos.x = ele_cmd._cmd_value._value._fvalue;
-				_in_p_bk._pos.x = _in_p._pos.x;
+				_in_p._posx = ele_cmd._cmd_value._value._fvalue;
+				_in_p_bk._posx = _in_p._posx;
 				break;
 			case en_pt_pos_y:
-				_in_p._pos.y = ele_cmd._cmd_value._value._fvalue;
-				_in_p_bk._pos.y = _in_p._pos.y;
+				_in_p._posy = ele_cmd._cmd_value._value._fvalue;
+				_in_p_bk._posy = _in_p._posy;
 				break;
 			case en_pt_visible:
 				_in_p._visible = ele_cmd._cmd_value._value._bvalue;
@@ -131,9 +138,9 @@ namespace auto_future
 				
 				return command_elemment(string("ft_base"), en_pt_name, command_value(_in_p._name));
 			case en_pt_pos_x:
-				return command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p._pos.x));
+				return command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p._posx));
 			case en_pt_pos_y:
-				return command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p._pos.y));
+				return command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p._posy));
 				
 			case en_pt_visible:
 				return command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p._visible));
@@ -151,8 +158,8 @@ namespace auto_future
 	{
 		strcpy(_in_p._name, jvalue["name"].asCString());
 		Value& jscreen_pos = jvalue["screen_pos"];
-		_in_p._pos.x = jscreen_pos["x"].asDouble();
-		_in_p._pos.y = jscreen_pos["y"].asDouble();
+		_in_p._posx = jscreen_pos["x"].asDouble();
+		_in_p._posy = jscreen_pos["y"].asDouble();
 		_in_p._visible = jvalue["visible"].asBool();
 		_in_p_bk = _in_p;
 		Value& childs = jvalue["childs"];
@@ -179,8 +186,8 @@ namespace auto_future
 		cname = cname.substr(sizeof("class autofuture::"));
 		junit["type"] = cname;
 		Value jscreen_pos(objectValue);
-		jscreen_pos["x"] = _in_p._pos.x;
-		jscreen_pos["y"] = _in_p._pos.y;
+		jscreen_pos["x"] = _in_p._posx;
+		jscreen_pos["y"] = _in_p._posy;
 		junit["screen_pos"] = jscreen_pos;
 		junit["visible"] = _in_p._visible;
 		Value jchilds(arrayValue);

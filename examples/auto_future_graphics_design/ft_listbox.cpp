@@ -18,7 +18,8 @@ namespace auto_future
 			ImVec2 isz = pchid->get_size();
 			frange += isz;
 		}
-		frange -= _lt_pt._size;
+		ImVec2 psize(_lt_pt._sizew, _lt_pt._sizeh);
+		frange -= psize;
 		return _lt_pt._vertical ? frange.y : frange.x;
 	}
 	void ft_listbox::set_scroll_value(float scvalue)
@@ -30,9 +31,8 @@ namespace auto_future
 			for (size_t ix = 0; ix < icnt; ix++)
 			{
 				auto pchid = get_child(ix);
-				ImVec2& bpos = pchid->base_pos();
 				ImVec2 isz = pchid->get_size();
-				bpos.y = init_pos.y - scvalue;
+				set_base_posy(init_pos.y - scvalue);
 				init_pos.y += isz.y;//next item
 			}
 		}
@@ -41,9 +41,8 @@ namespace auto_future
 			for (size_t ix = 0; ix < icnt; ix++)
 			{
 				auto pchid = get_child(ix);
-				ImVec2& bpos = pchid->base_pos();
 				ImVec2 isz = pchid->get_size();
-				bpos.x = init_pos.x - scvalue;
+				set_base_posx ( init_pos.x - scvalue);
 				init_pos.x += isz.x;//next item
 			}
 
@@ -51,16 +50,16 @@ namespace auto_future
 	}
 	void ft_listbox::set_logic_scroll_value(float scvalue)
 	{
-		if (scvalue > _lt_pt._range.y)
+		if (scvalue > _lt_pt._rangey)
 		{
-			scvalue = _lt_pt._range.y;
+			scvalue = _lt_pt._rangey;
 		}
 		else
-			if (scvalue < _lt_pt._range.x)
+			if (scvalue < _lt_pt._rangex)
 			{
-				scvalue = _lt_pt._range.x;
+				scvalue = _lt_pt._rangex;
 			}
-		float rg_len = _lt_pt._range.y - _lt_pt._range.x;
+		float rg_len = _lt_pt._rangey - _lt_pt._rangex;
 		float scmx = scroll_max();
 		float rscroll_value = scmx*scvalue / rg_len;
 		set_scroll_value(rscroll_value);
@@ -72,7 +71,7 @@ namespace auto_future
 		ImVec2 apos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		apos += winpos;
-		ImVec2 szpos = apos + _lt_pt._size;
+		ImVec2 szpos = apos + ImVec2(_lt_pt._sizew, _lt_pt._sizeh);
 		ImGui::PushClipRect(apos, szpos, true);
 		ft_base::draw();
 		ImGui::PopClipRect();
@@ -83,28 +82,23 @@ namespace auto_future
 	{
 		size_t icnt = child_count();
 		ImVec2 nsz = pchild->get_size();
-		ImVec2& start_pos = pchild->base_pos();
 		if (icnt > 0)
 		{
 			base_ui_component* plast = get_child(icnt - 1);
 			ImVec2 sz = plast->get_size();
-			ImVec2& bpos = plast->base_pos();
+			ImVec2 bpos = plast->base_pos();
 			if (_lt_pt._vertical)
 			{
-				start_pos.x = 0.f;
-				start_pos.y = bpos.y + sz.y;
+				set_base_pos(0.f, bpos.y + sz.y);
 			}
 			else
 			{
-
-				start_pos.x = bpos.x + sz.x;
-				start_pos.y = bpos.y;
+				set_base_pos(bpos.x + sz.x, bpos.y);
 			}
 		}
 		else
 		{
-			start_pos.x = 0;
-			start_pos.y = 0;
+			set_base_pos(0, 0);
 		}
 
 		ft_base::add_child(pchild);
@@ -137,8 +131,8 @@ namespace auto_future
 	void ft_listbox::draw_peroperty_page(int property_part)
 	{
 		ft_base::draw_peroperty_page();
-		ImGui::SliderFloat("lw", &_lt_pt._size.x, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("lh", &_lt_pt._size.y, 0.f, base_ui_component::screenh);
+		ImGui::SliderFloat("lw", &_lt_pt._sizew, 0.f, base_ui_component::screenw);
+		ImGui::SliderFloat("lh", &_lt_pt._sizeh, 0.f, base_ui_component::screenh);
 		ImGui::Checkbox("vertical", &_lt_pt._vertical);
 		float scrmx = scroll_max();
 		ImGui::SliderFloat("scroll value", &_scroll_value, 0.f, scrmx);
@@ -149,11 +143,11 @@ namespace auto_future
 		ft_base::init_from_json(jvalue);
 		_lt_pt._vertical = jvalue["vertical"].asBool();
 		Value& jsize = jvalue["size"];
-		_lt_pt._size.x = jsize["w"].asDouble();
-		_lt_pt._size.y = jsize["h"].asDouble();
+		_lt_pt._sizew = jsize["w"].asDouble();
+		_lt_pt._sizeh = jsize["h"].asDouble();
 		Value& jrange = jvalue["range"];
-		_lt_pt._range.x = jrange["min"].asDouble();
-		_lt_pt._range.y = jrange["max"].asDouble();
+		_lt_pt._rangex = jrange["min"].asDouble();
+		_lt_pt._rangey = jrange["max"].asDouble();
 		return true;
 	}
 	bool ft_listbox::init_json_unit(Value& junit)
@@ -161,12 +155,12 @@ namespace auto_future
 		ft_base::init_json_unit(junit);
 		junit["vertical"] = _lt_pt._vertical;
 		Value jsize(objectValue);
-		jsize["w"] = _lt_pt._size.x;
-		jsize["h"] = _lt_pt._size.y;
+		jsize["w"] = _lt_pt._sizew;
+		jsize["h"] = _lt_pt._sizeh;
 		junit["size"] = jsize;
 		Value jrange(objectValue);
-		jrange["min"] = _lt_pt._range.x;
-		jrange["max"] = _lt_pt._range.y;
+		jrange["min"] = _lt_pt._rangex;
+		jrange["max"] = _lt_pt._rangey;
 		junit["range"] = jrange;
 		return true;
 	}

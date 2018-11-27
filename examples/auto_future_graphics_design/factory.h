@@ -13,11 +13,11 @@ struct factory
 	{
 		register_t(const std::string& key)
 		{
-	#if defined(__QNXNTO__)
-                    factory::get().map_[key]=[]{return new T();};
-        #else
+#if defined(__QNXNTO__)
+            factory::get().map_[key]=[]{return new T();};
+#else
 			factory::get().map_.emplace(key, [] { return new T(); });
-        #endif
+#endif
 		}
         #if 0
 		template<typename... Args>

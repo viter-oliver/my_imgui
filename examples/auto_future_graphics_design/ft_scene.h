@@ -10,11 +10,9 @@ namespace auto_future
 	{
 		struct intl_pt
 		{
-			ImVec2 _size;
-			ImVec4 _back_color;
+			float _sizew=800.f,_sizeh=600.f;
+			float _bkr = 0.2f, _bkg = 0.2f, _bkb = 0.5f, _bka = 0.5f;
 			intl_pt()
-				:_size(800.f, 600.f)
-				, _back_color(0.2f, 0.2f, 0.5f, 0.5f)
 			{}
 		};
 		intl_pt _sn_pt;

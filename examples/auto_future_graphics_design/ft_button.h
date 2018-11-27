@@ -17,7 +17,7 @@ namespace auto_future
 		struct intl_pt
 		{
 			int _texture_indices[en_state_cnt];
-			ImVec2 _size;
+			float _sizew,_sizeh;
 			intl_pt(){ _texture_indices[en_normal] = _texture_indices[en_pressed] = _texture_indices[en_selected] = 0; }
 		};
 		intl_pt _pt;
