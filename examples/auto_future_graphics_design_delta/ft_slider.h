@@ -7,44 +7,26 @@ namespace auto_future
 	class AFG_EXPORT ft_slider :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			char _cbuffer_random_text[128];
-			//save texture size
-			//ImVec2 _bg_texture_size;
-			float _bg_txtw, _bg_txth;
-			//ImVec2 _head_texture_size;
-			float _hd_txtw, _hd_txth;
-			//ImVec2 _thumb_texture_size;
-			float _tb_txtw, _tb_txth;//thumb size
-			float _position{ 0.f };
-			int _direction_item{ 0 };
-			//ImVec2 _bg_axi_pos;
-			float _bg_aposx, _bg_aposy;
-			float _bg_angle{ 0.f };
-			int _texture_bg_index{ 0 };
-
-			//ImVec2 _head_pos;
-			float _hd_posx, _hd_posy;
-			int _texture_head_index{ 0 };
-
-			//ImVec2 _thumb_pos;
-			float _tb_posx, _tb_posy;
-			bool _thumb_visible{false};
-			int _texture_thumb_index{ 0 };
-		};
-		intl_pt _slider_pt;
+		DEF_STRUCT_WITH_INIT(intl_pt, _slider_pt,
+			(char,_cbuffer_random_text[128]),
+			(float,_bg_txtw),
+			(float,_bg_txth), 
+			(float, _hd_txtw),
+			(float, _hd_txth),
+			(float, _tb_txtw),
+			(float, _tb_txth),
+			(float, _position, {0.f}),
+			(int, _direction_item, {0}),
+			(float, _bg_aposx),
+			(float, _bg_aposy),
+			(float, _bg_angle, {0.f}),
+			(int, _texture_bg_index, {0}),
+			(float, _tb_posx),
+			(float, _tb_posy),
+			(bool, _thumb_visible, {false}),
+			(int, _texture_thumb_index, {0}))
 	public:
 		ft_slider();
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_slider_pt, len);
-			len += plen;
-			return len;
-		}
-
 		void link()
 		{
 			if (2 == _slider_pt._direction_item) //如果保存的是random，这时候就需从文件中读出点数据

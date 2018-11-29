@@ -31,6 +31,10 @@ namespace auto_future
 	static shared_ptr<GPSystem> g_ptcl_sys;
 	ft_particles_effect_3d::ft_particles_effect_3d()
 	{
+		_pt._pos0 = { 0.f, 7.f, -20.f };
+		_pt._v0 = { 0.f, -7.f, 0.f };
+		_pt._a0 = { 0.f, 9.81f, 0.f };
+
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 		auto& mut = g_material_list.find("particles1");

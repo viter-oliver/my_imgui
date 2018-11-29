@@ -12,6 +12,11 @@ namespace auto_future
 	ft_plane_play_2d::ft_plane_play_2d()
 		:ft_base(),_pt(), _puv(0), _uv_len(0)
 	{
+		_pt._scale = { 1.f, 1.f };
+		memset(_pt._materil_name, 0, FILE_NAME_LEN);
+		memset(_pt._texture_name, 0, FILE_NAME_LEN);
+		memset(_pt._texture_fmt_name, 0, FILE_NAME_LEN);
+
 		glGenVertexArrays(1, &_vao);
 		glGenBuffers(1, &_vbo_pos);
 		glGenBuffers(1, &_vbo_uv);

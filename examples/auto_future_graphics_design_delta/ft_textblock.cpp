@@ -1,6 +1,11 @@
 #include "ft_textblock.h"
 namespace auto_future
 {
+	ft_textblock::ft_textblock()
+		: _txt_area(0.f, 0.f, 0.f, 0.f)
+	{
+		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
+	}
 	void ft_textblock::draw()
 	{
 		ft_base::draw();

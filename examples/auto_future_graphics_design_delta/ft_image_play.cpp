@@ -10,7 +10,12 @@ y'=-(x-a)sin¦Á+(y-b)cos¦Á+b
 */
 namespace auto_future
 {
-
+	ft_image_play::ft_image_play()
+		:ft_base()
+	{
+		memset(_img_pt._texture_name, 0, FILE_NAME_LEN);
+		memset(_img_pt._texture_fmt_name, 0, FILE_NAME_LEN);
+	}
 	void ft_image_play::draw()
 	{
 		if (!_texture || !_vtexture_cd.size())

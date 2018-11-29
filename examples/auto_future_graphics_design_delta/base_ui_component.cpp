@@ -22,17 +22,29 @@ namespace auto_future
 					auto& mname = memb->_name;
 					auto& mtpsz = memb->_tpsz;
 					auto& moffset = memb->_offset;
-					string::size_type apos = mname.find('[');
 					void* memb_address = 0;
 					int array_cnt = 0;
+					string::size_type apos = mname.find('[');
 					if (apos!=string::npos)//is array
 					{
+						mname = mname.substr(0, apos);
 						int wsz = moffset - prev_memb_offset_p_tpsz;
 						array_cnt = wsz / mtpsz;
 						memb_address = (char*)prop_ele->_pro_address + prev_memb_offset_p_tpsz;
 						prev_memb_offset_p_tpsz = moffset;
 					}
 					else{
+						auto eppos = mname.find('=');
+						if (eppos!=string::npos){
+							mname = mname.substr(0, eppos);
+						}
+						else{
+							auto brpos = mname.find('{');
+							if (brpos!=string::npos)
+							{
+								mname = mname.substr(0, brpos);
+							}
+						}
 						memb_address=  (char*)prop_ele->_pro_address + moffset;
 						prev_memb_offset_p_tpsz = moffset+mtpsz;
 					}

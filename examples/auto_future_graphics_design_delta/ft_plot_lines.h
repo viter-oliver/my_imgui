@@ -6,16 +6,12 @@ namespace auto_future
 	class AFG_EXPORT ft_plot_lines :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			float _sizew = 400,_sizeh= 200;
-			int _v_count = { 10 };
-			intl_pt()
-			{
-			}
-		};
+
+		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
+			(float, _sizew, {400.f}),
+			(float, _sizeh, {200.f}),
+			(int, _v_count, {10}))
 		float _values[MAX_VALUE_COUNT] ;
-		intl_pt _pt;
 
 	public:
 		ft_plot_lines()
@@ -33,14 +29,7 @@ namespace auto_future
 
 		}
 		~ft_plot_lines(){}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_pt, len);
-			len += plen;
-			return len;
-		}
+		
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		void draw_peroperty_page(int property_part = -1);

@@ -7,37 +7,21 @@ namespace auto_future
 	class AFG_EXPORT ft_image_play :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			char _texture_name[FILE_NAME_LEN];
-			char _texture_fmt_name[FILE_NAME_LEN];
 
-			float _sizew,_sizeh;
-			float _aposx,_aposy;
-			int _frame_index = { 0 };
-			float _angle = { 0.f };
-			intl_pt() {
-				memset(_texture_name, 0, FILE_NAME_LEN);
-				memset(_texture_fmt_name, 0, FILE_NAME_LEN);
-			}
-		};
-		intl_pt _img_pt;
+		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
+			(char, _texture_name[FILE_NAME_LEN]), 
+			(char, _texture_fmt_name[FILE_NAME_LEN]),
+			(float,_sizew),
+			(float,_sizeh),
+			(float,_aposx),
+			(float,_aposy),
+			(int, _frame_index, {0}),
+			(float, _angle, {0.f}))
 		shared_ptr<af_texture> _texture;
 		vres_txt_cd _vtexture_cd;
 	public:
-		ft_image_play() 
-			:ft_base(), _img_pt()
-		{}
-		~ft_image_play()
-		{}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_img_pt, len);
-			len += plen;
-			return len;
-		}
+		ft_image_play();
+		~ft_image_play(){}
 		void link();
 		int get_cur_frame_index(){ return _img_pt._frame_index; }
 		void set_frame_index(int frame_index){ _img_pt._frame_index = frame_index; }

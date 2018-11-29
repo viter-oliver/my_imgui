@@ -6,6 +6,15 @@ namespace auto_future
 {
 	ft_fbx_assert_3d::ft_fbx_assert_3d()
 	{
+		_fbx_assert_pt._scale.x = 1.f;
+		_fbx_assert_pt._scale.y = 1.f;
+		_fbx_assert_pt._scale.z = 1.f;
+		_fbx_assert_pt._camera_center.x = 0.f;
+		_fbx_assert_pt._camera_center.y = 0.f;
+		_fbx_assert_pt._camera_center.z = 0.f;
+		_fbx_assert_pt._camera_up.x = 0.f;
+		_fbx_assert_pt._camera_up.y = 1.f;
+		_fbx_assert_pt._camera_up.z = 0.f;
 
 	}
 

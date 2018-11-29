@@ -13,26 +13,17 @@ namespace auto_future
 	class AFG_EXPORT ft_image :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			float _sizew,_sizeh;
-			float _aposx,_aposy;
-			int _anchor_type = { en_anchor_top_left };
-			int _texture_index;
-			float _angle;
-			intl_pt() :_texture_index(0), _angle(0.0){}
-		};
-		intl_pt _img_pt;
+	
+		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
+			(float,_sizew),
+			(float,_sizeh),
+			(float,_aposx),
+			(float,_aposy),
+			(int, _anchor_type, {en_anchor_top_left}),
+			(int, _texture_index, {0}),
+			(float, _angle, {0.f}))
 	public:	
 		ft_image() :ft_base(), _img_pt(){}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_img_pt, len);
-			len += plen;
-			return len;
-		}
 		ImVec2 get_size()
 		{
 			return ImVec2(_img_pt._sizew, _img_pt._sizeh);

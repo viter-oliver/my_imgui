@@ -5,24 +5,19 @@ namespace auto_future
 	class AFG_EXPORT ft_block :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			float _sizew,_sizeh;
-			float _bkr,_bkg,_bkb,_bka;
-			intl_pt(){}
-		};
-		intl_pt _pt;
+
+
+		DEF_STRUCT(intl_pt,_pt,
+			(float,_sizew),
+			(float,_sizeh),
+			(float,_bkr),
+			(float,_bkg),
+			(float,_bkb),
+			(float,_bka))
 	public:
 		ft_block(){}
 		~ft_block(){}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_pt, len);
-			len += plen;
-			return len;
-		}
+
 		ImVec2 get_size()
 		{
 			return ImVec2(_pt._sizew,_pt._sizew);

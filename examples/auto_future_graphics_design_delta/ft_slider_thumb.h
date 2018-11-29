@@ -6,29 +6,25 @@ namespace auto_future
 	class AFG_EXPORT ft_slider_thumb :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			float _min_point = { 0.f }, _max_point = { 100.f }, _progress_value = {0.f};
-			float _pos_minx, _pos_miny, _pos_maxx, _pos_maxy;
-			float _size_minw, _size_minh, _size_maxw, _size_maxh;
-			intl_pt(){}
-		};
-		intl_pt _img_pt;
+
+		DEF_STRUCT_WITH_INIT(intl_pt, _img_pt,
+			(float, _min_point, {0.f}),
+			(float, _max_point, { 100.f }),
+			(float, _progress_value, { 0.f }),
+			(float, _pos_minx, { 0.f }),
+			(float, _pos_miny, { 0.f }),
+			(float, _pos_maxx, { 0.f }),
+			(float, _pos_maxy, { 0.f }),
+			(float, _size_minw, { 0.f }),
+			(float, _size_minh, { 0.f }),
+			(float, _size_maxw, { 0.f }),
+			(float, _size_maxh, { 0.f }) )
 		ft_image _thumb;
 
 	public:
 		ft_slider_thumb() :ft_base(), _img_pt(){}
 		~ft_slider_thumb(){}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int tlen = _thumb.collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_img_pt, len);
-			len += plen;
-			len += tlen;
-			return len;
-		}
+		
         void set_progress_value(float pg_value)
 		{
 			if (pg_value<_img_pt._min_point)

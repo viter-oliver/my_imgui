@@ -257,7 +257,7 @@
       <Filter>project</Filter>
     </ClCompile>
     <ClCompile Include="base_ui_component.cpp">
-      <Filter>sources</Filter>
+      <Filter>controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 #include <fstream>
+#include <stddef.h>
 #include <boost/preprocessor/seq/for_each.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
@@ -580,8 +581,10 @@ int _tmain(int argc, _TCHAR* argv[])
 				c = 3;
 				printf("this=%x\n", this);
 			}
+			iner_class(int i1, int i2, int i3) :a(i1), b(i2), c(i3){}
 		};
 		iner_class my_ineral;
+		iner_class my_ineral2{ 1, 2, 3 };
 		test_iner_class()
 		{
 			void* piner = &my_ineral;
@@ -602,8 +605,49 @@ int _tmain(int argc, _TCHAR* argv[])
 		}
 	};
 	test_iner_class tic;
-	
-	int jjj = 0;
+	char str_test[200];
+	int jjj = sizeof(str_test);
+	cout << "jjj=" << jjj << endl;
+	char dddd[] = "adadads";		
+	char a[20] = { 1, 2, 3 };
+
+#pragma pack(1)  
+	struct s_test_offset{
+		int i{0};
+		char c;
+		char a[20];
+		double d;
+	};
+	printf("size double=%d\n", sizeof(double));
+	printf("size float=%d\n", sizeof(float));
+
+	printf("offsets: i=%d; c=%d; d=%d a=%d\n",
+		offsetof(s_test_offset, i),
+		offsetof(s_test_offset, c),
+		offsetof(s_test_offset, d),
+		offsetof(s_test_offset, a[20]));
+	int d_offset = offsetof(s_test_offset, d);
+	s_test_offset _s_test_offset;
+	_s_test_offset.i = 1;
+	_s_test_offset.c = 'a';
+	_s_test_offset.d = 10.0;
+	_s_test_offset.a[0] = 'a';
+	_s_test_offset.a[1] = 'b';
+	_s_test_offset.a[2] = 'c';
+	char* d_address = (char*)&_s_test_offset + d_offset;
+	*(double*)d_address = 20.0;
+	printf("sizeof(struct s)=%d\n", sizeof(struct s_test_offset));
+	string test_a_str("12345678");
+	auto apos = test_a_str.find('a');
+	cout << "apos=" << apos << endl;
+	char str_a[20];
+	cout << "size str_a=" << sizeof(str_a) << endl;
+	cout << "size str_a=" << sizeof(str_a[20]) << endl;
+	cout << "size char=" << sizeof(char) << endl;
+	auto pos6 = test_a_str.find('6');
+	string test_sbstr = test_a_str.substr(0, pos6);
+	cout << "test_sbstr:" << test_sbstr << endl;
+	int aaa;
 	return 0;
 }
 
