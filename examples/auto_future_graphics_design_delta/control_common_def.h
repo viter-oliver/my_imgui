@@ -178,13 +178,8 @@ namespace auto_future
 		*@return length of property data block
 		*  -
 		*/
-		virtual int collect_property_range(vproperty_list& vplist)
-		{
-			//vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
-			int len = sizeof(base_prop);
-			vplist.emplace_back(&_in_p, sizeof(base_prop));
-			return len;
-		}
+		int collect_property_range(vproperty_list& vplist);
+		
 		virtual ImVec2 get_size()
 		{
 			return ImVec2();

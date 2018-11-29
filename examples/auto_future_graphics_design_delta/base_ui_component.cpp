@@ -123,4 +123,14 @@ namespace auto_future
 			}
 		}
 	}
+	int base_ui_component::collect_property_range(vproperty_list& vplist)
+	{
+		int len = 0;
+		for (auto& prop_ele : _vprop_eles)
+		{
+			len += prop_ele->_pro_sz;
+			vplist.emplace_back(prop_ele->_pro_address, prop_ele->_pro_sz);
+		}
+		return len;
+	}
 }
