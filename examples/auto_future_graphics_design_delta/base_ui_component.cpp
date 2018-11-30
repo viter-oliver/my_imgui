@@ -1,4 +1,5 @@
 #include "control_common_def.h"
+#include "res_output.h"
 #define INT_VALUE 45
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
@@ -16,6 +17,18 @@ namespace auto_future
 		return 1;
 	}
 	static const int s_triger = init_base_value_ranges();
+	static void ShowHelpMarker(const char* desc)
+	{
+		ImGui::TextDisabled("(?)");
+		if (ImGui::IsItemHovered())
+		{
+			ImGui::BeginTooltip();
+			ImGui::PushTextWrapPos(ImGui::GetFontSize() * 35.0f);
+			ImGui::TextUnformatted(desc);
+			ImGui::PopTextWrapPos();
+			ImGui::EndTooltip();
+		}
+	}
 	void base_ui_component::draw_peropertys()
 	{
 		for (auto& prop_ele:_vprop_eles)
@@ -142,7 +155,33 @@ namespace auto_future
 							}
 							else{
 								if (mtype == "int"){
-									ImGui::SliderInt(mname.c_str(), (int*)memb_address, _vrange._min._i, _vrange._max._i);
+									if (rg=="tt")// atexture
+									{
+										auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+										int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
+										ImGui::Combo(mname.c_str(), (int*)memb_address, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+										ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
+										int txt_idx = *(int*)memb_address;
+										float reswidth = res_coors[txt_idx].owidth();
+										float resheight = res_coors[txt_idx].oheight();
+										ImGui::Text("original size:%f,%f", reswidth, resheight);
+										ImGui::Spacing();
+										if (reswidth > 0)
+										{
+											float draw_height = imge_edit_view_width*resheight / reswidth;
+											ImVec2 draw_size(imge_edit_view_width, draw_height);
+											int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+											float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
+											float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+
+											ImVec2 uv0(res_coors[txt_idx]._x0 / wtexture_width, res_coors[txt_idx]._y0 / wtexture_height);
+											ImVec2 uv1(res_coors[txt_idx]._x1 / wtexture_width, res_coors[txt_idx]._y1 / wtexture_height);
+											ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+										}
+									}
+									else{
+										ImGui::SliderInt(mname.c_str(), (int*)memb_address, _vrange._min._i, _vrange._max._i);
+									}
 								}
 								else if (mtype == "float"||mtype == "double"){
 									ImGui::SliderFloat(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
