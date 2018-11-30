@@ -22,9 +22,9 @@ namespace auto_future
 			en_alg_cnt
 		};
 		DEF_STRUCT_WITH_INIT(pcl_intl, _pt,
-			(ImVec3, _pos0),
-			(ImVec3, _v0),
-			(ImVec3, _a0),
+			(ImVec3, _pos0_hd),
+			(ImVec3, _v0_hd),
+			(ImVec3, _a0_hd),
 			(float, _life, { 5.f }),
 			(float, _spread, { 1.5f }),
 			(float, _y1, { 10.f }),

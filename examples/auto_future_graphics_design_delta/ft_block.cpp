@@ -3,15 +3,21 @@
 
 namespace auto_future
 {
-	void auto_future::ft_block::draw()
+	ft_block::ft_block()
+	{
+		//reg_property_handle(&_pt, 2, [this](void* memb_adress)
+		//{
+		//	ImGui::ColorEdit4("block color:", (float*)memb_adress);
+		//});
+	}
+	void ft_block::draw()
 	{
 		ft_base::draw();
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
 		ImVec2 pos1(pos0.x + _pt._sizew, pos0.y + _pt._sizew);
-		ImVec4 BlockColor(_pt._bkr, _pt._bkg, _pt._bkb, _pt._bka);
-		ImU32 col = ImGui::ColorConvertFloat4ToU32(BlockColor);
+		ImU32 col = ImGui::ColorConvertFloat4ToU32(_pt._bkcl);
 		ImGui::RenderFrame(pos0, pos1, col);
 
 	}
@@ -23,7 +29,7 @@ namespace auto_future
 		ImGui::Text("size:");
 		ImGui::SliderFloat("w", &_pt._sizew, 0.f, base_ui_component::screenw);
 		ImGui::SliderFloat("h", &_pt._sizeh, 0.f, base_ui_component::screenh);
-		ImGui::ColorEdit4("block color:", (float*)&_pt._bkr);
+		ImGui::ColorEdit4("block color:", (float*)&_pt._bkcl);
 	}
 
 	bool ft_block::init_from_json(Value& jvalue)
@@ -33,10 +39,10 @@ namespace auto_future
 		_pt._sizew = bsize["x"].asDouble();
 		_pt._sizeh = bsize["y"].asDouble();
 		Value& block_color = jvalue["block_color"];
-		_pt._bkr = block_color["x"].asDouble();
-		_pt._bkg = block_color["y"].asDouble();
-		_pt._bkb = block_color["z"].asDouble();
-		_pt._bka = block_color["w"].asDouble();
+		_pt._bkcl.x = block_color["x"].asDouble();
+		_pt._bkcl.y = block_color["y"].asDouble();
+		_pt._bkcl.z = block_color["z"].asDouble();
+		_pt._bkcl.w = block_color["w"].asDouble();
 		return true;
 	}
 
@@ -48,10 +54,10 @@ namespace auto_future
 		bsize["y"] = _pt._sizeh;
 		junit["size"] = bsize;
 		Value block_color(objectValue);
-		block_color["x"] = _pt._bkr;
-		block_color["y"] = _pt._bkg;
-		block_color["z"] = _pt._bkb;
-		block_color["w"] = _pt._bka;
+		block_color["x"] = _pt._bkcl.x;
+		block_color["y"] = _pt._bkcl.y;
+		block_color["z"] = _pt._bkcl.z;
+		block_color["w"] = _pt._bkcl.w;
 		junit["block_color"] = block_color;
 		return true;
 	}

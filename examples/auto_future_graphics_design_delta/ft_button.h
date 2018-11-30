@@ -15,9 +15,9 @@ namespace auto_future
 		};
 	private:
 		DEF_STRUCT(intl_pt,_pt,
-			(int, _texture_indices[en_state_cnt]),
 			(float,_sizew),
-			(float, _sizeh) )
+            (float, _sizeh),
+			(int, _texture_indices[en_state_cnt]))
 		state _state = { en_normal };
 
 	public:

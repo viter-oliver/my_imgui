@@ -31,9 +31,9 @@ namespace auto_future
 	static shared_ptr<GPSystem> g_ptcl_sys;
 	ft_particles_effect_3d::ft_particles_effect_3d()
 	{
-		_pt._pos0 = { 0.f, 7.f, -20.f };
-		_pt._v0 = { 0.f, -7.f, 0.f };
-		_pt._a0 = { 0.f, 9.81f, 0.f };
+		_pt._pos0_hd = { 0.f, 7.f, -20.f };
+		_pt._v0_hd = { 0.f, -7.f, 0.f };
+		_pt._a0_hd = { 0.f, 9.81f, 0.f };
 
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
@@ -82,9 +82,9 @@ namespace auto_future
 			{
 			case en_fire:
 			{
-				p._pos.x = _pt._pos0.x;
-				p._pos.y = _pt._pos0.y;
-				p._pos.z = _pt._pos0.z;
+				p._pos.x = _pt._pos0_hd.x;
+				p._pos.y = _pt._pos0_hd.y;
+				p._pos.z = _pt._pos0_hd.z;
 				p._life = _pt._life;
 				p._vel.x = distribution(generator);
 				p._vel.y = distribution1(generator);
@@ -93,19 +93,19 @@ namespace auto_future
 			break;
 			case en_fire_with_smoke:
 			{
-				p._pos.z = _pt._pos0.z;
+				p._pos.z = _pt._pos0_hd.z;
 				p._life = 2.f;
-				p._pos.x = _pt._pos0.x + distribution(generator);
-				p._pos.y = _pt._pos0.y + distribution1(generator);
-				glm::vec3 postg(_pt._pos0.x, _pt._pos0.y - _pt._y1, _pt._pos0.z);
+				p._pos.x = _pt._pos0_hd.x + distribution(generator);
+				p._pos.y = _pt._pos0_hd.y + distribution1(generator);
+				glm::vec3 postg(_pt._pos0_hd.x, _pt._pos0_hd.y - _pt._y1, _pt._pos0_hd.z);
 				p._vel = postg - p._pos;
 			}
 			break;
 			case en_fountain:
 				p._life = (((rand() % 125 + 1) / 10.0) + 5);
 				p._pos.x = (rand() % 30);
-				p._pos.y = _pt._pos0.y;
-				p._pos.z = _pt._pos0.z;
+				p._pos.y = _pt._pos0_hd.y;
+				p._pos.z = _pt._pos0_hd.z;
 				p._vel.x = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
 				p._vel.y = ((((((5) * rand() % 11) + 5)) * rand() % 11) + 10) * 0.02;
 				p._vel.z = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
@@ -115,8 +115,8 @@ namespace auto_future
 			default:
 			{
 				p._life = _pt._life; // This particle will live 5 seconds.
-				p._pos = glm::vec3(_pt._pos0.x, _pt._pos0.y, _pt._pos0.z);
-				glm::vec3 maindir = glm::vec3(_pt._v0.x, _pt._v0.y, _pt._v0.z);
+				p._pos = glm::vec3(_pt._pos0_hd.x, _pt._pos0_hd.y, _pt._pos0_hd.z);
+				glm::vec3 maindir = glm::vec3(_pt._v0_hd.x, _pt._v0_hd.y, _pt._v0_hd.z);
 				glm::vec3 randomdir = glm::vec3(
 					(rand() % 2000 - 1000.0f) / 1000.0f,
 					(rand() % 2000 - 1000.0f) / 1000.0f,
@@ -224,17 +224,17 @@ namespace auto_future
 	void ft_particles_effect_3d::draw_peroperty_page(int property_part)
 	{
 		ImGui::Text("Emitting position:");
-		ImGui::SliderFloat("px", &_pt._pos0.x, -100.f, 100.f);
-		ImGui::SliderFloat("py", &_pt._pos0.y, -100.f, 100.f);
-		ImGui::SliderFloat("pz", &_pt._pos0.z, -100.f, 100.f);
+		ImGui::SliderFloat("px", &_pt._pos0_hd.x, -100.f, 100.f);
+		ImGui::SliderFloat("py", &_pt._pos0_hd.y, -100.f, 100.f);
+		ImGui::SliderFloat("pz", &_pt._pos0_hd.z, -100.f, 100.f);
 		ImGui::Text("Emitting velocity:");
-		ImGui::SliderFloat("vx", &_pt._v0.x, -100.f, 100.f);
-		ImGui::SliderFloat("vy", &_pt._v0.y, -100.f, 100.f);
-		ImGui::SliderFloat("vz", &_pt._v0.z, -100.f, 100.f);
+		ImGui::SliderFloat("vx", &_pt._v0_hd.x, -100.f, 100.f);
+		ImGui::SliderFloat("vy", &_pt._v0_hd.y, -100.f, 100.f);
+		ImGui::SliderFloat("vz", &_pt._v0_hd.z, -100.f, 100.f);
 		ImGui::Text("Accelerated velocity:");
-		ImGui::SliderFloat("ax", &_pt._a0.x, -100.f, 100.f);
-		ImGui::SliderFloat("ay", &_pt._a0.y, -100.f, 100.f);
-		ImGui::SliderFloat("az", &_pt._a0.z, -100.f, 100.f);
+		ImGui::SliderFloat("ax", &_pt._a0_hd.x, -100.f, 100.f);
+		ImGui::SliderFloat("ay", &_pt._a0_hd.y, -100.f, 100.f);
+		ImGui::SliderFloat("az", &_pt._a0_hd.z, -100.f, 100.f);
 		ImGui::Text("Life(seconds):");
 		ImGui::SliderFloat("life", &_pt._life, 0.f, 20.f);
 		ImGui::SliderFloat("spread", &_pt._spread, 0.f, 50.f);

@@ -16,7 +16,7 @@ namespace auto_future
 			(float,_aposx),
 			(float,_aposy),
 			(int, _frame_index, {0}),
-			(float, _angle, {0.f}))
+			(float, _angle_nm, {0.f}))
 		shared_ptr<af_texture> _texture;
 		vres_txt_cd _vtexture_cd;
 	public:
@@ -50,7 +50,7 @@ namespace auto_future
 		bool init_json_unit(Value& junit);
 #endif
 
-		void rotate(float angle){ _img_pt._angle = angle; }
+		void rotate(float angle){ _img_pt._angle_nm = angle; }
 	};
 
 	REGISTER_CONTROL(ft_image_play)

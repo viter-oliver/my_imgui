@@ -14,9 +14,9 @@ namespace auto_future
 		//string _mesh_data_file;
 
 		DEF_STRUCT(intl_pt,_pt,
-			(ImVec3,_scale),
-			(ImVec3, _rotation),
-			(ImVec3, _translation), 
+			(ImVec3,_scale_tn),
+			(ImVec3, _rotation_rd),
+			(ImVec3, _translation_hd), 
 			(char,_mesh_data_file[FILE_NAME_LEN]))
 		shared_ptr<material> _pmaterial;
 		shared_ptr<af_texture> _texture;

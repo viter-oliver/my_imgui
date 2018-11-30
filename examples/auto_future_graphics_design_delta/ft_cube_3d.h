@@ -9,7 +9,7 @@ namespace auto_future
 		public ft_base
 	{
 		DEF_STRUCT(intl_pt, _pt, 
-			(ImVec3, _translation), (ImVec3, _scale), (ImVec3, _rotation))
+			(ImVec3, _translation_hd), (ImVec3, _scale_tn), (ImVec3, _rotation_rd))
 		/** referencing the color material */
 		shared_ptr<material> _pmaterial;
 		/** referencing the cube primitive object */

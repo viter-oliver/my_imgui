@@ -12,10 +12,7 @@ namespace auto_future
 		DEF_STRUCT_WITH_INIT(intl_pt,_sn_pt,
 			(float, _sizew, {800.f}),
 			(float, _sizeh, {600.f}), 
-			(float, _bkr, {0.2f}),
-			(float, _bkg, { 0.2f }), 
-			(float, _bkb, { 0.5f }), 
-			(float, _bka, { 0.5f }))
+			(ImVec4, _bk_cl))
 		//frame buffer
 		unsigned int _fboId;
 		unsigned int _colorTextId;

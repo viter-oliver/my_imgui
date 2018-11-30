@@ -144,12 +144,12 @@ namespace auto_future
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
 		ImVec2 axisBasePos = { offsetx + _slider_pt._bg_aposx + winpos.x, offsety + _slider_pt._bg_aposy + winpos.y };
-		if (_slider_pt._bg_angle != 0.f)
+		if (_slider_pt._bg_angle_nm != 0.f)
 		{
-			pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
-			pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle, axisBasePos);
-			pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle, axisBasePos);
-			pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
+			pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle_nm, axisBasePos);
+			pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle_nm, axisBasePos);
+			pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle_nm, axisBasePos);
+			pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nm, axisBasePos);
 		}
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		ImVec2 head_pos(_slider_pt._hd_posx, _slider_pt._hd_posy);
@@ -233,12 +233,12 @@ namespace auto_future
 					pos4 = { abpos.x + winpos.x + _current_point_2vec2_thumb_use.top_point.x, abpos.y + winpos.y + _current_point_2vec2_thumb_use.top_point.y };
 
 					//依靠父节点的坐标和角度计算
-					if (_slider_pt._bg_angle != 0.f)
+					if (_slider_pt._bg_angle_nm != 0.f)
 					{
-						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
-						pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle, axisBasePos);
-						pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle, axisBasePos);
-						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
+						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle_nm, axisBasePos);
+						pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle_nm, axisBasePos);
+						pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle_nm, axisBasePos);
+						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nm, axisBasePos);
 					}
 
 					//加上自身的偏移量
@@ -265,12 +265,12 @@ namespace auto_future
 					pos4 = { abpos.x + winpos.x + (it + 1)->top_point.x, abpos.y + winpos.y + (it + 1)->top_point.y };
 
 					//依靠父节点的坐标和角度计算
-					if (_slider_pt._bg_angle != 0.f)
+					if (_slider_pt._bg_angle_nm != 0.f)
 					{
-						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
-						pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle, axisBasePos);
-						pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle, axisBasePos);
-						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
+						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle_nm, axisBasePos);
+						pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle_nm, axisBasePos);
+						pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle_nm, axisBasePos);
+						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nm, axisBasePos);
 					}
 
 					//加上自身的偏移量
@@ -369,12 +369,12 @@ namespace auto_future
 			pos4 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._tb_txth / 2);
 
 			//依靠父节点的坐标和角度计算
-			if (_slider_pt._bg_angle != 0.f)
+			if (_slider_pt._bg_angle_nm != 0.f)
 			{
-				pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle, axisBasePos);
-				pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle, axisBasePos);
-				pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle, axisBasePos);
-				pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle, axisBasePos);
+				pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle_nm, axisBasePos);
+				pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle_nm, axisBasePos);
+				pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle_nm, axisBasePos);
+				pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nm, axisBasePos);
 			}
 			
 			pos1 += thumb_pos;
@@ -504,7 +504,7 @@ namespace auto_future
 		ImGui::SliderFloat("ax", &_slider_pt._bg_aposx, 1.f, base_ui_component::screenw);
 		ImGui::SliderFloat("ay", &_slider_pt._bg_aposy, 1.f, base_ui_component::screenh);
 		ImGui::Text("angle:");
-		ImGui::SliderFloat("a", &_slider_pt._bg_angle, 0.f, 1.f);
+		ImGui::SliderFloat("a", &_slider_pt._bg_angle_nm, 0.f, 1.f);
 		ImGui::Text("bg image:");
 
 		auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
@@ -602,7 +602,7 @@ namespace auto_future
 		_slider_pt._bg_aposy = bg["bg_pos_h"].asDouble();
 		_slider_pt._bg_aposx = bg["bg_pos_w"].asDouble();
 		_slider_pt._texture_bg_index = bg["bg_texture_index"].asInt();
-		_slider_pt._bg_angle = bg["bg_angle"].asDouble();
+		_slider_pt._bg_angle_nm = bg["bg_angle"].asDouble();
 
 		Value& head = jvalue["head_pos"];
 		_slider_pt._hd_posy = head["head_pos_h"].asDouble();
@@ -646,7 +646,7 @@ namespace auto_future
 		bg["bg_pos_w"] = _slider_pt._bg_aposx;
 		bg["bg_pos_h"] = _slider_pt._bg_aposy;
 		bg["bg_texture_index"] = _slider_pt._texture_bg_index;
-		bg["bg_angle"] = _slider_pt._bg_angle;
+		bg["bg_angle"] = _slider_pt._bg_angle_nm;
 		junit["bg_pos"] = bg;
 
 		Value head(objectValue);

@@ -18,8 +18,8 @@ namespace auto_future
 		font->Scale = _txt_pt._font_scale;
 		ImGui::PushFont(font);
 		const ImVec2 ctnt_size = ImGui::CalcTextSize(_txt_pt._content);
-		abpos.x = abpos.x - ctnt_size.x*_txt_pt._txt_alignh;
-		abpos.y = abpos.y - ctnt_size.y*_txt_pt._txt_alignv;
+		abpos.x = abpos.x - ctnt_size.x*_txt_pt._txt_alignh_nm;
+		abpos.y = abpos.y - ctnt_size.y*_txt_pt._txt_alignv_nm;
 		_txt_area.Min = abpos;
 		_txt_area.Max = abpos + ctnt_size;
 		ImGui::SetCursorPos(abpos);
@@ -71,8 +71,8 @@ namespace auto_future
 		ImGui::Spacing();
 		ImGui::Text("#size:");
 		ImGui::SliderFloat("w", &_txt_pt._width, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("align h", &_txt_pt._txt_alignh, 0.f, 1.f);
-		ImGui::SliderFloat("align v", &_txt_pt._txt_alignv, 0.f, 1.f);
+		ImGui::SliderFloat("align h", &_txt_pt._txt_alignh_nm, 0.f, 1.f);
+		ImGui::SliderFloat("align v", &_txt_pt._txt_alignv_nm, 0.f, 1.f);
 
 		//ImGui::SliderFloat("h", &_txt_pt._size.y, 0.f, base_ui_component::screenh);
 		ImGui::Checkbox("wrapped", &_txt_pt._wrapped);
@@ -100,8 +100,8 @@ namespace auto_future
 		_txt_pt._txta = txt_color["w"].asDouble();
 		_txt_pt._width = jvalue["width"].asDouble();
 		Value& txt_align = jvalue["align"];
-		_txt_pt._txt_alignh = txt_align["h"].asDouble();
-		_txt_pt._txt_alignv = txt_align["v"].asDouble();
+		_txt_pt._txt_alignh_nm = txt_align["h"].asDouble();
+		_txt_pt._txt_alignv_nm = txt_align["v"].asDouble();
 		Value& content = jvalue["content"];
 		strcpy(_txt_pt._content, content.asCString());
 		_txt_pt._wrapped = jvalue["wrapped"].asBool();
@@ -119,8 +119,8 @@ namespace auto_future
 		txt_color["w"] = _txt_pt._txta;
 		junit["txt_color"] = txt_color;
 		Value txt_align(objectValue);
-		txt_align["h"] = _txt_pt._txt_alignv;
-		txt_align["v"] = _txt_pt._txt_alignh;
+		txt_align["h"] = _txt_pt._txt_alignv_nm;
+		txt_align["v"] = _txt_pt._txt_alignh_nm;
 		junit["align"] = txt_align;
 		junit["width"] = _txt_pt._width;
 		junit["content"] = _txt_pt._content;

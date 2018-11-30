@@ -22,9 +22,9 @@ namespace auto_future
 		};
 
 		DEF_STRUCT_WITH_INIT(pcl_intl,_pt,
-			(ImVec3,_pos0),
-			(ImVec3,_v0),
-			(ImVec3,_a0),
+			(ImVec3,_pos0_hd),
+			(ImVec3,_v0_hd),
+			(ImVec3,_a0_hd),
 			(float, _life, {5.f}),
 			(int, _pa, {en_normal}))
 	public:

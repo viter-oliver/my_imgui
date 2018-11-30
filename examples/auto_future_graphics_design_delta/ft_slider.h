@@ -19,7 +19,7 @@ namespace auto_future
 			(int, _direction_item, {0}),
 			(float, _bg_aposx),
 			(float, _bg_aposy),
-			(float, _bg_angle, {0.f}),
+			(float, _bg_angle_nm, {0.f}),
 			(int, _texture_bg_index, {0}),
 			(float, _hd_posx),
 			(float, _hd_posy),

@@ -10,12 +10,9 @@ namespace auto_future
 		DEF_STRUCT(intl_pt,_pt,
 			(float,_sizew),
 			(float,_sizeh),
-			(float,_bkr),
-			(float,_bkg),
-			(float,_bkb),
-			(float,_bka))
+			(ImVec4, _bkcl))
 	public:
-		ft_block(){}
+		ft_block();
 		~ft_block(){}
 
 		ImVec2 get_size()

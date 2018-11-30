@@ -1,7 +1,21 @@
 #include "control_common_def.h"
+#define INT_VALUE 45
+#define VALUE_TO_STRING(x) #x
+#define VALUE(x) VALUE_TO_STRING(x)
+#define VAR_NAME_VALUE(var) #var "="  VALUE(var)
+
 namespace auto_future
 {
-
+	static map<string, value_range> s_rg_tips;
+	const int init_base_value_ranges()
+	{
+		s_rg_tips["hd"] = value_range(-100.f, 100.f);
+		s_rg_tips["tn"] = value_range(-10.f, 10.f);
+		s_rg_tips["rd"] = value_range(-360.f, 360.f);
+		s_rg_tips["nm"] = value_range(0.f, 1.f);
+		return 1;
+	}
+	static const int s_triger = init_base_value_ranges();
 	void base_ui_component::draw_peropertys()
 	{
 		for (auto& prop_ele:_vprop_eles)
@@ -48,7 +62,21 @@ namespace auto_future
 						memb_address=  (char*)prop_ele->_pro_address + moffset;
 						prev_memb_offset_p_tpsz = moffset+mtpsz;
 					}
-					
+					string rg = mname.substr(mname.length() - 2, 2);
+					auto& irg = s_rg_tips.find(rg);
+					value_range _vrange(0.f, screenw);
+					if (irg!=s_rg_tips.end())
+					{
+						_vrange = irg->second;
+					}
+					else
+					{
+						auto& irg_reg=_mcustom_member_value_ranges_container.find(st_member_key(prop_ele->_pro_address, idx));
+						if (irg_reg != _mcustom_member_value_ranges_container.end())
+						{
+							_vrange = irg_reg->second;
+						}
+					}
 					auto& imemb_tp_handl = _mcustom_type_property_handles_container.find(mtype);
 					if (imemb_tp_handl != _mcustom_type_property_handles_container.end())
 					{
@@ -62,50 +90,85 @@ namespace auto_future
 						}
 						else{
 							if (array_cnt>0){
-								for (int ix = 0; ix < array_cnt;++ix)
+								if (mtype == "char")
 								{
-									char str_index[50] = {0};
-									sprintf(str_index,"[%d]", ix);
-									string mname_width_index = mname + str_index;
-									void* memb_index_address = (char*)memb_address + ix*mtpsz;
-									if (mtype == "int"){
-										ImGui::DragInt(mname_width_index.c_str(), (int*)memb_index_address, 1);
-									}
-									else if (mtype == "float"||mtype == "double"){
-										ImGui::SliderFloat(mname_width_index.c_str(), (float*)memb_index_address, -screenw, screenw);
-									}
-									else if (mtype == "ImVec2"){
-										ImGui::SliderFloat2(mname_width_index.c_str(), (float*)memb_address, -screenw, screenw);
-									}
-									else if (mtype == "ImVec3") {
-										ImGui::SliderFloat3(mname_width_index.c_str(), (float*)memb_address, -screenw, screenw);
-									}
-									else if (mtype == "ImVec4") {
-										ImGui::SliderFloat4(mname_width_index.c_str(), (float*)memb_address, -screenw, screenw);
-									}
-									else if (mtype == "bool"){
-										ImGui::Checkbox(mname_width_index.c_str(), (bool*)memb_address);
-									}
-									else{
-										printf("unknown member type!:%s\n", mtype.c_str());
+									ImGui::InputText(mname.c_str(), (char*)memb_address, array_cnt);						
+								}
+								else
+								{
+									for (int ix = 0; ix < array_cnt;++ix)
+									{
+										char str_index[50] = {0};
+										sprintf(str_index,"[%d]", ix);
+										string mname_width_index = mname + str_index;
+										void* memb_index_address = (char*)memb_address + ix*mtpsz;
+										if (mtype == "int"){
+											ImGui::SliderInt(mname_width_index.c_str(), (int*)memb_index_address, _vrange._min._i, _vrange._max._i);
+										}
+										else if (mtype == "float"||mtype == "double"){
+											ImGui::SliderFloat(mname_width_index.c_str(), (float*)memb_index_address, _vrange._min._f, _vrange._max._f);
+										}
+										else if (mtype == "ImVec2"){
+											ImGui::SliderFloat2(mname_width_index.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
+										}
+										else if (mtype == "ImVec3") {
+											if (rg=="cl")
+											{
+												ImGui::ColorEdit3(mname_width_index.c_str(), (float*)memb_address, ImGuiColorEditFlags_RGB);
+											}
+											else
+											{
+												ImGui::SliderFloat3(mname_width_index.c_str(), (float*)memb_address, 0, screenw);
+											}
+										}
+										else if (mtype == "ImVec4") {
+											if (rg=="cl")
+											{
+												ImGui::ColorEdit4(mname_width_index.c_str(), (float*)memb_address);
+											}
+											else
+											{
+												ImGui::SliderFloat4(mname_width_index.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
+											}
+										}
+										else if (mtype == "bool"){
+											ImGui::Checkbox(mname_width_index.c_str(), (bool*)memb_address);
+										}
+										else{
+											printf("unknown member type!:%s\n", mtype.c_str());
+										}
 									}
 								}
 							}
 							else{
 								if (mtype == "int"){
-									ImGui::DragInt(mname.c_str(), (int*)memb_address, 1);
+									ImGui::SliderInt(mname.c_str(), (int*)memb_address, _vrange._min._i, _vrange._max._i);
 								}
 								else if (mtype == "float"||mtype == "double"){
-									ImGui::SliderFloat(mname.c_str(), (float*)memb_address, -screenw, screenw);
+									ImGui::SliderFloat(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
 								}
 								else if (mtype=="ImVec2"){
-									ImGui::SliderFloat2(mname.c_str(), (float*)memb_address, -screenw, screenw);
+									ImGui::SliderFloat2(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
 								}
 								else if (mtype=="ImVec3") {
-									ImGui::SliderFloat3(mname.c_str(), (float*)memb_address, -screenw, screenw);
+									if (rg=="cl")
+									{
+										ImGui::ColorEdit3(mname.c_str(), (float*)memb_address, ImGuiColorEditFlags_RGB);
+									}
+									else
+									{
+										ImGui::SliderFloat3(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
+									}
 								}
 								else if (mtype=="ImVec4") {
-									ImGui::SliderFloat4(mname.c_str(), (float*)memb_address, -screenw, screenw);
+									if (rg=="cl")
+									{
+										ImGui::ColorEdit4(mname.c_str(), (float*)memb_address);
+									}
+									else{
+										ImGui::SliderFloat4(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
+									}
+
 								}
 								else if (mtype == "bool"){
 									ImGui::Checkbox(mname.c_str(), (bool*)memb_address);

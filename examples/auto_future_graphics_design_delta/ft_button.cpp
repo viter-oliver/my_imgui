@@ -2,6 +2,64 @@
 #include "res_output.h"
 namespace auto_future
 {
+	ft_button::ft_button()
+		:ft_base()
+	{
+		reg_property_handle(&_pt, 2, [this](void* memb_address){
+			int *_texture_indices = (int*)memb_address;
+			auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+			int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
+			int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+			float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
+			float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+
+			ImGui::Combo("normal texture index:", &_texture_indices[en_normal], &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+			ImGui::Spacing();
+			float reswidth = res_coors[_pt._texture_indices[en_normal]].owidth();
+			float resheight = res_coors[_pt._texture_indices[en_normal]].oheight();
+			ImGui::Text("normal texture original size:%f,%f", reswidth, resheight);
+			ImGui::Spacing();
+			if (reswidth > 0)
+			{
+				float draw_height = imge_edit_view_width*resheight / reswidth;
+				ImVec2 draw_size(imge_edit_view_width, draw_height);
+
+				ImVec2 uv0(res_coors[_pt._texture_indices[en_normal]]._x0 / wtexture_width, res_coors[_pt._texture_indices[en_normal]]._y0 / wtexture_height);
+				ImVec2 uv1(res_coors[_pt._texture_indices[en_normal]]._x1 / wtexture_width, res_coors[_pt._texture_indices[en_normal]]._y1 / wtexture_height);
+				ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+			}
+
+			ImGui::Combo("pressed texture index:", &_texture_indices[en_pressed], &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+			ImGui::Spacing();
+			reswidth = res_coors[_pt._texture_indices[en_pressed]].owidth();
+			resheight = res_coors[_pt._texture_indices[en_pressed]].oheight();
+			ImGui::Text("pressed texture original size:%f,%f", reswidth, resheight);
+			ImGui::Spacing();
+			if (reswidth > 0)
+			{
+				float draw_height = imge_edit_view_width*resheight / reswidth;
+				ImVec2 draw_size(imge_edit_view_width, draw_height);
+
+				ImVec2 uv0(res_coors[_texture_indices[en_pressed]]._x0 / wtexture_width, res_coors[_pt._texture_indices[en_pressed]]._y0 / wtexture_height);
+				ImVec2 uv1(res_coors[_pt._texture_indices[en_pressed]]._x1 / wtexture_width, res_coors[_pt._texture_indices[en_pressed]]._y1 / wtexture_height);
+				ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+			}
+			ImGui::Combo("selected texture index:", &_texture_indices[en_selected], &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+			ImGui::Spacing();
+			reswidth = res_coors[_pt._texture_indices[en_selected]].owidth();
+			resheight = res_coors[_pt._texture_indices[en_selected]].oheight();
+			ImGui::Text("selected texture original size:%f,%f", reswidth, resheight);
+			ImGui::Spacing();
+			if (reswidth > 0)
+			{
+				float draw_height = imge_edit_view_width*resheight / reswidth;
+				ImVec2 draw_size(imge_edit_view_width, draw_height);
+				ImVec2 uv0(res_coors[_pt._texture_indices[en_selected]]._x0 / wtexture_width, res_coors[_pt._texture_indices[en_selected]]._y0 / wtexture_height);
+				ImVec2 uv1(res_coors[_pt._texture_indices[en_selected]]._x1 / wtexture_width, res_coors[_pt._texture_indices[en_selected]]._y1 / wtexture_height);
+				ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+			}
+		});
+	}
 	void ft_button::draw()
 	{
 		ft_base::draw();
@@ -143,11 +201,4 @@ namespace auto_future
 	{
 		return true;
 	}
-
-	ft_button::ft_button()
-		:ft_base()
-	{
-
-	}
-
 }

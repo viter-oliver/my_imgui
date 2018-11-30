@@ -21,9 +21,9 @@ namespace auto_future
 			(float,_aposy),
 			(int, _anchor_type, {en_anchor_top_left}),
 			(int, _texture_index, {0}),
-			(float, _angle, {0.f}))
+			(float, _angle_nm, {0.f}))
 	public:	
-		ft_image() :ft_base(), _img_pt(){}
+		ft_image() :ft_base(){}
 		ImVec2 get_size()
 		{
 			return ImVec2(_img_pt._sizew, _img_pt._sizeh);
@@ -88,7 +88,7 @@ namespace auto_future
 		bool init_json_unit(Value& junit);
 #endif
 
-		void rotate(float angle){ _img_pt._angle = angle; }
+		void rotate(float angle){ _img_pt._angle_nm = angle; }
 	};
 
 	REGISTER_CONTROL(ft_image)

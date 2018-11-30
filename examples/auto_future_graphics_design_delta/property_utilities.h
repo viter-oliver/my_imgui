@@ -7,6 +7,49 @@
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
 
+enum range_value_type
+{
+	en_range_value_int,
+	en_range_value_float,
+	en_range_value_double,
+};
+
+struct value_range 
+{
+	range_value_type _vtype;
+	union 
+	{
+		int _i;
+		float _f;
+		double _d;
+	}_min;
+	union
+	{
+		int _i;
+		float _f;
+		double _d;
+	}_max;
+	value_range() :_vtype(en_range_value_int){}
+	value_range(int imin,int imax)
+		:_vtype(en_range_value_int)
+	{
+		_min._i = imin;
+		_max._i = imax;
+	}
+	value_range(float fmin, float fmax)
+		:_vtype(en_range_value_float)
+	{
+		_min._f = fmin;
+		_max._f = fmax;
+	}
+	value_range(double dmin, double dmax)
+		:_vtype(en_range_value_double)
+	{
+		_min._d = dmin;
+		_max._d = dmax;
+	}
+};
+
 struct field_ele
 {
 	std::string _type;
@@ -79,5 +122,12 @@ stname vname{_vprop_eles}; MSC_PACK_END
 3、基本数据类型的成员都有默认的属性操作，客户类型的成员属性操作,方法是注册回调函数，并提供类型名称。
 4、用户可以针对特定的结构体变量提供属性操作，方法是注册回调函数，同时提供结构体变量的地址。
 5、用户可以针对特定的结构体成员变量提供属性操作，方法是注册回调函数，同时提供结构体变量的地址和结构体成员变量在该结构中的位置索引。
+6、变量名称的最后两个字母暗示某些信息，属性页会根据这些信息操作这些属性：
+   hd 即hundred，数值范围-100，100
+   tn 即ten，数值范围-10，10
+   rd 即round，数值范围-360，360
+   nm 即normal，数值范围0，1
+   cl 即color，该属性使用颜色编辑器来操作
+7、用户也可以为特定的结构体成员变量提供数值范围，方法是注册数值范围。
 */
 /************************************************************************/

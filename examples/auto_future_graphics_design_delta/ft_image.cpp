@@ -42,12 +42,12 @@ namespace auto_future
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
 		ImVec2 axisBasePos = { offsetx + _img_pt._aposx + winpos.x, offsety + _img_pt._aposy + winpos.y };
-		if (_img_pt._angle != 0.f)
+		if (_img_pt._angle_nm != 0.f)
 		{
-			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle, axisBasePos);
-			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle, axisBasePos);
-			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle, axisBasePos);
-			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle, axisBasePos);
+			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle_nm, axisBasePos);
+			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle_nm, axisBasePos);
+			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_nm, axisBasePos);
+			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle_nm, axisBasePos);
 		}
 
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
@@ -113,7 +113,7 @@ namespace auto_future
 			ImGui::SliderFloat("ay", &_img_pt._aposy, 1.f, screenh);
 			ImGui::Separator();
 			ImGui::Text("angle:");
-			ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);
+			ImGui::SliderFloat("a", &_img_pt._angle_nm, 0.f, 1.f);
 			ImGui::Separator();
 			if (ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0"))
 			{
@@ -186,11 +186,11 @@ namespace auto_future
 				_img_pt_bk._aposy = _img_pt._aposy;
 				pt_modified = true;
 			}
-			if (_img_pt._angle != _img_pt_bk._angle)
+			if (_img_pt._angle_nm != _img_pt_bk._angle_nm)
 			{
 				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_angle, command_value(_img_pt_bk._angle))));
-				_img_pt_bk._angle = _img_pt._angle;
+					(edit_commd<base_ui_component>(this, command_elemment(string("ft_image"), en_pt_angle, command_value(_img_pt_bk._angle_nm))));
+				_img_pt_bk._angle_nm = _img_pt._angle_nm;
 				pt_modified = true;
 			}
 			if (pt_modified)
@@ -233,8 +233,8 @@ namespace auto_future
 				_img_pt_bk._texture_index = _img_pt._texture_index;
 				break;
 			case en_pt_angle :
-				_img_pt._angle = ele_cmd._cmd_value._value._fvalue;
-				_img_pt_bk._angle = _img_pt._angle;
+				_img_pt._angle_nm = ele_cmd._cmd_value._value._fvalue;
+				_img_pt_bk._angle_nm = _img_pt._angle_nm;
 				break;
 			
 			default:
@@ -266,7 +266,7 @@ namespace auto_future
 			case en_pt_txt_id:
 				return command_elemment(string("ft_mage"), en_pt_txt_id, command_value(_img_pt._texture_index));
 			case en_pt_angle:
-				return command_elemment(string("ft_mage"), en_pt_angle, command_value(_img_pt._angle));
+				return command_elemment(string("ft_mage"), en_pt_angle, command_value(_img_pt._angle_nm));
 			default:
 				break;
 			}
@@ -304,7 +304,7 @@ namespace auto_future
 		{
 			_img_pt._aposx = jaxispos["x"].asDouble();
 			_img_pt._aposy = jaxispos["y"].asDouble();
-			_img_pt._angle = jaxispos["angle"].asDouble();
+			_img_pt._angle_nm = jaxispos["angle"].asDouble();
 		}
 		else
 		{
@@ -329,7 +329,7 @@ namespace auto_future
 		Value jaxispos(objectValue);
 		jaxispos["x"] = _img_pt._aposx;
 		jaxispos["y"] = _img_pt._aposy;
-		jaxispos["angle"] = _img_pt._angle;
+		jaxispos["angle"] = _img_pt._angle_nm;
 		junit["axipos"] = jaxispos;
 		junit["anchor_type"] = _img_pt._anchor_type;
 		return true;

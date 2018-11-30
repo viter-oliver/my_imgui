@@ -50,12 +50,12 @@ namespace auto_future
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
 		ImVec2 axisBasePos = { offsetx + _img_pt._aposx + winpos.x, offsety + _img_pt._aposy + winpos.y };
-		if (_img_pt._angle != 0.f)
+		if (_img_pt._angle_nm != 0.f)
 		{
-			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle, axisBasePos);
-			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle, axisBasePos);
-			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle, axisBasePos);
-			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle, axisBasePos);
+			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle_nm, axisBasePos);
+			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle_nm, axisBasePos);
+			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_nm, axisBasePos);
+			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle_nm, axisBasePos);
 		}
 
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
@@ -119,7 +119,7 @@ namespace auto_future
 			ImGui::SliderFloat("ay", &_img_pt._aposy, 1.f, base_ui_component::screenh);
 			ImGui::Separator();
 			ImGui::Text("angle:");
-			ImGui::SliderFloat("a", &_img_pt._angle, 0.f, 1.f);
+			ImGui::SliderFloat("a", &_img_pt._angle_nm, 0.f, 1.f);
 			ImGui::Spacing();
 		}
 		if (property_part&en_texture_property)
@@ -212,7 +212,7 @@ namespace auto_future
 		{
 			_img_pt._aposx = jaxispos["x"].asDouble();
 			_img_pt._aposy = jaxispos["y"].asDouble();
-			_img_pt._angle = jaxispos["angle"].asDouble();
+			_img_pt._angle_nm = jaxispos["angle"].asDouble();
 		}
 		else
 		{
@@ -237,7 +237,7 @@ namespace auto_future
 		Value jaxispos(objectValue);
 		jaxispos["x"] = _img_pt._aposx;
 		jaxispos["y"] = _img_pt._aposy;
-		jaxispos["angle"] = _img_pt._angle;
+		jaxispos["angle"] = _img_pt._angle_nm;
 		junit["axipos"] = jaxispos;
 		return true;
 	}

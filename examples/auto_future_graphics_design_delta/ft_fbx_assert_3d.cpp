@@ -6,15 +6,15 @@ namespace auto_future
 {
 	ft_fbx_assert_3d::ft_fbx_assert_3d()
 	{
-		_fbx_assert_pt._scale.x = 1.f;
-		_fbx_assert_pt._scale.y = 1.f;
-		_fbx_assert_pt._scale.z = 1.f;
-		_fbx_assert_pt._camera_center.x = 0.f;
-		_fbx_assert_pt._camera_center.y = 0.f;
-		_fbx_assert_pt._camera_center.z = 0.f;
-		_fbx_assert_pt._camera_up.x = 0.f;
-		_fbx_assert_pt._camera_up.y = 1.f;
-		_fbx_assert_pt._camera_up.z = 0.f;
+		_fbx_assert_pt._scale_tn.x = 1.f;
+		_fbx_assert_pt._scale_tn.y = 1.f;
+		_fbx_assert_pt._scale_tn.z = 1.f;
+		_fbx_assert_pt._camera_center_tn.x = 0.f;
+		_fbx_assert_pt._camera_center_tn.y = 0.f;
+		_fbx_assert_pt._camera_center_tn.z = 0.f;
+		_fbx_assert_pt._camera_up_rd.x = 0.f;
+		_fbx_assert_pt._camera_up_rd.y = 1.f;
+		_fbx_assert_pt._camera_up_rd.z = 0.f;
 
 	}
 
@@ -119,39 +119,39 @@ namespace auto_future
 		}
 		ImGui::Text("Model");
 		ImGui::Text("Translation:");
-		ImGui::SliderFloat("tx", &_fbx_assert_pt._translation.x, -100.f, 100.f);
-		ImGui::SliderFloat("ty", &_fbx_assert_pt._translation.y, -100.f, 100.f);
-		ImGui::SliderFloat("tz", &_fbx_assert_pt._translation.z, -100.f, 100.f);
+		ImGui::SliderFloat("tx", &_fbx_assert_pt._translation_hd.x, -100.f, 100.f);
+		ImGui::SliderFloat("ty", &_fbx_assert_pt._translation_hd.y, -100.f, 100.f);
+		ImGui::SliderFloat("tz", &_fbx_assert_pt._translation_hd.z, -100.f, 100.f);
 		ImGui::Text("scale:");
-		ImGui::SliderFloat("sx", &_fbx_assert_pt._scale.x, -10.f, 10.f);
-		ImGui::SliderFloat("sy", &_fbx_assert_pt._scale.y, -10.f, 10.f);
-		ImGui::SliderFloat("sz", &_fbx_assert_pt._scale.z, -10.f, 10.f);
+		ImGui::SliderFloat("sx", &_fbx_assert_pt._scale_tn.x, -10.f, 10.f);
+		ImGui::SliderFloat("sy", &_fbx_assert_pt._scale_tn.y, -10.f, 10.f);
+		ImGui::SliderFloat("sz", &_fbx_assert_pt._scale_tn.z, -10.f, 10.f);
 
 		ImGui::Text("Rotation:");
-		ImGui::SliderFloat("rx", &_fbx_assert_pt._rotation.x, -360.f, 360.f);
-		ImGui::SliderFloat("ry", &_fbx_assert_pt._rotation.y, -360.f, 360.f);
-		ImGui::SliderFloat("rz", &_fbx_assert_pt._rotation.z, -360.f, 360.f);
+		ImGui::SliderFloat("rx", &_fbx_assert_pt._rotation_rd.x, -360.f, 360.f);
+		ImGui::SliderFloat("ry", &_fbx_assert_pt._rotation_rd.y, -360.f, 360.f);
+		ImGui::SliderFloat("rz", &_fbx_assert_pt._rotation_rd.z, -360.f, 360.f);
 
 		ImGui::Text("");
 		ImGui::Text("Camera");
 		ImGui::Text("Eye:");
-		ImGui::SliderFloat("Ex", &_fbx_assert_pt._camera_eye.x, -100.f, 100.f);
-		ImGui::SliderFloat("Ey", &_fbx_assert_pt._camera_eye.y, -100.f, 100.f);
-		ImGui::SliderFloat("Ez", &_fbx_assert_pt._camera_eye.z, -100.f, 100.f);
+		ImGui::SliderFloat("Ex", &_fbx_assert_pt._camera_eye_hd.x, -100.f, 100.f);
+		ImGui::SliderFloat("Ey", &_fbx_assert_pt._camera_eye_hd.y, -100.f, 100.f);
+		ImGui::SliderFloat("Ez", &_fbx_assert_pt._camera_eye_hd.z, -100.f, 100.f);
 
 		ImGui::Text("Center:");
-		ImGui::SliderFloat("Cx", &_fbx_assert_pt._camera_center.x, -10.f, 10.f);
-		ImGui::SliderFloat("Cy", &_fbx_assert_pt._camera_center.y, -10.f, 10.f);
-		ImGui::SliderFloat("Cz", &_fbx_assert_pt._camera_center.z, -10.f, 10.f);
+		ImGui::SliderFloat("Cx", &_fbx_assert_pt._camera_center_tn.x, -10.f, 10.f);
+		ImGui::SliderFloat("Cy", &_fbx_assert_pt._camera_center_tn.y, -10.f, 10.f);
+		ImGui::SliderFloat("Cz", &_fbx_assert_pt._camera_center_tn.z, -10.f, 10.f);
 
 		ImGui::Text("Up:");
-		ImGui::SliderFloat("Ux", &_fbx_assert_pt._camera_up.x, -360.f, 360.f);
-		ImGui::SliderFloat("Uy", &_fbx_assert_pt._camera_up.y, -360.f, 360.f);
-		ImGui::SliderFloat("Uz", &_fbx_assert_pt._camera_up.z, -360.f, 360.f);
+		ImGui::SliderFloat("Ux", &_fbx_assert_pt._camera_up_rd.x, -360.f, 360.f);
+		ImGui::SliderFloat("Uy", &_fbx_assert_pt._camera_up_rd.y, -360.f, 360.f);
+		ImGui::SliderFloat("Uz", &_fbx_assert_pt._camera_up_rd.z, -360.f, 360.f);
 
 		ImGui::Text("");
 		ImGui::Text("Projection");
-		ImGui::SliderFloat("FOV", &_fbx_assert_pt._proj_fov, 0.f, 360.f);
+		ImGui::SliderFloat("FOV", &_fbx_assert_pt._proj_fov_rd, 0.f, 360.f);
 		ImGui::SliderInt("width", &_fbx_assert_pt._proj_width, 0, 1920);
 		ImGui::SliderInt("height", &_fbx_assert_pt._proj_height, 0, 720);
 		ImGui::SliderFloat("linear", &_fbx_assert_pt._proj_linear, 0.f, 100.f);
@@ -174,37 +174,37 @@ namespace auto_future
 		_fbx_assert_pt._select_list = jvalue["fbx_index"].asInt();
 
 		Value& trans = jvalue["trans"];
-		_fbx_assert_pt._translation.x = trans["translationx"].asDouble();
-		_fbx_assert_pt._translation.y = trans["translationy"].asDouble();
-		_fbx_assert_pt._translation.z = trans["translationz"].asDouble();
+		_fbx_assert_pt._translation_hd.x = trans["translationx"].asDouble();
+		_fbx_assert_pt._translation_hd.y = trans["translationy"].asDouble();
+		_fbx_assert_pt._translation_hd.z = trans["translationz"].asDouble();
 
 		Value& scale = jvalue["scale"];
-		_fbx_assert_pt._scale.x = scale["scalex"].asDouble();
-		_fbx_assert_pt._scale.y = scale["scaley"].asDouble();
-		_fbx_assert_pt._scale.z = scale["scalez"].asDouble();
+		_fbx_assert_pt._scale_tn.x = scale["scalex"].asDouble();
+		_fbx_assert_pt._scale_tn.y = scale["scaley"].asDouble();
+		_fbx_assert_pt._scale_tn.z = scale["scalez"].asDouble();
 
 		Value& ratation = jvalue["ratation"];
-		_fbx_assert_pt._rotation.x = ratation["ratationx"].asDouble();
-		_fbx_assert_pt._rotation.y = ratation["ratationy"].asDouble();
-		_fbx_assert_pt._rotation.z = ratation["ratationz"].asDouble();
+		_fbx_assert_pt._rotation_rd.x = ratation["ratationx"].asDouble();
+		_fbx_assert_pt._rotation_rd.y = ratation["ratationy"].asDouble();
+		_fbx_assert_pt._rotation_rd.z = ratation["ratationz"].asDouble();
 
 		Value& Eye = jvalue["CEye"];
-		_fbx_assert_pt._camera_eye.x = Eye["CEyex"].asDouble();
-		_fbx_assert_pt._camera_eye.y = Eye["CEyey"].asDouble();
-		_fbx_assert_pt._camera_eye.z = Eye["CEyez"].asDouble();
+		_fbx_assert_pt._camera_eye_hd.x = Eye["CEyex"].asDouble();
+		_fbx_assert_pt._camera_eye_hd.y = Eye["CEyey"].asDouble();
+		_fbx_assert_pt._camera_eye_hd.z = Eye["CEyez"].asDouble();
 
 		Value& Center = jvalue["CCenter"];
-		_fbx_assert_pt._camera_center.x = Center["CCenterx"].asDouble();
-		_fbx_assert_pt._camera_center.y = Center["CCentery"].asDouble();
-		_fbx_assert_pt._camera_center.z = Center["CCenterz"].asDouble();
+		_fbx_assert_pt._camera_center_tn.x = Center["CCenterx"].asDouble();
+		_fbx_assert_pt._camera_center_tn.y = Center["CCentery"].asDouble();
+		_fbx_assert_pt._camera_center_tn.z = Center["CCenterz"].asDouble();
 
 		Value& Up = jvalue["CUp"];
-		_fbx_assert_pt._camera_up.x = Up["CUpx"].asDouble();
-		_fbx_assert_pt._camera_up.y = Up["CUpy"].asDouble();
-		_fbx_assert_pt._camera_up.z = Up["CUpz"].asDouble();
+		_fbx_assert_pt._camera_up_rd.x = Up["CUpx"].asDouble();
+		_fbx_assert_pt._camera_up_rd.y = Up["CUpy"].asDouble();
+		_fbx_assert_pt._camera_up_rd.z = Up["CUpz"].asDouble();
 
 		Value& Proj = jvalue["proj"];
-		_fbx_assert_pt._proj_fov = Proj["fov"].asDouble();
+		_fbx_assert_pt._proj_fov_rd = Proj["fov"].asDouble();
 		_fbx_assert_pt._proj_width = Proj["width"].asInt();
 		_fbx_assert_pt._proj_height = Proj["height"].asInt();
 		_fbx_assert_pt._proj_linear = Proj["linear"].asDouble();
@@ -225,43 +225,43 @@ namespace auto_future
 		ft_base::init_json_unit(junit);
 		junit["fbx_index"] = _fbx_assert_pt._select_list;
 		Value trans(objectValue);
-		trans["translationx"] = _fbx_assert_pt._translation.x;
-		trans["translationy"] = _fbx_assert_pt._translation.y;
-		trans["translationz"] = _fbx_assert_pt._translation.z;
+		trans["translationx"] = _fbx_assert_pt._translation_hd.x;
+		trans["translationy"] = _fbx_assert_pt._translation_hd.y;
+		trans["translationz"] = _fbx_assert_pt._translation_hd.z;
 		junit["trans"] = trans;
 
 		Value scale(objectValue);
-		scale["scalex"] = _fbx_assert_pt._scale.x;
-		scale["scaley"] = _fbx_assert_pt._scale.y;
-		scale["scalez"] = _fbx_assert_pt._scale.z;
+		scale["scalex"] = _fbx_assert_pt._scale_tn.x;
+		scale["scaley"] = _fbx_assert_pt._scale_tn.y;
+		scale["scalez"] = _fbx_assert_pt._scale_tn.z;
 		junit["scale"] = scale;
 
 		Value ratation(objectValue);
-		ratation["ratationx"] = _fbx_assert_pt._rotation.x;
-		ratation["ratationy"] = _fbx_assert_pt._rotation.y;
-		ratation["ratationz"] = _fbx_assert_pt._rotation.z;
+		ratation["ratationx"] = _fbx_assert_pt._rotation_rd.x;
+		ratation["ratationy"] = _fbx_assert_pt._rotation_rd.y;
+		ratation["ratationz"] = _fbx_assert_pt._rotation_rd.z;
 		junit["ratation"] = ratation;
 
 		Value Eye(objectValue);
-		Eye["CEyex"] = _fbx_assert_pt._camera_eye.x;
-		Eye["CEyey"] = _fbx_assert_pt._camera_eye.y;
-		Eye["CEyez"] = _fbx_assert_pt._camera_eye.z;
+		Eye["CEyex"] = _fbx_assert_pt._camera_eye_hd.x;
+		Eye["CEyey"] = _fbx_assert_pt._camera_eye_hd.y;
+		Eye["CEyez"] = _fbx_assert_pt._camera_eye_hd.z;
 		junit["CEye"] = Eye;
 
 		Value Center(objectValue);
-		Center["CCenterx"] = _fbx_assert_pt._camera_center.x;
-		Center["CCentery"] = _fbx_assert_pt._camera_center.y;
-		Center["CCenterz"] = _fbx_assert_pt._camera_center.z;
+		Center["CCenterx"] = _fbx_assert_pt._camera_center_tn.x;
+		Center["CCentery"] = _fbx_assert_pt._camera_center_tn.y;
+		Center["CCenterz"] = _fbx_assert_pt._camera_center_tn.z;
 		junit["CCenter"] = Center;
 
 		Value Up(objectValue);
-		Up["CUpx"] = _fbx_assert_pt._camera_up.x;
-		Up["CUpy"] = _fbx_assert_pt._camera_up.y;
-		Up["CUpz"] = _fbx_assert_pt._camera_up.z;
+		Up["CUpx"] = _fbx_assert_pt._camera_up_rd.x;
+		Up["CUpy"] = _fbx_assert_pt._camera_up_rd.y;
+		Up["CUpz"] = _fbx_assert_pt._camera_up_rd.z;
 		junit["CUp"] = Up;
 
 		Value Proj(objectValue);
-		Proj["fov"] = _fbx_assert_pt._proj_fov;
+		Proj["fov"] = _fbx_assert_pt._proj_fov_rd;
 		Proj["width"] = _fbx_assert_pt._proj_width;
 		Proj["height"] = _fbx_assert_pt._proj_height;
 		Proj["linear"] = _fbx_assert_pt._proj_linear;
@@ -294,34 +294,34 @@ namespace auto_future
 					_pcube_prim = pmut->second;
 
 					glm::mat4 model = glm::mat4(1.f);
-					model = glm::translate(model, glm::vec3(_fbx_assert_pt._translation.x, _fbx_assert_pt._translation.y, _fbx_assert_pt._translation.z));
-					model = glm::scale(model, glm::vec3(_fbx_assert_pt._scale.x, _fbx_assert_pt._scale.y, _fbx_assert_pt._scale.z));
+					model = glm::translate(model, glm::vec3(_fbx_assert_pt._translation_hd.x, _fbx_assert_pt._translation_hd.y, _fbx_assert_pt._translation_hd.z));
+					model = glm::scale(model, glm::vec3(_fbx_assert_pt._scale_tn.x, _fbx_assert_pt._scale_tn.y, _fbx_assert_pt._scale_tn.z));
 					model = glm::rotate(
 						model,
-						_fbx_assert_pt._rotation.x * glm::radians(1.0f),
+						_fbx_assert_pt._rotation_rd.x * glm::radians(1.0f),
 						glm::vec3(1.0f, 0.0f, 0.0f)
 						);
 
 					model = glm::rotate(
 						model,
-						_fbx_assert_pt._rotation.y * glm::radians(1.0f),
+						_fbx_assert_pt._rotation_rd.y * glm::radians(1.0f),
 						glm::vec3(0.0f, 1.0f, 0.0f)
 						);
 
 					model = glm::rotate(
 						model,
-						_fbx_assert_pt._rotation.z * glm::radians(1.0f),
+						_fbx_assert_pt._rotation_rd.z * glm::radians(1.0f),
 						glm::vec3(0.0f, 0.0f, 1.0f)
 						);
 
 					glm::mat4 view = glm::mat4(1.f);
-					view = glm::lookAt(glm::vec3(_fbx_assert_pt._camera_eye.x, _fbx_assert_pt._camera_eye.y, _fbx_assert_pt._camera_eye.z),
-						glm::vec3(_fbx_assert_pt._camera_center.x, _fbx_assert_pt._camera_center.y, _fbx_assert_pt._camera_center.z),
-						glm::vec3(_fbx_assert_pt._camera_up.x, _fbx_assert_pt._camera_up.y, _fbx_assert_pt._camera_up.z));
+					view = glm::lookAt(glm::vec3(_fbx_assert_pt._camera_eye_hd.x, _fbx_assert_pt._camera_eye_hd.y, _fbx_assert_pt._camera_eye_hd.z),
+						glm::vec3(_fbx_assert_pt._camera_center_tn.x, _fbx_assert_pt._camera_center_tn.y, _fbx_assert_pt._camera_center_tn.z),
+						glm::vec3(_fbx_assert_pt._camera_up_rd.x, _fbx_assert_pt._camera_up_rd.y, _fbx_assert_pt._camera_up_rd.z));
 
-					glm::mat4 proj = glm::perspective(glm::radians(_fbx_assert_pt._proj_fov), (float)_fbx_assert_pt._proj_width / (float)_fbx_assert_pt._proj_height, _fbx_assert_pt._proj_linear, _fbx_assert_pt._proj_far);
+					glm::mat4 proj = glm::perspective(glm::radians(_fbx_assert_pt._proj_fov_rd), (float)_fbx_assert_pt._proj_width / (float)_fbx_assert_pt._proj_height, _fbx_assert_pt._proj_linear, _fbx_assert_pt._proj_far);
 
-					glm::vec4 eye = glm::vec4(_fbx_assert_pt._camera_eye.x, _fbx_assert_pt._camera_eye.y, _fbx_assert_pt._camera_eye.z, 0.f);
+					glm::vec4 eye = glm::vec4(_fbx_assert_pt._camera_eye_hd.x, _fbx_assert_pt._camera_eye_hd.y, _fbx_assert_pt._camera_eye_hd.z, 0.f);
 					glm::vec4 lightColor = glm::vec4(_fbx_assert_pt._light_color.x, _fbx_assert_pt._light_color.y, _fbx_assert_pt._light_color.z, 1.f);
 					glm::vec4 lightPos = glm::vec4(_fbx_assert_pt._light_pos.x, _fbx_assert_pt._light_pos.y, _fbx_assert_pt._light_pos.z, 0.f);
 

@@ -37,23 +37,23 @@ namespace auto_future
 	void ft_cube_3d::draw()
 	{
 		glm::mat4 model = glm::mat4(1.f);
-		model = glm::translate(model, glm::vec3(_pt._translation.x, _pt._translation.y, _pt._translation.z));
-		model = glm::scale(model, glm::vec3(_pt._scale.x, _pt._scale.y, _pt._scale.z));
+		model = glm::translate(model, glm::vec3(_pt._translation_hd.x, _pt._translation_hd.y, _pt._translation_hd.z));
+		model = glm::scale(model, glm::vec3(_pt._scale_tn.x, _pt._scale_tn.y, _pt._scale_tn.z));
 		model = glm::rotate(
 			model,
-			_pt._rotation.x * glm::radians(1.0f),
+			_pt._rotation_rd.x * glm::radians(1.0f),
 			glm::vec3(1.0f, 0.0f, 0.0f)
 			);
 
 		model = glm::rotate(
 			model,
-			_pt._rotation.y * glm::radians(1.0f),
+			_pt._rotation_rd.y * glm::radians(1.0f),
 			glm::vec3(0.0f, 1.0f, 0.0f)
 			);
 
 		model = glm::rotate(
 			model,
-			_pt._rotation.z * glm::radians(1.0f),
+			_pt._rotation_rd.z * glm::radians(1.0f),
 			glm::vec3(0.0f, 0.0f, 1.0f)
 			);
 
@@ -80,18 +80,18 @@ namespace auto_future
 	void ft_cube_3d::draw_peroperty_page(int property_part)
 	{
 		ImGui::Text("Translation:");
-		ImGui::SliderFloat("tx", &_pt._translation.x, -100.f, 100.f);
-		ImGui::SliderFloat("ty", &_pt._translation.y, -100.f, 100.f);
-		ImGui::SliderFloat("tz", &_pt._translation.z, -100.f, 100.f);
+		ImGui::SliderFloat("tx", &_pt._translation_hd.x, -100.f, 100.f);
+		ImGui::SliderFloat("ty", &_pt._translation_hd.y, -100.f, 100.f);
+		ImGui::SliderFloat("tz", &_pt._translation_hd.z, -100.f, 100.f);
 		ImGui::Text("scale:");
-		ImGui::SliderFloat("sx", &_pt._scale.x, -10.f, 10.f);
-		ImGui::SliderFloat("sy", &_pt._scale.y, -10.f, 10.f);
-		ImGui::SliderFloat("sz", &_pt._scale.z, -10.f, 10.f);
+		ImGui::SliderFloat("sx", &_pt._scale_tn.x, -10.f, 10.f);
+		ImGui::SliderFloat("sy", &_pt._scale_tn.y, -10.f, 10.f);
+		ImGui::SliderFloat("sz", &_pt._scale_tn.z, -10.f, 10.f);
 
 		ImGui::Text("Rotation:");
-		ImGui::SliderFloat("rx", &_pt._rotation.x, -360.f, 360.f);
-		ImGui::SliderFloat("ry", &_pt._rotation.y, -360.f, 360.f);
-		ImGui::SliderFloat("rz", &_pt._rotation.z, -360.f, 360.f);
+		ImGui::SliderFloat("rx", &_pt._rotation_rd.x, -360.f, 360.f);
+		ImGui::SliderFloat("ry", &_pt._rotation_rd.y, -360.f, 360.f);
+		ImGui::SliderFloat("rz", &_pt._rotation_rd.z, -360.f, 360.f);
 
 	}
 
@@ -99,13 +99,13 @@ namespace auto_future
 	{
 		ft_base::init_from_json(jvalue);
 		Value& translation = jvalue["translation"];
-		_pt._translation.x = translation["x"].asDouble();
-		_pt._translation.y = translation["y"].asDouble();
-		_pt._translation.z = translation["z"].asDouble();
+		_pt._translation_hd.x = translation["x"].asDouble();
+		_pt._translation_hd.y = translation["y"].asDouble();
+		_pt._translation_hd.z = translation["z"].asDouble();
 		Value& scale = jvalue["scale"];
-		_pt._scale.x = scale["x"].asDouble();
-		_pt._scale.y = scale["y"].asDouble();
-		_pt._scale.z = scale["z"].asDouble();
+		_pt._scale_tn.x = scale["x"].asDouble();
+		_pt._scale_tn.y = scale["y"].asDouble();
+		_pt._scale_tn.z = scale["z"].asDouble();
 
 		return true;
 	}
@@ -114,14 +114,14 @@ namespace auto_future
 	{
 		ft_base::init_json_unit(junit);
 		Value translation(objectValue);
-		translation["x"] = _pt._translation.x;
-		translation["y"] = _pt._translation.y;
-		translation["z"] = _pt._translation.z;
+		translation["x"] = _pt._translation_hd.x;
+		translation["y"] = _pt._translation_hd.y;
+		translation["z"] = _pt._translation_hd.z;
 		junit["translation"] = translation;
 		Value scale(objectValue);
-		scale["x"] = _pt._scale.x;
-		scale["y"] = _pt._scale.y;
-		scale["z"] = _pt._scale.z;
+		scale["x"] = _pt._scale_tn.x;
+		scale["y"] = _pt._scale_tn.y;
+		scale["z"] = _pt._scale_tn.z;
 		junit["scale"] = scale;
 
 		return true;

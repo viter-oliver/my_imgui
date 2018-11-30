@@ -108,6 +108,7 @@ namespace auto_future
 			}
 		};
 		map<st_member_key, property_handle> _mcustom_member_property_handles_container;
+		map<st_member_key, value_range> _mcustom_member_value_ranges_container;
 		void reg_property_handle(string tpname, property_handle ph)
 		{
 			_mcustom_type_property_handles_container[tpname] = ph;
@@ -120,6 +121,19 @@ namespace auto_future
 		{
 			_mcustom_member_property_handles_container[st_member_key(var_address, member_id)] = ph;
 		}
+		void reg_value_range(void* var_address, int member_id, int imin, int imax)
+		{
+			_mcustom_member_value_ranges_container[st_member_key(var_address, member_id)] = value_range(imin, imax);
+		}
+		void reg_value_range(void* var_address, int member_id, float fmin, float fmax)
+		{
+			_mcustom_member_value_ranges_container[st_member_key(var_address, member_id)] = value_range(fmin, fmax);
+		}
+		void reg_value_range(void* var_address, int member_id, double dmin, double dmax)
+		{
+			_mcustom_member_value_ranges_container[st_member_key(var_address, member_id)] = value_range(dmin, dmax);
+		}
+
 	public:
 		/**
 		*@brief draw property on the property page for editing

@@ -12,7 +12,7 @@ namespace auto_future
 	ft_plane_play_2d::ft_plane_play_2d()
 		:ft_base(),_pt(), _puv(0), _uv_len(0)
 	{
-		_pt._scale = { 1.f, 1.f };
+		_pt._scale_tn = { 1.f, 1.f };
 		memset(_pt._materil_name, 0, FILE_NAME_LEN);
 		memset(_pt._texture_name, 0, FILE_NAME_LEN);
 		memset(_pt._texture_fmt_name, 0, FILE_NAME_LEN);
@@ -73,9 +73,9 @@ namespace auto_future
 			return;
 		}
 		glm::mat4 model = glm::mat4(1.f);
-		model = glm::translate(model,glm::vec3(_pt._trans.x, _pt._trans.y, 0));
-		model = glm::scale(model, glm::vec3(_pt._scale.x, _pt._scale.y, 1.f));
-		model = glm::rotate(model, _pt._rotation_z*glm::radians(1.f), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model,glm::vec3(_pt._trans_hd.x, _pt._trans_hd.y, 0));
+		model = glm::scale(model, glm::vec3(_pt._scale_tn.x, _pt._scale_tn.y, 1.f));
+		model = glm::rotate(model, _pt._rotationZ_rd*glm::radians(1.f), glm::vec3(0.0f, 0.0f, 1.0f));
 		_pmaterial->set_value("model", glm::value_ptr(model), 16);
 		_pmaterial->use();
 		glBindVertexArray(_vao);
@@ -140,13 +140,13 @@ namespace auto_future
 		int frame_cnt = get_frames_count();
 		ImGui::SliderInt("frame index:", &_pt._frame_index, 0, frame_cnt);
 		ImGui::Text("Translation:");
-		ImGui::SliderFloat("tx", &_pt._trans.x, -100.f, 100.f,"%.4f",0.05f);
-		ImGui::SliderFloat("ty", &_pt._trans.y, -100.f, 100.f, "%.4f", 0.05f);
+		ImGui::SliderFloat("tx", &_pt._trans_hd.x, -100.f, 100.f,"%.4f",0.05f);
+		ImGui::SliderFloat("ty", &_pt._trans_hd.y, -100.f, 100.f, "%.4f", 0.05f);
 		ImGui::Text("scale:");
-		ImGui::SliderFloat("sx", &_pt._scale.x, -10.f, 10.f);
-		ImGui::SliderFloat("sy", &_pt._scale.y, -10.f, 10.f);
+		ImGui::SliderFloat("sx", &_pt._scale_tn.x, -10.f, 10.f);
+		ImGui::SliderFloat("sy", &_pt._scale_tn.y, -10.f, 10.f);
 		ImGui::Text("Rotation:");
-		ImGui::SliderFloat("rz", &_pt._rotation_z, -360.f, 360.f);
+		ImGui::SliderFloat("rz", &_pt._rotationZ_rd, -360.f, 360.f);
 
 
 	}

@@ -51,7 +51,7 @@ namespace auto_future
 		{
 			printf("mouse 1 is released!\n");
 		}*/
-		ImGui::SliderFloat("y", &_in_p._posy, -screenh, screenh);
+		ImGui::SliderFloat("y", &_in_p._posy, -screenw, screenh);
 		if (ImGui::Checkbox("visibility", &_in_p._visible))
 		{
 			g_ui_edit_command_mg.create_command\
