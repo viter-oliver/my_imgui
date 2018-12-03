@@ -25,9 +25,10 @@
 #include "platform_def.h"
 //#include "command_element.h"
 //#include <map>
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+
+
 #include "property_utilities.h"
-#endif
+
 namespace auto_future
 {
 	struct ft_vertex
@@ -66,22 +67,28 @@ namespace auto_future
 	{
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	protected:
-		/**
-		* @brief define the property data block\n
-		*/
-		struct internal_property
-		{
-			float _posx, _posy;
-			bool _visible;
-			char _name[name_len];
 
-			internal_property() :_visible(true){ memset(_name, 0, name_len); }
-		};
+		//struct internal_property
+		//{
+		//	float _posx, _posy;
+		//	bool _visible;
+		//	char _name[name_len];
+
+		//	internal_property() :_visible(true){ memset(_name, 0, name_len); }
+		//};
 		///// the member will be serialized 
 		//internal_property _in_p;
 		vp_prop_ele _vprop_eles;
-		DEF_STRUCT(base_prop, _in_p, (float, _posx), (float, _posy), (bool, _visible), (char, _name[name_len]))
-
+		/**
+		* @brief define the property data block\n
+		*/
+		
+		DEF_STRUCT(base_prop, _in_p,
+			(float, _posx), 
+			(float, _posy), 
+			(bool, _visible), 
+			(char, _name[name_len]))
+			
 		/** the member contain all of the components which is the object
 		of the child class of base_ui_componnet */
 		vector<base_ui_component*> _vchilds;
@@ -153,8 +160,8 @@ namespace auto_future
 		virtual int collect_property_range(vproperty_list& vplist)
 		{
 			//vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
-			int len = sizeof(internal_property);
-			vplist.emplace_back(&_in_p, sizeof(internal_property));
+			int len = sizeof(base_prop);
+			vplist.emplace_back(&_in_p, sizeof(base_prop));
 			return len;
 		}
 		virtual ImVec2 get_size()
@@ -199,7 +206,11 @@ namespace auto_future
 				delete it;
 			}
 		}
-		virtual void add_child(base_ui_component* pchild){ pchild->_parent = this; _vchilds.push_back(pchild); }
+		virtual void add_child(base_ui_component* pchild)
+		{
+			pchild->_parent = this; 
+			_vchilds.push_back(pchild); 
+		}
 		virtual void remove_child(base_ui_component* pchild)
 		{
 			auto it = find(_vchilds.begin(), _vchilds.end(), pchild);

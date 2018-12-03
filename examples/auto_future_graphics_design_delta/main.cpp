@@ -679,7 +679,8 @@ int main(int argc, char* argv[])
 			_pselect = pjedit->current_object();
 			if (_pselect)
 			{
-				_pselect->draw_peroperty_page();
+				//_pselect->draw_peroperty_page();
+				_pselect->draw_peropertys();
 			}
 			ImGui::End();
 		}

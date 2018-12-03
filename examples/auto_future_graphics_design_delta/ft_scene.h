@@ -12,7 +12,7 @@ namespace auto_future
 		DEF_STRUCT_WITH_INIT(intl_pt,_sn_pt,
 			(float, _sizew, {800.f}),
 			(float, _sizeh, {600.f}), 
-			(ImVec4, _bk_cl))
+			(ImVec4, _bk_clr))
 		//frame buffer
 		unsigned int _fboId;
 		unsigned int _colorTextId;
@@ -23,7 +23,6 @@ namespace auto_future
 		void draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

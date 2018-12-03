@@ -7,29 +7,31 @@ namespace auto_future
 	class AFG_EXPORT ft_slider :
 		public ft_base
 	{
+#pragma message ("define flider")
 		DEF_STRUCT_WITH_INIT(intl_pt, _slider_pt,
-			(char,_cbuffer_random_text[128]),
 			(float,_bg_txtw),
 			(float,_bg_txth), 
+			(char, _cbuffer_random_text[128]),
 			(float, _hd_txtw),
 			(float, _hd_txth),
 			(float, _tb_txtw),
 			(float, _tb_txth),
-			(float, _position, {0.f}),
+			(float, _position_nml, {0.f}),
 			(int, _direction_item, {0}),
 			(float, _bg_aposx),
 			(float, _bg_aposy),
-			(float, _bg_angle_nm, {0.f}),
-			(int, _texture_bg_index, {0}),
+			(float, _bg_angle_nml, {0.f}),
+			(int, _texture_bg_index_txt, {0}),
 			(float, _hd_posx),
 			(float, _hd_posy),
-			(int, _texture_head_index,{0}),
+			(int, _texture_head_index_txt,{0}),
 			(float, _tb_posx),
 			(float, _tb_posy),
 			(bool, _thumb_visible, {false}),
-			(int, _texture_thumb_index, {0}))
+			(int, _texture_thumb_index_txt, {0}))
 	public:
 		ft_slider();
+		~ft_slider(){}
 		void link()
 		{
 			if (2 == _slider_pt._direction_item) //如果保存的是random，这时候就需从文件中读出点数据
@@ -39,16 +41,15 @@ namespace auto_future
 			}
 		}
 
-		void set_progress(float value){ _slider_pt._position = value; }
-		float set_progress(){ return _slider_pt._position; }
+		void set_progress(float value){ _slider_pt._position_nml = value; }
+		float set_progress(){ return _slider_pt._position_nml; }
 
-		void set_bg_texture_id(int id){ _slider_pt._texture_bg_index = id; }
-		void set_progress_texture_id(int id){ _slider_pt._texture_head_index = id; }
-		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index = id; }
+		void set_bg_texture_id(int id){ _slider_pt._texture_bg_index_txt = id; }
+		void set_progress_texture_id(int id){ _slider_pt._texture_head_index_txt = id; }
+		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index_txt = id; }
 
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

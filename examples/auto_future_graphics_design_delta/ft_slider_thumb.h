@@ -10,7 +10,7 @@ namespace auto_future
 		DEF_STRUCT_WITH_INIT(intl_pt, _img_pt,
 			(float, _min_point, {0.f}),
 			(float, _max_point, { 100.f }),
-			(float, _progress_value, { 0.f }),
+			(float, _progress_value_uhd, { 0.f }),
 			(float, _pos_minx, { 0.f }),
 			(float, _pos_miny, { 0.f }),
 			(float, _pos_maxx, { 0.f }),
@@ -22,7 +22,7 @@ namespace auto_future
 		ft_image _thumb;
 
 	public:
-		ft_slider_thumb() :ft_base(), _img_pt(){}
+		ft_slider_thumb() :ft_base(){}
 		~ft_slider_thumb(){}
 		
         void set_progress_value(float pg_value)
@@ -35,12 +35,12 @@ namespace auto_future
 			{
 				pg_value = _img_pt._max_point;
 			}
-			_img_pt._progress_value=pg_value;
+			_img_pt._progress_value_uhd=pg_value;
 		}
 		void calcu_thumb_pos();
 		float get_progress_value()
 		{
-			return _img_pt._progress_value;
+			return _img_pt._progress_value_uhd;
 		}
 		ImVec2 thumb_base_pos()
 		{
@@ -53,7 +53,6 @@ namespace auto_future
 		void draw();
 		
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

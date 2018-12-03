@@ -7,10 +7,10 @@ namespace auto_future
 	{
 
 
-		DEF_STRUCT(intl_pt,_pt,
-			(float,_sizew),
-			(float,_sizeh),
-			(ImVec4, _bkcl))
+		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
+			(float, _sizew, {0.f}),
+			(float, _sizeh, {0.f}),
+			(ImVec4, _bkclr))
 	public:
 		ft_block();
 		~ft_block(){}
@@ -26,7 +26,6 @@ namespace auto_future
 		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

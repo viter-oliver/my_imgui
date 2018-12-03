@@ -10,14 +10,17 @@ namespace auto_future
 	static map<string, value_range> s_rg_tips;
 	const int init_base_value_ranges()
 	{
-		s_rg_tips["hd"] = value_range(-100.f, 100.f);
-		s_rg_tips["tn"] = value_range(-10.f, 10.f);
-		s_rg_tips["rd"] = value_range(-360.f, 360.f);
-		s_rg_tips["nm"] = value_range(0.f, 1.f);
+		s_rg_tips["shd"] = value_range(-100.f, 100.f);
+		s_rg_tips["stn"] = value_range(-10.f, 10.f);
+		s_rg_tips["srd"] = value_range(-360.f, 360.f);
+		s_rg_tips["uhd"] = value_range(0.f, 100.f);
+		s_rg_tips["utn"] = value_range(0.f, 10.f);
+		s_rg_tips["urd"] = value_range(0.f, 360.f);
+		s_rg_tips["nml"] = value_range(0.f, 1.f);
 		return 1;
 	}
 	static const int s_triger = init_base_value_ranges();
-	static void ShowHelpMarker(const char* desc)
+	void ShowHelpMarker(const char* desc)
 	{
 		ImGui::TextDisabled("(?)");
 		if (ImGui::IsItemHovered())
@@ -45,10 +48,10 @@ namespace auto_future
 				int prev_memb_offset_p_tpsz = 0;
 				for (auto& memb:prop_page)
 				{
-					auto& mtype = memb->_type;
-					auto& mname = memb->_name;
-					auto& mtpsz = memb->_tpsz;
-					auto& moffset = memb->_offset;
+					auto mtype = memb->_type;
+					auto mname = memb->_name;
+					auto mtpsz = memb->_tpsz;
+					auto moffset = memb->_offset;
 					void* memb_address = 0;
 					int array_cnt = 0;
 					string::size_type apos = mname.find('[');
@@ -75,7 +78,7 @@ namespace auto_future
 						memb_address=  (char*)prop_ele->_pro_address + moffset;
 						prev_memb_offset_p_tpsz = moffset+mtpsz;
 					}
-					string rg = mname.substr(mname.length() - 2, 2);
+					string rg = mname.substr(mname.length() - 3, 3);
 					auto& irg = s_rg_tips.find(rg);
 					value_range _vrange(0.f, screenw);
 					if (irg!=s_rg_tips.end())
@@ -105,7 +108,20 @@ namespace auto_future
 							if (array_cnt>0){
 								if (mtype == "char")
 								{
-									ImGui::InputText(mname.c_str(), (char*)memb_address, array_cnt);						
+									if (mname=="_name"){
+										if (ImGui::InputText("object name", _in_p._name, name_len))
+										{
+											auto pparent = get_parent();
+											if (pparent)
+											{
+												string nname = pparent->try_create_a_child_name(_in_p._name, this);
+												set_name(nname);
+											}
+										}
+									}
+									else{
+										ImGui::InputText(mname.c_str(), (char*)memb_address, array_cnt);
+									}
 								}
 								else
 								{
@@ -125,7 +141,7 @@ namespace auto_future
 											ImGui::SliderFloat2(mname_width_index.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
 										}
 										else if (mtype == "ImVec3") {
-											if (rg=="cl")
+											if (rg=="clr")
 											{
 												ImGui::ColorEdit3(mname_width_index.c_str(), (float*)memb_address, ImGuiColorEditFlags_RGB);
 											}
@@ -135,7 +151,7 @@ namespace auto_future
 											}
 										}
 										else if (mtype == "ImVec4") {
-											if (rg=="cl")
+											if (rg=="clr")
 											{
 												ImGui::ColorEdit4(mname_width_index.c_str(), (float*)memb_address);
 											}
@@ -155,7 +171,7 @@ namespace auto_future
 							}
 							else{
 								if (mtype == "int"){
-									if (rg=="tt")// atexture
+									if (rg=="txt")// atexture
 									{
 										auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 										int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
@@ -190,7 +206,7 @@ namespace auto_future
 									ImGui::SliderFloat2(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
 								}
 								else if (mtype=="ImVec3") {
-									if (rg=="cl")
+									if (rg=="clr")
 									{
 										ImGui::ColorEdit3(mname.c_str(), (float*)memb_address, ImGuiColorEditFlags_RGB);
 									}
@@ -200,7 +216,7 @@ namespace auto_future
 									}
 								}
 								else if (mtype=="ImVec4") {
-									if (rg=="cl")
+									if (rg=="clr")
 									{
 										ImGui::ColorEdit4(mname.c_str(), (float*)memb_address);
 									}
@@ -221,6 +237,7 @@ namespace auto_future
 					}
 					idx++;
 				}
+				ImGui::Separator();
 				ImGui::Spacing();
 			}
 		}

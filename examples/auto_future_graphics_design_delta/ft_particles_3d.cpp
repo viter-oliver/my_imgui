@@ -62,9 +62,10 @@ namespace auto_future
 
 	ft_particles_3d::ft_particles_3d()
 	{
-		_pt._pos0_hd = { 0.f, 7.f, -20.f };
-		_pt._v0_hd = { 0.f, -7.f, 0.f };
-		_pt._a0_hd = { 0.f, 9.81f, 0.f };
+		_pt._pos0_shd = { 0.f, 7.f, -20.f };
+		_pt._v0_shd = { 0.f, -7.f, 0.f };
+		_pt._a0_shd = { 0.f, 9.81f, 0.f };
+		reg_value_range(&_pt, 3, 0.f, 20.f);
 
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
@@ -125,10 +126,10 @@ namespace auto_future
 		for (int i = 0; i < newparticles; i++){
 			int particleIndex = FindUnusedParticle();
 			ParticlesContainer[particleIndex].life = _pt._life; // This particle will live 5 seconds.
-			ParticlesContainer[particleIndex].pos = glm::vec3(_pt._pos0_hd.x, _pt._pos0_hd.y, _pt._pos0_hd.z);
+			ParticlesContainer[particleIndex].pos = glm::vec3(_pt._pos0_shd.x, _pt._pos0_shd.y, _pt._pos0_shd.z);
 
 			float spread = 1.5f;
-			glm::vec3 maindir = glm::vec3(_pt._v0_hd.x, _pt._v0_hd.y, _pt._v0_hd.z);
+			glm::vec3 maindir = glm::vec3(_pt._v0_shd.x, _pt._v0_shd.y, _pt._v0_shd.z);
 			glm::vec3 randomdir = glm::vec3(
 				(rand() % 2000 - 1000.0f) / 1000.0f,
 				(rand() % 2000 - 1000.0f) / 1000.0f,
@@ -187,7 +188,7 @@ namespace auto_future
 					}
 					break;
 					case en_gravity:
-						p.speed += glm::vec3(_pt._a0_hd.x, _pt._a0_hd.y, _pt._a0_hd.z) * (float)delta * 0.5f;
+						p.speed += glm::vec3(_pt._a0_shd.x, _pt._a0_shd.y, _pt._a0_shd.z) * (float)delta * 0.5f;
 						p.pos += p.speed * (float)delta;
 						break;
 					case en_fire:
@@ -309,24 +310,7 @@ namespace auto_future
 		glDisableVertexAttribArray(2);
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_particles_3d::draw_peroperty_page(int property_part)
-	{
-		ImGui::Text("Emitting position:");
-		ImGui::SliderFloat("px", &_pt._pos0_hd.x, -100.f, 100.f);
-		ImGui::SliderFloat("py", &_pt._pos0_hd.y, -100.f, 100.f);
-		ImGui::SliderFloat("pz", &_pt._pos0_hd.z, -100.f, 100.f);
-		ImGui::Text("Emitting velocity:");
-		ImGui::SliderFloat("vx", &_pt._v0_hd.x, -100.f, 100.f);
-		ImGui::SliderFloat("vy", &_pt._v0_hd.y, -100.f, 100.f);
-		ImGui::SliderFloat("vz", &_pt._v0_hd.z, -100.f, 100.f);
-		ImGui::Text("Accelerated velocity:");
-		ImGui::SliderFloat("ax", &_pt._a0_hd.x, -100.f, 100.f);
-		ImGui::SliderFloat("ay", &_pt._a0_hd.y, -100.f, 100.f);
-		ImGui::SliderFloat("az", &_pt._a0_hd.z, -100.f, 100.f);
-		ImGui::Text("Life(seconds):");
-		ImGui::SliderFloat("life", &_pt._life, 0.f, 20.f);
 
-	}
 	bool ft_particles_3d::init_from_json(Value& jvalue)
 	{
 		return true;

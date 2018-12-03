@@ -6,11 +6,12 @@ namespace auto_future
 		public ft_base
 	{
 		DEF_STRUCT_WITH_INIT(intl_pt, _lt_pt,
-			(bool, _vertical, {true}),
-			(float, _sizew, {100.f}),
-			(float, _sizeh, {100.f}),
-			(float, _rangex, {1.f}),
-			(float, _rangey, {100.f}))
+			(bool, _vertical, { true }),
+			(float, _sizew, { 100.f }),
+			(float, _sizeh, { 100.f }),
+			(float, _rangex, { 1.f }),
+			(float, _rangey, { 100.f }),
+			(float, _scroll_value, {0}))
 		float _scroll_value = { 0.f };
 		float scroll_max();
 		void set_scroll_value(float scvalue);
@@ -26,7 +27,6 @@ namespace auto_future
 		}
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

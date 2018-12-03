@@ -3,10 +3,13 @@ namespace auto_future
 {
 	ft_listbox::ft_listbox()
 		:ft_base()
-		, _lt_pt()
 	{
 		/*_be_window = true;*/
-
+		reg_property_handle(&_lt_pt, 6, [this](void*){
+			float scrmx = scroll_max();
+			ImGui::SliderFloat("scroll value", &_lt_pt._scroll_value, 0.f, scrmx);
+			set_scroll_value(_lt_pt._scroll_value);
+		});
 	}
 	float ft_listbox::scroll_max()
 	{
@@ -128,16 +131,7 @@ namespace auto_future
 		}
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_listbox::draw_peroperty_page(int property_part)
-	{
-		ft_base::draw_peroperty_page();
-		ImGui::SliderFloat("lw", &_lt_pt._sizew, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("lh", &_lt_pt._sizeh, 0.f, base_ui_component::screenh);
-		ImGui::Checkbox("vertical", &_lt_pt._vertical);
-		float scrmx = scroll_max();
-		ImGui::SliderFloat("scroll value", &_scroll_value, 0.f, scrmx);
-		set_scroll_value(_scroll_value);
-	}
+
 	bool ft_listbox::init_from_json(Value& jvalue)
 	{
 		ft_base::init_from_json(jvalue);

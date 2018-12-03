@@ -14,9 +14,9 @@ namespace auto_future
 		//string _mesh_data_file;
 
 		DEF_STRUCT(intl_pt,_pt,
-			(ImVec3,_scale_tn),
-			(ImVec3, _rotation_rd),
-			(ImVec3, _translation_hd), 
+			(ImVec3,_scale_stn),
+			(ImVec3, _rotation_srd),
+			(ImVec3, _translation_shd), 
 			(char,_mesh_data_file[FILE_NAME_LEN]))
 		shared_ptr<material> _pmaterial;
 		shared_ptr<af_texture> _texture;
@@ -29,7 +29,6 @@ namespace auto_future
 
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		void load_mesh_data_2_vertices();
 		void load_vertics_2_vbo();
 		bool init_from_json(Value& jvalue);

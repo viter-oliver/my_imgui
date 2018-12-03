@@ -8,12 +8,9 @@ namespace auto_future
 #define MAX_CONTENT_LEN 0x100
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_txt_pt,
-			(float, _txtr, {1.f}),
-			(float, _txtg, { 1.f }),
-			(float, _txtb, { 1.f }),
-			(float, _txta, { 1.f }),
-			(float, _txt_alignh_nm),
-			(float, _txt_alignv_nm),
+			(ImVec3, _txt_clr),
+			(float, _txt_alignh_nml),
+			(float, _txt_alignv_nml),
 			(float, _width, { ImGui::GetFontSize() * 35.0f }),
 			(char, _content[MAX_CONTENT_LEN]),
 			(bool, _wrapped),
@@ -38,7 +35,6 @@ namespace auto_future
 			return _txt_area;
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

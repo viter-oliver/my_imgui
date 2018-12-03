@@ -6,7 +6,7 @@ namespace auto_future
 		:ft_base()
 		, _fboId(0), _colorTextId(0), _depthStencilTextId(0)
 	{
-		_sn_pt._bk_cl = { 0.2f, 0.2f, 0.5f, 0.5f };
+		_sn_pt._bk_clr = { 0.2f, 0.2f, 0.5f, 0.5f };
 		prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, _sn_pt._sizew, _sn_pt._sizeh);
 	}
 
@@ -26,7 +26,7 @@ namespace auto_future
 		glDepthFunc(GL_LESS);
 		//glEnable(GL_CULL_FACE);
 		//glDisable(GL_SCISSOR_TEST);
-		glClearColor(_sn_pt._bk_cl.x, _sn_pt._bk_cl.y, _sn_pt._bk_cl.z, _sn_pt._bk_cl.w);
+		glClearColor(_sn_pt._bk_clr.x, _sn_pt._bk_clr.y, _sn_pt._bk_clr.z, _sn_pt._bk_clr.w);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		ft_base::draw();
@@ -64,17 +64,6 @@ namespace auto_future
 #endif
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_scene::draw_peroperty_page(int property_part)
-	{
-		ft_base::draw_peroperty_page();
-		ImGui::Text("Size:");
-		ImGui::SliderFloat("###w", &_sn_pt._sizew, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("###h", &_sn_pt._sizeh, 0.f, base_ui_component::screenw);
-		ImGui::Text("Background color:");
-		ImGui::ColorEdit4("text color:", (float*)&_sn_pt._bk_cl);
-
-	}
-
 	bool ft_scene::init_from_json(Value& jvalue)
 	{
 		ft_base::init_from_json(jvalue);
@@ -82,10 +71,10 @@ namespace auto_future
 		_sn_pt._sizew = jsize["w"].asDouble();
 		_sn_pt._sizeh = jsize["h"].asDouble();
 		Value& jbgcolor = jvalue["background color"];
-		_sn_pt._bk_cl.x = jbgcolor["x"].asDouble();
-		_sn_pt._bk_cl.y = jbgcolor["y"].asDouble();
-		_sn_pt._bk_cl.z = jbgcolor["z"].asDouble();
-		_sn_pt._bk_cl.w = jbgcolor["w"].asDouble();
+		_sn_pt._bk_clr.x = jbgcolor["x"].asDouble();
+		_sn_pt._bk_clr.y = jbgcolor["y"].asDouble();
+		_sn_pt._bk_clr.z = jbgcolor["z"].asDouble();
+		_sn_pt._bk_clr.w = jbgcolor["w"].asDouble();
 
 		return true;
 	}
@@ -98,10 +87,10 @@ namespace auto_future
 		jsize["h"] = _sn_pt._sizeh;
 		junit["size"] = jsize;
 		Value jbgcolor(objectValue);
-		jbgcolor["x"] = _sn_pt._bk_cl.x;
-		jbgcolor["y"] = _sn_pt._bk_cl.y;
-		jbgcolor["z"] = _sn_pt._bk_cl.z;
-		jbgcolor["w"] = _sn_pt._bk_cl.w;
+		jbgcolor["x"] = _sn_pt._bk_clr.x;
+		jbgcolor["y"] = _sn_pt._bk_clr.y;
+		jbgcolor["z"] = _sn_pt._bk_clr.z;
+		jbgcolor["w"] = _sn_pt._bk_clr.w;
 		junit["background color"] = jbgcolor;
 		return true;
 	}

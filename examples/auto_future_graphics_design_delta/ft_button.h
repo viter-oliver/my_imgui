@@ -17,7 +17,9 @@ namespace auto_future
 		DEF_STRUCT(intl_pt,_pt,
 			(float,_sizew),
             (float, _sizeh),
-			(int, _texture_indices[en_state_cnt]))
+			(int, _texture_indices_nm_tt),
+			(int, _texture_indices_dn_tt),
+			(int, _texture_indices_sl_tt))
 		state _state = { en_normal };
 
 	public:
@@ -36,14 +38,13 @@ namespace auto_future
 		}
 		int get_txt_id_by_state(state st)
 		{
-			return _pt._texture_indices[st];
+			return *(&_pt._texture_indices_nm_tt+st);
 		}
 		int get_cur_txt_id()
 		{
 			return get_txt_id_by_state(_state);
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

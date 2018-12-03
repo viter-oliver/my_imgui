@@ -29,69 +29,69 @@ namespace auto_future
 		}*/
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_base::draw_peroperty_page(int property_part)
-	{
-		if (ImGui::InputText("object name", _in_p._name, name_len))
-		{
-			auto pparent = get_parent();
-			if (pparent)
-			{
-				string nname = pparent->try_create_a_child_name(_in_p._name, this);
-				set_name(nname);
-			}
-		}
-		ImGui::Text("base pos:");
-		//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
-		//ImGui::SameLine();
-		if (ImGui::SliderFloat("x", &_in_p._posx, -screenw, screenw))
-		{
-			printf("current posx:%f\n", _in_p._posx);
-		}
-		/*if (ImGui::IsMouseReleased(1))
-		{
-			printf("mouse 1 is released!\n");
-		}*/
-		ImGui::SliderFloat("y", &_in_p._posy, -screenw, screenh);
-		if (ImGui::Checkbox("visibility", &_in_p._visible))
-		{
-			g_ui_edit_command_mg.create_command\
-				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p_bk._visible))));
-			_in_p_bk._visible = _in_p._visible;
-		}
-		ImGuiContext& g = *GImGui;
-		if (ImGui::IsMouseReleased(0)||g.IO.InputContentChanged)
-		{
-			bool pt_modified = false;
-			if (_in_p._posx != _in_p_bk._posx)
-			{
-				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p_bk._posx))));
-				_in_p_bk._posx = _in_p._posx;
-				pt_modified = true;
-			}
-			if (_in_p._posy != _in_p_bk._posy)
-			{
-				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p_bk._posy))));
-				_in_p_bk._posy = _in_p._posy;
-				pt_modified = true;
-			}
-			if (strcmp(_in_p._name, _in_p_bk._name) != 0)
-			{
-				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_name, command_value(_in_p_bk._name))));
-				strcpy(_in_p_bk._name, _in_p._name);
-				_in_p_bk._name[strlen(_in_p._name)] = '\0';
-				pt_modified = true;
+	//void ft_base::draw_peroperty_page(int property_part)
+	//{
+	//	if (ImGui::InputText("object name", _in_p._name, name_len))
+	//	{
+	//		auto pparent = get_parent();
+	//		if (pparent)
+	//		{
+	//			string nname = pparent->try_create_a_child_name(_in_p._name, this);
+	//			set_name(nname);
+	//		}
+	//	}
+	//	ImGui::Text("base pos:");
+	//	//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
+	//	//ImGui::SameLine();
+	//	if (ImGui::SliderFloat("x", &_in_p._posx, -screenw, screenw))
+	//	{
+	//		printf("current posx:%f\n", _in_p._posx);
+	//	}
+	//	/*if (ImGui::IsMouseReleased(1))
+	//	{
+	//		printf("mouse 1 is released!\n");
+	//	}*/
+	//	ImGui::SliderFloat("y", &_in_p._posy, -screenw, screenh);
+	//	if (ImGui::Checkbox("visibility", &_in_p._visible))
+	//	{
+	//		g_ui_edit_command_mg.create_command\
+	//			(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p_bk._visible))));
+	//		_in_p_bk._visible = _in_p._visible;
+	//	}
+	//	ImGuiContext& g = *GImGui;
+	//	if (ImGui::IsMouseReleased(0)||g.IO.InputContentChanged)
+	//	{
+	//		bool pt_modified = false;
+	//		if (_in_p._posx != _in_p_bk._posx)
+	//		{
+	//			g_ui_edit_command_mg.create_command\
+	//				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p_bk._posx))));
+	//			_in_p_bk._posx = _in_p._posx;
+	//			pt_modified = true;
+	//		}
+	//		if (_in_p._posy != _in_p_bk._posy)
+	//		{
+	//			g_ui_edit_command_mg.create_command\
+	//				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p_bk._posy))));
+	//			_in_p_bk._posy = _in_p._posy;
+	//			pt_modified = true;
+	//		}
+	//		if (strcmp(_in_p._name, _in_p_bk._name) != 0)
+	//		{
+	//			g_ui_edit_command_mg.create_command\
+	//				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_name, command_value(_in_p_bk._name))));
+	//			strcpy(_in_p_bk._name, _in_p._name);
+	//			_in_p_bk._name[strlen(_in_p._name)] = '\0';
+	//			pt_modified = true;
 
-				g.IO.InputContentChanged = false;
-			}
-			if (pt_modified)
-			{
-				g.IO.InputContentChanged = false;
-			}
-		} 
-	}
+	//			g.IO.InputContentChanged = false;
+	//		}
+	//		if (pt_modified)
+	//		{
+	//			g.IO.InputContentChanged = false;
+	//		}
+	//	} 
+	//}
 	void ft_base::back_up_property()
 	{
 		_in_p_bk=_in_p;

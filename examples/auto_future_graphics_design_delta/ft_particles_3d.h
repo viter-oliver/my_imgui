@@ -22,9 +22,9 @@ namespace auto_future
 		};
 
 		DEF_STRUCT_WITH_INIT(pcl_intl,_pt,
-			(ImVec3,_pos0_hd),
-			(ImVec3,_v0_hd),
-			(ImVec3,_a0_hd),
+			(ImVec3,_pos0_shd),
+			(ImVec3,_v0_shd),
+			(ImVec3,_a0_shd),
 			(float, _life, {5.f}),
 			(int, _pa, {en_normal}))
 	public:
@@ -33,7 +33,6 @@ namespace auto_future
 		void draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

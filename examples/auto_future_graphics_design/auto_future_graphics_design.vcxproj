@@ -92,6 +92,7 @@
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\dds_file;$(SolutionDir)\libs\fbx_sdk\include;./fbx_import;$(SolutionDir)\..\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

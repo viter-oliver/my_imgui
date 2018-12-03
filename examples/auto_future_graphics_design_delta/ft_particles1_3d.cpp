@@ -132,9 +132,12 @@ namespace auto_future
 
 	ft_particles1_3d::ft_particles1_3d()
 	{
-		_pt._pos0_hd = { 0.f, 7.f, -20.f };
-		_pt._v0_hd = { 0.f, -7.f, 0.f };
-		_pt._a0_hd = { 0.f, 9.81f, 0.f };
+		_pt._pos0_shd = { 0.f, 7.f, -20.f };
+		_pt._v0_shd = { 0.f, -7.f, 0.f };
+		_pt._a0_shd = { 0.f, 9.81f, 0.f };
+		reg_value_range(&_pt, 3, 0.f, 20.f);
+		reg_value_range(&_pt, 4, 0.f, 50.f);
+		reg_value_range(&_pt, 5, -40.f, 40.f);
 
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
@@ -206,9 +209,9 @@ namespace auto_future
 			{
 			case en_fire:
 			{
-				p.pos.x = _pt._pos0_hd.x;
-				p.pos.y = _pt._pos0_hd.y;
-				p.pos.z = _pt._pos0_hd.z;
+				p.pos.x = _pt._pos0_shd.x;
+				p.pos.y = _pt._pos0_shd.y;
+				p.pos.z = _pt._pos0_shd.z;
 				p.life = _pt._life;
 				//ParticlesContainer[particleIndex].life =rand() % 20 + 1.f;
 				//printf("life=%f\n", ParticlesContainer[particleIndex].life);
@@ -218,25 +221,25 @@ namespace auto_future
 				p.speed.z = 0;// distribution1(generator);
 				p.ax = -p.speed.x / 10000;
 				//cout << "(" << p.speed.x << "," << p.speed.y << "," << p.speed.z << ")" << endl;
-				//glm::vec3 postg(_pt._pos0_hd.x, _pt._pos0_hd.y-_pt._y1, _pt._pos0_hd.z);
+				//glm::vec3 postg(_pt._pos0_shd.x, _pt._pos0_shd.y-_pt._y1, _pt._pos0_shd.z);
 				//p.speed = postg - p.pos;
 			}
 			break;
 			case en_fire_with_smoke:
 			{
-				p.pos.z = _pt._pos0_hd.z;
+				p.pos.z = _pt._pos0_shd.z;
 				p.life = 2.f;
 				//ParticlesContainer[particleIndex].life =rand() % 20 + 1.f;
 				//printf("life=%f\n", ParticlesContainer[particleIndex].life);
-				p.pos.x = _pt._pos0_hd.x + distribution(generator);
+				p.pos.x = _pt._pos0_shd.x + distribution(generator);
 
-				p.pos.y = _pt._pos0_hd.y + distribution1(generator);
+				p.pos.y = _pt._pos0_shd.y + distribution1(generator);
 
-				glm::vec3 postg(_pt._pos0_hd.x, _pt._pos0_hd.y - _pt._y1, _pt._pos0_hd.z);
+				glm::vec3 postg(_pt._pos0_shd.x, _pt._pos0_shd.y - _pt._y1, _pt._pos0_shd.z);
 				p.speed = postg - p.pos;
 				//p.pos.x = (rand() % 30);
-				//p.pos.y = _pt._pos0_hd.y;
-				//p.pos.z = _pt._pos0_hd.z;
+				//p.pos.y = _pt._pos0_shd.y;
+				//p.pos.z = _pt._pos0_shd.z;
 				//p.size = rand() % 30;// (rand() % 1000) / 2000.0f + 0.1f;
 				//p.speed.x = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
 				//p.speed.y = ((((((5) * rand() % 11) + 5)) * rand() % 11) + 1) * 0.02;
@@ -251,8 +254,8 @@ namespace auto_future
 			case en_fountain:
 				p.life = (((rand() % 125 + 1) / 10.0) + 5);
 				p.pos.x = (rand() % 30);
-				p.pos.y = _pt._pos0_hd.y;
-				p.pos.z = _pt._pos0_hd.z;
+				p.pos.y = _pt._pos0_shd.y;
+				p.pos.z = _pt._pos0_shd.z;
 				p.speed.x = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
 				p.speed.y = ((((((5) * rand() % 11) + 5)) * rand() % 11) + 10) * 0.02;
 				p.speed.z = (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005) - (((((((2) * rand() % 11) + 1)) * rand() % 11) + 1) * 0.005);
@@ -262,10 +265,10 @@ namespace auto_future
 			default:
 			{
 				p.life = _pt._life; // This particle will live 5 seconds.
-				p.pos = glm::vec3(_pt._pos0_hd.x, _pt._pos0_hd.y, _pt._pos0_hd.z);
+				p.pos = glm::vec3(_pt._pos0_shd.x, _pt._pos0_shd.y, _pt._pos0_shd.z);
 
 				//float spread = 1.5f;
-				glm::vec3 maindir = glm::vec3(_pt._v0_hd.x, _pt._v0_hd.y, _pt._v0_hd.z);
+				glm::vec3 maindir = glm::vec3(_pt._v0_shd.x, _pt._v0_shd.y, _pt._v0_shd.z);
 				glm::vec3 randomdir = glm::vec3(
 					(rand() % 2000 - 1000.0f) / 1000.0f,
 					(rand() % 2000 - 1000.0f) / 1000.0f,
@@ -344,13 +347,13 @@ namespace auto_future
 					}
 					break;
 					case en_fire:
-						p.speed += glm::vec3(p.ax, _pt._a0_hd.y, _pt._a0_hd.z) * (float)delta * 0.5f;
+						p.speed += glm::vec3(p.ax, _pt._a0_shd.y, _pt._a0_shd.z) * (float)delta * 0.5f;
 						p.pos += p.speed * (float)delta;
 						break;
 					case en_fountain:
 					case en_fire_with_smoke:
 					case en_gravity:
-						p.speed += glm::vec3(_pt._a0_hd.x, _pt._a0_hd.y, _pt._a0_hd.z) * (float)delta * 0.5f;
+						p.speed += glm::vec3(_pt._a0_shd.x, _pt._a0_shd.y, _pt._a0_shd.z) * (float)delta * 0.5f;
 						p.pos += p.speed * (float)delta;
 						break;
 
@@ -468,26 +471,6 @@ namespace auto_future
 		glDisableVertexAttribArray(2);
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_particles1_3d::draw_peroperty_page(int property_part)
-	{
-		ImGui::Text("Emitting position:");
-		ImGui::SliderFloat("px", &_pt._pos0_hd.x, -100.f, 100.f);
-		ImGui::SliderFloat("py", &_pt._pos0_hd.y, -100.f, 100.f);
-		ImGui::SliderFloat("pz", &_pt._pos0_hd.z, -100.f, 100.f);
-		ImGui::Text("Emitting velocity:");
-		ImGui::SliderFloat("vx", &_pt._v0_hd.x, -100.f, 100.f);
-		ImGui::SliderFloat("vy", &_pt._v0_hd.y, -100.f, 100.f);
-		ImGui::SliderFloat("vz", &_pt._v0_hd.z, -100.f, 100.f);
-		ImGui::Text("Accelerated velocity:");
-		ImGui::SliderFloat("ax", &_pt._a0_hd.x, -100.f, 100.f);
-		ImGui::SliderFloat("ay", &_pt._a0_hd.y, -100.f, 100.f);
-		ImGui::SliderFloat("az", &_pt._a0_hd.z, -100.f, 100.f);
-		ImGui::Text("Life(seconds):");
-		ImGui::SliderFloat("life", &_pt._life, 0.f, 20.f);
-		ImGui::SliderFloat("spread", &_pt._spread, 0.f, 50.f);
-		ImGui::SliderFloat("y1", &_pt._y1, -40.f, 40);
-
-	}
 	bool ft_particles1_3d::init_from_json(Value& jvalue)
 	{
 		return true;

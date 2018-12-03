@@ -10,13 +10,13 @@ namespace auto_future
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
 			(char, _texture_name[FILE_NAME_LEN]), 
-			(char, _texture_fmt_name[FILE_NAME_LEN]),
 			(float,_sizew),
 			(float,_sizeh),
+			(char, _texture_fmt_name[FILE_NAME_LEN]),
 			(float,_aposx),
 			(float,_aposy),
 			(int, _frame_index, {0}),
-			(float, _angle_nm, {0.f}))
+			(float, _angle_nml, {0.f}))
 		shared_ptr<af_texture> _texture;
 		vres_txt_cd _vtexture_cd;
 	public:
@@ -45,12 +45,11 @@ namespace auto_future
 			en_geometry_property=2,
 			en_texture_property=8,
 		};
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif
 
-		void rotate(float angle){ _img_pt._angle_nm = angle; }
+		void rotate(float angle){ _img_pt._angle_nml = angle; }
 	};
 
 	REGISTER_CONTROL(ft_image_play)

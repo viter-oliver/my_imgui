@@ -57,6 +57,7 @@ namespace auto_future
 	const float imge_edit_view_width = 300.f;
 	struct command_elemment;
 #endif
+	extern void ShowHelpMarker(const char* desc);
 	extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	/**
 	* @brief  base_ui_component is the base class of control class \n
@@ -138,7 +139,7 @@ namespace auto_future
 		/**
 		*@brief draw property on the property page for editing
 		*/
-		virtual void draw_peroperty_page(int property_part = -1) = 0;
+		//virtual void draw_peroperty_page(int property_part = -1) = 0;
 		void draw_peropertys();
 		virtual void back_up_property() = 0;
 		//struct command_elemment;
