@@ -28,7 +28,11 @@ public:
 	*@return true if success,false if failure
 	*/
 	bool output_ui_component_to_file(const char* file_path);
-
+	/**
+	*@brief update texture resource referenced by controls
+	*@return true if success,false if failure
+	*/
+	bool update_texture_res();
 private:
 	void output_primitive_to_file();
 

@@ -153,6 +153,9 @@ namespace auto_future
 		{
 			_selected = beselected;
 		}
+		vp_prop_ele& get_prop_ele(){
+			return _vprop_eles;
+		}
 		//virtual ImVec2 range_radius_vector(ImVec2 direction)
 		//{
 		//	return ImVec2();

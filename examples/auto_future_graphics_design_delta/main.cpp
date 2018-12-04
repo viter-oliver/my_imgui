@@ -572,7 +572,13 @@ int main(int argc, char* argv[])
 					fun_shortct(en_ctrl_b);
 				}
 				ImGui::Separator();
-				
+				if (ImGui::MenuItem("Update texture resources"))
+				{
+					ui_assembler _ui_as(*_proot);
+					_ui_as.update_texture_res();
+					_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
+				}
+				ImGui::Separator();
 				if (ImGui::MenuItem("Quit", "Alt+F4")) 
 				{
 					fun_shortct(an_alt_f4);
