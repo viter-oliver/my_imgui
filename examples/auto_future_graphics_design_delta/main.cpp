@@ -693,18 +693,33 @@ int main(int argc, char* argv[])
 		if (show_edit_window)
 		{
 			ImGui::SetNextWindowSize(ImVec2(1920, 720), ImGuiCond_FirstUseEver);
-			ImGuiStyle& style = ImGui::GetStyle();
-			//style.Alpha = 1.f;
-			const float old_rounding=style.WindowRounding;
-			style.WindowRounding = 0.f;
-			ImGui::Begin("edit window", &show_edit_window,ImGuiWindowFlags_NoTitleBar);
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
+			
+			ImGui::Begin("edit window", &show_edit_window, ImGuiWindowFlags_NoTitleBar );
 			//
 			if (_proot)
 			{
 				_proot->draw();
+			}			
+			ImGuiContext& g = *GImGui;
+			ImGuiWindow* cur_window = ImGui::GetCurrentWindow();
+			ImGuiWindow* front_window = g.Windows.back();
+			ImRect wrect(cur_window->Pos, cur_window->Pos + cur_window->Size);
+			
+			if (cur_window == front_window&&ImGui::IsMouseClicked(0) && wrect.Contains(ImGui::GetIO().MousePos))
+			{
+				printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+#if 1
+				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+				if (psel_ui)
+				{
+					pjedit->sel_ui_component(psel_ui);
+				}
+#endif
 			}
 			ImGui::End();
-			style.WindowRounding = old_rounding;
+			ImGui::PopStyleVar(2);
 		}
 		if (show_resource_manager)
 		{

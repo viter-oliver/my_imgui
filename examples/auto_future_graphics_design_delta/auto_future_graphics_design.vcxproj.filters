@@ -259,6 +259,9 @@
     <ClCompile Include="base_ui_component.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="ft_circle.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -517,6 +520,9 @@
       <Filter>project</Filter>
     </ClInclude>
     <ClInclude Include="property_utilities.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_circle.h">
       <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>

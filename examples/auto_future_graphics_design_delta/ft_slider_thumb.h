@@ -18,7 +18,8 @@ namespace auto_future
 			(float, _size_minw, { 0.f }),
 			(float, _size_minh, { 0.f }),
 			(float, _size_maxw, { 0.f }),
-			(float, _size_maxh, { 0.f }) )
+			(float, _size_maxh, { 0.f }),
+			(int, _thumb_id_txt, {0}))
 		ft_image _thumb;
 
 	public:

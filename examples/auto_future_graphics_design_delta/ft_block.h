@@ -10,7 +10,12 @@ namespace auto_future
 		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
 			(float, _sizew, {0.f}),
 			(float, _sizeh, {0.f}),
-			(ImVec4, _bkclr))
+			(float, _round_utn, {0.f}),
+			(bool, _with_border, {false}),
+			(float, _border_width_uhd, {1.f}),
+			(ImVec4, _bkclr),
+			(ImVec4, _bdclr))
+
 	public:
 		ft_block();
 		~ft_block(){}
@@ -25,6 +30,8 @@ namespace auto_future
 			_pt._sizeh= h;
 		}
 		void draw();
+		base_ui_component* get_hit_ui_object(float posx, float posy);
+		
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);

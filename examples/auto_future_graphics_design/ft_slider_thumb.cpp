@@ -4,6 +4,10 @@ namespace auto_future
 {
 	void ft_slider_thumb::draw()
 	{
+		if (_thumb.get_texture_id() != _img_pt._thumb_id_txt)
+		{
+			_img_pt._thumb_id_txt = _thumb.get_texture_id();
+		}
 		calcu_thumb_pos();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		_thumb.set_selected(is_selected());
@@ -65,8 +69,8 @@ namespace auto_future
 		_img_pt._size_maxw = jmax_sz["x"].asDouble();
 		_img_pt._size_maxh = jmax_sz["y"].asDouble();
 		_img_pt._progress_value = jvalue["pg_value"].asDouble();
-		Value& jthmub = jvalue["thumb"];
-		_thumb.init_from_json(jthmub);
+		_img_pt._thumb_id_txt = jvalue["thumb_id"].asInt();
+		_thumb.set_texture_id(_img_pt._thumb_id_txt);
 		return true;
 	}
 
@@ -90,9 +94,7 @@ namespace auto_future
 		jmax_sz["y"] = _img_pt._size_maxh;
 		junit["max_size"] = jmax_sz;
 		junit["pg_value"] = _img_pt._progress_value;
-		Value jthumb(objectValue);
-		_thumb.init_json_unit(jthumb);
-		junit["thumb"] = jthumb;
+		junit["thumb_id"] = _img_pt._thumb_id_txt;
 		return true;
 	}
 #endif

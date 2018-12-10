@@ -35,8 +35,9 @@ namespace auto_future
 		const ImVec2 ctnt_size = ImGui::CalcTextSize(_txt_pt._content);
 		abpos.x = abpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
 		abpos.y = abpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
-		_txt_area.Min = abpos;
-		_txt_area.Max = abpos + ctnt_size;
+		ImVec2 winpos = ImGui::GetWindowPos();
+		_txt_area.Min = abpos+winpos;
+		_txt_area.Max = _txt_area.Min + ctnt_size;
 		ImGui::SetCursorPos(abpos);
 
 		if (_txt_pt._wrapped) ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + _txt_pt._width);
@@ -71,6 +72,23 @@ namespace auto_future
 			
 		}
 #endif
+	}
+	base_ui_component* ft_textblock::get_hit_ui_object(float posx, float posy)
+	{
+		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
+		if (hit_opt)
+		{
+			return hit_opt;
+		}
+		ImVec2 mouse_pos(posx, posy);
+		if (_txt_area.Contains(mouse_pos))
+		{
+			return this;
+		}
+		else
+		{
+			return nullptr;
+		}
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
@@ -108,8 +126,8 @@ namespace auto_future
 		txt_color["z"] = _txt_pt._txt_clr.z;
 		junit["txt_color"] = txt_color;
 		Value txt_align(objectValue);
-		txt_align["h"] = _txt_pt._txt_alignv_nml;
-		txt_align["v"] = _txt_pt._txt_alignh_nml;
+		txt_align["h"] = _txt_pt._txt_alignh_nml;
+		txt_align["v"] = _txt_pt._txt_alignv_nml;
 		junit["align"] = txt_align;
 		junit["width"] = _txt_pt._width;
 		junit["content"] = _txt_pt._content;

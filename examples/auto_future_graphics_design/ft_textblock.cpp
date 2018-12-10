@@ -20,7 +20,7 @@ namespace auto_future
 		ImGui::SetCursorPos(abpos);
 
 		if (_txt_pt._wrapped) ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + _txt_pt._width);
-		ImGui::TextColored(ImVec4(_txt_pt._txtr, _txt_pt._txtg, _txt_pt._txtb, _txt_pt._txta), _txt_pt._content);
+		ImGui::TextColored(ImVec4(_txt_pt._txtr, _txt_pt._txtg, _txt_pt._txtb, 1.f), _txt_pt._content);
 		if (_txt_pt._wrapped) ImGui::PopTextWrapPos();
 		font->Scale = font_scale;
 		ImGui::PopFont();

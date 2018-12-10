@@ -9,6 +9,7 @@ namespace auto_future
 		ft_base() :base_ui_component(){}
 
 		void draw();
+		base_ui_component* get_hit_ui_object(float posx, float posy);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	private:
 		base_prop _in_p_bk;

@@ -75,10 +75,10 @@ namespace auto_future
 		* @brief define the property data block\n
 		*/
 		
-		DEF_STRUCT(base_prop, _in_p,
-			(float, _posx), 
-			(float, _posy), 
-			(bool, _visible), 
+		DEF_STRUCT_WITH_INIT(base_prop, _in_p,
+			(float, _posx, {0.f}),
+			(float, _posy, {0.f}),
+			(bool, _visible, {true}),
 			(char, _name[name_len]))
 			
 		/** the member contain all of the components which is the object
@@ -197,7 +197,13 @@ namespace auto_future
 		*  -
 		*/
 		int collect_property_range(vproperty_list& vplist);
-		
+		/**
+		*@brief get hit ui object
+		*@param posx posy- the coordinate of mouse 
+		*@return object hit by mouse
+		*  -
+		*/
+		virtual base_ui_component* get_hit_ui_object(float posx, float posy) = 0;
 		virtual ImVec2 get_size()
 		{
 			return ImVec2();
@@ -320,6 +326,7 @@ namespace auto_future
 		{
 			_in_p._posy = posy;
 		}
+
 		/**
 		*@brief get absolute coordinates of current object
 		*/

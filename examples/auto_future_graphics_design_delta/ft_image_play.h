@@ -10,11 +10,11 @@ namespace auto_future
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
 			(char, _texture_name[FILE_NAME_LEN]), 
-			(float,_sizew),
-			(float,_sizeh),
+			(float, _sizew, {20.f}),
+			(float, _sizeh, {20.f}),
 			(char, _texture_fmt_name[FILE_NAME_LEN]),
-			(float,_aposx),
-			(float,_aposy),
+			(float, _aposx, {0.f}),
+			(float, _aposy, {0.f}),
 			(int, _frame_index, {0}),
 			(float, _angle_nml, {0.f}))
 		shared_ptr<af_texture> _texture;
@@ -38,6 +38,7 @@ namespace auto_future
 			_img_pt._sizeh = im_size.y;
 		}
 		void draw();
+		base_ui_component* get_hit_ui_object(float posx, float posy);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		enum 
 		{

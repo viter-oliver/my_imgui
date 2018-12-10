@@ -185,61 +185,18 @@
             <filename>../xxscale_left.png</filename>
             <filename>../xxscale_right.png</filename>
             <filename>../yicon_alarm.png</filename>
-            <filename>../yicon_drive.png</filename>
-            <filename>../yicon_drive_n.png</filename>
-            <filename>../yicon_drive_s.png</filename>
-            <filename>../yicon_information.png</filename>
-            <filename>../yicon_information_n.png</filename>
-            <filename>../yicon_information_s.png</filename>
-            <filename>../yicon_map.png</filename>
-            <filename>../yicon_map_n.png</filename>
-            <filename>../yicon_map_s.png</filename>
-            <filename>../yicon_media.png</filename>
-            <filename>../yicon_media_n.png</filename>
-            <filename>../yicon_media_s.png</filename>
-            <filename>../yicon_mileage.png</filename>
-            <filename>../yicon_mileage_n.png</filename>
             <filename>../yicon_mileage_s.png</filename>
-            <filename>../yicon_oil.png</filename>
-            <filename>../yicon_oil_n.png</filename>
-            <filename>../yicon_oil_s.png</filename>
-            <filename>../yicon_pressure_s.png</filename>
             <filename>../ypopup_selected.png</filename>
-            <filename>../ybg_radio.png</filename>
-            <filename>../ybg_usb.png</filename>
-            <filename>../ybg_video.png</filename>
             <filename>../ypopup_img_bg.png</filename>
             <filename>../ypopup_icon_remind.png</filename>
             <filename>../ypopup_icon_warning.png</filename>
-            <filename>../ytire_bg.png</filename>
-            <filename>../ytire_car.png</filename>
             <filename>../ytire_warning.png</filename>
             <filename>../ymenu_point_s.png</filename>
             <filename>../ymenu_selected.png</filename>
-            <filename>../ymenu_arrow_dn_n.png</filename>
-            <filename>../ymenu_arrow_dn_P.png</filename>
-            <filename>../ymenu_arrow_up_n.png</filename>
-            <filename>../ymenu_arrow_up_P.png</filename>
             <filename>../ymenu_line2.png</filename>
             <filename>../ymenu_point.png</filename>
             <filename>../ymileage_arched.png</filename>
-            <filename>../ymileage_car_bg.png</filename>
             <filename>../ymileage_round.png</filename>
-            <filename>../ymenu_line.png</filename>
-            <filename>../ymmcheck_off.png</filename>
-            <filename>../ymmcheck_on.png</filename>
-            <filename>../ytire_f_front_left.png</filename>
-            <filename>../ytire_f_front_right.png</filename>
-            <filename>../ytire_f_rear_left.png</filename>
-            <filename>../ytire_f_rear_right.png</filename>
-            <filename>../ytire_bd_front_left.png</filename>
-            <filename>../ytire_bd_front_right.png</filename>
-            <filename>../ytire_bd_rear_left.png</filename>
-            <filename>../ytire_bd_rear_right.png</filename>
-            <filename>../ytire_n_front_right.png</filename>
-            <filename>../ytire_n_rear_left.png</filename>
-            <filename>../ytire_n_front_left.png</filename>
-            <filename>../ytire_n_rear_right.png</filename>
             <filename>../指示灯/zlight_HDC.png</filename>
             <filename>../指示灯/zlight_HDC_enable.png</filename>
             <filename>../指示灯/zlight_HDC_fault.png</filename>
@@ -263,7 +220,6 @@
             <filename>../指示灯/zlight_Mobile-phone-forgetting-reminder.png</filename>
             <filename>../指示灯/zlight_mode_fault.png</filename>
             <filename>../指示灯/zlight_MUD_Ruts_mode.png</filename>
-            <filename>../指示灯/zlight_normal_mode.png</filename>
             <filename>../指示灯/zlight_PEPS_fault.png</filename>
             <filename>../指示灯/zlight_pm2.5_fault.png</filename>
             <filename>../指示灯/zlight_pm2.5_g.png</filename>
@@ -276,10 +232,7 @@
             <filename>../指示灯/zlight_SACC_enable.png</filename>
             <filename>../指示灯/zlight_SACC_fault.png</filename>
             <filename>../指示灯/zlight_SACC_on.png</filename>
-            <filename>../指示灯/zlight_sand_mode.png</filename>
-            <filename>../指示灯/zlight_snow_mode.png</filename>
             <filename>../指示灯/zlight_speed_limit.png</filename>
-            <filename>../指示灯/zlight_sport_mode.png</filename>
             <filename>../指示灯/zlight_startstop_limited.png</filename>
             <filename>../指示灯/zlight_startstop_limited_off.png</filename>
             <filename>../指示灯/zlight_startstop_off.png</filename>
@@ -302,7 +255,6 @@
             <filename>../指示灯/zlight_AEB_fault.png</filename>
             <filename>../指示灯/zlight_AEB_off.png</filename>
             <filename>../指示灯/zlight_air_bag_fault.png</filename>
-            <filename>../指示灯/zlight_all_terrain_mode.png</filename>
             <filename>../指示灯/zlight_ALS_fault.png</filename>
             <filename>../指示灯/zlight_anti_theft_fault.png</filename>
             <filename>../指示灯/zlight_auto_hold.png</filename>
@@ -319,13 +271,9 @@
             <filename>../指示灯/zlight_CCS_on_green.png</filename>
             <filename>../指示灯/zlight_CDC.png</filename>
             <filename>../指示灯/zlight_charging_fault.png</filename>
-            <filename>../指示灯/zlight_comfort_mode.png</filename>
-            <filename>../指示灯/zlight_cross_country_mode.png</filename>
-            <filename>../指示灯/zlight_custom_mode.png</filename>
             <filename>../指示灯/zlight_door_open.png</filename>
             <filename>../指示灯/zlight_driver_monitor_r.png</filename>
             <filename>../指示灯/zlight_driver_monitor_y.png</filename>
-            <filename>../指示灯/zlight_economical_mode.png</filename>
             <filename>../指示灯/zlight_emission_system_fault.png</filename>
             <filename>../指示灯/zlight_EPB.png</filename>
             <filename>../指示灯/zlight_EPB_fault.png</filename>
@@ -345,8 +293,26 @@
             <filename>../指示灯/zmlight_sport_mode_r.png</filename>
             <filename>../指示灯/zmlight_sport_mode_y.png</filename>
             <filename>../指示灯/zmlight_sport_mode_g.png</filename>
-            <filename>../yicon_tire_pressure.png</filename>
             <filename>../yicon_tire_pressure_n.png</filename>
+            <filename>../pic_bt.png</filename>
+            <filename>../pic_fm.png</filename>
+            <filename>../pic_phone_link.png</filename>
+            <filename>../pic_progress.png</filename>
+            <filename>../icon_music.png</filename>
+            <filename>../pic_album.png</filename>
+            <filename>../pic_am.png</filename>
+            <filename>../icon_checked.png</filename>
+            <filename>../icon_setup.png</filename>
+            <filename>../icon_box.png</filename>
+            <filename>../icon_arrow_lt_s.png</filename>
+            <filename>../icon_arrow_rt.png</filename>
+            <filename>../icon_arrow_rt_s.png</filename>
+            <filename>../icon_arrow_lt.png</filename>
+            <filename>../icon_navi.png</filename>
+            <filename>../cal2_h.png</filename>
+            <filename>../cal2_v.png</filename>
+            <filename>../cal1.png</filename>
+            <filename>../menu_bg.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

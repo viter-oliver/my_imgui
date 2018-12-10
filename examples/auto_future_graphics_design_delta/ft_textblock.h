@@ -9,11 +9,11 @@ namespace auto_future
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_txt_pt,
 			(ImVec3, _txt_clr),
-			(float, _txt_alignh_nml),
-			(float, _txt_alignv_nml),
+			(float, _txt_alignh_nml, {1.f}),
+			(float, _txt_alignv_nml, {1.f}),
 			(float, _width, { ImGui::GetFontSize() * 35.0f }),
 			(char, _content[MAX_CONTENT_LEN]),
-			(bool, _wrapped),
+			(bool, _wrapped, {false}),
 			(int, _font_id, {0}),
 			(float, _font_scale, { 1.f }))
 		ImRect _txt_area;
@@ -34,6 +34,7 @@ namespace auto_future
 		{
 			return _txt_area;
 		}
+		base_ui_component* get_hit_ui_object(float posx, float posy);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);

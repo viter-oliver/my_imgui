@@ -28,6 +28,23 @@ namespace auto_future
 			}
 		}*/
 	}
+	base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
+	{
+		for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
+		{
+			if ((*it)->is_visible())
+			{
+				base_ui_component* hit_object = (*it)->get_hit_ui_object(posx, posy);
+				if (hit_object)
+				{
+					return hit_object;
+				}
+			}
+
+			//hit_object = (*it).get_hit_ui_object(posx, posy);
+		}
+		return nullptr;
+	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	//void ft_base::draw_peroperty_page(int property_part)
 	//{

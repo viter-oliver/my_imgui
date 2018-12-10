@@ -62,8 +62,8 @@ enum en_short_cut_item
 bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,show_output_format=false;
-#define _MY_IMGUI__
-//#define _DEMO_
+//#define _MY_IMGUI__
+#define _DEMO_
 int main(int argc, char* argv[])
 {
     // Setup window

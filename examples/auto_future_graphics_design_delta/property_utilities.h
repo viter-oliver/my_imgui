@@ -106,7 +106,7 @@ stname vname{_vprop_eles}; MSC_PACK_END
 #define DEF_STRUCT_WITH_INIT(stname,vname,...) MSC_PACK_HEAD \
  struct GNU_DEF stname {\
 	BOOST_PP_SEQ_FOR_EACH(GEN_V3,_,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))\
-	stname(){assert(0&&"you should not construct the class this way!");}\
+	stname(){/*assert(0&&"you should not construct the class this way!");*/}\
 	stname(vp_prop_ele& vprop_ele){sp_prop_ele ppt=make_shared<prop_ele>(this,sizeof(stname));\
 	BOOST_PP_SEQ_FOR_EACH(GET_ELE3,stname,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))\
 	vprop_ele.emplace_back(ppt);\

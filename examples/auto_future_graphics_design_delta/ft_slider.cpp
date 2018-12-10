@@ -34,7 +34,7 @@ namespace auto_future
 		:ft_base()
 	{
 		memset(&_slider_pt._cbuffer_random_text, 0, sizeof(_slider_pt._cbuffer_random_text));
-		reg_property_handle(&_slider_pt, 0, [this](void*){});
+		//reg_property_handle(&_slider_pt, 0, [this](void*){});
 		reg_property_handle(&_slider_pt, 8, [this](void*){
 			ImGui::Combo("direction", &_slider_pt._direction_item, direction_iitem, ARRAY_COUNT_DIRECTION_ITEM);
 			ImGui::SameLine(); ShowHelpMarker("x turn right, y turn top, radom don't finish!\n");
@@ -476,6 +476,29 @@ namespace auto_future
 			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		}
 	}
+	base_ui_component* ft_slider::get_hit_ui_object(float posx, float posy)
+	{
+		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
+		if (hit_opt)
+		{
+			return hit_opt;
+		}
+		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 pos1(pos0.x + _slider_pt._bg_txtw, pos0.y + _slider_pt._bg_txth);
+		ImRect cover_area(pos0, pos1);
+		ImVec2 mouse_pos(posx, posy);
+		if (cover_area.Contains(mouse_pos))
+		{
+			return this;
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool ft_slider::init_from_json(Value& jvalue)
 	{
@@ -506,8 +529,8 @@ namespace auto_future
 		_slider_pt._bg_txtw = slidersize["bg_texture_size_w"].asDouble();
 		_slider_pt._bg_txth = slidersize["bg_texture_size_h"].asDouble();
 
-		_slider_pt._bg_txtw = slidersize["head_texture_size_w"].asDouble();
-		_slider_pt._bg_txth = slidersize["head_texture_size_h"].asDouble();
+		_slider_pt._hd_txtw = slidersize["head_texture_size_w"].asDouble();
+		_slider_pt._hd_txth = slidersize["head_texture_size_h"].asDouble();
 
 		_slider_pt._tb_txtw = slidersize["thumb_texture_size_w"].asDouble();
 		_slider_pt._tb_txth = slidersize["thumb_texture_size_h"].asDouble();

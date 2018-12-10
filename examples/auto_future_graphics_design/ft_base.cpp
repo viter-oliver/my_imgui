@@ -43,10 +43,7 @@ namespace auto_future
 		ImGui::Text("base pos:");
 		//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
 		//ImGui::SameLine();
-		if (ImGui::SliderFloat("x", &_in_p._posx, -screenw, screenw))
-		{
-			printf("current posx:%f\n", _in_p._posx);
-		}
+		ImGui::SliderFloat("x", &_in_p._posx, -screenw, screenw);
 		/*if (ImGui::IsMouseReleased(1))
 		{
 			printf("mouse 1 is released!\n");

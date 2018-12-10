@@ -15,7 +15,16 @@
 						"y" : 0.06921967864036560,
 						"z" : 0.06921967864036560
 					},
+					"border_color" : 
+					{
+						"w" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"border_width" : 0.0,
 					"name" : "ft_block",
+					"round" : 0.0,
 					"screen_pos" : 
 					{
 						"x" : 0.0,
@@ -27,7 +36,8 @@
 						"y" : 720.0
 					},
 					"type" : "ft_block",
-					"visible" : true
+					"visible" : true,
+					"with_border" : false
 				},
 				
 				{
@@ -73,7 +83,7 @@
 						"h" : 720.0,
 						"w" : 963.0
 					},
-					"texture_index" : 31,
+					"texture_index" : 50,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -84,7 +94,7 @@
 						"bg_angle" : 0.0,
 						"bg_pos_h" : 0.0,
 						"bg_pos_w" : 0.0,
-						"bg_texture_index" : 29
+						"bg_texture_index" : 48
 					},
 					"childs" : 
 					[
@@ -108,7 +118,7 @@
 								"h" : 40.0,
 								"w" : 44.0
 							},
-							"texture_index" : 6,
+							"texture_index" : 18,
 							"type" : "ft_image",
 							"visible" : true
 						}
@@ -118,7 +128,7 @@
 					{
 						"head_pos_h" : 0.0,
 						"head_pos_w" : 0.0,
-						"head_texture_index" : 28
+						"head_texture_index" : 47
 					},
 					"name" : "water_temp",
 					"progress_value" : 0.5930000543594360,
@@ -130,10 +140,10 @@
 					},
 					"slider_size" : 
 					{
-						"bg_texture_size_h" : 338.0,
-						"bg_texture_size_w" : 152.0,
-						"head_texture_size_h" : 338.0,
-						"head_texture_size_w" : 152.0,
+						"bg_texture_size_h" : 20.0,
+						"bg_texture_size_w" : 20.0,
+						"head_texture_size_h" : 20.0,
+						"head_texture_size_w" : 20.0,
 						"thumb_texture_size_h" : 1.0,
 						"thumb_texture_size_w" : 1.0
 					},
@@ -154,7 +164,7 @@
 						"bg_angle" : 0.0,
 						"bg_pos_h" : 0.0,
 						"bg_pos_w" : 0.0,
-						"bg_texture_index" : 3
+						"bg_texture_index" : 6
 					},
 					"childs" : 
 					[
@@ -178,7 +188,7 @@
 								"h" : 36.0,
 								"w" : 48.0
 							},
-							"texture_index" : 5,
+							"texture_index" : 14,
 							"type" : "ft_image",
 							"visible" : true
 						}
@@ -188,7 +198,7 @@
 					{
 						"head_pos_h" : 0.0,
 						"head_pos_w" : 0.0,
-						"head_texture_index" : 2
+						"head_texture_index" : 5
 					},
 					"name" : "fuel_cons",
 					"progress_value" : 0.7060000300407410,
@@ -200,10 +210,10 @@
 					},
 					"slider_size" : 
 					{
-						"bg_texture_size_h" : 338.0,
-						"bg_texture_size_w" : 152.0,
-						"head_texture_size_h" : 338.0,
-						"head_texture_size_w" : 152.0,
+						"bg_texture_size_h" : 20.0,
+						"bg_texture_size_w" : 20.0,
+						"head_texture_size_h" : 20.0,
+						"head_texture_size_w" : 20.0,
 						"thumb_texture_size_h" : 1.0,
 						"thumb_texture_size_w" : 1.0
 					},
@@ -237,7 +247,7 @@
 						"h" : 300.0,
 						"w" : 805.0
 					},
-					"texture_index" : 34,
+					"texture_index" : 53,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -265,7 +275,7 @@
 								"h" : 9.0,
 								"w" : 23.0
 							},
-							"texture_index" : 36,
+							"texture_index" : 55,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -298,30 +308,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 494.0,
-									"y" : 607.0
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 36,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 55,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -354,30 +341,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 494.0,
-									"y" : 607.0
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 36,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 55,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -410,30 +374,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 494.0,
-									"y" : 607.0
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 36,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 55,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -466,30 +407,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 494.0,
-									"y" : 607.0
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 36,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 55,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -522,30 +440,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 494.0,
-									"y" : 607.0
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 36,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 55,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -578,30 +473,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 494.0,
-									"y" : 607.0
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 36,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 55,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -634,30 +506,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 494.0,
-									"y" : 607.0
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 36,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 55,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						}
@@ -694,36 +543,13 @@
 						"y" : 439.0
 					},
 					"name" : "left_pointer_sl",
-					"pg_value" : 42.74200057983398,
+					"pg_value" : 20.48600006103516,
 					"screen_pos" : 
 					{
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"thumb" : 
-					{
-						"anchor_type" : 0,
-						"axipos" : 
-						{
-							"angle" : 0.0,
-							"x" : 0.0,
-							"y" : 0.0
-						},
-						"name" : "",
-						"screen_pos" : 
-						{
-							"x" : 263.7383422851563,
-							"y" : 299.7120971679688
-						},
-						"size" : 
-						{
-							"h" : 304.7046203613281,
-							"w" : 467.6851806640625
-						},
-						"texture_index" : 9,
-						"type" : "ft_image",
-						"visible" : true
-					},
+					"thumb_id" : 28,
 					"type" : "ft_slider_thumb",
 					"visible" : true
 				},
@@ -831,30 +657,7 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"thumb" : 
-					{
-						"anchor_type" : 0,
-						"axipos" : 
-						{
-							"angle" : 0.0,
-							"x" : 0.0,
-							"y" : 0.0
-						},
-						"name" : "",
-						"screen_pos" : 
-						{
-							"x" : 213.0,
-							"y" : 42.0
-						},
-						"size" : 
-						{
-							"h" : 243.0,
-							"w" : 669.0
-						},
-						"texture_index" : 32,
-						"type" : "ft_image",
-						"visible" : true
-					},
+					"thumb_id" : 51,
 					"type" : "ft_slider_thumb",
 					"visible" : true
 				},
@@ -887,30 +690,7 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"thumb" : 
-					{
-						"anchor_type" : 0,
-						"axipos" : 
-						{
-							"angle" : 0.0,
-							"x" : 0.0,
-							"y" : 0.0
-						},
-						"name" : "",
-						"screen_pos" : 
-						{
-							"x" : 213.0,
-							"y" : 42.0
-						},
-						"size" : 
-						{
-							"h" : 243.0,
-							"w" : 669.0
-						},
-						"texture_index" : 32,
-						"type" : "ft_image",
-						"visible" : true
-					},
+					"thumb_id" : 51,
 					"type" : "ft_slider_thumb",
 					"visible" : true
 				},
@@ -962,7 +742,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 11,
+							"texture_index" : 30,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -986,7 +766,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 12,
+							"texture_index" : 31,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1010,7 +790,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 13,
+							"texture_index" : 32,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1034,7 +814,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 14,
+							"texture_index" : 33,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1058,7 +838,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 15,
+							"texture_index" : 34,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1082,7 +862,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 16,
+							"texture_index" : 35,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1106,7 +886,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 17,
+							"texture_index" : 36,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1130,7 +910,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 18,
+							"texture_index" : 37,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1154,7 +934,7 @@
 								"h" : 38.0,
 								"w" : 24.0
 							},
-							"texture_index" : 19,
+							"texture_index" : 38,
 							"type" : "ft_image",
 							"visible" : true
 						}
@@ -1188,7 +968,7 @@
 						"h" : 300.0,
 						"w" : 805.0
 					},
-					"texture_index" : 35,
+					"texture_index" : 54,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -1216,7 +996,7 @@
 								"h" : 9.0,
 								"w" : 23.0
 							},
-							"texture_index" : 37,
+							"texture_index" : 56,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1249,30 +1029,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 1407.0,
-									"y" : 606.7999877929688
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 37,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 56,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -1305,30 +1062,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 1407.0,
-									"y" : 606.7999877929688
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 37,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 56,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -1361,30 +1095,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 1407.0,
-									"y" : 606.7999877929688
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 37,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 56,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -1417,30 +1128,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 1407.0,
-									"y" : 606.7999877929688
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 37,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 56,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -1473,30 +1161,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 1407.0,
-									"y" : 606.7999877929688
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 37,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 56,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -1529,30 +1194,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 1407.0,
-									"y" : 606.7999877929688
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 37,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 56,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						},
@@ -1585,30 +1227,7 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"thumb" : 
-							{
-								"anchor_type" : 0,
-								"axipos" : 
-								{
-									"angle" : 0.0,
-									"x" : 0.0,
-									"y" : 0.0
-								},
-								"name" : "",
-								"screen_pos" : 
-								{
-									"x" : 1407.0,
-									"y" : 606.7999877929688
-								},
-								"size" : 
-								{
-									"h" : 9.0,
-									"w" : 23.0
-								},
-								"texture_index" : 37,
-								"type" : "ft_image",
-								"visible" : true
-							},
+							"thumb_id" : 56,
 							"type" : "ft_slider_thumb",
 							"visible" : true
 						}
@@ -1645,36 +1264,13 @@
 						"y" : 439.0
 					},
 					"name" : "right_pointer_sl",
-					"pg_value" : 25.40300178527832,
+					"pg_value" : 51.06400299072266,
 					"screen_pos" : 
 					{
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"thumb" : 
-					{
-						"anchor_type" : 0,
-						"axipos" : 
-						{
-							"angle" : 0.0,
-							"x" : 0.0,
-							"y" : 0.0
-						},
-						"name" : "left_pointer_",
-						"screen_pos" : 
-						{
-							"x" : 1220.338989257813,
-							"y" : 294.9624633789063
-						},
-						"size" : 
-						{
-							"h" : 359.1837768554688,
-							"w" : 549.3518676757813
-						},
-						"texture_index" : 10,
-						"type" : "ft_image",
-						"visible" : true
-					},
+					"thumb_id" : 29,
 					"type" : "ft_slider_thumb",
 					"visible" : true
 				},
@@ -1782,30 +1378,7 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"thumb" : 
-					{
-						"anchor_type" : 0,
-						"axipos" : 
-						{
-							"angle" : 0.0,
-							"x" : 0.0,
-							"y" : 0.0
-						},
-						"name" : "",
-						"screen_pos" : 
-						{
-							"x" : 1036.0,
-							"y" : 46.0
-						},
-						"size" : 
-						{
-							"h" : 235.0,
-							"w" : 672.0
-						},
-						"texture_index" : 33,
-						"type" : "ft_image",
-						"visible" : true
-					},
+					"thumb_id" : 52,
 					"type" : "ft_slider_thumb",
 					"visible" : true
 				},
@@ -1838,30 +1411,7 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"thumb" : 
-					{
-						"anchor_type" : 0,
-						"axipos" : 
-						{
-							"angle" : 0.0,
-							"x" : 0.0,
-							"y" : 0.0
-						},
-						"name" : "",
-						"screen_pos" : 
-						{
-							"x" : 1061.510986328125,
-							"y" : 103.0
-						},
-						"size" : 
-						{
-							"h" : 184.0,
-							"w" : 490.0
-						},
-						"texture_index" : 33,
-						"type" : "ft_image",
-						"visible" : true
-					},
+					"thumb_id" : 52,
 					"type" : "ft_slider_thumb",
 					"visible" : true
 				},
@@ -1889,7 +1439,7 @@
 								"h" : 38.0,
 								"w" : 20.0
 							},
-							"texture_index" : 21,
+							"texture_index" : 40,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1913,7 +1463,7 @@
 								"h" : 38.0,
 								"w" : 38.0
 							},
-							"texture_index" : 25,
+							"texture_index" : 44,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1937,7 +1487,7 @@
 								"h" : 38.0,
 								"w" : 52.0
 							},
-							"texture_index" : 22,
+							"texture_index" : 41,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1961,7 +1511,7 @@
 								"h" : 38.0,
 								"w" : 52.0
 							},
-							"texture_index" : 23,
+							"texture_index" : 42,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -1985,7 +1535,7 @@
 								"h" : 38.0,
 								"w" : 52.0
 							},
-							"texture_index" : 24,
+							"texture_index" : 43,
 							"type" : "ft_image",
 							"visible" : true
 						}
@@ -2019,7 +1569,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 27,
+					"texture_index" : 46,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -2027,8 +1577,8 @@
 				{
 					"align" : 
 					{
-						"h" : 0.50,
-						"v" : 0.0
+						"h" : 0.0,
+						"v" : 0.50
 					},
 					"content" : "18:20",
 					"font_id" : 0,
@@ -2041,7 +1591,6 @@
 					},
 					"txt_color" : 
 					{
-						"w" : 1.0,
 						"x" : 1.0,
 						"y" : 1.0,
 						"z" : 1.0
@@ -2082,7 +1631,7 @@
 								"h" : 77.0,
 								"w" : 2.0
 							},
-							"texture_index" : 8,
+							"texture_index" : 20,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -2104,7 +1653,6 @@
 							},
 							"txt_color" : 
 							{
-								"w" : 1.0,
 								"x" : 1.0,
 								"y" : 1.0,
 								"z" : 1.0
@@ -2132,7 +1680,6 @@
 							},
 							"txt_color" : 
 							{
-								"w" : 1.0,
 								"x" : 1.0,
 								"y" : 1.0,
 								"z" : 1.0
@@ -2160,7 +1707,6 @@
 							},
 							"txt_color" : 
 							{
-								"w" : 1.0,
 								"x" : 1.0,
 								"y" : 1.0,
 								"z" : 1.0
@@ -2182,7 +1728,7 @@
 						"h" : 62.0,
 						"w" : 50.0
 					},
-					"texture_index" : 26,
+					"texture_index" : 45,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -2210,7 +1756,7 @@
 								"h" : 3.0,
 								"w" : 77.0
 							},
-							"texture_index" : 7,
+							"texture_index" : 19,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -2234,7 +1780,7 @@
 								"h" : 3.0,
 								"w" : 77.0
 							},
-							"texture_index" : 7,
+							"texture_index" : 19,
 							"type" : "ft_image",
 							"visible" : true
 						},
@@ -2256,7 +1802,6 @@
 							},
 							"txt_color" : 
 							{
-								"w" : 1.0,
 								"x" : 1.0,
 								"y" : 1.0,
 								"z" : 1.0
@@ -2284,7 +1829,6 @@
 							},
 							"txt_color" : 
 							{
-								"w" : 1.0,
 								"x" : 1.0,
 								"y" : 1.0,
 								"z" : 1.0
@@ -2331,7 +1875,6 @@
 							},
 							"txt_color" : 
 							{
-								"w" : 1.0,
 								"x" : 1.0,
 								"y" : 1.0,
 								"z" : 1.0
@@ -2353,7 +1896,6 @@
 					},
 					"txt_color" : 
 					{
-						"w" : 1.0,
 						"x" : 1.0,
 						"y" : 1.0,
 						"z" : 1.0
@@ -2381,7 +1923,6 @@
 					},
 					"txt_color" : 
 					{
-						"w" : 1.0,
 						"x" : 1.0,
 						"y" : 1.0,
 						"z" : 1.0
@@ -2409,7 +1950,6 @@
 					},
 					"txt_color" : 
 					{
-						"w" : 1.0,
 						"x" : 1.0,
 						"y" : 1.0,
 						"z" : 1.0
@@ -2445,39 +1985,15 @@
 					"name" : "menu_bg",
 					"screen_pos" : 
 					{
-						"x" : 337.0,
-						"y" : 43.0
+						"x" : 1025.0,
+						"y" : 5.0
 					},
 					"size" : 
 					{
-						"h" : 668.0,
-						"w" : 1566.0
+						"h" : 715.0,
+						"w" : 895.0
 					},
-					"texture_index" : 85,
-					"type" : "ft_image",
-					"visible" : true
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "slope_line",
-					"screen_pos" : 
-					{
-						"x" : 1013.0,
-						"y" : 20.0
-					},
-					"size" : 
-					{
-						"h" : 573.0,
-						"w" : 334.0
-					},
-					"texture_index" : 67,
+					"texture_index" : 21,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -2501,140 +2017,109 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"name" : "btn_up",
+							"name" : "arrow_btn_left_s",
 							"screen_pos" : 
 							{
-								"x" : 51.0,
-								"y" : 34.0
-							},
-							"size" : 
-							{
-								"h" : 15.0,
-								"w" : 14.0
-							},
-							"texture_index" : 66,
-							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 0,
-							"axipos" : 
-							{
-								"angle" : 0.0,
 								"x" : 0.0,
 								"y" : 0.0
-							},
-							"name" : "btn_dn",
-							"screen_pos" : 
-							{
-								"x" : 31.0,
-								"y" : 80.0
-							},
-							"size" : 
-							{
-								"h" : 14.0,
-								"w" : 14.0
-							},
-							"texture_index" : 64,
-							"type" : "ft_image",
-							"visible" : true
-						}
-					],
-					"name" : "img_selected",
-					"screen_pos" : 
-					{
-						"x" : 1059.0,
-						"y" : 338.0
-					},
-					"size" : 
-					{
-						"h" : 168.0,
-						"w" : 510.0
-					},
-					"texture_index" : 71,
-					"type" : "ft_image",
-					"visible" : true
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"childs" : 
-					[
-						
-						{
-							"anchor_type" : 0,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "Media",
-									"font_id" : 2,
-									"font_scale" : 1.0,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 70.0,
-										"y" : 20.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : "icon",
-							"screen_pos" : 
-							{
-								"x" : 30.96800231933594,
-								"y" : -69.0
 							},
 							"size" : 
 							{
 								"h" : 58.0,
-								"w" : 58.0
+								"w" : 40.0
 							},
-							"texture_index" : 53,
+							"texture_index" : 9,
 							"type" : "ft_image",
-							"visible" : true
+							"visible" : false
 						}
 					],
-					"name" : "second_level_title",
+					"name" : "arrow_btn_left",
 					"screen_pos" : 
 					{
-						"x" : 1250.0,
-						"y" : 221.0
+						"x" : 1505.0,
+						"y" : 145.0
 					},
 					"size" : 
 					{
-						"h" : 2.0,
-						"w" : 425.0
+						"h" : 58.0,
+						"w" : 40.0
 					},
-					"texture_index" : 68,
+					"texture_index" : 8,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"childs" : 
+					[
+						
+						{
+							"anchor_type" : 0,
+							"axipos" : 
+							{
+								"angle" : 0.0,
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"name" : "arrow_btn_left_s",
+							"screen_pos" : 
+							{
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"size" : 
+							{
+								"h" : 58.0,
+								"w" : 40.0
+							},
+							"texture_index" : 11,
+							"type" : "ft_image",
+							"visible" : false
+						}
+					],
+					"name" : "arrow_btn_right",
+					"screen_pos" : 
+					{
+						"x" : 1735.0,
+						"y" : 145.0
+					},
+					"size" : 
+					{
+						"h" : 58.0,
+						"w" : 40.0
+					},
+					"texture_index" : 10,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "img_selected",
+					"screen_pos" : 
+					{
+						"x" : 1500.0,
+						"y" : 326.6670227050781
+					},
+					"size" : 
+					{
+						"h" : 54.0,
+						"w" : 367.0
+					},
+					"texture_index" : 63,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -2642,6 +2127,30 @@
 				{
 					"childs" : 
 					[
+						
+						{
+							"anchor_type" : 4,
+							"axipos" : 
+							{
+								"angle" : 0.0,
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"name" : "navi",
+							"screen_pos" : 
+							{
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"size" : 
+							{
+								"h" : 38.0,
+								"w" : 38.0
+							},
+							"texture_index" : 16,
+							"type" : "ft_image",
+							"visible" : true
+						},
 						
 						{
 							"anchor_type" : 4,
@@ -2651,51 +2160,20 @@
 								"x" : 0.0,
 								"y" : 522.8550415039063
 							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "DRIVE MODEL",
-									"font_id" : 0,
-									"font_scale" : 1.50,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 60.0,
-										"y" : 15.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : "drive_model",
+							"name" : "set_up",
 							"screen_pos" : 
 							{
-								"x" : 1276.0,
-								"y" : 165.0
+								"x" : 0.0,
+								"y" : 0.0
 							},
 							"size" : 
 							{
 								"h" : 38.0,
 								"w" : 38.0
 							},
-							"texture_index" : 43,
+							"texture_index" : 17,
 							"type" : "ft_image",
-							"visible" : true
+							"visible" : false
 						},
 						
 						{
@@ -2706,51 +2184,20 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "MEDIA",
-									"font_id" : 0,
-									"font_scale" : 1.50,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 60.0,
-										"y" : 15.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
 							"name" : "media",
 							"screen_pos" : 
 							{
-								"x" : 1249.0,
-								"y" : 225.0
+								"x" : 0.0,
+								"y" : 0.0
 							},
 							"size" : 
 							{
 								"h" : 38.0,
 								"w" : 38.0
 							},
-							"texture_index" : 52,
+							"texture_index" : 15,
 							"type" : "ft_image",
-							"visible" : true
+							"visible" : false
 						},
 						
 						{
@@ -2761,152 +2208,11 @@
 								"x" : 0.0,
 								"y" : 0.0
 							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "MAP",
-									"font_id" : 0,
-									"font_scale" : 1.50,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 60.0,
-										"y" : 15.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : "map",
+							"name" : "trip",
 							"screen_pos" : 
 							{
-								"x" : 1208.0,
-								"y" : 285.0
-							},
-							"size" : 
-							{
-								"h" : 38.0,
-								"w" : 38.0
-							},
-							"texture_index" : 49,
-							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 4,
-							"axipos" : 
-							{
-								"angle" : 0.0,
 								"x" : 0.0,
 								"y" : 0.0
-							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "TPMS",
-									"font_id" : 0,
-									"font_scale" : 1.50,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 60.0,
-										"y" : 15.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : "tpms",
-							"screen_pos" : 
-							{
-								"x" : 1171.0,
-								"y" : 345.0
-							},
-							"size" : 
-							{
-								"h" : 38.0,
-								"w" : 38.0
-							},
-							"texture_index" : 61,
-							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 4,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "FUEL CONSUMPTION",
-									"font_id" : 0,
-									"font_scale" : 1.50,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 60.0,
-										"y" : 15.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : "fuel_consumption",
-							"screen_pos" : 
-							{
-								"x" : 1134.0,
-								"y" : 405.0
 							},
 							"size" : 
 							{
@@ -2915,124 +2221,14 @@
 							},
 							"texture_index" : 58,
 							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 4,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "MILEAGE",
-									"font_id" : 0,
-									"font_scale" : 1.50,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 60.0,
-										"y" : 15.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : "mileage",
-							"screen_pos" : 
-							{
-								"x" : 1108.0,
-								"y" : 475.0
-							},
-							"size" : 
-							{
-								"h" : 38.0,
-								"w" : 38.0
-							},
-							"texture_index" : 55,
-							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 4,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "INFOMATION",
-									"font_id" : 0,
-									"font_scale" : 1.50,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 60.0,
-										"y" : 15.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : "info",
-							"screen_pos" : 
-							{
-								"x" : 1070.0,
-								"y" : 538.0
-							},
-							"size" : 
-							{
-								"h" : 38.0,
-								"w" : 38.0
-							},
-							"texture_index" : 46,
-							"type" : "ft_image",
-							"visible" : true
+							"visible" : false
 						}
 					],
-					"name" : "first_level_menu",
+					"name" : "info_icon_list",
 					"screen_pos" : 
 					{
-						"x" : 0.0,
-						"y" : 0.0
+						"x" : 1620.0,
+						"y" : 160.0
 					},
 					"type" : "ft_base",
 					"visible" : true
@@ -3043,58 +2239,30 @@
 					[
 						
 						{
-							"anchor_type" : 0,
-							"axipos" : 
+							"align" : 
 							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
+								"h" : 0.50,
+								"v" : 1.0
 							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "Radio",
-									"font_id" : 2,
-									"font_scale" : 1.0,
-									"name" : "txt_value",
-									"screen_pos" : 
-									{
-										"x" : 30.96800231933594,
-										"y" : -2.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : " check_radio",
+							"content" : "Navigation is off",
+							"font_id" : 2,
+							"font_scale" : 1.0,
+							"name" : "warning_info",
 							"screen_pos" : 
 							{
-								"x" : 1240.0,
-								"y" : 249.0
+								"x" : 133.33300781250,
+								"y" : 190.0
 							},
-							"size" : 
+							"txt_color" : 
 							{
-								"h" : 17.0,
-								"w" : 17.0
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
 							},
-							"texture_index" : 75,
-							"type" : "ft_image",
-							"visible" : true
+							"type" : "ft_textblock",
+							"visible" : false,
+							"width" : 560.0,
+							"wrapped" : true
 						},
 						
 						{
@@ -3109,59 +2277,28 @@
 							[
 								
 								{
-									"align" : 
+									"anchor_type" : 0,
+									"axipos" : 
 									{
-										"h" : 0.0,
-										"v" : 0.0
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
 									},
-									"content" : "USB",
-									"font_id" : 2,
-									"font_scale" : 1.0,
-									"name" : "txt_value",
+									"name" : "main_string",
 									"screen_pos" : 
 									{
-										"x" : 30.96800231933594,
-										"y" : -2.0
+										"x" : 73.0,
+										"y" : -6.0
 									},
-									"txt_color" : 
+									"size" : 
 									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
+										"h" : 77.0,
+										"w" : 2.0
 									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"name" : " check_usb",
-							"screen_pos" : 
-							{
-								"x" : 1200.0,
-								"y" : 323.0
-							},
-							"size" : 
-							{
-								"h" : 17.0,
-								"w" : 17.0
-							},
-							"texture_index" : 75,
-							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 0,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"childs" : 
-							[
+									"texture_index" : 20,
+									"type" : "ft_image",
+									"visible" : true
+								},
 								
 								{
 									"align" : 
@@ -3169,18 +2306,71 @@
 										"h" : 0.0,
 										"v" : 0.0
 									},
-									"content" : "My",
-									"font_id" : 2,
-									"font_scale" : 1.0,
-									"name" : "txt_value",
+									"content" : "500",
+									"font_id" : 1,
+									"font_scale" : 2.100000143051148,
+									"name" : "distance",
 									"screen_pos" : 
 									{
-										"x" : 30.96800231933594,
-										"y" : -2.0
+										"x" : 98.74300384521484,
+										"y" : -4.114000320434570
 									},
 									"txt_color" : 
 									{
-										"w" : 1.0,
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								},
+								
+								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
+									"content" : "m",
+									"font_id" : 1,
+									"font_scale" : 1.50,
+									"name" : "unit",
+									"screen_pos" : 
+									{
+										"x" : 170.6670074462891,
+										"y" : 4.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								},
+								
+								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
+									"content" : "next turn street",
+									"font_id" : 1,
+									"font_scale" : 1.50,
+									"name" : "notification",
+									"screen_pos" : 
+									{
+										"x" : 100.0,
+										"y" : 40.0
+									},
+									"txt_color" : 
+									{
 										"x" : 1.0,
 										"y" : 1.0,
 										"z" : 1.0
@@ -3191,27 +2381,27 @@
 									"wrapped" : false
 								}
 							],
-							"name" : " check_my",
+							"name" : "icon_turn",
 							"screen_pos" : 
 							{
-								"x" : 1165.0,
-								"y" : 397.0
+								"x" : 20.0,
+								"y" : 156.0
 							},
 							"size" : 
 							{
-								"h" : 17.0,
-								"w" : 17.0
+								"h" : 62.0,
+								"w" : 50.0
 							},
-							"texture_index" : 75,
+							"texture_index" : 45,
 							"type" : "ft_image",
 							"visible" : true
 						}
 					],
-					"name" : "media_group",
+					"name" : "navi_group",
 					"screen_pos" : 
 					{
-						"x" : 0.0,
-						"y" : 0.0
+						"x" : 1508.0,
+						"y" : 200.0
 					},
 					"type" : "ft_base",
 					"visible" : false
@@ -3222,126 +2412,308 @@
 					[
 						
 						{
-							"anchor_type" : 0,
-							"axipos" : 
+							"align" : 
 							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
+								"h" : 0.50,
+								"v" : 1.0
 							},
-							"name" : "tpms_car",
+							"content" : "Style",
+							"font_id" : 2,
+							"font_scale" : 1.0,
+							"name" : "style_opt",
 							"screen_pos" : 
 							{
-								"x" : 957.0,
-								"y" : 194.0
+								"x" : 1655.0,
+								"y" : 382.0
 							},
-							"size" : 
+							"txt_color" : 
 							{
-								"h" : 573.0,
-								"w" : 860.0
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
 							},
-							"texture_index" : 86,
-							"type" : "ft_image",
-							"visible" : true
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : true
 						},
 						
 						{
-							"anchor_type" : 0,
-							"axipos" : 
+							"align" : 
 							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
+								"h" : 0.50,
+								"v" : 0.0
 							},
-							"name" : "tire_rear_left",
+							"content" : "System Version",
+							"font_id" : 2,
+							"font_scale" : 1.0,
+							"name" : "version",
 							"screen_pos" : 
 							{
-								"x" : 1446.0,
-								"y" : 389.0
+								"x" : 1655.0,
+								"y" : 420.0000305175781
 							},
-							"size" : 
+							"txt_color" : 
 							{
-								"h" : 164.0,
-								"w" : 263.0
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
 							},
-							"texture_index" : 93,
-							"type" : "ft_image",
-							"visible" : true
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : true
 						},
 						
 						{
-							"anchor_type" : 0,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"name" : "tire_rear_right",
+							"childs" : 
+							[
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"childs" : 
+									[
+										
+										{
+											"anchor_type" : 0,
+											"axipos" : 
+											{
+												"angle" : 0.0,
+												"x" : -431602080.0,
+												"y" : -431602080.0
+											},
+											"name" : "checked",
+											"screen_pos" : 
+											{
+												"x" : 4.0,
+												"y" : 2.0
+											},
+											"size" : 
+											{
+												"h" : 18.0,
+												"w" : 22.0
+											},
+											"texture_index" : 13,
+											"type" : "ft_image",
+											"visible" : true
+										},
+										
+										{
+											"align" : 
+											{
+												"h" : 0.0,
+												"v" : 0.0
+											},
+											"content" : "Normal",
+											"font_id" : 2,
+											"font_scale" : 1.0,
+											"name" : "show",
+											"screen_pos" : 
+											{
+												"x" : 50.0,
+												"y" : 0.0
+											},
+											"txt_color" : 
+											{
+												"x" : 1.0,
+												"y" : 1.0,
+												"z" : 1.0
+											},
+											"type" : "ft_textblock",
+											"visible" : true,
+											"width" : 560.0,
+											"wrapped" : true
+										}
+									],
+									"name" : "style1",
+									"screen_pos" : 
+									{
+										"x" : -40.0,
+										"y" : -40.0
+									},
+									"size" : 
+									{
+										"h" : 25.0,
+										"w" : 25.0
+									},
+									"texture_index" : 12,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"childs" : 
+									[
+										
+										{
+											"anchor_type" : 0,
+											"axipos" : 
+											{
+												"angle" : 0.0,
+												"x" : -431602080.0,
+												"y" : -431602080.0
+											},
+											"name" : "checked",
+											"screen_pos" : 
+											{
+												"x" : 4.0,
+												"y" : 2.0
+											},
+											"size" : 
+											{
+												"h" : 18.0,
+												"w" : 22.0
+											},
+											"texture_index" : 13,
+											"type" : "ft_image",
+											"visible" : true
+										},
+										
+										{
+											"align" : 
+											{
+												"h" : 0.0,
+												"v" : 0.0
+											},
+											"content" : "Sport",
+											"font_id" : 2,
+											"font_scale" : 1.0,
+											"name" : "show",
+											"screen_pos" : 
+											{
+												"x" : 50.0,
+												"y" : 0.0
+											},
+											"txt_color" : 
+											{
+												"x" : 1.0,
+												"y" : 1.0,
+												"z" : 1.0
+											},
+											"type" : "ft_textblock",
+											"visible" : true,
+											"width" : 560.0,
+											"wrapped" : true
+										}
+									],
+									"name" : "style2",
+									"screen_pos" : 
+									{
+										"x" : -40.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 25.0,
+										"w" : 25.0
+									},
+									"texture_index" : 12,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"childs" : 
+									[
+										
+										{
+											"anchor_type" : 0,
+											"axipos" : 
+											{
+												"angle" : 0.0,
+												"x" : -431602080.0,
+												"y" : -431602080.0
+											},
+											"name" : "checked",
+											"screen_pos" : 
+											{
+												"x" : 4.0,
+												"y" : 2.0
+											},
+											"size" : 
+											{
+												"h" : 18.0,
+												"w" : 22.0
+											},
+											"texture_index" : 13,
+											"type" : "ft_image",
+											"visible" : true
+										},
+										
+										{
+											"align" : 
+											{
+												"h" : 0.0,
+												"v" : 0.0
+											},
+											"content" : "Future",
+											"font_id" : 2,
+											"font_scale" : 1.0,
+											"name" : "show",
+											"screen_pos" : 
+											{
+												"x" : 50.0,
+												"y" : 0.0
+											},
+											"txt_color" : 
+											{
+												"x" : 1.0,
+												"y" : 1.0,
+												"z" : 1.0
+											},
+											"type" : "ft_textblock",
+											"visible" : true,
+											"width" : 560.0,
+											"wrapped" : true
+										}
+									],
+									"name" : "style3",
+									"screen_pos" : 
+									{
+										"x" : -40.0,
+										"y" : 40.0
+									},
+									"size" : 
+									{
+										"h" : 25.0,
+										"w" : 25.0
+									},
+									"texture_index" : 12,
+									"type" : "ft_image",
+									"visible" : true
+								}
+							],
+							"name" : "style_list",
 							"screen_pos" : 
 							{
-								"x" : 1297.0,
-								"y" : 322.0
+								"x" : 1655.0,
+								"y" : 382.0
 							},
-							"size" : 
-							{
-								"h" : 128.0,
-								"w" : 237.0
-							},
-							"texture_index" : 94,
-							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 0,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"name" : "tire_front_left",
-							"screen_pos" : 
-							{
-								"x" : 1285.0,
-								"y" : 476.0
-							},
-							"size" : 
-							{
-								"h" : 230.0,
-								"w" : 316.0
-							},
-							"texture_index" : 91,
-							"type" : "ft_image",
-							"visible" : true
-						},
-						
-						{
-							"anchor_type" : 0,
-							"axipos" : 
-							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
-							},
-							"name" : "tire_front_right",
-							"screen_pos" : 
-							{
-								"x" : 1138.0,
-								"y" : 390.0
-							},
-							"size" : 
-							{
-								"h" : 152.0,
-								"w" : 253.0
-							},
-							"texture_index" : 92,
-							"type" : "ft_image",
-							"visible" : true
+							"type" : "ft_base",
+							"visible" : false
 						}
 					],
-					"name" : "tpms_group",
+					"name" : "setup_group",
 					"screen_pos" : 
 					{
 						"x" : 0.0,
@@ -3358,21 +2730,20 @@
 						{
 							"align" : 
 							{
-								"h" : 0.0,
+								"h" : 0.50,
 								"v" : 0.0
 							},
-							"content" : "Reset",
+							"content" : "Multimedia is off",
 							"font_id" : 2,
 							"font_scale" : 1.0,
-							"name" : "reset",
+							"name" : "multimedia_off",
 							"screen_pos" : 
 							{
-								"x" : 1240.0,
-								"y" : 249.0
+								"x" : 250.0,
+								"y" : 120.0000076293945
 							},
 							"txt_color" : 
 							{
-								"w" : 1.0,
 								"x" : 1.0,
 								"y" : 1.0,
 								"z" : 1.0
@@ -3384,27 +2755,280 @@
 						},
 						
 						{
-							"name" : "fuel_cons_graph",
+							"anchor_type" : 0,
+							"axipos" : 
+							{
+								"angle" : 0.0,
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "140.2MHZ",
+									"font_id" : 2,
+									"font_scale" : 1.0,
+									"name" : "txt_value",
+									"screen_pos" : 
+									{
+										"x" : 130.0,
+										"y" : 280.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"name" : "AM",
 							"screen_pos" : 
 							{
-								"x" : 1265.311035156250,
-								"y" : 347.0160217285156
+								"x" : 133.0,
+								"y" : 13.0
 							},
 							"size" : 
 							{
-								"h" : 200.0,
-								"w" : 400.0
+								"h" : 239.0,
+								"w" : 238.0
 							},
-							"type" : "ft_plot_lines",
-							"value_count" : 10,
-							"visible" : true
+							"texture_index" : 23,
+							"type" : "ft_image",
+							"visible" : false
+						},
+						
+						{
+							"anchor_type" : 0,
+							"axipos" : 
+							{
+								"angle" : 0.0,
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "1402MHZ",
+									"font_id" : 2,
+									"font_scale" : 1.0,
+									"name" : "txt_value",
+									"screen_pos" : 
+									{
+										"x" : 130.0,
+										"y" : 280.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"name" : "FM",
+							"screen_pos" : 
+							{
+								"x" : 133.0,
+								"y" : 13.0
+							},
+							"size" : 
+							{
+								"h" : 239.0,
+								"w" : 238.0
+							},
+							"texture_index" : 25,
+							"type" : "ft_image",
+							"visible" : false
+						},
+						
+						{
+							"anchor_type" : 0,
+							"axipos" : 
+							{
+								"angle" : 0.0,
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "It come back to you",
+									"font_id" : 2,
+									"font_scale" : 1.0,
+									"name" : "txt_value",
+									"screen_pos" : 
+									{
+										"x" : 130.0,
+										"y" : 280.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"name" : "Album",
+							"screen_pos" : 
+							{
+								"x" : 133.0,
+								"y" : 13.0
+							},
+							"size" : 
+							{
+								"h" : 239.0,
+								"w" : 238.0
+							},
+							"texture_index" : 22,
+							"type" : "ft_image",
+							"visible" : false
+						},
+						
+						{
+							"anchor_type" : 0,
+							"axipos" : 
+							{
+								"angle" : 0.0,
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "Some one like you",
+									"font_id" : 2,
+									"font_scale" : 1.0,
+									"name" : "txt_value",
+									"screen_pos" : 
+									{
+										"x" : 60.0,
+										"y" : 243.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"name" : "PhoneLink",
+							"screen_pos" : 
+							{
+								"x" : 210.0,
+								"y" : 50.0
+							},
+							"size" : 
+							{
+								"h" : 146.0,
+								"w" : 87.0
+							},
+							"texture_index" : 26,
+							"type" : "ft_image",
+							"visible" : false
+						},
+						
+						{
+							"anchor_type" : 0,
+							"axipos" : 
+							{
+								"angle" : 0.0,
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "The earth song",
+									"font_id" : 2,
+									"font_scale" : 1.0,
+									"name" : "txt_value",
+									"screen_pos" : 
+									{
+										"x" : 130.0,
+										"y" : 280.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"name" : "Bt",
+							"screen_pos" : 
+							{
+								"x" : 113.0,
+								"y" : 13.0
+							},
+							"size" : 
+							{
+								"h" : 239.0,
+								"w" : 238.0
+							},
+							"texture_index" : 24,
+							"type" : "ft_image",
+							"visible" : false
 						}
 					],
-					"name" : "fuel_cons_group",
+					"name" : "media_group",
 					"screen_pos" : 
 					{
-						"x" : 0.0,
-						"y" : 0.0
+						"x" : 1395.0,
+						"y" : 249.0
 					},
 					"type" : "ft_base",
 					"visible" : false
@@ -3415,27 +3039,171 @@
 					[
 						
 						{
-							"anchor_type" : 0,
-							"axipos" : 
+							"align" : 
 							{
-								"angle" : 0.0,
-								"x" : 0.0,
-								"y" : 0.0
+								"h" : 0.50,
+								"v" : 0.0
 							},
-							"name" : "mileage_bg",
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "4.5",
+									"font_id" : 2,
+									"font_scale" : 1.399999976158142,
+									"name" : "value",
+									"screen_pos" : 
+									{
+										"x" : 0.0,
+										"y" : 25.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								},
+								
+								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
+									"content" : "km",
+									"font_id" : 0,
+									"font_scale" : 1.0,
+									"name" : "unit",
+									"screen_pos" : 
+									{
+										"x" : 30.0,
+										"y" : 35.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"content" : "Trip A",
+							"font_id" : 2,
+							"font_scale" : 1.0,
+							"name" : "TripA",
 							"screen_pos" : 
 							{
-								"x" : 1008.0,
-								"y" : 296.0
+								"x" : 250.0,
+								"y" : 91.91500091552734
 							},
-							"size" : 
+							"txt_color" : 
 							{
-								"h" : 435.0,
-								"w" : 944.0
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
 							},
-							"texture_index" : 73,
-							"type" : "ft_image",
-							"visible" : true
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.50,
+								"v" : 0.0
+							},
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "4.5",
+									"font_id" : 2,
+									"font_scale" : 1.399999976158142,
+									"name" : "value",
+									"screen_pos" : 
+									{
+										"x" : 5.0,
+										"y" : 25.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								},
+								
+								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
+									"content" : "km",
+									"font_id" : 0,
+									"font_scale" : 1.0,
+									"name" : "unit",
+									"screen_pos" : 
+									{
+										"x" : 35.0,
+										"y" : 35.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"content" : "Trip B",
+							"font_id" : 2,
+							"font_scale" : 1.0,
+							"name" : "TripB",
+							"screen_pos" : 
+							{
+								"x" : 250.0,
+								"y" : 91.91500091552734
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : false,
+							"width" : 560.0,
+							"wrapped" : false
 						},
 						
 						{
@@ -3444,7 +3212,7 @@
 								"bg_angle" : 0.0,
 								"bg_pos_h" : 0.0,
 								"bg_pos_w" : 0.0,
-								"bg_texture_index" : 74
+								"bg_texture_index" : 65
 							},
 							"childs" : 
 							[
@@ -3455,7 +3223,134 @@
 										"h" : 0.0,
 										"v" : 0.0
 									},
-									"content" : "Time",
+									"content" : "Endurance",
+									"font_id" : 2,
+									"font_scale" : 1.0,
+									"name" : "title",
+									"screen_pos" : 
+									{
+										"x" : 10.21300029754639,
+										"y" : 134.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								},
+								
+								{
+									"align" : 
+									{
+										"h" : 0.50,
+										"v" : 0.0
+									},
+									"content" : "260",
+									"font_id" : 2,
+									"font_scale" : 1.399999976158142,
+									"name" : "value",
+									"screen_pos" : 
+									{
+										"x" : 61.27700424194336,
+										"y" : 45.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								},
+								
+								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
+									"content" : "km",
+									"font_id" : 0,
+									"font_scale" : 1.0,
+									"name" : "unit",
+									"screen_pos" : 
+									{
+										"x" : 50.0,
+										"y" : 80.0
+									},
+									"txt_color" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"type" : "ft_textblock",
+									"visible" : true,
+									"width" : 560.0,
+									"wrapped" : false
+								}
+							],
+							"direction" : 2,
+							"head_pos" : 
+							{
+								"head_pos_h" : 0.0,
+								"head_pos_w" : 0.0,
+								"head_texture_index" : 64
+							},
+							"name" : "trip_endurance",
+							"progress_value" : 0.8750000596046448,
+							"random_point_file" : "mileage_pg.txt",
+							"screen_pos" : 
+							{
+								"x" : 195.0,
+								"y" : 72.0
+							},
+							"slider_size" : 
+							{
+								"bg_texture_size_h" : 117.0,
+								"bg_texture_size_w" : 117.0,
+								"head_texture_size_h" : 20.0,
+								"head_texture_size_w" : 20.0,
+								"thumb_texture_size_h" : 0.0,
+								"thumb_texture_size_w" : 0.0
+							},
+							"thumb_pos" : 
+							{
+								"thumb_pos_h" : 0.0,
+								"thumb_pos_w" : 0.0,
+								"thumb_texture_index" : 0,
+								"thumb_visible" : false
+							},
+							"type" : "ft_slider",
+							"visible" : false
+						},
+						
+						{
+							"bg_pos" : 
+							{
+								"bg_angle" : 0.0,
+								"bg_pos_h" : 0.0,
+								"bg_pos_w" : 0.0,
+								"bg_texture_index" : 65
+							},
+							"childs" : 
+							[
+								
+								{
+									"align" : 
+									{
+										"h" : 0.0,
+										"v" : 0.0
+									},
+									"content" : "Trip A",
 									"font_id" : 2,
 									"font_scale" : 1.0,
 									"name" : "title",
@@ -3466,7 +3361,6 @@
 									},
 									"txt_color" : 
 									{
-										"w" : 1.0,
 										"x" : 1.0,
 										"y" : 1.0,
 										"z" : 1.0
@@ -3494,7 +3388,6 @@
 									},
 									"txt_color" : 
 									{
-										"w" : 1.0,
 										"x" : 1.0,
 										"y" : 1.0,
 										"z" : 1.0
@@ -3522,7 +3415,6 @@
 									},
 									"txt_color" : 
 									{
-										"w" : 1.0,
 										"x" : 1.0,
 										"y" : 1.0,
 										"z" : 1.0
@@ -3538,10 +3430,10 @@
 							{
 								"head_pos_h" : 0.0,
 								"head_pos_w" : 0.0,
-								"head_texture_index" : 72
+								"head_texture_index" : 64
 							},
-							"name" : "mileage_time",
-							"progress_value" : 0.6850000619888306,
+							"name" : "trip_A",
+							"progress_value" : 0.8020000457763672,
 							"random_point_file" : "mileage_pg.txt",
 							"screen_pos" : 
 							{
@@ -3552,8 +3444,8 @@
 							{
 								"bg_texture_size_h" : 117.0,
 								"bg_texture_size_w" : 117.0,
-								"head_texture_size_h" : 117.0,
-								"head_texture_size_w" : 117.0,
+								"head_texture_size_h" : 20.0,
+								"head_texture_size_w" : 20.0,
 								"thumb_texture_size_h" : 0.0,
 								"thumb_texture_size_w" : 0.0
 							},
@@ -3565,7 +3457,7 @@
 								"thumb_visible" : false
 							},
 							"type" : "ft_slider",
-							"visible" : true
+							"visible" : false
 						},
 						
 						{
@@ -3574,7 +3466,7 @@
 								"bg_angle" : 0.0,
 								"bg_pos_h" : 0.0,
 								"bg_pos_w" : 0.0,
-								"bg_texture_index" : 74
+								"bg_texture_index" : 65
 							},
 							"childs" : 
 							[
@@ -3585,7 +3477,7 @@
 										"h" : 0.0,
 										"v" : 0.0
 									},
-									"content" : "Trip",
+									"content" : "Trip B",
 									"font_id" : 2,
 									"font_scale" : 1.0,
 									"name" : "title",
@@ -3596,7 +3488,6 @@
 									},
 									"txt_color" : 
 									{
-										"w" : 1.0,
 										"x" : 1.0,
 										"y" : 1.0,
 										"z" : 1.0
@@ -3624,7 +3515,6 @@
 									},
 									"txt_color" : 
 									{
-										"w" : 1.0,
 										"x" : 1.0,
 										"y" : 1.0,
 										"z" : 1.0
@@ -3652,7 +3542,6 @@
 									},
 									"txt_color" : 
 									{
-										"w" : 1.0,
 										"x" : 1.0,
 										"y" : 1.0,
 										"z" : 1.0
@@ -3668,9 +3557,9 @@
 							{
 								"head_pos_h" : 0.0,
 								"head_pos_w" : 0.0,
-								"head_texture_index" : 72
+								"head_texture_index" : 64
 							},
-							"name" : "mileage_trip",
+							"name" : "trip_B",
 							"progress_value" : 0.7420000433921814,
 							"random_point_file" : "mileage_pg.txt",
 							"screen_pos" : 
@@ -3682,8 +3571,8 @@
 							{
 								"bg_texture_size_h" : 117.0,
 								"bg_texture_size_w" : 117.0,
-								"head_texture_size_h" : 117.0,
-								"head_texture_size_w" : 117.0,
+								"head_texture_size_h" : 20.0,
+								"head_texture_size_w" : 20.0,
 								"thumb_texture_size_h" : 0.0,
 								"thumb_texture_size_w" : 0.0
 							},
@@ -3695,326 +3584,17 @@
 								"thumb_visible" : false
 							},
 							"type" : "ft_slider",
-							"visible" : true
-						},
-						
-						{
-							"bg_pos" : 
-							{
-								"bg_angle" : 0.0,
-								"bg_pos_h" : 0.0,
-								"bg_pos_w" : 0.0,
-								"bg_texture_index" : 74
-							},
-							"childs" : 
-							[
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "Endurance",
-									"font_id" : 2,
-									"font_scale" : 1.0,
-									"name" : "title",
-									"screen_pos" : 
-									{
-										"x" : 31.0,
-										"y" : 134.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								},
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "260",
-									"font_id" : 2,
-									"font_scale" : 1.399999976158142,
-									"name" : "value",
-									"screen_pos" : 
-									{
-										"x" : 30.96800231933594,
-										"y" : 45.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								},
-								
-								{
-									"align" : 
-									{
-										"h" : 0.0,
-										"v" : 0.0
-									},
-									"content" : "km",
-									"font_id" : 0,
-									"font_scale" : 1.0,
-									"name" : "unit",
-									"screen_pos" : 
-									{
-										"x" : 45.0,
-										"y" : 78.0
-									},
-									"txt_color" : 
-									{
-										"w" : 1.0,
-										"x" : 1.0,
-										"y" : 1.0,
-										"z" : 1.0
-									},
-									"type" : "ft_textblock",
-									"visible" : true,
-									"width" : 560.0,
-									"wrapped" : false
-								}
-							],
-							"direction" : 2,
-							"head_pos" : 
-							{
-								"head_pos_h" : 0.0,
-								"head_pos_w" : 0.0,
-								"head_texture_index" : 72
-							},
-							"name" : "mileage_endurance",
-							"progress_value" : 0.8750000596046448,
-							"random_point_file" : "mileage_pg.txt",
-							"screen_pos" : 
-							{
-								"x" : 1598.0,
-								"y" : 406.0
-							},
-							"slider_size" : 
-							{
-								"bg_texture_size_h" : 117.0,
-								"bg_texture_size_w" : 117.0,
-								"head_texture_size_h" : 117.0,
-								"head_texture_size_w" : 117.0,
-								"thumb_texture_size_h" : 0.0,
-								"thumb_texture_size_w" : 0.0
-							},
-							"thumb_pos" : 
-							{
-								"thumb_pos_h" : 0.0,
-								"thumb_pos_w" : 0.0,
-								"thumb_texture_index" : 0,
-								"thumb_visible" : false
-							},
-							"type" : "ft_slider",
-							"visible" : true
+							"visible" : false
 						}
 					],
-					"name" : "mileage_group",
+					"name" : "trip_group",
 					"screen_pos" : 
 					{
-						"x" : 0.0,
-						"y" : 0.0
+						"x" : 1395.0,
+						"y" : 249.0
 					},
 					"type" : "ft_base",
-					"visible" : false
-				},
-				
-				{
-					"childs" : 
-					[
-						
-						{
-							"align" : 
-							{
-								"h" : 0.0,
-								"v" : 0.0
-							},
-							"content" : "Us",
-							"font_id" : 0,
-							"font_scale" : 1.0,
-							"name" : "us",
-							"screen_pos" : 
-							{
-								"x" : 1240.0,
-								"y" : 249.0
-							},
-							"txt_color" : 
-							{
-								"w" : 1.0,
-								"x" : 1.0,
-								"y" : 1.0,
-								"z" : 1.0
-							},
-							"type" : "ft_textblock",
-							"visible" : true,
-							"width" : 560.0,
-							"wrapped" : false
-						},
-						
-						{
-							"align" : 
-							{
-								"h" : 0.0,
-								"v" : 0.0
-							},
-							"content" : "System",
-							"font_id" : 0,
-							"font_scale" : 1.0,
-							"name" : "system",
-							"screen_pos" : 
-							{
-								"x" : 1200.0,
-								"y" : 323.0
-							},
-							"txt_color" : 
-							{
-								"w" : 1.0,
-								"x" : 1.0,
-								"y" : 1.0,
-								"z" : 1.0
-							},
-							"type" : "ft_textblock",
-							"visible" : true,
-							"width" : 560.0,
-							"wrapped" : false
-						},
-						
-						{
-							"align" : 
-							{
-								"h" : 0.0,
-								"v" : 0.0
-							},
-							"content" : "Auto-future graphics designerr",
-							"font_id" : 0,
-							"font_scale" : 1.0,
-							"name" : "afgd",
-							"screen_pos" : 
-							{
-								"x" : 1165.0,
-								"y" : 397.0
-							},
-							"txt_color" : 
-							{
-								"w" : 1.0,
-								"x" : 1.0,
-								"y" : 1.0,
-								"z" : 1.0
-							},
-							"type" : "ft_textblock",
-							"visible" : true,
-							"width" : 560.0,
-							"wrapped" : false
-						}
-					],
-					"name" : "info_group",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"type" : "ft_base",
-					"visible" : false
-				},
-				
-				{
-					"childs" : 
-					[
-						
-						{
-							"align" : 
-							{
-								"h" : 0.0,
-								"v" : 0.0
-							},
-							"content" : "Normal",
-							"font_id" : 2,
-							"font_scale" : 1.0,
-							"name" : "normal",
-							"screen_pos" : 
-							{
-								"x" : 1240.0,
-								"y" : 249.0
-							},
-							"txt_color" : 
-							{
-								"w" : 1.0,
-								"x" : 1.0,
-								"y" : 1.0,
-								"z" : 1.0
-							},
-							"type" : "ft_textblock",
-							"visible" : true,
-							"width" : 560.0,
-							"wrapped" : false
-						},
-						
-						{
-							"align" : 
-							{
-								"h" : 0.0,
-								"v" : 0.0
-							},
-							"content" : "Sport",
-							"font_id" : 2,
-							"font_scale" : 1.0,
-							"name" : "sport",
-							"screen_pos" : 
-							{
-								"x" : 1200.0,
-								"y" : 323.0
-							},
-							"txt_color" : 
-							{
-								"w" : 1.0,
-								"x" : 1.0,
-								"y" : 1.0,
-								"z" : 1.0
-							},
-							"type" : "ft_textblock",
-							"visible" : true,
-							"width" : 560.0,
-							"wrapped" : false
-						}
-					],
-					"name" : "drive_mode_group",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"type" : "ft_base",
-					"visible" : false
-				},
-				
-				{
-					"name" : "navi_group",
-					"screen_pos" : 
-					{
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"type" : "ft_base",
-					"visible" : false
+					"visible" : true
 				}
 			],
 			"name" : "main_menu",
@@ -4024,7 +3604,7 @@
 				"y" : 0.0
 			},
 			"type" : "ft_base",
-			"visible" : false
+			"visible" : true
 		},
 		
 		{
@@ -4039,18 +3619,162 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
+					"name" : "width",
+					"screen_pos" : 
+					{
+						"x" : 215.0,
+						"y" : 210.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 149,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "emission",
+					"screen_pos" : 
+					{
+						"x" : 270.0,
+						"y" : 210.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 127,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "hdc",
+					"screen_pos" : 
+					{
+						"x" : 330.0,
+						"y" : 210.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 89,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "charging",
+					"screen_pos" : 
+					{
+						"x" : 450.0,
+						"y" : 210.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 122,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "low_egine_oil",
+					"screen_pos" : 
+					{
+						"x" : 510.0,
+						"y" : 210.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 139,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "esp_on_off",
+					"screen_pos" : 
+					{
+						"x" : 570.0,
+						"y" : 210.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 130,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
 					"name" : "left_turn",
 					"screen_pos" : 
 					{
-						"x" : 800.0,
-						"y" : 0.0
+						"x" : 630.0,
+						"y" : 210.0
 					},
 					"size" : 
 					{
 						"h" : 60.0,
 						"w" : 75.0
 					},
-					"texture_index" : 195,
+					"texture_index" : 161,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4066,15 +3790,15 @@
 					"name" : "right_turn",
 					"screen_pos" : 
 					{
-						"x" : 1050.0,
-						"y" : 0.0
+						"x" : 1250.0,
+						"y" : 210.0
 					},
 					"size" : 
 					{
 						"h" : 60.0,
 						"w" : 75.0
 					},
-					"texture_index" : 196,
+					"texture_index" : 162,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4090,39 +3814,15 @@
 					"name" : "rear_fog",
 					"screen_pos" : 
 					{
-						"x" : 1200.0,
-						"y" : 0.0
+						"x" : 1325.0,
+						"y" : 210.0
 					},
 					"size" : 
 					{
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 181,
-					"type" : "ft_image",
-					"visible" : true
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "width",
-					"screen_pos" : 
-					{
-						"x" : 1260.0,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 180,
+					"texture_index" : 150,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4138,15 +3838,15 @@
 					"name" : "front_fog",
 					"screen_pos" : 
 					{
-						"x" : 1320.0,
-						"y" : 0.0
+						"x" : 1385.0,
+						"y" : 210.0
 					},
 					"size" : 
 					{
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 162,
+					"texture_index" : 132,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4162,15 +3862,15 @@
 					"name" : "high_beam",
 					"screen_pos" : 
 					{
-						"x" : 1380.0,
-						"y" : 0.0
+						"x" : 1445.0,
+						"y" : 210.0
 					},
 					"size" : 
 					{
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 164,
+					"texture_index" : 134,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4183,18 +3883,18 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"name" : "low_beam",
+					"name" : "ccs",
 					"screen_pos" : 
 					{
-						"x" : 1440.0,
-						"y" : 0.0
+						"x" : 430.0,
+						"y" : 270.0
 					},
 					"size" : 
 					{
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 168,
+					"texture_index" : 81,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4207,10 +3907,154 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"name" : "ALS",
+					"name" : "tpms",
 					"screen_pos" : 
 					{
-						"x" : 1500.0,
+						"x" : 490.0,
+						"y" : 270.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 108,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "abs",
+					"screen_pos" : 
+					{
+						"x" : 550.0,
+						"y" : 270.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 71,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "transmission",
+					"screen_pos" : 
+					{
+						"x" : 610.0,
+						"y" : 270.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 160,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "front_seatbelt1",
+					"screen_pos" : 
+					{
+						"x" : 1325.0,
+						"y" : 270.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 133,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "air_bg",
+					"screen_pos" : 
+					{
+						"x" : 1385.0,
+						"y" : 270.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 111,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "rear_seatbelt1",
+					"screen_pos" : 
+					{
+						"x" : 1445.0,
+						"y" : 270.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 133,
+					"type" : "ft_image",
+					"visible" : true
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "low_fuel",
+					"screen_pos" : 
+					{
+						"x" : 1620.0,
 						"y" : 0.0
 					},
 					"size" : 
@@ -4218,7 +4062,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 103,
+					"texture_index" : 140,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4242,151 +4086,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 165,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "low_fuel",
-					"screen_pos" : 
-					{
-						"x" : 1620.0,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 170,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "front_seatbelt1",
-					"screen_pos" : 
-					{
-						"x" : 1680.0,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 163,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "front_seatbelt2",
-					"screen_pos" : 
-					{
-						"x" : 1740.0,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 163,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "air_bg",
-					"screen_pos" : 
-					{
-						"x" : 1800.0,
-						"y" : 0.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 136,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "rear_seatbelt1",
-					"screen_pos" : 
-					{
-						"x" : 1680.0,
-						"y" : 49.57400131225586
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 163,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "rear_seatbelt2",
-					"screen_pos" : 
-					{
-						"x" : 1740.0,
-						"y" : 49.57400131225586
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 163,
+					"texture_index" : 135,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4410,151 +4110,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 163,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "esp_on_off",
-					"screen_pos" : 
-					{
-						"x" : 770.0,
-						"y" : 196.9230041503906
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 160,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "ccs",
-					"screen_pos" : 
-					{
-						"x" : 830.0,
-						"y" : 195.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 106,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "eba",
-					"screen_pos" : 
-					{
-						"x" : 770.0,
-						"y" : 255.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 155,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "hdc",
-					"screen_pos" : 
-					{
-						"x" : 830.0,
-						"y" : 255.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 114,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "ldw",
-					"screen_pos" : 
-					{
-						"x" : 1000.0,
-						"y" : 195.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 167,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "fcw",
-					"screen_pos" : 
-					{
-						"x" : 1060.0,
-						"y" : 195.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 112,
+					"texture_index" : 133,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4578,7 +4134,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 190,
+					"texture_index" : 156,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4602,7 +4158,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 108,
+					"texture_index" : 83,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4626,7 +4182,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 109,
+					"texture_index" : 84,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4650,7 +4206,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 139,
+					"texture_index" : 113,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4674,103 +4230,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 146,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "transmission",
-					"screen_pos" : 
-					{
-						"x" : 1410.0,
-						"y" : 660.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 194,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "emission",
-					"screen_pos" : 
-					{
-						"x" : 1470.0,
-						"y" : 660.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 157,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "low_egine_oil",
-					"screen_pos" : 
-					{
-						"x" : 1530.0,
-						"y" : 660.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 169,
-					"type" : "ft_image",
-					"visible" : false
-				},
-				
-				{
-					"anchor_type" : 0,
-					"axipos" : 
-					{
-						"angle" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0
-					},
-					"name" : "charging",
-					"screen_pos" : 
-					{
-						"x" : 1590.0,
-						"y" : 660.0
-					},
-					"size" : 
-					{
-						"h" : 60.0,
-						"w" : 60.0
-					},
-					"texture_index" : 148,
+					"texture_index" : 120,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4794,7 +4254,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 158,
+					"texture_index" : 128,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4818,7 +4278,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 176,
+					"texture_index" : 145,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4842,7 +4302,7 @@
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 198,
+					"texture_index" : 164,
 					"type" : "ft_image",
 					"visible" : false
 				},
@@ -4855,18 +4315,162 @@
 						"x" : 0.0,
 						"y" : 0.0
 					},
-					"name" : "abs",
+					"name" : "low_beam",
 					"screen_pos" : 
 					{
-						"x" : 1830.0,
-						"y" : 660.0
+						"x" : 1440.0,
+						"y" : 0.0
 					},
 					"size" : 
 					{
 						"h" : 60.0,
 						"w" : 60.0
 					},
-					"texture_index" : 96,
+					"texture_index" : 138,
+					"type" : "ft_image",
+					"visible" : false
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "ALS",
+					"screen_pos" : 
+					{
+						"x" : 1500.0,
+						"y" : 0.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 78,
+					"type" : "ft_image",
+					"visible" : false
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "front_seatbelt2",
+					"screen_pos" : 
+					{
+						"x" : 1740.0,
+						"y" : 0.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 133,
+					"type" : "ft_image",
+					"visible" : false
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "rear_seatbelt2",
+					"screen_pos" : 
+					{
+						"x" : 1740.0,
+						"y" : 49.57400131225586
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 133,
+					"type" : "ft_image",
+					"visible" : false
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "eba",
+					"screen_pos" : 
+					{
+						"x" : 770.0,
+						"y" : 255.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 126,
+					"type" : "ft_image",
+					"visible" : false
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "ldw",
+					"screen_pos" : 
+					{
+						"x" : 1000.0,
+						"y" : 195.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 137,
+					"type" : "ft_image",
+					"visible" : false
+				},
+				
+				{
+					"anchor_type" : 0,
+					"axipos" : 
+					{
+						"angle" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"name" : "fcw",
+					"screen_pos" : 
+					{
+						"x" : 1060.0,
+						"y" : 195.0
+					},
+					"size" : 
+					{
+						"h" : 60.0,
+						"w" : 60.0
+					},
+					"texture_index" : 87,
 					"type" : "ft_image",
 					"visible" : false
 				}
@@ -4878,7 +4482,7 @@
 				"y" : 0.0
 			},
 			"type" : "ft_base",
-			"visible" : false
+			"visible" : true
 		},
 		
 		{
@@ -4904,7 +4508,7 @@
 						"h" : 240.0,
 						"w" : 437.0
 					},
-					"texture_index" : 79,
+					"texture_index" : 68,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4928,7 +4532,7 @@
 						"h" : 42.0,
 						"w" : 42.0
 					},
-					"texture_index" : 78,
+					"texture_index" : 67,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4952,7 +4556,7 @@
 						"h" : 28.0,
 						"w" : 125.0
 					},
-					"texture_index" : 80,
+					"texture_index" : 69,
 					"type" : "ft_image",
 					"visible" : true
 				},
@@ -4974,7 +4578,6 @@
 					},
 					"txt_color" : 
 					{
-						"w" : 1.0,
 						"x" : 1.0,
 						"y" : 1.0,
 						"z" : 1.0
@@ -5002,7 +4605,6 @@
 					},
 					"txt_color" : 
 					{
-						"w" : 1.0,
 						"x" : 1.0,
 						"y" : 1.0,
 						"z" : 1.0
@@ -5030,7 +4632,6 @@
 					},
 					"txt_color" : 
 					{
-						"w" : 1.0,
 						"x" : 1.0,
 						"y" : 1.0,
 						"z" : 1.0
@@ -5049,6 +4650,1585 @@
 			},
 			"type" : "ft_base",
 			"visible" : false
+		},
+		
+		{
+			"block_color" : 
+			{
+				"w" : 1.0,
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"border_color" : 
+			{
+				"w" : 0.0,
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"border_width" : 0.0,
+			"childs" : 
+			[
+				
+				{
+					"childs" : 
+					[
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "Test Model",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "title",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 40.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"block_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"border_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.9843137264251709,
+								"y" : 0.9725490212440491,
+								"z" : 0.9725490212440491
+							},
+							"border_width" : 1.596000075340271,
+							"name" : "sel_frame",
+							"round" : 0.0,
+							"screen_pos" : 
+							{
+								"x" : 15.0,
+								"y" : 100.0
+							},
+							"size" : 
+							{
+								"x" : 550.0,
+								"y" : 92.0
+							},
+							"type" : "ft_block",
+							"visible" : true,
+							"with_border" : true
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "Debug",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "debug",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 132.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "Version",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "version",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 207.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "Screen",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "screen",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 282.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "Brightness",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "brightness",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 357.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "DDR",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "ddr",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 432.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "EMMC",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "emmc",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 507.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						},
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "Firmware",
+							"font_id" : 2,
+							"font_scale" : 1.399999976158142,
+							"name" : "firmware",
+							"screen_pos" : 
+							{
+								"x" : 30.0,
+								"y" : 582.0
+							},
+							"txt_color" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						}
+					],
+					"name" : "test_model_first_menu",
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"type" : "ft_base",
+					"visible" : false
+				},
+				
+				{
+					"block_color" : 
+					{
+						"w" : 1.0,
+						"x" : 0.06329113245010376,
+						"y" : 0.01201730221509934,
+						"z" : 0.01201730221509934
+					},
+					"border_color" : 
+					{
+						"w" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"border_width" : 1.0,
+					"childs" : 
+					[
+						
+						{
+							"childs" : 
+							[
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit0",
+									"screen_pos" : 
+									{
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit1",
+									"screen_pos" : 
+									{
+										"x" : 0.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit2",
+									"screen_pos" : 
+									{
+										"x" : 0.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit3",
+									"screen_pos" : 
+									{
+										"x" : 0.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit4",
+									"screen_pos" : 
+									{
+										"x" : 240.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit5",
+									"screen_pos" : 
+									{
+										"x" : 240.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit6",
+									"screen_pos" : 
+									{
+										"x" : 240.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit7",
+									"screen_pos" : 
+									{
+										"x" : 240.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit8",
+									"screen_pos" : 
+									{
+										"x" : 480.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit9",
+									"screen_pos" : 
+									{
+										"x" : 480.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit10",
+									"screen_pos" : 
+									{
+										"x" : 480.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit11",
+									"screen_pos" : 
+									{
+										"x" : 480.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit12",
+									"screen_pos" : 
+									{
+										"x" : 720.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit13",
+									"screen_pos" : 
+									{
+										"x" : 720.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit14",
+									"screen_pos" : 
+									{
+										"x" : 720.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit15",
+									"screen_pos" : 
+									{
+										"x" : 720.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit16",
+									"screen_pos" : 
+									{
+										"x" : 960.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit17",
+									"screen_pos" : 
+									{
+										"x" : 960.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit18",
+									"screen_pos" : 
+									{
+										"x" : 960.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit19",
+									"screen_pos" : 
+									{
+										"x" : 960.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit20",
+									"screen_pos" : 
+									{
+										"x" : 1200.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit21",
+									"screen_pos" : 
+									{
+										"x" : 1200.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit22",
+									"screen_pos" : 
+									{
+										"x" : 1200.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit23",
+									"screen_pos" : 
+									{
+										"x" : 1200.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit24",
+									"screen_pos" : 
+									{
+										"x" : 1440.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit25",
+									"screen_pos" : 
+									{
+										"x" : 1440.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit26",
+									"screen_pos" : 
+									{
+										"x" : 1440.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit27",
+									"screen_pos" : 
+									{
+										"x" : 1440.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit28",
+									"screen_pos" : 
+									{
+										"x" : 1680.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit29",
+									"screen_pos" : 
+									{
+										"x" : 1680.0,
+										"y" : 180.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit30",
+									"screen_pos" : 
+									{
+										"x" : 1680.0,
+										"y" : 360.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "unit31",
+									"screen_pos" : 
+									{
+										"x" : 1680.0,
+										"y" : 540.0
+									},
+									"size" : 
+									{
+										"h" : 180.0,
+										"w" : 240.0
+									},
+									"texture_index" : 2,
+									"type" : "ft_image",
+									"visible" : true
+								}
+							],
+							"name" : "cal1",
+							"screen_pos" : 
+							{
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"type" : "ft_base",
+							"visible" : false
+						},
+						
+						{
+							"childs" : 
+							[
+								
+								{
+									"block_color" : 
+									{
+										"w" : 1.0,
+										"x" : 0.8862745165824890,
+										"y" : 0.7725490331649780,
+										"z" : 0.7725490331649780
+									},
+									"name" : "center",
+									"numb_segs" : 60,
+									"radius" : 360.0,
+									"screen_pos" : 
+									{
+										"x" : 960.0,
+										"y" : 360.0
+									},
+									"solid" : false,
+									"thickness" : 0.0,
+									"type" : "ft_circle",
+									"visible" : true
+								},
+								
+								{
+									"block_color" : 
+									{
+										"w" : 1.0,
+										"x" : 0.8862745165824890,
+										"y" : 0.7725490331649780,
+										"z" : 0.7725490331649780
+									},
+									"name" : "left_top",
+									"numb_segs" : 45,
+									"radius" : 120.0,
+									"screen_pos" : 
+									{
+										"x" : 120.0,
+										"y" : 120.0
+									},
+									"solid" : false,
+									"thickness" : 0.0,
+									"type" : "ft_circle",
+									"visible" : true
+								},
+								
+								{
+									"block_color" : 
+									{
+										"w" : 1.0,
+										"x" : 0.8862745165824890,
+										"y" : 0.7725490331649780,
+										"z" : 0.7725490331649780
+									},
+									"name" : "right_top",
+									"numb_segs" : 45,
+									"radius" : 120.0,
+									"screen_pos" : 
+									{
+										"x" : 1800.0,
+										"y" : 120.0
+									},
+									"solid" : false,
+									"thickness" : 0.0,
+									"type" : "ft_circle",
+									"visible" : true
+								},
+								
+								{
+									"block_color" : 
+									{
+										"w" : 1.0,
+										"x" : 0.8862745165824890,
+										"y" : 0.7725490331649780,
+										"z" : 0.7725490331649780
+									},
+									"name" : "right_bottom",
+									"numb_segs" : 45,
+									"radius" : 120.0,
+									"screen_pos" : 
+									{
+										"x" : 1800.0,
+										"y" : 600.0
+									},
+									"solid" : false,
+									"thickness" : 0.0,
+									"type" : "ft_circle",
+									"visible" : true
+								},
+								
+								{
+									"block_color" : 
+									{
+										"w" : 1.0,
+										"x" : 0.8862745165824890,
+										"y" : 0.7725490331649780,
+										"z" : 0.7725490331649780
+									},
+									"name" : "left_bottom",
+									"numb_segs" : 45,
+									"radius" : 120.0,
+									"screen_pos" : 
+									{
+										"x" : 120.0,
+										"y" : 600.0
+									},
+									"solid" : false,
+									"thickness" : 0.0,
+									"type" : "ft_circle",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 3.150000095367432,
+										"x" : 420.0,
+										"y" : 60.0
+									},
+									"name" : "top",
+									"screen_pos" : 
+									{
+										"x" : 390.0,
+										"y" : 0.0
+									},
+									"size" : 
+									{
+										"h" : 120.0,
+										"w" : 60.0
+									},
+									"texture_index" : 4,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "bottom",
+									"screen_pos" : 
+									{
+										"x" : 1530.0,
+										"y" : 600.0
+									},
+									"size" : 
+									{
+										"h" : 120.0,
+										"w" : 60.0
+									},
+									"texture_index" : 4,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 3.150000095367432,
+										"x" : 60.0,
+										"y" : 360.0
+									},
+									"name" : "left",
+									"screen_pos" : 
+									{
+										"x" : 0.0,
+										"y" : 330.0
+									},
+									"size" : 
+									{
+										"h" : 60.0,
+										"w" : 120.0
+									},
+									"texture_index" : 3,
+									"type" : "ft_image",
+									"visible" : true
+								},
+								
+								{
+									"anchor_type" : 0,
+									"axipos" : 
+									{
+										"angle" : 0.0,
+										"x" : 0.0,
+										"y" : 0.0
+									},
+									"name" : "right",
+									"screen_pos" : 
+									{
+										"x" : 1800.0,
+										"y" : 330.0
+									},
+									"size" : 
+									{
+										"h" : 60.0,
+										"w" : 120.0
+									},
+									"texture_index" : 3,
+									"type" : "ft_image",
+									"visible" : true
+								}
+							],
+							"name" : "cal2",
+							"screen_pos" : 
+							{
+								"x" : 0.0,
+								"y" : 0.0
+							},
+							"type" : "ft_base",
+							"visible" : true
+						}
+					],
+					"name" : "screen_test",
+					"round" : 0.0,
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"size" : 
+					{
+						"x" : 1920.0,
+						"y" : 720.0
+					},
+					"type" : "ft_block",
+					"visible" : true,
+					"with_border" : false
+				},
+				
+				{
+					"block_color" : 
+					{
+						"w" : 1.0,
+						"x" : 0.9764705896377564,
+						"y" : 0.9450980424880981,
+						"z" : 0.9450980424880981
+					},
+					"border_color" : 
+					{
+						"w" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"border_width" : 1.0,
+					"childs" : 
+					[
+						
+						{
+							"align" : 
+							{
+								"h" : 0.0,
+								"v" : 0.0
+							},
+							"content" : "20",
+							"font_id" : 2,
+							"font_scale" : 1.0,
+							"name" : "brightness_level",
+							"screen_pos" : 
+							{
+								"x" : 20.0,
+								"y" : 10.0
+							},
+							"txt_color" : 
+							{
+								"x" : 0.01265823841094971,
+								"y" : 0.0006409232155419886,
+								"z" : 0.0006409232155419886
+							},
+							"type" : "ft_textblock",
+							"visible" : true,
+							"width" : 560.0,
+							"wrapped" : false
+						}
+					],
+					"name" : "brightness_test",
+					"round" : 0.0,
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"size" : 
+					{
+						"x" : 1920.0,
+						"y" : 720.0
+					},
+					"type" : "ft_block",
+					"visible" : false,
+					"with_border" : false
+				},
+				
+				{
+					"childs" : 
+					[
+						
+						{
+							"block_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"border_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.9843137264251709,
+								"y" : 0.9725490212440491,
+								"z" : 0.9725490212440491
+							},
+							"border_width" : 1.596000075340271,
+							"name" : "sel_frame",
+							"round" : 0.0,
+							"screen_pos" : 
+							{
+								"x" : 40.0,
+								"y" : 100.0
+							},
+							"size" : 
+							{
+								"x" : 580.0,
+								"y" : 120.0
+							},
+							"type" : "ft_block",
+							"visible" : true,
+							"with_border" : true
+						},
+						
+						{
+							"block_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"border_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.9843137264251709,
+								"y" : 0.9725490212440491,
+								"z" : 0.9725490212440491
+							},
+							"border_width" : 1.596000075340271,
+							"name" : "sel_frame_",
+							"round" : 0.0,
+							"screen_pos" : 
+							{
+								"x" : 40.0,
+								"y" : 250.0
+							},
+							"size" : 
+							{
+								"x" : 580.0,
+								"y" : 120.0
+							},
+							"type" : "ft_block",
+							"visible" : true,
+							"with_border" : true
+						},
+						
+						{
+							"block_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"border_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.9843137264251709,
+								"y" : 0.9725490212440491,
+								"z" : 0.9725490212440491
+							},
+							"border_width" : 1.596000075340271,
+							"name" : "sel_frame__",
+							"round" : 0.0,
+							"screen_pos" : 
+							{
+								"x" : 40.0,
+								"y" : 400.0
+							},
+							"size" : 
+							{
+								"x" : 580.0,
+								"y" : 120.0
+							},
+							"type" : "ft_block",
+							"visible" : true,
+							"with_border" : true
+						},
+						
+						{
+							"block_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"border_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.9843137264251709,
+								"y" : 0.9725490212440491,
+								"z" : 0.9725490212440491
+							},
+							"border_width" : 1.596000075340271,
+							"name" : "sel_frame___",
+							"round" : 0.0,
+							"screen_pos" : 
+							{
+								"x" : 40.0,
+								"y" : 550.0
+							},
+							"size" : 
+							{
+								"x" : 580.0,
+								"y" : 120.0
+							},
+							"type" : "ft_block",
+							"visible" : true,
+							"with_border" : true
+						},
+						
+						{
+							"block_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"border_color" : 
+							{
+								"w" : 1.0,
+								"x" : 0.9843137264251709,
+								"y" : 0.9725490212440491,
+								"z" : 0.9725490212440491
+							},
+							"border_width" : 1.596000075340271,
+							"name" : "sel_frame____",
+							"round" : 0.0,
+							"screen_pos" : 
+							{
+								"x" : 670.0,
+								"y" : 100.0
+							},
+							"size" : 
+							{
+								"x" : 1200.0,
+								"y" : 570.0
+							},
+							"type" : "ft_block",
+							"visible" : true,
+							"with_border" : true
+						}
+					],
+					"name" : "ddr_show",
+					"screen_pos" : 
+					{
+						"x" : 0.0,
+						"y" : 0.0
+					},
+					"type" : "ft_base",
+					"visible" : false
+				}
+			],
+			"name" : "test_model",
+			"round" : 0.0,
+			"screen_pos" : 
+			{
+				"x" : 0.0,
+				"y" : 0.0
+			},
+			"size" : 
+			{
+				"x" : 1920.0,
+				"y" : 720.0
+			},
+			"type" : "ft_block",
+			"visible" : true,
+			"with_border" : false
 		}
 	],
 	"file_list" : 
@@ -5123,7 +6303,7 @@
 	"name" : "screen",
 	"output_bin_fmt" : 
 	{
-		"pgm_fmt" : 0,
+		"pgm_fmt" : 1,
 		"txt_fmt" : 0
 	},
 	"primitive_list" : 
@@ -5184,7 +6364,7 @@
 	"window_show" : 
 	{
 		"show_edit_window" : true,
-		"show_file_manager" : true,
+		"show_file_manager" : false,
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,

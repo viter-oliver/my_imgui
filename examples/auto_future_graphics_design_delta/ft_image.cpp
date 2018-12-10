@@ -49,12 +49,12 @@ namespace auto_future
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
 		ImVec2 axisBasePos = { offsetx + _img_pt._aposx + winpos.x, offsety + _img_pt._aposy + winpos.y };
-		if (_img_pt._angle_nml != 0.f)
+		if (_img_pt._angle_srd != 0.f)
 		{
-			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle_nml, axisBasePos);
-			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle_nml, axisBasePos);
-			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_nml, axisBasePos);
-			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle_nml, axisBasePos);
+			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle_srd, axisBasePos);
+			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle_srd, axisBasePos);
+			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_srd, axisBasePos);
+			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle_srd, axisBasePos);
 		}
 
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
@@ -85,6 +85,29 @@ namespace auto_future
 #endif
 
 	}
+	base_ui_component* ft_image::get_hit_ui_object(float posx, float posy)
+	{
+		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
+		if (hit_opt)
+		{
+			return hit_opt;
+		}
+		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 pos1(pos0.x + _img_pt._sizew, pos0.y + _img_pt._sizeh);
+		ImRect cover_area(pos0, pos1);
+		ImVec2 mouse_pos(posx, posy);
+		if (cover_area.Contains(mouse_pos))
+		{
+			return this;
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
 	
@@ -119,7 +142,7 @@ namespace auto_future
 		{
 			_img_pt._aposx = jaxispos["x"].asDouble();
 			_img_pt._aposy = jaxispos["y"].asDouble();
-			_img_pt._angle_nml = jaxispos["angle"].asDouble();
+			_img_pt._angle_srd = jaxispos["angle"].asDouble();
 		}
 		else
 		{
@@ -144,7 +167,7 @@ namespace auto_future
 		Value jaxispos(objectValue);
 		jaxispos["x"] = _img_pt._aposx;
 		jaxispos["y"] = _img_pt._aposy;
-		jaxispos["angle"] = _img_pt._angle_nml;
+		jaxispos["angle"] = _img_pt._angle_srd;
 		junit["axipos"] = jaxispos;
 		junit["anchor_type"] = _img_pt._anchor_type;
 		return true;

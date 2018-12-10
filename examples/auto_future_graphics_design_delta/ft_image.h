@@ -15,13 +15,13 @@ namespace auto_future
 	{
 	
 		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
-			(float,_sizew),
-			(float,_sizeh),
-			(float,_aposx),
-			(float,_aposy),
+			(float, _sizew, {20.f}),
+			(float, _sizeh, {20.f}),
+			(float, _aposx, {0.f}),
+			(float, _aposy, {0.f}),
 			(int, _anchor_type, {en_anchor_top_left}),
 			(int, _texture_index_txt, {0}),
-			(float, _angle_nml, {0.f}))
+			(float, _angle_srd, {0.f}))
 	public:	
 		ft_image();// : ft_base(){}
 		ImVec2 get_size()
@@ -66,6 +66,8 @@ namespace auto_future
 			return _img_pt._texture_index_txt;
 		}
 		void draw();
+		base_ui_component* get_hit_ui_object(float posx, float posy);
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		enum 
 		{
@@ -85,7 +87,7 @@ namespace auto_future
 		bool init_json_unit(Value& junit);
 #endif
 
-		void rotate(float angle){ _img_pt._angle_nml = angle; }
+		void rotate(float angle){ _img_pt._angle_srd = angle; }
 	};
 
 	REGISTER_CONTROL(ft_image)

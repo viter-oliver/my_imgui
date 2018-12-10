@@ -80,7 +80,7 @@ namespace auto_future
 					}
 					string rg = mname.substr(mname.length() - 3, 3);
 					auto& irg = s_rg_tips.find(rg);
-					value_range _vrange(0.f, screenw);
+					value_range _vrange(-screenw, screenw);
 					if (irg!=s_rg_tips.end())
 					{
 						_vrange = irg->second;

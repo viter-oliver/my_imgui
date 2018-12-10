@@ -11,6 +11,7 @@ namespace auto_future
 			float _min_point = { 0.f }, _max_point = { 100.f }, _progress_value = {0.f};
 			float _pos_minx, _pos_miny, _pos_maxx, _pos_maxy;
 			float _size_minw, _size_minh, _size_maxw, _size_maxh;
+			int _thumb_id_txt{0};
 			intl_pt(){}
 		};
 		intl_pt _img_pt;

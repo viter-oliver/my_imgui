@@ -9,24 +9,24 @@ namespace auto_future
 	{
 #pragma message ("define flider")
 		DEF_STRUCT_WITH_INIT(intl_pt, _slider_pt,
-			(float,_bg_txtw),
-			(float,_bg_txth), 
+			(float, _bg_txtw, { 20.f }),
+			(float, _bg_txth, { 20.f }),
 			(char, _cbuffer_random_text[128]),
-			(float, _hd_txtw),
-			(float, _hd_txth),
-			(float, _tb_txtw),
-			(float, _tb_txth),
+			(float, _hd_txtw, {20.f}),
+			(float, _hd_txth, { 20.f }),
+			(float, _tb_txtw, { 20.f }),
+			(float, _tb_txth, { 20.f }),
 			(float, _position_nml, {0.f}),
 			(int, _direction_item, {0}),
-			(float, _bg_aposx),
-			(float, _bg_aposy),
+			(float, _bg_aposx, {0.f}),
+			(float, _bg_aposy, {0.f}),
 			(float, _bg_angle_nml, {0.f}),
 			(int, _texture_bg_index_txt, {0}),
-			(float, _hd_posx),
-			(float, _hd_posy),
+			(float, _hd_posx, { 20.f }),
+			(float, _hd_posy, { 20.f }),
 			(int, _texture_head_index_txt,{0}),
-			(float, _tb_posx),
-			(float, _tb_posy),
+			(float, _tb_posx, { 0.f }),
+			(float, _tb_posy, { 0.f }),
 			(bool, _thumb_visible, {false}),
 			(int, _texture_thumb_index_txt, {0}))
 	public:
@@ -49,6 +49,8 @@ namespace auto_future
 		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index_txt = id; }
 
 		void draw();
+		base_ui_component* get_hit_ui_object(float posx, float posy);
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
