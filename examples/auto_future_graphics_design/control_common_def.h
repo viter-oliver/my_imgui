@@ -22,7 +22,8 @@
 #include <string>
 #include "json.h"
 #include <algorithm>
-#include "platform_def.h"
+#include <map>
+#include <functional>
 //#include "command_element.h"
 //#include <map>
 
@@ -54,8 +55,8 @@ namespace auto_future
 	using namespace Json;
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
-	struct command_elemment;
 #endif
+	extern void ShowHelpMarker(const char* desc);
 	extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	/**
 	* @brief  base_ui_component is the base class of control class \n
@@ -68,25 +69,15 @@ namespace auto_future
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	protected:
 
-		//struct internal_property
-		//{
-		//	float _posx, _posy;
-		//	bool _visible;
-		//	char _name[name_len];
-
-		//	internal_property() :_visible(true){ memset(_name, 0, name_len); }
-		//};
-		///// the member will be serialized 
-		//internal_property _in_p;
 		vp_prop_ele _vprop_eles;
 		/**
 		* @brief define the property data block\n
 		*/
 		
-		DEF_STRUCT(base_prop, _in_p,
-			(float, _posx), 
-			(float, _posy), 
-			(bool, _visible), 
+		DEF_STRUCT_WITH_INIT(base_prop, _in_p,
+			(float, _posx, {0.f}),
+			(float, _posy, {0.f}),
+			(bool, _visible, {true}),
 			(char, _name[name_len]))
 			
 		/** the member contain all of the components which is the object
@@ -100,15 +91,57 @@ namespace auto_future
 	protected:
 		/** used for selecting a object in project edit for property editing */
 		bool _selected = { false };
+		typedef std::function<void(void*)> property_handle;
+		map<string, property_handle> _mcustom_type_property_handles_container;
+		map<void*, property_handle> _mcustom_var_property_handles_container;
+		struct st_member_key 
+		{
+			void *_address;
+			int _id;
+			st_member_key(void* address, int id)
+				:_address(address)
+				, _id(id)
+			{}
+			bool operator <(const st_member_key& skey) const
+			{
+				return ((char*)_address + _id) < ((char*)skey._address + skey._id);
+			}
+		};
+		map<st_member_key, property_handle> _mcustom_member_property_handles_container;
+		map<st_member_key, value_range> _mcustom_member_value_ranges_container;
+		void reg_property_handle(string tpname, property_handle ph)
+		{
+			_mcustom_type_property_handles_container[tpname] = ph;
+		}
+		void reg_property_handle(void* var_address, property_handle ph)
+		{
+			_mcustom_var_property_handles_container[var_address] = ph;
+		}
+		void reg_property_handle(void* var_address, int member_id, property_handle ph)
+		{
+			_mcustom_member_property_handles_container[st_member_key(var_address, member_id)] = ph;
+		}
+		void reg_value_range(void* var_address, int member_id, int imin, int imax)
+		{
+			_mcustom_member_value_ranges_container[st_member_key(var_address, member_id)] = value_range(imin, imax);
+		}
+		void reg_value_range(void* var_address, int member_id, float fmin, float fmax)
+		{
+			_mcustom_member_value_ranges_container[st_member_key(var_address, member_id)] = value_range(fmin, fmax);
+		}
+		void reg_value_range(void* var_address, int member_id, double dmin, double dmax)
+		{
+			_mcustom_member_value_ranges_container[st_member_key(var_address, member_id)] = value_range(dmin, dmax);
+		}
+
 	public:
 		/**
 		*@brief draw property on the property page for editing
 		*/
-		virtual void draw_peroperty_page(int property_part = -1) = 0;
+		//virtual void draw_peroperty_page(int property_part = -1) = 0;
+		void draw_peropertys();
 		virtual void back_up_property() = 0;
 		//struct command_elemment;
-		virtual void execute_command(command_elemment&) = 0;
-		virtual command_elemment clone_cmd_ele(command_elemment&)=0;
 		bool is_selected()
 		{
 			return _selected;
@@ -117,10 +150,14 @@ namespace auto_future
 		{
 			_selected = beselected;
 		}
+		vp_prop_ele& get_prop_ele(){
+			return _vprop_eles;
+		}
 		//virtual ImVec2 range_radius_vector(ImVec2 direction)
 		//{
 		//	return ImVec2();
 		//}
+		virtual base_ui_component* get_hit_ui_object(float posx, float posy) = 0;
 
 		/**
 		*@brief instancing class from a json value unit
@@ -157,13 +194,13 @@ namespace auto_future
 		*@return length of property data block
 		*  -
 		*/
-		virtual int collect_property_range(vproperty_list& vplist)
-		{
-			//vplist.push_back(property_range(&_in_p, sizeof(internal_property)));
-			int len = sizeof(base_prop);
-			vplist.emplace_back(&_in_p, sizeof(base_prop));
-			return len;
-		}
+		int collect_property_range(vproperty_list& vplist);
+		/**
+		*@brief get hit ui object
+		*@param posx posy- the coordinate of mouse 
+		*@return object hit by mouse
+		*  -
+		*/
 		virtual ImVec2 get_size()
 		{
 			return ImVec2();
@@ -286,6 +323,7 @@ namespace auto_future
 		{
 			_in_p._posy = posy;
 		}
+
 		/**
 		*@brief get absolute coordinates of current object
 		*/

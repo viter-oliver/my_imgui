@@ -11,6 +11,15 @@ namespace auto_future
 	ft_model_3d::ft_model_3d()
 		:ft_base(), _tri_cnt(0)
 	{
+		reg_property_handle(&_pt, 3, [this](void*){
+			ImGui::InputText("-mesh data file", _pt._mesh_data_file, FILE_NAME_LEN);
+			if (ImGui::Button("loading mesh data"))
+			{
+
+				load_mesh_data_2_vertices();
+			}
+		});
+
 		const auto& mut = g_material_list.find("atexture");
 		_pmaterial = mut->second;
 		glm::mat4 model;
@@ -47,23 +56,23 @@ namespace auto_future
 		if (_tri_cnt)
 		{
 			glm::mat4 model = glm::mat4(1.f);
-			model = glm::translate(model, glm::vec3(_pt._translation.x, _pt._translation.y, _pt._translation.z));
-			model = glm::scale(model, glm::vec3(_pt._scale.x, _pt._scale.y, _pt._scale.z));
+			model = glm::translate(model, glm::vec3(_pt._translation_shd.x, _pt._translation_shd.y, _pt._translation_shd.z));
+			model = glm::scale(model, glm::vec3(_pt._scale_stn.x, _pt._scale_stn.y, _pt._scale_stn.z));
 			model = glm::rotate(
 				model,
-				_pt._rotation.x * glm::radians(1.0f),
+				_pt._rotation_srd.x * glm::radians(1.0f),
 				glm::vec3(1.0f, 0.0f, 0.0f)
 				);
 
 			model = glm::rotate(
 				model,
-				_pt._rotation.y * glm::radians(1.0f),
+				_pt._rotation_srd.y * glm::radians(1.0f),
 				glm::vec3(0.0f, 1.0f, 0.0f)
 				);
 
 			model = glm::rotate(
 				model,
-				_pt._rotation.z * glm::radians(1.0f),
+				_pt._rotation_srd.z * glm::radians(1.0f),
 				glm::vec3(0.0f, 0.0f, 1.0f)
 				);
 
@@ -89,29 +98,6 @@ namespace auto_future
 
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_model_3d::draw_peroperty_page(int property_part)
-	{
-		ImGui::InputText("-mesh data file", _pt._mesh_data_file, FILE_NAME_LEN);
-		if (ImGui::Button("loading mesh data"))
-		{
-
-			load_mesh_data_2_vertices();
-		}
-		ImGui::Text("Translation:");
-		ImGui::SliderFloat("tx", &_pt._translation.x, -100.f, 100.f);
-		ImGui::SliderFloat("ty", &_pt._translation.y, -100.f, 100.f);
-		ImGui::SliderFloat("tz", &_pt._translation.z, -100.f, 100.f);
-		ImGui::Text("scale:");
-		ImGui::SliderFloat("sx", &_pt._scale.x, -10.f, 10.f);
-		ImGui::SliderFloat("sy", &_pt._scale.y, -10.f, 10.f);
-		ImGui::SliderFloat("sz", &_pt._scale.z, -10.f, 10.f);
-
-		ImGui::Text("Rotation:");
-		ImGui::SliderFloat("rx", &_pt._rotation.x, -360.f, 360.f);
-		ImGui::SliderFloat("ry", &_pt._rotation.y, -360.f, 360.f);
-		ImGui::SliderFloat("rz", &_pt._rotation.z, -360.f, 360.f);
-
-	}
 
 	void ft_model_3d::load_mesh_data_2_vertices()
 	{

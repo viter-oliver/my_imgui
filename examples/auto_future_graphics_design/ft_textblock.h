@@ -6,36 +6,21 @@ namespace auto_future
 		public ft_base
 	{
 #define MAX_CONTENT_LEN 0x100
-		struct intl_pt
-		{
-			float _txtr, _txtg, _txtb, _txta;
-			float _txt_alignh, _txt_alignv;
-			float _width;
-			char _content[MAX_CONTENT_LEN];
-			bool _wrapped;
-			int _font_id;
-			float _font_scale;
-			intl_pt()
-				:_width(ImGui::GetFontSize() * 35.0f),
-				_txtr(1.f),_txtg (1.f),_txtb(1.f),_txta( 1.f),_font_id(0), _font_scale(1.0f),
-				_wrapped(false)
-			{
-				memset(_content, 0, MAX_CONTENT_LEN);
-			}
-		};
-		intl_pt _txt_pt;
+
+		DEF_STRUCT_WITH_INIT(intl_pt,_txt_pt,
+			(ImVec3, _txt_clr),
+			(float, _txt_alignh_nml, {1.f}),
+			(float, _txt_alignv_nml, {1.f}),
+			(float, _width, { ImGui::GetFontSize() * 35.0f }),
+			(char, _content[MAX_CONTENT_LEN]),
+			(bool, _wrapped, {false}),
+			(int, _font_id, {0}),
+			(float, _font_scale, { 1.f }))
 		ImRect _txt_area;
 	public:
-		ft_textblock() :_txt_pt(), _txt_area(0.f,0.f,0.f,0.f){}
+		ft_textblock();// : _txt_pt(), _txt_area(0.f, 0.f, 0.f, 0.f){}
 		~ft_textblock(){}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_txt_pt, len);
-			len += plen;
-			return len;
-		}
+		
 		void draw();
 		void set_content(const char* strct)
 		{
@@ -50,7 +35,7 @@ namespace auto_future
 			return _txt_area;
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
+		base_ui_component* get_hit_ui_object(float posx, float posy);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

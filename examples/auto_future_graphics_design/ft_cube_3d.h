@@ -8,17 +8,8 @@ namespace auto_future
 	class AFG_EXPORT ft_cube_3d :
 		public ft_base
 	{
-		//tri_mesh _mesh;
-		//render transformation
-		struct intl_pt
-		{
-			ImVec3 _translation;
-			ImVec3 _scale;
-			ImVec3 _rotation;
-			//int _shader_instance_index;
-			intl_pt() :_scale(1.f, 1.f, 1.f) {}
-		};
-		intl_pt _pt;
+		DEF_STRUCT(intl_pt, _pt, 
+			(ImVec3, _translation_shd), (ImVec3, _scale_stn), (ImVec3, _rotation_srd))
 		/** referencing the color material */
 		shared_ptr<material> _pmaterial;
 		/** referencing the cube primitive object */
@@ -26,17 +17,8 @@ namespace auto_future
 	public:
 		ft_cube_3d();
 		~ft_cube_3d();
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_pt, len);
-			len += plen;
-			return len;
-		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

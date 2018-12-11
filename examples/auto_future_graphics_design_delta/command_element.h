@@ -176,7 +176,7 @@ namespace auto_future
 			}
 			_lack_cur_value_cmd = true;
 			_edit_command_list.emplace_back(ecommd);
-			_cur_command_id++;
+			_cur_command_id = _cur_command_id<_edit_command_list.size() - 1;
 		}
 		void redo_command()
 		{

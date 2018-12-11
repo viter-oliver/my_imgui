@@ -10,8 +10,70 @@ namespace auto_future
 	};
 	
 	ft_plane_play_2d::ft_plane_play_2d()
-		:ft_base(),_pt(), _puv(0), _uv_len(0)
+		:ft_base(), _puv(0), _uv_len(0)
 	{
+		_pt._scale_stn = { 1.f, 1.f };
+		memset(_pt._materil_name, 0, FILE_NAME_LEN);
+		memset(_pt._texture_name, 0, FILE_NAME_LEN);
+		memset(_pt._texture_fmt_name, 0, FILE_NAME_LEN);
+		reg_property_handle(&_pt, [this](void*){
+			ImGui::InputText("material:", _pt._materil_name, FILE_NAME_LEN);
+			ImGui::SameLine();
+			if (!_pmaterial&&ImGui::Button("loading..."))
+			{
+				auto amtl = g_material_list.find(_pt._materil_name);
+				if (amtl != g_material_list.end())
+				{
+					_pmaterial = amtl->second;
+				}
+				else
+				{
+					ImGui::Text("fail to find material:%s", _pt._materil_name);
+				}
+			}
+			ImGui::Spacing();
+			ImGui::InputText("texture:", _pt._texture_name, FILE_NAME_LEN);
+			ImGui::SameLine();
+			if (!_texture&&ImGui::Button("load..."))
+			{
+				auto atxt = g_mtexture_list.find(_pt._texture_name);
+				if (atxt != g_mtexture_list.end())
+				{
+					_texture = atxt->second;
+				}
+				else
+				{
+					ImGui::Text("fail to find texture:%s", _pt._texture_name);
+				}
+			}
+			ImGui::Spacing();
+			ImGui::InputText("texture format:", _pt._texture_fmt_name, FILE_NAME_LEN);
+			ImGui::SameLine();
+			if (!_puv&&ImGui::Button("load..."))
+			{
+				auto atxt_fmt = g_mfiles_list.find(_pt._texture_fmt_name);
+				if (atxt_fmt != g_mfiles_list.end())
+				{
+					_puv = get_txt_uvs((char*)atxt_fmt->second->_pbin, _uv_len);
+				}
+				else
+				{
+					ImGui::Text("fail to find texture format:%s", _pt._texture_fmt_name);
+				}
+			}
+			ImGui::Spacing();
+			int frame_cnt = get_frames_count();
+			ImGui::SliderInt("frame index:", &_pt._frame_index, 0, frame_cnt);
+			ImGui::Text("Translation:");
+			ImGui::SliderFloat("tx", &_pt._trans_shd.x, -100.f, 100.f, "%.4f", 0.05f);
+			ImGui::SliderFloat("ty", &_pt._trans_shd.y, -100.f, 100.f, "%.4f", 0.05f);
+			ImGui::Text("scale:");
+			ImGui::SliderFloat("sx", &_pt._scale_stn.x, -10.f, 10.f);
+			ImGui::SliderFloat("sy", &_pt._scale_stn.y, -10.f, 10.f);
+			ImGui::Text("Rotation:");
+			ImGui::SliderFloat("rz", &_pt._rotationZ_srd, -360.f, 360.f);
+
+		});
 		glGenVertexArrays(1, &_vao);
 		glGenBuffers(1, &_vbo_pos);
 		glGenBuffers(1, &_vbo_uv);
@@ -68,9 +130,9 @@ namespace auto_future
 			return;
 		}
 		glm::mat4 model = glm::mat4(1.f);
-		model = glm::translate(model,glm::vec3(_pt._trans.x, _pt._trans.y, 0));
-		model = glm::scale(model, glm::vec3(_pt._scale.x, _pt._scale.y, 1.f));
-		model = glm::rotate(model, _pt._rotation_z*glm::radians(1.f), glm::vec3(0.0f, 0.0f, 1.0f));
+		model = glm::translate(model,glm::vec3(_pt._trans_shd.x, _pt._trans_shd.y, 0));
+		model = glm::scale(model, glm::vec3(_pt._scale_stn.x, _pt._scale_stn.y, 1.f));
+		model = glm::rotate(model, _pt._rotationZ_srd*glm::radians(1.f), glm::vec3(0.0f, 0.0f, 1.0f));
 		_pmaterial->set_value("model", glm::value_ptr(model), 16);
 		_pmaterial->use();
 		glBindVertexArray(_vao);
@@ -83,68 +145,6 @@ namespace auto_future
 	}
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_plane_play_2d::draw_peroperty_page(int property_part)
-	{
-		ft_base::draw_peroperty_page();
-		ImGui::Spacing();
-		ImGui::InputText("material:", _pt._materil_name, FILE_NAME_LEN);
-		ImGui::SameLine();
-		if (!_pmaterial&&ImGui::Button("loading..."))
-		{
-			auto amtl = g_material_list.find(_pt._materil_name);
-			if (amtl != g_material_list.end())
-			{
-				_pmaterial = amtl->second;
-			}
-			else
-			{
-				ImGui::Text("fail to find material:%s", _pt._materil_name);
-			}
-		}
-		ImGui::Spacing();
-		ImGui::InputText("texture:", _pt._texture_name, FILE_NAME_LEN);
-		ImGui::SameLine();
-		if (!_texture&&ImGui::Button("load..."))
-		{
-			auto atxt = g_mtexture_list.find(_pt._texture_name);
-			if (atxt != g_mtexture_list.end())
-			{
-				_texture = atxt->second;
-			}
-			else
-			{
-				ImGui::Text("fail to find texture:%s", _pt._texture_name);
-			}
-		}
-		ImGui::Spacing();
-		ImGui::InputText("texture format:", _pt._texture_fmt_name, FILE_NAME_LEN);
-		ImGui::SameLine();
-		if (!_puv&&ImGui::Button("load..."))
-		{
-			auto atxt_fmt = g_mfiles_list.find(_pt._texture_fmt_name);
-			if (atxt_fmt != g_mfiles_list.end())
-			{
-				_puv = get_txt_uvs((char*)atxt_fmt->second->_pbin, _uv_len);
-			}
-			else
-			{
-				ImGui::Text("fail to find texture format:%s", _pt._texture_fmt_name);
-			}
-		}
-		ImGui::Spacing();
-		int frame_cnt = get_frames_count();
-		ImGui::SliderInt("frame index:", &_pt._frame_index, 0, frame_cnt);
-		ImGui::Text("Translation:");
-		ImGui::SliderFloat("tx", &_pt._trans.x, -100.f, 100.f,"%.4f",0.05f);
-		ImGui::SliderFloat("ty", &_pt._trans.y, -100.f, 100.f, "%.4f", 0.05f);
-		ImGui::Text("scale:");
-		ImGui::SliderFloat("sx", &_pt._scale.x, -10.f, 10.f);
-		ImGui::SliderFloat("sy", &_pt._scale.y, -10.f, 10.f);
-		ImGui::Text("Rotation:");
-		ImGui::SliderFloat("rz", &_pt._rotation_z, -360.f, 360.f);
-
-
-	}
 
 	bool ft_plane_play_2d::init_from_json(Value& jvalue)
 	{

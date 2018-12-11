@@ -5,24 +5,21 @@ namespace auto_future
 	class AFG_EXPORT ft_block :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			float _sizew,_sizeh;
-			float _bkr,_bkg,_bkb,_bka;
-			intl_pt(){}
-		};
-		intl_pt _pt;
+
+
+		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
+			(float, _sizew, {0.f}),
+			(float, _sizeh, {0.f}),
+			(float, _round_utn, {0.f}),
+			(bool, _with_border, {false}),
+			(float, _border_width_uhd, {1.f}),
+			(ImVec4, _bkclr),
+			(ImVec4, _bdclr))
+
 	public:
-		ft_block(){}
+		ft_block();
 		~ft_block(){}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_pt, len);
-			len += plen;
-			return len;
-		}
+
 		ImVec2 get_size()
 		{
 			return ImVec2(_pt._sizew,_pt._sizew);
@@ -34,7 +31,8 @@ namespace auto_future
 		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
+		base_ui_component* get_hit_ui_object(float posx, float posy);
+		
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

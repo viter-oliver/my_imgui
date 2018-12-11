@@ -41,7 +41,7 @@
 #include "file_res_edit.h"
 #include "common_functions.h"
 #include "dir_output.h"
-#include "command_element.h"
+#include "command_element_delta.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -62,8 +62,8 @@ enum en_short_cut_item
 bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,show_output_format=false;
-//#define _MY_IMGUI__
-#define _DEMO_
+#define _MY_IMGUI__
+//#define _DEMO_
 int main(int argc, char* argv[])
 {
     // Setup window
@@ -572,7 +572,13 @@ int main(int argc, char* argv[])
 					fun_shortct(en_ctrl_b);
 				}
 				ImGui::Separator();
-				
+				if (ImGui::MenuItem("Update texture resources"))
+				{
+					ui_assembler _ui_as(*_proot);
+					_ui_as.update_texture_res();
+					_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
+				}
+				ImGui::Separator();
 				if (ImGui::MenuItem("Quit", "Alt+F4")) 
 				{
 					fun_shortct(an_alt_f4);
@@ -679,25 +685,39 @@ int main(int argc, char* argv[])
 			_pselect = pjedit->current_object();
 			if (_pselect)
 			{
-				_pselect->draw_peroperty_page();
+				//_pselect->draw_peroperty_page();
+				_pselect->draw_peropertys();
 			}
 			ImGui::End();
 		}
 		if (show_edit_window)
 		{
 			ImGui::SetNextWindowSize(ImVec2(1920, 720), ImGuiCond_FirstUseEver);
-			ImGuiStyle& style = ImGui::GetStyle();
-			//style.Alpha = 1.f;
-			const float old_rounding=style.WindowRounding;
-			style.WindowRounding = 0.f;
-			ImGui::Begin("edit window", &show_edit_window,ImGuiWindowFlags_NoTitleBar);
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
+			
+			ImGui::Begin("edit window", &show_edit_window, ImGuiWindowFlags_NoTitleBar );
 			//
 			if (_proot)
 			{
 				_proot->draw();
+			}			
+			ImGuiContext& g = *GImGui;
+			ImGuiWindow* cur_window = ImGui::GetCurrentWindow();
+			ImGuiWindow* front_window = g.Windows.back();
+			ImRect wrect(cur_window->Pos, cur_window->Pos + cur_window->Size);
+			
+			if (cur_window == front_window&&ImGui::IsMouseClicked(0) && wrect.Contains(ImGui::GetIO().MousePos))
+			{
+				printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+				if (psel_ui)
+				{
+					pjedit->sel_ui_component(psel_ui);
+				}
 			}
 			ImGui::End();
-			style.WindowRounding = old_rounding;
+			ImGui::PopStyleVar(2);
 		}
 		if (show_resource_manager)
 		{

@@ -1,6 +1,6 @@
 #include "control_common_def.h"
 #include "res_output.h"
-#include "command_element.h"
+#include "command_element_delta.h"
 #define INT_VALUE 45
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
@@ -94,6 +94,11 @@ namespace auto_future
 							_vrange = irg_reg->second;
 						}
 					}
+					cmd_value_block before_op_memb_value;
+					before_op_memb_value.reserve(mtpsz);
+					before_op_memb_value.resize(mtpsz);
+					memcpy(&before_op_memb_value[0], memb_address, mtpsz);
+
 					auto& imemb_tp_handl = _mcustom_type_property_handles_container.find(mtype);
 					if (imemb_tp_handl != _mcustom_type_property_handles_container.end())
 					{
@@ -132,6 +137,7 @@ namespace auto_future
 										sprintf(str_index,"[%d]", ix);
 										string mname_width_index = mname + str_index;
 										void* memb_index_address = (char*)memb_address + ix*mtpsz;
+
 										if (mtype == "int"){
 											ImGui::SliderInt(mname_width_index.c_str(), (int*)memb_index_address, _vrange._min._i, _vrange._max._i);
 										}
@@ -177,11 +183,8 @@ namespace auto_future
 										auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 										int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
 										int imem_value = *(int*)memb_address;
-										bool be_changed=ImGui::Combo(mname.c_str(), (int*)memb_address, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
-										if (be_changed)
-										{
-											g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, memb_address, command_value(imem_value)));
-										}
+										ImGui::Combo(mname.c_str(), (int*)memb_address, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+										
 										ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
 										int txt_idx = *(int*)memb_address;
 										float reswidth = res_coors[txt_idx].owidth();
@@ -206,29 +209,9 @@ namespace auto_future
 									}
 								}
 								else if (mtype == "float"||mtype == "double"){
-									static float bk_mem_value = 100000.f;// *(float*)memb_address;
-									static void* pmem_address = 0;;
-									static bool be_operating = false;
-									ImGuiContext& g = *GImGui;
-									float memb_value_atfer = *(float*)memb_address;
-									ImGui::SliderFloat(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
 
-									if (g.operating_be_started)
-									{
-										printf("start changing value\n");
-										bk_mem_value = memb_value_atfer;
-										pmem_address = memb_address;
-										g.operating_be_started = false;
-										be_operating = true;
-									}
-									float cur_fvalue = pmem_address==0?0: *(float*)pmem_address;
-									if (g.IO.MouseReleased[0] && be_operating || g.IO.InputContentChanged&&bk_mem_value!=cur_fvalue)
-									{
-										printf("old_value=%f,new_value=%f\n", bk_mem_value, cur_fvalue);
-										g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, pmem_address, command_value(bk_mem_value)));
-										be_operating = false;
-									}
-									g.IO.InputContentChanged = false;
+									ImGui::SliderFloat(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
+									
 								}
 								else if (mtype=="ImVec2"){
 									ImGui::SliderFloat2(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
@@ -249,6 +232,14 @@ namespace auto_future
 										float* pcolor = (float*)memb_address;
 										float cur_clr[4] = { pcolor[0], pcolor[1], pcolor[2], pcolor[3] };
 										ImGui::ColorEdit4(mname.c_str(), pcolor);
+										float after_clr[4] = { pcolor[0], pcolor[1], pcolor[2], pcolor[3] };
+										for (size_t i = 0; i < 4; i++)
+										{
+											if (cur_clr[i]!=after_clr[i])
+											{
+												printf("befor_clr[%d]:%f,after_clr[%d]:%f\n", i,cur_clr[i], i,after_clr[i]);
+											}
+										}
 									}
 									else{
 										ImGui::SliderFloat4(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
@@ -256,12 +247,7 @@ namespace auto_future
 
 								}
 								else if (mtype == "bool"){
-									bool bvalue = *(bool*)memb_address;
-									if (ImGui::Checkbox(mname.c_str(), (bool*)memb_address))
-									{
-										g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, memb_address, command_value(bvalue)));
-									}
-									
+									ImGui::Checkbox(mname.c_str(), (bool*)memb_address);
 								}else{
 									printf("unknown member type!:%s\n", mtype.c_str());
 								}						
@@ -269,6 +255,39 @@ namespace auto_future
 
 						}
 
+						static cmd_value_block bk_memb_value;
+						static void* pmem_address = 0;;
+						static bool be_operating = false;
+						cmd_value_block after_op_memb_value;
+						after_op_memb_value.reserve(mtpsz);
+						after_op_memb_value.resize(mtpsz);
+						memcpy(&after_op_memb_value[0], memb_address, mtpsz);
+
+						ImGuiContext& g = *GImGui;
+						if (g.operating_be_started)
+						{
+							printf("start changing value\n");
+							pmem_address = memb_address;
+
+							bk_memb_value = before_op_memb_value;
+							g.operating_be_started = false;
+							be_operating = true;
+						}
+						if (be_operating)
+						{
+							if (g.IO.MouseReleased[0])
+							{
+								g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, pmem_address, &before_op_memb_value[0], before_op_memb_value.size()));
+								be_operating = false;
+							}
+						}
+						else if (before_op_memb_value != after_op_memb_value)
+						{
+							g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, memb_address, &before_op_memb_value[0], before_op_memb_value.size()));
+
+						}
+		
+						g.IO.InputContentChanged = false;
 					}
 					idx++;
 				}

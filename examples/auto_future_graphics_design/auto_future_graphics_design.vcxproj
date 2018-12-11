@@ -169,8 +169,9 @@
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="afb_output.cpp" />
     <ClCompile Include="af_shader.cpp" />
+    <ClCompile Include="base_ui_component.cpp" />
     <ClCompile Include="bind_edit.cpp" />
-    <ClCompile Include="command_element.cpp" />
+    <ClCompile Include="command_element_delta.cpp" />
     <ClCompile Include="fbx_import\FBXColor.cpp" />
     <ClCompile Include="fbx_import\FBXGlobalSettings.cpp" />
     <ClCompile Include="fbx_import\FBXImporter.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="ft_plane_3d.cpp" />
     <ClCompile Include="ft_plane_play_2d.cpp" />
     <ClCompile Include="ft_plot_lines.cpp" />
+    <ClCompile Include="ft_circle.cpp" />
     <ClCompile Include="ft_slider.cpp" />
     <ClCompile Include="ft_slider_thumb.cpp" />
     <ClCompile Include="ft_sphere_3d.cpp" />
@@ -252,7 +254,7 @@
     <ClInclude Include="afb_output.h" />
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="bind_edit.h" />
-    <ClInclude Include="command_element.h" />
+    <ClInclude Include="command_element_delta.h" />
     <ClInclude Include="dir_output.h" />
     <ClInclude Include="dxt5_compress.h" />
     <ClInclude Include="fbx_import\FBXColor.h" />
@@ -282,6 +284,7 @@
     <ClInclude Include="ft_plane_3d.h" />
     <ClInclude Include="ft_plane_play_2d.h" />
     <ClInclude Include="ft_plot_lines.h" />
+    <ClInclude Include="ft_circle.h" />
     <ClInclude Include="ft_slider.h" />
     <ClInclude Include="ft_slider_thumb.h" />
     <ClInclude Include="ft_sphere_3d.h" />

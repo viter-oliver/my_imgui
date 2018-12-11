@@ -1,7 +1,15 @@
 #include "ft_plot_lines.h"
 namespace auto_future
 {
-
+	ft_plot_lines::ft_plot_lines()
+		:ft_base()
+		,_values{}
+	{ 
+		reg_property_handle(&_pt, 2, [this](void*){
+			ImGui::SliderInt("count of value:", &_pt._v_count, 3, MAX_VALUE_COUNT, "%.0f");
+			ImGui::SliderFloatN("values:", _values, _pt._v_count, -1, 1, "%.3f", 1.0f);
+		});
+	}
 	void ft_plot_lines::draw()
 	{
 		ft_base::draw();
@@ -13,15 +21,7 @@ namespace auto_future
 
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	
-	void ft_plot_lines::draw_peroperty_page(int)
-	{
-		ft_base::draw_peroperty_page();
-		ImGui::SliderFloat("sw", &_pt._sizew, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("sh", &_pt._sizeh, 0.f, base_ui_component::screenh);
-		ImGui::SliderInt("count of value:", &_pt._v_count, 3, MAX_VALUE_COUNT,"%.0f");
-		ImGui::SliderFloatN("values:", _values, _pt._v_count, -1, 1, "%.3f", 1.0f);
-	}
+
 	bool ft_plot_lines::init_from_json(Value& jvalue)
 	{
 		ft_base::init_from_json(jvalue);

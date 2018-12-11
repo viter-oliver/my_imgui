@@ -109,12 +109,13 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 				// Step3 设定filter参数
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);// GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+					GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
 				// Step4 加载纹理
 
 				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
 					0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
-				//glGenerateMipmap(GL_TEXTURE_2D);
+				glGenerateMipmap(GL_TEXTURE_2D);
 				// Step5 释放纹理图片资源
 				SOIL_free_image_data(imgdata);
 				auto pimge = make_shared<af_texture>();
@@ -315,6 +316,64 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 
 	save_fbx_file();
 
+	return true;
+}
+int real_id_after_update(string& file_name)
+{
+	res_texture_list& cur_txt_list = g_vres_texture_list[g_cur_texture_id_index];
+	vres_txt_cd& cur_txt_cd = cur_txt_list.vtexture_coordinates;
+	for (int ix = 0; ix < cur_txt_cd.size();++ix)
+	{
+		if (file_name==cur_txt_cd[ix]._file_name)
+		{
+			return ix;
+		}
+	}
+	return 0;
+}
+void update_ui_component_texture_res_index(base_ui_component& tar, vres_txt_cd& old_txt_cd)
+{
+	vp_prop_ele& cur_vprop_eles = tar.get_prop_ele();
+	for (auto& prop_ele:cur_vprop_eles)
+	{
+		auto& prop_page = prop_ele->_pro_page;
+		for (auto& memb:prop_page)
+		{
+			auto mtype = memb->_type;
+			auto mname = memb->_name;
+			auto moffset = memb->_offset;
+			string rg = mname.substr(mname.length() - 3, 3);
+			if (mtype=="int"&&rg=="txt")
+			{
+				void* memb_address = (char*)prop_ele->_pro_address + moffset;
+			    int* ptxtidx = (int*)memb_address;
+				int ix_old = *ptxtidx;
+				*ptxtidx = real_id_after_update(old_txt_cd[ix_old]._file_name);
+			}
+		}
+	}
+	int chldcnt = tar.child_count();
+	for (size_t ix = 0; ix < chldcnt;++ix)
+	{
+		base_ui_component* pchild = tar.get_child(ix);
+		update_ui_component_texture_res_index(*pchild, old_txt_cd);
+	}
+
+}
+bool ui_assembler::update_texture_res()
+{
+	res_texture_list& cur_txt_list=g_vres_texture_list[g_cur_texture_id_index];
+	vres_txt_cd cur_txt_cd = cur_txt_list.vtexture_coordinates;
+	glDeleteTextures(1, &cur_txt_list.texture_id);
+	cur_txt_list.texture_id = 0;
+	cur_txt_list.vtexture_coordinates.clear();
+	load_texture_info(cur_txt_list, cur_txt_list.texture_pack_file, cur_txt_list.texture_data_file);
+	int chldcnt = _root.child_count();
+	for (size_t ix = 0; ix < chldcnt; ++ix)
+	{
+		base_ui_component* pchild = _root.get_child(ix);
+		update_ui_component_texture_res_index(*pchild, cur_txt_cd);
+	}
 	return true;
 }
 

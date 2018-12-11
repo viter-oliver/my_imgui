@@ -21,37 +21,20 @@ namespace auto_future
 			en_fire_with_smoke,
 			en_alg_cnt
 		};
-		struct pcl_intl
-		{
-			ImVec3 _pos0, _v0, _a0;
-			float _life, _spread, _y1;
-			int _pa;
-			pcl_intl()
-				:_pos0(0.f, 7.f, -20.f)
-				, _v0(0.f, -7.f, 0.f)
-				, _a0(0.f, 9.81f, 0.f)
-				, _life(5.f), _spread(1.5f), _y1(10)
-				, _pa(en_normal)
-			{}
-		};
-		pcl_intl _pt;
+
+		DEF_STRUCT_WITH_INIT(pcl_intl, _pt,
+			(ImVec3, _pos0_shd),
+			(ImVec3, _v0_shd),
+			(ImVec3, _a0_shd),
+			(float, _life, { 5.f }),
+			(float, _spread, { 1.5f }),
+			(float, _y1, { 10.f }),
+			(int, _pa, { en_normal }))
 	public:
 		ft_particles_effect_3d();
 		~ft_particles_effect_3d();
 		void draw();
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(pcl_intl);
-			vplist.emplace_back(&_pt, len);
-			len += plen;
-			return len;
-		}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part);
-		bool init_from_json(Value& jvalue);
-		bool init_json_unit(Value& junit);
-#endif
+		
 	};
 
 	REGISTER_CONTROL(ft_particles_effect_3d)

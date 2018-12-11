@@ -1,6 +1,26 @@
 #include "ft_textblock.h"
 namespace auto_future
 {
+	static bool get_font_item(void* data, int idx, const char** out_str)
+	{
+		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+		*out_str = atlas->ConfigData[idx].Name;
+		return true;
+	}
+	ft_textblock::ft_textblock()
+		: _txt_area(0.f, 0.f, 0.f, 0.f)
+	{
+		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
+		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
+		reg_property_handle(&_txt_pt, 6, [this](void*){
+			ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, atlas->Fonts.size());
+		});
+		reg_property_handle(&_txt_pt, 7, [this](void*){
+			ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
+			
+		});
+	}
 	void ft_textblock::draw()
 	{
 		ft_base::draw();
@@ -13,14 +33,16 @@ namespace auto_future
 		font->Scale = _txt_pt._font_scale;
 		ImGui::PushFont(font);
 		const ImVec2 ctnt_size = ImGui::CalcTextSize(_txt_pt._content);
-		abpos.x = abpos.x - ctnt_size.x*_txt_pt._txt_alignh;
-		abpos.y = abpos.y - ctnt_size.y*_txt_pt._txt_alignv;
-		_txt_area.Min = abpos;
-		_txt_area.Max = abpos + ctnt_size;
+		abpos.x = abpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
+		abpos.y = abpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
+		ImVec2 winpos = ImGui::GetWindowPos();
+		_txt_area.Min = abpos+winpos;
+		_txt_area.Max = _txt_area.Min + ctnt_size;
 		ImGui::SetCursorPos(abpos);
 
 		if (_txt_pt._wrapped) ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + _txt_pt._width);
-		ImGui::TextColored(ImVec4(_txt_pt._txtr, _txt_pt._txtg, _txt_pt._txtb, 1.f), _txt_pt._content);
+		ImVec4 txtclr(_txt_pt._txt_clr.x, _txt_pt._txt_clr.y, _txt_pt._txt_clr.z, 1);
+		ImGui::TextColored(txtclr, _txt_pt._content);
 		if (_txt_pt._wrapped) ImGui::PopTextWrapPos();
 		font->Scale = font_scale;
 		ImGui::PopFont();
@@ -52,32 +74,24 @@ namespace auto_future
 #endif
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	static bool get_font_item(void* data, int idx, const char** out_str)
+	base_ui_component* ft_textblock::get_hit_ui_object(float posx, float posy)
 	{
-		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-		*out_str = atlas->ConfigData[idx].Name;
-		return true;
+		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
+		if (hit_opt)
+		{
+			return hit_opt;
+		}
+		ImVec2 mouse_pos(posx, posy);
+		if (_txt_area.Contains(mouse_pos))
+		{
+			return this;
+		}
+		else
+		{
+			return nullptr;
+		}
 	}
-	void ft_textblock::draw_peroperty_page(int property_part)
-	{
-		ft_base::draw_peroperty_page();
-		ImGui::InputText("content:", _txt_pt._content, MAX_CONTENT_LEN);
-		ImGui::Spacing();
-		ImGui::Spacing();
-		ImGui::Text("#size:");
-		ImGui::SliderFloat("w", &_txt_pt._width, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("align h", &_txt_pt._txt_alignh, 0.f, 1.f);
-		ImGui::SliderFloat("align v", &_txt_pt._txt_alignv, 0.f, 1.f);
 
-		//ImGui::SliderFloat("h", &_txt_pt._size.y, 0.f, base_ui_component::screenh);
-		ImGui::Checkbox("wrapped", &_txt_pt._wrapped);
-		ImGui::ColorEdit3("text color:", (float*)&_txt_pt._txtr, ImGuiColorEditFlags_RGB);
-		ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
-
-		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-
-		ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, atlas->Fonts.size());
-	}
 	/*
 	fields:
 	txt_color,
@@ -89,14 +103,13 @@ namespace auto_future
 	{
 		ft_base::init_from_json(jvalue);
 		Value& txt_color = jvalue["txt_color"];
-		_txt_pt._txtr = txt_color["x"].asDouble();
-		_txt_pt._txtg = txt_color["y"].asDouble();
-		_txt_pt._txtb = txt_color["z"].asDouble();
-		_txt_pt._txta = txt_color["w"].asDouble();
+		_txt_pt._txt_clr.x = txt_color["x"].asDouble();
+		_txt_pt._txt_clr.y = txt_color["y"].asDouble();
+		_txt_pt._txt_clr.z = txt_color["z"].asDouble();
 		_txt_pt._width = jvalue["width"].asDouble();
 		Value& txt_align = jvalue["align"];
-		_txt_pt._txt_alignh = txt_align["h"].asDouble();
-		_txt_pt._txt_alignv = txt_align["v"].asDouble();
+		_txt_pt._txt_alignh_nml = txt_align["h"].asDouble();
+		_txt_pt._txt_alignv_nml = txt_align["v"].asDouble();
 		Value& content = jvalue["content"];
 		strcpy(_txt_pt._content, content.asCString());
 		_txt_pt._wrapped = jvalue["wrapped"].asBool();
@@ -108,14 +121,13 @@ namespace auto_future
 	{
 		ft_base::init_json_unit(junit);
 		Value txt_color(objectValue);
-		txt_color["x"] = _txt_pt._txtr;
-		txt_color["y"] = _txt_pt._txtg;
-		txt_color["z"] = _txt_pt._txtb;
-		txt_color["w"] = _txt_pt._txta;
+		txt_color["x"] = _txt_pt._txt_clr.x;
+		txt_color["y"] = _txt_pt._txt_clr.y;
+		txt_color["z"] = _txt_pt._txt_clr.z;
 		junit["txt_color"] = txt_color;
 		Value txt_align(objectValue);
-		txt_align["h"] = _txt_pt._txt_alignv;
-		txt_align["v"] = _txt_pt._txt_alignh;
+		txt_align["h"] = _txt_pt._txt_alignh_nml;
+		txt_align["v"] = _txt_pt._txt_alignv_nml;
 		junit["align"] = txt_align;
 		junit["width"] = _txt_pt._width;
 		junit["content"] = _txt_pt._content;

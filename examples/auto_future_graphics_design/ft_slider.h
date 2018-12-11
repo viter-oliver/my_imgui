@@ -7,44 +7,31 @@ namespace auto_future
 	class AFG_EXPORT ft_slider :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			char _cbuffer_random_text[128];
-			//save texture size
-			//ImVec2 _bg_texture_size;
-			float _bg_txtw, _bg_txth;
-			//ImVec2 _head_texture_size;
-			float _hd_txtw, _hd_txth;
-			//ImVec2 _thumb_texture_size;
-			float _tb_txtw, _tb_txth;//thumb size
-			float _position{ 0.f };
-			int _direction_item{ 0 };
-			//ImVec2 _bg_axi_pos;
-			float _bg_aposx, _bg_aposy;
-			float _bg_angle{ 0.f };
-			int _texture_bg_index{ 0 };
-
-			//ImVec2 _head_pos;
-			float _hd_posx, _hd_posy;
-			int _texture_head_index{ 0 };
-
-			//ImVec2 _thumb_pos;
-			float _tb_posx, _tb_posy;
-			bool _thumb_visible{false};
-			int _texture_thumb_index{ 0 };
-		};
-		intl_pt _slider_pt;
+#pragma message ("define flider")
+		DEF_STRUCT_WITH_INIT(intl_pt, _slider_pt,
+			(float, _bg_txtw, { 20.f }),
+			(float, _bg_txth, { 20.f }),
+			(char, _cbuffer_random_text[128]),
+			(float, _hd_txtw, {20.f}),
+			(float, _hd_txth, { 20.f }),
+			(float, _tb_txtw, { 20.f }),
+			(float, _tb_txth, { 20.f }),
+			(float, _position_nml, {0.f}),
+			(int, _direction_item, {0}),
+			(float, _bg_aposx, {0.f}),
+			(float, _bg_aposy, {0.f}),
+			(float, _bg_angle_nml, {0.f}),
+			(int, _texture_bg_index_txt, {0}),
+			(float, _hd_posx, { 20.f }),
+			(float, _hd_posy, { 20.f }),
+			(int, _texture_head_index_txt,{0}),
+			(float, _tb_posx, { 0.f }),
+			(float, _tb_posy, { 0.f }),
+			(bool, _thumb_visible, {false}),
+			(int, _texture_thumb_index_txt, {0}))
 	public:
 		ft_slider();
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_slider_pt, len);
-			len += plen;
-			return len;
-		}
-
+		~ft_slider(){}
 		void link()
 		{
 			if (2 == _slider_pt._direction_item) //如果保存的是random，这时候就需从文件中读出点数据
@@ -54,16 +41,17 @@ namespace auto_future
 			}
 		}
 
-		void set_progress(float value){ _slider_pt._position = value; }
-		float set_progress(){ return _slider_pt._position; }
+		void set_progress(float value){ _slider_pt._position_nml = value; }
+		float set_progress(){ return _slider_pt._position_nml; }
 
-		void set_bg_texture_id(int id){ _slider_pt._texture_bg_index = id; }
-		void set_progress_texture_id(int id){ _slider_pt._texture_head_index = id; }
-		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index = id; }
+		void set_bg_texture_id(int id){ _slider_pt._texture_bg_index_txt = id; }
+		void set_progress_texture_id(int id){ _slider_pt._texture_head_index_txt = id; }
+		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index_txt = id; }
 
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
+		base_ui_component* get_hit_ui_object(float posx, float posy);
+
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

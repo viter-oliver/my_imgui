@@ -12,21 +12,12 @@ namespace auto_future
 		
 		//string _texture_file;
 		//string _mesh_data_file;
-		struct intl_pt
-		{
-			ImVec3 _scale;
-			ImVec3 _rotation;
-			ImVec3 _translation;
-			char _mesh_data_file[FILE_NAME_LEN];
-			//int _shader_instance_index;
-			intl_pt()
-				//:_texture_file({ 'V', 'W' })//_Golf_VII_2013.png")
-				//, _mesh_data_file("golf.FBX")
-			{
-				strcpy(_mesh_data_file, "golf.FBX");
-			}
-		};
-		intl_pt _pt;
+
+		DEF_STRUCT(intl_pt,_pt,
+			(ImVec3,_scale_stn),
+			(ImVec3, _rotation_srd),
+			(ImVec3, _translation_shd), 
+			(char,_mesh_data_file[FILE_NAME_LEN]))
 		shared_ptr<material> _pmaterial;
 		shared_ptr<af_texture> _texture;
 		GLuint _vao;
@@ -35,18 +26,9 @@ namespace auto_future
 	public:
 		ft_model_3d();
 		~ft_model_3d();
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_pt, len);
-			len += plen;
-			return len;
 
-		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		void draw_peroperty_page(int property_part = -1);
 		void load_mesh_data_2_vertices();
 		void load_vertics_2_vbo();
 		bool init_from_json(Value& jvalue);

@@ -2,6 +2,7 @@
 #include "user_control_imgui.h"
 #include "res_output.h"
 #include <GLFW/glfw3.h>
+#include "command_element_delta.h"
 /*
 1、如果是末端则flags|leaf，否则flags|openonarrow
 2、所有node都是selectable,如果ctrl则保留上次的node的selected状态，如果此次!ctrl则遗弃上次的selected node状态
@@ -140,7 +141,7 @@ void project_edit::popup_context_menu()
 			base_ui_component* pparent = _pcurrent_object->get_parent();
 			if (pparent)
 			{
-
+				g_ui_edit_command_mg.clear_cmds_by_component(_pcurrent_object);
 				pparent->remove_child(_pcurrent_object);
 				_pcurrent_object = pparent;
 			}

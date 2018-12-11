@@ -13,26 +13,17 @@ namespace auto_future
 	class AFG_EXPORT ft_image :
 		public ft_base
 	{
-		struct intl_pt
-		{
-			float _sizew,_sizeh;
-			float _aposx,_aposy;
-			int _anchor_type = { en_anchor_top_left };
-			int _texture_index;
-			float _angle;
-			intl_pt() :_texture_index(0), _angle(0.0){}
-		};
-		intl_pt _img_pt;
+	
+		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
+			(float, _sizew, {20.f}),
+			(float, _sizeh, {20.f}),
+			(float, _aposx, {0.f}),
+			(float, _aposy, {0.f}),
+			(int, _anchor_type, {en_anchor_top_left}),
+			(int, _texture_index_txt, {0}),
+			(float, _angle_srd, {0.f}))
 	public:	
-		ft_image() :ft_base(), _img_pt(){}
-		int collect_property_range(vproperty_list& vplist)
-		{
-			int plen = ft_base::collect_property_range(vplist);
-			int len = sizeof(intl_pt);
-			vplist.emplace_back(&_img_pt, len);
-			len += plen;
-			return len;
-		}
+		ft_image();// : ft_base(){}
 		ImVec2 get_size()
 		{
 			return ImVec2(_img_pt._sizew, _img_pt._sizeh);
@@ -68,14 +59,16 @@ namespace auto_future
 		}
 		void set_texture_id(int texture_id)
 		{
-			_img_pt._texture_index = texture_id;
+			_img_pt._texture_index_txt = texture_id;
 		}
 		int get_texture_id()
 		{
-			return _img_pt._texture_index;
+			return _img_pt._texture_index_txt;
 		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		base_ui_component* get_hit_ui_object(float posx, float posy);
+
 		enum 
 		{
 			en_parent_property=1,
@@ -89,15 +82,12 @@ namespace auto_future
 		ImVec2 _edit_size;
 
 	public:
-		void draw_peroperty_page(int property_part = -1);
-		void execute_command(command_elemment& ele_cmd);
-		command_elemment clone_cmd_ele(command_elemment&ele_cmd);
-
+		
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif
 
-		void rotate(float angle){ _img_pt._angle = angle; }
+		void rotate(float angle){ _img_pt._angle_srd = angle; }
 	};
 
 	REGISTER_CONTROL(ft_image)
