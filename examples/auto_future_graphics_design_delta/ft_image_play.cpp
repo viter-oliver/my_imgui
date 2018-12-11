@@ -89,6 +89,22 @@ namespace auto_future
 #endif
 
 	}
+
+	void ft_image_play::link()
+	{
+		auto atex = g_mtexture_list.find(_img_pt._texture_name);
+		if (atex != g_mtexture_list.end())
+		{
+			_texture = atex->second;
+		}
+		auto atxt_fmt = g_mfiles_list.find(_img_pt._texture_fmt_name);
+		if (atxt_fmt != g_mfiles_list.end())
+		{
+			get_txt_uv_vector((char*)atxt_fmt->second->_pbin, _vtexture_cd);
+
+		}
+	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	base_ui_component* ft_image_play::get_hit_ui_object(float posx, float posy)
 	{
 		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
@@ -111,21 +127,6 @@ namespace auto_future
 			return nullptr;
 		}
 	}
-	void ft_image_play::link()
-	{
-		auto atex = g_mtexture_list.find(_img_pt._texture_name);
-		if (atex != g_mtexture_list.end())
-		{
-			_texture = atex->second;
-		}
-		auto atxt_fmt = g_mfiles_list.find(_img_pt._texture_fmt_name);
-		if (atxt_fmt != g_mfiles_list.end())
-		{
-			get_txt_uv_vector((char*)atxt_fmt->second->_pbin, _vtexture_cd);
-
-		}
-	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	/*
 	fields:
 	screen_pos,

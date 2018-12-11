@@ -8,9 +8,7 @@
 x'=(x-a)cos¦Á+(y-b)sin¦Á+a
 y'=-(x-a)sin¦Á+(y-b)cos¦Á+b
 */
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-#include "command_element.h"
-#endif
+
 namespace auto_future
 {
 	ft_image::ft_image()
@@ -85,6 +83,7 @@ namespace auto_future
 #endif
 
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	base_ui_component* ft_image::get_hit_ui_object(float posx, float posy)
 	{
 		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
@@ -108,7 +107,6 @@ namespace auto_future
 		}
 	}
 
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
 	
 

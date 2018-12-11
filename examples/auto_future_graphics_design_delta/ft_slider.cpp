@@ -476,6 +476,7 @@ namespace auto_future
 			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		}
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	base_ui_component* ft_slider::get_hit_ui_object(float posx, float posy)
 	{
 		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
@@ -499,7 +500,6 @@ namespace auto_future
 		}
 	}
 
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool ft_slider::init_from_json(Value& jvalue)
 	{
 		ft_base::init_from_json(jvalue);

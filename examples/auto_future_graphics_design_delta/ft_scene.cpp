@@ -63,6 +63,7 @@ namespace auto_future
 		}
 #endif
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	base_ui_component* ft_scene::get_hit_ui_object(float posx, float posy)
 	{
 		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
@@ -86,7 +87,6 @@ namespace auto_future
 		}
 	}
 
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool ft_scene::init_from_json(Value& jvalue)
 	{
 		ft_base::init_from_json(jvalue);

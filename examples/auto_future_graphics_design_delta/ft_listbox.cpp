@@ -80,28 +80,7 @@ namespace auto_future
 		ImGui::PopClipRect();
 		//ImGui::EndChild();
 	}
-	base_ui_component* ft_listbox::get_hit_ui_object(float posx, float posy)
-	{
-		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
-		if (hit_opt)
-		{
-			return hit_opt;
-		}
-		ImVec2 abpos = absolute_coordinate_of_base_pos();
-		ImVec2 winpos = ImGui::GetWindowPos();
-		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImVec2 pos1(pos0.x + _lt_pt._sizew, pos0.y + _lt_pt._sizeh);
-		ImRect cover_area(pos0, pos1);
-		ImVec2 mouse_pos(posx, posy);
-		if (cover_area.Contains(mouse_pos))
-		{
-			return this;
-		}
-		else
-		{
-			return nullptr;
-		}
-	}
+
 	void ft_listbox::add_child(base_ui_component* pchild)
 	{
 		size_t icnt = child_count();
@@ -152,6 +131,28 @@ namespace auto_future
 		}
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	base_ui_component* ft_listbox::get_hit_ui_object(float posx, float posy)
+	{
+		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
+		if (hit_opt)
+		{
+			return hit_opt;
+		}
+		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 pos1(pos0.x + _lt_pt._sizew, pos0.y + _lt_pt._sizeh);
+		ImRect cover_area(pos0, pos1);
+		ImVec2 mouse_pos(posx, posy);
+		if (cover_area.Contains(mouse_pos))
+		{
+			return this;
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
 
 	bool ft_listbox::init_from_json(Value& jvalue)
 	{

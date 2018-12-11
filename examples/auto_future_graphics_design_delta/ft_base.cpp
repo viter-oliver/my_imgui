@@ -1,9 +1,7 @@
 #include "ft_base.h"
 #include <GLFW/glfw3.h>
 #include <typeinfo>
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-#include "command_element.h"
-#endif
+
 namespace auto_future
 {
 	void ft_base::draw()
@@ -28,6 +26,7 @@ namespace auto_future
 			}
 		}*/
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)	
 	base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
 	{
 		for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
@@ -45,70 +44,7 @@ namespace auto_future
 		}
 		return nullptr;
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	//void ft_base::draw_peroperty_page(int property_part)
-	//{
-	//	if (ImGui::InputText("object name", _in_p._name, name_len))
-	//	{
-	//		auto pparent = get_parent();
-	//		if (pparent)
-	//		{
-	//			string nname = pparent->try_create_a_child_name(_in_p._name, this);
-	//			set_name(nname);
-	//		}
-	//	}
-	//	ImGui::Text("base pos:");
-	//	//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
-	//	//ImGui::SameLine();
-	//	if (ImGui::SliderFloat("x", &_in_p._posx, -screenw, screenw))
-	//	{
-	//		printf("current posx:%f\n", _in_p._posx);
-	//	}
-	//	/*if (ImGui::IsMouseReleased(1))
-	//	{
-	//		printf("mouse 1 is released!\n");
-	//	}*/
-	//	ImGui::SliderFloat("y", &_in_p._posy, -screenw, screenh);
-	//	if (ImGui::Checkbox("visibility", &_in_p._visible))
-	//	{
-	//		g_ui_edit_command_mg.create_command\
-	//			(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p_bk._visible))));
-	//		_in_p_bk._visible = _in_p._visible;
-	//	}
-	//	ImGuiContext& g = *GImGui;
-	//	if (ImGui::IsMouseReleased(0)||g.IO.InputContentChanged)
-	//	{
-	//		bool pt_modified = false;
-	//		if (_in_p._posx != _in_p_bk._posx)
-	//		{
-	//			g_ui_edit_command_mg.create_command\
-	//				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p_bk._posx))));
-	//			_in_p_bk._posx = _in_p._posx;
-	//			pt_modified = true;
-	//		}
-	//		if (_in_p._posy != _in_p_bk._posy)
-	//		{
-	//			g_ui_edit_command_mg.create_command\
-	//				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p_bk._posy))));
-	//			_in_p_bk._posy = _in_p._posy;
-	//			pt_modified = true;
-	//		}
-	//		if (strcmp(_in_p._name, _in_p_bk._name) != 0)
-	//		{
-	//			g_ui_edit_command_mg.create_command\
-	//				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_name, command_value(_in_p_bk._name))));
-	//			strcpy(_in_p_bk._name, _in_p._name);
-	//			_in_p_bk._name[strlen(_in_p._name)] = '\0';
-	//			pt_modified = true;
 
-	//			g.IO.InputContentChanged = false;
-	//		}
-	//		if (pt_modified)
-	//		{
-	//			g.IO.InputContentChanged = false;
-	//		}
-	//	} 
-	//}
 	void ft_base::back_up_property()
 	{
 		_in_p_bk=_in_p;
@@ -117,57 +53,7 @@ namespace auto_future
 			it->back_up_property();
 		}
 	}
-	void ft_base::execute_command(command_elemment& ele_cmd)
-	{
-		if (ele_cmd._cmd_type == "ft_base")
-		{
-			switch (ele_cmd._cmd_id)
-			{
-			case en_pt_name:
-				set_name(ele_cmd._cmd_value._value._svalue);
-				strcpy(_in_p_bk._name, _in_p._name);
-				_in_p_bk._name[strlen(_in_p._name)] = '\0';
-				break;
-			case en_pt_pos_x:
-				_in_p._posx = ele_cmd._cmd_value._value._fvalue;
-				_in_p_bk._posx = _in_p._posx;
-				break;
-			case en_pt_pos_y:
-				_in_p._posy = ele_cmd._cmd_value._value._fvalue;
-				_in_p_bk._posy = _in_p._posy;
-				break;
-			case en_pt_visible:
-				_in_p._visible = ele_cmd._cmd_value._value._bvalue;
-				_in_p_bk._visible = _in_p._visible;
-				break;
-			default:
-				break;
-			}
-		}
-	}	
-	command_elemment ft_base::clone_cmd_ele(command_elemment&ele_cmd)
-	{
-		if (ele_cmd._cmd_type=="ft_base")
-		{
-			switch (ele_cmd._cmd_id)
-			{
-			case en_pt_name:
-				
-				return command_elemment(string("ft_base"), en_pt_name, command_value(_in_p._name));
-			case en_pt_pos_x:
-				return command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p._posx));
-			case en_pt_pos_y:
-				return command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p._posy));
-				
-			case en_pt_visible:
-				return command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p._visible));
-			default:
-				break;
-			}
-		}
-		return command_elemment();
 
-	}
 	/*
 	fields: name,type,childs
 	*/

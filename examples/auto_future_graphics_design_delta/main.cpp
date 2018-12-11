@@ -710,13 +710,11 @@ int main(int argc, char* argv[])
 			if (cur_window == front_window&&ImGui::IsMouseClicked(0) && wrect.Contains(ImGui::GetIO().MousePos))
 			{
 				printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
-#if 1
 				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
 				if (psel_ui)
 				{
 					pjedit->sel_ui_component(psel_ui);
 				}
-#endif
 			}
 			ImGui::End();
 			ImGui::PopStyleVar(2);

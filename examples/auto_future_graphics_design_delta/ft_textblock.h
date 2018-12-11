@@ -34,8 +34,8 @@ namespace auto_future
 		{
 			return _txt_area;
 		}
-		base_ui_component* get_hit_ui_object(float posx, float posy);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		base_ui_component* get_hit_ui_object(float posx, float posy);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

@@ -38,8 +38,8 @@ namespace auto_future
 			_img_pt._sizeh = im_size.y;
 		}
 		void draw();
-		base_ui_component* get_hit_ui_object(float posx, float posy);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		base_ui_component* get_hit_ui_object(float posx, float posy);
 		enum 
 		{
 			en_parent_property=1,

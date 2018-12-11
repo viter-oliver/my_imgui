@@ -1,5 +1,6 @@
 #include "control_common_def.h"
 #include "res_output.h"
+#include "command_element.h"
 #define INT_VALUE 45
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
@@ -200,7 +201,28 @@ namespace auto_future
 									}
 								}
 								else if (mtype == "float"||mtype == "double"){
+									static float bk_mem_value = 100000.f;// *(float*)memb_address;
+									static void* pmem_address;
+									static bool be_operating = false;
+									ImGuiContext& g = *GImGui;
+									float mem_value_old = *(float*)memb_address;
 									ImGui::SliderFloat(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
+
+									if (g.operating_be_started)
+									{
+										printf("start changing value\n");
+										bk_mem_value = mem_value_old;
+										pmem_address = memb_address;
+										g.operating_be_started = false;
+										be_operating = true;
+									}
+
+									if (g.IO.MouseReleased[0] && be_operating)
+									{
+										printf("old_value=%f,new_value=%f\n", bk_mem_value, *(float*)pmem_address);
+										g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, pmem_address, command_value(bk_mem_value)));
+										be_operating = false;
+									}
 								}
 								else if (mtype=="ImVec2"){
 									ImGui::SliderFloat2(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
@@ -218,7 +240,9 @@ namespace auto_future
 								else if (mtype=="ImVec4") {
 									if (rg=="clr")
 									{
-										ImGui::ColorEdit4(mname.c_str(), (float*)memb_address);
+										float* pcolor = (float*)memb_address;
+										float cur_clr[4] = { pcolor[0], pcolor[1], pcolor[2], pcolor[3] };
+										ImGui::ColorEdit4(mname.c_str(), pcolor);
 									}
 									else{
 										ImGui::SliderFloat4(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
@@ -226,7 +250,12 @@ namespace auto_future
 
 								}
 								else if (mtype == "bool"){
-									ImGui::Checkbox(mname.c_str(), (bool*)memb_address);
+									bool bvalue = *(bool*)memb_address;
+									if (ImGui::Checkbox(mname.c_str(), (bool*)memb_address))
+									{
+										g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, memb_address, command_value(bvalue)));
+									}
+									
 								}else{
 									printf("unknown member type!:%s\n", mtype.c_str());
 								}						

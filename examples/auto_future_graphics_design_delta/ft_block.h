@@ -30,9 +30,9 @@ namespace auto_future
 			_pt._sizeh= h;
 		}
 		void draw();
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		base_ui_component* get_hit_ui_object(float posx, float posy);
 		
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

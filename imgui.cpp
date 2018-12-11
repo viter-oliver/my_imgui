@@ -8806,6 +8806,7 @@ bool ImGui::SliderFloat(const char* label, float* v, float v_min, float v_max, c
         SetFocusID(id, window);
         FocusWindow(window);
         g.ActiveIdAllowNavDirFlags = (1 << ImGuiDir_Up) | (1 << ImGuiDir_Down);
+		g.operating_be_started = true;
         if (tab_focus_requested || g.IO.KeyCtrl || g.NavInputId == id)
         {
             start_text_input = true;

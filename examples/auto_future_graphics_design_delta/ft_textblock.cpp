@@ -73,6 +73,7 @@ namespace auto_future
 		}
 #endif
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	base_ui_component* ft_textblock::get_hit_ui_object(float posx, float posy)
 	{
 		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
@@ -90,7 +91,6 @@ namespace auto_future
 			return nullptr;
 		}
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
 	/*
 	fields:

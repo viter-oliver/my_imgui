@@ -66,9 +66,9 @@ namespace auto_future
 			return _img_pt._texture_index_txt;
 		}
 		void draw();
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		base_ui_component* get_hit_ui_object(float posx, float posy);
 
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		enum 
 		{
 			en_parent_property=1,

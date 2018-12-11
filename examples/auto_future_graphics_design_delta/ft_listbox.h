@@ -19,7 +19,6 @@ namespace auto_future
 		ft_listbox();
 		void set_logic_scroll_value(float scvalue);
 		void draw();
-		base_ui_component* get_hit_ui_object(float posx, float posy);
 		void add_child(base_ui_component* pchild);
 		void remove_child(base_ui_component* pchild);
 		ImVec2 get_logic_range()
@@ -28,6 +27,7 @@ namespace auto_future
 		}
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		base_ui_component* get_hit_ui_object(float posx, float posy);
 		bool init_from_json(Value& jvalue);
 		bool init_json_unit(Value& junit);
 #endif

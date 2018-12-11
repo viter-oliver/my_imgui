@@ -6227,7 +6227,7 @@
 				"y" : 720.0
 			},
 			"type" : "ft_block",
-			"visible" : true,
+			"visible" : false,
 			"with_border" : false
 		}
 	],

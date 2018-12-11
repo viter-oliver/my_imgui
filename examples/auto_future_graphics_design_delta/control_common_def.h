@@ -55,7 +55,6 @@ namespace auto_future
 	using namespace Json;
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
-	struct command_elemment;
 #endif
 	extern void ShowHelpMarker(const char* desc);
 	extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
@@ -143,8 +142,6 @@ namespace auto_future
 		void draw_peropertys();
 		virtual void back_up_property() = 0;
 		//struct command_elemment;
-		virtual void execute_command(command_elemment&) = 0;
-		virtual command_elemment clone_cmd_ele(command_elemment&)=0;
 		bool is_selected()
 		{
 			return _selected;
@@ -160,6 +157,7 @@ namespace auto_future
 		//{
 		//	return ImVec2();
 		//}
+		virtual base_ui_component* get_hit_ui_object(float posx, float posy) = 0;
 
 		/**
 		*@brief instancing class from a json value unit
@@ -203,7 +201,6 @@ namespace auto_future
 		*@return object hit by mouse
 		*  -
 		*/
-		virtual base_ui_component* get_hit_ui_object(float posx, float posy) = 0;
 		virtual ImVec2 get_size()
 		{
 			return ImVec2();

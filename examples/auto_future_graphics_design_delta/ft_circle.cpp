@@ -33,6 +33,7 @@ namespace auto_future
 		}
 		ft_base::draw();
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	base_ui_component* ft_circle::get_hit_ui_object(float posx, float posy)
 	{
 		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
@@ -54,7 +55,6 @@ namespace auto_future
 			return nullptr;
 		}
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
 	bool ft_circle::init_from_json(Value& jvalue)
 	{
