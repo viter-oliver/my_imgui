@@ -14,9 +14,6 @@ namespace auto_future
 		base_prop _in_p_bk;
 		enum { en_pt_name, en_pt_pos_x, en_pt_pos_y, en_pt_visible };
 	public:
-		void back_up_property();
-		bool init_from_json(Value& jvalue);
-		bool init_json_unit(Value& junit);
 		base_ui_component* get_hit_ui_object(float posx, float posy);
 #endif
 		bool handle_mouse();

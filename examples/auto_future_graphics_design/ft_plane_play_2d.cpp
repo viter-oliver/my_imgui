@@ -146,25 +146,5 @@ namespace auto_future
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
-	bool ft_plane_play_2d::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		strcpy(_pt._materil_name, jvalue["material name"].asCString());
-		strcpy(_pt._texture_name, jvalue["texture name"].asCString());
-		strcpy(_pt._texture_fmt_name, jvalue["texture format"].asCString());
-		_pt._frame_index = jvalue["frame index"].asInt();
-		link();
-		return true;
-	}
-
-	bool ft_plane_play_2d::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		junit["material name"] = _pt._materil_name;
-		junit["texture name"] = _pt._texture_name;
-		junit["texture format"] = _pt._texture_fmt_name;
-		junit["frame index"]=_pt._frame_index;
-		return true;
-	}
 #endif
 }

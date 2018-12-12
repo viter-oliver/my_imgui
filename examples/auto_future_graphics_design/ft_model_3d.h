@@ -31,8 +31,6 @@ namespace auto_future
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		void load_mesh_data_2_vertices();
 		void load_vertics_2_vbo();
-		bool init_from_json(Value& jvalue);
-		bool init_json_unit(Value& junit);
 #endif
 	};
 

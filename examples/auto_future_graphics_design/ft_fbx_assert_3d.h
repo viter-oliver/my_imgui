@@ -39,9 +39,6 @@ namespace auto_future{
 		~ft_fbx_assert_3d();
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		bool init_from_json(Value& jvalue);
-		bool init_json_unit(Value& junit);
-
 		void init_internal_mesh_point();
 #endif
 	};

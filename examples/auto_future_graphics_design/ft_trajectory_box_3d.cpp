@@ -6,10 +6,7 @@ namespace auto_future
 
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	bool ft_trajectory_box_3d::init_from_json(Value& jvalue)
-	{
-		return true;
-	}
+
 #endif
 	bool ft_trajectory_box_3d::handle_mouse()
 	{

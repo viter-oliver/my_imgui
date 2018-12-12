@@ -56,33 +56,7 @@ namespace auto_future
 #endif
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	
-	bool ft_button::init_from_json(Value& jvalue)
-	{
-		ft_base::init_json_unit(jvalue);
-		Value& texture_indices = jvalue["texture_indices"];
-		_pt._texture_indices_nm_tt = texture_indices["normal"].asInt();
-		_pt._texture_indices_dn_tt = texture_indices["pressed"].asInt();
-		_pt._texture_indices_sl_tt = texture_indices["selected"].asInt();
-		Value& bsize = jvalue["size"];
-		_pt._sizew = bsize["x"].asDouble();
-		_pt._sizeh = bsize["y"].asDouble();
-		return true;
-	}
-	bool ft_button::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		Value jtexture_indices(objectValue);
-		jtexture_indices["normal"] = _pt._texture_indices_nm_tt;
-		jtexture_indices["pressed"] = _pt._texture_indices_dn_tt;
-		jtexture_indices["selected"] = _pt._texture_indices_sl_tt;
-		junit["texture_indices"] = jtexture_indices;
-		Value jsize(objectValue);
-		jsize["x"] = _pt._sizew;
-		jsize["y"] = _pt._sizeh;
-		junit["size"] = jsize;
-		return true;
-	}
+
 #endif
 	bool ft_button::handle_mouse()
 	{

@@ -46,8 +46,6 @@ namespace auto_future
 			en_geometry_property=2,
 			en_texture_property=8,
 		};
-		bool init_from_json(Value& jvalue);
-		bool init_json_unit(Value& junit);
 #endif
 
 		void rotate(float angle){ _img_pt._angle_nml = angle; }

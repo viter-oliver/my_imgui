@@ -22,24 +22,5 @@ namespace auto_future
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
-	bool ft_plot_lines::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		Value& jsize = jvalue["size"];
-		_pt._sizew = jsize["w"].asDouble();
-		_pt._sizeh = jsize["h"].asDouble();
-		_pt._v_count= jvalue["value_count"].asInt();
-		return true;
-	}
-	bool ft_plot_lines::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		Value jsize(objectValue);
-		jsize["w"] = _pt._sizew;
-		jsize["h"] = _pt._sizeh;
-		junit["size"] = jsize;
-		junit["value_count"] = _pt._v_count;
-		return true;
-	}
 #endif
 }

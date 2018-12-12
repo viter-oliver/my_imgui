@@ -87,36 +87,6 @@ namespace auto_future
 		}
 	}
 
-	bool ft_scene::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		Value& jsize = jvalue["size"];
-		_sn_pt._sizew = jsize["w"].asDouble();
-		_sn_pt._sizeh = jsize["h"].asDouble();
-		Value& jbgcolor = jvalue["background color"];
-		_sn_pt._bk_clr.x = jbgcolor["x"].asDouble();
-		_sn_pt._bk_clr.y = jbgcolor["y"].asDouble();
-		_sn_pt._bk_clr.z = jbgcolor["z"].asDouble();
-		_sn_pt._bk_clr.w = jbgcolor["w"].asDouble();
-
-		return true;
-	}
-
-	bool ft_scene::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		Value jsize(objectValue);
-		jsize["w"] = _sn_pt._sizew;
-		jsize["h"] = _sn_pt._sizeh;
-		junit["size"] = jsize;
-		Value jbgcolor(objectValue);
-		jbgcolor["x"] = _sn_pt._bk_clr.x;
-		jbgcolor["y"] = _sn_pt._bk_clr.y;
-		jbgcolor["z"] = _sn_pt._bk_clr.z;
-		jbgcolor["w"] = _sn_pt._bk_clr.w;
-		junit["background color"] = jbgcolor;
-		return true;
-	}
 #endif
 
 	bool ft_scene::handle_mouse()

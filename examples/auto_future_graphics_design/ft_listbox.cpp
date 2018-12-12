@@ -154,32 +154,6 @@ namespace auto_future
 		}
 	}
 
-	bool ft_listbox::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		_lt_pt._vertical = jvalue["vertical"].asBool();
-		Value& jsize = jvalue["size"];
-		_lt_pt._sizew = jsize["w"].asDouble();
-		_lt_pt._sizeh = jsize["h"].asDouble();
-		Value& jrange = jvalue["range"];
-		_lt_pt._rangex = jrange["min"].asDouble();
-		_lt_pt._rangey = jrange["max"].asDouble();
-		return true;
-	}
-	bool ft_listbox::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		junit["vertical"] = _lt_pt._vertical;
-		Value jsize(objectValue);
-		jsize["w"] = _lt_pt._sizew;
-		jsize["h"] = _lt_pt._sizeh;
-		junit["size"] = jsize;
-		Value jrange(objectValue);
-		jrange["min"] = _lt_pt._rangex;
-		jrange["max"] = _lt_pt._rangey;
-		junit["range"] = jrange;
-		return true;
-	}
 #endif
 
 	bool ft_listbox::handle_mouse()

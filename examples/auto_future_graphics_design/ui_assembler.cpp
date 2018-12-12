@@ -183,7 +183,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				ebo_len = jpm["ebo_len"].asInt();
 				load_primitive_from_file(kname, ele_format, vbo_len, ebo_len);
 			}
-			_root.init_from_json(jroot);
+			_root.init_property_from_json(jroot);//
 		}
 		fin.close();
 	}
@@ -310,7 +310,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	jroot["primitive_list"] = jprimitive_list;
 
 	jroot["texture_id_index"] = g_cur_texture_id_index;
-	_root.init_json_unit(jroot);
+	_root.save_property_to_json(jroot);
 	fout << jroot << endl;
 	fout.close();
 

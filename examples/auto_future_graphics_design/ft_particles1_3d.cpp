@@ -471,13 +471,6 @@ namespace auto_future
 		glDisableVertexAttribArray(2);
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	bool ft_particles1_3d::init_from_json(Value& jvalue)
-	{
-		return true;
-	}
-	bool ft_particles1_3d::init_json_unit(Value& junit)
-	{
-		return true;
-	}
+
 #endif
 }

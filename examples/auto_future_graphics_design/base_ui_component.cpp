@@ -1,6 +1,7 @@
 #include "control_common_def.h"
 #include "res_output.h"
 #include "command_element_delta.h"
+#include "factory.h"
 #define INT_VALUE 45
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
@@ -111,10 +112,11 @@ namespace auto_future
 							imemb_var_handle->second(memb_address);
 						}
 						else{
-							if (array_cnt>0){
-								if (mtype == "char")
+							function<bool(string&, void* )> f_draw_index_prop;
+							if (mtype == "char"){
+								if (array_cnt > 0)
 								{
-									if (mname=="_name"){
+									if (mname == "_name"){
 										if (ImGui::InputText("object name", _in_p._name, name_len))
 										{
 											auto pparent = get_parent();
@@ -130,61 +132,17 @@ namespace auto_future
 									}
 								}
 								else
-								{
-									for (int ix = 0; ix < array_cnt;++ix)
-									{
-										char str_index[50] = {0};
-										sprintf(str_index,"[%d]", ix);
-										string mname_width_index = mname + str_index;
-										void* memb_index_address = (char*)memb_address + ix*mtpsz;
-
-										if (mtype == "int"){
-											ImGui::SliderInt(mname_width_index.c_str(), (int*)memb_index_address, _vrange._min._i, _vrange._max._i);
-										}
-										else if (mtype == "float"||mtype == "double"){
-											ImGui::SliderFloat(mname_width_index.c_str(), (float*)memb_index_address, _vrange._min._f, _vrange._max._f);
-										}
-										else if (mtype == "ImVec2"){
-											ImGui::SliderFloat2(mname_width_index.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
-										}
-										else if (mtype == "ImVec3") {
-											if (rg=="clr")
-											{
-												ImGui::ColorEdit3(mname_width_index.c_str(), (float*)memb_address, ImGuiColorEditFlags_RGB);
-											}
-											else
-											{
-												ImGui::SliderFloat3(mname_width_index.c_str(), (float*)memb_address, 0, screenw);
-											}
-										}
-										else if (mtype == "ImVec4") {
-											if (rg=="clr")
-											{
-												ImGui::ColorEdit4(mname_width_index.c_str(), (float*)memb_address);
-											}
-											else
-											{
-												ImGui::SliderFloat4(mname_width_index.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
-											}
-										}
-										else if (mtype == "bool"){
-											ImGui::Checkbox(mname_width_index.c_str(), (bool*)memb_address);
-										}
-										else{
-											printf("unknown member type!:%s\n", mtype.c_str());
-										}
-									}
-								}
+									ImGui::SliderInt(mname.c_str(), (int*)memb_address, 0, 255);
 							}
-							else{
-								if (mtype == "int"){
-									if (rg=="txt")// atexture
-									{
+							else if (mtype == "int"){
+								if (rg == "txt")// atexture
+								{
+									f_draw_index_prop = [&](string& str_show, void*maddress){									
 										auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 										int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
 										int imem_value = *(int*)memb_address;
-										ImGui::Combo(mname.c_str(), (int*)memb_address, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
-										
+										bool be_changed=ImGui::Combo(str_show.c_str(), (int*)maddress, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
+
 										ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
 										int txt_idx = *(int*)memb_address;
 										float reswidth = res_coors[txt_idx].owidth();
@@ -203,56 +161,77 @@ namespace auto_future
 											ImVec2 uv1(res_coors[txt_idx]._x1 / wtexture_width, res_coors[txt_idx]._y1 / wtexture_height);
 											ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 										}
-									}
-									else{
-										ImGui::SliderInt(mname.c_str(), (int*)memb_address, _vrange._min._i, _vrange._max._i);
-									}
+										return be_changed;
+									};
 								}
-								else if (mtype == "float"||mtype == "double"){
+								else{
+									f_draw_index_prop = [&](string& str_show, void*maddress){
+										return  ImGui::SliderInt(str_show.c_str(), (int*)maddress, _vrange._min._i, _vrange._max._i);
+									};
+								}
 
-									ImGui::SliderFloat(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
-									
-								}
-								else if (mtype=="ImVec2"){
-									ImGui::SliderFloat2(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
-								}
-								else if (mtype=="ImVec3") {
-									if (rg=="clr")
+							}
+							else if (mtype == "float" || mtype == "double"){
+								f_draw_index_prop = [&](string& str_show, void*maddress){
+									return  ImGui::SliderFloat(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
+								};
+							}
+							else if (mtype == "ImVec2"){
+								f_draw_index_prop = [&](string& str_show, void*maddress){
+										return ImGui::SliderFloat2(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
+								};
+				
+							}
+							else if (mtype == "ImVec3") {
+								f_draw_index_prop = [&](string& str_show, void*maddress){
+									if (rg == "clr")
 									{
-										ImGui::ColorEdit3(mname.c_str(), (float*)memb_address, ImGuiColorEditFlags_RGB);
+										return ImGui::ColorEdit3(str_show.c_str(), (float*)maddress, ImGuiColorEditFlags_RGB);
 									}
 									else
 									{
-										ImGui::SliderFloat3(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
+										return ImGui::SliderFloat3(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
 									}
-								}
-								else if (mtype=="ImVec4") {
-									if (rg=="clr")
-									{
-										float* pcolor = (float*)memb_address;
-										float cur_clr[4] = { pcolor[0], pcolor[1], pcolor[2], pcolor[3] };
-										ImGui::ColorEdit4(mname.c_str(), pcolor);
-										float after_clr[4] = { pcolor[0], pcolor[1], pcolor[2], pcolor[3] };
-										for (size_t i = 0; i < 4; i++)
-										{
-											if (cur_clr[i]!=after_clr[i])
-											{
-												printf("befor_clr[%d]:%f,after_clr[%d]:%f\n", i,cur_clr[i], i,after_clr[i]);
-											}
-										}
-									}
-									else{
-										ImGui::SliderFloat4(mname.c_str(), (float*)memb_address, _vrange._min._f, _vrange._max._f);
-									}
-
-								}
-								else if (mtype == "bool"){
-									ImGui::Checkbox(mname.c_str(), (bool*)memb_address);
-								}else{
-									printf("unknown member type!:%s\n", mtype.c_str());
-								}						
+								};
+										
 							}
-
+							else if (mtype == "ImVec4") {
+								f_draw_index_prop = [&](string& str_show, void*maddress){
+									if (rg == "clr")
+									{
+										return ImGui::ColorEdit4(str_show.c_str(), (float*)maddress, ImGuiColorEditFlags_RGB);
+									}
+									else
+									{
+										return ImGui::SliderFloat4(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
+									}
+								};
+							}
+							else if (mtype == "bool"){
+								f_draw_index_prop = [&](string& str_show, void*maddress){
+									return ImGui::Checkbox(str_show.c_str(), (bool*)maddress);
+								};
+							}
+							else{
+								printf("unknown member type!:%s\n", mtype.c_str());
+								continue;
+							}
+							if (f_draw_index_prop)
+							{
+								if (array_cnt>0){
+									for (int ix = 0; ix < array_cnt; ++ix)
+									{
+										char str_index[50] = { 0 };
+										sprintf(str_index, "[%d]", ix);
+										string mname_width_index = mname + str_index;
+										void* memb_index_address = (char*)memb_address + ix*mtpsz;
+										f_draw_index_prop(mname_width_index, memb_index_address);
+									}
+								}
+								else{
+									f_draw_index_prop(mname, memb_address);
+								}
+							}
 						}
 
 						static cmd_value_block bk_memb_value;
@@ -294,6 +273,350 @@ namespace auto_future
 				ImGui::Separator();
 				ImGui::Spacing();
 			}
+		}
+	}
+	void base_ui_component::init_property_from_json(Value& jvalue){
+
+		for (auto& prop_ele : _vprop_eles)
+		{
+			auto& prop_page = prop_ele->_pro_page;
+			int prev_memb_offset_p_tpsz = 0;
+			for (auto& memb : prop_page)
+			{
+				auto mtype = memb->_type;
+				auto mname = memb->_name;
+				auto mtpsz = memb->_tpsz;
+				auto moffset = memb->_offset;
+				void* memb_address = 0;
+				int array_cnt = 0;
+				string::size_type apos = mname.find('[');
+				if (apos != string::npos)//is array
+				{
+					mname = mname.substr(0, apos);
+					int wsz = moffset - prev_memb_offset_p_tpsz;
+					array_cnt = wsz / mtpsz;
+					memb_address = (char*)prop_ele->_pro_address + prev_memb_offset_p_tpsz;
+					prev_memb_offset_p_tpsz = moffset;
+				}
+				else{
+					auto eppos = mname.find('=');
+					if (eppos != string::npos){
+						mname = mname.substr(0, eppos);
+					}
+					else{
+						auto brpos = mname.find('{');
+						if (brpos != string::npos)
+						{
+							mname = mname.substr(0, brpos);
+						}
+					}
+					memb_address = (char*)prop_ele->_pro_address + moffset;
+					prev_memb_offset_p_tpsz = moffset + mtpsz;
+				}
+				if (array_cnt > 0){
+					if (mtype == "char")
+					{
+						Value vbytes = jvalue[mname];//must be string
+						strcpy((char*)memb_address, vbytes.asCString());
+					}
+					else
+					{
+						Value marray=jvalue[mname];
+						function<void(void*,Value&)> f_assingn_json_to_memb;
+						if (mtype == "int"){
+							f_assingn_json_to_memb = [&](void* membaddr,Value& vele)
+							{
+								*(int*)membaddr=vele.asInt();
+							};
+						}
+						else if (mtype == "float" || mtype == "double"){
+							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
+							{
+								*(float*)membaddr=vele.asDouble();
+							};
+						}
+						else if (mtype == "ImVec2"){
+							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
+							{
+								 *(float*)membaddr=vele["x"].asDouble();
+								 *((float*)membaddr + 1)=vele["y"].asDouble();
+							};
+						}
+						else if (mtype == "ImVec3"){
+							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
+							{
+								*(float*)membaddr=vele["x"].asDouble();
+								*((float*)membaddr + 1)=vele["y"].asDouble();
+								*((float*)membaddr + 2)=vele["z"].asDouble();
+							};
+						}
+						else if (mtype == "ImVec4"){
+							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
+							{
+								*(float*)membaddr=vele["x"].asDouble();
+								*((float*)membaddr + 1)=vele["y"].asDouble();
+								*((float*)membaddr + 2)=vele["z"].asDouble();
+								*((float*)membaddr + 3) = vele["w"].asDouble();					
+							};
+						}
+						else if (mtype == "bool"){
+							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
+							{
+								*(bool*)membaddr=vele.asBool();
+							};
+						}
+						else {
+							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
+							{
+								strcpy((char*)membaddr, vele.asCString());
+							};
+						}
+						for (int ix = 0; ix < array_cnt; ++ix)
+						{
+							void* memb_index_address = (char*)memb_address + ix*mtpsz;
+							f_assingn_json_to_memb(memb_index_address, marray[ix]);
+						}
+						
+					}
+				}
+				else{
+					if (mtype == "int"){
+						*(int*)memb_address = jvalue[mname].asInt();
+					}
+					else if (mtype == "float" || mtype == "double"){
+						*(float*)memb_address=jvalue[mname].asDouble();
+					}
+					else if (mtype == "ImVec2"){
+						Value jv2=jvalue[mname];
+						 *(float*)memb_address=jv2["x"].asDouble();
+						 *((float*)memb_address + 1)=jv2["y"].asDouble();
+					}
+					else if (mtype == "ImVec3") {
+						Value jv3=jvalue[mname];
+						 *(float*)memb_address=jv3["x"].asDouble();
+						*((float*)memb_address + 1) = jv3["y"].asDouble();
+						*((float*)memb_address + 2) = jv3["z"].asDouble();
+					}
+					else if (mtype == "ImVec4") {
+						Value jv4=jvalue[mname];
+						 *(float*)memb_address=jv4["x"].asDouble();
+						*((float*)memb_address + 1) = jv4["y"].asDouble();
+						*((float*)memb_address + 2) = jv4["z"].asDouble();
+						*((float*)memb_address + 3) = jv4["w"].asDouble();
+
+					}
+					else if (mtype == "bool"){
+						*(bool*)memb_address=jvalue[mname].asBool();
+					}
+					else{
+						Value vbytes=jvalue[mname];//must be string
+						strcpy((char*)memb_address, vbytes.asCString());
+					}
+				}
+			}
+		}
+		Value childs=jvalue["childs"];
+		if (!childs.isArray())
+		{
+			return;
+		}
+		size_t chcnt = childs.size();
+		for (size_t ix = 0; ix < chcnt; ix++)
+		{
+			Value& child = childs[ix];
+			auto& cname = child["type"].asString();
+			base_ui_component* pcontrol_instance = factory::get().produce(cname);
+			add_child(pcontrol_instance);
+			pcontrol_instance->init_property_from_json(child);
+			
+		}
+	}
+	void base_ui_component::save_property_to_json(Value& junit){
+		string cname = typeid(*this).name();
+		cname = cname.substr(sizeof("class autofuture::"));
+		junit["type"] = cname;
+		for (auto& prop_ele : _vprop_eles)
+		{
+			auto& prop_page = prop_ele->_pro_page;
+			int prev_memb_offset_p_tpsz = 0;
+			for (auto& memb : prop_page)
+			{
+				auto mtype = memb->_type;
+				auto mname = memb->_name;
+				auto mtpsz = memb->_tpsz;
+				auto moffset = memb->_offset;
+				void* memb_address = 0;
+				int array_cnt = 0;
+				string::size_type apos = mname.find('[');
+				if (apos != string::npos)//is array
+				{
+					mname = mname.substr(0, apos);
+					int wsz = moffset - prev_memb_offset_p_tpsz;
+					array_cnt = wsz / mtpsz;
+					memb_address = (char*)prop_ele->_pro_address + prev_memb_offset_p_tpsz;
+					prev_memb_offset_p_tpsz = moffset;
+				}
+				else{
+					auto eppos = mname.find('=');
+					if (eppos != string::npos){
+						mname = mname.substr(0, eppos);
+					}
+					else{
+						auto brpos = mname.find('{');
+						if (brpos != string::npos)
+						{
+							mname = mname.substr(0, brpos);
+						}
+					}
+					memb_address = (char*)prop_ele->_pro_address + moffset;
+					prev_memb_offset_p_tpsz = moffset + mtpsz;
+				}
+				if (array_cnt > 0){
+					if (mtype == "char")
+					{
+						char* str_memb= new char[array_cnt];
+						memset(str_memb, 0, array_cnt);
+						memcpy(str_memb, memb_address, array_cnt);
+						junit[mname] = str_memb;
+						delete str_memb;
+					}
+					else
+					{
+						Value marray(arrayValue);
+						function<void(void*)> f_save_to_json;
+						if (mtype=="int"){
+							f_save_to_json = [&marray](void* membaddr)
+							{
+								int imemb = *(int*)membaddr;
+								marray.append(imemb);
+							};
+						}
+						else if (mtype=="float"|| mtype == "double"){
+							f_save_to_json = [&marray](void* membaddr)
+							{
+								float fmemb = *(float*)membaddr;
+								marray.append(fmemb);
+							};
+						}
+						else if (mtype == "ImVec2"){
+							f_save_to_json = [&marray](void* membaddr)
+							{
+								Value jv2(objectValue);
+								jv2["x"] = *(float*)membaddr;
+								jv2["y"] = *((float*)membaddr + 1);
+								marray.append(jv2);
+							};							
+						}
+						else if (mtype == "ImVec3"){
+							f_save_to_json = [&marray](void* membaddr)
+							{
+								Value jv3(objectValue);
+								jv3["x"] = *(float*)membaddr;
+								jv3["y"] = *((float*)membaddr + 1);
+								jv3["z"] = *((float*)membaddr + 2);
+								marray.append(jv3);
+							};
+						}
+						else if (mtype == "ImVec4"){
+							f_save_to_json = [&marray](void* membaddr)
+							{
+								Value jv4(objectValue);
+								jv4["x"] = *(float*)membaddr;
+								jv4["y"] = *((float*)membaddr + 1);
+								jv4["z"] = *((float*)membaddr + 2);
+								jv4["z"] = *((float*)membaddr + 3);
+								marray.append(jv4);
+							};
+						}
+						else if (mtype == "bool"){
+							f_save_to_json = [&marray](void* membaddr)
+							{
+								bool bmemb = *(bool*)membaddr;
+								marray.append(bmemb);
+							};
+						}
+						else {
+							f_save_to_json = [&](void* membaddr)
+							{
+
+								char* pbytes = new char[mtpsz+1];
+								int ix = 0;
+								for (; ix < mtpsz; ++ix)
+								{
+									pbytes[ix] = *((char*)membaddr + ix);
+								}
+								pbytes[ix] = '\0';
+								Value vbytes=pbytes;
+								delete pbytes;
+								marray.append(vbytes);
+							};
+						}
+						for (int ix = 0; ix < array_cnt; ++ix)
+						{
+							void* memb_index_address = (char*)memb_address + ix*mtpsz;
+							f_save_to_json(memb_index_address);
+						}
+						junit[mname] = marray;
+					}
+				}
+				else{
+					if (mtype == "int"){
+						junit[mname] = *(int*)memb_address;
+					}
+					else if (mtype == "float" || mtype == "double"){
+						junit[mname] = *(float*)memb_address;
+					}
+					else if (mtype == "ImVec2"){
+						Value jv2(objectValue);
+						jv2["x"] = *(float*)memb_address;
+						jv2["y"]= *((float*)memb_address+1);
+						junit[mname] = jv2;
+					}
+					else if (mtype == "ImVec3") {
+						Value jv3(objectValue);
+						jv3["x"] = *(float*)memb_address;
+						jv3["y"] = *((float*)memb_address + 1);
+						jv3["z"] = *((float*)memb_address + 2);
+						junit[mname] = jv3;
+					}
+					else if (mtype == "ImVec4") {
+						Value jv4(objectValue);
+						jv4["x"] = *(float*)memb_address;
+						jv4["y"] = *((float*)memb_address + 1);
+						jv4["z"] = *((float*)memb_address + 2);
+						jv4["w"] = *((float*)memb_address + 3);
+						junit[mname] = jv4;
+
+					}
+					else if (mtype == "bool"){
+						junit[mname] = *(bool*)memb_address;
+					}
+					else{
+						char* pbytes = new char[mtpsz+1];
+						int ix = 0;
+						for (; ix < mtpsz; ++ix)
+						{
+							pbytes[ix] = *((char*)memb_address + ix);
+						}
+						pbytes[ix] = '\0';
+						junit[mname] = pbytes;
+						delete pbytes;
+					}
+				}
+			}
+		}
+		Value jchilds(arrayValue);
+		size_t chcnt = child_count();
+		for (size_t ix = 0; ix < chcnt; ix++)
+		{
+			base_ui_component* pch_uc = get_child(ix);
+			Value jchuc(objectValue);
+			pch_uc->save_property_to_json(jchuc);
+			jchilds.append(jchuc);
+		}
+		if (chcnt > 0)
+		{
+			junit["childs"] = jchilds;
 		}
 	}
 	int base_ui_component::collect_property_range(vproperty_list& vplist)

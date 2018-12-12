@@ -127,65 +127,6 @@ namespace auto_future
 			return nullptr;
 		}
 	}
-	/*
-	fields:
-	screen_pos,
-	texture_id_index
-	texture_index
-	*/
-	bool ft_image_play::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		//g_cur_texture_id_index = jvalue["texture_id_index"].asInt();
-		strcpy(_img_pt._texture_name, jvalue["texture name"].asCString());
-		strcpy(_img_pt._texture_fmt_name, jvalue["texture format"].asCString());
-		_img_pt._frame_index = jvalue["frame_index"].asInt();
-		Value& jsize = jvalue["size"];
-		if (!jsize.isNull())
-		{
-			_img_pt._sizew = jsize["w"].asDouble();
-			_img_pt._sizeh = jsize["h"].asDouble();
-		}
-		/*if (_img_pt._size.x == 0.f || _img_pt._size.y == 0.f)
-		{
-			vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
-			_img_pt._size.x = ptext_cd[_img_pt._texture_index]._x1 - ptext_cd[_img_pt._texture_index]._x0;
-			_img_pt._size.y = ptext_cd[_img_pt._texture_index]._y1 - ptext_cd[_img_pt._texture_index]._y0;
-		}*/
-		Value& jaxispos = jvalue["axipos"];
-		if (!jaxispos.isNull())
-		{
-			_img_pt._aposx = jaxispos["x"].asDouble();
-			_img_pt._aposy = jaxispos["y"].asDouble();
-			_img_pt._angle_nml = jaxispos["angle"].asDouble();
-		}
-		else
-		{
-			float aw = _img_pt._sizew / 2;
-			float ah = _img_pt._sizeh / 2;
-			_img_pt._aposx = base_pos().x + aw;
-			_img_pt._aposy = base_pos().y + ah;
-		}
-		link();
-		return true;
-	}
-	bool ft_image_play::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		junit["texture name"] = _img_pt._texture_name;
-		junit["texture format"] = _img_pt._texture_fmt_name;
-		junit["frame_index"] = _img_pt._frame_index;
-		Value jsize(objectValue);
-		jsize["w"] = _img_pt._sizew;
-		jsize["h"] = _img_pt._sizeh;
-		junit["size"] = jsize;
-		Value jaxispos(objectValue);
-		jaxispos["x"] = _img_pt._aposx;
-		jaxispos["y"] = _img_pt._aposy;
-		jaxispos["angle"] = _img_pt._angle_nml;
-		junit["axipos"] = jaxispos;
-		return true;
-	}
 
 #endif
 }

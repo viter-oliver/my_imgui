@@ -54,8 +54,7 @@ namespace auto_future
 		void draw();
 		
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		bool init_from_json(Value& jvalue);
-		bool init_json_unit(Value& junit);
+
 #endif
 	};
 	REGISTER_CONTROL(ft_slider_thumb)

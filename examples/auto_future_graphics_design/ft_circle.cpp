@@ -56,37 +56,5 @@ namespace auto_future
 		}
 	}
 
-	bool ft_circle::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		_pt._radius = jvalue["radius"].asDouble();
-		_pt._thickness_utn = jvalue["thickness"].asDouble();
-		_pt._numb_segs = jvalue["numb_segs"].asInt();
-		_pt._solid = jvalue["solid"].asBool();
-		Value& block_color = jvalue["block_color"];
-		_pt._bkclr.x = block_color["x"].asDouble();
-		_pt._bkclr.y = block_color["y"].asDouble();
-		_pt._bkclr.z = block_color["z"].asDouble();
-		_pt._bkclr.w = block_color["w"].asDouble();
-		
-		return true;
-	}
-
-	bool ft_circle::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		junit["radius"] = _pt._radius;
-		junit["thickness"] = _pt._thickness_utn;
-		junit["numb_segs"] = _pt._numb_segs;
-		junit["solid"] = _pt._solid;
-		Value block_color(objectValue);
-		block_color["x"] = _pt._bkclr.x;
-		block_color["y"] = _pt._bkclr.y;
-		block_color["z"] = _pt._bkclr.z;
-		block_color["w"] = _pt._bkclr.w;
-		junit["block_color"] = block_color;
-		
-		return true;
-	}
 #endif
 }

@@ -78,36 +78,5 @@ namespace auto_future
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
-	bool ft_cube_3d::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		Value& translation = jvalue["translation"];
-		_pt._translation_shd.x = translation["x"].asDouble();
-		_pt._translation_shd.y = translation["y"].asDouble();
-		_pt._translation_shd.z = translation["z"].asDouble();
-		Value& scale = jvalue["scale"];
-		_pt._scale_stn.x = scale["x"].asDouble();
-		_pt._scale_stn.y = scale["y"].asDouble();
-		_pt._scale_stn.z = scale["z"].asDouble();
-
-		return true;
-	}
-
-	bool ft_cube_3d::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		Value translation(objectValue);
-		translation["x"] = _pt._translation_shd.x;
-		translation["y"] = _pt._translation_shd.y;
-		translation["z"] = _pt._translation_shd.z;
-		junit["translation"] = translation;
-		Value scale(objectValue);
-		scale["x"] = _pt._scale_stn.x;
-		scale["y"] = _pt._scale_stn.y;
-		scale["z"] = _pt._scale_stn.z;
-		junit["scale"] = scale;
-
-		return true;
-	}
 #endif
 }

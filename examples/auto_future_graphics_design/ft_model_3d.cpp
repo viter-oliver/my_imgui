@@ -120,14 +120,5 @@ namespace auto_future
 		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 8*sizeof(GLfloat), (void*)(5*sizeof(GLfloat)));
 	}
 
-	
-	bool ft_model_3d::init_from_json(Value& jvalue)
-	{
-		return true;
-	}
-	bool ft_model_3d::init_json_unit(Value& junit)
-	{
-		return true;
-	}
 #endif
 }

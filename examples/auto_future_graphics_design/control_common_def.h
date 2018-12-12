@@ -140,7 +140,6 @@ namespace auto_future
 		*/
 		//virtual void draw_peroperty_page(int property_part = -1) = 0;
 		void draw_peropertys();
-		virtual void back_up_property() = 0;
 		//struct command_elemment;
 		bool is_selected()
 		{
@@ -177,6 +176,8 @@ namespace auto_future
 		*  -false failure
 		*/
 		virtual bool init_json_unit(Value& junit){ return true; }
+		void init_property_from_json(Value& jvalue);
+		void save_property_to_json(Value& junit);
 
 #endif
 	public:

@@ -10,7 +10,6 @@ namespace auto_future
 	public:
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		bool init_from_json(Value& jvalue);
 #endif
 		bool handle_mouse();
 	};

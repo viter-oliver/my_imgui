@@ -92,49 +92,5 @@ namespace auto_future
 		}
 	}
 
-	/*
-	fields:
-	txt_color,
-	width
-	content
-	wrapped
-	*/
-	bool ft_textblock::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		Value& txt_color = jvalue["txt_color"];
-		_txt_pt._txt_clr.x = txt_color["x"].asDouble();
-		_txt_pt._txt_clr.y = txt_color["y"].asDouble();
-		_txt_pt._txt_clr.z = txt_color["z"].asDouble();
-		_txt_pt._width = jvalue["width"].asDouble();
-		Value& txt_align = jvalue["align"];
-		_txt_pt._txt_alignh_nml = txt_align["h"].asDouble();
-		_txt_pt._txt_alignv_nml = txt_align["v"].asDouble();
-		Value& content = jvalue["content"];
-		strcpy(_txt_pt._content, content.asCString());
-		_txt_pt._wrapped = jvalue["wrapped"].asBool();
-		_txt_pt._font_id = jvalue["font_id"].asDouble();
-		_txt_pt._font_scale = jvalue["font_scale"].asDouble();
-		return true;
-	}
-	bool ft_textblock::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		Value txt_color(objectValue);
-		txt_color["x"] = _txt_pt._txt_clr.x;
-		txt_color["y"] = _txt_pt._txt_clr.y;
-		txt_color["z"] = _txt_pt._txt_clr.z;
-		junit["txt_color"] = txt_color;
-		Value txt_align(objectValue);
-		txt_align["h"] = _txt_pt._txt_alignh_nml;
-		txt_align["v"] = _txt_pt._txt_alignv_nml;
-		junit["align"] = txt_align;
-		junit["width"] = _txt_pt._width;
-		junit["content"] = _txt_pt._content;
-		junit["wrapped"] = _txt_pt._wrapped;
-		junit["font_id"] = _txt_pt._font_id;
-		junit["font_scale"] = _txt_pt._font_scale;
-		return true;
-	}
 #endif
 }

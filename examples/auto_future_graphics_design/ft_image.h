@@ -81,12 +81,9 @@ namespace auto_future
 		intl_pt _img_pt_bk;
 		ImVec2 _edit_size;
 
-	public:
-		
-		bool init_from_json(Value& jvalue);
-		bool init_json_unit(Value& junit);
 #endif
 
+	public:
 		void rotate(float angle){ _img_pt._angle_srd = angle; }
 	};
 

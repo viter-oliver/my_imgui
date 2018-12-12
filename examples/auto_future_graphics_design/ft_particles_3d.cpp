@@ -311,13 +311,5 @@ namespace auto_future
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
-	bool ft_particles_3d::init_from_json(Value& jvalue)
-	{
-		return true;
-	}
-	bool ft_particles_3d::init_json_unit(Value& junit)
-	{
-		return true;
-	}
 #endif
 }
