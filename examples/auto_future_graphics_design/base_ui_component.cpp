@@ -415,6 +415,7 @@ namespace auto_future
 				}
 			}
 		}
+		link();
 		Value childs=jvalue["childs"];
 		if (!childs.isArray())
 		{
