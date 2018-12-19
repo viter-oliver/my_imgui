@@ -41,6 +41,9 @@
     <Filter Include="afb_manager">
       <UniqueIdentifier>{1eed8a52-3174-4df9-b74a-a6938f17dde9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="soil">
+      <UniqueIdentifier>{a04a2d92-1ed4-4bd1-8531-5f50612cdf16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -262,6 +265,18 @@
     <ClCompile Include="command_element_delta.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\soil\image_DXT.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\image_helper.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\SOIL.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\stb_image_aug.c">
+      <Filter>soil</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -405,14 +420,8 @@
     <ClInclude Include="paricles_system.h">
       <Filter>render_utilities</Filter>
     </ClInclude>
-    <ClInclude Include="dxt5_compress.h">
-      <Filter>afb_manager</Filter>
-    </ClInclude>
     <ClInclude Include="primitve_edit.h">
       <Filter>res_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\dds_file\stb_dxt.h">
-      <Filter>afb_manager</Filter>
     </ClInclude>
     <ClInclude Include="file_res_edit.h">
       <Filter>res_manager</Filter>
@@ -524,6 +533,24 @@
     </ClInclude>
     <ClInclude Include="command_element_delta.h">
       <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\image_DXT.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\image_helper.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\SOIL.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stb_image_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stbi_DDS_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h">
+      <Filter>soil</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

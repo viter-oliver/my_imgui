@@ -42,7 +42,7 @@ namespace auto_future
 		}
 
 		void set_progress(float value){ _slider_pt._position_nml = value; }
-		float set_progress(){ return _slider_pt._position_nml; }
+		float get_progress(){ return _slider_pt._position_nml; }
 
 		void set_bg_texture_id(int id){ _slider_pt._texture_bg_index_txt = id; }
 		void set_progress_texture_id(int id){ _slider_pt._texture_head_index_txt = id; }

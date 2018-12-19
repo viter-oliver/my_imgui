@@ -159,24 +159,22 @@ namespace auto_future
 		virtual base_ui_component* get_hit_ui_object(float posx, float posy) = 0;
 
 		/**
-		*@brief instancing class from a json value unit
+		*@brief init some data member from a json value unit
 		*@param jvalue a json value
 		*  jvalue which contain all the value of the data member of current object
 		*@return result
 		*  --true success
 		*  --false failure
 		*/
-		virtual bool init_from_json(Value& jvalue){ return true; }
-		/**
-		*@brief init a json unit by some data members
+			void init_property_from_json(Value& jvalue);
+	    /**
+		*@brief save some data members to a json unit
 		*@param junit a json value
 		*  junit which will be stored all the value of the data member of current object
 		*@return result
 		*  -true success
 		*  -false failure
 		*/
-		virtual bool init_json_unit(Value& junit){ return true; }
-		void init_property_from_json(Value& jvalue);
 		void save_property_to_json(Value& junit);
 
 #endif
@@ -195,7 +193,16 @@ namespace auto_future
 		*@return length of property data block
 		*  -
 		*/
-		int collect_property_range(vproperty_list& vplist);
+		int collect_property_range(vproperty_list& vplist)
+		{
+			int len = 0;
+			for (auto& prop_ele : _vprop_eles)
+			{
+				len += prop_ele->_pro_sz;
+				vplist.emplace_back(prop_ele->_pro_address, prop_ele->_pro_sz);
+			}
+			return len;
+		}
 		/**
 		*@brief get hit ui object
 		*@param posx posy- the coordinate of mouse 

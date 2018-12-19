@@ -26,8 +26,7 @@ public:
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		// Step3 设定filter参数
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 
-			GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//	GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
 		// Step4 加载纹理
 		GLubyte *imageData = NULL;
 		imageData = SOIL_load_image(filename, &picWidth, &picHeight, 0, loadChannels);
@@ -38,7 +37,7 @@ public:
 		}
 		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, picWidth, picHeight, 
 			0, picFormat, GL_UNSIGNED_BYTE, imageData);
-		glGenerateMipmap(GL_TEXTURE_2D);
+		//glGenerateMipmap(GL_TEXTURE_2D);
 		// Step5 释放纹理图片资源
 		SOIL_free_image_data(imageData);
 		glBindTexture(GL_TEXTURE_2D, 0);

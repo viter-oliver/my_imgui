@@ -11,7 +11,7 @@
 			"_name" : "main_show",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
-			"_visible" : true,
+			"_visible" : false,
 			"childs" : 
 			[
 				
@@ -1298,7 +1298,7 @@
 			"_name" : "main_menu",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
-			"_visible" : false,
+			"_visible" : true,
 			"childs" : 
 			[
 				
@@ -2214,7 +2214,7 @@
 							"_texture_head_index_txt" : 64,
 							"_texture_thumb_index_txt" : 0,
 							"_thumb_visible" : false,
-							"_visible" : false,
+							"_visible" : true,
 							"childs" : 
 							[
 								
@@ -2308,7 +2308,7 @@
 							"_texture_head_index_txt" : 64,
 							"_texture_thumb_index_txt" : 0,
 							"_thumb_visible" : false,
-							"_visible" : false,
+							"_visible" : true,
 							"childs" : 
 							[
 								
@@ -4340,7 +4340,7 @@
 	"output_bin_fmt" : 
 	{
 		"pgm_fmt" : 1,
-		"txt_fmt" : 0
+		"txt_fmt" : 1
 	},
 	"primitive_list" : 
 	[

@@ -11,6 +11,7 @@
 #endif
 #include "af_shader.h"
 #include "material.h"
+
 #define DXT5_DECOMPRESSED
 #ifdef DXT5_DECOMPRESSED
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
@@ -207,15 +208,12 @@ void afb_load::load_afb(const char* afb_file)
 
 	auto obj_res = obj_w.via.array.ptr[7];
 	auto re_cnt = obj_res.via.array.size;
-	if (g_output_bin_format._txt_fmt == en_uncompressed_txt)
-	{
-		for (size_t ix = 0; ix < re_cnt; ix++)
-		{
-			g_vres_texture_list.emplace_back(res_texture_list());
-			int cur_pos = g_vres_texture_list.size() - 1;
-			res_texture_list& res_unit = g_vres_texture_list[cur_pos];
-			glGenTextures(1, &res_unit.texture_id);
-			glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
+	function<unsigned int(const char*, int, int, unsigned int)> f_gen_txt;
+	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
+		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bsz){
+			GLuint txt_id;
+			glGenTextures(1, &txt_id);
+			glBindTexture(GL_TEXTURE_2D, txt_id);
 			//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -223,48 +221,20 @@ void afb_load::load_afb(const char* afb_file)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			// Step3 设定filter参数
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);// GL_LINEAR_MIPMAP_LINEAR);
-
-			auto bin_res_unit = obj_res.via.array.ptr[ix];
-			res_unit.texture_width = bin_res_unit.via.array.ptr[0].as<int>();
-			res_unit.texture_height = bin_res_unit.via.array.ptr[1].as<int>();
-			auto res_bin = bin_res_unit.via.array.ptr[2];
-			auto bin_sz = res_bin.via.bin.size;
-
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, res_unit.texture_width, res_unit.texture_height,
-				0, GL_RGBA, GL_UNSIGNED_BYTE, res_bin.via.bin.ptr);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, iw, ih,
+				0, GL_RGBA, GL_UNSIGNED_BYTE, ptxt_data);
 
 			//glGenerateMipmap(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, 0);
-			auto res_data = bin_res_unit.via.array.ptr[3];
-			auto res_data_sz = res_data.via.array.size;
-			for (size_t iy = 0; iy < res_data_sz; iy++)
-			{
-				res_unit.vtexture_coordinates.emplace_back(res_texture_coordinate());
-				int curpos = res_unit.vtexture_coordinates.size() - 1;
-				res_texture_coordinate& cd_unit = res_unit.vtexture_coordinates[curpos];
-				auto bin_cd_unit = res_data.via.array.ptr[iy];
-				auto bin_filen = bin_cd_unit.via.array.ptr[0];
-				cd_unit._file_name.reserve(bin_filen.via.str.size + 1);
-				cd_unit._file_name.resize(bin_filen.via.str.size + 1);
-				memcpy(&cd_unit._file_name[0], bin_filen.via.str.ptr, bin_filen.via.str.size);
-				cd_unit._x0 = bin_cd_unit.via.array.ptr[1].as<float>();
-				cd_unit._x1 = bin_cd_unit.via.array.ptr[2].as<float>();
-				cd_unit._y0 = bin_cd_unit.via.array.ptr[3].as<float>();
-				cd_unit._y1 = bin_cd_unit.via.array.ptr[4].as<float>();
-			}
-
-		}
+			return txt_id;
+		};
 	}
-	else if (g_output_bin_format._txt_fmt == en_dxt5)
-	{
-		for (size_t ix = 0; ix < re_cnt; ix++)
-		{
-			g_vres_texture_list.emplace_back(res_texture_list());
-			int cur_pos = g_vres_texture_list.size() - 1;
-			res_texture_list& res_unit = g_vres_texture_list[cur_pos];
-			glGenTextures(1, &res_unit.texture_id);
-			glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
+	else if (g_output_bin_format._txt_fmt == en_dxt5){
+		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bsz){
+			GLuint txt_id;
+			glGenTextures(1, &txt_id);
+			glBindTexture(GL_TEXTURE_2D, txt_id);
 			//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -272,42 +242,47 @@ void afb_load::load_afb(const char* afb_file)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			// Step3 设定filter参数
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);// _MIPMAP_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bsz, ptxt_data);
 
-			auto bin_res_unit = obj_res.via.array.ptr[ix];
-			res_unit.texture_width = bin_res_unit.via.array.ptr[0].as<int>();
-			res_unit.texture_height = bin_res_unit.via.array.ptr[1].as<int>();
-			auto res_bin = bin_res_unit.via.array.ptr[2];
-			auto bin_sz = res_bin.via.bin.size;
-
-			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, res_unit.texture_width, res_unit.texture_height, 0, bin_sz, res_bin.via.bin.ptr);
 			//glGenerateMipmap(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, 0);
-			auto res_data = bin_res_unit.via.array.ptr[3];
-			auto res_data_sz = res_data.via.array.size;
-			for (size_t iy = 0; iy < res_data_sz; iy++)
-			{
-				res_unit.vtexture_coordinates.emplace_back(res_texture_coordinate());
-				int curpos = res_unit.vtexture_coordinates.size() - 1;
-				res_texture_coordinate& cd_unit = res_unit.vtexture_coordinates[curpos];
-				auto bin_cd_unit = res_data.via.array.ptr[iy];
-				auto bin_filen = bin_cd_unit.via.array.ptr[0];
-				cd_unit._file_name.reserve(bin_filen.via.str.size + 1);
-				cd_unit._file_name.resize(bin_filen.via.str.size + 1);
-				memcpy(&cd_unit._file_name[0], bin_filen.via.str.ptr, bin_filen.via.str.size);
-				cd_unit._x0 = bin_cd_unit.via.array.ptr[1].as<float>();
-				cd_unit._x1 = bin_cd_unit.via.array.ptr[2].as<float>();
-				cd_unit._y0 = bin_cd_unit.via.array.ptr[3].as<float>();
-				cd_unit._y1 = bin_cd_unit.via.array.ptr[4].as<float>();
-			}
-
-		}
+			return txt_id;
+		};
 	}
-	else
+	for (size_t ix = 0; ix < re_cnt; ix++)
 	{
-		printf("unknown texture format:%d", g_output_bin_format._txt_fmt);
-		return;
+		g_vres_texture_list.emplace_back(res_texture_list());
+		int cur_pos = g_vres_texture_list.size() - 1;
+		res_texture_list& res_unit = g_vres_texture_list[cur_pos];
+
+		auto bin_res_unit = obj_res.via.array.ptr[ix];
+		res_unit.texture_width = bin_res_unit.via.array.ptr[0].as<int>();
+		res_unit.texture_height = bin_res_unit.via.array.ptr[1].as<int>();
+		auto res_bin = bin_res_unit.via.array.ptr[2];
+		auto bin_sz = res_bin.via.bin.size;
+		res_unit.texture_id = f_gen_txt(res_bin.via.bin.ptr, res_unit.texture_width, res_unit.texture_height, bin_sz);
+
+		auto res_data = bin_res_unit.via.array.ptr[3];
+		auto res_data_sz = res_data.via.array.size;
+		for (size_t iy = 0; iy < res_data_sz; iy++)
+		{
+			res_unit.vtexture_coordinates.emplace_back(res_texture_coordinate());
+			int curpos = res_unit.vtexture_coordinates.size() - 1;
+			res_texture_coordinate& cd_unit = res_unit.vtexture_coordinates[curpos];
+			auto bin_cd_unit = res_data.via.array.ptr[iy];
+			auto bin_filen = bin_cd_unit.via.array.ptr[0];
+			cd_unit._file_name.reserve(bin_filen.via.str.size + 1);
+			cd_unit._file_name.resize(bin_filen.via.str.size + 1);
+			memcpy(&cd_unit._file_name[0], bin_filen.via.str.ptr, bin_filen.via.str.size);
+			cd_unit._x0 = bin_cd_unit.via.array.ptr[1].as<float>();
+			cd_unit._x1 = bin_cd_unit.via.array.ptr[2].as<float>();
+			cd_unit._y0 = bin_cd_unit.via.array.ptr[3].as<float>();
+			cd_unit._y1 = bin_cd_unit.via.array.ptr[4].as<float>();
+		}
+
 	}
+
 	TIME_CHECK(globe texture res)
 	auto obj_txt_list = obj_w.via.array.ptr[8];
 	auto txt_cnt = obj_txt_list.via.array.size;
@@ -324,23 +299,10 @@ void afb_load::load_afb(const char* afb_file)
 		memcpy(txt_kname, txt_name.via.str.ptr, txt_name_sz);
 		auto txt_bin_sz = txt_bin.via.bin.size;
 		auto a_txt = make_shared<af_texture>();
-		glGenTextures(1, &a_txt->_txt_id);
-		glBindTexture(GL_TEXTURE_2D, a_txt->_txt_id);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		// Step3 设定filter参数
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);// _MIPMAP_LINEAR); // 为MipMap设定filter方法
-		// Step4 加载纹理
-
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, txt_width, txt_height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, txt_bin.via.bin.ptr);
-		//glGenerateMipmap(GL_TEXTURE_2D);
-		glBindTexture(GL_TEXTURE_2D, 0);
 		a_txt->_width = txt_width;
 		a_txt->_height = txt_height;
+		a_txt->_txt_id = f_gen_txt(txt_bin.via.bin.ptr, txt_width, txt_height, txt_bin_sz);
+		
 		g_mtexture_list[txt_kname] = a_txt;
 		delete[] txt_kname;
 

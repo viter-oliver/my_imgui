@@ -10,10 +10,14 @@
 #include "af_shader.h"
 #include "material.h"
 #include "file_outputor.h"
+extern "C"{
+#include "image_DXT.h"
+}
+#include "SOIL.h"
 #define _DX5_COMPRESS
 #ifdef _DX5_COMPRESS
 #define STB_DXT_IMPLEMENTATION
-#include "dxt5_compress.h"
+
 #else
 #include "miniz.h"
 #endif
@@ -81,20 +85,16 @@ void afb_output::output_afb(const char* afb_file)
 	glBindTexture(GL_TEXTURE_2D, g_FontTexture);
 	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, ttx_f_data);
 #ifdef _DX5_COMPRESS
-	uint32_t blockDim[2] = { 4, 4 };
-	const uint32_t fblocksWide = (atlas->TexWidth + blockDim[0] - 1) / blockDim[0];
-	const uint32_t fblocksHigh = (atlas->TexHeight + blockDim[1] - 1) / blockDim[1];
-	const uint32_t funcompBlockSize = blockDim[0] * blockDim[1] * sizeof(uint32_t);
-	const uint32_t nfBlocks = fblocksWide * fblocksHigh;
-	const uint32_t blockSz = 16;
-	uint32_t flinear_size = nfBlocks * blockSz;
-	uint8_t* ftxtdata_compress = new uint8_t[flinear_size];
-	compress_image_2_dxt5(ftxtdata_compress, ttx_f_data, atlas->TexWidth, atlas->TexHeight);
-
-	pk.pack_bin(flinear_size);
-	pk.pack_bin_body(reinterpret_cast<char const*>(ftxtdata_compress), flinear_size);
+	int DDS_size=0;
+	unsigned char *DDS_data = NULL;
+		/*	RGBA, use DXT5	*/
+	DDS_data = convert_image_to_DXT5(ttx_f_data, atlas->TexWidth, atlas->TexHeight, SOIL_LOAD_RGBA, &DDS_size);
+	pk.pack_bin(DDS_size);
+	pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
 	delete[] ttx_f_data;
-	delete[] ftxtdata_compress;
+	SOIL_free_image_data(DDS_data);
+	DDS_data = NULL;
+	DDS_size = 0;
 #else
 	pk.pack_bin(txt_size);
 	pk.pack_bin_body(reinterpret_cast<char const*>(ttx_f_data), txt_size);
@@ -139,92 +139,58 @@ void afb_output::output_afb(const char* afb_file)
 	int idx = 0;
 	file_outputor fout_put(output_file_path);
 	pk.pack_array(g_vres_texture_list.size());
-	
-	if (g_output_bin_format._txt_fmt == en_uncompressed_txt)
-	{
-		for (auto& res_unit : g_vres_texture_list)
-		{
-			pk.pack_array(4);
-			pk.pack_int(res_unit.texture_width);
-			pk.pack_int(res_unit.texture_height);
-			int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
-			uint8_t* txtdata = new uint8_t[txt_size];
-			glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
-			glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
-			pk.pack_bin(txt_size);
-			pk.pack_bin_body(reinterpret_cast<char const*>(txtdata), txt_size);
-			pk.pack_array(res_unit.vtexture_coordinates.size());
-			string enum_file = "enum_txt_name";
-			char str_ix[20] = { 0 };
-			sprintf(str_ix, "%d.h", idx);
-			enum_file += str_ix;
-			idx++;
-			fout_put.begin_enum_file(enum_file);
-			for (auto& tcd_unit : res_unit.vtexture_coordinates)
-			{
-				pk.pack_array(5);
-				pk.pack_str(tcd_unit._file_name.size());
-				pk.pack_str_body(tcd_unit._file_name.c_str(), tcd_unit._file_name.size());
-				pk.pack_float(tcd_unit._x0);
-				pk.pack_float(tcd_unit._x1);
-				pk.pack_float(tcd_unit._y0);
-				pk.pack_float(tcd_unit._y1);
-				fout_put.push_enum_name(tcd_unit._file_name);
-			}
-			fout_put.end_enum_file();
-			delete[] txtdata;
-		}
+	function<uint8_t*(uint8_t*, int,int,int&)> ftxt_press;
+	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
+		ftxt_press = [](uint8_t* prawdata, int iwidth,int iheight, int&out_sz)->uint8_t*{
+			out_sz = iwidth*iheight*4;
+			return prawdata;
+		};
 	}
-	else if (g_output_bin_format._txt_fmt == en_dxt5)
+	else if (g_output_bin_format._txt_fmt == en_dxt5){
+		ftxt_press = [](uint8_t* prawdata, int iwidth, int iheight, int&out_sz)->uint8_t*{
+			uint8_t* pDDS_data = convert_image_to_DXT5(prawdata, iwidth, iheight, SOIL_LOAD_RGBA, &out_sz);
+			return pDDS_data;
+		};
+	}
+	for (auto& res_unit : g_vres_texture_list)
 	{
-		for (auto& res_unit : g_vres_texture_list)
+		pk.pack_array(4);
+		pk.pack_int(res_unit.texture_width);
+		pk.pack_int(res_unit.texture_height);
+		int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
+		uint8_t* txtdata = new uint8_t[txt_size];
+		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
+		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
+		DDS_data = ftxt_press(txtdata, res_unit.texture_width, res_unit.texture_height, DDS_size);
+		pk.pack_bin(DDS_size);
+		pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
+		if (DDS_data != txtdata)
 		{
-			pk.pack_array(4);
-			pk.pack_int(res_unit.texture_width);
-			pk.pack_int(res_unit.texture_height);
-			int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
-			uint8_t* txtdata = new uint8_t[txt_size];
+			SOIL_free_image_data(DDS_data);
+		}
+		delete[] txtdata;
+		pk.pack_array(res_unit.vtexture_coordinates.size());
+		string enum_file = "enum_txt_name";
+		char str_ix[20] = { 0 };
+		sprintf(str_ix, "%d.h", idx);
+		enum_file += str_ix;
+		idx++;
+		fout_put.begin_enum_file(enum_file);
+		for (auto& tcd_unit : res_unit.vtexture_coordinates)
+		{
+			pk.pack_array(5);
+			pk.pack_str(tcd_unit._file_name.size());
+			pk.pack_str_body(tcd_unit._file_name.c_str(), tcd_unit._file_name.size());
+			pk.pack_float(tcd_unit._x0);
+			pk.pack_float(tcd_unit._x1);
+			pk.pack_float(tcd_unit._y0);
+			pk.pack_float(tcd_unit._y1);
+			fout_put.push_enum_name(tcd_unit._file_name);
+		}
+		fout_put.end_enum_file();
+	}
 
-			glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
-			glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
-			const uint32_t blocksWide = (res_unit.texture_width + blockDim[0] - 1) / blockDim[0];
-			const uint32_t blocksHigh = (res_unit.texture_height + blockDim[1] - 1) / blockDim[1];
-			const uint32_t uncompBlockSize = blockDim[0] * blockDim[1] * sizeof(uint32_t);
-			const uint32_t nBlocks = blocksWide * blocksHigh;
-			uint32_t linear_size = nBlocks * blockSz;
-			uint8_t* txtdata_compress = new uint8_t[linear_size];
-			compress_image_2_dxt5(txtdata_compress, txtdata, res_unit.texture_width, res_unit.texture_height);
-			pk.pack_bin(linear_size);
-			pk.pack_bin_body(reinterpret_cast<char const*>(txtdata_compress), linear_size);
-			delete[] txtdata_compress;
-			pk.pack_array(res_unit.vtexture_coordinates.size());
-			string enum_file = "enum_txt_name";
-			char str_ix[20] = { 0 };
-			sprintf(str_ix, "%d.h", idx);
-			enum_file += str_ix;
-			idx++;
-			fout_put.begin_enum_file(enum_file);
-			for (auto& tcd_unit : res_unit.vtexture_coordinates)
-			{
-				pk.pack_array(5);
-				pk.pack_str(tcd_unit._file_name.size());
-				pk.pack_str_body(tcd_unit._file_name.c_str(), tcd_unit._file_name.size());
-				pk.pack_float(tcd_unit._x0);
-				pk.pack_float(tcd_unit._x1);
-				pk.pack_float(tcd_unit._y0);
-				pk.pack_float(tcd_unit._y1);
-				fout_put.push_enum_name(tcd_unit._file_name);
-			}
-			fout_put.end_enum_file();
-			delete[] txtdata;
-		}
-	}
-	else
-	{
-		fout.close();
-		printf("unknown texture format:%d", g_output_bin_format._txt_fmt);
-		return;
-	}
+
 	pk.pack_array(g_mtexture_list.size());//由于动画纹理不是power2（trimed），所以不用压缩算法
 	for (auto& txt_unit : g_mtexture_list)
 	{
@@ -239,8 +205,16 @@ void afb_output::output_afb(const char* afb_file)
 		uint8_t* txt_data = new uint8_t[txt_size];
 		glBindTexture(GL_TEXTURE_2D, txtv->_txt_id);
 		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt_data);
-		pk.pack_bin(txt_size);
-		pk.pack_bin_body(reinterpret_cast<char const*>(txt_data), txt_size);
+		DDS_data = ftxt_press(txt_data, txtv->_width, txtv->_height, DDS_size);
+		pk.pack_bin(DDS_size);
+		pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
+		if (DDS_data != txt_data)
+		{
+			SOIL_free_image_data(DDS_data);
+		}
+		delete[] txt_data;
+		DDS_data = NULL;
+		DDS_size = 0;
 	}
 	pk.pack_array(g_mfiles_list.size());
 	for (auto& file_unit : g_mfiles_list)
