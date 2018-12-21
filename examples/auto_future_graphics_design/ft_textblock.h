@@ -34,6 +34,13 @@ namespace auto_future
 		{
 			return _txt_area;
 		}
+		void set_txt_clr(float r, float g, float b)
+		{
+			_txt_pt._txt_clr.x = r;
+			_txt_pt._txt_clr.y = g;
+			_txt_pt._txt_clr.z = b;
+
+		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		base_ui_component* get_hit_ui_object(float posx, float posy);
 #endif

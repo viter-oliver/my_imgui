@@ -35,6 +35,11 @@
     <ClInclude Include="pop_up_dlg_controller.h">
       <Filter>sources</Filter>
     </ClInclude>
+    <ClInclude Include="test_model_controller.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="key_def.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -61,5 +66,11 @@
     <ClCompile Include="pop_up_dlg_controller.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="test_model_controller.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="graphics_app.rc" />
   </ItemGroup>
 </Project>

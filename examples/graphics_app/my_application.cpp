@@ -2,7 +2,7 @@
 #include "main.h"
 #include "msg_host_n.h"
 #include <chrono>
-
+#include "enum_txt_name0.h"
 //#include <GLFW/glfw3.h>
 #define _STR(x) #x
 #define STR(x) _STR(x)
@@ -106,6 +106,10 @@ void my_application::init_ui_component()
 	//_signal_light->set_visible(false);
 	_popup_dlg = _proot->get_child(3);
 	_popup_dlg->set_visible(false);
+
+	_test_model = _proot->get_child(4);
+	_test_model->set_visible(false);
+
 	//printf("is %s missed?\n", object_name.c_str());
 }
 void my_application::register_command_handle()
@@ -131,15 +135,25 @@ void my_application::register_command_handle()
 		*(pbuff+3) = 0;
 		int sub_mileage_value = *((int*)pbuff);
 		char trip_show[50] = { 0 };
+		char trip_value[50] = { 0 };
 		if (DataValid == 1)
 		{
 			sprintf(trip_show, "TRIP:%dkm", sub_mileage_value);
+			sprintf(trip_value, "%d", sub_mileage_value);
 		}
 		else
 		{
 			strcpy(trip_show,"TRIP:--");
+			trip_value[0] = '-';
+			trip_value[1] = '-';
+
 		}
 		_trip->set_content(trip_show);
+		auto tp_group = _main_menu->get_child(8);
+		auto tripa = tp_group->get_child(0);
+		auto tripa_value = static_cast<ft_textblock*>( tripa->get_child(0));
+		tripa_value->set_content(trip_value);
+
 	});
 	g_msg_host.attach_monitor("auto speed", [this](unsigned char* pbuff, int len){
 		unsigned char DataValid = *pbuff++;     // Byte first
@@ -155,7 +169,8 @@ void my_application::register_command_handle()
 			{
 				_right_pointer_sl->calcu_thumb_pos();
 				ImVec2 bsize = _right_pointer_sl->thumb_size();
-				_right_pointer_play->base_pos() = _right_pointer_sl->thumb_base_pos();
+				ImVec2 tmb_pos = _right_pointer_sl->thumb_base_pos();
+				_right_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y);
 				_right_pointer_play->set_size(bsize);
 			}
 		}
@@ -181,7 +196,8 @@ void my_application::register_command_handle()
 			{
 				_left_pointer_sl->calcu_thumb_pos();
 				ImVec2 bsize = _left_pointer_sl->thumb_size();
-				_left_pointer_play->base_pos() = _left_pointer_sl->thumb_base_pos();
+				ImVec2 tmb_pos = _left_pointer_sl->thumb_base_pos();
+				_left_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y);
 				_left_pointer_play->set_size(bsize);
 			}
 		}
@@ -200,7 +216,13 @@ void my_application::register_command_handle()
 			_fuel_cons->set_progress(fuel_cons_rate);
 		}
 	});
-	// Fuel
+	g_msg_host.attach_monitor("low fuel level", [this](unsigned char* pbuff, int len){
+		unsigned char low_fuel_level = *pbuff;     // Byte first
+		auto fuel_level = static_cast<ft_image*>(_fuel_cons->get_child(0));
+		int icon_txt_id = low_fuel_level>0?en_zlight_low_fuel_png:en_icon_fuel_cons_png;
+		fuel_level->set_texture_id(icon_txt_id);
+	});
+	// 
 	g_msg_host.attach_monitor("water temperature", [this](unsigned char* pbuff, int len){
 		unsigned char DataValid = *pbuff++;     // Byte first
 		unsigned char alarm = *pbuff++;         // Byte Second
@@ -213,6 +235,13 @@ void my_application::register_command_handle()
 			_water_temp->set_progress(water_temperature_rate);
 		}
 	});
+	g_msg_host.attach_monitor("high temperature water", [this](unsigned char* pbuff, int len){
+		unsigned char high_temp_wt = *pbuff;     // Byte first
+		auto icon_water = static_cast<ft_image*>(_water_temp->get_child(0));
+		int icon_txt_id = high_temp_wt>0 ? en_zlight_high_coolant_temp_png : en_icon_water_tp_png;
+		icon_water->set_texture_id(icon_txt_id);
+	});
+
 	// Gear
 	g_msg_host.attach_monitor("gearbox", [this](unsigned char* pbuff, int len){
 		unsigned char DataValid = *pbuff++;  // Byte first
@@ -226,6 +255,21 @@ void my_application::register_command_handle()
 		_gear_value->set_content(gear_show[GearPosition]);
 
 	});
+	g_msg_host.attach_monitor("key value", [this](unsigned char* pbuff, int len){
+
+		u8 key_state = *pbuff++;//0 只有按键值，1、按下 2、弹起 3、长按。
+		u8 key_type = *pbuff++;
+		int key_value = *((int*)pbuff);
+		u8 key_source = *(pbuff + 5);//0、面板按键 1、遥控按键 2、旋钮按键 3、方向盘按键 4、中控按键
+		if (_main_menu->is_visible())
+		{
+			_pmain_menu->key_operation(key_state, key_type, key_source);
+		}
+		else
+		if (_test_model->is_visible()){
+			_ptest_model->key_operation(key_state, key_type, key_source);
+		}
+	});
 }
 //double lastTime = 0.f;
 std::chrono::high_resolution_clock::time_point lastTime;
@@ -235,22 +279,24 @@ void my_application::resLoaded()
 	_left_pointer_sl->set_progress_value(40);
 	_left_pointer_sl->calcu_thumb_pos();
 	ImVec2 bsize = _left_pointer_sl->thumb_size();
-	_left_pointer_play->base_pos() = _left_pointer_sl->thumb_base_pos();
+	ImVec2 tmb_pos = _left_pointer_sl->thumb_base_pos();
+	_left_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y) ;
 	_left_pointer_play->set_size(bsize);
 	_edge_left_play->set_frame_index(0);
 
 	_right_pointer_sl->set_progress_value(8);
 	_right_pointer_sl->calcu_thumb_pos();
 	bsize = _right_pointer_sl->thumb_size();
-	_right_pointer_play->base_pos() = _right_pointer_sl->thumb_base_pos();
+	tmb_pos = _right_pointer_sl->thumb_base_pos();
+	_right_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y) ;
 	_right_pointer_play->set_size(bsize);
 	_edge_right_play->set_frame_index(0);
 	_edge_right_up_sl1->set_progress_value(0.f);
 	_edge_right_up_sl2->set_progress_value(0.f);
 	_water_temp->set_progress(0.4f);
-	_water_temp->base_pos().x = 69.f;//69-29
+	_water_temp->set_base_posx(69.f);//69-29
 	_fuel_cons->set_progress(0.7f);
-	_fuel_cons->base_pos().x = 1702.f;//1702-1742
+	_fuel_cons->set_base_posx(1702.f);//1702-1742
 	_right_decorate_line->set_size(ImVec2(17, 3));//17-77
 	_left_decorate_line->set_size(ImVec2(17, 3));//17-77
 	//lastTime = glfwGetTime();
@@ -292,6 +338,7 @@ void my_application::finish_animation()
 	_pmain_menu = make_shared<main_menu_controller>(_main_menu);
 	_psignal_light = make_shared<signal_light_controller>(_signal_light);
 	_ppop_up_dlg = make_shared<pop_up_dlg_controller>(_popup_dlg);
+	_ptest_model = make_shared<test_model_controller>(_test_model);
 }
 bool play_image(ft_image_play* pimgp)
 {
@@ -384,13 +431,15 @@ void my_application::onUpdate()
 		}
 		if (time_line> key_time_pointer[2]+5)
 		{
-			if (_water_temp->base_pos().x>29.f)
+			ImVec2 bpos = _water_temp->base_pos();
+			if (bpos.x>29.f)
 			{
-				_water_temp->base_pos().x -= 5.f;
+				_water_temp->set_base_posx(bpos.x - 5.f);
 			}
-			if (_fuel_cons->base_pos().x<1742.f)
+			bpos = _fuel_cons->base_pos();
+			if (bpos.x<1742.f)
 			{
-				_fuel_cons->base_pos().x += 5.f;
+				_fuel_cons->set_base_posx(bpos.x + 5.f);
 			}
 			else
 			{

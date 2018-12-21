@@ -29,6 +29,20 @@ namespace auto_future
 			_pt._sizew = w;
 			_pt._sizeh= h;
 		}
+		void set_background_color(float r, float g, float b, float a)
+		{
+			_pt._bkclr.x = r;
+			_pt._bkclr.y = g;
+			_pt._bkclr.z = b;
+			_pt._bkclr.w = a;
+		}
+		void set_border_color(float r, float g, float b, float a)
+		{
+			_pt._bdclr.x = r;
+			_pt._bdclr.y = g;
+			_pt._bdclr.z = b;
+			_pt._bdclr.w = a;
+		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		base_ui_component* get_hit_ui_object(float posx, float posy);

@@ -109,13 +109,12 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 				// Step3 设定filter参数
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-					GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//					GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
 				// Step4 加载纹理
 
 				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
 					0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
-				glGenerateMipmap(GL_TEXTURE_2D);
+				//glGenerateMipmap(GL_TEXTURE_2D);
 				// Step5 释放纹理图片资源
 				SOIL_free_image_data(imgdata);
 				auto pimge = make_shared<af_texture>();
@@ -178,7 +177,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					Value& fmu = vformat[ii];
 					ele_format.emplace_back(fmu.asInt());
 				}
-
+				//GL_UNSIGNED_INT_8_8_8_8_REV
 				int vbo_len = jpm["vbo_len"].asInt();
 				ebo_len = jpm["ebo_len"].asInt();
 				load_primitive_from_file(kname, ele_format, vbo_len, ebo_len);

@@ -162,11 +162,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\rcf_service\idata_collect.h" />
     <ClInclude Include="afg.h" />
+    <ClInclude Include="key_def.h" />
     <ClInclude Include="main_menu_controller.h" />
     <ClInclude Include="my_application.h" />
     <ClInclude Include="platform_def.h" />
     <ClInclude Include="pop_up_dlg_controller.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="signal_light_controller.h" />
+    <ClInclude Include="test_model_controller.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -179,6 +182,10 @@
     <ClCompile Include="my_application.cpp" />
     <ClCompile Include="pop_up_dlg_controller.cpp" />
     <ClCompile Include="signal_light_controller.cpp" />
+    <ClCompile Include="test_model_controller.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="graphics_app.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

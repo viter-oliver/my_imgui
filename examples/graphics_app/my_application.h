@@ -3,6 +3,7 @@
 #include "main_menu_controller.h"
 #include "signal_light_controller.h"
 #include "pop_up_dlg_controller.h"
+#include "test_model_controller.h"
 class my_application :
 	public auto_future::application
 {
@@ -43,10 +44,13 @@ class my_application :
 	base_ui_component* _main_menu = { NULL };
 	base_ui_component* _signal_light = { NULL };
 	base_ui_component* _popup_dlg = { NULL };
+	base_ui_component* _test_model = { NULL };
+
 	bool _being_logo_animation = { true };
 	shared_ptr<main_menu_controller> _pmain_menu;
 	shared_ptr<signal_light_controller> _psignal_light;
 	shared_ptr<pop_up_dlg_controller> _ppop_up_dlg;
+	shared_ptr<test_model_controller> _ptest_model;
 	void register_command_handle();
 	void init_ui_component();
 	void finish_animation();
