@@ -14,9 +14,11 @@ namespace auto_future
 	ft_image::ft_image()
 		:ft_base()
 	{
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 4, [this](void*){
 			ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0");
 		});
+#endif
 	}
 	void ft_image::draw()
 	{

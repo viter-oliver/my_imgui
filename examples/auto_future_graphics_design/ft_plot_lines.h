@@ -18,9 +18,6 @@ namespace auto_future
 		~ft_plot_lines(){}
 		
 		void draw();
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-
-#endif
 	};
 	REGISTER_CONTROL(ft_plot_lines)
 }

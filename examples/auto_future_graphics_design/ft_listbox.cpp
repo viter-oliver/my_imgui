@@ -5,11 +5,13 @@ namespace auto_future
 		:ft_base()
 	{
 		/*_be_window = true;*/
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_lt_pt, 6, [this](void*){
 			float scrmx = scroll_max();
 			ImGui::SliderFloat("scroll value", &_lt_pt._scroll_value, 0.f, scrmx);
 			set_scroll_value(_lt_pt._scroll_value);
 		});
+#endif
 	}
 	float ft_listbox::scroll_max()
 	{
@@ -115,7 +117,7 @@ namespace auto_future
 			auto itt = it + 1;
 			while (itt != _vchilds.end())
 			{
-				ImVec2& bpos = (*itt)->base_pos();
+				ImVec2 bpos = (*itt)->base_pos();
 				if (_lt_pt._vertical)
 				{
 					bpos.y -= chd_sz.y;
@@ -124,6 +126,7 @@ namespace auto_future
 				{
 					bpos.x -= chd_sz.x;
 				}
+				(*itt)->set_base_pos(bpos.x, bpos.y);
 				itt++;
 			}
 			_vchilds.erase(it);

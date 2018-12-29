@@ -16,6 +16,7 @@ namespace auto_future
 		memset(_pt._materil_name, 0, FILE_NAME_LEN);
 		memset(_pt._texture_name, 0, FILE_NAME_LEN);
 		memset(_pt._texture_fmt_name, 0, FILE_NAME_LEN);
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_pt, [this](void*){
 			ImGui::InputText("material:", _pt._materil_name, FILE_NAME_LEN);
 			ImGui::SameLine();
@@ -31,6 +32,7 @@ namespace auto_future
 					ImGui::Text("fail to find material:%s", _pt._materil_name);
 				}
 			}
+#endif
 			ImGui::Spacing();
 			ImGui::InputText("texture:", _pt._texture_name, FILE_NAME_LEN);
 			ImGui::SameLine();

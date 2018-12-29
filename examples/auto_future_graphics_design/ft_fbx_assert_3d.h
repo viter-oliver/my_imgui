@@ -12,19 +12,19 @@ namespace auto_future{
 
 		DEF_STRUCT_WITH_INIT(intl_pt, _fbx_assert_pt,
 			(int, _select_list, {0}),
-			(ImVec3, _translation_shd),
-			(ImVec3, _scale_stn),
-			(ImVec3, _rotation_srd),
-			(ImVec3, _camera_eye_shd),
-			(ImVec3, _camera_center_stn),
-			(ImVec3, _camera_up_srd),
+			(af_vec3, _translation_shd),
+			(af_vec3, _scale_stn),
+			(af_vec3, _rotation_srd),
+			(af_vec3, _camera_eye_shd),
+			(af_vec3, _camera_center_stn),
+			(af_vec3, _camera_up_srd),
 			(float, _proj_fov_urd, {45.f}),
 			(int, _proj_width, {800}),
 			(int, _proj_height, {600}),
 			(float, _proj_linear_uhd, {1.f}),
 			(float, _proj_far_uhd, {100.f}),
-			(ImVec3, _light_clr),
-			(ImVec3, _light_pos_uhd))
+			(af_vec3, _light_clr),
+			(af_vec3, _light_pos_uhd))
 			/** referencing the color material */
  
 		

@@ -184,7 +184,7 @@ namespace auto_future
 		{
 			return _pColor_data;
 		}
-#endif;
+#endif
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		void draw_property()
 		{

@@ -176,13 +176,13 @@ namespace auto_future
 									return  ImGui::SliderFloat(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
 								};
 							}
-							else if (mtype == "ImVec2"){
+							else if (mtype == "af_vec2"){
 								f_draw_index_prop = [&](string& str_show, void*maddress){
 										return ImGui::SliderFloat2(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
 								};
 				
 							}
-							else if (mtype == "ImVec3") {
+							else if (mtype == "af_vec3") {
 								f_draw_index_prop = [&](string& str_show, void*maddress){
 									if (rg == "clr")
 									{
@@ -195,7 +195,7 @@ namespace auto_future
 								};
 										
 							}
-							else if (mtype == "ImVec4") {
+							else if (mtype == "af_vec4") {
 								f_draw_index_prop = [&](string& str_show, void*maddress){
 									if (rg == "clr")
 									{
@@ -335,14 +335,14 @@ namespace auto_future
 								*(float*)membaddr=vele.asDouble();
 							};
 						}
-						else if (mtype == "ImVec2"){
+						else if (mtype == "af_vec2"){
 							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
 							{
 								 *(float*)membaddr=vele["x"].asDouble();
 								 *((float*)membaddr + 1)=vele["y"].asDouble();
 							};
 						}
-						else if (mtype == "ImVec3"){
+						else if (mtype == "af_vec3"){
 							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
 							{
 								*(float*)membaddr=vele["x"].asDouble();
@@ -350,7 +350,7 @@ namespace auto_future
 								*((float*)membaddr + 2)=vele["z"].asDouble();
 							};
 						}
-						else if (mtype == "ImVec4"){
+						else if (mtype == "af_vec4"){
 							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
 							{
 								*(float*)membaddr=vele["x"].asDouble();
@@ -386,18 +386,18 @@ namespace auto_future
 					else if (mtype == "float" || mtype == "double"){
 						*(float*)memb_address=jvalue[mname].asDouble();
 					}
-					else if (mtype == "ImVec2"){
+					else if (mtype == "af_vec2"){
 						Value jv2=jvalue[mname];
 						 *(float*)memb_address=jv2["x"].asDouble();
 						 *((float*)memb_address + 1)=jv2["y"].asDouble();
 					}
-					else if (mtype == "ImVec3") {
+					else if (mtype == "af_vec3") {
 						Value jv3=jvalue[mname];
 						 *(float*)memb_address=jv3["x"].asDouble();
 						*((float*)memb_address + 1) = jv3["y"].asDouble();
 						*((float*)memb_address + 2) = jv3["z"].asDouble();
 					}
-					else if (mtype == "ImVec4") {
+					else if (mtype == "af_vec4") {
 						Value jv4=jvalue[mname];
 						 *(float*)memb_address=jv4["x"].asDouble();
 						*((float*)memb_address + 1) = jv4["y"].asDouble();
@@ -499,7 +499,7 @@ namespace auto_future
 								marray.append(fmemb);
 							};
 						}
-						else if (mtype == "ImVec2"){
+						else if (mtype == "af_vec2"){
 							f_save_to_json = [&marray](void* membaddr)
 							{
 								Value jv2(objectValue);
@@ -508,7 +508,7 @@ namespace auto_future
 								marray.append(jv2);
 							};							
 						}
-						else if (mtype == "ImVec3"){
+						else if (mtype == "af_vec3"){
 							f_save_to_json = [&marray](void* membaddr)
 							{
 								Value jv3(objectValue);
@@ -518,7 +518,7 @@ namespace auto_future
 								marray.append(jv3);
 							};
 						}
-						else if (mtype == "ImVec4"){
+						else if (mtype == "af_vec4"){
 							f_save_to_json = [&marray](void* membaddr)
 							{
 								Value jv4(objectValue);
@@ -567,20 +567,20 @@ namespace auto_future
 					else if (mtype == "float" || mtype == "double"){
 						junit[mname] = *(float*)memb_address;
 					}
-					else if (mtype == "ImVec2"){
+					else if (mtype == "af_vec2"){
 						Value jv2(objectValue);
 						jv2["x"] = *(float*)memb_address;
 						jv2["y"]= *((float*)memb_address+1);
 						junit[mname] = jv2;
 					}
-					else if (mtype == "ImVec3") {
+					else if (mtype == "af_vec3") {
 						Value jv3(objectValue);
 						jv3["x"] = *(float*)memb_address;
 						jv3["y"] = *((float*)memb_address + 1);
 						jv3["z"] = *((float*)memb_address + 2);
 						junit[mname] = jv3;
 					}
-					else if (mtype == "ImVec4") {
+					else if (mtype == "af_vec4") {
 						Value jv4(objectValue);
 						jv4["x"] = *(float*)memb_address;
 						jv4["y"] = *((float*)memb_address + 1);

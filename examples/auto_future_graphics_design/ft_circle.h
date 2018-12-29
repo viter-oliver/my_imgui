@@ -12,7 +12,7 @@ namespace auto_future
 			(float, _thickness_utn, { 1.f }),
 			(int, _numb_segs, { 20 }),
 			(bool, _solid, {false}),
-			(ImVec4, _bkclr))
+			(af_vec4, _bkclr))
 
 	public:
 		ft_circle();

@@ -6,12 +6,13 @@ namespace auto_future
 		public base_ui_component
 	{
 	public:
-		ft_base() :base_ui_component(){}
+		ft_base() :base_ui_component(){
+			//cout << "size of base_prop:" << sizeof(base_prop) << endl;
+		}
 
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	private:
-		base_prop _in_p_bk;
 		enum { en_pt_name, en_pt_pos_x, en_pt_pos_y, en_pt_visible };
 	public:
 		base_ui_component* get_hit_ui_object(float posx, float posy);

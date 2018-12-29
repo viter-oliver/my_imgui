@@ -8,7 +8,7 @@ namespace auto_future
 #define MAX_CONTENT_LEN 0x100
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_txt_pt,
-			(ImVec3, _txt_clr),
+			(af_vec3, _txt_clr),
 			(float, _txt_alignh_nml, {1.f}),
 			(float, _txt_alignv_nml, {1.f}),
 			(float, _width, { ImGui::GetFontSize() * 35.0f }),

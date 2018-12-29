@@ -32,6 +32,26 @@
 
 namespace auto_future
 {
+	struct af_vec2
+	{
+		float x, y;
+		af_vec2() = default;
+	};
+	struct af_vec3
+	{
+		float x, y, z;
+		af_vec3() = default;
+	};
+	struct af_vec4
+	{
+		float x, y, z, w;
+		af_vec4() = default;
+		/*ImVec4& operator=(af_vec4& av4)
+		{
+			return std::move(ImVec4(av4.x, av4.y, av4.z, av4.w));
+		}*/
+	};
+
 	struct ft_vertex
 	{
 

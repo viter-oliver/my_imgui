@@ -11,6 +11,7 @@ namespace auto_future
 	ft_model_3d::ft_model_3d()
 		:ft_base(), _tri_cnt(0)
 	{
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_pt, 3, [this](void*){
 			ImGui::InputText("-mesh data file", _pt._mesh_data_file, FILE_NAME_LEN);
 			if (ImGui::Button("loading mesh data"))
@@ -19,7 +20,7 @@ namespace auto_future
 				load_mesh_data_2_vertices();
 			}
 		});
-
+#endif
 		const auto& mut = g_material_list.find("atexture");
 		_pmaterial = mut->second;
 		glm::mat4 model;

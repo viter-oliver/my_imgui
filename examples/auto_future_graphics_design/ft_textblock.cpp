@@ -12,6 +12,7 @@ namespace auto_future
 	{
 		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
 		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_txt_pt, 6, [this](void*){
 			ImFontAtlas* atlas = ImGui::GetIO().Fonts;
 			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, atlas->Fonts.size());
@@ -20,6 +21,7 @@ namespace auto_future
 			ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
 			
 		});
+#endif
 	}
 	void ft_textblock::draw()
 	{

@@ -1,5 +1,7 @@
 #pragma once
 #include "afg.h"
+#include "msg_host_n.h"
+using namespace auto_future_utilities;
 class main_menu_controller
 {
 	base_ui_component* _root;

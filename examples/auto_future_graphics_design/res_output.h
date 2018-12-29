@@ -80,10 +80,16 @@ enum program_format
 	en_shader_bin_general,
 	en_shader_bin_vivante,
 };
+enum res_output_model
+{
+	en_integrated,
+	en_discrete,
+};
 struct output_bin_format
 {
 	texture_format _txt_fmt;
 	program_format _pgm_fmt;
-	output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
+	res_output_model _res_mdl;
+	output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code), _res_mdl(en_integrated){}
 };
 extern output_bin_format g_output_bin_format;

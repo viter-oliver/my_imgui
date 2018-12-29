@@ -65,8 +65,9 @@ namespace auto_future
 		_pt._pos0_shd = { 0.f, 7.f, -20.f };
 		_pt._v0_shd = { 0.f, -7.f, 0.f };
 		_pt._a0_shd = { 0.f, 9.81f, 0.f };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_value_range(&_pt, 3, 0.f, 20.f);
-
+#endif
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 		auto& mut = g_material_list.find("particles");

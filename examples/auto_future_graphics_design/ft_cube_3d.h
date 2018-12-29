@@ -9,7 +9,9 @@ namespace auto_future
 		public ft_base
 	{
 		DEF_STRUCT(intl_pt, _pt, 
-			(ImVec3, _translation_shd), (ImVec3, _scale_stn), (ImVec3, _rotation_srd))
+			(af_vec3, _translation_shd),
+			(af_vec3, _scale_stn),
+			(af_vec3, _rotation_srd))
 		/** referencing the color material */
 		shared_ptr<material> _pmaterial;
 		/** referencing the cube primitive object */
@@ -18,9 +20,7 @@ namespace auto_future
 		ft_cube_3d();
 		~ft_cube_3d();
 		void draw();
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
-#endif
 	};
 	REGISTER_CONTROL(ft_cube_3d)
 }

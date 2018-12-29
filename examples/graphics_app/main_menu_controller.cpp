@@ -1,8 +1,7 @@
 #include "main_menu_controller.h"
-#include "msg_host_n.h"
 #include "enum_txt_name0.h"
 #include "key_def.h"
-using namespace auto_future_utilities;
+
 extern msg_host_n g_msg_host;
 #define _STR(x) #x
 #define STR(x) _STR(x)
@@ -70,6 +69,7 @@ main_menu_controller::main_menu_controller(base_ui_component* root)
 	});
 
 }
+
 void main_menu_controller::key_operation(u8 key_state, u8 key_type, u8 key_source)
 {
 	int prev_first_level_menu_index = _first_level_menu_index;

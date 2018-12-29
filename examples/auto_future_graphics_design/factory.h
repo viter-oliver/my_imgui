@@ -5,6 +5,7 @@
 #include <functional>
 #include <memory>
 #include "control_common_def.h"
+#include <iostream>
 using namespace auto_future;
 struct factory
 {
@@ -13,11 +14,22 @@ struct factory
 	{
 		register_t(const std::string& key)
 		{
-#if defined(__QNXNTO__)
-            factory::get().map_[key]=[]{return new T();};
-#else
+	#if defined(__QNXNTO__)
+                   // cout<< "register control:"<<key<<endl;
+                   auto& fmap=factory::get().map_;
+                   auto itc=fmap.find(key);
+                   if(itc==fmap.end())
+                    {
+                        // cout<<"begin reg:"<<key<<endl;
+                        factory::get().map_[key]=[]{return new T();};
+                        //cout<<"end reg:"<<key<<endl;
+                    }
+                   else{
+                        // cout<< " fail to register control:"<<key<<endl;
+                   }
+        #else
 			factory::get().map_.emplace(key, [] { return new T(); });
-#endif
+        #endif
 		}
         #if 0
 		template<typename... Args>

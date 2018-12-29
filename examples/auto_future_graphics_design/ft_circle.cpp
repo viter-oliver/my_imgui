@@ -16,7 +16,8 @@ namespace auto_future
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImU32 col = ImGui::ColorConvertFloat4ToU32(_pt._bkclr);
+		ImVec4 bkcl(_pt._bkclr.x, _pt._bkclr.y, _pt._bkclr.z, _pt._bkclr.w);
+		ImU32 col = ImGui::ColorConvertFloat4ToU32(bkcl);
 		ImDrawList* draw_list = ImGui::GetWindowDrawList();
 		int numb_segs = _pt._numb_segs;
 		if (numb_segs<20)

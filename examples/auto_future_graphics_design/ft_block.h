@@ -13,8 +13,8 @@ namespace auto_future
 			(float, _round_utn, {0.f}),
 			(bool, _with_border, {false}),
 			(float, _border_width_uhd, {1.f}),
-			(ImVec4, _bkclr),
-			(ImVec4, _bdclr))
+			(af_vec4, _bkclr),
+			(af_vec4, _bdclr))
 
 	public:
 		ft_block();

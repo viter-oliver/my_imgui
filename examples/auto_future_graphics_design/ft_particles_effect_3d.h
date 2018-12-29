@@ -23,9 +23,9 @@ namespace auto_future
 		};
 
 		DEF_STRUCT_WITH_INIT(pcl_intl, _pt,
-			(ImVec3, _pos0_shd),
-			(ImVec3, _v0_shd),
-			(ImVec3, _a0_shd),
+			(af_vec3, _pos0_shd),
+			(af_vec3, _v0_shd),
+			(af_vec3, _a0_shd),
 			(float, _life, { 5.f }),
 			(float, _spread, { 1.5f }),
 			(float, _y1, { 10.f }),

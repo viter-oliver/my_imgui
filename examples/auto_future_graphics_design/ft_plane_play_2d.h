@@ -15,8 +15,8 @@ namespace auto_future
 			(char,_texture_name[FILE_NAME_LEN]),
 			(char,_texture_fmt_name[FILE_NAME_LEN]),
 			(int, _frame_index, {0}),
-			(ImVec2, _scale_stn),
-			(ImVec2,_trans_shd),
+			(af_vec2, _scale_stn),
+			(af_vec2, _trans_shd),
 			(float, _rotationZ_srd, { 0.f }))
 		GLfloat* _puv;
 		GLuint _vbo_pos;

@@ -2,7 +2,7 @@
 #include "afg.h"
 #include "msg_host_n.h"
 #define DEF_BASE_UC(x) base_ui_component* _##x
-
+using namespace auto_future_utilities;
 class test_model_controller
 {
 	base_ui_component* _root;

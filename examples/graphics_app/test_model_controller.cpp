@@ -1,6 +1,6 @@
 #include "test_model_controller.h"
 #include "key_def.h"
-using namespace auto_future_utilities;
+
 #define GET_BUI_REF(x) _##x=static_cast<base_ui_component*> (root->get_child(idx));idx++
 
 test_model_controller::test_model_controller(base_ui_component* root)

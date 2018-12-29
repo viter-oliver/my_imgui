@@ -35,6 +35,7 @@ namespace auto_future
 	{
 		memset(&_slider_pt._cbuffer_random_text, 0, sizeof(_slider_pt._cbuffer_random_text));
 		//reg_property_handle(&_slider_pt, 0, [this](void*){});
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_slider_pt, 8, [this](void*){
 			ImGui::Combo("direction", &_slider_pt._direction_item, direction_iitem, ARRAY_COUNT_DIRECTION_ITEM);
 			ImGui::SameLine(); ShowHelpMarker("x turn right, y turn top, radom don't finish!\n");
@@ -55,6 +56,7 @@ namespace auto_future
 				ShowHelpMarker("file must from file list, so we must load file before!\n");
 			}
 		});
+#endif
 	}
 
 	bool ft_slider::read_point_position_file(const char *str)

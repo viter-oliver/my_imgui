@@ -5,10 +5,12 @@ namespace auto_future
 		:ft_base()
 		,_values{}
 	{ 
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_pt, 2, [this](void*){
 			ImGui::SliderInt("count of value:", &_pt._v_count, 3, MAX_VALUE_COUNT, "%.0f");
 			ImGui::SliderFloatN("values:", _values, _pt._v_count, -1, 1, "%.3f", 1.0f);
 		});
+#endif
 	}
 	void ft_plot_lines::draw()
 	{
@@ -20,7 +22,4 @@ namespace auto_future
 		ImGui::PlotLines("Lines", _values, _pt._v_count, 0, "avg 0.0", -1.0f, 1.0f, ImVec2(_pt._sizew, _pt._sizeh));
 
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-
-#endif
 }

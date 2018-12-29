@@ -22,9 +22,9 @@ namespace auto_future
 		};
 
 		DEF_STRUCT_WITH_INIT(pcl_intl,_pt,
-			(ImVec3,_pos0_shd),
-			(ImVec3,_v0_shd),
-			(ImVec3,_a0_shd),
+			(af_vec3, _pos0_shd),
+			(af_vec3, _v0_shd),
+			(af_vec3, _a0_shd),
 			(float, _life, {5.f}),
 			(int, _pa, {en_normal}))
 	public:
@@ -32,9 +32,6 @@ namespace auto_future
 		~ft_particles_3d();
 		void draw();
 
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-
-#endif
 	};
 
 	REGISTER_CONTROL(ft_particles_3d)

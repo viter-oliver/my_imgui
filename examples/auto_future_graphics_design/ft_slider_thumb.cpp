@@ -26,7 +26,5 @@ namespace auto_future
 		float h = _img_pt._size_minh + scale_value*(_img_pt._size_maxh - _img_pt._size_minh);
 		_thumb.set_size(ImVec2(w, h));
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
-#endif
 }

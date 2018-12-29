@@ -7,7 +7,7 @@ namespace auto_future
 	class AFG_EXPORT ft_slider :
 		public ft_base
 	{
-#pragma message ("define flider")
+
 		DEF_STRUCT_WITH_INIT(intl_pt, _slider_pt,
 			(float, _bg_txtw, { 20.f }),
 			(float, _bg_txth, { 20.f }),

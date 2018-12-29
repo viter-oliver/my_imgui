@@ -5,9 +5,6 @@ namespace auto_future
 	{
 
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-
-#endif
 	bool ft_trajectory_box_3d::handle_mouse()
 	{
 		return true;

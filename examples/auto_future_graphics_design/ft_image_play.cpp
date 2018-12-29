@@ -15,10 +15,12 @@ namespace auto_future
 	{
 		memset(_img_pt._texture_name, 0, FILE_NAME_LEN);
 		memset(_img_pt._texture_fmt_name, 0, FILE_NAME_LEN);
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 6, [this](void*){
 			int frame_cnt = get_frames_count();
 			ImGui::SliderInt("frame index:", &_img_pt._frame_index, 0, frame_cnt);
 		});
+#endif
 	}
 	void ft_image_play::draw()
 	{

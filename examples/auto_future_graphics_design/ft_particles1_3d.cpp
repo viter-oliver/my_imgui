@@ -135,10 +135,11 @@ namespace auto_future
 		_pt._pos0_shd = { 0.f, 7.f, -20.f };
 		_pt._v0_shd = { 0.f, -7.f, 0.f };
 		_pt._a0_shd = { 0.f, 9.81f, 0.f };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_value_range(&_pt, 3, 0.f, 20.f);
 		reg_value_range(&_pt, 4, 0.f, 50.f);
 		reg_value_range(&_pt, 5, -40.f, 40.f);
-
+#endif
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 		auto& mut = g_material_list.find("particles1");
@@ -470,7 +471,5 @@ namespace auto_future
 		glDisableVertexAttribArray(1);
 		glDisableVertexAttribArray(2);
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
-#endif
 }

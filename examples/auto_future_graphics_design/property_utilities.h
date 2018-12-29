@@ -2,6 +2,7 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include <type_traits>
 #include <stddef.h>
 #include <boost/preprocessor/seq/for_each.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
@@ -99,7 +100,8 @@ typedef std::vector<sp_prop_ele> vp_prop_ele;
 };\
 stname vname{_vprop_eles}; MSC_PACK_END
 
-#define GEN_V3(r,data,elem) BOOST_PP_TUPLE_ELEM(3,0,elem) BOOST_PP_TUPLE_ELEM(3,1,elem)BOOST_PP_TUPLE_ELEM(3,2,elem);
+#define GEN_V3(r,data,elem) BOOST_PP_TUPLE_ELEM(3,0,elem) BOOST_PP_TUPLE_ELEM(3,1,elem)BOOST_PP_TUPLE_ELEM(3,2,elem);\
+	static_assert(is_pod<BOOST_PP_TUPLE_ELEM(3,0,elem)>::value,PIKSTR(BOOST_PP_TUPLE_ELEM(3,0,elem))" is not a pod type");
 #define SPLIT_ELE3(ele) PIKSTR(BOOST_PP_TUPLE_ELEM(3,0,ele)),PIKSTR(BOOST_PP_TUPLE_ELEM(3,1,ele))
 #define GET_CT_PM3(ele,st) SPLIT_ELE3(ele),sizeof(BOOST_PP_TUPLE_ELEM(3,0,ele)),GET_OFFSET(st,BOOST_PP_TUPLE_ELEM(3,1,ele))
 #define GET_ELE3(r,data,ele) EMP_IN_PPT(GET_CT_PM3(ele,data))
@@ -119,10 +121,11 @@ stname vname{_vprop_eles}; MSC_PACK_END
 使用DEF_STRUCT来定义结构体注意事项：
 1、数组成员不能直接初始化。例如：char a[20]{1,2,3}; //error C2536。
 2、成员变量不支持直接初始化。例如 class1 my_class{p1,p2,p3}
-3、基本数据类型的成员都有默认的属性操作，客户类型的成员属性操作,方法是注册回调函数，并提供类型名称。
-4、用户可以针对特定的结构体变量提供属性操作，方法是注册回调函数，同时提供结构体变量的地址。
-5、用户可以针对特定的结构体成员变量提供属性操作，方法是注册回调函数，同时提供结构体变量的地址和结构体成员变量在该结构中的位置索引。
-6、变量名称的最后两个字母暗示某些信息，属性页会根据这些信息操作这些属性：
+3、成员变量的类型必须是一个pod类型。
+4、基本数据类型的成员都有默认的属性操作，客户类型的成员属性操作,方法是注册回调函数，并提供类型名称。
+5、用户可以针对特定的结构体变量提供属性操作，方法是注册回调函数，同时提供结构体变量的地址。
+6、用户可以针对特定的结构体成员变量提供属性操作，方法是注册回调函数，同时提供结构体变量的地址和结构体成员变量在该结构中的位置索引。
+7、变量名称的最后两个字母暗示某些信息，属性页会根据这些信息操作这些属性：
    shd 即signed hundred，数值范围-100，100
    stn 即signed ten，数值范围-10，10
    srd 即signed round，数值范围-360，360
@@ -133,7 +136,7 @@ stname vname{_vprop_eles}; MSC_PACK_END
    nml 即normal，数值范围0，1
    clr 即color，该属性使用颜色编辑器来操作
    txt 即texture，该属性是一个纹理属性
-7、用户也可以为特定的结构体成员变量提供数值范围，方法是注册数值范围。
-8、type,childs不可作为变量名称。
+8、用户也可以为特定的结构体成员变量提供数值范围，方法是注册数值范围。
+9、type,childs不可作为变量名称。
 */
 /************************************************************************/

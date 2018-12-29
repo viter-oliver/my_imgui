@@ -91,13 +91,13 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\json_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;json_lib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\json_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -126,16 +126,16 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\boost_1_65_1;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\soil;$(SolutionDir)\..\json_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;SOIL.lib;json_lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\json_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -172,6 +172,7 @@
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="application.cpp" />
     <ClCompile Include="ft_block.cpp" />
+    <ClCompile Include="ft_circle.cpp" />
     <ClCompile Include="ft_cube_3d.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
     <ClCompile Include="ft_model_3d.cpp" />
@@ -223,6 +224,7 @@
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="application.h" />
     <ClInclude Include="ft_block.h" />
+    <ClInclude Include="ft_circle.h" />
     <ClInclude Include="ft_cube_3d.h" />
     <ClInclude Include="ft_image_play.h" />
     <ClInclude Include="ft_model_3d.h" />
@@ -252,6 +254,7 @@
     <ClInclude Include="paricles_system.h" />
     <ClInclude Include="platform_def.h" />
     <ClInclude Include="primitive_object.h" />
+    <ClInclude Include="property_utilities.h" />
     <ClInclude Include="renderTransform.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="shader_uf.h" />

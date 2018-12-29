@@ -666,6 +666,8 @@ int main(int argc, char* argv[])
 			ImGui::Combo("texture format", (int*)&g_output_bin_format._txt_fmt, str_txt_fmts, IM_ARRAYSIZE(str_txt_fmts));
 			static const char* str_progrm_fmts[] = { "shader code", "general binary", "vivante binary" };
 			ImGui::Combo("program format", (int*)&g_output_bin_format._pgm_fmt, str_progrm_fmts, IM_ARRAYSIZE(str_progrm_fmts));
+			static const char* str_res_mdl[] = { "integrated", "discrete" };
+			ImGui::Combo("resource output model", (int*)&g_output_bin_format._res_mdl, str_res_mdl, IM_ARRAYSIZE(str_res_mdl));
 
 			ImGui::End();
 		}

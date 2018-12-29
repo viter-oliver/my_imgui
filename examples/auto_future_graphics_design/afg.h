@@ -2,6 +2,7 @@
 #include "ft_base.h"
 #include "ft_block.h"
 #include "ft_button.h"
+#include "ft_circle.h"
 #include "ft_cube_3d.h"
 #include "ft_image.h"
 #include "ft_image_play.h"

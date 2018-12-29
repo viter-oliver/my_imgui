@@ -14,7 +14,7 @@ namespace auto_future
 		_fbx_assert_pt._scale_stn = { 1.f, 1.f, 1.f };
 		_fbx_assert_pt._camera_center_stn = { 0.f, 0.f, 0.f };
 		_fbx_assert_pt._camera_up_srd = { 0.f, 1.f, 0.f };
-
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_fbx_assert_pt, 0, [this](void* memb_address){
 			static int _selectIdx = -1;
 			ImGui::Combo("fbx name", &_fbx_assert_pt._select_list, &get_fbx_item, &g_fbx_name_vector[_fbx_assert_pt._select_list], g_fbx_name_vector.size());
@@ -62,6 +62,7 @@ namespace auto_future
 				}
 			}
 		});
+#endif
 	}
 
 	ft_fbx_assert_3d::~ft_fbx_assert_3d()
@@ -80,30 +81,6 @@ namespace auto_future
 	}
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-
-	static bool get_mesh_material(void* data, int idx, const char** out_str)
-	{
-		auto it = g_material_list.begin();
-		for (auto i = 0; i < g_material_list.size(); ++i, it++)
-		{
-			if (i == idx)
-				*out_str = it->first.c_str();
-		}
-		
-		return true;
-	}
-
-	static bool get_mesh_texture(void* data, int idx, const char** out_str)
-	{
-		auto it = g_mtexture_list.begin();
-		for (auto i = 0; i < g_mtexture_list.size(); ++i, it++)
-		{
-			if (i == idx)
-				*out_str = it->first.c_str();
-		}
-
-		return true;
-	}
 
 	void ft_fbx_assert_3d::init_internal_mesh_point()
 	{

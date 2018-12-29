@@ -34,7 +34,7 @@ namespace auto_future
 		_pt._pos0_shd = { 0.f, 7.f, -20.f };
 		_pt._v0_shd = { 0.f, -7.f, 0.f };
 		_pt._a0_shd = { 0.f, 9.81f, 0.f };
-
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_value_range(&_pt, 3, 0.f, 20.f);
 		reg_value_range(&_pt, 4, 0.f, 50.f);
 		reg_value_range(&_pt, 5, -40.f, 40.f);
@@ -43,6 +43,7 @@ namespace auto_future
 			ImGui::Combo("particles type:", &_pt._pa, a_show, en_alg_cnt);
 			g_ptcl_sys->draw_property();
 		});
+#endif
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 		auto& mut = g_material_list.find("particles1");
