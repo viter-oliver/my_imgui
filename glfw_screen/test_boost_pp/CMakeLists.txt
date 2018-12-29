@@ -1,0 +1,5 @@
+include_directories(${GLFW_SOURCE_DIR}/boost_1_65_1)
+file(GLOB GP_CPP ./*.cpp)
+add_executable(test_boost_pp ${GP_CPP})
+set_target_properties(test_boost_pp PROPERTIES LINKER_LANGUAGE CXX)
+target_link_libraries(test_boost_pp EGL GLESv2 m)
