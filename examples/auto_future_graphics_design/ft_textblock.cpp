@@ -30,6 +30,11 @@ namespace auto_future
 		//ImVec2 winpos = ImGui::GetWindowPos();
 		//ImGui::SetCursorPosY(abpos.y);
 		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+		int max_font_id = atlas->Fonts.size()-1;
+		if (_txt_pt._font_id>max_font_id)
+		{
+			_txt_pt._font_id = max_font_id;
+		}
 		ImFont* font = atlas->Fonts[_txt_pt._font_id];
 		float font_scale = font->Scale;
 		font->Scale = _txt_pt._font_scale;

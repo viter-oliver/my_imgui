@@ -19,7 +19,6 @@
     <ClInclude Include="platform_def.h">
       <Filter>sources</Filter>
     </ClInclude>
-    <ClInclude Include="afg.h" />
     <ClInclude Include="my_application.h">
       <Filter>sources</Filter>
     </ClInclude>

@@ -161,7 +161,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\rcf_service\idata_collect.h" />
-    <ClInclude Include="afg.h" />
     <ClInclude Include="key_def.h" />
     <ClInclude Include="main_menu_controller.h" />
     <ClInclude Include="my_application.h" />

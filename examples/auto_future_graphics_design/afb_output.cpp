@@ -15,12 +15,10 @@ extern "C"{
 }
 #include "SOIL.h"
 #define _DX5_COMPRESS
-#ifdef _DX5_COMPRESS
 #define STB_DXT_IMPLEMENTATION
 
-#else
 #include "miniz.h"
-#endif
+
 void pack_ui_component_data(base_ui_component& tar,
 #ifdef _DX5_COMPRESS
 	msgpack::packer<ofstream>& pk
@@ -154,16 +152,32 @@ void afb_output::output_afb(const char* afb_file)
 	}
 	for (auto& res_unit : g_vres_texture_list)
 	{
-		pk.pack_array(4);
+		pk.pack_array(5);
+		pk.pack_str(res_unit.texture_pack_file.size());
+		pk.pack_str_body(res_unit.texture_pack_file.c_str(), res_unit.texture_pack_file.size());
 		pk.pack_int(res_unit.texture_width);
 		pk.pack_int(res_unit.texture_height);
 		int txt_size = res_unit.texture_width*res_unit.texture_height * 4;
 		uint8_t* txtdata = new uint8_t[txt_size];
-		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id);
+
+		glBindTexture(GL_TEXTURE_2D, res_unit.texture_id());
 		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txtdata);
 		DDS_data = ftxt_press(txtdata, res_unit.texture_width, res_unit.texture_height, DDS_size);
-		pk.pack_bin(DDS_size);
-		pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
+		if (res_unit._is_separated)
+		{
+			pk.pack_uint8(0);
+			string str_resname = output_file_path + res_unit.texture_pack_file;
+			str_resname += ".safb";
+			ofstream fresout;
+			fresout.open(str_resname, ios::out | ios::binary);
+			fresout.write((char*)DDS_data, DDS_size);
+			fresout.close();
+		}
+		else
+		{
+			pk.pack_bin(DDS_size);
+			pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
+		}
 		if (DDS_data != txtdata)
 		{
 			SOIL_free_image_data(DDS_data);
@@ -191,7 +205,7 @@ void afb_output::output_afb(const char* afb_file)
 	}
 
 
-	pk.pack_array(g_mtexture_list.size());//由于动画纹理不是power2（trimed），所以不用压缩算法
+	pk.pack_array(g_mtexture_list.size());
 	for (auto& txt_unit : g_mtexture_list)
 	{
 		auto& kname = txt_unit.first;
@@ -201,13 +215,27 @@ void afb_output::output_afb(const char* afb_file)
 		pk.pack_str_body(kname.c_str(), kname.size());
 		pk.pack_uint32(txtv->_width);
 		pk.pack_uint32(txtv->_height);
+		
 		uint32_t txt_size = txtv->_width*txtv->_height * 4;
 		uint8_t* txt_data = new uint8_t[txt_size];
-		glBindTexture(GL_TEXTURE_2D, txtv->_txt_id);
+		glBindTexture(GL_TEXTURE_2D, txtv->_txt_id());
 		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt_data);
 		DDS_data = ftxt_press(txt_data, txtv->_width, txtv->_height, DDS_size);
-		pk.pack_bin(DDS_size);
-		pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
+		if (txtv->_is_separated)
+		{
+			pk.pack_uint8(0);
+			string str_resname = output_file_path + kname;
+			str_resname += ".safb";
+			ofstream fresout;
+			fresout.open(str_resname, ios::out|ios::binary);
+			fresout.write((char*)DDS_data, DDS_size);
+			fresout.close();
+		}
+		else
+		{
+			pk.pack_bin(DDS_size);
+			pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
+		}
 		if (DDS_data != txt_data)
 		{
 			SOIL_free_image_data(DDS_data);

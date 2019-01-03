@@ -153,7 +153,7 @@ namespace auto_future
 										{
 											float draw_height = imge_edit_view_width*resheight / reswidth;
 											ImVec2 draw_size(imge_edit_view_width, draw_height);
-											int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+											int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
 											float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
 											float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 

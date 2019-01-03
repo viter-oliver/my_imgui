@@ -63,6 +63,7 @@ void texture_edit::draw_texture_item_property()
 {
 	if (_ptexture)
 	{
+		ImGui::Checkbox("is separated", &_ptexture->_is_separated);
 		float imw = _ptexture->_width, imh = _ptexture->_height;
 		if (imw > 400.f)
 		{
@@ -70,7 +71,7 @@ void texture_edit::draw_texture_item_property()
 			imw = 400;
 			
 		}
-		ImGui::Image((ImTextureID)_ptexture->_txt_id, ImVec2(imw,imh), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+		ImGui::Image((ImTextureID)_ptexture->_txt_id(), ImVec2(imw,imh), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 
 	}
 }

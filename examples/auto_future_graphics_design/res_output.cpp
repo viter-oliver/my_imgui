@@ -83,7 +83,7 @@ bool add_image_to_mtexure_list(string& imgPath)
 	// Step5 释放纹理图片资源
 	SOIL_free_image_data(imgdata);
 	auto pimge = make_shared<af_texture>();
-	pimge->_txt_id = textureId;
+	pimge->_atxt_id = textureId;
 	pimge->_width = width;
 	pimge->_height = height;
 	g_mtexture_list[img_file_name] = pimge;

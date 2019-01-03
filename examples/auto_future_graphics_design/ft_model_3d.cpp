@@ -91,7 +91,7 @@ namespace auto_future
 			);
 			_pshader->set_uniform(string("model"), 1, glm::value_ptr(model));*/
 			glActiveTexture(GL_TEXTURE0);
-			glBindTexture(GL_TEXTURE_2D, _texture->_txt_id);
+			glBindTexture(GL_TEXTURE_2D, _texture->_txt_id());
 
 
 			glDrawArrays(GL_TRIANGLES, 0, _tri_cnt);

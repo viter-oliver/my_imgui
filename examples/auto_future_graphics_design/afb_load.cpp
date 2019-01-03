@@ -28,17 +28,21 @@ void afb_load::init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::ob
 	memset(str_type_name, 0, obj_tp_nmlen + 1);
 	memcpy(str_type_name, obj_typename.via.str.ptr, obj_tp_nmlen);
 	ptar = factory::get().produce(str_type_name);
-	delete[] str_type_name;
 	vproperty_list vplist;
 	int mlen=ptar->collect_property_range(vplist);
 	auto mem_obj=obj.via.array.ptr[1];
+	auto bin_sz = mem_obj.via.bin.size;
 	uint8_t* pmem = const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(mem_obj.via.bin.ptr));
+	uint8_t* pmem_bk = pmem;
 	for (auto& munit : vplist)
 	{
 		memcpy(munit._p_head_address, pmem, munit._len);
 		pmem += munit._len;
 	}
+	int bksz = pmem - pmem_bk;
+	//cout << "peroperty_sizeof " << str_type_name << " is " << bin_sz << "bksz is"<<bksz<< endl;
 	ptar->link();
+	delete[] str_type_name;
 	if (obj_arr_sz>2)
 	{
 		auto childs_obj = obj.via.array.ptr[2];
@@ -125,6 +129,8 @@ void afb_load::load_afb(const char* afb_file)
 
 
 	TIME_CHECK(reading afb)
+	string cur_proj = afb_file;
+	string cur_dir = cur_proj.substr(0, cur_proj.find_last_of('\\') + 1);
 	msgpack::object_handle oh;
 	unpac.next(oh);
 	auto obj_w = oh.get();
@@ -234,6 +240,7 @@ void afb_load::load_afb(const char* afb_file)
 		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bsz){
 			GLuint txt_id;
 			glGenTextures(1, &txt_id);
+			printf("gen txtid:%u\n", txt_id);
 			glBindTexture(GL_TEXTURE_2D, txt_id);
 			//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			glEnable(GL_BLEND);
@@ -243,7 +250,10 @@ void afb_load::load_afb(const char* afb_file)
 			// Step3 设定filter参数
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bsz, ptxt_data);
+			if (ptxt_data)
+			{
+				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bsz, ptxt_data);
+			}
 
 			//glGenerateMipmap(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, 0);
@@ -257,13 +267,42 @@ void afb_load::load_afb(const char* afb_file)
 		res_texture_list& res_unit = g_vres_texture_list[cur_pos];
 
 		auto bin_res_unit = obj_res.via.array.ptr[ix];
-		res_unit.texture_width = bin_res_unit.via.array.ptr[0].as<int>();
-		res_unit.texture_height = bin_res_unit.via.array.ptr[1].as<int>();
-		auto res_bin = bin_res_unit.via.array.ptr[2];
-		auto bin_sz = res_bin.via.bin.size;
-		res_unit.texture_id = f_gen_txt(res_bin.via.bin.ptr, res_unit.texture_width, res_unit.texture_height, bin_sz);
-
-		auto res_data = bin_res_unit.via.array.ptr[3];
+		auto txt_name = bin_res_unit.via.array.ptr[0];
+		auto txt_name_sz = txt_name.via.str.size;
+		char* txt_kname = new char[txt_name_sz + 1];
+		memcpy(txt_kname, txt_name.via.str.ptr, txt_name_sz);
+		txt_kname[txt_name_sz] = 0;
+		res_unit.texture_pack_file = txt_kname;
+		res_unit.texture_width = bin_res_unit.via.array.ptr[1].as<int>();
+		res_unit.texture_height = bin_res_unit.via.array.ptr[2].as<int>();
+		auto res_bin = bin_res_unit.via.array.ptr[3];
+		if (res_bin.type == msgpack::type::POSITIVE_INTEGER)
+		{
+			res_unit.txt_id = f_gen_txt(0, res_unit.texture_width, res_unit.texture_height, 0);
+			string res_file = cur_dir + txt_kname;
+			res_file += ".safb";
+			thread th_lod_res([&](string fnm){
+				ifstream ifs;
+				ifs.open(fnm, ios::binary);
+				auto res_size = ifs.tellg();
+				ifs.seekg(0, ios::end);
+				res_size = ifs.tellg() - res_size;
+				ifs.seekg(0, ios::beg);
+				string& rd_buf = res_unit.txt_buff;
+				rd_buf.resize(res_size);
+				ifs.read(&rd_buf[0], res_size);
+				ifs.close();
+				res_unit._loaded = true;
+			}, res_file);
+			th_lod_res.detach();
+		}
+		else
+		{
+			auto bin_sz = res_bin.via.bin.size;
+			res_unit.txt_id = f_gen_txt(res_bin.via.bin.ptr, res_unit.texture_width, res_unit.texture_height, bin_sz);
+		}
+		delete[] txt_kname;
+		auto res_data = bin_res_unit.via.array.ptr[4];
 		auto res_data_sz = res_data.via.array.size;
 		for (size_t iy = 0; iy < res_data_sz; iy++)
 		{
@@ -297,13 +336,38 @@ void afb_load::load_afb(const char* afb_file)
 		char* txt_kname = new char[txt_name_sz+1];
 		memset(txt_kname, 0, txt_name_sz + 1);
 		memcpy(txt_kname, txt_name.via.str.ptr, txt_name_sz);
-		auto txt_bin_sz = txt_bin.via.bin.size;
-		auto a_txt = make_shared<af_texture>();
+		g_mtexture_list[txt_kname] = make_shared<af_texture>();
+		auto& a_txt = g_mtexture_list[txt_kname];
 		a_txt->_width = txt_width;
 		a_txt->_height = txt_height;
-		a_txt->_txt_id = f_gen_txt(txt_bin.via.bin.ptr, txt_width, txt_height, txt_bin_sz);
-		
-		g_mtexture_list[txt_kname] = a_txt;
+		if (txt_bin.type == msgpack::type::POSITIVE_INTEGER)
+		{
+			a_txt->_atxt_id = f_gen_txt(0, a_txt->_width, a_txt->_height, 0);
+
+			string res_file = cur_dir + txt_kname;
+			res_file += ".safb";
+			thread th_lod_res([&](string fnm){
+				ifstream ifs;
+				ifs.open(fnm, ios::binary);
+				printf("res name:%s\n", fnm.c_str());
+				auto res_size = ifs.tellg();
+				ifs.seekg(0, ios::end);
+				res_size = ifs.tellg() - res_size;
+				ifs.seekg(0, ios::beg);
+				string& rd_buf = a_txt->txt_buff;
+				rd_buf.resize(res_size);
+				ifs.read(&rd_buf[0], res_size);
+				ifs.close();
+				a_txt->_loaded = true;
+			},res_file);
+			th_lod_res.detach();
+		}
+		else
+		{
+			auto txt_bin_sz = txt_bin.via.bin.size;
+			a_txt->_atxt_id = f_gen_txt(txt_bin.via.bin.ptr, txt_width, txt_height, txt_bin_sz);
+		}
+	
 		delete[] txt_kname;
 
 	}

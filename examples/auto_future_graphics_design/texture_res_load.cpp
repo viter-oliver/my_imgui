@@ -31,6 +31,7 @@ void texture_res_load::load_res_from_json(Value& jroot)
 		res_texture_list& rtlist = _texture_res_tar[ix];
 		rtlist.texture_pack_file = texture_pack_file.asString();
 		rtlist.texture_data_file = texture_data_file.asString();
+		rtlist._is_separated = junit["separated"].asBool();
 		load_texture_info(rtlist, rtlist.texture_pack_file, rtlist.texture_data_file);
 		
 	}
@@ -46,9 +47,9 @@ bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, stri
 	str_texture_pack_file += str_txt_pack_file;
 	str_texture_data_file += str_txt_data_file;
 		
-	rtlist.texture_id = TextureHelper::load2DTexture(str_texture_pack_file.c_str(), \
-	rtlist.texture_width, rtlist.texture_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
-	if (rtlist.texture_id==0)
+	rtlist.txt_id =move( TextureHelper::load2DTexture(str_texture_pack_file.c_str(), \
+	rtlist.texture_width, rtlist.texture_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA));
+	if (rtlist.texture_id()==0)
 	{
 		return false;
 	}

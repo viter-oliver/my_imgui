@@ -85,7 +85,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			for (ix = 0; ix < isize;ix++)
 			{
 				Value& txt_unit = texture_list[ix];
-				auto& kname = txt_unit.asString();
+				auto& kname = txt_unit["name"].asString();
 				auto img_file_path = str_img_path + kname;
 				GLubyte* imgdata = NULL;
 				int width, height, channels;
@@ -118,9 +118,10 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				// Step5 释放纹理图片资源
 				SOIL_free_image_data(imgdata);
 				auto pimge = make_shared<af_texture>();
-				pimge->_txt_id = textureId;
+				pimge->_atxt_id = textureId;
 				pimge->_width = width;
 				pimge->_height = height;
+				pimge->_is_separated = txt_unit["separated"].asBool();
 				g_mtexture_list[kname] = pimge;
 			}
 			Value& file_list = jroot["file_list"];
@@ -246,6 +247,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		Value jtext_res_unit(objectValue);
 		jtext_res_unit["texture_pack_file"] = reslist.texture_pack_file;
 		jtext_res_unit["texture_data_file"] = reslist.texture_data_file;
+		jtext_res_unit["separated"] = reslist._is_separated;
 		jtexture.append(jtext_res_unit);
 	}
 	jroot["texture_res_list"] = jtexture;
@@ -253,7 +255,9 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	for (auto& txt : g_mtexture_list)
 	{
 		auto& kname = txt.first;
-		Value txt_unit(kname);
+		Value txt_unit(objectValue);
+		txt_unit["name"] = kname;
+		txt_unit["separated"] = txt.second->_is_separated;
 		//auto& af_txt = txt.second;
 		texture_list.append(txt_unit);
 	}
@@ -363,8 +367,9 @@ bool ui_assembler::update_texture_res()
 {
 	res_texture_list& cur_txt_list=g_vres_texture_list[g_cur_texture_id_index];
 	vres_txt_cd cur_txt_cd = cur_txt_list.vtexture_coordinates;
-	glDeleteTextures(1, &cur_txt_list.texture_id);
-	cur_txt_list.texture_id = 0;
+	unsigned int txtid = cur_txt_list.texture_id();
+	glDeleteTextures(1, &txtid);
+	cur_txt_list.txt_id = 0;
 	cur_txt_list.vtexture_coordinates.clear();
 	load_texture_info(cur_txt_list, cur_txt_list.texture_pack_file, cur_txt_list.texture_data_file);
 	int chldcnt = _root.child_count();

@@ -4916,17 +4916,42 @@
 	"texture_id_index" : 0,
 	"texture_list" : 
 	[
-		"edge_left_animation.png",
-		"edge_left_up_animation.png",
-		"edge_right_animation.png",
-		"edge_right_up_animation.png",
-		"needle_left_animation.png",
-		"needle_right_animation.png"
+		
+		{
+			"name" : "edge_left_animation.png",
+			"separated" : true
+		},
+		
+		{
+			"name" : "edge_left_up_animation.png",
+			"separated" : true
+		},
+		
+		{
+			"name" : "edge_right_animation.png",
+			"separated" : true
+		},
+		
+		{
+			"name" : "edge_right_up_animation.png",
+			"separated" : true
+		},
+		
+		{
+			"name" : "needle_left_animation.png",
+			"separated" : true
+		},
+		
+		{
+			"name" : "needle_right_animation.png",
+			"separated" : true
+		}
 	],
 	"texture_res_list" : 
 	[
 		
 		{
+			"separated" : true,
 			"texture_data_file" : "basic_res.json",
 			"texture_pack_file" : "basic_res.png"
 		}
@@ -4939,7 +4964,7 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : false
+		"show_resource_manager" : true
 	}
 }
 

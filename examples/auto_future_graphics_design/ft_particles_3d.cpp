@@ -250,9 +250,9 @@ namespace auto_future
 
 		// Bind our texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id);
+		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id());
 		// Set our "myTextureSampler" sampler to use Texture Unit 0
-		glUniform1i(_texture->_txt_id, 0);
+		glUniform1i(_texture->_txt_id(), 0);
 		
 
 

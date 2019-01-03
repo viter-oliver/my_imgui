@@ -163,7 +163,7 @@ namespace auto_future
 						{
 							_texture = mtx->second;
 							glActiveTexture(GL_TEXTURE0);
-							glBindTexture(GL_TEXTURE_2D, _texture->_txt_id);
+							glBindTexture(GL_TEXTURE_2D, _texture->_txt_id());
 						}
 					}
 					glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _pcube_prim->_ebo);

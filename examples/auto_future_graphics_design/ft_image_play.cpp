@@ -36,7 +36,7 @@ namespace auto_future
 			return;
 
 		}
-		int texture_id =_texture->_txt_id;
+		int texture_id =_texture->_txt_id();
 		int texture_width = _texture->_width;
 		int texture_height = _texture->_height;
 		float sizew = _img_pt._sizew;

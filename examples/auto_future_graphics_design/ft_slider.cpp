@@ -140,7 +140,7 @@ namespace auto_future
 	void ft_slider::draw()
 	{
 		ft_base::draw();
-		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id;
+		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
 		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 
 		if (_slider_pt._texture_bg_index_txt >= ptext_cd.size())

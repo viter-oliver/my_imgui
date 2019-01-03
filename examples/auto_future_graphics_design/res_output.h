@@ -6,8 +6,11 @@
 #endif 
 #include <vector>
 #include <string>
+#include <atomic>
+#include <thread>
 //纹理资源
 using namespace std;
+#define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
 struct res_texture_coordinate
 {
 	string _file_name;
@@ -19,15 +22,49 @@ struct res_texture_coordinate
 typedef vector<res_texture_coordinate> vres_txt_cd;
 struct res_texture_list
 {
+	atomic<bool> _loaded{ false };
+	GLuint txt_id{0};
 	int texture_width;
 	int texture_height;
-	unsigned int texture_id;
+	string txt_buff;
 	string texture_pack_file;
 	string texture_data_file;
-	//string file_name_sets;
+	bool _is_separated{ false };	//string file_name_sets;
 	vres_txt_cd vtexture_coordinates;
-	res_texture_list()
+	unsigned int texture_id()
 	{
+		while (!_loaded)
+		{
+			this_thread::yield();
+		}
+		if (txt_buff.size()>0)
+		{
+			glBindTexture(GL_TEXTURE_2D, txt_id);
+			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, texture_width, texture_height, 0, txt_buff.size(), &txt_buff[0]);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			txt_buff.clear();
+		}
+		return txt_id;
+	}
+	res_texture_list()
+		:txt_id(0)
+	{
+	}
+	res_texture_list(res_texture_list& target)
+	{
+		if (target.txt_id==0)
+		{
+			txt_id = 0;
+		}
+		else
+		{
+			txt_id = texture_id();
+		}
+	}
+	res_texture_list& operator =(res_texture_list& tar)
+	{
+		txt_id = tar.texture_id();
+		return *this;
 	}
 	~res_texture_list()
 	{
@@ -36,10 +73,34 @@ struct res_texture_list
 typedef vector<res_texture_list> vres_txt_list;
 extern vres_txt_list g_vres_texture_list;
 extern int g_cur_texture_id_index;
+//enum res_output_model
+//{
+//	en_integrated,
+//	en_discrete,
+//};
 extern bool get_texture_item(void* data, int idx, const char** out_str);
 struct af_texture
 {
-	GLuint _txt_id{ 0 }, _width{ 0 }, _height{ 0 };
+	atomic<bool> _loaded{ false };
+	GLuint _atxt_id{ 0 };
+	string txt_buff;
+	GLuint _width{ 0 }, _height{ 0 };
+	GLuint _txt_id()
+	{
+		while (!_loaded)
+		{
+			this_thread::yield();
+		}
+		if (txt_buff.size() > 0)
+		{
+			glBindTexture(GL_TEXTURE_2D, _atxt_id);
+			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, _width, _height, 0, txt_buff.size(), &txt_buff[0]);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			txt_buff.clear();
+		}
+		return _atxt_id;
+	}
+	bool _is_separated{ false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif
@@ -80,16 +141,11 @@ enum program_format
 	en_shader_bin_general,
 	en_shader_bin_vivante,
 };
-enum res_output_model
-{
-	en_integrated,
-	en_discrete,
-};
+
 struct output_bin_format
 {
 	texture_format _txt_fmt;
 	program_format _pgm_fmt;
-	res_output_model _res_mdl;
-	output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code), _res_mdl(en_integrated){}
+	output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
 };
 extern output_bin_format g_output_bin_format;

@@ -142,7 +142,7 @@ namespace auto_future
 		float* puv = _puv + _pt._frame_index * 8;
 		glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(GL_FLOAT) * 8, puv);
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id);
+		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id());
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 	}
 

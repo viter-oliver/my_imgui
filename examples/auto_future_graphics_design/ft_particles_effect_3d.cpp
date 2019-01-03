@@ -175,8 +175,8 @@ namespace auto_future
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id);
-		glUniform1i(_texture->_txt_id, 0);
+		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id());
+		glUniform1i(_texture->_txt_id(), 0);
 
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo_uv);

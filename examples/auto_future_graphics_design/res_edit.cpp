@@ -66,6 +66,7 @@ void res_edit::draw_res_item_property()
 		ImGui::Text("texture data file:");
 		ImGui::SameLine();
 		ImGui::Text(g_vres_texture_list[g_cur_texture_id_index].texture_data_file.c_str());
+		ImGui::Checkbox("is separated", &g_vres_texture_list[g_cur_texture_id_index]._is_separated);
 	}
 	else
 	{

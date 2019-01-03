@@ -99,6 +99,7 @@ void fonts_edit::draw_fonts_list()
 	if (fonts_opened)
 	{
 		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
+		ImFontConfig* font_remove = NULL;
 		for (int i = 0; i < atlas->ConfigData.size(); i++)
 		{
 			auto& cfg_data = atlas->ConfigData[i];
@@ -114,14 +115,29 @@ void fonts_edit::draw_fonts_list()
 			{
 				ImGui::Text("Font data size:%d", cfg_data.FontDataSize);
 				ImGui::Text("Font size in pixels:%f", cfg_data.SizePixels);
+
 				if (font->ConfigData &&!is_current_font&& ImGui::SmallButton("Set as default"))
 				{
 					ImGui::GetIO().FontDefault = font;
 				}
+				if (font->ConfigData &&!is_current_font&& ImGui::SmallButton("remove it from atlas!"))
+				{
+					font_remove = &cfg_data;
+				}
 				ImGui::TreePop();
 			}
 		}
-		/*if (ImGui::TreeNode("Atlas texture", "Atlas texture (%dx%d pixels)", atlas->TexWidth, atlas->TexHeight))
+		if (font_remove)
+		{
+			atlas->ConfigData.erase(font_remove);
+		}
+		/*
+		if (ImGui::BeginPopupContextWindow())
+		{
+
+			ImGui::EndPopup();
+		}
+		if (ImGui::TreeNode("Atlas texture", "Atlas texture (%dx%d pixels)", atlas->TexWidth, atlas->TexHeight))
 		{
 			ImGui::Image(atlas->TexID, ImVec2((float)atlas->TexWidth, (float)atlas->TexHeight), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 			ImGui::TreePop();
