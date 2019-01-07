@@ -26,30 +26,64 @@
 #include <functional>
 //#include "command_element.h"
 //#include <map>
-
+namespace auto_future{ class base_ui_component; }
 
 #include "property_utilities.h"
 
 namespace auto_future
 {
+
 	struct af_vec2
 	{
 		float x, y;
 		af_vec2() = default;
+		af_vec2& operator +=(af_vec2& tar)
+		{
+			this->x += tar.x;
+			this->y += tar.y;
+			return *this;
+		}
+		af_vec2 operator+ (af_vec2& tar)
+		{
+			af_vec2 av{this->x+tar.x,this->y+tar.y};
+			return av;
+		}
+
 	};
 	struct af_vec3
 	{
 		float x, y, z;
 		af_vec3() = default;
+		af_vec3& operator += (af_vec3& tar)
+		{
+			this->x += tar.x;
+			this->y += tar.y;
+			this->z += tar.z;
+			return *this;
+		}
+		af_vec3 operator+ (af_vec3& tar)
+		{
+			af_vec3 av{ this->x + tar.x, this->y + tar.y, this->z + tar.z };
+			return av;
+		}
 	};
 	struct af_vec4
 	{
 		float x, y, z, w;
 		af_vec4() = default;
-		/*ImVec4& operator=(af_vec4& av4)
+		af_vec4& operator += (af_vec4& tar)
 		{
-			return std::move(ImVec4(av4.x, av4.y, av4.z, av4.w));
-		}*/
+			this->x += tar.x;
+			this->y += tar.y;
+			this->z += tar.z;
+			this->w += tar.w;
+			return *this;
+		}
+		af_vec4 operator+ (af_vec4& tar)
+		{
+			af_vec4 av{ this->x + tar.x, this->y + tar.y, this->z + tar.z,this->w + tar.w};
+			return av;
+		}
 	};
 
 	struct ft_vertex
@@ -69,7 +103,8 @@ namespace auto_future
 	using namespace std;
 	typedef vector<property_range> vproperty_list;
 
-	class base_ui_component;
+	
+
 	const unsigned char name_len = 40;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	using namespace Json;

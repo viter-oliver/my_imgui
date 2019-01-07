@@ -121,6 +121,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				pimge->_atxt_id = textureId;
 				pimge->_width = width;
 				pimge->_height = height;
+				pimge->_loaded = true;
 				pimge->_is_separated = txt_unit["separated"].asBool();
 				g_mtexture_list[kname] = pimge;
 			}

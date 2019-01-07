@@ -7,7 +7,7 @@
 #include <boost/preprocessor/seq/for_each.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
-
+using namespace auto_future;
 enum range_value_type
 {
 	en_range_value_int,
@@ -50,13 +50,21 @@ struct value_range
 		_max._d = dmax;
 	}
 };
-
+using namespace std;
+struct prop_ele_position 
+{
+	base_ui_component* _pobj;
+	uint8_t _index;
+};
 struct field_ele
 {
-	std::string _type;
-	std::string _name;
+	string _type;
+	string _name;
 	int _tpsz;
 	int _offset;
+	/*vector<prop_ele_position> _param_list;
+	vector<prop_ele_position> _reference_list;
+	string _expression;*/
 	field_ele(std::string tp, std::string nm, int tpsz, int offset)
 		:_type(tp), _name(nm),_tpsz(tpsz),_offset(offset){}
 };

@@ -78,7 +78,6 @@ namespace auto_future
 	private:
 		enum{ en_pt_sz_x, en_pt_sz_y, en_pt_ax_pos_x, en_pt_ax_pos_y,\
 			en_pt_ac_type,en_pt_txt_id,en_pt_angle};
-		intl_pt _img_pt_bk;
 		ImVec2 _edit_size;
 
 #endif
