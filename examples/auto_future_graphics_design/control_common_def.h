@@ -29,71 +29,9 @@
 namespace auto_future{ class base_ui_component; }
 
 #include "property_utilities.h"
-
+#include "af_type.h"
 namespace auto_future
 {
-
-	struct af_vec2
-	{
-		float x, y;
-		af_vec2() = default;
-		af_vec2& operator +=(af_vec2& tar)
-		{
-			this->x += tar.x;
-			this->y += tar.y;
-			return *this;
-		}
-		af_vec2 operator+ (af_vec2& tar)
-		{
-			af_vec2 av{this->x+tar.x,this->y+tar.y};
-			return av;
-		}
-
-	};
-	struct af_vec3
-	{
-		float x, y, z;
-		af_vec3() = default;
-		af_vec3& operator += (af_vec3& tar)
-		{
-			this->x += tar.x;
-			this->y += tar.y;
-			this->z += tar.z;
-			return *this;
-		}
-		af_vec3 operator+ (af_vec3& tar)
-		{
-			af_vec3 av{ this->x + tar.x, this->y + tar.y, this->z + tar.z };
-			return av;
-		}
-	};
-	struct af_vec4
-	{
-		float x, y, z, w;
-		af_vec4() = default;
-		af_vec4& operator += (af_vec4& tar)
-		{
-			this->x += tar.x;
-			this->y += tar.y;
-			this->z += tar.z;
-			this->w += tar.w;
-			return *this;
-		}
-		af_vec4 operator+ (af_vec4& tar)
-		{
-			af_vec4 av{ this->x + tar.x, this->y + tar.y, this->z + tar.z,this->w + tar.w};
-			return av;
-		}
-	};
-
-	struct ft_vertex
-	{
-
-		ImVec3  pos;
-		ImVec2  uv;
-		ImU32   col;
-	};
-
 	struct property_range
 	{
 		void* _p_head_address;

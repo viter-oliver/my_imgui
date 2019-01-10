@@ -3,6 +3,20 @@
 #include "SOIL.h"
 #include "texture.h"
 #include "json.h"
+#include <locale>
+#include <codecvt>
+
+std::string wstringToUtf8(const std::wstring& str)
+{
+	std::wstring_convert<std::codecvt_utf8<wchar_t> > strCnv;
+	return strCnv.to_bytes(str);
+}
+
+std::wstring utf8ToWstring(const std::string& str)
+{
+	std::wstring_convert< std::codecvt_utf8<wchar_t> > strCnv;
+	return strCnv.from_bytes(str);
+}
 /*
 x'=(x-a)cos¦Á+(y-b)sin¦Á+a
 y'=-(x-a)sin¦Á+(y-b)cos¦Á+b

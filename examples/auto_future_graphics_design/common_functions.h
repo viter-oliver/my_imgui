@@ -7,6 +7,8 @@
 #else
 #include"../../deps/glad/glad.h"
 #endif
+extern std::string wstringToUtf8(const std::wstring& str);
+extern std::wstring utf8ToWstring(const std::string& str);
 extern GLfloat* get_txt_uvs(const char* data_file, int& retn_len);
 extern void get_txt_uv_vector(const char* data_file, vres_txt_cd& vtxt_cd);
 extern ImVec2 rotate_point_by_zaxis(ImVec2& tar, float agl, ImVec2& basePoint);

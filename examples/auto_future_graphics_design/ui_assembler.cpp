@@ -3,7 +3,7 @@
 #include "texture_res_load.h"
 #include "af_shader.h"
 #include "material.h"
-
+#include "af_font_res_set.h"
 #include "SOIL.h"
 #include "dir_output.h"
 #include "primitive_object.h"
@@ -59,13 +59,14 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					Value& jfont = fonts[ix];
 					string font_name = jfont["name"].asString();
 					font_name = str_font_path + font_name;
-					float SizePixels = jfont["SizePixels"].asDouble();
+	/*				float SizePixels = jfont["SizePixels"].asDouble();
 					ImFont* nfont=ImGui::GetIO().Fonts->AddFontFromFileTTF(font_name.c_str(), SizePixels, NULL, ImGui::GetIO().Fonts->GetGlyphRangesChinese());
 					Value jdefault = jfont["default"];
 					if (!jdefault.isNull())
 					{
 						ImGui::GetIO().FontDefault = nfont;
-					}
+					}*/
+					g_font_face_manager.load_font(string("arialuni.ttf"), font_name);
 				}
 
 			}

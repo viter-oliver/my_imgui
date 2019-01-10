@@ -116,32 +116,17 @@ int main(int argc, char* argv[])
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-	if (0)//!g_cureent_project_file_path.empty())
+#ifdef _DEMO_
+	if (1)//!g_cureent_project_file_path.empty())
 	{
 		string str_font_path = g_cureent_directory;
 		str_font_path += "fonts\\";
-		string DejaVuSans1 = str_font_path + "DejaVuSans.ttf";
-		string DejaVuSans2 = str_font_path + "DejaVuSans-Bold.ttf";
-		string DejaVuSans3 = str_font_path + "DejaVuSans-BoldOblique.ttf";
-		string DejaVuSans4 = str_font_path + "DejaVuSansMono.ttf";
-		string DejaVuSans5 = str_font_path + "DejaVuSansMono-Bold.ttf";
-		string DejaVuSans6 = str_font_path + "DejaVuSansMono-BoldOblique.ttf";
-		string DejaVuSans7 = str_font_path + "DejaVuSansMono-Oblique.ttf";
-		string DejaVuSans8 = str_font_path + "DejaVuSans-Oblique.ttf";
+		string FZLanTingHeiS= str_font_path + "FZLanTingHeiS-R-GB.ttf";
+		string arial = str_font_path +"arialuni.ttf";
 
-		string DejaVuSerif1 = str_font_path + "DejaVuSerif.ttf";
-		string DejaVuSerif2 = str_font_path + "DejaVuSerif-Bold.ttf";
-		string DejaVuSerif3 = str_font_path + "DejaVuSerif-BoldOblique.ttf";
-		string DejaVuSerif4 = str_font_path + "DejaVuSerif-Oblique.ttf";
-
-		io.Fonts->AddFontFromFileTTF(DejaVuSans1.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
-		io.Fonts->AddFontFromFileTTF(DejaVuSans2.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
-		//io.Fonts->AddFontFromFileTTF(DejaVuSans3.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
-		//io.Fonts->AddFontFromFileTTF(DejaVuSerif1.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
-		//io.Fonts->AddFontFromFileTTF(DejaVuSerif2.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
-		//io.Fonts->AddFontFromFileTTF(DejaVuSerif3.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		io.Fonts->AddFontFromFileTTF(arial.c_str(), 22.0f, NULL, io.Fonts->GetGlyphRangesChinese());
 	}
-	
+#endif
 
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
@@ -457,9 +442,12 @@ int main(int argc, char* argv[])
             static float f = 0.0f;
             static int counter = 0;
             ImGui::Text("Hello, world!");                           // Display some text (you can use a format string too)
-            ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f    
+			char str_chn[] = "我是中文";
+			ImGui::Text(str_chn);
+			ImGui::Text("Kanjis: \xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e (nihongo)");
+			ImGui::SliderFloat("float", &f, 0.0f, 1.0f);            // Edit 1 float using a slider from 0.0f to 1.0f    
             ImGui::ColorEdit3("clear color", (float*)&clear_color); // Edit 3 floats representing a color
-
+			
             ImGui::Checkbox("Demo Window", &show_demo_window);      // Edit bools storing our windows open/close state
             ImGui::Checkbox("Another Window", &show_another_window);
 
@@ -684,6 +672,7 @@ int main(int argc, char* argv[])
 					pjedit->sel_ui_component(search_ctrl);
 				}
 			}
+			//ImGui::Text("\xE4\xBD\xA0\xE5\xA5\xBD");
 			if (_proot)
 			{
 				pjedit->objects_view();
