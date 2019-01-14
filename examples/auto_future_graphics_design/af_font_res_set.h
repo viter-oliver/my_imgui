@@ -123,7 +123,7 @@ namespace auto_future
 				float y0 = (float)border.y /(float)txt_size.y;
 
 				auto& tbuff = face->glyph->bitmap.buffer;
-				glTexSubImage2D(GL_TEXTURE_2D, 0, border.x, border.y, tw, th, GL_RED, GL_UNSIGNED_BYTE, tbuff);				
+				glTexSubImage2D(GL_TEXTURE_2D, 0, border.x, border.y, tw, th, GL_RED, GL_UNSIGNED_BYTE, tbuff);
 				if ((border.x+tw)<=txt_size.x)
 				{
 					border.x += tw;
@@ -150,9 +150,18 @@ namespace auto_future
 
 	extern font_face_manager g_font_face_manager;
 
+	struct frame_buff_unit
+	{
+		GLuint _fb_id{ 0 };
+		GLuint _col_txt_id{ 0 };
+		GLuint _depth_stencil_txt_id{ 0 };
+		af_vi2 _size;
+	};
+
 	class af_font_res_set
 	{
 		font_face_manager& _font_mg;
+		frame_buff_unit _fm_buff;
 		GLuint _txt_id{ 0 };
 		af_vui2 _txt_size;
 		af_vui2 _border;
@@ -161,8 +170,7 @@ namespace auto_future
 	public:
 		af_font_res_set(font_face_manager& font_mg);
 		~af_font_res_set();
-		void draw_wstring(string& fontFace,GLuint fontSize,af_vec2& start_pos,\
-			GLfloat scale, wstring& str_content,af_vec3& txt_col);
+		void draw_wstring(string& fontFace, GLuint fontSize, af_vec2& start_pos, af_vec2& end_pos,GLfloat scale, wstring& str_content,af_vec3& txt_col);
 	};
 
 }

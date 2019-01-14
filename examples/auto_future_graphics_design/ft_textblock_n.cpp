@@ -34,24 +34,25 @@ namespace auto_future
 		string font_name = ft_nm_list[_txt_pt._font_id];
 		float font_scale = _txt_pt._font_scale;
 
-		const ImVec2 ctnt_size = ImGui::CalcTextSize(_txt_pt._content);
+		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
 		dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
 		dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
-		_txt_area.Min = dpos;
-		_txt_area.Max = _txt_area.Min + ctnt_size;
 		af_vec2 draw_pos{ dpos.x, dpos.y };
+		af_vec2 end_pos;
 		wstring draw_content = utf8ToWstring(_txt_pt._content);
-		_pfont_res_set->draw_wstring(font_name, _txt_pt._font_size, draw_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr);
+		_pfont_res_set->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr);
+		af_vec2 real_size = end_pos - draw_pos;
+		_txt_area.Min = dpos;
+		_txt_area.Max = {end_pos.x,end_pos.y};
 		ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())
 		{
-			ImVec2 winpos = ImGui::GetWindowPos();
-			ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
-			ImVec2 pos2 = { pos1.x, pos1.y + ctnt_size.y };
-			ImVec2 pos3 = { pos1.x + ctnt_size.x, pos1.y + ctnt_size.y };
-			ImVec2 pos4 = { pos1.x + ctnt_size.x, pos1.y };
+			ImVec2 pos1 = dpos;
+			ImVec2 pos2 = { pos1.x, pos1.y + real_size.y };
+			ImVec2 pos3 = { pos1.x + real_size.x, pos1.y + real_size.y };
+			ImVec2 pos4 = { pos1.x + real_size.x, pos1.y };
 
 			ImU32 col = ImGui::GetColorU32(ImGuiCol_HeaderActive);
 			ImVec2 editunit(edit_unit_len, edit_unit_len);

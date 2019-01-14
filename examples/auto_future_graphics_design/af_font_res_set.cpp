@@ -21,21 +21,23 @@ namespace auto_future
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
 
-
 	af_font_res_set::~af_font_res_set()
 	{
 		glDeleteTextures(1, &_txt_id);
 	}
+
 	using namespace ImGui;
-	void af_font_res_set::draw_wstring(string& fontFace, GLuint fontSize, \
-		af_vec2& start_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col)
+
+	void af_font_res_set::draw_wstring(string& fontFace, GLuint fontSize, af_vec2& start_pos, \
+		af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col)
 	{
 		if (fontSize!=_font_size)//!texture will be rebuilt
 		{
 			_font_size = fontSize;
 		}
 		_font_mg.load_chars(fontFace, _font_size, _txt_id, str_content, _dic_gly_txtc, _border, _txt_size);
-		af_vec2 draw_pos = start_pos;
+		end_pos = start_pos;
+		float maxy = 0.f;
 		for (auto& wstr_item:str_content)
 		{
 			auto& glyph_txt_it = _dic_gly_txtc.find(wstr_item);
@@ -49,7 +51,7 @@ namespace auto_future
 				float y0 = glyph_txt_cd._y0;
 				float y1 = glyph_txt_cd._y1;
 				auto advance = glyph_txt_cd._advance;
-				ImVec2 pos0{ draw_pos.x + bearing.x*scale, draw_pos.y - (tsize.y-bearing.y)*scale };
+				ImVec2 pos0{ end_pos.x + bearing.x*scale, end_pos.y - (tsize.y-bearing.y)*scale };
 				ImVec2 pos1{ pos0.x, pos0.y + tsize.y*scale };
 				ImVec2 pos2{ pos0.x + tsize.x*scale, pos1.y };
 				ImVec2 pos3{ pos2.x, pos0.y };
@@ -59,10 +61,14 @@ namespace auto_future
 				ImVec2 uv3{ x1, y0 };
 				ImVec4 dcol{ txt_col.x, txt_col.y, txt_col.z, 1.f };
 				ImageQuad((ImTextureID)_txt_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, dcol);
-				draw_pos.x += (advance >> 6)*scale;// Bitshift by 6 to get value in pixels (2^6 = 64)
-
+				end_pos.x += (advance >> 6)*scale;// Bitshift by 6 to get value in pixels (2^6 = 64)
+				if (maxy<pos1.y)
+				{
+					maxy = pos1.y;
+				}
 			}
 		}
+		end_pos.y = maxy;
 	}
 
 }

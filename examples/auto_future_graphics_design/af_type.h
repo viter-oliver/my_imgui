@@ -17,6 +17,11 @@ namespace auto_future
 			af_vt2 av{ this->x + tar.x, this->y + tar.y };
 			return av;
 		}
+		af_vt2 operator -(af_vt2& tar)
+		{
+			af_vt2 av{ this->x - tar.x, this->y - tar.y };
+			return av;
+		}
 	};
 	using af_vi2 = af_vt2<int>;
 	using af_vui2 = af_vt2<unsigned int>;
@@ -36,6 +41,11 @@ namespace auto_future
 		af_vt3 operator+ (af_vt3& tar)
 		{
 			af_vt3 av{ this->x + tar.x, this->y + tar.y, this->z + tar.z};
+			return av;
+		}
+		af_vt3 operator -(af_vt3& tar)
+		{
+			af_vt3 av{ this->x - tar.x, this->y - tar.y, this->z - tar.z };
 			return av;
 		}
 	};
@@ -58,6 +68,11 @@ namespace auto_future
 		af_vt4 operator+ (af_vt4& tar)
 		{
 			af_vt4 av{ this->x + tar.x, this->y + tar.y, this->z + tar.z, this->w + tar.w };
+			return av;
+		}
+		af_vt4 operator -(af_vt4& tar)
+		{
+			af_vt4 av{this->x-tar.x,this->y-tar.y,this->z-tar.z,this->w-tar.w};
 			return av;
 		}
 	};
