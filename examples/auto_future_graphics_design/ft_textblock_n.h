@@ -10,8 +10,8 @@ namespace auto_future
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_txt_pt,
 			(af_vec3, _txt_clr),
-			(float, _txt_alignh_nml, {1.f}),
-			(float, _txt_alignv_nml, {1.f}),
+			(float, _txt_alignh_nml, {0.f}),
+			(float, _txt_alignv_nml, {0.f}),
 			(float, _width, { ImGui::GetFontSize() * 35.0f }),
 			(char, _content[MAX_CONTENT_LEN]),
 			(bool, _wrapped, {false}),

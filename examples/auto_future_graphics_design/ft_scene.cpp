@@ -12,6 +12,9 @@ namespace auto_future
 
 	ft_scene::~ft_scene()
 	{
+		glDeleteTextures(1, &_colorTextId);
+		glDeleteTextures(1, &_depthStencilTextId);
+		glDeleteFramebuffers(1, &_fboId);
 	}
 
 	void ft_scene::draw()

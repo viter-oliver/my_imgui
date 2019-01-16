@@ -25,6 +25,7 @@ namespace auto_future
 	};
 	using af_vi2 = af_vt2<int>;
 	using af_vui2 = af_vt2<unsigned int>;
+	using af_vs2 = af_vt2<short>;
 	using af_vec2 = af_vt2<float>;
 	template <class T>
 	struct af_vt3{

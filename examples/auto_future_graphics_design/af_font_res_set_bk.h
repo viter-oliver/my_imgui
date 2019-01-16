@@ -14,8 +14,8 @@
 #include <string>
 #include <assert.h>
 #include <ft2build.h>
-#include <memory>
 #include "af_type.h"
+#include "af_shader.h"
 #include FT_FREETYPE_H
 namespace auto_future
 {
@@ -35,8 +35,7 @@ namespace auto_future
 	struct txt_coordinate
 	{
 		/*! \member of txt_coordinate*/
-		af_vui2 _size;
-		af_vi2 _bearing;
+		af_vui2 _size, _bearing;
 		GLuint _advance;
 		float _x0, _y0, _x1, _y1;
 	};
@@ -50,39 +49,16 @@ namespace auto_future
 	*/
 	using dic_glyph_txt = map<wchar_t, txt_coordinate>;
 
-	struct txt_font_repository
-	{
-		GLuint _txt_id{ 0 };
-		af_vui2 _txt_size;
-		af_vui2 _border;
-		GLuint _font_size{ 16 };
-		bool _be_full{ false };
-	};
-
-	static void convert_r_to_rgba(uint8_t* pred, uint32_t*prgba, uint32_t data_len)
-	{
-		for (size_t i = 0; i < data_len; i++)
-		{
-			//*prgba++ = IM_COL32(255, 255, 255, (unsigned int)(*pred++));
-			uint8_t* pdst = (uint8_t*)(prgba);
-			pdst += 3;
-			*pdst = *pred++;
-			prgba++;
-
-		}
-	}
 	class font_face_manager
 	{
 		FT_Library _ft;
 		dic_font_face _dic_face;
 		vfont_face_name _font_face_names;
-		GLuint _fmbf_id {0};
+		shared_ptr<af_shader> _font_shd;
+		const GLuint _char_max_cnt = 0x400;//!max count of chars 
+		GLuint _font_vbo;
 	public:
-		font_face_manager()
-		{
-			assert(!FT_Init_FreeType(&_ft) && "fail to init freetype library!");
-			glGenFramebuffers(1, &_fmbf_id);
-		}
+		font_face_manager();
 		~font_face_manager()
 		{
 			for (auto& itm : _dic_face)
@@ -92,50 +68,40 @@ namespace auto_future
 					FT_Done_Face(itm.second);
 				}
 			}
-			glDeleteFramebuffers(1, &_fmbf_id);
+			glDeleteBuffers(1, &_font_vbo);
 		}
-
-		void clear_texture(GLuint& txt_id)
+		af_shader& font_shader()
 		{
-			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _fmbf_id);
-			glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, txt_id, 0); //Only need to do this once.
-			glDrawBuffer(GL_COLOR_ATTACHMENT0); //Only need to do this once.
-			GLuint clearColor[4] = { 0, 0, 0, 0 };
-			glClearBufferuiv(GL_COLOR, 0, clearColor);
-			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+			return *_font_shd;
 		}
 		vfont_face_name& get_font_name_list()
 		{
 			return _font_face_names;
 		}
-		bool load_font(string& fontFaceName, string& fontPath)
+		void use_font_vbo();
+		void un_use_vbo();
+		void load_font(string& fontFaceName, string& fontPath)
 		{
 			auto& fitem = _dic_face.find(fontFaceName);
 			if (fitem != _dic_face.end())
 			{
 				printf("font %s have been loaded!\n", fontFaceName.c_str());
-				return false;
+				return;
 			}
 			FT_Face face;
 			if (FT_New_Face(_ft, fontPath.c_str(), 0, &face))
 			{
 				printf("fail to load font from:%s!\n", fontPath.c_str());
-				return false;
+				return;
 			}
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 			_dic_face[fontFaceName] = face;
 			_font_face_names.emplace_back(fontFaceName);
-			return true;
 		}
-		void load_chars(string&fontFaceName, txt_font_repository&fp,wstring& wchar_list, \
-			dic_glyph_txt& container,GLuint& max_bearingy)
+		void load_chars(string&fontFaceName, GLuint fontSize, GLuint txtid, wstring& wchar_list, \
+			dic_glyph_txt& container, af_vui2& border, af_vui2& txt_size)
 		{
-			GLuint& txtid = fp._txt_id;
 			assert(txtid&&"you must pass a valid texture id into the function load_chars!");
-			af_vui2& border = fp._border;
-			af_vui2& txt_size = fp._txt_size;
-			GLuint& fontSize = fp._font_size;
-			bool& be_full = fp._be_full;
 			auto& face_it = _dic_face.find(fontFaceName);
 			if (face_it == _dic_face.end()){
 				printf("fail to load chars from unknown font face %d!\n", fontFaceName.c_str());
@@ -149,15 +115,8 @@ namespace auto_future
 				auto& it_glyph = container.find(str_it);
 				if (it_glyph!=container.end())
 				{
-					auto& ch_glhph = it_glyph->second;
-					auto&by= ch_glhph._bearing.y;
-					if (by>max_bearingy)
-					{
-						max_bearingy = by;
-					}
 					continue;
 				}
-
 				if (FT_Load_Char(face, str_it, FT_LOAD_RENDER))
 				{
 					wprintf(L"fail to find %c in font face %s\n", str_it, fontFaceName.c_str());
@@ -167,45 +126,24 @@ namespace auto_future
 				auto th = face->glyph->bitmap.rows;
 				auto lt = face->glyph->bitmap_left;
 				auto tp = face->glyph->bitmap_top;
-				if (tp>max_bearingy)
-				{
-					max_bearingy = tp;
-				}
 				auto ad = face->glyph->advance.x;
 				float x0 = (float)border.x /(float)txt_size.x;
 				float y0 = (float)border.y /(float)txt_size.y;
 
 				auto& tbuff = face->glyph->bitmap.buffer;
-				auto txt_sz = tw*th*4;
-				uint32_t* prgba = new uint32_t[txt_sz];
-				memset(prgba, 0xff, txt_sz);
-				convert_r_to_rgba(tbuff, prgba, txt_sz);
-
-				float left_x = border.x + tw;
-				float next_x = left_x + 2;
-				if (next_x<=txt_size.x)
+				glTexSubImage2D(GL_TEXTURE_2D, 0, border.x, border.y, tw, th, GL_RED, GL_UNSIGNED_BYTE, tbuff);
+				if ((border.x+tw)<=txt_size.x)
 				{
-					glTexSubImage2D(GL_TEXTURE_2D, 0, border.x, border.y, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, prgba);
-					border.x =next_x;
+					border.x += tw;
 				}
 				else
 				{
+					border.x = 0;
 					border.y += fontSize;
-					border.y+=2;
-					if ((border.y + th)>txt_size.y)// is full
-					{
-						fprintf(stderr, "font glyph repository of control is full!\n");
-						be_full = true;
-						delete[] prgba;
-						return;
-					}
-					glTexSubImage2D(GL_TEXTURE_2D, 0, 0, border.y, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, prgba);
-					border.x = tw+2;
 				}
-				float x1 = (float)left_x / (float)txt_size.x;
+				float x1 = (float)border.x / (float)txt_size.x;
 				float y1 = (float)(th+border.y) / (float)txt_size.y;
-				//border.x += 5;
-				delete[] prgba;
+				
 
 				txt_coordinate txt_unit = {
 					{tw,th},
@@ -220,20 +158,23 @@ namespace auto_future
 
 	extern shared_ptr<font_face_manager> g_pfont_face_manager;
 
-	//struct frame_buff_unit
-	//{
-	//	GLuint _fb_id{ 0 };
-	//	GLuint _col_txt_id{ 0 };
-	//	GLuint _depth_stencil_txt_id{ 0 };
-	//	af_vi2 _size;
-	//};
+	struct frame_buff_unit
+	{
+		GLuint _fb_id{ 0 };
+		GLuint _col_txt_id{ 0 };
+		GLuint _depth_stencil_txt_id{ 0 };
+		af_vi2 _size;
+	};
 
 	class af_font_res_set
 	{
 		font_face_manager& _font_mg;
-		txt_font_repository _font_rp;
+		frame_buff_unit _fm_buff;
+		GLuint _txt_id{ 0 };
+		af_vui2 _txt_size;
+		af_vui2 _border;
+		GLuint _font_size { 16 };
 		dic_glyph_txt _dic_gly_txtc;
-		bool _is_full{ false };
 	public:
 		af_font_res_set(font_face_manager& font_mg);
 		~af_font_res_set();

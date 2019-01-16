@@ -90,7 +90,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\libs\fbx_sdk\include;./fbx_import;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\libs\fbx_sdk\include;./fbx_import;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>

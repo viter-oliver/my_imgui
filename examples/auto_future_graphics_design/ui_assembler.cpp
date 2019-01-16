@@ -50,6 +50,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				show_file_manager=window_show["show_file_manager"].asBool();
 			}
 			Value& fonts = jroot["fonts"];
+			g_pfont_face_manager = make_shared<font_face_manager>();
 			if (!fonts.isNull())
 			{
 				string str_font_path = g_cureent_directory+font_fold;
@@ -57,16 +58,9 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				for (int ix = 0; ix < isz;ix++)
 				{
 					Value& jfont = fonts[ix];
-					string font_name = jfont["name"].asString();
-					font_name = str_font_path + font_name;
-	/*				float SizePixels = jfont["SizePixels"].asDouble();
-					ImFont* nfont=ImGui::GetIO().Fonts->AddFontFromFileTTF(font_name.c_str(), SizePixels, NULL, ImGui::GetIO().Fonts->GetGlyphRangesChinese());
-					Value jdefault = jfont["default"];
-					if (!jdefault.isNull())
-					{
-						ImGui::GetIO().FontDefault = nfont;
-					}*/
-					g_font_face_manager.load_font(string("arialuni.ttf"), font_name);
+					string font_name = jfont.asString();
+					string font_full_name= str_font_path + font_name;
+					g_pfont_face_manager->load_font(font_name, font_full_name);
 				}
 
 			}
@@ -217,26 +211,10 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 
 	jroot["window_show"] = window_show;
 	Value fonts(arrayValue);
-	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-	
-	for (size_t i = 0; i < atlas->Fonts.size(); i++)
+	vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+	for (auto& face_name_item:ft_nm_list)
 	{
-		auto& cfg_data = atlas->ConfigData[i];
-		ImFont* font = atlas->Fonts[i];
-		Value jfont(objectValue);
-		string fontname = cfg_data.Name;
-		fontname = fontname.substr(0, fontname.find_first_of(','));
-		if ("ProggyClean.ttf" == fontname)//默认字体不需要存
-		{
-			continue;
-		}
-		jfont["SizePixels"] = cfg_data.SizePixels;
-		jfont["name"] = fontname;
-		if (ImGui::GetIO().FontDefault==font)
-		{
-			jfont["default"] = true;
-		}
-		fonts.append(jfont);
+		fonts.append(face_name_item);
 	}
 	jroot["fonts"] = fonts;
 	Value output_bin_fmt(objectValue);

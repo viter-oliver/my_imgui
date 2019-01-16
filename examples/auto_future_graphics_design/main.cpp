@@ -116,18 +116,15 @@ int main(int argc, char* argv[])
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-#ifdef _DEMO_
 	if (1)//!g_cureent_project_file_path.empty())
 	{
 		string str_font_path = g_cureent_directory;
 		str_font_path += "fonts\\";
 		string FZLanTingHeiS= str_font_path + "FZLanTingHeiS-R-GB.ttf";
-		string arial = str_font_path +"arialuni.ttf";
+		//string arial = str_font_path +"arialuni.ttf";
 
-		io.Fonts->AddFontFromFileTTF(arial.c_str(), 22.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		io.Fonts->AddFontFromFileTTF(FZLanTingHeiS.c_str(), 20.0f, NULL, io.Fonts->GetGlyphRangesChinese());
 	}
-#endif
-
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
 	//char buffer[MAX_PATH];

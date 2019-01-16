@@ -4,19 +4,19 @@ namespace auto_future
 {
 	static bool get_font_item(void* data, int idx, const char** out_str)
 	{
-		vfont_face_name& ft_nm_list = g_font_face_manager.get_font_name_list();
+		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
 		*out_str = ft_nm_list[idx].c_str();
 		return true;
 	}
 	ft_textblock_n::ft_textblock_n()
 		: _txt_area(0.f, 0.f, 0.f, 0.f)
 	{
-		_pfont_res_set = make_shared<af_font_res_set>(g_font_face_manager);
+		_pfont_res_set = make_shared<af_font_res_set>(*g_pfont_face_manager);
 		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
 		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_txt_pt, 6, [this](void*){
-			vfont_face_name& ft_nm_list = g_font_face_manager.get_font_name_list();
+			vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
 			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size());
 		});
 		reg_property_handle(&_txt_pt,8, [this](void*){
@@ -30,7 +30,7 @@ namespace auto_future
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 dpos = abpos + winpos;
-		vfont_face_name& ft_nm_list = g_font_face_manager.get_font_name_list();
+		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
 		string font_name = ft_nm_list[_txt_pt._font_id];
 		float font_scale = _txt_pt._font_scale;
 
@@ -40,7 +40,13 @@ namespace auto_future
 		af_vec2 draw_pos{ dpos.x, dpos.y };
 		af_vec2 end_pos;
 		wstring draw_content = utf8ToWstring(_txt_pt._content);
-		_pfont_res_set->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr);
+		auto str_sz = draw_content.size();
+		if (str_sz > 0)
+		{
+			//const GLuint max_pixel_size = 512 * 512;
+			
+			_pfont_res_set->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr);
+		}
 		af_vec2 real_size = end_pos - draw_pos;
 		_txt_area.Min = dpos;
 		_txt_area.Max = {end_pos.x,end_pos.y};
