@@ -15,6 +15,10 @@
 #include <assert.h>
 #include <ft2build.h>
 #include <memory>
+#define _CHECK_TIME_CONSUME
+#ifdef _CHECK_TIME_CONSUME
+#include <chrono>
+#endif
 #include "af_type.h"
 #include FT_FREETYPE_H
 namespace auto_future
@@ -71,6 +75,7 @@ namespace auto_future
 
 		}
 	}
+
 	class font_face_manager
 	{
 		FT_Library _ft;
@@ -80,8 +85,13 @@ namespace auto_future
 	public:
 		font_face_manager()
 		{
+			//auto lastTime = std::chrono::high_resolution_clock::now();
 			assert(!FT_Init_FreeType(&_ft) && "fail to init freetype library!");
 			glGenFramebuffers(1, &_fmbf_id);
+			//auto currentTime = std::chrono::high_resolution_clock::now();
+			//int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
+			//printf("FT_Init_FreeType consume %d milli secs\n", delta);
+
 		}
 		~font_face_manager()
 		{
@@ -108,8 +118,28 @@ namespace auto_future
 		{
 			return _font_face_names;
 		}
+		bool load_font(string& fontFaceName, uint8_t* pfont_buff, unsigned long file_size)
+		{
+			auto& fitem = _dic_face.find(fontFaceName);
+			if (fitem != _dic_face.end())
+			{
+				printf("font %s have been loaded!\n", fontFaceName.c_str());
+				return false;
+			}
+			FT_Face face;
+			if (FT_New_Memory_Face(_ft, pfont_buff, file_size, 0, &face))
+			{
+				printf("fail to load font from:%s!\n", fontFaceName.c_str());
+				return false;
+			}
+			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
+			_dic_face[fontFaceName] = face;
+			_font_face_names.emplace_back(fontFaceName);
+			return true;
+		}
 		bool load_font(string& fontFaceName, string& fontPath)
 		{
+			//auto lastTime = std::chrono::high_resolution_clock::now();
 			auto& fitem = _dic_face.find(fontFaceName);
 			if (fitem != _dic_face.end())
 			{
@@ -125,6 +155,9 @@ namespace auto_future
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 			_dic_face[fontFaceName] = face;
 			_font_face_names.emplace_back(fontFaceName);
+			//auto currentTime = std::chrono::high_resolution_clock::now();
+			//int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
+			//printf("load_font:%s consume %d milli secs\n", fontFaceName.c_str(), delta);
 			return true;
 		}
 		void load_chars(string&fontFaceName, txt_font_repository&fp,wstring& wchar_list, \
@@ -237,7 +270,7 @@ namespace auto_future
 	public:
 		af_font_res_set(font_face_manager& font_mg);
 		~af_font_res_set();
-		void draw_wstring(string& fontFace, GLuint fontSize, af_vec2& start_pos, af_vec2& end_pos,GLfloat scale, wstring& str_content,af_vec3& txt_col);
+		void draw_wstring(string& fontFace, GLuint fontSize, af_vec2& start_pos, af_vec2& end_pos,GLfloat scale, wstring& str_content,af_vec3& txt_col,float width,bool omit_rest);
 	};
 
 }

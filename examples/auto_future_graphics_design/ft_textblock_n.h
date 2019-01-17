@@ -12,9 +12,10 @@ namespace auto_future
 			(af_vec3, _txt_clr),
 			(float, _txt_alignh_nml, {0.f}),
 			(float, _txt_alignv_nml, {0.f}),
-			(float, _width, { ImGui::GetFontSize() * 35.0f }),
+			(float, _width, { 200.0f }),
 			(char, _content[MAX_CONTENT_LEN]),
-			(bool, _wrapped, {false}),
+			(bool, _width_limit, {false}),
+			(bool, _omit_rest, { false }),
 			(int, _font_id, {0}),
 			(float, _font_size, { 16.f }),
 			(float, _font_scale, { 1.f }))
