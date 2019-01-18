@@ -5,13 +5,32 @@
 #include "json.h"
 #include <locale>
 #include <codecvt>
-
+#include <fstream>
 std::string wstringToUtf8(const std::wstring& str)
 {
 	std::wstring_convert<std::codecvt_utf8<wchar_t> > strCnv;
 	return strCnv.to_bytes(str);
 }
-
+using namespace std;
+bool handle_file_data(const std::string& file_name, std::function<void(char*, unsigned int)>buff_handle)
+{
+	ifstream fin;
+	fin.open(file_name, ios::binary);
+	if (!fin.is_open())
+	{
+		return false;
+	}
+	auto file_size = fin.tellg();
+	fin.seekg(0, ios::end);
+	file_size = fin.tellg() - file_size;
+	fin.seekg(0, ios::beg);
+	char* pbuff = new char[file_size];
+	fin.read(pbuff, file_size);
+	buff_handle(pbuff, file_size);
+	delete[] pbuff;
+	fin.close();
+	return true;
+}
 std::wstring utf8ToWstring(const std::string& str)
 {
 	std::wstring_convert< std::codecvt_utf8<wchar_t> > strCnv;

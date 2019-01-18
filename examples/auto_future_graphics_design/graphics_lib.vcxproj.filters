@@ -145,6 +145,9 @@
     <ClCompile Include="ft_circle.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="af_font_res_set.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -305,6 +308,9 @@
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="property_utilities.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="af_font_res_set.h">
       <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>

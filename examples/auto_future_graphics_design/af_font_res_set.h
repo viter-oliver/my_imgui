@@ -127,7 +127,8 @@ namespace auto_future
 				return false;
 			}
 			FT_Face face;
-			if (FT_New_Memory_Face(_ft, pfont_buff, file_size, 0, &face))
+			FT_Error err = FT_New_Memory_Face(_ft, pfont_buff, file_size, 0, &face);
+			if (err)
 			{
 				printf("fail to load font from:%s!\n", fontFaceName.c_str());
 				return false;

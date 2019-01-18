@@ -1007,12 +1007,14 @@
 				{
 					"_content" : "18:20",
 					"_font_id" : 0,
-					"_font_scale" : 2.0,
+					"_font_scale" : 1.300000071525574,
+					"_font_size" : 20.0,
 					"_name" : "time",
+					"_omit_rest" : false,
 					"_posx" : 935.3850708007813,
-					"_posy" : 12.0,
+					"_posy" : 22.80300140380859,
 					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.50,
+					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
 					{
 						"x" : 1.0,
@@ -1021,7 +1023,7 @@
 					},
 					"_visible" : true,
 					"_width" : 560.0,
-					"_wrapped" : false,
+					"_width_limit" : false,
 					"type" : "ft_textblock"
 				},
 				
@@ -1058,8 +1060,10 @@
 						{
 							"_content" : "500",
 							"_font_id" : 1,
-							"_font_scale" : 2.100000143051148,
+							"_font_scale" : 1.0,
+							"_font_size" : 25.0,
 							"_name" : "distance",
+							"_omit_rest" : false,
 							"_posx" : 98.74300384521484,
 							"_posy" : -4.114000320434570,
 							"_txt_alignh_nml" : 0.0,
@@ -1072,15 +1076,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "m",
 							"_font_id" : 1,
-							"_font_scale" : 1.50,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "unit",
+							"_omit_rest" : false,
 							"_posx" : 170.6670074462891,
 							"_posy" : 4.0,
 							"_txt_alignh_nml" : 0.0,
@@ -1093,15 +1099,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "next turn street",
 							"_font_id" : 1,
-							"_font_scale" : 1.50,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "notification",
+							"_omit_rest" : false,
 							"_posx" : 100.0,
 							"_posy" : 40.0,
 							"_txt_alignh_nml" : 0.0,
@@ -1114,7 +1122,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
@@ -1161,12 +1169,14 @@
 						
 						{
 							"_content" : "P",
-							"_font_id" : 2,
-							"_font_scale" : 1.899999976158142,
+							"_font_id" : 0,
+							"_font_scale" : 1.200000047683716,
+							"_font_size" : 35.0,
 							"_name" : "gear_value",
-							"_posx" : 117.33300781250,
+							"_omit_rest" : false,
+							"_posx" : 135.0,
 							"_posy" : -63.87100219726563,
-							"_txt_alignh_nml" : 0.0,
+							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
 							{
@@ -1176,18 +1186,20 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "NORMAL",
-							"_font_id" : 1,
-							"_font_scale" : 1.300000071525574,
+							"_font_id" : 0,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "state",
-							"_posx" : 85.33300781250,
+							"_omit_rest" : false,
+							"_posx" : 138.0,
 							"_posy" : -12.00000095367432,
-							"_txt_alignh_nml" : 0.0,
+							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
 							{
@@ -1197,7 +1209,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
@@ -1206,11 +1218,13 @@
 				
 				{
 					"_content" : "100",
-					"_font_id" : 2,
-					"_font_scale" : 3.0,
+					"_font_id" : 0,
+					"_font_scale" : 1.200000047683716,
+					"_font_size" : 50.0,
 					"_name" : "speed",
+					"_omit_rest" : false,
 					"_posx" : 951.7950439453125,
-					"_posy" : 192.0000152587891,
+					"_posy" : 209.7860107421875,
 					"_txt_alignh_nml" : 0.50,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -1221,17 +1235,19 @@
 					},
 					"_visible" : true,
 					"_width" : 560.0,
-					"_wrapped" : false,
+					"_width_limit" : false,
 					"childs" : 
 					[
 						
 						{
 							"_content" : "km/h",
 							"_font_id" : 0,
-							"_font_scale" : 1.899999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "unit",
+							"_omit_rest" : false,
 							"_posx" : 65.64100646972656,
-							"_posy" : 24.61500167846680,
+							"_posy" : 20.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1242,7 +1258,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
@@ -1252,8 +1268,10 @@
 				{
 					"_content" : "TRIP:",
 					"_font_id" : 0,
-					"_font_scale" : 1.899999976158142,
+					"_font_scale" : 1.0,
+					"_font_size" : 18.0,
 					"_name" : "trip",
+					"_omit_rest" : false,
 					"_posx" : 527.0,
 					"_posy" : 672.0,
 					"_txt_alignh_nml" : 0.0,
@@ -1266,15 +1284,17 @@
 					},
 					"_visible" : true,
 					"_width" : 560.0,
-					"_wrapped" : false,
+					"_width_limit" : false,
 					"type" : "ft_textblock"
 				},
 				
 				{
 					"_content" : "ODO:",
 					"_font_id" : 0,
-					"_font_scale" : 1.899999976158142,
+					"_font_scale" : 1.0,
+					"_font_size" : 18.0,
 					"_name" : "odo",
+					"_omit_rest" : false,
 					"_posx" : 1229.0,
 					"_posy" : 672.0,
 					"_txt_alignh_nml" : 0.0,
@@ -1287,7 +1307,7 @@
 					},
 					"_visible" : true,
 					"_width" : 560.0,
-					"_wrapped" : false,
+					"_width_limit" : false,
 					"type" : "ft_textblock"
 				}
 			],
@@ -1481,7 +1501,9 @@
 							"_content" : "Navigation is off",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
+							"_font_size" : 18.0,
 							"_name" : "warning_info",
+							"_omit_rest" : false,
 							"_posx" : 133.33300781250,
 							"_posy" : 190.0,
 							"_txt_alignh_nml" : 0.50,
@@ -1494,7 +1516,7 @@
 							},
 							"_visible" : false,
 							"_width" : 560.0,
-							"_wrapped" : true,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
@@ -1531,8 +1553,10 @@
 								{
 									"_content" : "500",
 									"_font_id" : 1,
-									"_font_scale" : 2.100000143051148,
+									"_font_scale" : 1.200000047683716,
+									"_font_size" : 30.0,
 									"_name" : "distance",
+									"_omit_rest" : false,
 									"_posx" : 98.74300384521484,
 									"_posy" : -4.114000320434570,
 									"_txt_alignh_nml" : 0.0,
@@ -1545,15 +1569,17 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
 								{
 									"_content" : "m",
 									"_font_id" : 1,
-									"_font_scale" : 1.50,
+									"_font_scale" : 1.0,
+									"_font_size" : 25.0,
 									"_name" : "unit",
+									"_omit_rest" : false,
 									"_posx" : 170.6670074462891,
 									"_posy" : 4.0,
 									"_txt_alignh_nml" : 0.0,
@@ -1566,15 +1592,17 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
 								{
 									"_content" : "next turn street",
 									"_font_id" : 1,
-									"_font_scale" : 1.50,
+									"_font_scale" : 1.0,
+									"_font_size" : 25.0,
 									"_name" : "notification",
+									"_omit_rest" : false,
 									"_posx" : 100.0,
 									"_posy" : 40.0,
 									"_txt_alignh_nml" : 0.0,
@@ -1587,7 +1615,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -1609,7 +1637,9 @@
 							"_content" : "Style",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
+							"_font_size" : 18.0,
 							"_name" : "style_opt",
+							"_omit_rest" : false,
 							"_posx" : 1655.0,
 							"_posy" : 382.0,
 							"_txt_alignh_nml" : 0.50,
@@ -1622,7 +1652,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : true,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
@@ -1630,7 +1660,9 @@
 							"_content" : "System Version",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
+							"_font_size" : 18.0,
 							"_name" : "version",
+							"_omit_rest" : false,
 							"_posx" : 1655.0,
 							"_posy" : 420.0000305175781,
 							"_txt_alignh_nml" : 0.50,
@@ -1643,7 +1675,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : true,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
@@ -1689,7 +1721,9 @@
 											"_content" : "Normal",
 											"_font_id" : 2,
 											"_font_scale" : 1.0,
+											"_font_size" : 18.0,
 											"_name" : "show",
+											"_omit_rest" : false,
 											"_posx" : 50.0,
 											"_posy" : 0.0,
 											"_txt_alignh_nml" : 0.0,
@@ -1702,7 +1736,7 @@
 											},
 											"_visible" : true,
 											"_width" : 560.0,
-											"_wrapped" : true,
+											"_width_limit" : false,
 											"type" : "ft_textblock"
 										}
 									],
@@ -1743,7 +1777,9 @@
 											"_content" : "Sport",
 											"_font_id" : 2,
 											"_font_scale" : 1.0,
+											"_font_size" : 18.0,
 											"_name" : "show",
+											"_omit_rest" : false,
 											"_posx" : 50.0,
 											"_posy" : 0.0,
 											"_txt_alignh_nml" : 0.0,
@@ -1756,7 +1792,7 @@
 											},
 											"_visible" : true,
 											"_width" : 560.0,
-											"_wrapped" : true,
+											"_width_limit" : false,
 											"type" : "ft_textblock"
 										}
 									],
@@ -1797,7 +1833,9 @@
 											"_content" : "Future",
 											"_font_id" : 2,
 											"_font_scale" : 1.0,
+											"_font_size" : 18.0,
 											"_name" : "show",
+											"_omit_rest" : false,
 											"_posx" : 50.0,
 											"_posy" : 0.0,
 											"_txt_alignh_nml" : 0.0,
@@ -1810,7 +1848,7 @@
 											},
 											"_visible" : true,
 											"_width" : 560.0,
-											"_wrapped" : true,
+											"_width_limit" : false,
 											"type" : "ft_textblock"
 										}
 									],
@@ -1835,7 +1873,9 @@
 							"_content" : "Multimedia is off",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
+							"_font_size" : 18.0,
 							"_name" : "multimedia_off",
+							"_omit_rest" : false,
 							"_posx" : 250.0,
 							"_posy" : 120.0000076293945,
 							"_txt_alignh_nml" : 0.50,
@@ -1848,7 +1888,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
@@ -1871,7 +1911,9 @@
 									"_content" : "140.2MHZ",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "txt_value",
+									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
 									"_txt_alignh_nml" : 0.50,
@@ -1884,7 +1926,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -1910,7 +1952,9 @@
 									"_content" : "1402MHZ",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "txt_value",
+									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
 									"_txt_alignh_nml" : 0.50,
@@ -1923,7 +1967,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -1949,7 +1993,9 @@
 									"_content" : "It come back to you",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "txt_value",
+									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
 									"_txt_alignh_nml" : 0.50,
@@ -1962,7 +2008,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -1988,7 +2034,9 @@
 									"_content" : "Some one like you",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "txt_value",
+									"_omit_rest" : false,
 									"_posx" : 60.0,
 									"_posy" : 243.0,
 									"_txt_alignh_nml" : 0.50,
@@ -2001,7 +2049,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -2027,7 +2075,9 @@
 									"_content" : "The earth song",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "txt_value",
+									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
 									"_txt_alignh_nml" : 0.50,
@@ -2040,7 +2090,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -2062,7 +2112,9 @@
 							"_content" : "Trip A",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
+							"_font_size" : 18.0,
 							"_name" : "TripA",
+							"_omit_rest" : false,
 							"_posx" : 250.0,
 							"_posy" : 91.91500091552734,
 							"_txt_alignh_nml" : 0.50,
@@ -2075,15 +2127,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"childs" : 
 							[
 								
 								{
 									"_content" : "4.5",
 									"_font_id" : 2,
-									"_font_scale" : 1.399999976158142,
+									"_font_scale" : 1.0,
+									"_font_size" : 20.0,
 									"_name" : "value",
+									"_omit_rest" : false,
 									"_posx" : 0.0,
 									"_posy" : 25.0,
 									"_txt_alignh_nml" : 0.50,
@@ -2096,7 +2150,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
@@ -2104,7 +2158,9 @@
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "unit",
+									"_omit_rest" : false,
 									"_posx" : 30.0,
 									"_posy" : 35.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2117,7 +2173,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -2128,7 +2184,9 @@
 							"_content" : "Trip B",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
+							"_font_size" : 18.0,
 							"_name" : "TripB",
+							"_omit_rest" : false,
 							"_posx" : 250.0,
 							"_posy" : 91.91500091552734,
 							"_txt_alignh_nml" : 0.50,
@@ -2141,15 +2199,17 @@
 							},
 							"_visible" : false,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"childs" : 
 							[
 								
 								{
 									"_content" : "4.5",
 									"_font_id" : 2,
-									"_font_scale" : 1.399999976158142,
+									"_font_scale" : 1.0,
+									"_font_size" : 20.0,
 									"_name" : "value",
+									"_omit_rest" : false,
 									"_posx" : 5.0,
 									"_posy" : 25.0,
 									"_txt_alignh_nml" : 0.50,
@@ -2162,7 +2222,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
@@ -2170,7 +2230,9 @@
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "unit",
+									"_omit_rest" : false,
 									"_posx" : 35.0,
 									"_posy" : 35.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2183,7 +2245,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -2222,7 +2284,9 @@
 									"_content" : "Endurance",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "title",
+									"_omit_rest" : false,
 									"_posx" : 10.21300029754639,
 									"_posy" : 134.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2235,15 +2299,17 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
 								{
 									"_content" : "260",
 									"_font_id" : 2,
-									"_font_scale" : 1.399999976158142,
+									"_font_scale" : 1.0,
+									"_font_size" : 20.0,
 									"_name" : "value",
+									"_omit_rest" : false,
 									"_posx" : 61.27700424194336,
 									"_posy" : 45.0,
 									"_txt_alignh_nml" : 0.50,
@@ -2256,7 +2322,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
@@ -2264,7 +2330,9 @@
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "unit",
+									"_omit_rest" : false,
 									"_posx" : 50.0,
 									"_posy" : 80.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2277,7 +2345,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -2316,7 +2384,9 @@
 									"_content" : "Trip A",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "title",
+									"_omit_rest" : false,
 									"_posx" : 31.0,
 									"_posy" : 134.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2329,15 +2399,17 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
 								{
 									"_content" : "4.5",
 									"_font_id" : 2,
-									"_font_scale" : 1.399999976158142,
+									"_font_scale" : 1.0,
+									"_font_size" : 20.0,
 									"_name" : "value",
+									"_omit_rest" : false,
 									"_posx" : 30.96800231933594,
 									"_posy" : 45.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2350,7 +2422,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
@@ -2358,7 +2430,9 @@
 									"_content" : "h",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "unit",
+									"_omit_rest" : false,
 									"_posx" : 48.0,
 									"_posy" : 78.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2371,7 +2445,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -2410,7 +2484,9 @@
 									"_content" : "Trip B",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "title",
+									"_omit_rest" : false,
 									"_posx" : 31.0,
 									"_posy" : 134.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2423,15 +2499,17 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
 								{
 									"_content" : "129",
 									"_font_id" : 2,
-									"_font_scale" : 1.399999976158142,
+									"_font_scale" : 1.0,
+									"_font_size" : 20.0,
 									"_name" : "value",
+									"_omit_rest" : false,
 									"_posx" : 30.96800231933594,
 									"_posy" : 45.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2444,7 +2522,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								},
 								
@@ -2452,7 +2530,9 @@
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
+									"_font_size" : 18.0,
 									"_name" : "unit",
+									"_omit_rest" : false,
 									"_posx" : 45.0,
 									"_posy" : 78.0,
 									"_txt_alignh_nml" : 0.0,
@@ -2465,7 +2545,7 @@
 									},
 									"_visible" : true,
 									"_width" : 560.0,
-									"_wrapped" : false,
+									"_width_limit" : false,
 									"type" : "ft_textblock"
 								}
 							],
@@ -3086,7 +3166,9 @@
 					"_content" : "Do you delete the data?",
 					"_font_id" : 2,
 					"_font_scale" : 1.0,
+					"_font_size" : 0.0,
 					"_name" : "warning_content",
+					"_omit_rest" : false,
 					"_posx" : 98.46200561523438,
 					"_posy" : 86.15400695800781,
 					"_txt_alignh_nml" : 0.0,
@@ -3099,7 +3181,7 @@
 					},
 					"_visible" : true,
 					"_width" : 560.0,
-					"_wrapped" : false,
+					"_width_limit" : false,
 					"type" : "ft_textblock"
 				},
 				
@@ -3107,7 +3189,9 @@
 					"_content" : "Ok",
 					"_font_id" : 2,
 					"_font_scale" : 1.0,
+					"_font_size" : 18.0,
 					"_name" : "ok",
+					"_omit_rest" : false,
 					"_posx" : 131.2820129394531,
 					"_posy" : 166.1540069580078,
 					"_txt_alignh_nml" : 0.0,
@@ -3120,7 +3204,7 @@
 					},
 					"_visible" : true,
 					"_width" : 560.0,
-					"_wrapped" : false,
+					"_width_limit" : false,
 					"type" : "ft_textblock"
 				},
 				
@@ -3128,7 +3212,9 @@
 					"_content" : "Cancel",
 					"_font_id" : 2,
 					"_font_scale" : 1.0,
+					"_font_size" : 18.0,
 					"_name" : "cancel",
+					"_omit_rest" : false,
 					"_posx" : 240.0,
 					"_posy" : 166.1540069580078,
 					"_txt_alignh_nml" : 0.0,
@@ -3141,7 +3227,7 @@
 					},
 					"_visible" : true,
 					"_width" : 560.0,
-					"_wrapped" : false,
+					"_width_limit" : false,
 					"type" : "ft_textblock"
 				}
 			],
@@ -3186,8 +3272,10 @@
 						{
 							"_content" : "Test Model",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "title",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 40.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3200,7 +3288,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
@@ -3234,8 +3322,10 @@
 						{
 							"_content" : "Debug",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "debug",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 132.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3248,7 +3338,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"childs" : 
 							[
 								
@@ -3291,8 +3381,10 @@
 						{
 							"_content" : "Version",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "version",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 207.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3305,15 +3397,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "Screen",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "screen",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 282.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3326,15 +3420,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "Brightness",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "brightness",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 357.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3347,15 +3443,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "DDR",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "ddr",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 432.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3368,15 +3466,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "EMMC",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "emmc",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 507.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3389,15 +3489,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "Firmware",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "firmware",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 582.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3410,7 +3512,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
@@ -3447,8 +3549,10 @@
 						{
 							"_content" : "Version",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "version",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 40.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3461,15 +3565,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "MCU: HM02_03_2.202",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "MCU",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 140.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3482,15 +3588,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "OS: HM02_04_2.add1",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "OS",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 240.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3503,15 +3611,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "SN: XXXXXXXXXXXXX",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "SN",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 340.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3524,15 +3634,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "HW_CB: AF05_HW_CB_V1",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "HW_CB",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 440.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3545,15 +3657,17 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						},
 						
 						{
 							"_content" : "HW_MB: AF05_MB_V1",
 							"_font_id" : 2,
-							"_font_scale" : 1.399999976158142,
+							"_font_scale" : 1.0,
+							"_font_size" : 20.0,
 							"_name" : "HW_MB",
+							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 540.0,
 							"_txt_alignh_nml" : 0.0,
@@ -3566,7 +3680,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
@@ -4291,7 +4405,9 @@
 							"_content" : "20",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
+							"_font_size" : 18.0,
 							"_name" : "brightness_level",
+							"_omit_rest" : false,
 							"_posx" : 20.0,
 							"_posy" : 10.0,
 							"_txt_alignh_nml" : 0.0,
@@ -4304,7 +4420,7 @@
 							},
 							"_visible" : true,
 							"_width" : 560.0,
-							"_wrapped" : false,
+							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
@@ -4822,25 +4938,7 @@
 		"needle_right_animation.json",
 		"water_temp.afp"
 	],
-	"fonts" : 
-	[
-		
-		{
-			"SizePixels" : 16.0,
-			"default" : true,
-			"name" : "Vera.ttf"
-		},
-		
-		{
-			"SizePixels" : 18.0,
-			"name" : "VeraBd.ttf"
-		},
-		
-		{
-			"SizePixels" : 22.0,
-			"name" : "VeraBI.ttf"
-		}
-	],
+	"fonts" : [ "FZLanTingHeiS-R-GB.TTF", "ProggyTiny.ttf" ],
 	"material_list" : 
 	[
 		
@@ -4964,7 +5062,7 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : true
+		"show_resource_manager" : false
 	}
 }
 

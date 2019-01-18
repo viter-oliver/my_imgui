@@ -1,6 +1,7 @@
 #pragma once
 #include "imgui.h"
 #include "res_output.h"
+#include <functional>
 #include <string>
 #if !defined(IMGUI_WAYLAND)
 #include <GL/gl3w.h>
@@ -8,6 +9,7 @@
 #include"../../deps/glad/glad.h"
 #endif
 extern std::string wstringToUtf8(const std::wstring& str);
+extern bool handle_file_data(const std::string& file_name, std::function<void(char*, unsigned int)>buff_handle);
 extern std::wstring utf8ToWstring(const std::string& str);
 extern GLfloat* get_txt_uvs(const char* data_file, int& retn_len);
 extern void get_txt_uv_vector(const char* data_file, vres_txt_cd& vtxt_cd);

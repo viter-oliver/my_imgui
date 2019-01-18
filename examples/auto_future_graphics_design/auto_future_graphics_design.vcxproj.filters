@@ -115,9 +115,6 @@
     <ClCompile Include="ofbx.cpp">
       <Filter>fbx</Filter>
     </ClCompile>
-    <ClCompile Include="ft_textblock.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\json\json_reader.cpp">
       <Filter>json</Filter>
     </ClCompile>
@@ -277,10 +274,10 @@
     <ClCompile Include="..\..\soil\stb_image_aug.c">
       <Filter>soil</Filter>
     </ClCompile>
-    <ClCompile Include="ft_textblock_n.cpp">
+    <ClCompile Include="af_font_res_set.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="af_font_res_set.cpp">
+    <ClCompile Include="ft_textblock.cpp">
       <Filter>controls</Filter>
     </ClCompile>
   </ItemGroup>
@@ -365,9 +362,6 @@
     </ClInclude>
     <ClInclude Include="af_shader.h">
       <Filter>render_utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_textblock.h">
-      <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="..\..\json\autolink.h">
       <Filter>json</Filter>
@@ -558,13 +552,13 @@
     <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h">
       <Filter>soil</Filter>
     </ClInclude>
-    <ClInclude Include="ft_textblock_n.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="af_font_res_set.h">
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="af_type.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_textblock.h">
       <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>

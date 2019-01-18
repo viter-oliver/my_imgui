@@ -2,6 +2,7 @@
 
 #include "factory.h"
 #include "res_output.h"
+#include "af_font_res_set.h"
 #include <fstream>
 #include "imgui.h"
 #if !defined(IMGUI_WAYLAND)
@@ -136,17 +137,7 @@ void afb_load::load_afb(const char* afb_file)
 	auto obj_w = oh.get();
 	base_ui_component::screenw = obj_w.via.array.ptr[0].as<float>();
 	base_ui_component::screenh = obj_w.via.array.ptr[1].as<float>();
-	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-	atlas->TexWidth = obj_w.via.array.ptr[2].as<int>();
-	atlas->TexHeight = obj_w.via.array.ptr[3].as<int>();
-	auto font_txt = obj_w.via.array.ptr[4];
-	auto txt_sz = font_txt.via.bin.size;
-	glGenTextures(1, &g_FontTexture);
-	glBindTexture(GL_TEXTURE_2D, g_FontTexture);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, atlas->TexWidth, atlas->TexHeight,0, GL_RGBA, GL_UNSIGNED_BYTE, font_txt.via.bin.ptr);
+
 	#ifdef _SEE_SUPPORTED__
 	string externsions=(const char*)glGetString(GL_EXTENSIONS);
 	printf("externsions:%s\n",externsions.c_str());
@@ -161,58 +152,32 @@ void afb_load::load_afb(const char* afb_file)
     }
     delete[] formats;
     #endif
-#ifndef DXT5_DECOMPRESSED
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, atlas->TexWidth, atlas->TexHeight,0, GL_RGBA, GL_UNSIGNED_BYTE, font_txt.via.bin.ptr);
-	//GL_NUM_COMPRESSED_TEXTURE_FORMATS		GL_COMPRESSED_TEXTURE_FORMATS
-#else
-	glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, atlas->TexWidth, atlas->TexHeight, 0, font_txt.via.bin.size, font_txt.via.bin.ptr);
-#endif
-	//glGenerateMipmap(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, 0);
-	atlas->TexID = (void *)(intptr_t)g_FontTexture;
+
+
 	TIME_CHECK(font atlas texture)
-	auto font_res = obj_w.via.array.ptr[5];
+	auto font_res = obj_w.via.array.ptr[2];
 	auto font_cnt = font_res.via.array.size;
+	g_pfont_face_manager = make_shared<font_face_manager>();
 	for (size_t ix = 0; ix < font_cnt; ix++)
 	{
-		atlas->Fonts.push_back(IM_NEW(ImFont));
-		auto& font = atlas->Fonts.back();
-		font->ContainerAtlas = atlas;
 		auto font_unit = font_res.via.array.ptr[ix];
-		font->FontSize = font_unit.via.array.ptr[0].as<float>();
-		font->Ascent = font_unit.via.array.ptr[1].as<float>();
-		font->Descent = font_unit.via.array.ptr[2].as<float>();
-		font->MetricsTotalSurface=font_unit.via.array.ptr[3].as<int>();
-		auto glyph = font_unit.via.array.ptr[4];
-		auto glyph_sz = glyph.via.bin.size;
-		auto vglph_sz = glyph_sz / sizeof(ImFontGlyph);
-		font->Glyphs.resize(vglph_sz);
-		memcpy(font->Glyphs.Data, glyph.via.bin.ptr, glyph_sz);
-		auto indexAdvance = font_unit.via.array.ptr[5];
-		auto idx_sz = indexAdvance.via.bin.size;
-		auto vidx_sz = idx_sz / sizeof(float);
-		font->IndexAdvanceX.resize(vidx_sz);
-		memcpy(font->IndexAdvanceX.Data, indexAdvance.via.bin.ptr, idx_sz);
-		auto lookup = font_unit.via.array.ptr[6];
-		auto lookup_sz = lookup.via.bin.size;
-		auto vlk_sz = lookup_sz / sizeof(USHORT);
-		font->IndexLookup.resize(vlk_sz);
-		memcpy(font->IndexLookup.Data, lookup.via.bin.ptr, lookup_sz);
-		font->DirtyLookupTables = false;
-		font->FallbackAdvanceX = 7.97315454f;
-		//font->DisplayOffset.y = 3.f;
-		auto is_cur_font = font_unit.via.array.ptr[7].as<bool>();
-		if (is_cur_font)
-		{
-			ImGui::GetIO().FontDefault = font;
-		}
+		auto font_name = font_unit.via.array.ptr[0];
+		auto fnm_sz=font_name.via.str.size;
+		string str_font_name;
+		str_font_name.resize(fnm_sz);
+		memcpy(&str_font_name[0], font_name.via.str.ptr, fnm_sz);
+		auto font_data = font_unit.via.array.ptr[1];
+		auto data_sz = font_data.via.bin.size;
+		uint8_t* font_data_buff = new uint8_t[data_sz];
+		memcpy(font_data_buff, font_data.via.bin.ptr, data_sz);
+		g_pfont_face_manager->load_font(str_font_name, font_data_buff, data_sz);
 	}
 	TIME_CHECK(Font atalas)
-	auto obj_format = obj_w.via.array.ptr[6];
+	auto obj_format = obj_w.via.array.ptr[3];
 	g_output_bin_format._txt_fmt = static_cast<texture_format>(obj_format.via.array.ptr[0].as<int>());
 	g_output_bin_format._pgm_fmt = static_cast<program_format>(obj_format.via.array.ptr[1].as<int>());
 
-	auto obj_res = obj_w.via.array.ptr[7];
+	auto obj_res = obj_w.via.array.ptr[4];
 	auto re_cnt = obj_res.via.array.size;
 	function<unsigned int(const char*, int, int, unsigned int)> f_gen_txt;
 	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
@@ -322,7 +287,7 @@ void afb_load::load_afb(const char* afb_file)
 	}
 
 	TIME_CHECK(globe texture res)
-	auto obj_txt_list = obj_w.via.array.ptr[8];
+	auto obj_txt_list = obj_w.via.array.ptr[5];
 	auto txt_cnt = obj_txt_list.via.array.size;
 	for (size_t ix = 0; ix < txt_cnt;ix++)
 	{
@@ -371,7 +336,7 @@ void afb_load::load_afb(const char* afb_file)
 
 	}
 	TIME_CHECK(texture list res)
-	auto obj_file_list = obj_w.via.array.ptr[9];
+	auto obj_file_list = obj_w.via.array.ptr[6];
 	auto file_cnt = obj_file_list.via.array.size;
 	for (size_t ix = 0; ix < file_cnt;ix++)
 	{
@@ -389,7 +354,7 @@ void afb_load::load_afb(const char* afb_file)
 	}
 
 	TIME_CHECK(file list res)
-	auto obj_shader_list = obj_w.via.array.ptr[10];
+	auto obj_shader_list = obj_w.via.array.ptr[7];
 	auto shd_cnt = obj_shader_list.via.array.size;
 	if (g_output_bin_format._pgm_fmt == en_shader_code)
 	{
@@ -436,7 +401,7 @@ void afb_load::load_afb(const char* afb_file)
 		}
 	}
 	TIME_CHECK(shader list res)
-	auto obj_material_list = obj_w.via.array.ptr[11];
+	auto obj_material_list = obj_w.via.array.ptr[8];
 	auto mtl_cnt = obj_material_list.via.array.size;
 	for (size_t ix = 0; ix < mtl_cnt; ix++)
 	{
@@ -491,7 +456,7 @@ void afb_load::load_afb(const char* afb_file)
 		delete[] pstr_mtl_name;
 	}
 	TIME_CHECK(materil list res)
-	auto obj_ui = obj_w.via.array.ptr[12];
+	auto obj_ui = obj_w.via.array.ptr[9];
 	init_ui_component_by_mgo(_pj, obj_ui);
 	TIME_CHECK(control list res)
 }

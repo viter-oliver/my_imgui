@@ -9,7 +9,10 @@
 #include <GL/gl3w.h>
 #include "af_shader.h"
 #include "material.h"
+#include "dir_output.h"
 #include "file_outputor.h"
+#include "af_font_res_set.h"
+#include "common_functions.h"
 extern "C"{
 #include "image_DXT.h"
 }
@@ -71,63 +74,25 @@ void afb_output::output_afb(const char* afb_file)
 	msgpack::sbuffer sbuff;
 	msgpack::packer<msgpack::sbuffer> pk(sbuff);
 #endif
-	pk.pack_array(13);
+	pk.pack_array(10);
 	pk.pack_float(base_ui_component::screenw);
 	pk.pack_float(base_ui_component::screenh);
-	ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-
-	pk.pack_int32(atlas->TexWidth);
-	pk.pack_int32(atlas->TexHeight);
-    int txt_size = atlas->TexWidth*atlas->TexHeight * 4;
-	uint8_t* ttx_f_data = new uint8_t[txt_size];
-	glBindTexture(GL_TEXTURE_2D, g_FontTexture);
-	glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, ttx_f_data);
-#ifdef _DX5_COMPRESS
-	int DDS_size=0;
-	unsigned char *DDS_data = NULL;
-		/*	RGBA, use DXT5	*/
-	DDS_data = convert_image_to_DXT5(ttx_f_data, atlas->TexWidth, atlas->TexHeight, SOIL_LOAD_RGBA, &DDS_size);
-	pk.pack_bin(DDS_size);
-	pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
-	delete[] ttx_f_data;
-	SOIL_free_image_data(DDS_data);
-	DDS_data = NULL;
-	DDS_size = 0;
-#else
-	pk.pack_bin(txt_size);
-	pk.pack_bin_body(reinterpret_cast<char const*>(ttx_f_data), txt_size);
-	delete[] ttx_f_data;
-#endif
-	int font_cnt = atlas->Fonts.size();
-	pk.pack_array(font_cnt);
-	for (size_t ii = 0; ii < font_cnt; ii++)
+	vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+	string font_fold_path = g_cureent_directory + font_fold;
+	pk.pack_array(ft_nm_list.size());
+	for (auto& face_name_item : ft_nm_list)
 	{
 		//auto& cfg_data = atlas->ConfigData[ii];
-		ImFont* font = atlas->Fonts[ii];
-		pk.pack_array(8);
-		pk.pack_float(font->FontSize);
-		pk.pack_float(font->Ascent);
-		pk.pack_float(font->Descent);
-		pk.pack_int(font->MetricsTotalSurface);
-		int glyph_sz = font->Glyphs.size()*sizeof(ImFontGlyph);
-		pk.pack_bin(glyph_sz);
-		pk.pack_bin_body(reinterpret_cast<char const*>(font->Glyphs.Data), glyph_sz);
-		int index_sz = font->IndexAdvanceX.size()*sizeof(float);
-		pk.pack_bin(index_sz);
-		pk.pack_bin_body(reinterpret_cast<char const*>(font->IndexAdvanceX.Data), index_sz);
-		int index_lkp_sz = font->IndexLookup.size()*sizeof(USHORT);
-		pk.pack_bin(index_lkp_sz);
-		pk.pack_bin_body(reinterpret_cast<char const*>(font->IndexLookup.Data), index_lkp_sz);
-		bool is_current_font= ImGui::GetIO().FontDefault == font;
+		pk.pack_array(2);
 
-		if (is_current_font)
-		{
-			pk.pack_true();
-		}
-		else
-		{
-			pk.pack_false();
-		}
+		pk.pack_str(face_name_item.size());
+		pk.pack_str_body(face_name_item.c_str(), face_name_item.size());
+		string font_name_path = font_fold_path + face_name_item;
+		handle_file_data(font_name_path, [&](char* file_buff, unsigned int data_len){
+			pk.pack_bin(data_len);
+			pk.pack_bin_body(file_buff, data_len);
+		});
+
 		
 	}
 	pk.pack_array(2);
@@ -150,6 +115,8 @@ void afb_output::output_afb(const char* afb_file)
 			return pDDS_data;
 		};
 	}
+	int DDS_size = 0;
+	unsigned char *DDS_data = NULL;
 	for (auto& res_unit : g_vres_texture_list)
 	{
 		pk.pack_array(5);
