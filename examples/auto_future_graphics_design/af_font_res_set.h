@@ -43,6 +43,7 @@ namespace auto_future
 		af_vi2 _bearing;
 		GLuint _advance;
 		float _x0, _y0, _x1, _y1;
+		
 	};
 	/*!
 	* \class dic_glyph_txt
@@ -59,9 +60,11 @@ namespace auto_future
 		GLuint _txt_id{ 0 };
 		af_vui2 _txt_size;
 		af_vui2 _border;
-		GLuint _font_size{ 16 };
+		GLuint _font_size{ 0 };
 		bool _be_full{ false };
+		dic_glyph_txt _dic_txt_cd;
 	};
+	using dic_font_rep = map<int, txt_font_repository>;
 
 	static void convert_r_to_rgba(uint8_t* pred, uint32_t*prgba, uint32_t data_len)
 	{
@@ -80,8 +83,122 @@ namespace auto_future
 	{
 		FT_Library _ft;
 		dic_font_face _dic_face;
+		dic_font_rep _dic_frep;
 		vfont_face_name _font_face_names;
 		GLuint _fmbf_id {0};
+		void clear_texture(GLuint& txt_id)
+		{
+			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _fmbf_id);
+			glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, txt_id, 0); //Only need to do this once.
+			glDrawBuffer(GL_COLOR_ATTACHMENT0); //Only need to do this once.
+			GLuint clearColor[4] = { 0, 0, 0, 0 };
+			glClearBufferuiv(GL_COLOR, 0, clearColor);
+			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+		}
+		void init_txt_font_repository(GLint fontSize, txt_font_repository& newFrep)
+		{
+			newFrep._border = { 0, 0 };
+			newFrep._font_size = fontSize;
+			newFrep._txt_size = { fontSize * 32, fontSize * 32 };
+			glGenTextures(1, &newFrep._txt_id);
+			glBindTexture(GL_TEXTURE_2D, newFrep._txt_id);
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 0);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, newFrep._txt_size.x, newFrep._txt_size.y, 0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glBindTexture(GL_TEXTURE_2D, 0);
+		}
+		void load_chars(string&fontFaceName, txt_font_repository&fp, wstring& wchar_list, GLuint& max_bearingy)
+		{
+			dic_glyph_txt& container = fp._dic_txt_cd;
+			GLuint& txtid = fp._txt_id;
+			assert(txtid&&"you must pass a valid texture id into the function load_chars!");
+			af_vui2& border = fp._border;
+			af_vui2& txt_size = fp._txt_size;
+			GLuint& fontSize = fp._font_size;
+			bool& be_full = fp._be_full;
+			auto& face_it = _dic_face.find(fontFaceName);
+			if (face_it == _dic_face.end()){
+				printf("fail to load chars from unknown font face %d!\n", fontFaceName.c_str());
+				return;
+			}
+			glBindTexture(GL_TEXTURE_2D, txtid);
+			auto& face = face_it->second;
+			FT_Set_Pixel_Sizes(face, 0, fontSize);
+			for (auto& str_it : wchar_list)
+			{
+				auto& it_glyph = container.find(str_it);
+				if (it_glyph != container.end())
+				{
+					auto& ch_glhph = it_glyph->second;
+					auto&by = ch_glhph._bearing.y;
+					if (by > max_bearingy)
+					{
+						max_bearingy = by;
+					}
+					continue;
+				}
+
+				if (FT_Load_Char(face, str_it, FT_LOAD_RENDER))
+				{
+					wprintf(L"fail to find %c in font face %s\n", str_it, fontFaceName.c_str());
+					continue;
+				}
+				auto tw = face->glyph->bitmap.width;
+				auto th = face->glyph->bitmap.rows;
+				auto lt = face->glyph->bitmap_left;
+				auto tp = face->glyph->bitmap_top;
+				if (tp > max_bearingy)
+				{
+					max_bearingy = tp;
+				}
+				auto ad = face->glyph->advance.x;
+				float x0 = (float)border.x / (float)txt_size.x;
+				float y0 = (float)border.y / (float)txt_size.y;
+
+				auto& tbuff = face->glyph->bitmap.buffer;
+				auto txt_sz = tw*th * 4;
+				uint32_t* prgba = new uint32_t[txt_sz];
+				memset(prgba, 0xff, txt_sz);
+				convert_r_to_rgba(tbuff, prgba, txt_sz);
+
+				float left_x = border.x + tw;
+				float next_x = left_x + 2;
+				if (next_x <= txt_size.x)
+				{
+					glTexSubImage2D(GL_TEXTURE_2D, 0, border.x, border.y, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, prgba);
+					border.x = next_x;
+				}
+				else
+				{
+					border.y += fontSize;
+					border.y += 2;
+					if ((border.y + th) > txt_size.y)// is full
+					{
+						fprintf(stderr, "font glyph repository of control is full!\n");
+						be_full = true;
+						delete[] prgba;
+						return;
+					}
+					glTexSubImage2D(GL_TEXTURE_2D, 0, 0, border.y, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, prgba);
+					border.x = tw + 2;
+				}
+				float x1 = (float)left_x / (float)txt_size.x;
+				float y1 = (float)(th + border.y) / (float)txt_size.y;
+				//border.x += 5;
+				delete[] prgba;
+
+				txt_coordinate txt_unit = {
+					{ tw, th },
+					{ lt, tp },
+					ad,
+					x0, y0, x1, y1
+				};
+				container[str_it] = txt_unit;
+			}
+		}
 	public:
 		font_face_manager()
 		{
@@ -104,16 +221,7 @@ namespace auto_future
 			}
 			glDeleteFramebuffers(1, &_fmbf_id);
 		}
-
-		void clear_texture(GLuint& txt_id)
-		{
-			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _fmbf_id);
-			glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, txt_id, 0); //Only need to do this once.
-			glDrawBuffer(GL_COLOR_ATTACHMENT0); //Only need to do this once.
-			GLuint clearColor[4] = { 0, 0, 0, 0 };
-			glClearBufferuiv(GL_COLOR, 0, clearColor);
-			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-		}
+		
 		vfont_face_name& get_font_name_list()
 		{
 			return _font_face_names;
@@ -161,95 +269,9 @@ namespace auto_future
 			//printf("load_font:%s consume %d milli secs\n", fontFaceName.c_str(), delta);
 			return true;
 		}
-		void load_chars(string&fontFaceName, txt_font_repository&fp,wstring& wchar_list, \
-			dic_glyph_txt& container,GLuint& max_bearingy)
-		{
-			GLuint& txtid = fp._txt_id;
-			assert(txtid&&"you must pass a valid texture id into the function load_chars!");
-			af_vui2& border = fp._border;
-			af_vui2& txt_size = fp._txt_size;
-			GLuint& fontSize = fp._font_size;
-			bool& be_full = fp._be_full;
-			auto& face_it = _dic_face.find(fontFaceName);
-			if (face_it == _dic_face.end()){
-				printf("fail to load chars from unknown font face %d!\n", fontFaceName.c_str());
-				return;
-			}
-			glBindTexture(GL_TEXTURE_2D,txtid);
-			auto& face = face_it->second;
-			FT_Set_Pixel_Sizes(face, 0, fontSize);
-			for (auto& str_it:wchar_list)
-			{
-				auto& it_glyph = container.find(str_it);
-				if (it_glyph!=container.end())
-				{
-					auto& ch_glhph = it_glyph->second;
-					auto&by= ch_glhph._bearing.y;
-					if (by>max_bearingy)
-					{
-						max_bearingy = by;
-					}
-					continue;
-				}
 
-				if (FT_Load_Char(face, str_it, FT_LOAD_RENDER))
-				{
-					wprintf(L"fail to find %c in font face %s\n", str_it, fontFaceName.c_str());
-					continue;
-				}
-				auto tw = face->glyph->bitmap.width;
-				auto th = face->glyph->bitmap.rows;
-				auto lt = face->glyph->bitmap_left;
-				auto tp = face->glyph->bitmap_top;
-				if (tp>max_bearingy)
-				{
-					max_bearingy = tp;
-				}
-				auto ad = face->glyph->advance.x;
-				float x0 = (float)border.x /(float)txt_size.x;
-				float y0 = (float)border.y /(float)txt_size.y;
-
-				auto& tbuff = face->glyph->bitmap.buffer;
-				auto txt_sz = tw*th*4;
-				uint32_t* prgba = new uint32_t[txt_sz];
-				memset(prgba, 0xff, txt_sz);
-				convert_r_to_rgba(tbuff, prgba, txt_sz);
-
-				float left_x = border.x + tw;
-				float next_x = left_x + 2;
-				if (next_x<=txt_size.x)
-				{
-					glTexSubImage2D(GL_TEXTURE_2D, 0, border.x, border.y, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, prgba);
-					border.x =next_x;
-				}
-				else
-				{
-					border.y += fontSize;
-					border.y+=2;
-					if ((border.y + th)>txt_size.y)// is full
-					{
-						fprintf(stderr, "font glyph repository of control is full!\n");
-						be_full = true;
-						delete[] prgba;
-						return;
-					}
-					glTexSubImage2D(GL_TEXTURE_2D, 0, 0, border.y, tw, th, GL_RGBA, GL_UNSIGNED_BYTE, prgba);
-					border.x = tw+2;
-				}
-				float x1 = (float)left_x / (float)txt_size.x;
-				float y1 = (float)(th+border.y) / (float)txt_size.y;
-				//border.x += 5;
-				delete[] prgba;
-
-				txt_coordinate txt_unit = {
-					{tw,th},
-					{lt,tp},
-					ad,
-					x0,y0,x1,y1
-				};
-				container[str_it] = txt_unit;
-			}
-		}
+	
+		void draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest);
 	};
 
 	extern shared_ptr<font_face_manager> g_pfont_face_manager;
@@ -262,16 +284,16 @@ namespace auto_future
 	//	af_vi2 _size;
 	//};
 
-	class af_font_res_set
+	/*class af_font_res_set
 	{
-		font_face_manager& _font_mg;
-		txt_font_repository _font_rp;
-		dic_glyph_txt _dic_gly_txtc;
-		bool _is_full{ false };
+	font_face_manager& _font_mg;
+	txt_font_repository _font_rp;
+	dic_glyph_txt _dic_gly_txtc;
+	bool _is_full{ false };
 	public:
-		af_font_res_set(font_face_manager& font_mg);
-		~af_font_res_set();
-		void draw_wstring(string& fontFace, GLuint fontSize, af_vec2& start_pos, af_vec2& end_pos,GLfloat scale, wstring& str_content,af_vec3& txt_col,float width,bool omit_rest);
-	};
+	af_font_res_set(font_face_manager& font_mg);
+	~af_font_res_set();
+	void draw_wstring(string& fontFace, GLuint fontSize, af_vec2& start_pos, af_vec2& end_pos,GLfloat scale, wstring& str_content,af_vec3& txt_col,float width,bool omit_rest);
+	};*/
 
 }

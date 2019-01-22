@@ -11,7 +11,7 @@ namespace auto_future
 	ft_textblock::ft_textblock()
 		: _txt_area(0.f, 0.f, 0.f, 0.f)
 	{
-		_pfont_res_set = make_shared<af_font_res_set>(*g_pfont_face_manager);
+		//_pfont_res_set = make_shared<af_font_res_set>(*g_pfont_face_manager);
 		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
 		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
@@ -22,6 +22,9 @@ namespace auto_future
 				_txt_pt._font_id = 0;
 			}
 			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size());
+		});
+		reg_property_handle(&_txt_pt,8, [this](void*){
+			ImGui::SliderInt("Font size", &_txt_pt._font_size, 8, 42); 
 		});
 		reg_property_handle(&_txt_pt,9, [this](void*){
 			ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
@@ -54,7 +57,7 @@ namespace auto_future
 		{
 			//const GLuint max_pixel_size = 512 * 512;
 			
-			_pfont_res_set->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr,width,_txt_pt._omit_rest);
+			g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest);
 		}
 		af_vec2 real_size = end_pos - draw_pos;
 		_txt_area.Min = dpos;

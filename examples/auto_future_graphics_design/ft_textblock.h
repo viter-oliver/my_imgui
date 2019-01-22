@@ -17,10 +17,10 @@ namespace auto_future
 			(bool, _width_limit, {false}),
 			(bool, _omit_rest, { false }),
 			(int, _font_id, {0}),
-			(float, _font_size, { 16.f }),
+			(int, _font_size, { 16 }),
 			(float, _font_scale, { 1.f }))
 		ImRect _txt_area;
-		shared_ptr<af_font_res_set> _pfont_res_set;
+		//shared_ptr<af_font_res_set> _pfont_res_set;
 	public:
 		ft_textblock();// : _txt_pt(), _txt_area(0.f, 0.f, 0.f, 0.f){}
 		~ft_textblock(){}

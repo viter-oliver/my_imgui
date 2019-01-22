@@ -18,7 +18,7 @@ namespace auto_future
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 6, [this](void*){
 			int frame_cnt = get_frames_count();
-			ImGui::SliderInt("frame index:", &_img_pt._frame_index, 0, frame_cnt);
+			ImGui::SliderInt("frame index:", &_img_pt._frame_index, 0, frame_cnt-1);
 		});
 #endif
 	}
@@ -32,7 +32,7 @@ namespace auto_future
 		vres_txt_cd& ptext_cd = _vtexture_cd;
 		if (_img_pt._frame_index >= ptext_cd.size())
 		{
-			printf("invalid texture index:%d\n", _img_pt._frame_index);
+			//printf("invalid texture index:%d\n", _img_pt._frame_index);
 			return;
 
 		}

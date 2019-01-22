@@ -5,7 +5,7 @@
 namespace auto_future
 {
 	shared_ptr<font_face_manager> g_pfont_face_manager;
-	af_font_res_set::af_font_res_set(font_face_manager& font_mg)
+	/*af_font_res_set::af_font_res_set(font_face_manager& font_mg)
 		:_font_mg(font_mg)
 	{
 		_font_rp._txt_size = { 512, 512 };
@@ -25,35 +25,48 @@ namespace auto_future
 	{
 		glDeleteTextures(1, &_font_rp._txt_id);
 	}
-
+	*/
 	using namespace ImGui;
 
-	void af_font_res_set::draw_wstring(string& fontFace, GLuint fontSize, af_vec2& start_pos,af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width,bool omit_rest)
+	void font_face_manager::draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest)
 	{
-		if (fontSize != _font_rp._font_size)//!texture will be rebuilt
+		//if (fontSize != _font_rp._font_size)//!texture will be rebuilt
+		//{
+		//	_dic_gly_txtc.clear();
+		//	_font_rp._be_full = false;
+		//	_font_rp._border = { 0, 0 };
+		//	_font_mg.clear_texture(_font_rp._txt_id);
+		//	_font_rp._font_size = fontSize;
+		//}
+		auto ifrp = _dic_frep.find(fontSize);
+		txt_font_repository* pfrp = nullptr;
+		if (ifrp==_dic_frep.end())
 		{
-			_dic_gly_txtc.clear();
-			_font_rp._be_full = false;
-			_font_rp._border = { 0, 0 };
-			_font_mg.clear_texture(_font_rp._txt_id);
-			_font_rp._font_size = fontSize;
+			init_txt_font_repository(fontSize, _dic_frep[fontSize]);
+			pfrp = &_dic_frep[fontSize];
+		}
+		else
+		{
+			pfrp =& ifrp->second;
 		}
 		GLuint max_beary = 0;
-		if (!_font_rp._be_full)
+		
+		if (!pfrp->_be_full)
 		{
-			_font_mg.load_chars(fontFace, _font_rp, str_content, _dic_gly_txtc, max_beary);
+			load_chars(fontFace, *pfrp, str_content, max_beary);
 		}
 		end_pos = start_pos;
 		float base_line = start_pos.y + (float)max_beary;
 		float str_most_right_edge = start_pos.x + width;
 		float str_real_right_edg = start_pos.x;
 		float maxy = 0.f;
-		GLuint& txt_id = _font_rp._txt_id;
+		GLuint& txt_id = pfrp->_txt_id;
+		dic_glyph_txt& txt_cd_container = pfrp->_dic_txt_cd;
 		bool will_omit_test = false;
 		for (auto& wstr_item:str_content)
 		{
-			auto& glyph_txt_it = _dic_gly_txtc.find(wstr_item);
-			if (glyph_txt_it != _dic_gly_txtc.end())
+			auto& glyph_txt_it = txt_cd_container.find(wstr_item);
+			if (glyph_txt_it != txt_cd_container.end())
 			{
 				auto& glyph_txt_cd = glyph_txt_it->second;
 				auto bearing = glyph_txt_cd._bearing;
@@ -70,8 +83,8 @@ namespace auto_future
 					if (omit_rest)
 					{
 						wstring omit_sign = L"…";
-						_font_mg.load_chars(fontFace, _font_rp, omit_sign, _dic_gly_txtc, max_beary);
-						auto& glyph_omit = _dic_gly_txtc.find(omit_sign[0]);
+						load_chars(fontFace, *pfrp, omit_sign, max_beary);
+						auto& glyph_omit = txt_cd_container.find(omit_sign[0]);
 						auto& glyph_omit_txt_cd = glyph_omit->second;
 						bearing = glyph_omit_txt_cd._bearing;
 						tsize = glyph_omit_txt_cd._size;

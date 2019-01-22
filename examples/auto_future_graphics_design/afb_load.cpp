@@ -154,7 +154,6 @@ void afb_load::load_afb(const char* afb_file)
     #endif
 
 
-	TIME_CHECK(font atlas texture)
 	auto font_res = obj_w.via.array.ptr[2];
 	auto font_cnt = font_res.via.array.size;
 	g_pfont_face_manager = make_shared<font_face_manager>();
