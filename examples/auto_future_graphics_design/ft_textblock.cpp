@@ -114,4 +114,23 @@ namespace auto_future
 		bool be_contain = rl_cover_area.Contains(tar);
 		return be_contain;
 	}
+	bool ft_textblock::relative_contain(float pos, bool be_h)
+	{
+		ImVec2 bs_pos = base_pos();
+		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
+		bool be_contain;
+		if (be_h)
+		{
+			float orgx=- ctnt_size.x*_txt_pt._txt_alignh_nml;
+			float bdx = orgx + ctnt_size.x;
+			be_contain = pos >= orgx&&pos <= bdx;
+		}
+		else
+		{
+			float orgy=- ctnt_size.y*_txt_pt._txt_alignv_nml;
+			float bdy = orgy + ctnt_size.y;
+			be_contain = pos >= orgy&&pos <= bdy;
+		}
+		return be_contain;
+	}
 }

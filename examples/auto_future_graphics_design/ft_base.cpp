@@ -21,32 +21,29 @@ namespace auto_future
 		auto& ajm=_in_p._aj_model;
 		if (pbase&&_in_p._aj_model!=en_fixed)
 		{
-			af_vec2 bp{ _in_p._posx, _in_p._posy };
-			af_vec2 dir{ 0.f, 0.f };
-			af_vec2 border_point;
+			auto bs_ps = base_pos();
 			bool be_intersected;
 			auto& adj_value = _in_p._adjacent_to_p;
 			if (ajm == en_horisontal)
 			{
-				bp.x = 0.f;
-				dir.x = 1.f;
-				be_intersected = pbase->get_border_hit_point(bp, dir, border_point);
+				float hitpos;
+				bs_ps.x -= adj_value;
+				be_intersected = pbase->get_border_hit_point(bs_ps.x,true, hitpos);
 				if (be_intersected)
 				{
-					border_point.x += adj_value;
-					set_base_pos(border_point.x, border_point.y);
+					hitpos += adj_value;
+					set_base_posx(hitpos);
 				}
 			}
 			else
 			{
-				bp.y = 0.f;
-				dir.y = 1.f;
-				get_border_hit_point(bp, dir, border_point);
-				be_intersected = pbase->get_border_hit_point(bp, dir, border_point);
+				float hitpos;
+				bs_ps.y -= adj_value;
+				be_intersected = pbase->get_border_hit_point(bs_ps.y, false, hitpos);
 				if (be_intersected)
 				{
-					border_point.y += adj_value;
-					set_base_pos(border_point.x, border_point.y);
+					hitpos += adj_value;
+					set_base_posy(hitpos);
 				}
 			}
 
@@ -117,6 +114,19 @@ namespace auto_future
 		ImVec2 tar{ point.x, point.y };
 		bool be_contained = cover_area.Contains(tar);
 		return be_contained;
+	}
+	bool ft_base::relative_contain(float pos, bool be_h)
+	{
+		bool be_contain = pos >= 0;
+		if (be_h)
+		{
+			be_contain = be_contain && pos <= _in_p._sizew;
+		}
+		else
+		{
+			be_contain = be_contain && pos <= _in_p._sizeh;
+		}
+		return be_contain;
 	}
 	bool ft_base::handle_mouse()
 	{

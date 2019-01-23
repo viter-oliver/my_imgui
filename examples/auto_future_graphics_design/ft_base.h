@@ -18,6 +18,7 @@ namespace auto_future
 		base_ui_component* get_copy_of_object();
 		bool contains(float posx, float posy);
 		bool relative_contain(af_vec2& point);
+		bool relative_contain(float pos, bool be_h);
 	};
 	/**
 	*@brief copy the list of the property data block of a ui component object to another

@@ -191,7 +191,44 @@ namespace auto_future
 		*/
 		virtual void draw() = 0;
 		virtual bool contains(float posx, float posy) = 0;
+		virtual bool relative_contain(float pos, bool be_h) = 0;
+		bool get_border_hit_point(float pos, bool be_h, float& hitpos)
+		{
+			const unsigned int max_repeat_cnt = 1000;
+			bool from_et;
+			float delta = 0;
+			for (unsigned int ix = 0; ix < max_repeat_cnt; ix++)
+			{
+				pos += delta;
+				bool be_hit = relative_contain(pos, be_h);
+				if (ix==0)
+				{
+					from_et = be_hit;
+					if (from_et)
+					{
+						delta = 1.f;
+					}
+					else
+					{
+						delta = -1.f;
+					}
+				}
+				if (be_hit!=from_et)
+				{
+
+					hitpos = pos;
+					if (!from_et)
+					{
+						hitpos -= delta;
+					}
+					return true;
+				}
+			}
+			return false;
+		}
+
 		virtual bool relative_contain(af_vec2& point) = 0;
+
 		bool get_border_hit_point(af_vec2& base_point, af_vec2& direction, af_vec2& hitpoint)
 		{
 			const unsigned int max_repeat_cnt = 1000;

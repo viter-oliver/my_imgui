@@ -61,4 +61,9 @@ namespace auto_future
 		float rs_sqrt = _pt._radius*_pt._radius;
 		return ds_sqrt <= rs_sqrt;
 	}
+	bool ft_circle::relative_contain(float pos, bool be_h)
+	{
+		float rd = _pt._radius;
+		return pos >= -rd&& pos <= rd;
+	}
 }

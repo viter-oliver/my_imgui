@@ -47,6 +47,7 @@ namespace auto_future
 		}
 		bool contains(float posx, float posy);
 		bool relative_contain(af_vec2& point);
+		bool relative_contain(float pos, bool be_h);
 	};
 	REGISTER_CONTROL(ft_textblock)
 }
