@@ -63,6 +63,12 @@ namespace auto_future
 	protected:
 
 		vp_prop_ele _vprop_eles;
+		enum adjacent_model
+		{
+			en_fixed,
+			en_horisontal,
+			en_vertical,
+		};
 		/**
 		* @brief define the property data block\n
 		*/
@@ -70,6 +76,10 @@ namespace auto_future
 		DEF_STRUCT_WITH_INIT(base_prop, _in_p,
 			(float, _posx, {0.f}),
 			(float, _posy, {0.f}),
+			(float, _sizew, { 20.f }),
+			(float, _sizeh, { 20.f }),
+			(float, _adjacent_to_p, {0.f}),
+			(int, _aj_model, { en_fixed }),
 			(bool, _visible, {true}),
 			(char, _name[name_len]))
 			
@@ -180,6 +190,28 @@ namespace auto_future
 		*@brief draw self on a surface
 		*/
 		virtual void draw() = 0;
+		virtual bool contains(float posx, float posy) = 0;
+		virtual bool relative_contain(af_vec2& point) = 0;
+		bool get_border_hit_point(af_vec2& base_point, af_vec2& direction, af_vec2& hitpoint)
+		{
+			const unsigned int max_repeat_cnt = 1000;
+			for (unsigned int ix = 0; ix < max_repeat_cnt; ix++)
+			{
+				base_point += direction;
+				static bool from_et;
+				bool be_contain = relative_contain(base_point);
+				if (ix == 0)
+				{
+					from_et = be_contain;
+				}
+				if (from_et != be_contain)
+				{
+					hitpoint = base_point;
+					return true;
+				}
+			}
+			return false;
+		}
 		/**
 		*@brief get the memory range of the property data block
 		*@param vplist[out] a container which the range of property data block will store into
@@ -202,13 +234,15 @@ namespace auto_future
 		*@return object hit by mouse
 		*  -
 		*/
-		virtual ImVec2 get_size()
+		virtual void get_size(float& w,float& h)
 		{
-			return ImVec2();
+			w = _in_p._sizew;
+			h = _in_p._sizeh;
 		}
 		virtual void set_size(float w, float h)
 		{
-
+			_in_p._sizew = w;
+			_in_p._sizeh = h;
 		}
 		virtual void link(){}
 		/**
@@ -344,6 +378,7 @@ namespace auto_future
 		{
 			set_base_pos(base_pos().x + imof.x, base_pos().y + imof.y);
 		}
+		
 		bool is_visible(){ return _in_p._visible; }
 		void set_visible(bool visible){ _in_p._visible = visible; }
 	};

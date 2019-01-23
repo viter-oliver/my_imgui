@@ -110,7 +110,7 @@ namespace auto_future
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
-		void load_chars(string&fontFaceName, txt_font_repository&fp, wstring& wchar_list, GLuint& max_bearingy)
+		void load_chars(string&fontFaceName, txt_font_repository&fp, wstring& wchar_list, GLint& max_bearingy)
 		{
 			dic_glyph_txt& container = fp._dic_txt_cd;
 			GLuint& txtid = fp._txt_id;

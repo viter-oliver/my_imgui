@@ -8,8 +8,6 @@ namespace auto_future
 	{
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
-			(float, _sizew, {400.f}),
-			(float, _sizeh, {200.f}),
 			(int, _v_count, {10}))
 		float _values[MAX_VALUE_COUNT] ;
 

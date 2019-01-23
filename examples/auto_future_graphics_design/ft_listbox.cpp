@@ -16,27 +16,29 @@ namespace auto_future
 	float ft_listbox::scroll_max()
 	{
 		size_t icnt = child_count();
-		ImVec2 frange;
+		af_vec2 frange;
 		for (size_t ix = 0; ix < icnt; ix++)
 		{
 			auto pchid = get_child(ix);
-			ImVec2 isz = pchid->get_size();
+			af_vec2 isz;
+			pchid->get_size(isz.x, isz.y);
 			frange += isz;
 		}
-		ImVec2 psize(_lt_pt._sizew, _lt_pt._sizeh);
+		af_vec2 psize{ _in_p._sizew, _in_p._sizeh };
 		frange -= psize;
 		return _lt_pt._vertical ? frange.y : frange.x;
 	}
 	void ft_listbox::set_scroll_value(float scvalue)
 	{
 		size_t icnt = child_count();
-		ImVec2 init_pos;
+		af_vec2 init_pos;
 		if (_lt_pt._vertical)
 		{
 			for (size_t ix = 0; ix < icnt; ix++)
 			{
 				auto pchid = get_child(ix);
-				ImVec2 isz = pchid->get_size();
+				af_vec2 isz;
+				pchid->get_size(isz.x,isz.y);
 				set_base_posy(init_pos.y - scvalue);
 				init_pos.y += isz.y;//next item
 			}
@@ -46,7 +48,8 @@ namespace auto_future
 			for (size_t ix = 0; ix < icnt; ix++)
 			{
 				auto pchid = get_child(ix);
-				ImVec2 isz = pchid->get_size();
+				af_vec2 isz;
+				pchid->get_size(isz.x,isz.y);
 				set_base_posx ( init_pos.x - scvalue);
 				init_pos.x += isz.x;//next item
 			}
@@ -60,10 +63,10 @@ namespace auto_future
 			scvalue = _lt_pt._rangey;
 		}
 		else
-			if (scvalue < _lt_pt._rangex)
-			{
-				scvalue = _lt_pt._rangex;
-			}
+		if (scvalue < _lt_pt._rangex)
+		{
+			scvalue = _lt_pt._rangex;
+		}
 		float rg_len = _lt_pt._rangey - _lt_pt._rangex;
 		float scmx = scroll_max();
 		float rscroll_value = scmx*scvalue / rg_len;
@@ -76,7 +79,7 @@ namespace auto_future
 		ImVec2 apos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		apos += winpos;
-		ImVec2 szpos = apos + ImVec2(_lt_pt._sizew, _lt_pt._sizeh);
+		ImVec2 szpos = apos + ImVec2(_in_p._sizew, _in_p._sizeh);
 		ImGui::PushClipRect(apos, szpos, true);
 		ft_base::draw();
 		ImGui::PopClipRect();
@@ -86,11 +89,13 @@ namespace auto_future
 	void ft_listbox::add_child(base_ui_component* pchild)
 	{
 		size_t icnt = child_count();
-		ImVec2 nsz = pchild->get_size();
+		af_vec2 nsz;
+		pchild->get_size(nsz.x,nsz.y);
 		if (icnt > 0)
 		{
 			base_ui_component* plast = get_child(icnt - 1);
-			ImVec2 sz = plast->get_size();
+			af_vec2 sz;
+			plast->get_size(sz.x,sz.y);
 			ImVec2 bpos = plast->base_pos();
 			if (_lt_pt._vertical)
 			{
@@ -110,7 +115,8 @@ namespace auto_future
 	}
 	void ft_listbox::remove_child(base_ui_component* pchild)
 	{
-		ImVec2 chd_sz = pchild->get_size();
+		af_vec2 chd_sz;
+		pchild->get_size(chd_sz.x,chd_sz.y);
 		auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
 		if (it != _vchilds.end())
 		{
@@ -133,31 +139,6 @@ namespace auto_future
 			delete pchild;
 		}
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	base_ui_component* ft_listbox::get_hit_ui_object(float posx, float posy)
-	{
-		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
-		if (hit_opt)
-		{
-			return hit_opt;
-		}
-		ImVec2 abpos = absolute_coordinate_of_base_pos();
-		ImVec2 winpos = ImGui::GetWindowPos();
-		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImVec2 pos1(pos0.x + _lt_pt._sizew, pos0.y + _lt_pt._sizeh);
-		ImRect cover_area(pos0, pos1);
-		ImVec2 mouse_pos(posx, posy);
-		if (cover_area.Contains(mouse_pos))
-		{
-			return this;
-		}
-		else
-		{
-			return nullptr;
-		}
-	}
-
-#endif
 
 	bool ft_listbox::handle_mouse()
 	{

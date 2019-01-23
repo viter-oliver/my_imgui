@@ -15,9 +15,15 @@ namespace auto_future
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImVec2 pos1(pos0.x + _pt._sizew, pos0.y + _pt._sizeh);
+		ImVec2 pos1(pos0.x + _in_p._sizew, pos0.y + _in_p._sizeh);
 		ImVec4 bkcl(_pt._bkclr.x, _pt._bkclr.y, _pt._bkclr.z, _pt._bkclr.w);
 		ImU32 col = ImGui::ColorConvertFloat4ToU32(bkcl);
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		if (is_selected())
+		{
+			col = ImGui::GetColorU32(ImGuiCol_HeaderActive);
+		}
+#endif
 		if (_pt._with_border)
 		{
 			ImVec4 bdcl(_pt._bdclr.x, _pt._bdclr.y, _pt._bdclr.z, _pt._bdclr.w);
@@ -33,29 +39,5 @@ namespace auto_future
 		}
 		ft_base::draw();
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	base_ui_component* ft_block::get_hit_ui_object(float posx, float posy)
-	{
-		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
-		if (hit_opt)
-		{
-			return hit_opt;
-		}
-		ImVec2 abpos = absolute_coordinate_of_base_pos();
-		ImVec2 winpos = ImGui::GetWindowPos();
-		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImVec2 pos1(pos0.x + _pt._sizew, pos0.y + _pt._sizeh);
-		ImRect cover_area(pos0, pos1);
-		ImVec2 mouse_pos(posx, posy);
-		if (cover_area.Contains(mouse_pos))
-		{
-			return this;
-		}
-		else
-		{
-			return nullptr;
-		}
-	}
 
-#endif
 }

@@ -7,8 +7,6 @@ namespace auto_future
 	{
 		DEF_STRUCT_WITH_INIT(intl_pt, _lt_pt,
 			(bool, _vertical, { true }),
-			(float, _sizew, { 100.f }),
-			(float, _sizeh, { 100.f }),
 			(float, _rangex, { 1.f }),
 			(float, _rangey, { 100.f }),
 			(float, _scroll_value, {0}))
@@ -25,13 +23,7 @@ namespace auto_future
 		{
 			return ImVec2(_lt_pt._rangex, _lt_pt._rangey);
 		}
-
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		base_ui_component* get_hit_ui_object(float posx, float posy);
-#endif
-
 		bool handle_mouse();
-
 	};
 	REGISTER_CONTROL(ft_listbox)
 }

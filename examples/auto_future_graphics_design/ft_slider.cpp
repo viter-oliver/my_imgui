@@ -478,31 +478,4 @@ namespace auto_future
 			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		}
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	base_ui_component* ft_slider::get_hit_ui_object(float posx, float posy)
-	{
-		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
-		if (hit_opt)
-		{
-			return hit_opt;
-		}
-		ImVec2 abpos = absolute_coordinate_of_base_pos();
-		ImVec2 winpos = ImGui::GetWindowPos();
-		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImVec2 pos1(pos0.x + _slider_pt._bg_txtw, pos0.y + _slider_pt._bg_txth);
-		ImRect cover_area(pos0, pos1);
-		ImVec2 mouse_pos(posx, posy);
-		if (cover_area.Contains(mouse_pos))
-		{
-			return this;
-		}
-		else
-		{
-			return nullptr;
-		}
-	}
-
-#endif
-
-	
 }

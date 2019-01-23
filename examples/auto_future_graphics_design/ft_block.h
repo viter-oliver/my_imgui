@@ -8,8 +8,6 @@ namespace auto_future
 
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
-			(float, _sizew, {0.f}),
-			(float, _sizeh, {0.f}),
 			(float, _round_utn, {0.f}),
 			(bool, _with_border, {false}),
 			(float, _border_width_uhd, {1.f}),
@@ -20,15 +18,6 @@ namespace auto_future
 		ft_block();
 		~ft_block(){}
 
-		ImVec2 get_size()
-		{
-			return ImVec2(_pt._sizew,_pt._sizew);
-		}
-		void set_size(float w, float h)
-		{
-			_pt._sizew = w;
-			_pt._sizeh= h;
-		}
 		void set_background_color(float r, float g, float b, float a)
 		{
 			_pt._bkclr.x = r;
@@ -44,9 +33,6 @@ namespace auto_future
 			_pt._bdclr.w = a;
 		}
 		void draw();
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		base_ui_component* get_hit_ui_object(float posx, float posy);
-#endif
 	};
 	REGISTER_CONTROL(ft_block)
 }

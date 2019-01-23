@@ -49,8 +49,8 @@ namespace auto_future
 		{
 			pfrp =& ifrp->second;
 		}
-		GLuint max_beary = 0;
-		
+		GLint max_beary = 0;
+		bool be_break = str_content[0] == L'O'&&str_content[1] == L'S';
 		if (!pfrp->_be_full)
 		{
 			load_chars(fontFace, *pfrp, str_content, max_beary);

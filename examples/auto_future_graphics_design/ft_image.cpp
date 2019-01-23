@@ -32,8 +32,8 @@ namespace auto_future
 		}
 		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
 		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
-		float sizew = _img_pt._sizew;
-		float sizeh = _img_pt._sizeh;
+		float sizew = _in_p._sizew;
+		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
@@ -85,29 +85,4 @@ namespace auto_future
 #endif
 
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	base_ui_component* ft_image::get_hit_ui_object(float posx, float posy)
-	{
-		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
-		if (hit_opt)
-		{
-			return hit_opt;
-		}
-		ImVec2 abpos = absolute_coordinate_of_base_pos();
-		ImVec2 winpos = ImGui::GetWindowPos();
-		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImVec2 pos1(pos0.x + _img_pt._sizew, pos0.y + _img_pt._sizeh);
-		ImRect cover_area(pos0, pos1);
-		ImVec2 mouse_pos(posx, posy);
-		if (cover_area.Contains(mouse_pos))
-		{
-			return this;
-		}
-		else
-		{
-			return nullptr;
-		}
-	}
-
-#endif
 }

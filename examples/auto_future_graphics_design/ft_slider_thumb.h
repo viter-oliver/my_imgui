@@ -47,10 +47,7 @@ namespace auto_future
 		{
 			return _thumb.base_pos();
 		}
-		ImVec2 thumb_size()
-		{
-			return _thumb.get_size();
-		}
+		
 		void draw();
 		
 

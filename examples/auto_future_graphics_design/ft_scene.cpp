@@ -6,8 +6,10 @@ namespace auto_future
 		:ft_base()
 		, _fboId(0), _colorTextId(0), _depthStencilTextId(0)
 	{
+		_in_p._sizew = 800;
+		_in_p._sizeh = 600;
 		_sn_pt._bk_clr = { 0.2f, 0.2f, 0.5f, 0.5f };
-		prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, _sn_pt._sizew, _sn_pt._sizeh);
+		prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, _in_p._sizew, _in_p._sizeh);
 	}
 
 	ft_scene::~ft_scene()
@@ -21,7 +23,7 @@ namespace auto_future
 	{
 		GLint last_viewport[4]; glGetIntegerv(GL_VIEWPORT, last_viewport);
 		glBindFramebuffer(GL_FRAMEBUFFER, _fboId);
-		glViewport(0, 0, _sn_pt._sizew, _sn_pt._sizeh);
+		glViewport(0, 0, _in_p._sizew, _in_p._sizeh);
 		glEnable(GL_BLEND);
 		glBlendEquation(GL_FUNC_ADD);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -37,8 +39,8 @@ namespace auto_future
 		glViewport(last_viewport[0], last_viewport[1], (GLsizei)last_viewport[2], (GLsizei)last_viewport[3]);
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
-		float sizew = _sn_pt._sizew;
-		float sizeh = _sn_pt._sizeh;
+		float sizew = _in_p._sizew;
+		float sizeh = _in_p._sizeh;
 		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
 		ImVec2 pos2 = { pos1.x, pos1.y + sizeh };
 		ImVec2 pos3 = { pos1.x + sizew, pos1.y + sizeh };
@@ -66,31 +68,6 @@ namespace auto_future
 		}
 #endif
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	base_ui_component* ft_scene::get_hit_ui_object(float posx, float posy)
-	{
-		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
-		if (hit_opt)
-		{
-			return hit_opt;
-		}
-		ImVec2 abpos = absolute_coordinate_of_base_pos();
-		ImVec2 winpos = ImGui::GetWindowPos();
-		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
-		ImVec2 pos1(pos0.x + _sn_pt._sizew, pos0.y + _sn_pt._sizeh);
-		ImRect cover_area(pos0, pos1);
-		ImVec2 mouse_pos(posx, posy);
-		if (cover_area.Contains(mouse_pos))
-		{
-			return this;
-		}
-		else
-		{
-			return nullptr;
-		}
-	}
-
-#endif
 
 	bool ft_scene::handle_mouse()
 	{

@@ -12,6 +12,12 @@ namespace auto_future
 			this->y += tar.y;
 			return *this;
 		}
+		af_vt2& operator -=(af_vt2& tar)
+		{
+			this->x -= tar.x;
+			this->y -= tar.y;
+			return *this;
+		}
 		af_vt2 operator+ (af_vt2& tar)
 		{
 			af_vt2 av{ this->x + tar.x, this->y + tar.y };
@@ -36,7 +42,13 @@ namespace auto_future
 			this->x += tar.x;
 			this->y += tar.y;
 			this->z += tar.z;
-
+			return *this;
+		}
+		af_vt3& operator -=(af_vt3& tar)
+		{
+			this->x -= tar.x;
+			this->y -= tar.y;
+			this->z -= tar.z;
 			return *this;
 		}
 		af_vt3 operator+ (af_vt3& tar)
@@ -63,7 +75,14 @@ namespace auto_future
 			this->y += tar.y;
 			this->w += tar.w;
 			this->z += tar.z;
-
+			return *this;
+		}
+		af_vt4& operator -=(af_vt4& tar)
+		{
+			this->x -= tar.x;
+			this->y -= tar.y;
+			this->w -= tar.w;
+			this->z -= tar.z;
 			return *this;
 		}
 		af_vt4 operator+ (af_vt4& tar)
@@ -87,4 +106,38 @@ namespace auto_future
 		af_vec2  uv;
 		unsigned int col;
 	};
+	/*
+	struct af_area
+	{
+		virtual bool contains(float posx, float posy)
+		{
+			return false;
+		}
+	};
+	struct af_rect_area:public af_area 
+	{
+		af_vec2 _min, _max;
+		af_rect_area(af_vec2& min, af_vec2& max)
+			:_min(min), _max(max){}
+		bool contains(float posx, float posy)
+		{
+			return posx>=_min.x &&posy >=_min.y&&posx<=_max.x&&posy<=_max.y;
+		}
+	};
+	struct af_circle_area:public af_area
+	{
+		af_vec2 _center;
+		float _radius;
+		af_circle_area(af_vec2& center, float& radius)
+			:_center(center), _radius(radius){}
+		bool contains(float posx, float posy)
+		{
+			float xoff = posx - _center.x;
+			float yoff = posy - _center.y;
+			float dstsqt = xoff*xoff + yoff*yoff;
+			float rdsqt = _radius*_radius;
+			return dstsqt <= rdsqt;
+		}
+	};
+	*/
 }

@@ -15,8 +15,6 @@ namespace auto_future
 		};
 	private:
 		DEF_STRUCT(intl_pt,_pt,
-			(float,_sizew),
-            (float, _sizeh),
 			(int, _texture_indices_nm_tt),
 			(int, _texture_indices_dn_tt),
 			(int, _texture_indices_sl_tt))

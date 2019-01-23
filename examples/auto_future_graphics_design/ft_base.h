@@ -6,10 +6,7 @@ namespace auto_future
 		public base_ui_component
 	{
 	public:
-		ft_base() :base_ui_component(){
-			//cout << "size of base_prop:" << sizeof(base_prop) << endl;
-		}
-
+		ft_base(); 
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	private:
@@ -19,6 +16,8 @@ namespace auto_future
 #endif
 		bool handle_mouse();
 		base_ui_component* get_copy_of_object();
+		bool contains(float posx, float posy);
+		bool relative_contain(af_vec2& point);
 	};
 	/**
 	*@brief copy the list of the property data block of a ui component object to another

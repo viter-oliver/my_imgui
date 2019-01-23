@@ -18,9 +18,8 @@ namespace auto_future
 		ft_circle();
 		~ft_circle(){}
 		void draw();
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		base_ui_component* get_hit_ui_object(float posx, float posy);
-#endif
+		bool contains(float posx, float posy);
+		bool relative_contain(af_vec2& point);
 	};
 	REGISTER_CONTROL(ft_circle)
 }

@@ -24,7 +24,7 @@ namespace auto_future
 			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size());
 		});
 		reg_property_handle(&_txt_pt,8, [this](void*){
-			ImGui::SliderInt("Font size", &_txt_pt._font_size, 8, 42); 
+			ImGui::SliderInt("Font size", &_txt_pt._font_size, 8, 60); 
 		});
 		reg_property_handle(&_txt_pt,9, [this](void*){
 			ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
@@ -38,6 +38,11 @@ namespace auto_future
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 dpos = abpos + winpos;
 		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+		auto font_cnt = ft_nm_list.size();
+		if (_txt_pt._font_id>=font_cnt)
+		{
+			_txt_pt._font_id = 0;
+		}
 		string font_name = ft_nm_list[_txt_pt._font_id];
 		float font_scale = _txt_pt._font_scale;
 
@@ -90,24 +95,23 @@ namespace auto_future
 		}
 #endif
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	base_ui_component* ft_textblock::get_hit_ui_object(float posx, float posy)
+	bool ft_textblock::contains(float posx, float posy)
 	{
-		base_ui_component* hit_opt = ft_base::get_hit_ui_object(posx, posy);
-		if (hit_opt)
-		{
-			return hit_opt;
-		}
 		ImVec2 mouse_pos(posx, posy);
-		if (_txt_area.Contains(mouse_pos))
-		{
-			return this;
-		}
-		else
-		{
-			return nullptr;
-		}
+		bool be_contain = _txt_area.Contains(mouse_pos);
+		return be_contain;
 	}
-
-#endif
+	bool ft_textblock::relative_contain(af_vec2& point)
+	{
+		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 base_pt = abpos + winpos;
+		ImVec2 tar{ point.x, point.y };
+		ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
+		ImVec2 origin_pt = _txt_area.Min - base_pt;
+		ImVec2 omax = origin_pt + ctnt_size;
+		ImRect rl_cover_area(origin_pt, omax);
+		bool be_contain = rl_cover_area.Contains(tar);
+		return be_contain;
+	}
 }

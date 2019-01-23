@@ -15,8 +15,6 @@ namespace auto_future
 	{
 	
 		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
-			(float, _sizew, {20.f}),
-			(float, _sizeh, {20.f}),
 			(float, _aposx, {0.f}),
 			(float, _aposy, {0.f}),
 			(int, _anchor_type, {en_anchor_top_left}),
@@ -24,34 +22,31 @@ namespace auto_future
 			(float, _angle_srd, {0.f}))
 	public:	
 		ft_image();// : ft_base(){}
-		ImVec2 get_size()
-		{
-			return ImVec2(_img_pt._sizew, _img_pt._sizeh);
-		}
+		
 		void set_size(const ImVec2& im_size)
 		{
 			switch (_img_pt._anchor_type)
 			{
 			case en_anchor_top_right:
-				set_base_posx( base_pos().x - (im_size.x - _img_pt._sizew));
+				set_base_posx(base_pos().x - (im_size.x - _in_p._sizew));
 				break;
 			case en_anchor_bottom_right:
-				set_base_posx(base_pos().x - (im_size.x - _img_pt._sizew));
-				set_base_posy(base_pos().y - (im_size.y - _img_pt._sizeh));
+				set_base_posx(base_pos().x - (im_size.x - _in_p._sizew));
+				set_base_posy(base_pos().y - (im_size.y - _in_p._sizeh));
 				break;
 			case en_anchor_bottom_left:
-				set_base_posy(base_pos().y - (im_size.y - _img_pt._sizeh));
+				set_base_posy(base_pos().y - (im_size.y - _in_p._sizeh));
 				break;
 			case en_anchor_center:
-				set_base_posx(base_pos().x - (im_size.x - _img_pt._sizew)/2);
-				set_base_posy(base_pos().y - (im_size.y - _img_pt._sizeh)/2);
+				set_base_posx(base_pos().x - (im_size.x - _in_p._sizew) / 2);
+				set_base_posy(base_pos().y - (im_size.y - _in_p._sizeh) / 2);
 				break;
 			case en_anchor_top_left:
 			default:
 				break;
 			}
-			_img_pt._sizew = im_size.x;
-			_img_pt._sizeh = im_size.y;
+			_in_p._sizew = im_size.x;
+			_in_p._sizeh = im_size.y;
 		}
 		void set_anchor_type(anchor_type antp)
 		{
@@ -67,14 +62,6 @@ namespace auto_future
 		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		base_ui_component* get_hit_ui_object(float posx, float posy);
-
-		enum 
-		{
-			en_parent_property=1,
-			en_geometry_property=2,
-			en_texture_property=8,
-		};
 	private:
 		enum{ en_pt_sz_x, en_pt_sz_y, en_pt_ax_pos_x, en_pt_ax_pos_y,\
 			en_pt_ac_type,en_pt_txt_id,en_pt_angle};

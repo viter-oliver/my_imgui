@@ -49,9 +49,6 @@ namespace auto_future
 		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index_txt = id; }
 
 		void draw();
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		base_ui_component* get_hit_ui_object(float posx, float posy);
-#endif
 	private:
 		bool read_point_position_file(const char *str);
 

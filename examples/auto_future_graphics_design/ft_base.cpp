@@ -4,8 +4,54 @@
 
 namespace auto_future
 {
+	ft_base::ft_base()
+		: base_ui_component()
+	{
+		//cout << "size of base_prop:" << sizeof(base_prop) << endl;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_property_handle(&_in_p, 5, [this](void*){
+			ImGui::Combo("adjacent to parent:", &_in_p._aj_model, "fixed\0horisontal\0vertical\0\0");
+		});
+#endif
+	}
 	void ft_base::draw()
 	{
+
+		auto pbase = get_parent();
+		auto& ajm=_in_p._aj_model;
+		if (pbase&&_in_p._aj_model!=en_fixed)
+		{
+			af_vec2 bp{ _in_p._posx, _in_p._posy };
+			af_vec2 dir{ 0.f, 0.f };
+			af_vec2 border_point;
+			bool be_intersected;
+			auto& adj_value = _in_p._adjacent_to_p;
+			if (ajm == en_horisontal)
+			{
+				bp.x = 0.f;
+				dir.x = 1.f;
+				be_intersected = pbase->get_border_hit_point(bp, dir, border_point);
+				if (be_intersected)
+				{
+					border_point.x += adj_value;
+					set_base_pos(border_point.x, border_point.y);
+				}
+			}
+			else
+			{
+				bp.y = 0.f;
+				dir.y = 1.f;
+				get_border_hit_point(bp, dir, border_point);
+				be_intersected = pbase->get_border_hit_point(bp, dir, border_point);
+				if (be_intersected)
+				{
+					border_point.y += adj_value;
+					set_base_pos(border_point.x, border_point.y);
+				}
+			}
+
+		}
+
 		if (!is_visible())
 		{
 			return;
@@ -42,10 +88,36 @@ namespace auto_future
 
 			//hit_object = (*it).get_hit_ui_object(posx, posy);
 		}
-		return nullptr;
+		if (contains(posx,posy))
+		{
+			return this;
+		}
+		else
+		{
+			return nullptr;
+		}
 	}
 #endif
-
+	bool ft_base::contains(float posx, float posy)
+	{
+		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 pos1(pos0.x + _in_p._sizew, pos0.y + _in_p._sizeh);
+		ImRect cover_area(pos0, pos1);
+		ImVec2 mouse_pos(posx, posy);
+		bool be_contain= cover_area.Contains(mouse_pos);
+		return be_contain;
+	}
+	bool ft_base::relative_contain(af_vec2& point)
+	{
+		ImVec2 pos0{ 0.f, 0.f };
+		ImVec2 pos1{ _in_p._sizew, _in_p._sizeh };
+		ImRect cover_area(pos0, pos1);
+		ImVec2 tar{ point.x, point.y };
+		bool be_contained = cover_area.Contains(tar);
+		return be_contained;
+	}
 	bool ft_base::handle_mouse()
 	{
 		if (!is_visible())
