@@ -58,7 +58,7 @@ namespace auto_future
 	struct txt_font_repository
 	{
 		GLuint _txt_id{ 0 };
-		af_vui2 _txt_size;
+		af_vi2 _txt_size;
 		af_vui2 _border;
 		GLuint _font_size{ 0 };
 		bool _be_full{ false };
@@ -116,7 +116,7 @@ namespace auto_future
 			GLuint& txtid = fp._txt_id;
 			assert(txtid&&"you must pass a valid texture id into the function load_chars!");
 			af_vui2& border = fp._border;
-			af_vui2& txt_size = fp._txt_size;
+			af_vi2& txt_size = fp._txt_size;
 			GLuint& fontSize = fp._font_size;
 			bool& be_full = fp._be_full;
 			auto& face_it = _dic_face.find(fontFaceName);

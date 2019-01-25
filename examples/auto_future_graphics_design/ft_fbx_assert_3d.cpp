@@ -42,8 +42,8 @@ namespace auto_future
 					{
 						ImGui::Text("");
 						ImGui::Text("mesh name:[%d]%s", i, it.second._mesh_info[i]._mesh_name.c_str());
-						string str = "material list";
-						str += to_string(i);
+						/*string str = "material list";
+						str += to_string(i);*/
 
 						if (!ij->_material_name.empty())
 						{
@@ -51,8 +51,8 @@ namespace auto_future
 
 							if (string::npos != ij->_shader_mode.find("Textured"))
 							{
-								string texture_str = "texture list";
-								texture_str += to_string(i);
+								/*string texture_str = "texture list";
+								texture_str += to_string(i);*/
 
 								ImGui::Text("texture name:%s", it.second._mesh_info[i]._texture_name.c_str());
 							}
@@ -79,8 +79,6 @@ namespace auto_future
 		}
 		init_internal_mesh_point();
 	}
-
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
 	void ft_fbx_assert_3d::init_internal_mesh_point()
 	{
@@ -172,5 +170,4 @@ namespace auto_future
 			}
 		}
 	}
-#endif
 }

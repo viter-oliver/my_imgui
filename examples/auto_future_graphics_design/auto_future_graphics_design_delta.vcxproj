@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{4a1fb5ea-22f5-42a8-ab92-1d2df5d47fb9}</ProjectGuid>
-    <RootNamespace>auto_future_graphics_design</RootNamespace>
-    <ProjectName>auto_future_graphics_design</ProjectName>
+    <ProjectGuid>{255F4C85-BAEC-428D-B279-1A6EE2A91207}</ProjectGuid>
+    <RootNamespace>auto_future_graphics_design_delta</RootNamespace>
+    <ProjectName>auto_future_graphics_design_delta</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -70,6 +70,7 @@
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <IncludePath>$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)_delta</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
@@ -80,6 +81,7 @@
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <IncludePath>$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)_delta</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
@@ -90,14 +92,14 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\libs\fbx_sdk\include;./fbx_import;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\libs\fbx_sdk\lib\vs2013\x86\debug;$(SolutionDir)\..\freetype_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;libfbxsdk-md.lib;freetype_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp.lib;freetype_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -123,7 +125,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\libs\fbx_sdk\include;./fbx_import;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\Assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -131,8 +133,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\libs\fbx_sdk\lib\vs2013\x86\release;$(SolutionDir)\..\freetype_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;libfbxsdk-md.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp.lib;freetype.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -179,26 +181,11 @@
     <ClCompile Include="base_ui_component.cpp" />
     <ClCompile Include="bind_edit.cpp" />
     <ClCompile Include="command_element_delta.cpp" />
-    <ClCompile Include="fbx_import\FBXColor.cpp" />
-    <ClCompile Include="fbx_import\FBXGlobalSettings.cpp" />
-    <ClCompile Include="fbx_import\FBXImporter.cpp" />
-    <ClCompile Include="fbx_import\FBXMaterial.cpp" />
-    <ClCompile Include="fbx_import\FBXMatrix4x4.cpp" />
-    <ClCompile Include="fbx_import\FBXModel.cpp" />
-    <ClCompile Include="fbx_import\FBXScene.cpp" />
-    <ClCompile Include="fbx_import\FBXValue.cpp" />
-    <ClCompile Include="fbx_import\FBXVector2.cpp" />
-    <ClCompile Include="fbx_import\FBXVector3.cpp" />
-    <ClCompile Include="fbx_import\FBXVector4.cpp" />
-    <ClCompile Include="fbx_save_info.cpp" />
     <ClCompile Include="file_outputor.cpp" />
     <ClCompile Include="file_res_edit.cpp" />
     <ClCompile Include="fonts_edit.cpp" />
     <ClCompile Include="ft_block.cpp" />
-    <ClCompile Include="ft_cube_3d.cpp" />
-    <ClCompile Include="ft_fbx_assert_3d.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
-    <ClCompile Include="ft_model_3d.cpp" />
     <ClCompile Include="ft_particles_3d.cpp" />
     <ClCompile Include="ft_particles1_3d.cpp" />
     <ClCompile Include="ft_particles_effect_3d.cpp" />
@@ -222,9 +209,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="material.cpp" />
     <ClCompile Include="material_shader_edit.cpp" />
-    <ClCompile Include="Mesh.cpp" />
     <ClCompile Include="miniz.c" />
-    <ClCompile Include="ofbx.cpp" />
     <ClCompile Include="paricles_system.cpp" />
     <ClCompile Include="primitive_object.cpp" />
     <ClCompile Include="primitve_edit.cpp" />
@@ -271,27 +256,11 @@
     <ClInclude Include="bind_edit.h" />
     <ClInclude Include="command_element_delta.h" />
     <ClInclude Include="dir_output.h" />
-    <ClInclude Include="fbx_import\FBXColor.h" />
-    <ClInclude Include="fbx_import\FBXGlobalSettings.h" />
-    <ClInclude Include="fbx_import\FBXImporter.h" />
-    <ClInclude Include="fbx_import\FBXImporterCommon.h" />
-    <ClInclude Include="fbx_import\FBXMaterial.h" />
-    <ClInclude Include="fbx_import\FBXMatrix4x4.h" />
-    <ClInclude Include="fbx_import\FBXModel.h" />
-    <ClInclude Include="fbx_import\FBXScene.h" />
-    <ClInclude Include="fbx_import\FBXValue.h" />
-    <ClInclude Include="fbx_import\FBXVector2.h" />
-    <ClInclude Include="fbx_import\FBXVector3.h" />
-    <ClInclude Include="fbx_import\FBXVector4.h" />
-    <ClInclude Include="fbx_import\RCPtr.h" />
     <ClInclude Include="file_outputor.h" />
     <ClInclude Include="file_res_edit.h" />
     <ClInclude Include="fonts_edit.h" />
     <ClInclude Include="ft_block.h" />
-    <ClInclude Include="ft_cube_3d.h" />
-    <ClInclude Include="ft_fbx_assert_3d.h" />
     <ClInclude Include="ft_image_play.h" />
-    <ClInclude Include="ft_model_3d.h" />
     <ClInclude Include="ft_particles_3d.h" />
     <ClInclude Include="ft_particles1_3d.h" />
     <ClInclude Include="ft_particles_effect_3d.h" />
@@ -312,19 +281,15 @@
     <ClInclude Include="ft_scene.h" />
     <ClInclude Include="ft_textblock.h" />
     <ClInclude Include="ft_trajectory_box_3d.h" />
-    <ClInclude Include="fbx_save_info.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="material.h" />
     <ClInclude Include="material_shader_edit.h" />
-    <ClInclude Include="Mesh.h" />
     <ClInclude Include="miniz.h" />
-    <ClInclude Include="ofbx.h" />
     <ClInclude Include="paricles_system.h" />
     <ClInclude Include="property_utilities.h" />
     <ClInclude Include="primitive_object.h" />
     <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="project_edit.h" />
-    <ClInclude Include="renderTransform.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="res_edit.h" />
     <ClInclude Include="res_internal.h" />

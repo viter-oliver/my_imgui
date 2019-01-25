@@ -7,7 +7,7 @@
 #include "SOIL.h"
 #include "dir_output.h"
 #include "primitive_object.h"
-#include "./fbx_save_info.h"
+//#include "./fbx_save_info.h"
 extern string g_cureent_directory;
 extern bool show_project_window, show_edit_window, \
 show_property_window, show_resource_manager, show_fonts_manager, show_file_manager;
@@ -297,7 +297,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	fout << jroot << endl;
 	fout.close();
 
-	save_fbx_file();
+	//save_fbx_file();
 
 	return true;
 }

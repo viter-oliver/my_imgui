@@ -38,9 +38,8 @@ namespace auto_future{
 		ft_fbx_assert_3d();
 		~ft_fbx_assert_3d();
 		void draw();
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		void init_internal_mesh_point();
-#endif
+
 	};
 	REGISTER_CONTROL(ft_fbx_assert_3d)
 }

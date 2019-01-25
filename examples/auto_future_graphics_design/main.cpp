@@ -29,7 +29,7 @@
 #include <Commdlg.h>
 #include "imguidock.h"
 //add fbximport include
-#include "./fbx_save_info.h"
+//#include "./fbx_save_info.h"
 #endif
 #include "Resource.h"
 #include "res_edit.h"
@@ -123,7 +123,7 @@ int main(int argc, char* argv[])
 		string FZLanTingHeiS= str_font_path + "FZLanTingHeiS-R-GB.ttf";
 		//string arial = str_font_path +"arialuni.ttf";
 
-		io.Fonts->AddFontFromFileTTF(FZLanTingHeiS.c_str(), 20.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+		io.Fonts->AddFontFromFileTTF(FZLanTingHeiS.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
 	}
     //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
     //IM_ASSERT(font != NULL);
@@ -183,7 +183,7 @@ int main(int argc, char* argv[])
 	//_app.register_update_fun("rotate_pointer", bind(&rotate_pointer::rotate, &_rt_pointer));
 	//}
 
-	load_fbx_file();
+	//load_fbx_file();
 
 	_proot = new ft_base;
 	ui_assembler _ui_as(*_proot);
@@ -356,7 +356,7 @@ int main(int argc, char* argv[])
 				else
 					if (result == IDYES)
 					{
-						import_fbx_info(strFileName);
+						//import_fbx_info(strFileName);
 					}
 			}
 		}

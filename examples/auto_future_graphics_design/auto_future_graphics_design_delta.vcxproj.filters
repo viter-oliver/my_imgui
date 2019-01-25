@@ -32,9 +32,6 @@
     <Filter Include="res">
       <UniqueIdentifier>{4563ab87-9f09-4267-a43d-fda2a4512162}</UniqueIdentifier>
     </Filter>
-    <Filter Include="fbx">
-      <UniqueIdentifier>{f27df0d4-eb3f-41e2-a514-7eee7698c472}</UniqueIdentifier>
-    </Filter>
     <Filter Include="render_utilities">
       <UniqueIdentifier>{8c38a201-8098-494d-9e3b-5dd3905a6a26}</UniqueIdentifier>
     </Filter>
@@ -43,6 +40,9 @@
     </Filter>
     <Filter Include="soil">
       <UniqueIdentifier>{a04a2d92-1ed4-4bd1-8531-5f50612cdf16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="miniz">
+      <UniqueIdentifier>{32d97c66-3af0-4853-b6bf-8c1edae1d984}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -109,12 +109,6 @@
     <ClCompile Include="..\..\imgui_demo.cpp">
       <Filter>imgui</Filter>
     </ClCompile>
-    <ClCompile Include="miniz.c">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="ofbx.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\json\json_reader.cpp">
       <Filter>json</Filter>
     </ClCompile>
@@ -151,9 +145,6 @@
     <ClCompile Include="texture_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>render_utilities</Filter>
-    </ClCompile>
     <ClCompile Include="paricles_system.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
@@ -167,12 +158,6 @@
       <Filter>res_manager</Filter>
     </ClCompile>
     <ClCompile Include="ft_scene.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_cube_3d.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_model_3d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="ft_particles_3d.cpp">
@@ -193,47 +178,8 @@
     <ClCompile Include="ft_trajectory_box_3d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="fbx_import\FBXColor.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXGlobalSettings.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXImporter.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXMaterial.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXMatrix4x4.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXModel.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXScene.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXValue.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXVector2.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXVector3.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_import\FBXVector4.cpp">
-      <Filter>fbx</Filter>
-    </ClCompile>
     <ClCompile Include="file_outputor.cpp">
       <Filter>res_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_fbx_assert_3d.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="fbx_save_info.cpp">
-      <Filter>fbx</Filter>
     </ClCompile>
     <ClCompile Include="ft_slider_thumb.cpp">
       <Filter>controls</Filter>
@@ -282,6 +228,9 @@
     </ClCompile>
     <ClCompile Include="af_shader_source_code.cpp">
       <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="miniz.c">
+      <Filter>miniz</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -354,15 +303,6 @@
     <ClInclude Include="resource.h">
       <Filter>res</Filter>
     </ClInclude>
-    <ClInclude Include="miniz.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="ofbx.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="renderTransform.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
     <ClInclude Include="af_shader.h">
       <Filter>render_utilities</Filter>
     </ClInclude>
@@ -417,9 +357,6 @@
     <ClInclude Include="texture_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>render_utilities</Filter>
-    </ClInclude>
     <ClInclude Include="paricles_system.h">
       <Filter>render_utilities</Filter>
     </ClInclude>
@@ -436,12 +373,6 @@
       <Filter>res_manager</Filter>
     </ClInclude>
     <ClInclude Include="ft_scene.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_cube_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_model_3d.h">
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="ft_particles_3d.h">
@@ -462,53 +393,8 @@
     <ClInclude Include="ft_trajectory_box_3d.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="fbx_import\FBXColor.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXGlobalSettings.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXImporter.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXImporterCommon.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXMaterial.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXMatrix4x4.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXModel.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXScene.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXValue.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXVector2.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXVector3.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\FBXVector4.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_import\RCPtr.h">
-      <Filter>fbx</Filter>
-    </ClInclude>
     <ClInclude Include="file_outputor.h">
       <Filter>res_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_fbx_assert_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="fbx_save_info.h">
-      <Filter>fbx</Filter>
     </ClInclude>
     <ClInclude Include="ft_slider_thumb.h">
       <Filter>controls</Filter>
@@ -566,6 +452,9 @@
     </ClInclude>
     <ClInclude Include="af_shader_source_code.h">
       <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="miniz.h">
+      <Filter>miniz</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
