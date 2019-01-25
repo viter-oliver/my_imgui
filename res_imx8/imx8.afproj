@@ -1,21 +1,31 @@
 
 {
+	"_adjacent_to_p" : 0.0,
+	"_aj_model" : 0,
 	"_name" : "screen",
 	"_posx" : 0.0,
 	"_posy" : 0.0,
+	"_sizeh" : 0.0,
+	"_sizew" : 0.0,
 	"_visible" : true,
 	"childs" : 
 	[
 		
 		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_name" : "main_show",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
+			"_sizeh" : 0.0,
+			"_sizew" : 0.0,
 			"_visible" : true,
 			"childs" : 
 			[
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -43,6 +53,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -58,6 +70,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -73,6 +87,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bg_angle_nml" : 0.0,
 					"_bg_aposx" : 0.0,
 					"_bg_aposy" : 0.0,
@@ -88,6 +104,8 @@
 					"_position_nml" : 0.8340000510215759,
 					"_posx" : 29.0,
 					"_posy" : 295.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_tb_posx" : 0.0,
 					"_tb_posy" : 0.0,
 					"_tb_txth" : 1.0,
@@ -101,6 +119,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -119,6 +139,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bg_angle_nml" : 0.0,
 					"_bg_aposx" : 0.0,
 					"_bg_aposy" : 0.0,
@@ -134,6 +156,8 @@
 					"_position_nml" : 0.7060000300407410,
 					"_posx" : 1742.0,
 					"_posy" : 295.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_tb_posx" : 0.0,
 					"_tb_posy" : 0.0,
 					"_tb_txth" : 1.0,
@@ -147,6 +171,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -165,6 +191,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -180,14 +208,20 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "left_scale_group",
 					"_posx" : 0.0,
 					"_posy" : 0.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -203,6 +237,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "lscale2",
@@ -217,12 +253,16 @@
 							"_size_maxw" : 23.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "lscale3",
@@ -237,12 +277,16 @@
 							"_size_maxw" : 23.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "lscale4",
@@ -257,12 +301,16 @@
 							"_size_maxw" : 22.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "lscale5",
@@ -277,12 +325,16 @@
 							"_size_maxw" : 21.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "lscale6",
@@ -297,12 +349,16 @@
 							"_size_maxw" : 20.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "lscale7",
@@ -317,12 +373,16 @@
 							"_size_maxw" : 18.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "lscale8",
@@ -337,6 +397,8 @@
 							"_size_maxw" : 16.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
@@ -346,6 +408,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_max_point" : 100.0,
 					"_min_point" : 0.0,
 					"_name" : "left_pointer_sl",
@@ -360,12 +424,16 @@
 					"_size_maxw" : 198.0,
 					"_size_minh" : 439.0,
 					"_size_minw" : 669.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_thumb_id_txt" : 28,
 					"_visible" : true,
 					"type" : "ft_slider_thumb"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
@@ -382,6 +450,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
@@ -398,6 +468,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
@@ -410,10 +482,32 @@
 					"_texture_fmt_name" : "edge_left_up_animation.json",
 					"_texture_name" : "edge_left_up_animation.png",
 					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "icon",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 243.0,
+							"_sizew" : 669.0,
+							"_texture_index_txt" : 51,
+							"_visible" : false,
+							"type" : "ft_image"
+						}
+					],
 					"type" : "ft_image_play"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_max_point" : 100.0,
 					"_min_point" : 0.0,
 					"_name" : "edge_left_up_sl1",
@@ -428,12 +522,16 @@
 					"_size_maxw" : 530.0,
 					"_size_minh" : 243.0,
 					"_size_minw" : 669.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_thumb_id_txt" : 51,
 					"_visible" : true,
 					"type" : "ft_slider_thumb"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_max_point" : 100.0,
 					"_min_point" : 0.0,
 					"_name" : "edge_left_up_sl2",
@@ -448,12 +546,16 @@
 					"_size_maxw" : 435.0450134277344,
 					"_size_minh" : 243.0,
 					"_size_minw" : 669.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_thumb_id_txt" : 51,
 					"_visible" : true,
 					"type" : "ft_slider_thumb"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -469,14 +571,20 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "trip_group",
 					"_posx" : 0.0,
 					"_posy" : 0.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -492,6 +600,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -507,6 +617,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -522,6 +634,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -537,6 +651,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -552,6 +668,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -567,6 +685,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -582,6 +702,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -597,6 +719,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -615,6 +739,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -630,14 +756,20 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "right_scale_group",
 					"_posx" : 0.0,
 					"_posy" : 0.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -653,6 +785,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "rscale2",
@@ -667,12 +801,16 @@
 							"_size_maxw" : 23.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 56,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "rscale3",
@@ -687,12 +825,16 @@
 							"_size_maxw" : 22.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 56,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "rscale4",
@@ -707,12 +849,16 @@
 							"_size_maxw" : 22.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 56,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "rscale5",
@@ -727,12 +873,16 @@
 							"_size_maxw" : 21.50,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 56,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "rscale6",
@@ -747,12 +897,16 @@
 							"_size_maxw" : 21.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 56,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "rscale7",
@@ -767,12 +921,16 @@
 							"_size_maxw" : 21.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 56,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_max_point" : 100.0,
 							"_min_point" : 0.0,
 							"_name" : "rscale8",
@@ -787,6 +945,8 @@
 							"_size_maxw" : 20.0,
 							"_size_minh" : 9.0,
 							"_size_minw" : 23.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_thumb_id_txt" : 56,
 							"_visible" : true,
 							"type" : "ft_slider_thumb"
@@ -796,6 +956,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_max_point" : 100.0,
 					"_min_point" : 0.0,
 					"_name" : "right_pointer_sl",
@@ -810,12 +972,16 @@
 					"_size_maxw" : 198.0,
 					"_size_minh" : 439.0,
 					"_size_minw" : 669.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_thumb_id_txt" : 29,
 					"_visible" : true,
 					"type" : "ft_slider_thumb"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
@@ -832,6 +998,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
@@ -848,6 +1016,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
@@ -860,10 +1030,32 @@
 					"_texture_fmt_name" : "edge_right_up_animation.json",
 					"_texture_name" : "edge_right_up_animation.png",
 					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "icon",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 243.0,
+							"_sizew" : 669.0,
+							"_texture_index_txt" : 52,
+							"_visible" : false,
+							"type" : "ft_image"
+						}
+					],
 					"type" : "ft_image_play"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_max_point" : 100.0,
 					"_min_point" : 0.0,
 					"_name" : "edge_right_up_sl1",
@@ -878,12 +1070,16 @@
 					"_size_maxw" : 490.0,
 					"_size_minh" : 235.0,
 					"_size_minw" : 672.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_thumb_id_txt" : 52,
 					"_visible" : true,
 					"type" : "ft_slider_thumb"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_max_point" : 100.0,
 					"_min_point" : 0.0,
 					"_name" : "edge_right_up_sl2",
@@ -898,20 +1094,28 @@
 					"_size_maxw" : 430.0,
 					"_size_minh" : 184.0,
 					"_size_minw" : 490.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_thumb_id_txt" : 52,
 					"_visible" : true,
 					"type" : "ft_slider_thumb"
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "odo_group",
 					"_posx" : 0.0,
 					"_posy" : 0.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -927,6 +1131,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -942,6 +1148,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -957,6 +1165,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -972,6 +1182,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
@@ -990,6 +1202,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 566.0390014648438,
@@ -1005,14 +1219,18 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_content" : "18:20",
 					"_font_id" : 0,
 					"_font_scale" : 1.300000071525574,
-					"_font_size" : 20.0,
+					"_font_size" : 20,
 					"_name" : "time",
 					"_omit_rest" : false,
 					"_posx" : 935.3850708007813,
 					"_posy" : 22.80300140380859,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_txt_alignh_nml" : 0.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -1028,6 +1246,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -1043,6 +1263,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1058,14 +1280,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "500",
 							"_font_id" : 1,
 							"_font_scale" : 1.0,
-							"_font_size" : 25.0,
+							"_font_size" : 25,
 							"_name" : "distance",
 							"_omit_rest" : false,
 							"_posx" : 98.74300384521484,
 							"_posy" : -4.114000320434570,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1081,14 +1307,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "m",
 							"_font_id" : 1,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 20,
 							"_name" : "unit",
 							"_omit_rest" : false,
 							"_posx" : 170.6670074462891,
 							"_posy" : 4.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1104,14 +1334,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "next turn street",
 							"_font_id" : 1,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 20,
 							"_name" : "notification",
 							"_omit_rest" : false,
 							"_posx" : 100.0,
 							"_posy" : 40.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1130,20 +1364,26 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "gear",
-					"_posx" : 817.0,
+					"_posx" : 960.0,
 					"_posy" : 180.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
 							"_aposy" : 467.0,
 							"_name" : "right_decorate_line",
-							"_posx" : 192.0000152587891,
+							"_posx" : 65.0,
 							"_posy" : 0.0,
 							"_sizeh" : 3.0,
 							"_sizew" : 77.0,
@@ -1153,12 +1393,14 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 1,
 							"_angle_srd" : 0.0,
 							"_aposx" : 566.0390014648438,
 							"_aposy" : 467.0,
 							"_name" : "left_decorate_line",
-							"_posx" : 0.0,
+							"_posx" : -140.0,
 							"_posy" : 0.0,
 							"_sizeh" : 3.0,
 							"_sizew" : 77.0,
@@ -1168,14 +1410,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "P",
 							"_font_id" : 0,
 							"_font_scale" : 1.200000047683716,
-							"_font_size" : 35.0,
+							"_font_size" : 35,
 							"_name" : "gear_value",
 							"_omit_rest" : false,
-							"_posx" : 135.0,
+							"_posx" : 0.0,
 							"_posy" : -63.87100219726563,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1191,14 +1437,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "NORMAL",
 							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 20,
 							"_name" : "state",
 							"_omit_rest" : false,
-							"_posx" : 138.0,
+							"_posx" : 0.0,
 							"_posy" : -12.00000095367432,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1217,14 +1467,18 @@
 				},
 				
 				{
-					"_content" : "100",
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "120",
 					"_font_id" : 0,
 					"_font_scale" : 1.200000047683716,
-					"_font_size" : 50.0,
+					"_font_size" : 50,
 					"_name" : "speed",
 					"_omit_rest" : false,
-					"_posx" : 951.7950439453125,
+					"_posx" : 960.0,
 					"_posy" : 209.7860107421875,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_txt_alignh_nml" : 0.50,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -1234,20 +1488,24 @@
 						"z" : 1.0
 					},
 					"_visible" : true,
-					"_width" : 560.0,
-					"_width_limit" : false,
+					"_width" : 420.2980346679688,
+					"_width_limit" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 5.0,
+							"_aj_model" : 1,
 							"_content" : "km/h",
 							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 20,
 							"_name" : "unit",
 							"_omit_rest" : false,
-							"_posx" : 65.64100646972656,
+							"_posx" : 59.0,
 							"_posy" : 20.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1266,14 +1524,18 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_content" : "TRIP:",
 					"_font_id" : 0,
 					"_font_scale" : 1.0,
-					"_font_size" : 18.0,
+					"_font_size" : 18,
 					"_name" : "trip",
 					"_omit_rest" : false,
 					"_posx" : 527.0,
 					"_posy" : 672.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_txt_alignh_nml" : 0.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -1289,14 +1551,18 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_content" : "ODO:",
 					"_font_id" : 0,
 					"_font_scale" : 1.0,
-					"_font_size" : 18.0,
+					"_font_size" : 18,
 					"_name" : "odo",
 					"_omit_rest" : false,
 					"_posx" : 1229.0,
 					"_posy" : 672.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_txt_alignh_nml" : 0.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -1315,14 +1581,20 @@
 		},
 		
 		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_name" : "main_menu",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
+			"_sizeh" : 0.0,
+			"_sizew" : 0.0,
 			"_visible" : false,
 			"childs" : 
 			[
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -1338,6 +1610,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -1353,6 +1627,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1371,6 +1647,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -1386,6 +1664,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1404,6 +1684,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -1419,14 +1701,20 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "info_icon_list",
 					"_posx" : 1620.0,
 					"_posy" : 160.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 4,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1442,6 +1730,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 4,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1457,6 +1747,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 4,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1472,6 +1764,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 4,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1490,22 +1784,30 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "navi_group",
 					"_posx" : 1508.0,
 					"_posy" : 200.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : false,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Navigation is off",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
-							"_font_size" : 18.0,
+							"_font_size" : 18,
 							"_name" : "warning_info",
 							"_omit_rest" : false,
 							"_posx" : 133.33300781250,
 							"_posy" : 190.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 1.0,
 							"_txt_clr" : 
@@ -1521,6 +1823,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1536,6 +1840,8 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -1551,14 +1857,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "500",
 									"_font_id" : 1,
 									"_font_scale" : 1.200000047683716,
-									"_font_size" : 30.0,
+									"_font_size" : 30,
 									"_name" : "distance",
 									"_omit_rest" : false,
 									"_posx" : 98.74300384521484,
 									"_posy" : -4.114000320434570,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -1574,14 +1884,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "m",
 									"_font_id" : 1,
 									"_font_scale" : 1.0,
-									"_font_size" : 25.0,
+									"_font_size" : 25,
 									"_name" : "unit",
 									"_omit_rest" : false,
 									"_posx" : 170.6670074462891,
 									"_posy" : 4.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -1597,14 +1911,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "next turn street",
 									"_font_id" : 1,
 									"_font_scale" : 1.0,
-									"_font_size" : 25.0,
+									"_font_size" : 25,
 									"_name" : "notification",
 									"_omit_rest" : false,
 									"_posx" : 100.0,
 									"_posy" : 40.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -1626,22 +1944,30 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "setup_group",
 					"_posx" : 0.0,
 					"_posy" : 0.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : false,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Style",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
-							"_font_size" : 18.0,
+							"_font_size" : 18,
 							"_name" : "style_opt",
 							"_omit_rest" : false,
 							"_posx" : 1655.0,
 							"_posy" : 382.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 1.0,
 							"_txt_clr" : 
@@ -1657,14 +1983,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "System Version",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
-							"_font_size" : 18.0,
+							"_font_size" : 18,
 							"_name" : "version",
 							"_omit_rest" : false,
 							"_posx" : 1655.0,
 							"_posy" : 420.0000305175781,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1680,14 +2010,20 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_name" : "style_list",
 							"_posx" : 1655.0,
 							"_posy" : 382.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_visible" : false,
 							"childs" : 
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -1703,6 +2039,8 @@
 									[
 										
 										{
+											"_adjacent_to_p" : 0.0,
+											"_aj_model" : 0,
 											"_anchor_type" : 0,
 											"_angle_srd" : 0.0,
 											"_aposx" : -431602080.0,
@@ -1718,14 +2056,18 @@
 										},
 										
 										{
+											"_adjacent_to_p" : 0.0,
+											"_aj_model" : 0,
 											"_content" : "Normal",
 											"_font_id" : 2,
 											"_font_scale" : 1.0,
-											"_font_size" : 18.0,
+											"_font_size" : 18,
 											"_name" : "show",
 											"_omit_rest" : false,
 											"_posx" : 50.0,
 											"_posy" : 0.0,
+											"_sizeh" : 0.0,
+											"_sizew" : 0.0,
 											"_txt_alignh_nml" : 0.0,
 											"_txt_alignv_nml" : 0.0,
 											"_txt_clr" : 
@@ -1744,6 +2086,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -1759,6 +2103,8 @@
 									[
 										
 										{
+											"_adjacent_to_p" : 0.0,
+											"_aj_model" : 0,
 											"_anchor_type" : 0,
 											"_angle_srd" : 0.0,
 											"_aposx" : -431602080.0,
@@ -1774,14 +2120,18 @@
 										},
 										
 										{
+											"_adjacent_to_p" : 0.0,
+											"_aj_model" : 0,
 											"_content" : "Sport",
 											"_font_id" : 2,
 											"_font_scale" : 1.0,
-											"_font_size" : 18.0,
+											"_font_size" : 18,
 											"_name" : "show",
 											"_omit_rest" : false,
 											"_posx" : 50.0,
 											"_posy" : 0.0,
+											"_sizeh" : 0.0,
+											"_sizew" : 0.0,
 											"_txt_alignh_nml" : 0.0,
 											"_txt_alignv_nml" : 0.0,
 											"_txt_clr" : 
@@ -1800,6 +2150,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -1815,6 +2167,8 @@
 									[
 										
 										{
+											"_adjacent_to_p" : 0.0,
+											"_aj_model" : 0,
 											"_anchor_type" : 0,
 											"_angle_srd" : 0.0,
 											"_aposx" : -431602080.0,
@@ -1830,14 +2184,18 @@
 										},
 										
 										{
+											"_adjacent_to_p" : 0.0,
+											"_aj_model" : 0,
 											"_content" : "Future",
 											"_font_id" : 2,
 											"_font_scale" : 1.0,
-											"_font_size" : 18.0,
+											"_font_size" : 18,
 											"_name" : "show",
 											"_omit_rest" : false,
 											"_posx" : 50.0,
 											"_posy" : 0.0,
+											"_sizeh" : 0.0,
+											"_sizew" : 0.0,
 											"_txt_alignh_nml" : 0.0,
 											"_txt_alignv_nml" : 0.0,
 											"_txt_clr" : 
@@ -1862,22 +2220,30 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "media_group",
 					"_posx" : 1395.0,
 					"_posy" : 249.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : false,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Multimedia is off",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
-							"_font_size" : 18.0,
+							"_font_size" : 18,
 							"_name" : "multimedia_off",
 							"_omit_rest" : false,
 							"_posx" : 250.0,
 							"_posy" : 120.0000076293945,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -1893,6 +2259,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1908,14 +2276,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "140.2MHZ",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "txt_value",
 									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -1934,6 +2306,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1949,14 +2323,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "1402MHZ",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "txt_value",
 									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -1975,6 +2353,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -1990,14 +2370,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "It come back to you",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "txt_value",
 									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2016,6 +2400,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -2031,14 +2417,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "Some one like you",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "txt_value",
 									"_omit_rest" : false,
 									"_posx" : 60.0,
 									"_posy" : 243.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2057,6 +2447,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
 							"_aposx" : 0.0,
@@ -2072,14 +2464,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "The earth song",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "txt_value",
 									"_omit_rest" : false,
 									"_posx" : 130.0,
 									"_posy" : 280.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2101,22 +2497,30 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "trip_group",
 					"_posx" : 1395.0,
 					"_posy" : 249.0,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_visible" : true,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Trip A",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
-							"_font_size" : 18.0,
+							"_font_size" : 18,
 							"_name" : "TripA",
 							"_omit_rest" : false,
 							"_posx" : 250.0,
 							"_posy" : 91.91500091552734,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -2132,14 +2536,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "4.5",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 20.0,
+									"_font_size" : 20,
 									"_name" : "value",
 									"_omit_rest" : false,
 									"_posx" : 0.0,
 									"_posy" : 25.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2155,14 +2563,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "unit",
 									"_omit_rest" : false,
 									"_posx" : 30.0,
 									"_posy" : 35.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2181,14 +2593,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Trip B",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
-							"_font_size" : 18.0,
+							"_font_size" : 18,
 							"_name" : "TripB",
 							"_omit_rest" : false,
 							"_posx" : 250.0,
 							"_posy" : 91.91500091552734,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -2204,14 +2620,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "4.5",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 20.0,
+									"_font_size" : 20,
 									"_name" : "value",
 									"_omit_rest" : false,
 									"_posx" : 5.0,
 									"_posy" : 25.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2227,14 +2647,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "unit",
 									"_omit_rest" : false,
 									"_posx" : 35.0,
 									"_posy" : 35.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2253,6 +2677,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bg_angle_nml" : 0.0,
 							"_bg_aposx" : 0.0,
 							"_bg_aposy" : 0.0,
@@ -2268,6 +2694,8 @@
 							"_position_nml" : 0.8750000596046448,
 							"_posx" : 195.0,
 							"_posy" : 72.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_tb_posx" : 0.0,
 							"_tb_posy" : 0.0,
 							"_tb_txth" : 0.0,
@@ -2281,14 +2709,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "Endurance",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "title",
 									"_omit_rest" : false,
 									"_posx" : 10.21300029754639,
 									"_posy" : 134.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2304,14 +2736,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "260",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 20.0,
+									"_font_size" : 20,
 									"_name" : "value",
 									"_omit_rest" : false,
 									"_posx" : 61.27700424194336,
 									"_posy" : 45.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.50,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2327,14 +2763,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "unit",
 									"_omit_rest" : false,
 									"_posx" : 50.0,
 									"_posy" : 80.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2353,6 +2793,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bg_angle_nml" : 0.0,
 							"_bg_aposx" : 0.0,
 							"_bg_aposy" : 0.0,
@@ -2368,6 +2810,8 @@
 							"_position_nml" : 0.8020000457763672,
 							"_posx" : 1203.0,
 							"_posy" : 406.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_tb_posx" : 0.0,
 							"_tb_posy" : 0.0,
 							"_tb_txth" : 0.0,
@@ -2381,14 +2825,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "Trip A",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "title",
 									"_omit_rest" : false,
 									"_posx" : 31.0,
 									"_posy" : 134.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2404,14 +2852,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "4.5",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 20.0,
+									"_font_size" : 20,
 									"_name" : "value",
 									"_omit_rest" : false,
 									"_posx" : 30.96800231933594,
 									"_posy" : 45.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2427,14 +2879,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "h",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "unit",
 									"_omit_rest" : false,
 									"_posx" : 48.0,
 									"_posy" : 78.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2453,6 +2909,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bg_angle_nml" : 0.0,
 							"_bg_aposx" : 0.0,
 							"_bg_aposy" : 0.0,
@@ -2468,6 +2926,8 @@
 							"_position_nml" : 0.7420000433921814,
 							"_posx" : 1400.0,
 							"_posy" : 406.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_tb_posx" : 0.0,
 							"_tb_posy" : 0.0,
 							"_tb_txth" : 0.0,
@@ -2481,14 +2941,18 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "Trip B",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "title",
 									"_omit_rest" : false,
 									"_posx" : 31.0,
 									"_posy" : 134.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2504,14 +2968,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "129",
 									"_font_id" : 2,
 									"_font_scale" : 1.0,
-									"_font_size" : 20.0,
+									"_font_size" : 20,
 									"_name" : "value",
 									"_omit_rest" : false,
 									"_posx" : 30.96800231933594,
 									"_posy" : 45.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2527,14 +2995,18 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_content" : "km",
 									"_font_id" : 0,
 									"_font_scale" : 1.0,
-									"_font_size" : 18.0,
+									"_font_size" : 18,
 									"_name" : "unit",
 									"_omit_rest" : false,
 									"_posx" : 45.0,
 									"_posy" : 78.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_txt_alignh_nml" : 0.0,
 									"_txt_alignv_nml" : 0.0,
 									"_txt_clr" : 
@@ -2559,14 +3031,20 @@
 		},
 		
 		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_name" : "signal_light",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
+			"_sizeh" : 0.0,
+			"_sizew" : 0.0,
 			"_visible" : true,
 			"childs" : 
 			[
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2582,6 +3060,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2597,6 +3077,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2612,6 +3094,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2627,6 +3111,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2642,6 +3128,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2657,6 +3145,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2672,6 +3162,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2687,6 +3179,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2702,6 +3196,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2717,6 +3213,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2732,6 +3230,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2747,6 +3247,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2762,6 +3264,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2777,6 +3281,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2792,6 +3298,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2807,6 +3315,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2822,6 +3332,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2837,6 +3349,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2852,6 +3366,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2867,6 +3383,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2882,6 +3400,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2897,6 +3417,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2912,6 +3434,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2927,6 +3451,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2942,6 +3468,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2957,6 +3485,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2972,6 +3502,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -2987,6 +3519,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3002,6 +3536,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3017,6 +3553,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3032,6 +3570,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3047,6 +3587,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3062,6 +3604,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3077,6 +3621,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3092,6 +3638,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3110,14 +3658,20 @@
 		},
 		
 		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_name" : "popup_dlg",
 			"_posx" : 1300.0,
 			"_posy" : 300.0,
+			"_sizeh" : 0.0,
+			"_sizew" : 0.0,
 			"_visible" : false,
 			"childs" : 
 			[
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3133,6 +3687,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3148,6 +3704,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
@@ -3163,14 +3721,18 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_content" : "Do you delete the data?",
 					"_font_id" : 2,
 					"_font_scale" : 1.0,
-					"_font_size" : 0.0,
+					"_font_size" : 0,
 					"_name" : "warning_content",
 					"_omit_rest" : false,
 					"_posx" : 98.46200561523438,
 					"_posy" : 86.15400695800781,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_txt_alignh_nml" : 0.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -3186,14 +3748,18 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_content" : "Ok",
 					"_font_id" : 2,
 					"_font_scale" : 1.0,
-					"_font_size" : 18.0,
+					"_font_size" : 18,
 					"_name" : "ok",
 					"_omit_rest" : false,
 					"_posx" : 131.2820129394531,
 					"_posy" : 166.1540069580078,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_txt_alignh_nml" : 0.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -3209,14 +3775,18 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_content" : "Cancel",
 					"_font_id" : 2,
 					"_font_scale" : 1.0,
-					"_font_size" : 18.0,
+					"_font_size" : 18,
 					"_name" : "cancel",
 					"_omit_rest" : false,
 					"_posx" : 240.0,
 					"_posy" : 166.1540069580078,
+					"_sizeh" : 0.0,
+					"_sizew" : 0.0,
 					"_txt_alignh_nml" : 0.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
@@ -3235,14 +3805,20 @@
 		},
 		
 		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_name" : "test_model",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
+			"_sizeh" : 0.0,
+			"_sizew" : 0.0,
 			"_visible" : false,
 			"childs" : 
 			[
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -3264,20 +3840,24 @@
 					"_round_utn" : 0.0,
 					"_sizeh" : 720.0,
 					"_sizew" : 1920.0,
-					"_visible" : true,
+					"_visible" : false,
 					"_with_border" : false,
 					"childs" : 
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Test Model",
-							"_font_id" : 2,
+							"_font_id" : 1,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 20,
 							"_name" : "title",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 40.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3293,6 +3873,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -3320,14 +3902,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Debug",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "debug",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 132.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3343,6 +3929,8 @@
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3358,6 +3946,8 @@
 									[
 										
 										{
+											"_adjacent_to_p" : 0.0,
+											"_aj_model" : 0,
 											"_anchor_type" : 0,
 											"_angle_srd" : 0.0,
 											"_aposx" : 0.0,
@@ -3379,14 +3969,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Version",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "version",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 207.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3402,14 +3996,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Screen",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "screen",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 282.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3425,14 +4023,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Brightness",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "brightness",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 357.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3448,14 +4050,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "DDR",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "ddr",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 432.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3471,14 +4077,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "EMMC",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "emmc",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 507.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3494,14 +4104,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Firmware",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "firmware",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 582.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3520,6 +4134,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -3547,14 +4163,18 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "Version",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "version",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 40.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3570,14 +4190,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "MCU: HM02_03_2.202",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "MCU",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 140.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3593,14 +4217,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "OS: HM02_04_2.add1",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "OS",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 240.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3616,14 +4244,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "SN: XXXXXXXXXXXXX",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "SN",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 340.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3639,14 +4271,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "HW_CB: AF05_HW_CB_V1",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "HW_CB",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 440.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3662,14 +4298,18 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "HW_MB: AF05_MB_V1",
-							"_font_id" : 2,
+							"_font_id" : 0,
 							"_font_scale" : 1.0,
-							"_font_size" : 20.0,
+							"_font_size" : 22,
 							"_name" : "HW_MB",
 							"_omit_rest" : false,
 							"_posx" : 30.0,
 							"_posy" : 540.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -3688,6 +4328,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -3715,14 +4357,20 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_name" : "cal1",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_visible" : false,
 							"childs" : 
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3738,6 +4386,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3753,6 +4403,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3768,6 +4420,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3783,6 +4437,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3798,6 +4454,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3813,6 +4471,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3828,6 +4488,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3843,6 +4505,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3858,6 +4522,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3873,6 +4539,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3888,6 +4556,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3903,6 +4573,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3918,6 +4590,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3933,6 +4607,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3948,6 +4624,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3963,6 +4641,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3978,6 +4658,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -3993,6 +4675,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4008,6 +4692,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4023,6 +4709,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4038,6 +4726,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4053,6 +4743,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4068,6 +4760,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4083,6 +4777,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4098,6 +4794,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4113,6 +4811,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4128,6 +4828,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4143,6 +4845,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4158,6 +4862,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4173,6 +4879,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4188,6 +4896,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4206,14 +4916,20 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_name" : "cal2",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_visible" : false,
 							"childs" : 
 							[
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_bkclr" : 
 									{
 										"w" : 1.0,
@@ -4226,6 +4942,8 @@
 									"_posx" : 960.0,
 									"_posy" : 360.0,
 									"_radius" : 360.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_solid" : false,
 									"_thickness_utn" : 0.0,
 									"_visible" : true,
@@ -4233,6 +4951,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_bkclr" : 
 									{
 										"w" : 1.0,
@@ -4245,6 +4965,8 @@
 									"_posx" : 120.0,
 									"_posy" : 120.0,
 									"_radius" : 120.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_solid" : false,
 									"_thickness_utn" : 0.0,
 									"_visible" : true,
@@ -4252,6 +4974,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_bkclr" : 
 									{
 										"w" : 1.0,
@@ -4264,6 +4988,8 @@
 									"_posx" : 1800.0,
 									"_posy" : 120.0,
 									"_radius" : 120.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_solid" : false,
 									"_thickness_utn" : 0.0,
 									"_visible" : true,
@@ -4271,6 +4997,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_bkclr" : 
 									{
 										"w" : 1.0,
@@ -4283,6 +5011,8 @@
 									"_posx" : 1800.0,
 									"_posy" : 600.0,
 									"_radius" : 120.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_solid" : false,
 									"_thickness_utn" : 0.0,
 									"_visible" : true,
@@ -4290,6 +5020,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_bkclr" : 
 									{
 										"w" : 1.0,
@@ -4302,6 +5034,8 @@
 									"_posx" : 120.0,
 									"_posy" : 600.0,
 									"_radius" : 120.0,
+									"_sizeh" : 0.0,
+									"_sizew" : 0.0,
 									"_solid" : false,
 									"_thickness_utn" : 0.0,
 									"_visible" : true,
@@ -4309,6 +5043,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 3.150000095367432,
 									"_aposx" : 420.0,
@@ -4324,6 +5060,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4339,6 +5077,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 3.150000095367432,
 									"_aposx" : 60.0,
@@ -4354,6 +5094,8 @@
 								},
 								
 								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
 									"_anchor_type" : 0,
 									"_angle_srd" : 0.0,
 									"_aposx" : 0.0,
@@ -4375,6 +5117,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -4402,14 +5146,18 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_content" : "20",
 							"_font_id" : 2,
 							"_font_scale" : 1.0,
-							"_font_size" : 18.0,
+							"_font_size" : 18,
 							"_name" : "brightness_level",
 							"_omit_rest" : false,
 							"_posx" : 20.0,
 							"_posy" : 10.0,
+							"_sizeh" : 0.0,
+							"_sizew" : 0.0,
 							"_txt_alignh_nml" : 0.0,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
@@ -4428,6 +5176,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -4455,6 +5205,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4482,6 +5234,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4509,6 +5263,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4536,6 +5292,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4563,6 +5321,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4593,6 +5353,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -4620,6 +5382,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4647,6 +5411,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4674,6 +5440,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4701,6 +5469,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4728,6 +5498,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4758,6 +5530,8 @@
 				},
 				
 				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_bdclr" : 
 					{
 						"w" : 0.0,
@@ -4785,6 +5559,8 @@
 					[
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4812,6 +5588,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4839,6 +5617,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4866,6 +5646,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
@@ -4893,6 +5675,8 @@
 						},
 						
 						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
 							"_bdclr" : 
 							{
 								"w" : 1.0,
