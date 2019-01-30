@@ -21,3 +21,14 @@ extern bool fileExist(const char* fileName);
 extern bool directoryExist(const char* dir);
 extern bool createDirectory(const char* pathName);
 extern bool createFileWithDirectory(const char* pathName);
+
+template<class T> string find_a_key_from_mp(T& mp, string& ref_key)
+{
+	string chk_key = ref_key;
+	while (mp.find(chk_key) != mp.end())
+	{
+		chk_key += "#";
+
+	}
+	return chk_key;
+}

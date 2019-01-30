@@ -74,6 +74,7 @@ namespace auto_future
 		_pmaterial->use();
 		glBindVertexArray(_pcube_prim->_vao);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _pcube_prim->_ebo);
+
 		glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_SHORT, (const void*)0);
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

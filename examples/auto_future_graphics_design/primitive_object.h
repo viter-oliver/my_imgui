@@ -20,7 +20,7 @@ struct primitive_object
 	GLuint _vao,_vbo,_ebo;
 	vector<GLubyte> _ele_format;
 	GLuint _vertex_buf_len;
-	GLushort _ele_buf_len;
+	GLuint _ele_buf_len;
 	primitive_object()
 		: _vertex_buf_len(0), _ele_buf_len(0)
 	{
@@ -50,7 +50,7 @@ struct primitive_object
 		_ele_format = ele_fm;
 	}
 
-	void load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLushort* pele_buff = 0, GLushort ele_cnt = 0);
+	void load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff = 0, GLuint ele_cnt = 0);
 };
 
 typedef map<string, shared_ptr<primitive_object>> mp_primitive;

@@ -99,14 +99,47 @@ namespace auto_future
 	using af_vi4 = af_vt4<int>;
 	using af_vui4 = af_vt4<unsigned int>;
 	using af_vec4 = af_vt4<float>;
-	struct ft_vertex
+
+	struct camera
+	{
+		af_vec3 _position;
+		af_vec3 _direction;
+		af_vec3 _up;
+	};
+	struct directional_light
+	{
+		af_vec3 _color;
+		af_vec3 _direction;
+	};
+	struct point_light
+	{
+		af_vec3 _color;
+		af_vec3 _position;
+	};
+
+	struct transformation
+	{
+		af_vec3 _scale;
+		af_vec3 _rotation;
+		af_vec3 _translation;
+	};
+
+	struct projection
+	{
+		float _fovy;
+		//float _aspect;
+		float _near;
+		float _far;
+	};
+
+/*	struct ft_vertex
 	{
 
 		af_vec2  pos;
 		af_vec2  uv;
 		unsigned int col;
 	};
-	/*
+	
 	struct af_area
 	{
 		virtual bool contains(float posx, float posy)
@@ -140,4 +173,5 @@ namespace auto_future
 		}
 	};
 	*/
+#define FILE_NAME_LEN 50
 }

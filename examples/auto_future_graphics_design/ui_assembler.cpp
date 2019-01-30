@@ -7,6 +7,7 @@
 #include "SOIL.h"
 #include "dir_output.h"
 #include "primitive_object.h"
+//#include "af_model.h"
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory;
 extern bool show_project_window, show_edit_window, \
@@ -133,7 +134,8 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				size_t sz_file = pbuf->pubseekoff(0, ifs.end, ifs.in);
 				pbuf->pubseekpos(0, ifs.in);
 				g_mfiles_list[kname] = make_shared<af_file>(sz_file);
-				pbuf->sgetn((char*)g_mfiles_list[kname]->_pbin, sz_file);
+
+				pbuf->sgetn((char*)g_mfiles_list[kname]->_pbin, sz_file);		
 				ifs.close();
 			}
 			Value& shader_list = jroot["shader_list"];
@@ -167,7 +169,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				auto& kname = jpm["name"].asString();
 
 				Value& vformat = jpm["format"];
-				int ebo_len = vformat.size();
+				GLuint ebo_len = vformat.size();
 				vector<GLubyte> ele_format;
 				for (int ii = 0; ii < ebo_len; ii++)
 				{
@@ -175,8 +177,8 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					ele_format.emplace_back(fmu.asInt());
 				}
 				//GL_UNSIGNED_INT_8_8_8_8_REV
-				int vbo_len = jpm["vbo_len"].asInt();
-				ebo_len = jpm["ebo_len"].asInt();
+				GLuint vbo_len = jpm["vbo_len"].asUInt();
+				ebo_len = jpm["ebo_len"].asUInt();
 				load_primitive_from_file(kname, ele_format, vbo_len, ebo_len);
 			}
 			_root.init_property_from_json(jroot);//
@@ -397,7 +399,7 @@ void ui_assembler::output_primitive_to_file()
 	}
 }
 
-void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_format, int vbo_len, int ebo_len)
+void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len)
 {
 	GLfloat* pvbo = 0;
 	if (vbo_len)
@@ -411,15 +413,15 @@ void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_f
 		}
 	}
 
-	GLushort* pebo = 0;
+	GLuint* pebo = 0;
 	if (ebo_len)
 	{
 		ifstream iefin(g_cureent_directory + files_fold + kname + ".ebo", ios::binary);
 		if (iefin.is_open())
 		{
-			pebo = new GLushort[ebo_len];
+			pebo = new GLuint[ebo_len];
 			iefin.seekg(0, ios::beg);
-			iefin.read((char *)pebo, ebo_len*sizeof(GLushort));
+			iefin.read((char *)pebo, ebo_len*sizeof(GLuint));
 			iefin.close();
 		}
 	}

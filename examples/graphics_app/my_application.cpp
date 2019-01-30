@@ -171,7 +171,7 @@ void my_application::register_command_handle()
 				ImVec2 bsize = _right_pointer_sl->thumb_size();
 				ImVec2 tmb_pos = _right_pointer_sl->thumb_base_pos();
 				_right_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y);
-				_right_pointer_play->set_size(bsize);
+				_right_pointer_play->set_size(bsize.x, bsize.y);
 			}
 		}
 		else
@@ -198,7 +198,7 @@ void my_application::register_command_handle()
 				ImVec2 bsize = _left_pointer_sl->thumb_size();
 				ImVec2 tmb_pos = _left_pointer_sl->thumb_base_pos();
 				_left_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y);
-				_left_pointer_play->set_size(bsize);
+				_left_pointer_play->set_size(bsize.x,bsize.y);
 			}
 		}
 	});
@@ -281,7 +281,7 @@ void my_application::resLoaded()
 	ImVec2 bsize = _left_pointer_sl->thumb_size();
 	ImVec2 tmb_pos = _left_pointer_sl->thumb_base_pos();
 	_left_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y) ;
-	_left_pointer_play->set_size(bsize);
+	_left_pointer_play->set_size(bsize.x,bsize.y);
 	_edge_left_play->set_frame_index(0);
 
 	_right_pointer_sl->set_progress_value(8);
@@ -289,7 +289,7 @@ void my_application::resLoaded()
 	bsize = _right_pointer_sl->thumb_size();
 	tmb_pos = _right_pointer_sl->thumb_base_pos();
 	_right_pointer_play->set_base_pos(tmb_pos.x,tmb_pos.y) ;
-	_right_pointer_play->set_size(bsize);
+	_right_pointer_play->set_size(bsize.x,bsize.y);
 	_edge_right_play->set_frame_index(0);
 	_edge_right_up_sl1->set_progress_value(0.f);
 	_edge_right_up_sl2->set_progress_value(0.f);
@@ -340,19 +340,14 @@ void my_application::finish_animation()
 	_ppop_up_dlg = make_shared<pop_up_dlg_controller>(_popup_dlg);
 	_ptest_model = make_shared<test_model_controller>(_test_model);
 }
-bool play_image(ft_image_play* pimgp)
+bool play_image(ft_image_play* pimgp,bool to_end=false)
 {
-	auto last_fm_id=pimgp->get_frames_count()-1;
-	auto cur_fm_id = pimgp->get_cur_frame_index();
-	if (cur_fm_id<last_fm_id)
-	{
-		pimgp->set_frame_index(cur_fm_id + 1);
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	auto cur_fm_id = pimgp->get_cur_frame_index() + 1;
+	auto valid_fm_count = pimgp->get_frames_count();
+	bool be_valid = cur_fm_id < valid_fm_count;
+	if (be_valid || to_end)
+		pimgp->set_frame_index(cur_fm_id);
+	return be_valid;
 }
 bool play_slider_thumb(ft_slider_thumb* psl, float delta=10.f)
 {
@@ -372,6 +367,8 @@ void play_group(base_ui_component* pobj)
 		play_slider_thumb(psl);
 	}
 }
+bool edge_left_up_play_end = false;
+bool edge_right_up_play_end = false;
 void my_application::onUpdate()
 {
 	g_msg_host.execute_data_handle_cmd();
@@ -419,8 +416,24 @@ void my_application::onUpdate()
 		}
 		bool b_end = play_image(_left_pointer_play);
 		b_end = play_image(_right_pointer_play);
-		b_end = play_image(_edge_left_up_play);
-		b_end = play_image(_edge_right_up_play);
+		if (!edge_left_up_play_end)
+		{
+			edge_left_up_play_end=!play_image(_edge_left_up_play,true);
+			if (edge_left_up_play_end)
+			{
+				auto icon = _edge_left_up_play->get_child(0);
+				icon->set_visible(true);
+			}
+		}
+		if (!edge_right_up_play_end)
+		{
+			edge_right_up_play_end=!play_image(_edge_right_up_play,true);
+			if (edge_right_up_play_end)
+			{
+				auto icon = _edge_right_up_play->get_child(0);
+				icon->set_visible(true);
+			}
+		}
 
 		if (time_line==key_time_pointer[2]+5)
 		{
@@ -445,13 +458,14 @@ void my_application::onUpdate()
 			{
 				_state->set_visible(true);
 			}
-			ImVec2 bsz = _right_decorate_line->get_size();
+			ImVec2 bsz;
+			_right_decorate_line->get_size(bsz.x,bsz.y);
 			if (bsz.x<77.f)
 			{
 				bsz.x += 7.5;
 				_right_decorate_line->set_size(bsz);
 			}
-			bsz = _left_decorate_line->get_size();
+			_left_decorate_line->get_size(bsz.x, bsz.y);
 			if (bsz.x < 77.f)
 			{
 				bsz.x += 7.5;

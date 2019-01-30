@@ -35,6 +35,7 @@
 #include "res_edit.h"
 #include "afb_output.h"
 #include "primitive_object.h"
+#include "af_model.h"
 #include "material_shader_edit.h"
 #include "texture_edit.h"
 #include "fonts_edit.h"
@@ -192,7 +193,7 @@ int main(int argc, char* argv[])
 		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 	}
 	init_internal_primitive_list();
-
+	init_common_type_property_handles();
 	_pres_mg = make_shared< res_edit>();
 	_pml_shd_mg = make_shared<material_shader_edit>();
 	auto ptexture = make_shared<texture_edit>();
@@ -357,6 +358,7 @@ int main(int argc, char* argv[])
 					if (result == IDYES)
 					{
 						//import_fbx_info(strFileName);
+						import_models(strFileName);
 					}
 			}
 		}

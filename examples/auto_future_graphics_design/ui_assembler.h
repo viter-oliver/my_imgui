@@ -36,6 +36,6 @@ public:
 private:
 	void output_primitive_to_file();
 
-	void load_primitive_from_file(string &kname, vector<GLubyte> ele_format, int vbo_len, int ebo_len);
+	void load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len);
 };
 

@@ -9,6 +9,49 @@
 
 namespace auto_future
 {
+	mp_tp_propty_handle _mcustom_type_property_handles_container;
+	void reg_property_handle(string tpname, property_handle ph)
+	{
+		_mcustom_type_property_handles_container[tpname] = ph;
+	}
+	void init_common_type_property_handles()
+	{
+		reg_property_handle("camera", [](void* membadr){
+			camera* pcamera = reinterpret_cast<camera*>(membadr);
+			ImGui::Text("Camera");
+			ImGui::SliderFloat3("Position", (float*)&pcamera->_position, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::SliderFloat3("Direction", (float*)&pcamera->_direction, -10, 10);
+			ImGui::SliderFloat3("Up", (float*)&pcamera->_up, -10, 10);
+		});
+		reg_property_handle("directional_light", [](void* membadr){
+			directional_light* pdr_lt = reinterpret_cast<directional_light*>(membadr);
+			ImGui::Text("Directional light");
+			ImGui::ColorEdit3("Color", (float*)&pdr_lt->_color, ImGuiColorEditFlags_RGB);
+			ImGui::SliderFloat3("Direction", (float*)&pdr_lt->_direction, -10, 10);
+		});
+		reg_property_handle("point_light", [](void* membadr){
+			point_light* ppt_lt = reinterpret_cast<point_light*>(membadr);
+			ImGui::Text("Point light");
+			ImGui::ColorEdit3("Color", (float*)&ppt_lt->_color, ImGuiColorEditFlags_RGB);
+			ImGui::SliderFloat3("Position", (float*)&ppt_lt->_position, -base_ui_component::screenw, base_ui_component::screenw);
+		});
+		reg_property_handle("transformation", [](void* membadr){
+			transformation* ptrans = reinterpret_cast<transformation*>(membadr);
+			ImGui::Text("Transformation");
+			ImGui::SliderFloat3("Scale", (float*)&ptrans->_scale, -10.f, 10.f);
+			ImGui::SliderFloat3("Rotation", (float*)&ptrans->_rotation, -180.f, 180.f);
+			ImGui::SliderFloat3("Translation", (float*)&ptrans->_translation, -base_ui_component::screenw, base_ui_component::screenw);
+		});
+		reg_property_handle("projection", [](void* membadr){
+			projection* pproj = reinterpret_cast<projection*>(membadr);
+			ImGui::Text("Projection");
+			ImGui::SliderFloat("Fovy", (float*)&pproj->_fovy, 0.f, 180.f);
+			//ImGui::SliderFloat("Aspect", (float*)&pproj->_aspect, 0.f, 10);
+			ImGui::SliderFloat("Near", (float*)&pproj->_near, 0.f, 180.f);
+			ImGui::SliderFloat("Far", (float*)&pproj->_far, 0.f, 180.f);
+
+		});
+	}
 	static map<string, value_range> s_rg_tips;
 	const int init_base_value_ranges()
 	{

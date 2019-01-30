@@ -39,6 +39,12 @@ extern string g_cureent_directory;
 bool add_image_to_mtexure_list(string& imgPath)
 {
 	string img_file_name = imgPath.substr(imgPath.find_last_of('\\') + 1);
+	auto itimg = g_mtexture_list.find(img_file_name);
+	if (itimg!=g_mtexture_list.end())
+	{
+		printf("%s has already exist in the texture list!\n", img_file_name.c_str());
+		return false;
+	}
 	string img_file_path = imgPath.substr(0, imgPath.find_last_of('\\') + 1);
 
 	GLubyte* imgdata = NULL;

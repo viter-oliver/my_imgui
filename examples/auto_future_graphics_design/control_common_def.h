@@ -57,6 +57,11 @@ namespace auto_future
 	*            design pattern, including all the basic features of graphics element,
 	such as drawing, parenting, childing and identity,
 	*/
+	typedef std::function<void(void*)> property_handle;
+	typedef map<string, property_handle> mp_tp_propty_handle;
+	extern mp_tp_propty_handle _mcustom_type_property_handles_container;
+	void reg_property_handle(string tpname, property_handle ph);
+	void init_common_type_property_handles();
 	class AFG_EXPORT base_ui_component
 	{
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
@@ -94,8 +99,7 @@ namespace auto_future
 	protected:
 		/** used for selecting a object in project edit for property editing */
 		bool _selected = { false };
-		typedef std::function<void(void*)> property_handle;
-		map<string, property_handle> _mcustom_type_property_handles_container;
+		
 		map<void*, property_handle> _mcustom_var_property_handles_container;
 		struct st_member_key 
 		{

@@ -176,6 +176,7 @@
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="afb_output.cpp" />
     <ClCompile Include="af_font_res_set.cpp" />
+    <ClCompile Include="af_model.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
     <ClCompile Include="base_ui_component.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="fonts_edit.cpp" />
     <ClCompile Include="ft_block.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
+    <ClCompile Include="ft_modeling_3d.cpp" />
     <ClCompile Include="ft_particles_3d.cpp" />
     <ClCompile Include="ft_particles1_3d.cpp" />
     <ClCompile Include="ft_particles_effect_3d.cpp" />
@@ -250,6 +252,7 @@
     <ClInclude Include="afb_load.h" />
     <ClInclude Include="afb_output.h" />
     <ClInclude Include="af_font_res_set.h" />
+    <ClInclude Include="af_model.h" />
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="af_shader_source_code.h" />
     <ClInclude Include="af_type.h" />
@@ -261,6 +264,7 @@
     <ClInclude Include="fonts_edit.h" />
     <ClInclude Include="ft_block.h" />
     <ClInclude Include="ft_image_play.h" />
+    <ClInclude Include="ft_modeling_3d.h" />
     <ClInclude Include="ft_particles_3d.h" />
     <ClInclude Include="ft_particles1_3d.h" />
     <ClInclude Include="ft_particles_effect_3d.h" />
