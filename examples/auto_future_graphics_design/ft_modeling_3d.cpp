@@ -12,6 +12,10 @@ namespace auto_future
 		_pty_page._cam = { { 0.f, 0.f, 3.f }, { 0.f, 0.f, 0.f }, { 0.f, 1.f, 0.f } };
 		_pty_page._pj = { 60.f,0.1f, 100.f };
 		_pty_page._trans = { { 1.f, 1.f, 1.f }, { 0, 0, 0 }, { 0, 0, 0 } };
+		_pty_page._light_ambient = { 0.2f, 0.2f, 0.2f };
+		_pty_page._light_diffuse = { 0.5f, 0.5f, 0.5f };
+		_pty_page._light_specular = { 1.f, 1.f, 1.f };
+		_pty_page._light_position = { -1.f, 1.f, -2.f };
 		auto shd_modeling = g_af_shader_list.find(modeling);
 		if (shd_modeling==g_af_shader_list.end())
 		{
