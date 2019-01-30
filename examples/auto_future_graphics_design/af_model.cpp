@@ -248,7 +248,7 @@ void processNode(aiNode *node, const aiScene *scene,af_model& md,string& mesh_ba
 		md.emplace_back();
 		auto& cmesh = md[id];
 		cmesh._prm_id = mesh_kname;
-
+		processMesh(mesh, scene, cmesh);
 
 	}
 	// after we've processed all of the meshes (if any) we then recursively process each of the children nodes
