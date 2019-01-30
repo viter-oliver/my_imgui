@@ -40,6 +40,7 @@
 #include "texture_edit.h"
 #include "fonts_edit.h"
 #include "file_res_edit.h"
+#include "model_edit.h"
 #include "common_functions.h"
 #include "dir_output.h"
 #include "command_element_delta.h"
@@ -62,7 +63,8 @@ enum en_short_cut_item
 };
 bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
-show_fonts_manager=true,show_file_manager=true,show_output_format=false;
+show_fonts_manager=true,show_file_manager=true,\
+show_output_format=false,show_model_list=false;
 #define _MY_IMGUI__
 //#define _DEMO_
 int main(int argc, char* argv[])
@@ -202,6 +204,7 @@ int main(int argc, char* argv[])
 
 	auto pfonts_edit = make_shared<fonts_edit>();
 	auto pfiles_edit = make_shared<file_res_edit>();
+	auto pmodel_edit = make_shared<model_edit>();
 	function<void(en_short_cut_item)> fun_shortct = [&](en_short_cut_item enshort) mutable {
 		if (!_proot)
 		{
@@ -339,17 +342,17 @@ int main(int argc, char* argv[])
 		{
 			OPENFILENAME ofn = { sizeof(OPENFILENAME) };
 			ofn.hwndOwner = GetForegroundWindow();
-			ofn.lpstrFilter = "valid file(.fbx):\0*.fbx\0\0";
+			ofn.lpstrFilter = assimp_support_format;
 			char strFileName[MAX_PATH] = { 0 };
 			ofn.nFilterIndex = 1;
 			ofn.lpstrFile = strFileName;
 			ofn.nMaxFile = sizeof(strFileName);
-			ofn.lpstrTitle = "select a fbx file(*.fbx) please!";
+			ofn.lpstrTitle = "select a 3d file please!";
 			ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
 			if (GetOpenFileName(&ofn))
 			{
 				printf("open file:%s\n", strFileName);
-				int result = MessageBox(GetForegroundWindow(), "Import this fbx model?", "Import", MB_YESNOCANCEL);
+				int result = MessageBox(GetForegroundWindow(), "Import this model?", "Import", MB_YESNOCANCEL);
 				if (result == IDCANCEL)
 				{
 					return;
@@ -605,7 +608,10 @@ int main(int argc, char* argv[])
 				if (ImGui::MenuItem("Resource Manager", NULL, show_resource_manager)) { show_resource_manager = !show_resource_manager; }
 				if (ImGui::MenuItem("Fonts Manager", NULL, show_fonts_manager)) { show_fonts_manager = !show_fonts_manager; }
 				if (ImGui::MenuItem("Files Manager", NULL, show_file_manager)) { show_file_manager = !show_file_manager; }
-
+				if (ImGui::MenuItem("Models Manager", NULL, show_model_list))
+				{
+					show_model_list = !show_model_list;
+				}
 
 				ImGui::EndMenu();
 			}
@@ -790,7 +796,15 @@ int main(int argc, char* argv[])
 			pfiles_edit->draw_file_res_item_property();
 			ImGui::End();
 		}
-		
+		if (show_model_list)
+		{
+			ImGui::Begin("Models Manager", &show_model_list);
+			ImGui::Columns(2);
+			pmodel_edit->draw_model_list();
+			ImGui::NextColumn();
+			pmodel_edit->draw_model_item_property();
+			ImGui::End();
+		}
 #endif
         // Rendering
         int display_w, display_h;

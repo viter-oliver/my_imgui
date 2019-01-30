@@ -238,6 +238,9 @@
     <ClCompile Include="af_model.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="model_edit.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -467,6 +470,9 @@
     </ClInclude>
     <ClInclude Include="af_model.h">
       <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="model_edit.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

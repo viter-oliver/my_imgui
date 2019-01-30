@@ -12,6 +12,7 @@ struct af_mesh
 	vector<string> _text_ambient_list;
 	string _prm_id;
 };
+extern const char* assimp_support_format;
 using af_model = vector<af_mesh>;
 using mp_model=map<string, shared_ptr<af_model>>;
 extern mp_model g_mmodel_list;
