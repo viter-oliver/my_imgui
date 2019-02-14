@@ -19,28 +19,64 @@ namespace auto_future
 		reg_property_handle("camera", [](void* membadr){
 			camera* pcamera = reinterpret_cast<camera*>(membadr);
 			ImGui::Text("Camera");
-			ImGui::SliderFloat3("Position", (float*)&pcamera->_position, -base_ui_component::screenw, base_ui_component::screenw);
-			ImGui::SliderFloat3("Direction", (float*)&pcamera->_direction, -10, 10);
-			ImGui::SliderFloat3("Up", (float*)&pcamera->_up, -10, 10);
+			ImGui::SliderFloat("Position x", &pcamera->_position.x, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::SliderFloat("Position y", &pcamera->_position.y, -base_ui_component::screenh, base_ui_component::screenh);
+			ImGui::SliderFloat("Position z", &pcamera->_position.z, -base_ui_component::screenh, base_ui_component::screenh);
+
+			ImGui::SliderFloat("Direction x", &pcamera->_direction.x, -10, 10);
+			ImGui::SliderFloat("Direction y", &pcamera->_direction.y, -10, 10);
+			ImGui::SliderFloat("Direction z", &pcamera->_direction.z, -10, 10);
+
+			ImGui::SliderFloat("Up x", (float*)&pcamera->_up.x, -10, 10);
+			ImGui::SliderFloat("Up y", (float*)&pcamera->_up.y, -10, 10);
+			ImGui::SliderFloat("Up z", (float*)&pcamera->_up.z, -10, 10);
+
 		});
 		reg_property_handle("directional_light", [](void* membadr){
 			directional_light* pdr_lt = reinterpret_cast<directional_light*>(membadr);
 			ImGui::Text("Directional light");
-			ImGui::ColorEdit3("Color", (float*)&pdr_lt->_color, ImGuiColorEditFlags_RGB);
-			ImGui::SliderFloat3("Direction", (float*)&pdr_lt->_direction, -10, 10);
+			ImGui::ColorEdit3("Light color", (float*)&pdr_lt->_color, ImGuiColorEditFlags_RGB);
+			ImGui::SliderFloat("Light direction x", &pdr_lt->_direction.x, -10, 10);
+			ImGui::SliderFloat("Light direction y", &pdr_lt->_direction.y, -10, 10);
+			ImGui::SliderFloat("Light direction z", &pdr_lt->_direction.z, -10, 10);
+
 		});
 		reg_property_handle("point_light", [](void* membadr){
 			point_light* ppt_lt = reinterpret_cast<point_light*>(membadr);
 			ImGui::Text("Point light");
-			ImGui::ColorEdit3("Color", (float*)&ppt_lt->_color, ImGuiColorEditFlags_RGB);
-			ImGui::SliderFloat3("Position", (float*)&ppt_lt->_position, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::ColorEdit3("Point light color", (float*)&ppt_lt->_color, ImGuiColorEditFlags_RGB);
+			ImGui::SliderFloat("Point light position x", &ppt_lt->_position.x, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::SliderFloat("Point light position y", &ppt_lt->_position.y, -base_ui_component::screenh, base_ui_component::screenh);
+			ImGui::SliderFloat("Point light position z", &ppt_lt->_position.z, -base_ui_component::screenh, base_ui_component::screenh);
+
 		});
 		reg_property_handle("transformation", [](void* membadr){
 			transformation* ptrans = reinterpret_cast<transformation*>(membadr);
 			ImGui::Text("Transformation");
-			ImGui::SliderFloat3("Scale", (float*)&ptrans->_scale, -10.f, 10.f);
-			ImGui::SliderFloat3("Rotation", (float*)&ptrans->_rotation, -180.f, 180.f);
-			ImGui::SliderFloat3("Translation", (float*)&ptrans->_translation, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::Checkbox("SameScale:", &ptrans->_same_scale);
+			if (ptrans->_same_scale)
+			{
+				if (ImGui::SliderFloat("Scale", &ptrans->_scale.x, -10.f, 10.f))
+				{
+					ptrans->_scale.y = ptrans->_scale.x;
+					ptrans->_scale.z = ptrans->_scale.x;
+				}
+				//ImGui::SliderFloat("Scale", &ptrans->_scale.y, -10.f, 10.f);
+				//ImGui::SliderFloat("Scale", &ptrans->_scale.z, -10.f, 10.f);
+			}
+			else
+			{
+				ImGui::SliderFloat("Scale x", &ptrans->_scale.x, -10.f, 10.f);
+				ImGui::SliderFloat("Scale y", &ptrans->_scale.y, -10.f, 10.f);
+				ImGui::SliderFloat("Scale z", &ptrans->_scale.z, -10.f, 10.f);
+			}
+			ImGui::SliderFloat("Rotation x", &ptrans->_rotation.x, -180.f, 180.f);
+			ImGui::SliderFloat("Rotation y", &ptrans->_rotation.y, -180.f, 180.f);
+			ImGui::SliderFloat("Rotation z", &ptrans->_rotation.z, -180.f, 180.f);
+			ImGui::SliderFloat("Translation x", &ptrans->_translation.x, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::SliderFloat("Translation y", &ptrans->_translation.y, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::SliderFloat("Translation z", &ptrans->_translation.z, -base_ui_component::screenw, base_ui_component::screenw);
+
 		});
 		reg_property_handle("projection", [](void* membadr){
 			projection* pproj = reinterpret_cast<projection*>(membadr);

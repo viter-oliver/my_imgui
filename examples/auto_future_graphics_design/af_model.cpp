@@ -130,6 +130,7 @@ void loadMaterialTextures(aiMaterial *mat, aiTextureType type,vector<string>& tx
 		mat->GetTexture(type, i, &str);
 		// check if texture was loaded before and if so, continue to next iteration: skip loading a new texture
 		string str_txt_name = str.C_Str();
+		str_txt_name = str_txt_name.substr(str_txt_name.find_last_of('\\')+1);
 		txt_list.push_back(str_txt_name);
 		string str_txt_path = model_path + str_txt_name;
 		add_image_to_mtexure_list(str_txt_path);
@@ -209,7 +210,8 @@ void processMesh(aiMesh *mesh, const aiScene *scene,af_mesh& mesh_unit)
 		}
 	}
 	obj_pm->set_ele_format({ 3, 2, 3 });
-	obj_pm->load_vertex_data((GLfloat*)pvertexs, sizeof(af_vertex)*mesh->mNumVertices, pface_idx, face_len);
+	auto float_size = sizeof(af_vertex) / sizeof(float);
+	obj_pm->load_vertex_data((GLfloat*)pvertexs, float_size*mesh->mNumVertices, pface_idx, face_len);
 
 	// process materials
 	aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];

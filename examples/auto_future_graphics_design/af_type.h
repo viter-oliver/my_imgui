@@ -122,6 +122,7 @@ namespace auto_future
 		af_vec3 _scale;
 		af_vec3 _rotation;
 		af_vec3 _translation;
+		bool _same_scale;
 	};
 
 	struct projection

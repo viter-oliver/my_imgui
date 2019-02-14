@@ -14,10 +14,10 @@ namespace auto_future
 			(camera, _cam),
 			(projection, _pj),
 			(transformation, _trans),//directional_light,point_light
-			(af_vec3, _light_ambient),
-			(af_vec3, _light_diffuse),
-			(af_vec3, _light_specular),
-			(af_vec3,_light_position),
+			(af_vec3, _light_ambient_clr),
+			(af_vec3, _light_diffuse_clr),
+			(af_vec3, _light_specular_clr),
+			(af_vec3,_light_position_shd),
 			(float, _light_constant,{1.f}),
 			(float, _light_linear,{0.09f}),
 			(float, _light_quadratic, { 0.032f })

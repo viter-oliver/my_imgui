@@ -48,7 +48,6 @@ namespace auto_future
 						if (!ij->_material_name.empty())
 						{
 							ImGui::Text("material name:%s", it.second._mesh_info[i]._material_name.c_str());
-
 							if (string::npos != ij->_shader_mode.find("Textured"))
 							{
 								/*string texture_str = "texture list";

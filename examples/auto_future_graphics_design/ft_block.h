@@ -5,8 +5,6 @@ namespace auto_future
 	class AFG_EXPORT ft_block :
 		public ft_base
 	{
-
-
 		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
 			(float, _round_utn, {0.f}),
 			(bool, _with_border, {false}),

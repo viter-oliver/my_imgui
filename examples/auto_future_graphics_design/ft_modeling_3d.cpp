@@ -11,15 +11,16 @@ namespace auto_future
 		memset(_pty_page._model_name, 0, FILE_NAME_LEN);
 		_pty_page._cam = { { 0.f, 0.f, 3.f }, { 0.f, 0.f, 0.f }, { 0.f, 1.f, 0.f } };
 		_pty_page._pj = { 60.f,0.1f, 100.f };
-		_pty_page._trans = { { 1.f, 1.f, 1.f }, { 0, 0, 0 }, { 0, 0, 0 } };
-		_pty_page._light_ambient = { 0.2f, 0.2f, 0.2f };
-		_pty_page._light_diffuse = { 0.5f, 0.5f, 0.5f };
-		_pty_page._light_specular = { 1.f, 1.f, 1.f };
-		_pty_page._light_position = { -1.f, 1.f, -2.f };
+		_pty_page._trans = { { 0.15f, 0.15f, 0.15f }, { 0, 0, 0 }, { 0, 0, 0 },true };
+		_pty_page._light_ambient_clr = { 0.2f, 0.2f, 0.2f };
+		_pty_page._light_diffuse_clr = { 0.5f, 0.5f, 0.5f };
+		_pty_page._light_specular_clr = { 1.f, 1.f, 1.f };
+		_pty_page._light_position_shd = { -1.f, 1.f, -2.f };
 		auto shd_modeling = g_af_shader_list.find(modeling);
 		if (shd_modeling==g_af_shader_list.end())
 		{
 			_pshd_modeling = make_shared<af_shader>(modeling_vs, modeling_fs);
+			_pshd_modeling->set_name(modeling);
 			g_af_shader_list[modeling] = _pshd_modeling;
 		}
 		else
@@ -80,11 +81,11 @@ namespace auto_future
 		proj = glm::perspective(glm::radians(cproj._fovy), aspect, cproj._near, cproj._far);
 		my_shader.uniform("model", glm::value_ptr(model));
 		my_shader.uniform("view", glm::value_ptr(view));
-		my_shader.uniform("proj", glm::value_ptr(proj));
-		my_shader.uniform("light.ambient", (float*)&_pty_page._light_ambient);
-		my_shader.uniform("light.diffuse", (float*)&_pty_page._light_diffuse);
-		my_shader.uniform("light.specular", (float*)&_pty_page._light_specular);
-		my_shader.uniform("light.position", (float*)&_pty_page._light_position);
+		my_shader.uniform("projection", glm::value_ptr(proj));
+		my_shader.uniform("light.ambient", (float*)&_pty_page._light_ambient_clr);
+		my_shader.uniform("light.diffuse", (float*)&_pty_page._light_diffuse_clr);
+		my_shader.uniform("light.specular", (float*)&_pty_page._light_specular_clr);
+		my_shader.uniform("light.position", (float*)&_pty_page._light_position_shd);
 		my_shader.uniform("light.constant", _pty_page._light_constant);
 		my_shader.uniform("light.linear", _pty_page._light_linear);
 		my_shader.uniform("light.quadratic", _pty_page._light_quadratic);
@@ -93,6 +94,10 @@ namespace auto_future
 		for (auto& amesh:my_model)
 		{
 			auto& iprmid = g_primitive_list.find(amesh._prm_id);
+			if (iprmid==g_primitive_list.end())
+			{
+				continue;
+			}
 			auto& primid=*(iprmid->second);
 			auto& diffuse_list = amesh._text_diffuse_list;
 			auto& specular_list = amesh._text_specular_list;
@@ -102,6 +107,10 @@ namespace auto_future
 			for (auto& specular:diffuse_list)
 			{
 				auto& itxt = g_mtexture_list.find(specular);
+				if (itxt==g_mtexture_list.end())
+				{
+					continue;
+				}
 				auto& txt = *(itxt->second);
 				glActiveTexture(GL_TEXTURE0 + itx_cnt);
 				glBindTexture(GL_TEXTURE_2D, txt._txt_id());
@@ -113,6 +122,10 @@ namespace auto_future
 			for (auto& specular : specular_list)
 			{
 				auto& itxt = g_mtexture_list.find(specular);
+				if (itxt==g_mtexture_list.end())
+				{
+					continue;
+				}
 				auto& txt = *(itxt->second);
 				glActiveTexture(GL_TEXTURE0 + itx_cnt);
 				glBindTexture(GL_TEXTURE_2D, txt._txt_id());
