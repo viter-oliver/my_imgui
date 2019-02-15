@@ -11,116 +11,8 @@ mp_model g_mmodel_list;
 const char* model_group_name="model_group.json";
 const char* assimp_support_format="file format:\0*.fbx\0*.dae\0*.blend\0*.3ds\0*.gltf\0*.glb\0*.ase\0*.obj\0*.ifc\0*.xgl\0*.zgl\0*.ply\0*.dxf\0*.lwo\0*.lws\0*.lxo\0*.stl\0*.x\0*.ac\0*.ms3d\0*.cob\0*.scn\0*.bvh\0*.csm\0\0";
 const char* assimp_support_other_format = "\0*.xml\0*.irrmesh\0*.irr\0*.md1\0*.md2\0*.md3\0*.pk3\0*.mdc\0*.md5*\0*.smd\0*.vta\0*.ogex\0*.3d\0*.b3d\0*.q3d\0*.q3s\0*.nff\0*.off\0*.raw\0*.ter\0*.mdl\0*.hmp\0*.ndo\0\0";
-extern string g_cureent_directory;
-using namespace Json;
-void init_model_group_from_json(const char* pjson_buff)
-{
-	Reader reader;
-	Value jvalue;
-	bool be_succ = reader.parse(pjson_buff, jvalue, false);
-	if (!be_succ)
-	{
-		printf("fail to parse model group json buff\n");
-		return;
-	}
-	int isize = jvalue.size();
-	for (int ix = 0; ix < isize;++ix)
-	{
-		Value& jmd_unit = jvalue[ix];
-		string kname = jmd_unit["kname"].asString();
-		auto pmodel = make_shared<af_model>();
-		g_mmodel_list[kname] = pmodel;
-		af_model& mdl = *pmodel;
-		Value& jmeshlist = jmd_unit["mesh_list"];
-		int iisz = jmeshlist.size();
-		for (int iix = 0; iix < iisz;++iix)
-		{
-			Value& jmesh_unit = jmeshlist[iix];
-			mdl.emplace_back();
-			af_mesh& mesh_unit = mdl[iix];
-			mesh_unit._prm_id = jmesh_unit["prim_id"].asString();
-			Value& jdiffuse_list = jmesh_unit["diffuse_list"];
-			int jdsize = jdiffuse_list.size();
-			for (int jd = 0; jd < jdsize;++jd)
-			{
-				auto& diff_txt = jdiffuse_list[jd].asString();
-				mesh_unit._text_diffuse_list.emplace_back(diff_txt);
-			}
-			Value& jspecular_list = jmesh_unit["specular_list"];
-			jdsize = jspecular_list.size();
-			for (int jd = 0; jd < jdsize; ++jd)
-			{
-				auto& specular_txt = jspecular_list[jd].asString();
-				mesh_unit._text_specular_list.emplace_back(specular_txt);
-			}
-			Value& jheight_list = jmesh_unit["height_list"];
-			jdsize = jheight_list.size();
-			for (int jd = 0; jd < jdsize; ++jd)
-			{
-				auto& height_txt = jheight_list[jd].asString();
-				mesh_unit._text_height_list.emplace_back(height_txt);
-			}
-			Value& jambient_list = jmesh_unit["ambient_list"];
-			jdsize = jambient_list.size();
-			for (int jd = 0; jd < jdsize; ++jd)
-			{
-				auto& ambient_txt = jambient_list[jd].asString();
-				mesh_unit._text_ambient_list.emplace_back(ambient_txt);
-			}
-		}
-	}
-}
-#include <fstream>
-void save_model_grop_to_json()
-{
-	string md_grp_path = g_cureent_directory + files_fold;
-	md_grp_path += model_group_name;
-	ofstream fout;
-	fout.open(md_grp_path);
-	Value jroot(arrayValue);
-	for (auto& model_unit:g_mmodel_list)
-	{
-		Value jmodel(objectValue);
-		jmodel["kname"] = model_unit.first;
-		Value jmesh_list(arrayValue);
-		auto& mesh_list =*model_unit.second;
-		for (auto& mesh_unit:mesh_list)
-		{
-			Value jmesh_unit(objectValue);
-			jmesh_unit["prim_id"] = mesh_unit._prm_id;
-			Value diffuse_list(arrayValue);
-			for (auto& diffuse:mesh_unit._text_diffuse_list)
-			{
-				diffuse_list.append(diffuse);
-			}
-			jmesh_unit["diffuse_list"] = diffuse_list;
-			Value spcular_list(arrayValue);
-			for (auto& specular : mesh_unit._text_specular_list)
-			{
-				spcular_list.append(specular);
-			}
-			jmesh_unit["spcular_list"] = spcular_list;
-			Value height_list(arrayValue);
-			for (auto& height : mesh_unit._text_height_list)
-			{
-				height_list.append(height);
-			}
-			jmesh_unit["height_list"] = height_list;
-			Value ambient_list(arrayValue);
-			for (auto& ambient : mesh_unit._text_ambient_list)
-			{
-				ambient_list.append(ambient);
-			}
-			jmesh_unit["ambient_list"] = ambient_list;
+//extern string g_cureent_directory;
 
-			jmesh_list.append(jmesh_unit);
-		}
-		jmodel["mesh_list"] = jmesh_list;
-		jroot.append(jmodel);
-	}
-	fout << jroot << endl;
-	fout.close();
-}
 static string model_path;
 void loadMaterialTextures(aiMaterial *mat, aiTextureType type,vector<string>& txt_list)
 {
@@ -136,12 +28,10 @@ void loadMaterialTextures(aiMaterial *mat, aiTextureType type,vector<string>& tx
 		add_image_to_mtexure_list(str_txt_path);
 	}
 }
-void processMesh(aiMesh *mesh, const aiScene *scene,af_mesh& mesh_unit)
+void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, af_mesh& mesh_unit)
 {
 	// data to fill
 	
-	auto& itpm = g_primitive_list.find(mesh_unit._prm_id);
-	auto& obj_pm = itpm->second;
 	struct  af_vertex
 	{
 		float _pos[3];
@@ -209,10 +99,11 @@ void processMesh(aiMesh *mesh, const aiScene *scene,af_mesh& mesh_unit)
 			}
 		}
 	}
-	obj_pm->set_ele_format({ 3, 2, 3 });
+	obj_pm.set_ele_format({ 3, 2, 3 });
 	auto float_size = sizeof(af_vertex) / sizeof(float);
-	obj_pm->load_vertex_data((GLfloat*)pvertexs, float_size*mesh->mNumVertices, pface_idx, face_len);
-
+	obj_pm.load_vertex_data((GLfloat*)pvertexs, float_size*mesh->mNumVertices, pface_idx, face_len);
+	delete[] pvertexs;
+	delete[] pface_idx;
 	// process materials
 	aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 	// we assume a convention for sampler names in the shaders. Each diffuse texture should be named
@@ -250,7 +141,7 @@ void processNode(aiNode *node, const aiScene *scene,af_model& md,string& mesh_ba
 		md.emplace_back();
 		auto& cmesh = md[id];
 		cmesh._prm_id = mesh_kname;
-		processMesh(mesh, scene, cmesh);
+		processMesh(mesh, scene,*pmtv, cmesh);
 
 	}
 	// after we've processed all of the meshes (if any) we then recursively process each of the children nodes

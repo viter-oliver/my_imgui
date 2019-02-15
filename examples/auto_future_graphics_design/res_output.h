@@ -113,6 +113,7 @@ struct af_file
 	bool _sel{ false };
 #endif
 	af_file(GLuint fsize);
+	//af_file(){}
 	~af_file();
 };
 #include<map>

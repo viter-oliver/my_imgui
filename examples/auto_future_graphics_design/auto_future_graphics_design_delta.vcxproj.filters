@@ -474,6 +474,9 @@
     <ClInclude Include="model_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
+    <ClInclude Include="afb_res_index.h">
+      <Filter>afb_manager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

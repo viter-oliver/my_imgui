@@ -252,6 +252,7 @@
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="afb_load.h" />
     <ClInclude Include="afb_output.h" />
+    <ClInclude Include="afb_res_index.h" />
     <ClInclude Include="af_font_res_set.h" />
     <ClInclude Include="af_model.h" />
     <ClInclude Include="af_shader.h" />

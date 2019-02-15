@@ -194,7 +194,7 @@ int main(int argc, char* argv[])
 	{
 		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 	}
-	init_internal_primitive_list();
+	//init_internal_primitive_list();
 	init_common_type_property_handles();
 	_pres_mg = make_shared< res_edit>();
 	_pml_shd_mg = make_shared<material_shader_edit>();

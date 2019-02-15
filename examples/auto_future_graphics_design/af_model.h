@@ -14,9 +14,8 @@ struct af_mesh
 };
 extern const char* assimp_support_format;
 using af_model = vector<af_mesh>;
+using af_mesh_list = af_model;
 using mp_model=map<string, shared_ptr<af_model>>;
 extern mp_model g_mmodel_list;
 //extern const char* model_group_name;
-void init_model_group_from_json(const char* pjson_buff);
-void save_model_grop_to_json();
 bool import_models(const char* md_file_name);

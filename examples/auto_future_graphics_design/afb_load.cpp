@@ -18,7 +18,7 @@
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
 #endif 
 #include "miniz.h"
-
+#include "afb_res_index.h"
 
 void afb_load::init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::object& obj)
 {
@@ -180,7 +180,7 @@ void afb_load::load_afb(const char* afb_file)
 	auto re_cnt = obj_res.via.array.size;
 	function<unsigned int(const char*, int, int, unsigned int)> f_gen_txt;
 	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
-		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bsz){
+		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bin_sz){
 			GLuint txt_id;
 			glGenTextures(1, &txt_id);
 			glBindTexture(GL_TEXTURE_2D, txt_id);
@@ -201,7 +201,7 @@ void afb_load::load_afb(const char* afb_file)
 		};
 	}
 	else if (g_output_bin_format._txt_fmt == en_dxt5){
-		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bsz){
+		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bin_sz){
 			GLuint txt_id;
 			glGenTextures(1, &txt_id);
 			printf("gen txtid:%u\n", txt_id);
@@ -214,10 +214,7 @@ void afb_load::load_afb(const char* afb_file)
 			// Step3 设定filter参数
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			if (ptxt_data)
-			{
-				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bsz, ptxt_data);
-			}
+			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bin_sz, ptxt_data);
 
 			//glGenerateMipmap(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, 0);

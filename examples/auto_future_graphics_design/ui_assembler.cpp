@@ -7,6 +7,7 @@
 #include "SOIL.h"
 #include "dir_output.h"
 #include "primitive_object.h"
+#include "af_model.h"
 //#include "af_model.h"
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory;
@@ -181,6 +182,55 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				ebo_len = jpm["ebo_len"].asUInt();
 				load_primitive_from_file(kname, ele_format, vbo_len, ebo_len);
 			}
+			 g_cur_texture_id_index=jroot["texture_id_index"].asInt();
+			 Value& models = jroot["models"];
+			 if (models.isObject())
+			 {
+				 Value::Members md_mb = models.getMemberNames();
+				 for (auto& md_nm:md_mb)
+				 {
+					 Value& jmeshlist = models[md_nm];
+					 auto pmodel = make_shared<af_model>();
+					 g_mmodel_list[md_nm] = pmodel;
+					 af_model& mdl = *pmodel;
+					 int iisz = jmeshlist.size();
+					 for (int iix = 0; iix < iisz; ++iix)
+					 {
+						 Value& jmesh_unit = jmeshlist[iix];
+						 mdl.emplace_back();
+						 af_mesh& mesh_unit = mdl[iix];
+						 mesh_unit._prm_id = jmesh_unit["prim_id"].asString();
+						 Value& jdiffuse_list = jmesh_unit["diffuse_list"];
+						 int jdsize = jdiffuse_list.size();
+						 for (int jd = 0; jd < jdsize; ++jd)
+						 {
+							 auto& diff_txt = jdiffuse_list[jd].asString();
+							 mesh_unit._text_diffuse_list.emplace_back(diff_txt);
+						 }
+						 Value& jspecular_list = jmesh_unit["specular_list"];
+						 jdsize = jspecular_list.size();
+						 for (int jd = 0; jd < jdsize; ++jd)
+						 {
+							 auto& specular_txt = jspecular_list[jd].asString();
+							 mesh_unit._text_specular_list.emplace_back(specular_txt);
+						 }
+						 Value& jheight_list = jmesh_unit["height_list"];
+						 jdsize = jheight_list.size();
+						 for (int jd = 0; jd < jdsize; ++jd)
+						 {
+							 auto& height_txt = jheight_list[jd].asString();
+							 mesh_unit._text_height_list.emplace_back(height_txt);
+						 }
+						 Value& jambient_list = jmesh_unit["ambient_list"];
+						 jdsize = jambient_list.size();
+						 for (int jd = 0; jd < jdsize; ++jd)
+						 {
+							 auto& ambient_txt = jambient_list[jd].asString();
+							 mesh_unit._text_ambient_list.emplace_back(ambient_txt);
+						 }
+					 }
+				 }
+			 }
 			_root.init_property_from_json(jroot);//
 		}
 		fin.close();
@@ -245,7 +295,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	}
 	jroot["texture_list"] = texture_list;
 	Value file_list(arrayValue);
-	for (auto& fileu:g_mfiles_list)
+	for (auto& fileu : g_mfiles_list)
 	{
 		auto& kname = fileu.first;
 		Value jfile(kname);
@@ -295,6 +345,46 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	jroot["primitive_list"] = jprimitive_list;
 
 	jroot["texture_id_index"] = g_cur_texture_id_index;
+	Value jmodels(objectValue);
+
+	for (auto& model_unit : g_mmodel_list)
+	{
+		Value jmesh_list(arrayValue);
+		auto& mesh_list = *model_unit.second;
+		for (auto& mesh_unit : mesh_list)
+		{
+			Value jmesh_unit(objectValue);
+			jmesh_unit["prim_id"] = mesh_unit._prm_id;
+			Value diffuse_list(arrayValue);
+			for (auto& diffuse : mesh_unit._text_diffuse_list)
+			{
+				diffuse_list.append(diffuse);
+			}
+			jmesh_unit["diffuse_list"] = diffuse_list;
+			Value spcular_list(arrayValue);
+			for (auto& specular : mesh_unit._text_specular_list)
+			{
+				spcular_list.append(specular);
+			}
+			jmesh_unit["spcular_list"] = spcular_list;
+			Value height_list(arrayValue);
+			for (auto& height : mesh_unit._text_height_list)
+			{
+				height_list.append(height);
+			}
+			jmesh_unit["height_list"] = height_list;
+			Value ambient_list(arrayValue);
+			for (auto& ambient : mesh_unit._text_ambient_list)
+			{
+				ambient_list.append(ambient);
+			}
+			jmesh_unit["ambient_list"] = ambient_list;
+
+			jmesh_list.append(jmesh_unit);
+		}
+		jmodels[model_unit.first] = jmesh_list;
+	}
+	jroot["models"] = jmodels;
 	_root.save_property_to_json(jroot);
 	fout << jroot << endl;
 	fout.close();
@@ -367,34 +457,29 @@ void ui_assembler::output_primitive_to_file()
 {
 	for (auto& pm : g_primitive_list)
 	{
-		auto& pmu = pm.second;
-		if (pmu->_vertex_buf_len)
+		auto& pkey = pm.first;
+		string file_key = pkey + ".vbo";
+		auto ifile = g_mfiles_list.find(file_key);
+		if (ifile!=g_mfiles_list.end())
 		{
-			ofstream ofin(g_cureent_directory + files_fold + pm.first + ".vbo", ios::trunc | ios::out | ios::binary);
-			if (ofin.is_open())
-			{
-				glBindBuffer(GL_ARRAY_BUFFER, pmu->_vbo);
-				GLfloat* pvbo = (GLfloat*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY);
-
-				printf("%f\n", pvbo[pmu->_vertex_buf_len-1]);
-
-				ofin.write((char *)pvbo, pmu->_vertex_buf_len * sizeof(GLfloat));
-				glUnmapBuffer(GL_ARRAY_BUFFER);
-				ofin.close();
-			}
+			continue;
 		}
-
+		auto& pmu = pm.second;
+		GLuint file_size = pmu->_vertex_buf_len * sizeof(GLfloat);
+		g_mfiles_list[file_key] = make_shared<af_file>(file_size);
+		glBindBuffer(GL_ARRAY_BUFFER, pmu->_vbo);
+		GLfloat* pvbo = (GLfloat*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY);
+		memcpy(g_mfiles_list[file_key]->_pbin, pvbo, file_size);
+		glUnmapBuffer(GL_ARRAY_BUFFER);
 		if (pmu->_ele_buf_len)
 		{
-			ofstream ofin(g_cureent_directory + files_fold + pm.first + ".ebo", ios::trunc | ios::out | ios::binary);
-			if (ofin.is_open())
-			{
-				glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pmu->_ebo);
-				GLshort* pebo = (GLshort*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_READ_ONLY);
-				ofin.write((const char *)pebo, pmu->_ele_buf_len * sizeof(GLshort));
-				glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
-				ofin.close();
-			}
+			auto file_ebo_key = pkey + ".ebo";
+			GLuint efile_size = pmu->_ele_buf_len * sizeof(GLuint);
+			g_mfiles_list[file_ebo_key] = make_shared<af_file>(efile_size);
+			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pmu->_ebo);
+			GLuint* pebo = (GLuint*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_READ_ONLY);
+			memcpy(g_mfiles_list[file_ebo_key]->_pbin, pebo, efile_size);
+			glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
 		}
 	}
 }
@@ -402,27 +487,26 @@ void ui_assembler::output_primitive_to_file()
 void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len)
 {
 	GLfloat* pvbo = 0;
-	if (vbo_len)
-	{
-		ifstream ivfin(g_cureent_directory + files_fold + kname + ".vbo", ios::binary);
-		if (ivfin.is_open())
-		{
-			pvbo = new GLfloat[vbo_len];
-			ivfin.read((char *)pvbo, vbo_len*sizeof(GLfloat));
-			ivfin.close();
-		}
-	}
-
 	GLuint* pebo = 0;
+	auto vbo_key = kname + ".vbo";
+	auto ifile = g_mfiles_list.find(vbo_key);
+	if (ifile!=g_mfiles_list.end())
+	{
+		auto& pfobj = ifile->second;
+		auto& fopj = *pfobj;
+		pvbo = (GLfloat*)fopj._pbin;
+	}
+	
+
 	if (ebo_len)
 	{
-		ifstream iefin(g_cureent_directory + files_fold + kname + ".ebo", ios::binary);
-		if (iefin.is_open())
+		auto ebo_key = kname + ".ebo";
+		auto iefile = g_mfiles_list.find(ebo_key);
+		if (iefile!=g_mfiles_list.end())
 		{
-			pebo = new GLuint[ebo_len];
-			iefin.seekg(0, ios::beg);
-			iefin.read((char *)pebo, ebo_len*sizeof(GLuint));
-			iefin.close();
+			auto& pefile = iefile->second;
+			auto& efile = *pefile;
+			pebo = (GLuint*)efile._pbin;
 		}
 	}
 
