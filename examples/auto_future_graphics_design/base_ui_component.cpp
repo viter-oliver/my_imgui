@@ -56,7 +56,7 @@ namespace auto_future
 			ImGui::Checkbox("SameScale:", &ptrans->_same_scale);
 			if (ptrans->_same_scale)
 			{
-				if (ImGui::SliderFloat("Scale", &ptrans->_scale.x, -10.f, 10.f))
+				if (ImGui::SliderFloat("Scale", &ptrans->_scale.x, -10.f, 10.f,"%.4f",0.01f))
 				{
 					ptrans->_scale.y = ptrans->_scale.x;
 					ptrans->_scale.z = ptrans->_scale.x;
@@ -66,16 +66,16 @@ namespace auto_future
 			}
 			else
 			{
-				ImGui::SliderFloat("Scale x", &ptrans->_scale.x, -10.f, 10.f);
-				ImGui::SliderFloat("Scale y", &ptrans->_scale.y, -10.f, 10.f);
-				ImGui::SliderFloat("Scale z", &ptrans->_scale.z, -10.f, 10.f);
+				ImGui::SliderFloat("Scale x", &ptrans->_scale.x, -10.f, 10.f,"%.4f", 0.01f);
+				ImGui::SliderFloat("Scale y", &ptrans->_scale.y, -10.f, 10.f, "%.4f", 0.01f);
+				ImGui::SliderFloat("Scale z", &ptrans->_scale.z, -10.f, 10.f, "%.4f", 0.01f);
 			}
 			ImGui::SliderFloat("Rotation x", &ptrans->_rotation.x, -180.f, 180.f);
 			ImGui::SliderFloat("Rotation y", &ptrans->_rotation.y, -180.f, 180.f);
 			ImGui::SliderFloat("Rotation z", &ptrans->_rotation.z, -180.f, 180.f);
-			ImGui::SliderFloat("Translation x", &ptrans->_translation.x, -base_ui_component::screenw, base_ui_component::screenw);
-			ImGui::SliderFloat("Translation y", &ptrans->_translation.y, -base_ui_component::screenw, base_ui_component::screenw);
-			ImGui::SliderFloat("Translation z", &ptrans->_translation.z, -base_ui_component::screenw, base_ui_component::screenw);
+			ImGui::SliderFloat("Translation x", &ptrans->_translation.x, -base_ui_component::screenw, base_ui_component::screenw, "%.3f", 0.1f);
+			ImGui::SliderFloat("Translation y", &ptrans->_translation.y, -base_ui_component::screenw, base_ui_component::screenw, "%.3f", 0.1f);
+			ImGui::SliderFloat("Translation z", &ptrans->_translation.z, -base_ui_component::screenw, base_ui_component::screenw, "%.3f", 0.1f);
 
 		});
 		reg_property_handle("projection", [](void* membadr){
@@ -354,6 +354,32 @@ namespace auto_future
 			}
 		}
 	}
+	const char hex_enc_table[] = "abcdefghijklmnop";
+	void convert_binary_to_string(char* pbin, int len, string& out_str)
+	{
+		out_str.resize(len * 2);
+		int ix = 0;
+		for (; ix < len;ix++)
+		{
+			auto bin_value = *(unsigned char*)pbin;
+			out_str[ix * 2] = hex_enc_table[bin_value >> 4];
+			out_str[ix * 2 + 1] = hex_enc_table[bin_value & 0x0f];
+			pbin++;
+		}
+	}
+
+	void convert_string_to_binary(string& in_str,string& out_bin)
+	{
+		auto out_size = in_str.size()/2;
+		out_bin.resize(out_size);
+		int ix = 0;
+		for (; ix < out_size; ix++)
+		{
+			unsigned char high=in_str[ix * 2]-'a';
+			unsigned char low=in_str[ix * 2 + 1]-'a';
+			out_bin[ix] = high << 4 | low;
+		}
+	}
 	void base_ui_component::init_property_from_json(Value& jvalue){
 
 		for (auto& prop_ele : _vprop_eles)
@@ -447,7 +473,9 @@ namespace auto_future
 						else {
 							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
 							{
-								strcpy((char*)membaddr, vele.asCString());
+								string out_bin;
+								convert_string_to_binary(vele.asString(), out_bin);
+								memcpy(membaddr, &out_bin[0], out_bin.size());
 							};
 						}
 						for (int ix = 0; ix < array_cnt; ++ix)
@@ -488,8 +516,9 @@ namespace auto_future
 						*(bool*)memb_address=jvalue[mname].asBool();
 					}
 					else{
-						Value vbytes=jvalue[mname];//must be string
-						strcpy((char*)memb_address, vbytes.asCString());
+						string out_bin;
+						convert_string_to_binary(jvalue[mname].asString(), out_bin);
+						memcpy(memb_address, &out_bin[0], out_bin.size());
 					}
 				}
 			}
@@ -619,15 +648,10 @@ namespace auto_future
 							f_save_to_json = [&](void* membaddr)
 							{
 
-								char* pbytes = new char[mtpsz+1];
-								int ix = 0;
-								for (; ix < mtpsz; ++ix)
-								{
-									pbytes[ix] = *((char*)membaddr + ix);
-								}
-								pbytes[ix] = '\0';
-								Value vbytes=pbytes;
-								delete pbytes;
+								string vsbytes;
+								convert_binary_to_string((char*)membaddr, mtpsz, vsbytes);
+								vsbytes[mtpsz] = '\0';
+								Value vbytes = vsbytes;
 								marray.append(vbytes);
 							};
 						}
@@ -672,15 +696,10 @@ namespace auto_future
 						junit[mname] = *(bool*)memb_address;
 					}
 					else{
-						char* pbytes = new char[mtpsz+1];
-						int ix = 0;
-						for (; ix < mtpsz; ++ix)
-						{
-							pbytes[ix] = *((char*)memb_address + ix);
-						}
-						pbytes[ix] = '\0';
-						junit[mname] = pbytes;
-						delete pbytes;
+						string vsbytes;
+						convert_binary_to_string((char*)memb_address, mtpsz, vsbytes);
+						vsbytes[mtpsz*2] = '\0';
+						junit[mname] = vsbytes;
 					}
 				}
 			}

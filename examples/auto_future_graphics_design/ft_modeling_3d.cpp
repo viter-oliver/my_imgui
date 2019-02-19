@@ -79,6 +79,7 @@ namespace auto_future
 		pparent->get_size(w, h);
 		float aspect = w / h;
 		proj = glm::perspective(glm::radians(cproj._fovy), aspect, cproj._near, cproj._far);
+		my_shader.uniform("viewPos", glm::value_ptr(gcam_pos));
 		my_shader.uniform("model", glm::value_ptr(model));
 		my_shader.uniform("view", glm::value_ptr(view));
 		my_shader.uniform("projection", glm::value_ptr(proj));
@@ -86,9 +87,9 @@ namespace auto_future
 		my_shader.uniform("light.diffuse", (float*)&_pty_page._light_diffuse_clr);
 		my_shader.uniform("light.specular", (float*)&_pty_page._light_specular_clr);
 		my_shader.uniform("light.position", (float*)&_pty_page._light_position_shd);
-		my_shader.uniform("light.constant", _pty_page._light_constant);
-		my_shader.uniform("light.linear", _pty_page._light_linear);
-		my_shader.uniform("light.quadratic", _pty_page._light_quadratic);
+		my_shader.uniform("light.constant", &_pty_page._light_constant);
+		my_shader.uniform("light.linear", &_pty_page._light_linear);
+		my_shader.uniform("light.quadratic", &_pty_page._light_quadratic);
 
 		//my_shader.uniform("")
 		for (auto& amesh:my_model)

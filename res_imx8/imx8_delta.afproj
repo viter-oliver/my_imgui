@@ -1575,6 +1575,71 @@
 					"_width" : 560.0,
 					"_width_limit" : false,
 					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bk_clr" : 
+					{
+						"w" : 0.50,
+						"x" : 0.2000000029802322,
+						"y" : 0.2000000029802322,
+						"z" : 0.50
+					},
+					"_name" : "ft_scene",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 600.0,
+					"_sizew" : 800.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_cam" : "aaaaeimcaaaaaaaaaaaaeaeaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaialpaaaaaaaa",
+							"_light_ambient_clr" : 
+							{
+								"x" : 0.2000000029802322,
+								"y" : 0.2000000029802322,
+								"z" : 0.2000000029802322
+							},
+							"_light_constant" : 1.0,
+							"_light_diffuse_clr" : 
+							{
+								"x" : 0.50,
+								"y" : 0.50,
+								"z" : 0.50
+							},
+							"_light_linear" : 0.09000000357627869,
+							"_light_position_shd" : 
+							{
+								"x" : -32.0,
+								"y" : 1.0,
+								"z" : -7.0
+							},
+							"_light_quadratic" : 0.03200000151991844,
+							"_light_specular_clr" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"_model_name" : "golf.FBX",
+							"_name" : "ft_modeling_3d",
+							"_pj" : "aaaahaecmnmmmmdnaaaamiec",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans" : "jkjjbjdojkjjbjdojkjjbjdoaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabmmmmmm",
+							"_visible" : true,
+							"type" : "ft_modeling_3d"
+						}
+					],
+					"type" : "ft_scene"
 				}
 			],
 			"type" : "ft_base"
@@ -5711,6 +5776,7 @@
 	],
 	"file_list" : 
 	[
+		"cube.vbo",
 		"edge_left_animation.json",
 		"edge_left_up_animation.json",
 		"edge_right_animation.json",
@@ -5721,6 +5787,7 @@
 		"mileage_pg.txt",
 		"needle_left_animation.json",
 		"needle_right_animation.json",
+		"plain.vbo",
 		"water_temp.afp"
 	],
 	"fonts" : [ "FZLanTingHeiS-R-GB.TTF", "ProggyTiny.ttf" ],
@@ -5784,10 +5851,24 @@
 	[
 		
 		{
+			"ebo_len" : 0,
+			"format" : [ 3, 3, 2 ],
+			"name" : "cube",
+			"vbo_len" : 0
+		},
+		
+		{
 			"ebo_len" : 5946,
 			"format" : [ 3, 2, 3 ],
 			"name" : "golf.FBX0",
 			"vbo_len" : 33936
+		},
+		
+		{
+			"ebo_len" : 0,
+			"format" : [ 3, 2 ],
+			"name" : "plain",
+			"vbo_len" : 0
 		}
 	],
 	"screenh" : 720.0,
@@ -5801,6 +5882,14 @@
 			"name" : "atexture2d",
 			"vs_code" : "layout(location = 0)attribute vec2 position;\nlayout(location = 1)attribute vec2 textcoord;\n\nvarying vec2 Textcoord;\nuniform mat4 model;\nvoid main()\n{\n    gl_Position = model * vec4(position,0.0, 1.0);\n    Textcoord = textcoord;\n}\n",
 			"vs_name" : "atexture2d.vs"
+		},
+		
+		{
+			"fs_code" : "\n#version 330 core\n\nin vec3 FragPos;\nin vec2 TextCoord;\nin vec3 FragNormal;\n\n// 光源属性结构体\nstruct LightAttr\n{\n\tvec3 position;\n\tvec3 ambient;\n\tvec3 diffuse;\n\tvec3 specular;\n\n\tfloat constant;\t// 衰减常数\n\tfloat linear;   // 衰减一次系数\n\tfloat quadratic; // 衰减二次系数\n};\n\nuniform LightAttr light;\nuniform vec3 viewPos;\nuniform sampler2D texture_diffuse0;\nuniform sampler2D texture_diffuse1;\nuniform sampler2D texture_diffuse2;\nuniform sampler2D texture_specular0;\nuniform sampler2D texture_specular1;\nuniform sampler2D texture_specular2;\n\nout vec4 color;\n\nvoid main()\n{\n\t// 环境光成分\n\tvec3\tambient = light.ambient * vec3(texture(texture_diffuse0, TextCoord));\n\n\t// 漫反射光成分 此时需要光线方向为指向光源\n\tvec3\tlightDir = normalize(light.position - FragPos);\n\tvec3\tnormal = normalize(FragNormal);\n\tfloat\tdiffFactor = max(dot(lightDir, normal), 0.0);\n\tvec3\tdiffuse = diffFactor * light.diffuse * vec3(texture(texture_diffuse0, TextCoord));\n\n\t// 镜面反射成分 此时需要光线方向为由光源指出\n\tfloat\tspecularStrength = 0.5f;\n\tvec3\treflectDir = normalize(reflect(-lightDir, normal));\n\tvec3\tviewDir = normalize(viewPos - FragPos);\n\tfloat\tspecFactor = pow(max(dot(reflectDir, viewDir), 0.0), 64.0f);\n\tvec3\tspecular = specFactor * light.specular * vec3(texture(texture_specular0, TextCoord));\n\n\t// 计算衰减因子\n\tfloat distance = length(light.position - FragPos); // 在世界坐标系中计算距离\n\tfloat attenuation = 1.0f / (light.constant \n\t\t\t+ light.linear * distance\n\t\t\t+ light.quadratic * distance * distance);\n\n\tvec3\tresult = (ambient + diffuse + specular) * attenuation;\n\tcolor\t= vec4(result , 1.0f);\n}\n",
+			"fs_name" : "",
+			"name" : "modeling",
+			"vs_code" : "\n#version 330 core\nlayout(location = 0) in vec3 position;\nlayout(location = 1) in vec2 textCoord;\nlayout(location = 2) in vec3 normal;\nout vec3 FragPos;\nout vec2 TextCoord;\nout vec3 FragNormal;\n\nuniform mat4 model;\nuniform mat4 view;\nuniform mat4 projection;\n\nvoid main()\n{\n    gl_Position = projection * view * model * vec4(position, 1.0);\n\tFragPos = vec3(model * vec4(position, 1.0)); // 在世界坐标系中指定片元位置\n\tTextCoord = textCoord;\n\tmat3 normalMatrix = mat3(transpose(inverse(model)));\n\tFragNormal = normalMatrix * normal; // 计算法向量经过模型变换后值\n}\n",
+			"vs_name" : ""
 		}
 	],
 	"texture_id_index" : 0,
