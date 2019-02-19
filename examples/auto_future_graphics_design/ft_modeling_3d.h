@@ -36,6 +36,18 @@ namespace auto_future
 				_pmodel = imodel->second;
 			}
 		}
+		camera& get_cam()
+		{
+			return _pty_page._cam;
+		}
+		projection& get_proj()
+		{
+			return _pty_page._pj;
+		}
+		transformation& get_trans()
+		{
+			return _pty_page._trans;
+		}
 	};
 	REGISTER_CONTROL(ft_modeling_3d)
 }

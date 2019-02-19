@@ -36,7 +36,7 @@ mfile_list g_mfiles_list;
 #include "dir_output.h"
 extern string g_cureent_directory;
 
-bool add_image_to_mtexure_list(string& imgPath)
+bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 {
 	string img_file_name = imgPath.substr(imgPath.find_last_of('\\') + 1);
 	auto itimg = g_mtexture_list.find(img_file_name);
@@ -79,18 +79,26 @@ bool add_image_to_mtexure_list(string& imgPath)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	// Step3 设定filter参数
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
-	// Step4 加载纹理
 
+	// Step4 加载纹理
+	if (is_mipmap)
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+	}
+	else
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // 为MipMap设定filter方法
+	}
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
 		0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
-	glGenerateMipmap(GL_TEXTURE_2D);
+	if (is_mipmap)
+		glGenerateMipmap(GL_TEXTURE_2D);
 	// Step5 释放纹理图片资源
 	SOIL_free_image_data(imgdata);
 	auto pimge = make_shared<af_texture>();
 	pimge->_loaded = true;
 	pimge->_atxt_id = textureId;
+	pimge->_mip_map = is_mipmap;
 	pimge->_width = width;
 	pimge->_height = height;
 	g_mtexture_list[img_file_name] = pimge;

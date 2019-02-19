@@ -8,6 +8,7 @@
 #include "dir_output.h"
 #include "primitive_object.h"
 #include "af_model.h"
+#include "common_functions.h"
 //#include "af_model.h"
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory;
@@ -130,13 +131,14 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				auto& kname = filse_unit.asString();
 				auto file_path = str_files_path + kname;
 				ifstream ifs;
-				ifs.open(file_path);
-				filebuf* pbuf = ifs.rdbuf();
-				size_t sz_file = pbuf->pubseekoff(0, ifs.end, ifs.in);
-				pbuf->pubseekpos(0, ifs.in);
-				g_mfiles_list[kname] = make_shared<af_file>(sz_file);
+				ifs.open(file_path,ios::binary);
 
-				pbuf->sgetn((char*)g_mfiles_list[kname]->_pbin, sz_file);		
+				auto res_size = ifs.tellg();
+				ifs.seekg(0, ios::end);
+				res_size = ifs.tellg() - res_size;
+				ifs.seekg(0, ios::beg);
+				g_mfiles_list[kname] = make_shared<af_file>(res_size);
+				ifs.read((char*)g_mfiles_list[kname]->_pbin, res_size);
 				ifs.close();
 			}
 			Value& shader_list = jroot["shader_list"];
@@ -295,11 +297,21 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	}
 	jroot["texture_list"] = texture_list;
 	Value file_list(arrayValue);
+	string str_files_path = g_cureent_directory + files_fold;
 	for (auto& fileu : g_mfiles_list)
 	{
 		auto& kname = fileu.first;
 		Value jfile(kname);
 		file_list.append(jfile);
+		string file_full_path = str_files_path + kname;
+		if (!fileExist(file_full_path.c_str()))
+		{
+			auto& fobj = *fileu.second;
+			ofstream fout;// (file_full_path);
+			fout.open(file_full_path, ios::binary);
+			fout.write((char*)fobj._pbin, fobj._fsize);
+			fout.close();
+		}
 	}
 	jroot["file_list"] = file_list;
 	Value jshader(arrayValue);
@@ -513,9 +525,5 @@ void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_f
 	g_primitive_list[kname] = make_shared<primitive_object>();
 	g_primitive_list[kname]->set_ele_format(ele_format);
 	g_primitive_list[kname]->load_vertex_data(pvbo, vbo_len, pebo, ebo_len);
-	delete[] pvbo;
-	if (pebo)
-	{
-		delete[] pebo;
-	}
+	
 }

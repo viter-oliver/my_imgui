@@ -24,8 +24,8 @@ void loadMaterialTextures(aiMaterial *mat, aiTextureType type,vector<string>& tx
 		string str_txt_name = str.C_Str();
 		str_txt_name = str_txt_name.substr(str_txt_name.find_last_of('\\')+1);
 		txt_list.push_back(str_txt_name);
-		string str_txt_path = model_path + str_txt_name;
-		add_image_to_mtexure_list(str_txt_path);
+		//string str_txt_path = model_path + str_txt_name;
+		//add_image_to_mtexure_list(str_txt_path);
 	}
 }
 void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, af_mesh& mesh_unit)

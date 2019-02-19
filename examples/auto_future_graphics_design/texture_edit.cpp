@@ -5,29 +5,63 @@
 #include <locale.h>  
 #include <ShlObj.h>
 #include <Commdlg.h>
+#include "resource.h"
+#include <WinUser.h>
+#include <mmsystem.h>
 #ifdef IMGUI_WAYLAND
 #include "../../deps/glad/glad.h"
 #else
 #include <GL/gl3w.h> 
 #endif
 #include "SOIL.h"
+static BOOL isChked;
+UINT CALLBACK ofnHookProc(HWND hDlg, UINT uMsg, UINT wParam, LONG lParam)
+{
+	OFNOTIFY* pofNotify;
+	switch (uMsg)
+	{
+	case WM_NOTIFY:
+		pofNotify = (OFNOTIFY*)lParam;
+		switch (pofNotify->hdr.code)
+		{
+		case CDN_FILEOK:
+			isChked = IsDlgButtonChecked(hDlg, IDC_CHK_MIPMAP);
+			
+		}
+	default:
+		break;
+	}
+	return FALSE;
+}
 shared_ptr<af_texture> _ptexture{ nullptr };
 void texture_edit::draw_texture_list()
 {
 	if (ImGui::Button("Load new image..."))
 	{
 		OPENFILENAME ofn = { sizeof(OPENFILENAME) };
+		//ofn.lStructSize = sizeof(ofn);
 		ofn.hwndOwner = GetForegroundWindow();
 		ofn.lpstrFilter = "image file:\0*.png;*.bmp;*.jpg;*.jpeg;*.gif;*.dds;*.tga;*.psd;*.hdr\0\0";
+		ofn.Flags = OFN_EXPLORER | OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST | OFN_HIDEREADONLY|OFN_ENABLETEMPLATE | OFN_ENABLEHOOK;
+		ofn.lpTemplateName = MAKEINTRESOURCE(IDD_DLG_MIPMAP);
+		ofn.hInstance = GetModuleHandle(NULL);
+		ofn.lpfnHook = ofnHookProc;
 		char strFileName[MAX_PATH] = { 0 };
 		ofn.nFilterIndex = 1;
 		ofn.lpstrFile = strFileName;
 		ofn.nMaxFile = sizeof(strFileName);
 		ofn.lpstrTitle = "Loading image...";
-		ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
 		if (GetOpenFileName(&ofn))
 		{
-			add_image_to_mtexure_list(string(strFileName));
+			if (isChked == BST_CHECKED)
+			{
+				printf("is mipmap!\n");
+			}
+			else
+			{
+				printf("is not mipmap\n");
+			}
+			add_image_to_mtexure_list(string(strFileName), isChked == BST_CHECKED);
 		}
 	}
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;

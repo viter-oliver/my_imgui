@@ -82,6 +82,7 @@ extern bool get_texture_item(void* data, int idx, const char** out_str);
 struct af_texture
 {
 	atomic<bool> _loaded{ false };
+	bool _mip_map{ false };
 	GLuint _atxt_id{ 0 };
 	string txt_buff;
 	GLuint _width{ 0 }, _height{ 0 };
@@ -123,7 +124,7 @@ typedef map<string, shared_ptr<af_file>>mfile_list;
 extern mtexture_list g_mtexture_list;
 extern mfile_list g_mfiles_list;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-extern bool add_image_to_mtexure_list(string& imgPath);
+extern bool add_image_to_mtexure_list(string& imgPath,bool is_mipmap);
 extern void add_file_to_mfiles_list(string& file_path);
 #endif
 enum texture_format
