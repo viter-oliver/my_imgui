@@ -11,6 +11,8 @@
 #include "material.h"
 #include "dir_output.h"
 #include "file_outputor.h"
+#include "primitive_object.h"
+#include "af_model.h"
 #include "af_font_res_set.h"
 #include "common_functions.h"
 extern "C"{
@@ -19,7 +21,7 @@ extern "C"{
 #include "SOIL.h"
 #define _DX5_COMPRESS
 #define STB_DXT_IMPLEMENTATION
-
+#include "afb_res_index.h"
 #include "miniz.h"
 
 void pack_ui_component_data(base_ui_component& tar,
@@ -74,12 +76,12 @@ void afb_output::output_afb(const char* afb_file)
 	msgpack::sbuffer sbuff;
 	msgpack::packer<msgpack::sbuffer> pk(sbuff);
 #endif
-	pk.pack_array(10);
-	pk.pack_float(base_ui_component::screenw);
-	pk.pack_float(base_ui_component::screenh);
+	pk.pack_array(en_afb_res_cnt);
+	pk.pack_float(base_ui_component::screenw);//en_screen_w
+	pk.pack_float(base_ui_component::screenh);//en_screen_h
 	vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
 	string font_fold_path = g_cureent_directory + font_fold;
-	pk.pack_array(ft_nm_list.size());
+	pk.pack_array(ft_nm_list.size());//en_font_faces
 	for (auto& face_name_item : ft_nm_list)
 	{
 		//auto& cfg_data = atlas->ConfigData[ii];
@@ -95,13 +97,13 @@ void afb_output::output_afb(const char* afb_file)
 
 		
 	}
-	pk.pack_array(2);
+	pk.pack_array(2);//en_output_bin_format
 	pk.pack_int(g_output_bin_format._txt_fmt);
 	pk.pack_int(g_output_bin_format._pgm_fmt);
 	string output_file_path = g_cureent_directory + "afb\\";
 	int idx = 0;
 	file_outputor fout_put(output_file_path);
-	pk.pack_array(g_vres_texture_list.size());
+	pk.pack_array(g_vres_texture_list.size());//en_vtextures_res
 	function<uint8_t*(uint8_t*, int,int,int&)> ftxt_press;
 	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
 		ftxt_press = [](uint8_t* prawdata, int iwidth,int iheight, int&out_sz)->uint8_t*{
@@ -172,7 +174,7 @@ void afb_output::output_afb(const char* afb_file)
 	}
 
 
-	pk.pack_array(g_mtexture_list.size());
+	pk.pack_array(g_mtexture_list.size());//en_mtextures_res
 	for (auto& txt_unit : g_mtexture_list)
 	{
 		auto& kname = txt_unit.first;
@@ -211,7 +213,7 @@ void afb_output::output_afb(const char* afb_file)
 		DDS_data = NULL;
 		DDS_size = 0;
 	}
-	pk.pack_array(g_mfiles_list.size());
+	pk.pack_array(g_mfiles_list.size());//en_mfiles_res
 	for (auto& file_unit : g_mfiles_list)
 	{
 		auto& kname = file_unit.first;
@@ -226,7 +228,7 @@ void afb_output::output_afb(const char* afb_file)
 	glGetIntegerv(GL_NUM_PROGRAM_BINARY_FORMATS, &formats);
 	GLint *binaryFormats = new GLint[formats];
 	glGetIntegerv(GL_PROGRAM_BINARY_FORMATS, binaryFormats);*/
-	pk.pack_array(g_af_shader_list.size());
+	pk.pack_array(g_af_shader_list.size());//en_shaders_res
 
 	for (auto& shd_ut : g_af_shader_list)
 	{
@@ -260,7 +262,7 @@ void afb_output::output_afb(const char* afb_file)
 		pk.pack_str(shd_ut.second->get_fs_code().size());
 		pk.pack_str_body(shd_ut.second->get_fs_code().c_str(), shd_ut.second->get_fs_code().size());*/
 	}
-	pk.pack_array(g_material_list.size());
+	pk.pack_array(g_material_list.size());//en_materials_res
 	for (auto& mtl_ut : g_material_list)
 	{
 		pk.pack_array(3);
@@ -288,7 +290,62 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_bin_body(reinterpret_cast<char const*>(shd_uf.second->get_data_head()), wsize);
 		}
 	}
-	pack_ui_component_data(_pj, pk);
+	pk.pack_array(g_primitive_list.size());//en_primitives_res
+	for (auto& pm:g_primitive_list)
+	{
+		pk.pack_array(4);
+		pk.pack_str(pm.first.size());
+		pk.pack_str_body(pm.first.c_str(),pm.first.size());
+		auto& pmu=pm.second;
+		pk.pack_uint32(pmu->_vertex_buf_len);
+		pk.pack_uint32(pmu->_ele_buf_len);
+		pk.pack_bin(pmu->_ele_format.size());
+		pk.pack_bin_body((char*)&pmu->_ele_format[0],pmu->_ele_format.size());
+	}
+	pk.pack_array(g_mmodel_list.size());//en_models_res
+	for (auto& modle_unit:g_mmodel_list)
+	{
+		pk.pack_array(2);
+		pk.pack_str(modle_unit.first.size());
+		pk.pack_str_body(modle_unit.first.c_str(),modle_unit.first.size());
+		auto& mesh_list=*modle_unit.second;
+		pk.pack_array(mesh_list.size());
+		for (auto& mesh_unit:mesh_list)
+		{
+			pk.pack_array(5);
+			pk.pack_str(mesh_unit._prm_id.size());
+			pk.pack_str_body(mesh_unit._prm_id.c_str(), mesh_unit._prm_id.size());
+			auto& txt_diffs = mesh_unit._text_diffuse_list;
+			pk.pack_array(txt_diffs.size());
+			for (auto&txt_dff:txt_diffs)
+			{
+				pk.pack_str(txt_dff.size());
+				pk.pack_str_body(txt_dff.c_str(), txt_dff.size());
+			}
+			auto& txt_specs = mesh_unit._text_specular_list;
+			pk.pack_array(txt_specs.size());
+			for (auto&txt_spec:txt_specs)
+			{
+				pk.pack_str(txt_spec.size());
+				pk.pack_str_body(txt_spec.c_str(), txt_spec.size());
+			}
+			auto& txt_ambients = mesh_unit._text_ambient_list;
+			pk.pack_array(txt_ambients.size());
+			for (auto&txt_ambient : txt_ambients)
+			{
+				pk.pack_str(txt_ambient.size());
+				pk.pack_str_body(txt_ambient.c_str(), txt_ambient.size());
+			}
+			auto& txt_heights = mesh_unit._text_height_list;
+			pk.pack_array(txt_heights.size());
+			for (auto&txt_height : txt_heights)
+			{
+				pk.pack_str(txt_height.size());
+				pk.pack_str_body(txt_height.c_str(), txt_height.size());
+			}
+		}
+	}
+	pack_ui_component_data(_pj, pk);//en_control_res
 #ifndef _DX5_COMPRESS
 	uint8_t* pout_buff = new uint8_t[sbuff.size()];
 	mz_stream stream = {};

@@ -12,7 +12,8 @@
 #endif
 #include "af_shader.h"
 #include "material.h"
-
+#include "primitive_object.h"
+#include "af_model.h"
 #define DXT5_DECOMPRESSED
 #ifdef DXT5_DECOMPRESSED
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
@@ -135,8 +136,8 @@ void afb_load::load_afb(const char* afb_file)
 	msgpack::object_handle oh;
 	unpac.next(oh);
 	auto obj_w = oh.get();
-	base_ui_component::screenw = obj_w.via.array.ptr[0].as<float>();
-	base_ui_component::screenh = obj_w.via.array.ptr[1].as<float>();
+	base_ui_component::screenw = obj_w.via.array.ptr[en_screen_w].as<float>();
+	base_ui_component::screenh = obj_w.via.array.ptr[en_screen_h].as<float>();
 
 	#ifdef _SEE_SUPPORTED__
 	string externsions=(const char*)glGetString(GL_EXTENSIONS);
@@ -154,7 +155,7 @@ void afb_load::load_afb(const char* afb_file)
     #endif
 
 
-	auto font_res = obj_w.via.array.ptr[2];
+	auto font_res = obj_w.via.array.ptr[en_font_faces];
 	auto font_cnt = font_res.via.array.size;
 	g_pfont_face_manager = make_shared<font_face_manager>();
 	for (size_t ix = 0; ix < font_cnt; ix++)
@@ -171,12 +172,12 @@ void afb_load::load_afb(const char* afb_file)
 		memcpy(font_data_buff, font_data.via.bin.ptr, data_sz);
 		g_pfont_face_manager->load_font(str_font_name, font_data_buff, data_sz);
 	}
-	TIME_CHECK(Font atalas)
-	auto obj_format = obj_w.via.array.ptr[3];
+	TIME_CHECK(Font faces)
+	auto obj_format = obj_w.via.array.ptr[en_output_bin_format];
 	g_output_bin_format._txt_fmt = static_cast<texture_format>(obj_format.via.array.ptr[0].as<int>());
 	g_output_bin_format._pgm_fmt = static_cast<program_format>(obj_format.via.array.ptr[1].as<int>());
 
-	auto obj_res = obj_w.via.array.ptr[4];
+	auto obj_res = obj_w.via.array.ptr[en_vtextures_res];
 	auto re_cnt = obj_res.via.array.size;
 	function<unsigned int(const char*, int, int, unsigned int)> f_gen_txt;
 	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
@@ -283,7 +284,7 @@ void afb_load::load_afb(const char* afb_file)
 	}
 
 	TIME_CHECK(globe texture res)
-	auto obj_txt_list = obj_w.via.array.ptr[5];
+	auto obj_txt_list = obj_w.via.array.ptr[en_mtextures_res];
 	auto txt_cnt = obj_txt_list.via.array.size;
 	for (size_t ix = 0; ix < txt_cnt;ix++)
 	{
@@ -326,13 +327,14 @@ void afb_load::load_afb(const char* afb_file)
 		{
 			auto txt_bin_sz = txt_bin.via.bin.size;
 			a_txt->_atxt_id = f_gen_txt(txt_bin.via.bin.ptr, txt_width, txt_height, txt_bin_sz);
+			a_txt->_loaded = true;
 		}
 	
 		delete[] txt_kname;
 
 	}
 	TIME_CHECK(texture list res)
-	auto obj_file_list = obj_w.via.array.ptr[6];
+	auto obj_file_list = obj_w.via.array.ptr[en_mfiles_res];
 	auto file_cnt = obj_file_list.via.array.size;
 	for (size_t ix = 0; ix < file_cnt;ix++)
 	{
@@ -350,7 +352,7 @@ void afb_load::load_afb(const char* afb_file)
 	}
 
 	TIME_CHECK(file list res)
-	auto obj_shader_list = obj_w.via.array.ptr[7];
+	auto obj_shader_list = obj_w.via.array.ptr[en_shaders_res];
 	auto shd_cnt = obj_shader_list.via.array.size;
 	if (g_output_bin_format._pgm_fmt == en_shader_code)
 	{
@@ -397,7 +399,7 @@ void afb_load::load_afb(const char* afb_file)
 		}
 	}
 	TIME_CHECK(shader list res)
-	auto obj_material_list = obj_w.via.array.ptr[8];
+	auto obj_material_list = obj_w.via.array.ptr[en_materials_res];
 	auto mtl_cnt = obj_material_list.via.array.size;
 	for (size_t ix = 0; ix < mtl_cnt; ix++)
 	{
@@ -451,8 +453,124 @@ void afb_load::load_afb(const char* afb_file)
 		}
 		delete[] pstr_mtl_name;
 	}
-	TIME_CHECK(materil list res)
-	auto obj_ui = obj_w.via.array.ptr[9];
+	TIME_CHECK(materil list res);
+	auto obj_primitives = obj_w.via.array.ptr[en_primitives_res];
+	auto obj_prm_size = obj_primitives.via.array.size;
+	for (size_t ix = 0; ix < obj_prm_size;++ix)
+	{
+		auto prm_unit = obj_primitives.via.array.ptr[ix];
+		auto prm_name = prm_unit.via.array.ptr[0];
+		auto p_vt_bf_len = prm_unit.via.array.ptr[1];
+		auto pebo_len = prm_unit.via.array.ptr[2];
+		auto pformat=prm_unit.via.array.ptr[3];
+		auto prm_name_sz = prm_name.via.str.size;
+		string key_name;
+		key_name.resize(prm_name_sz);
+		memcpy(&key_name[0], prm_name.via.str.ptr, prm_name_sz);
+		//key_name[prm_name_sz] = 0;
+		auto p_obj = make_shared<primitive_object>();
+		auto ebo_len = pebo_len.as<GLuint>();
+		auto vbo_len = p_vt_bf_len.as<GLuint>();
+		GLfloat* pvbo = 0;
+		GLuint* pebo = 0;
+		auto vbo_key = key_name + ".vbo";
+		auto ifile = g_mfiles_list.find(vbo_key);
+		if (ifile!=g_mfiles_list.end())
+		{
+			auto& fobj = *ifile->second;
+			pvbo = (GLfloat*)fobj._pbin;
+		}
+		if (ebo_len)
+		{
+			auto ebo_key = key_name + ".ebo";
+			auto iefile = g_mfiles_list.find(ebo_key);
+			if (iefile != g_mfiles_list.end())
+			{
+				auto& pefile = iefile->second;
+				auto& efile = *pefile;
+				pebo = (GLuint*)efile._pbin;
+			}
+		}
+		vector<GLubyte> ele_fmt;
+		auto fmt_sz = pformat.via.bin.size;
+		ele_fmt.resize(fmt_sz);
+		memcpy(&ele_fmt[0], pformat.via.bin.ptr, fmt_sz);
+		p_obj->set_ele_format(ele_fmt);
+		p_obj->load_vertex_data(pvbo, vbo_len, pebo, ebo_len);
+		g_primitive_list[key_name] = p_obj;
+	}
+	auto obj_models = obj_w.via.array.ptr[en_models_res];
+	auto obj_modles_sz = obj_models.via.array.size;
+	for (size_t ix = 0; ix < obj_modles_sz;++ix)
+	{
+		auto obj_md_unit = obj_models.via.array.ptr[ix];
+		auto md_name = obj_md_unit.via.array.ptr[0];
+		auto obj_msh_lst=obj_md_unit.via.array.ptr[1];
+		string md_key;
+		auto md_name_sz = md_name.via.str.size;
+		md_key.resize(md_name_sz);
+		memcpy(&md_key[0], md_name.via.str.ptr, md_name_sz);
+		//md_key[md_name_sz] = 0;
+		g_mmodel_list[md_key] = make_shared<af_model>();
+		auto& mdl = *g_mmodel_list[md_key];
+		auto obj_msh_lst_sz = obj_msh_lst.via.array.size;
+		for (size_t iy = 0; iy < obj_msh_lst_sz; iy++)
+		{
+			mdl.emplace_back();
+			af_mesh& mesh_unit = mdl[iy];
+			auto obj_mesh_unit = obj_msh_lst.via.array.ptr[iy];
+			auto obj_prmid = obj_mesh_unit.via.array.ptr[0];
+			auto obj_diffs = obj_mesh_unit.via.array.ptr[1];
+			auto obj_speculars = obj_mesh_unit.via.array.ptr[2];
+			auto obj_heights = obj_mesh_unit.via.array.ptr[3];
+			auto obj_ambients = obj_mesh_unit.via.array.ptr[4];
+			string& prim_id = mesh_unit._prm_id;
+			auto prim_id_sz = obj_prmid.via.str.size;
+			prim_id.resize(prim_id_sz);
+			memcpy(&prim_id[0], obj_prmid.via.str.ptr, prim_id_sz);
+			auto obj_diffs_sz = obj_diffs.via.array.size;
+			for (size_t id = 0; id < obj_diffs_sz;++id)
+			{
+				auto obj_diff = obj_diffs.via.array.ptr[id];
+				auto obj_diff_sz = obj_diff.via.str.size;
+				string diff;
+				diff.resize(obj_diff_sz);
+				memcpy(&diff[0], obj_diff.via.str.ptr, obj_diff_sz);
+				mesh_unit._text_diffuse_list.emplace_back(diff);
+			}
+			auto obj_speculars_sz = obj_speculars.via.array.size;
+			for (size_t id = 0; id < obj_speculars_sz; ++id)
+			{
+				auto obj_specular = obj_speculars.via.array.ptr[id];
+				auto obj_specular_sz = obj_specular.via.str.size;
+				string specular;
+				specular.resize(obj_specular_sz);
+				memcpy(&specular[0], obj_specular.via.str.ptr, obj_specular_sz);
+				mesh_unit._text_specular_list.emplace_back(specular);
+			}
+			auto obj_heights_sz = obj_heights.via.array.size;
+			for (size_t id = 0; id < obj_heights_sz; ++id)
+			{
+				auto obj_height = obj_heights.via.array.ptr[id];
+				auto obj_height_sz = obj_height.via.str.size;
+				string height;
+				height.resize(obj_height_sz);
+				memcpy(&height[0], obj_height.via.str.ptr, obj_height_sz);
+				mesh_unit._text_height_list.emplace_back(height);
+			}
+			auto obj_ambients_sz = obj_ambients.via.array.size;
+			for (size_t id = 0; id < obj_ambients_sz; ++id)
+			{
+				auto obj_ambient = obj_ambients.via.array.ptr[id];
+				auto obj_ambient_sz = obj_ambient.via.str.size;
+				string ambient;
+				ambient.resize(obj_ambient_sz);
+				memcpy(&ambient[0], obj_ambient.via.str.ptr, obj_ambient_sz);
+				mesh_unit._text_ambient_list.emplace_back(ambient);
+			}
+		}
+	}
+	auto obj_ui = obj_w.via.array.ptr[en_control_res];
 	init_ui_component_by_mgo(_pj, obj_ui);
 	TIME_CHECK(control list res)
 }

@@ -162,7 +162,7 @@ namespace auto_future
 				auto txt_sz = tw*th * 4;
 				uint32_t* prgba = new uint32_t[txt_sz];
 				memset(prgba, 0xff, txt_sz);
-				convert_r_to_rgba(tbuff, prgba, txt_sz);
+				convert_r_to_rgba(tbuff, prgba, tw*th);
 
 				float left_x = border.x + tw;
 				float next_x = left_x + 2;

@@ -84,15 +84,14 @@ bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 	if (is_mipmap)
 	{
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);	
+		glGenerateMipmap(GL_TEXTURE_2D);
 	}
 	else
 	{
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // 为MipMap设定filter方法
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
 	}
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
-	if (is_mipmap)
-		glGenerateMipmap(GL_TEXTURE_2D);
 	// Step5 释放纹理图片资源
 	SOIL_free_image_data(imgdata);
 	auto pimge = make_shared<af_texture>();

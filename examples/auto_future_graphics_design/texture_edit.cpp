@@ -105,6 +105,8 @@ void texture_edit::draw_texture_item_property()
 			imw = 400;
 			
 		}
+		ImGui::Text("Size:%u,%u", _ptexture->_width, _ptexture->_height);
+		ImGui::Checkbox("mipmap", &_ptexture->_mip_map);
 		ImGui::Image((ImTextureID)_ptexture->_txt_id(), ImVec2(imw,imh), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 
 	}

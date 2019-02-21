@@ -85,17 +85,27 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				Value& txt_unit = texture_list[ix];
 				auto& kname = txt_unit["name"].asString();
 				auto img_file_path = str_img_path + kname;
+
 				GLubyte* imgdata = NULL;
 				int width, height, channels;
-
 				imgdata = SOIL_load_image(img_file_path.c_str(), &width, &height, &channels, SOIL_LOAD_RGBA);
+
+
 				if (imgdata == NULL)
 				{
 					printf("Fail to load texture file:%s\n", img_file_path.c_str());
 					break;
 				}
+				auto pimge = make_shared<af_texture>();
+				pimge->_loaded = true;
+				pimge->_is_separated = txt_unit["separated"].asBool();
+				pimge->_mip_map = txt_unit["mipmap"].asBool();
+				pimge->_width = width;
+				pimge->_height = height;
+
 				GLuint textureId = 0;
 				glGenTextures(1, &textureId);
+				pimge->_atxt_id = textureId;
 				glBindTexture(GL_TEXTURE_2D, textureId);
 				if (channels == SOIL_LOAD_RGBA)
 				{
@@ -107,20 +117,23 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 				// Step3 设定filter参数
 				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);//					GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
-				// Step4 加载纹理
-
-				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
+				if (pimge->_mip_map)
+				{
+					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 					GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+					glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
 					0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
-				//glGenerateMipmap(GL_TEXTURE_2D);
-				// Step5 释放纹理图片资源
+					glGenerateMipmap(GL_TEXTURE_2D);
+				}
+				else
+				{
+					glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+					glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
+						0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
+
+				}
+
 				SOIL_free_image_data(imgdata);
-				auto pimge = make_shared<af_texture>();
-				pimge->_atxt_id = textureId;
-				pimge->_width = width;
-				pimge->_height = height;
-				pimge->_loaded = true;
-				pimge->_is_separated = txt_unit["separated"].asBool();
+				
 				g_mtexture_list[kname] = pimge;
 			}
 			Value& file_list = jroot["file_list"];
@@ -292,6 +305,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		Value txt_unit(objectValue);
 		txt_unit["name"] = kname;
 		txt_unit["separated"] = txt.second->_is_separated;
+		txt_unit["mipmap"] = txt.second->_mip_map;
 		//auto& af_txt = txt.second;
 		texture_list.append(txt_unit);
 	}
@@ -378,7 +392,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 			{
 				spcular_list.append(specular);
 			}
-			jmesh_unit["spcular_list"] = spcular_list;
+			jmesh_unit["specular_list"] = spcular_list;
 			Value height_list(arrayValue);
 			for (auto& height : mesh_unit._text_height_list)
 			{

@@ -5776,7 +5776,6 @@
 	],
 	"file_list" : 
 	[
-		"cube.vbo",
 		"edge_left_animation.json",
 		"edge_left_up_animation.json",
 		"edge_right_animation.json",
@@ -5787,7 +5786,6 @@
 		"mileage_pg.txt",
 		"needle_left_animation.json",
 		"needle_right_animation.json",
-		"plain.vbo",
 		"water_temp.afp"
 	],
 	"fonts" : [ "FZLanTingHeiS-R-GB.TTF", "ProggyTiny.ttf" ],
@@ -5838,37 +5836,23 @@
 				"diffuse_list" : [ "VW_Golf_VII_2013.png" ],
 				"height_list" : [],
 				"prim_id" : "golf.FBX0",
-				"spcular_list" : []
+				"specular_list" : []
 			}
 		]
 	},
 	"output_bin_fmt" : 
 	{
-		"pgm_fmt" : 1,
+		"pgm_fmt" : 0,
 		"txt_fmt" : 1
 	},
 	"primitive_list" : 
 	[
 		
 		{
-			"ebo_len" : 0,
-			"format" : [ 3, 3, 2 ],
-			"name" : "cube",
-			"vbo_len" : 0
-		},
-		
-		{
 			"ebo_len" : 5946,
 			"format" : [ 3, 2, 3 ],
 			"name" : "golf.FBX0",
 			"vbo_len" : 33936
-		},
-		
-		{
-			"ebo_len" : 0,
-			"format" : [ 3, 2 ],
-			"name" : "plain",
-			"vbo_len" : 0
 		}
 	],
 	"screenh" : 720.0,
@@ -5897,36 +5881,43 @@
 	[
 		
 		{
+			"mipmap" : false,
 			"name" : "VW_Golf_VII_2013.png",
 			"separated" : false
 		},
 		
 		{
+			"mipmap" : false,
 			"name" : "edge_left_animation.png",
 			"separated" : true
 		},
 		
 		{
+			"mipmap" : false,
 			"name" : "edge_left_up_animation.png",
 			"separated" : true
 		},
 		
 		{
+			"mipmap" : false,
 			"name" : "edge_right_animation.png",
 			"separated" : true
 		},
 		
 		{
+			"mipmap" : false,
 			"name" : "edge_right_up_animation.png",
 			"separated" : true
 		},
 		
 		{
+			"mipmap" : false,
 			"name" : "needle_left_animation.png",
 			"separated" : true
 		},
 		
 		{
+			"mipmap" : false,
 			"name" : "needle_right_animation.png",
 			"separated" : true
 		}

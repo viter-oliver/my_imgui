@@ -100,6 +100,10 @@ af_shader::af_shader(GLenum binFormat, void* bin, GLsizei binLength)
 	{
 		_valid = true;
 	}
+	if (_valid)
+	{
+		refresh_viarable_list();
+	}
 }
 
 af_shader::~af_shader()

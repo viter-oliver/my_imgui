@@ -27,6 +27,7 @@ namespace auto_future
 		{
 			_pshd_modeling = shd_modeling->second;
 		}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_pty_page, 0, [this](void*member_address){
 			ImGui::InputText("Model name:", _pty_page._model_name, FILE_NAME_LEN);
 			if (ImGui::Button("import"))
@@ -38,6 +39,7 @@ namespace auto_future
 				}
 			}
 		});
+#endif
 	}
 
 	ft_modeling_3d::~ft_modeling_3d()
