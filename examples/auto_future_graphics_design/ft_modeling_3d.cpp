@@ -39,13 +39,59 @@ namespace auto_future
 				}
 			}
 		});
+		reg_property_handle(&_pty_page, 7, [this](void* member_address){
+			ImGui::Text("Light position:");
+			auto parent = get_parent();
+			float w, h;
+			parent->get_size(w, h);
+			ImGui::SliderFloat("X", &_pty_page._light_position_shd.x, w, -w);
+			ImGui::SliderFloat("Y", &_pty_page._light_position_shd.y, h, -h);
+			ImGui::SliderFloat("Z", &_pty_page._light_position_shd.z, h, -h);
+		});
 #endif
 	}
 
 	ft_modeling_3d::~ft_modeling_3d()
 	{
 	}
-	
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	void ft_modeling_3d::view_components_in_world_space()
+	{
+		ImGui::Text("View direction:");ImGui::SameLine();
+		ImGui::RadioButton("X", &_dir_view, 0); ImGui::SameLine();
+		ImGui::RadioButton("Y", &_dir_view, 1); ImGui::SameLine();
+		ImGui::RadioButton("Z", &_dir_view, 2);
+		ImVec2 winpos=ImGui::GetWindowPos();
+		ImVec2 pos0 = winpos + ImVec2(150, 180);
+		ImDrawList* draw_list = ImGui::GetWindowDrawList();
+		ImU32 col = ImGui::GetColorU32(ImGuiCol_HeaderActive);
+		draw_list->AddCircle(pos0, 100, col, 25);
+		ImVec2 pos_left = { pos0.x - 100, pos0.y };
+		ImVec2 pos_right = { pos0.x + 100, pos0.y };
+		ImVec2 pos_top = { pos0.x, pos0.y - 100 };
+		ImVec2 pos_bottom = { pos0.x, pos0.y + 100 };
+		draw_list->AddLine(pos_left, pos_right, col);
+		draw_list->AddLine(pos_top, pos_bottom, col);
+		ImVec2 lt_pos = pos0;
+		af_vec3& ltPos = _pty_page._light_position_shd;
+		switch (_dir_view)
+		{
+		case 0:
+			lt_pos += ImVec2(ltPos.y, ltPos.z);
+			break;
+		case 1:
+			lt_pos += ImVec2(ltPos.x, ltPos.z);
+			break;
+		case 2:
+			lt_pos += ImVec2(ltPos.x, ltPos.y);
+			break;
+		}
+		af_vec3& lt_spcol = _pty_page._light_specular_clr;
+		ImVec4 vlt_col = { lt_spcol.x, lt_spcol.y, lt_spcol.z, 1 };
+		ImU32 lt_col = ImGui::ColorConvertFloat4ToU32(vlt_col);
+		draw_list->AddCircleFilled(lt_pos, 5, lt_col);
+	}
+#endif	
 	void ft_modeling_3d::draw()
 	{
 		if (!_pmodel)

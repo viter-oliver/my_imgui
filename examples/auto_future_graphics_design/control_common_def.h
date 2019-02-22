@@ -183,6 +183,7 @@ namespace auto_future
 		*  -false failure
 		*/
 		void save_property_to_json(Value& junit);
+		virtual void view_components_in_world_space(){}
 
 #endif
 	public:

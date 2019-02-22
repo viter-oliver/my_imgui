@@ -110,7 +110,7 @@ namespace auto_future
 			printf("afb load consume %d milli seconds\n", tmspan);
 			resLoaded();
 		}
-		init_internal_primitive_list();
+		//init_internal_primitive_list();
 		// Setup style
 		//ImGui::StyleColorsLight();
 		ImGui::StyleColorsDark();

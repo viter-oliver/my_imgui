@@ -27,6 +27,10 @@ namespace auto_future
 	public:
 		ft_modeling_3d();
 		~ft_modeling_3d();
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		int _dir_view{0};
+		void view_components_in_world_space();
+#endif		
 		void draw();
 		void link()
 		{

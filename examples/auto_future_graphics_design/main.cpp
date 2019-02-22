@@ -64,7 +64,7 @@ enum en_short_cut_item
 bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,\
-show_output_format=false,show_model_list=false;
+show_output_format=false,show_model_list=false,show_world_space=false;
 #define _MY_IMGUI__
 //#define _DEMO_
 int main(int argc, char* argv[])
@@ -612,7 +612,10 @@ int main(int argc, char* argv[])
 				{
 					show_model_list = !show_model_list;
 				}
-
+				if (ImGui::MenuItem("World space", NULL, show_world_space))
+				{
+					show_world_space = !show_world_space;
+				}
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Setup"))
@@ -724,6 +727,17 @@ int main(int argc, char* argv[])
 			}
 			ImGui::End();
 			ImGui::PopStyleVar(2);
+		}
+		if (show_world_space)
+		{
+			ImGui::Begin("World space", &show_world_space, ImVec2(400, 500));
+			_pselect = pjedit->current_object();
+			if (_pselect)
+			{
+				//_pselect->draw_peroperty_page();
+				_pselect->view_components_in_world_space();
+			}
+			ImGui::End();
 		}
 		if (show_resource_manager)
 		{
