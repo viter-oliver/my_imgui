@@ -51,11 +51,69 @@ struct value_range
 	}
 };
 using namespace std;
-struct prop_ele_position 
+using prop_ele_addr = vector<unsigned short>;
+/*struct prop_ele_key 
 {
-	base_ui_component* _pobj;
-	uint8_t _index;
+	prop_ele_addr _ui_cp_key;
+	bool operator <(const prop_ele_key& tkey) const
+	{
+	unsigned int key_sz = _ui_cp_key.size();
+	unsigned int tkey_sz = tkey._ui_cp_key.size();
+	unsigned int min_sz = key_sz;
+	if (tkey_sz<min_sz)
+	{
+	min_sz = tkey_sz;
+	}
+	int cmp_rt = memcmp(&_ui_cp_key[0], &tkey._ui_cp_key[0], min_sz*sizeof(unsigned short));
+
+	if (cmp_rt!=0)
+	{
+	return cmp_rt < 0;
+	}
+	else
+	{
+	return key_sz < tkey_sz;
+	}
+	}
+};*/
+
+struct prop_ele_position
+{
+	base_ui_component* _pobj{NULL};
+	uint16_t _page_index{0};
+	uint16_t _field_index{0};
+	bool operator <(const prop_ele_position& tpp) const
+	{
+		if (_pobj!=tpp._pobj)
+		{
+			return _pobj < tpp._pobj;
+		}
+		else
+		{
+			if (_page_index!=tpp._page_index)
+			{
+				return _page_index < tpp._page_index;
+			}
+			else
+			{
+				return _field_index < tpp._field_index;
+			}
+		}
+	}
 };
+struct prop_ele_bind_unit
+{
+	vector<prop_ele_position> _param_list;
+	vector<prop_ele_position> _ref_list;
+	string _expression;
+	/*prop_ele_bind_unit()
+	{
+	_expression.resize(1024 * 16);
+	}*/
+};
+extern const string python_fun_name;
+using bind_dic = map<prop_ele_position, shared_ptr<prop_ele_bind_unit>>;
+using prop_ele_value= vector<unsigned char>;
 struct field_ele
 {
 	string _type;

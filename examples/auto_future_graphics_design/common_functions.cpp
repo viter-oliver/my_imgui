@@ -6,6 +6,7 @@
 #include <locale>
 #include <codecvt>
 #include <fstream>
+#include <sstream>
 std::string wstringToUtf8(const std::wstring& str)
 {
 	std::wstring_convert<std::codecvt_utf8<wchar_t> > strCnv;
@@ -382,4 +383,15 @@ bool createFileWithDirectory(const char* pathName)
 		return false;
 	}
 
+}
+void align_expression(string& exp, string&expo)
+{
+	stringstream sexp(exp);
+	string line;
+	while (getline(sexp,line))
+	{
+		expo += "   ";
+		expo += line;
+		expo += '\n';
+	}
 }

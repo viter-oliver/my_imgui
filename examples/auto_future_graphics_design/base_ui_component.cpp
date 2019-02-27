@@ -2,6 +2,8 @@
 #include "res_output.h"
 #include "command_element_delta.h"
 #include "factory.h"
+#include "bind_edit.h"
+extern bind_edit g_bind_edit;
 #define INT_VALUE 45
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
@@ -115,6 +117,8 @@ namespace auto_future
 	}
 	void base_ui_component::draw_peropertys()
 	{
+		string bind_btn_cp = "->##";
+		int pgidx = 0;
 		for (auto& prop_ele:_vprop_eles)
 		{
 			auto& address_handl = _mcustom_var_property_handles_container.find(prop_ele->_pro_address);
@@ -344,14 +348,40 @@ namespace auto_future
 							g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, memb_address, &before_op_memb_value[0], before_op_memb_value.size()));
 
 						}
-		
+						
 						g.IO.InputContentChanged = false;
+					}
+					//bind_btn_cp += "#";
+					char idstr[50] = { 0 };
+					sprintf(idstr, "%d_%d", pgidx, idx);
+					string btn_cap = bind_btn_cp + idstr;
+					ImGui::SameLine();
+					if (ImGui::Button(btn_cap.c_str()))
+					{
+						g_bind_edit.sel_prop_ele(this, pgidx, idx);
+					}
+					if (ImGui::IsItemActive())
+					{
+						// Draw a line between the button and the mouse cursor
+						ImDrawList* draw_list = ImGui::GetWindowDrawList();
+						draw_list->PushClipRectFullScreen();
+						ImGuiIO& io = ImGui::GetIO();
+						draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
+						draw_list->PopClipRect();
+						g_bind_edit.set_dragging(true, this, pgidx, idx);
+						//ImGui::Button("Drag Me");
+					}
+					
+					if (ImGui::IsMouseReleased(0))
+					{
+						g_bind_edit.set_dragging(false,this);
 					}
 					idx++;
 				}
 				ImGui::Separator();
 				ImGui::Spacing();
 			}
+			pgidx++;
 		}
 	}
 	const char hex_enc_table[] = "abcdefghijklmnop";

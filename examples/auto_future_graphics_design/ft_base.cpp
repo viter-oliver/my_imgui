@@ -4,6 +4,7 @@
 
 namespace auto_future
 {
+	bind_dic g_bind_dic;
 	ft_base::ft_base()
 		: base_ui_component()
 	{
@@ -177,7 +178,9 @@ namespace auto_future
 	}
 	float base_ui_component::screenw = 1920.f;
 	float base_ui_component::screenh =720.f;
-
+	prop_ele base_ui_component::null_prop_ele = { nullptr, 0 };
+	field_ele base_ui_component::null_field_ele = {"", "",0,0 };
+	const string python_fun_name = "bind_fun";
 	void property_copy(vproperty_list& vdest, vproperty_list& vsource)
 	{
 		for (size_t i = 0; i < vdest.size(); i++)
