@@ -111,7 +111,7 @@ struct prop_ele_bind_unit
 	_expression.resize(1024 * 16);
 	}*/
 };
-extern const string python_fun_name;
+
 using bind_dic = map<prop_ele_position, shared_ptr<prop_ele_bind_unit>>;
 using prop_ele_value= vector<unsigned char>;
 struct field_ele

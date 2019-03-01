@@ -2,6 +2,8 @@
 #include "user_control_imgui.h"
 #include "res_output.h"
 #include <GLFW/glfw3.h>
+#include "common_functions.h"
+#include "python_interpreter.h"
 void bind_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t page_idx, uint16_t off_idx)
 {
 	if (!be_dragging&&_hit_bind_window)
@@ -53,6 +55,7 @@ void bind_edit::bind_source_view()
 	get_uic_path(_current_prop_ele._pobj, cur_name);
 	auto& cur_pgidx = _current_prop_ele._page_index;
 	auto& cur_fieldidx = _current_prop_ele._field_index;
+	auto& cur_pt_page = _current_prop_ele._pobj->get_prop_ele(cur_pgidx);
 	auto& cur_field = _current_prop_ele._pobj->get_filed_ele(cur_pgidx, cur_fieldidx);
 	cur_name += "::";
 	cur_name += cur_field._name;
@@ -67,18 +70,31 @@ void bind_edit::bind_source_view()
 	auto& expression = prop_ele_unit._expression;
 	int ix = 0;
 	auto& param_list = prop_ele_unit._param_list;
+	string param_pass;
+	char* ppt_addr = (char*)cur_pt_page._pro_address + cur_field._offset;
+	var_unit vrtn(cur_field._type, ppt_addr);
+	variable_list vlist;
 	for (auto itp = param_list.begin(); itp != param_list.end();)//(auto&prop_ele_p:prop_ele_unit._param_list)
 	{
 		string va = "v";
 		char cc[50] = { 0 };
 		itoa(ix, cc, 10);
 		va += cc;
+		if (ix>0)
+		{
+			param_pass += ',';
+		}
+		param_pass += va;
+
 		va += "=";
 		auto&prop_ele_p = *itp;
 		get_uic_path(prop_ele_p._pobj, va);
 		auto& pgidx = prop_ele_p._page_index;
 		auto& fidx = prop_ele_p._field_index;
+		auto& pt_pg = prop_ele_p._pobj->get_prop_ele(pgidx);
 		field_ele &fel = prop_ele_p._pobj->get_filed_ele(pgidx,fidx);
+		char* pm_value = (char*)pt_pg._pro_address + fel._offset;
+		vlist.emplace_back(var_unit(fel._type, pm_value));
 		va += "::";
 		va += fel._name;
 		ImGui::Text(va.c_str());
@@ -105,7 +121,13 @@ void bind_edit::bind_source_view()
 	
 	if (ImGui::Button("test"))
 	{
-
+		string exp = python_fun_head;
+		exp += param_pass;
+		exp += "):\n";
+		string fun_content;
+		align_expression(expression, fun_content);
+		exp += fun_content;
+		bool be_success=g_python_intp.call_python_fun(exp, python_fun_name, vrtn, vlist);
 	}
 
 }

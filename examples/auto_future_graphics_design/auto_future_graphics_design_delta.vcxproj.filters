@@ -241,6 +241,9 @@
     <ClCompile Include="model_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="python_interpreter.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -476,6 +479,9 @@
     </ClInclude>
     <ClInclude Include="afb_res_index.h">
       <Filter>afb_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="python_interpreter.h">
+      <Filter>render_utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

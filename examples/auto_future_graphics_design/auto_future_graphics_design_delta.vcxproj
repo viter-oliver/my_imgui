@@ -92,14 +92,14 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;E:\Python_27\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp.lib;freetype_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;E:\Python_27\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp.lib;freetype_d.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -217,6 +217,7 @@
     <ClCompile Include="primitive_object.cpp" />
     <ClCompile Include="primitve_edit.cpp" />
     <ClCompile Include="project_edit.cpp" />
+    <ClCompile Include="python_interpreter.cpp" />
     <ClCompile Include="res_edit.cpp" />
     <ClCompile Include="res_internal.cpp" />
     <ClCompile Include="res_output.cpp" />
@@ -297,6 +298,7 @@
     <ClInclude Include="primitive_object.h" />
     <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="project_edit.h" />
+    <ClInclude Include="python_interpreter.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="res_edit.h" />
     <ClInclude Include="res_internal.h" />
