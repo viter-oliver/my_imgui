@@ -4,19 +4,30 @@
 #include <GLFW/glfw3.h>
 #include "common_functions.h"
 #include "python_interpreter.h"
+#include <algorithm>
 void bind_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t page_idx, uint16_t off_idx)
 {
 	if (!be_dragging&&_hit_bind_window)
 	{
 		//string uname = pobj->get_name();
 		//printf("we get %s a prop\n", uname.c_str());
-		auto& pmlist = _new_bind_unit._param_list;
-		pmlist.emplace_back();
-		auto pm_idx = pmlist.size() - 1;
-		auto& prop_ele_p = pmlist[pm_idx];
-		prop_ele_p._pobj = pobj;
-		prop_ele_p._page_index = _pgidx;
-		prop_ele_p._field_index = _fdidx;
+		auto& pmlist = _pnew_bind_unit->_param_list;
+	
+		prop_ele_position new_prp_pos = { pobj, _pgidx, _fdidx };
+		if (!(new_prp_pos==_current_prop_ele))
+		{
+			auto ifd = find(pmlist.begin(), pmlist.end(), new_prp_pos);
+			if (ifd == pmlist.end())
+			{
+				pmlist.emplace_back();
+				auto pm_idx = pmlist.size() - 1;
+				auto& prop_ele_p = pmlist[pm_idx];
+				prop_ele_p._pobj = pobj;
+				prop_ele_p._page_index = _pgidx;
+				prop_ele_p._field_index = _fdidx;
+			}
+		}
+		
 		_hit_bind_window = false;
 	}
 	if (be_dragging)
@@ -61,13 +72,9 @@ void bind_edit::bind_source_view()
 	cur_name += cur_field._name;
 	string bind_show = cur_name + "=";
 	ImGui::Text(bind_show.c_str());
-	auto& prop_ele_unit = _new_bind_unit;
-	auto ibind = g_bind_dic.find(_current_prop_ele);
-	if (ibind != g_bind_dic.end())
-	{
-		prop_ele_unit = *ibind->second;
-	}
-	auto& expression = prop_ele_unit._expression;
+	prop_ele_bind_unit* pele_bu=  _pnew_bind_unit;
+	
+	auto& prop_ele_unit = *pele_bu;
 	int ix = 0;
 	auto& param_list = prop_ele_unit._param_list;
 	string param_pass;
@@ -104,6 +111,10 @@ void bind_edit::bind_source_view()
 		if (ImGui::Button(del_btn.c_str()))
 		{
 			itp = param_list.erase(itp);
+			if (!_edit_new_obj)
+			{
+
+			}
 		}
 		else
 		{
@@ -113,10 +124,7 @@ void bind_edit::bind_source_view()
 	}
 	auto edit_ht = ImGui::GetTextLineHeight() * 16;
 	auto txt_flag = ImGuiInputTextFlags_AllowTabInput;
-	if (ImGui::InputTextMultiline("bind source", txt_buff, TXT_BUFF_SZ, ImVec2(-1.0f, edit_ht), txt_flag))
-	{
-		expression = txt_buff;
-	}
+	ImGui::InputTextMultiline("bind source", txt_buff, TXT_BUFF_SZ, ImVec2(-1.0f, edit_ht), txt_flag);
 	_hit_bind_window = _dragging&&ImGui::IsMouseHoveringWindow();
 	
 	if (ImGui::Button("test"))
@@ -125,9 +133,63 @@ void bind_edit::bind_source_view()
 		exp += param_pass;
 		exp += "):\n";
 		string fun_content;
-		align_expression(expression, fun_content);
+		string str_buff = txt_buff;
+		align_expression(str_buff, fun_content);
 		exp += fun_content;
 		bool be_success=g_python_intp.call_python_fun(exp, python_fun_name, vrtn, vlist);
+		if (!be_success)
+		{
+			_be_unsavable = true;
+		}
+		else
+		{
+			_be_unsavable = false;
+		}
 	}
-
+	ImGui::SameLine(0,30);
+	if (_be_unsavable)
+	{
+		ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+		ImGui::PushStyleVar(ImGuiStyleVar_Alpha, ImGui::GetStyle().Alpha * 0.5f);
+	}
+	if (ImGui::Button("save"))
+	{
+		vprop_pos* pparam_list = &param_list;
+		if (_edit_new_obj)
+		{
+			g_bind_dic[_current_prop_ele] = make_shared<prop_ele_bind_unit>();
+			auto& cprop_ele_bu = g_bind_dic[_current_prop_ele];
+			*cprop_ele_bu = *_pnew_bind_unit;
+			pparam_list = &cprop_ele_bu->_param_list;
+			_edit_new_obj = false;
+			delete _pnew_bind_unit;
+			_pnew_bind_unit = cprop_ele_bu.get();
+		}
+		
+		_pnew_bind_unit->_expression = txt_buff;
+		for (auto& prp_ele_pos:*pparam_list)
+		{
+			auto& iprop_ref = g_bind_ref_dic.find(prp_ele_pos);
+			vprop_pos* pvprp_pos = nullptr;
+			if (iprop_ref==g_bind_ref_dic.end())
+			{
+				g_bind_ref_dic[prp_ele_pos] = make_shared<vprop_pos>();
+				pvprp_pos = g_bind_ref_dic[prp_ele_pos].get();
+			}
+			else
+			{
+				pvprp_pos = iprop_ref->second.get();
+			}
+			auto ifd = find(pvprp_pos->begin(), pvprp_pos->end(), _current_prop_ele);
+			if (ifd==pvprp_pos->end())
+			{
+				pvprp_pos->emplace_back(_current_prop_ele);
+			}
+		}
+	}
+	if (_be_unsavable)
+	{
+		ImGui::PopItemFlag();
+		ImGui::PopStyleVar();
+	}
 }

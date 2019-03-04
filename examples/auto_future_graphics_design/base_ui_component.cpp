@@ -4,6 +4,8 @@
 #include "factory.h"
 #include "bind_edit.h"
 extern bind_edit g_bind_edit;
+extern bool show_bind_edit;
+
 #define INT_VALUE 45
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
@@ -359,6 +361,7 @@ namespace auto_future
 					if (ImGui::Button(btn_cap.c_str()))
 					{
 						g_bind_edit.sel_prop_ele(this, pgidx, idx);
+						show_bind_edit = true;
 					}
 					if (ImGui::IsItemActive())
 					{

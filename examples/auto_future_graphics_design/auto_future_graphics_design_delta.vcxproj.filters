@@ -196,9 +196,6 @@
     <ClCompile Include="ft_plot_lines.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="bind_edit.cpp">
-      <Filter>project</Filter>
-    </ClCompile>
     <ClCompile Include="base_ui_component.cpp">
       <Filter>controls</Filter>
     </ClCompile>
@@ -243,6 +240,9 @@
     </ClCompile>
     <ClCompile Include="python_interpreter.cpp">
       <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="bind_edit.cpp">
+      <Filter>res_manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -423,9 +423,6 @@
     <ClInclude Include="ft_plot_lines.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="bind_edit.h">
-      <Filter>project</Filter>
-    </ClInclude>
     <ClInclude Include="property_utilities.h">
       <Filter>controls</Filter>
     </ClInclude>
@@ -482,6 +479,9 @@
     </ClInclude>
     <ClInclude Include="python_interpreter.h">
       <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="bind_edit.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

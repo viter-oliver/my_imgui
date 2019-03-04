@@ -5,6 +5,7 @@
 namespace auto_future
 {
 	bind_dic g_bind_dic;
+	bind_ref_dic g_bind_ref_dic;
 	ft_base::ft_base()
 		: base_ui_component()
 	{

@@ -79,9 +79,9 @@ using prop_ele_addr = vector<unsigned short>;
 
 struct prop_ele_position
 {
-	base_ui_component* _pobj{NULL};
-	uint16_t _page_index{0};
-	uint16_t _field_index{0};
+	base_ui_component* _pobj;
+	uint16_t _page_index;
+	uint16_t _field_index;
 	bool operator <(const prop_ele_position& tpp) const
 	{
 		if (_pobj!=tpp._pobj)
@@ -100,11 +100,17 @@ struct prop_ele_position
 			}
 		}
 	}
+	bool operator ==(const prop_ele_position& tpp) const
+	{
+		bool be_equal = _pobj == tpp._pobj&&_page_index == tpp._page_index&&_field_index == tpp._field_index;
+		return be_equal;
+	}
 };
+using vprop_pos = vector<prop_ele_position>;
 struct prop_ele_bind_unit
 {
-	vector<prop_ele_position> _param_list;
-	vector<prop_ele_position> _ref_list;
+	vprop_pos _param_list;
+	//vector<prop_ele_position> _ref_list;
 	string _expression;
 	/*prop_ele_bind_unit()
 	{
@@ -113,6 +119,7 @@ struct prop_ele_bind_unit
 };
 
 using bind_dic = map<prop_ele_position, shared_ptr<prop_ele_bind_unit>>;
+using bind_ref_dic = map<prop_ele_position, shared_ptr<vprop_pos>>;
 using prop_ele_value= vector<unsigned char>;
 struct field_ele
 {

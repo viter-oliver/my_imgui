@@ -361,11 +361,11 @@ int main(int argc, char* argv[])
 					return;
 				}
 				else
-					if (result == IDYES)
-					{
-						//import_fbx_info(strFileName);
-						import_models(strFileName);
-					}
+				if (result == IDYES)
+				{
+					//import_fbx_info(strFileName);
+					import_models(strFileName);
+				}
 			}
 		}
 		break;
