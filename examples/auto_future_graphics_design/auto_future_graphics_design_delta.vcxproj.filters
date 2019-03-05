@@ -244,6 +244,9 @@
     <ClCompile Include="bind_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="af_bind.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -482,6 +485,9 @@
     </ClInclude>
     <ClInclude Include="bind_edit.h">
       <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="af_bind.h">
+      <Filter>render_utilities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

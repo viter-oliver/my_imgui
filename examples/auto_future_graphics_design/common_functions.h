@@ -22,6 +22,8 @@ extern bool directoryExist(const char* dir);
 extern bool createDirectory(const char* pathName);
 extern bool createFileWithDirectory(const char* pathName);
 extern void align_expression(string& exp, string&expo);
+extern void trim_align_expression(string& exp, string&expo);
+
 template<class T> string find_a_key_from_mp(T& mp, string& ref_key)
 {
 	string chk_key = ref_key;

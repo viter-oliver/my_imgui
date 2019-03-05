@@ -390,8 +390,19 @@ void align_expression(string& exp, string&expo)
 	string line;
 	while (getline(sexp,line))
 	{
-		expo += "   ";
+		expo += "  ";
 		expo += line;
+		expo += '\n';
+	}
+}
+void trim_align_expression(string& exp, string&expo)
+{
+	stringstream sexp(exp);
+	string line;
+	while (getline(sexp, line))
+	{
+	//	expo += "  ";
+		expo += line.substr(2);
 		expo += '\n';
 	}
 }

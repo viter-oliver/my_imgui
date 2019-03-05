@@ -320,8 +320,9 @@ namespace auto_future
 						}
 
 						static cmd_value_block bk_memb_value;
-						static void* pmem_address = 0;;
+						static void* pmem_address = 0;
 						static bool be_operating = false;
+						static int page_idx=-1, fd_idx=-1;
 						cmd_value_block after_op_memb_value;
 						after_op_memb_value.reserve(mtpsz);
 						after_op_memb_value.resize(mtpsz);
@@ -332,7 +333,8 @@ namespace auto_future
 						{
 							printf("start changing value\n");
 							pmem_address = memb_address;
-
+							page_idx = pgidx;
+							fd_idx = idx;
 							bk_memb_value = before_op_memb_value;
 							g.operating_be_started = false;
 							be_operating = true;
@@ -343,12 +345,17 @@ namespace auto_future
 							{
 								g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, pmem_address, &before_op_memb_value[0], before_op_memb_value.size()));
 								be_operating = false;
+								prop_ele_position cur_prp_ele_pos = { this, page_idx, fd_idx };
+								calcu_bind_node(cur_prp_ele_pos);
+								page_idx = fd_idx = -1;
 							}
 						}
 						else if (before_op_memb_value != after_op_memb_value)
 						{
 							g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, memb_address, &before_op_memb_value[0], before_op_memb_value.size()));
-
+							prop_ele_position cur_prp_ele_pos = { this, page_idx, fd_idx };
+							calcu_bind_node(cur_prp_ele_pos);
+							page_idx = fd_idx = -1;
 						}
 						
 						g.IO.InputContentChanged = false;

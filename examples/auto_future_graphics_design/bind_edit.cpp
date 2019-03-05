@@ -37,6 +37,52 @@ void bind_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t
 	}
 	_dragging = be_dragging;
 }
+void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_t off_idx)
+{
+	auto& cobj = _current_prop_ele._pobj;
+	auto& cpgidx = _current_prop_ele._page_index;
+	auto& cfdidx = _current_prop_ele._field_index;
+	if (cobj == pobj&&cpgidx == page_idx&&cfdidx == off_idx)
+	{
+		return;
+	}
+	cobj = pobj;
+	cpgidx = page_idx;
+	cfdidx = off_idx;
+	if (_edit_new_obj)
+	{
+		if (_pnew_bind_unit)
+		{
+			delete _pnew_bind_unit;
+		}
+	}
+	_edit_new_obj = true;
+	_be_unsavable = true;
+	//_pnew_bind_unit._param_list.clear();
+	//_pnew_bind_unit._expression.clear();
+	auto ibind = g_bind_dic.find(_current_prop_ele);
+	if (ibind != g_bind_dic.end())
+	{
+		_pnew_bind_unit = ibind->second.get();
+		auto&exp = _pnew_bind_unit->_expression;
+		auto end_pos = exp.find('\n')+1;
+		auto exp_content = exp.substr(end_pos);
+		string exp_content_trim;
+		trim_align_expression(exp_content, exp_content_trim);
+		//txt_buff = exp;
+		auto slen = exp_content_trim.length();
+		memcpy(txt_buff, exp_content_trim.c_str(), slen);
+		txt_buff[slen] = 0;
+		//strcpy((char*)txt_buff.c_str(), exp.c_str());
+		_edit_new_obj = false;
+		_be_unsavable = false;
+	}
+	else{
+		_pnew_bind_unit = new prop_ele_bind_unit();
+		txt_buff[0] = '\0';
+		//memset(txt_buff, 0, TXT_BUFF_SZ);
+	}
+}
 void get_uic_path(base_ui_component* pobj, string& path_rtn)
 {
 	assert(pobj);
@@ -110,11 +156,25 @@ void bind_edit::bind_source_view()
 		del_btn += cc;
 		if (ImGui::Button(del_btn.c_str()))
 		{
-			itp = param_list.erase(itp);
 			if (!_edit_new_obj)
 			{
-
+				auto& iprop_ref = g_bind_ref_dic.find(*itp);
+				if (iprop_ref!=g_bind_ref_dic.end())
+				{
+					auto& vppos = *iprop_ref->second;
+					auto ifd = find(vppos.begin(), vppos.end(), _current_prop_ele);
+					if (ifd!=vppos.end())
+					{
+						vppos.erase(ifd);
+					}
+					auto isize = vppos.size();
+					if (isize==0)
+					{
+						g_bind_ref_dic.erase(iprop_ref);
+					}
+				}
 			}
+			itp = param_list.erase(itp);		
 		}
 		else
 		{
@@ -126,17 +186,16 @@ void bind_edit::bind_source_view()
 	auto txt_flag = ImGuiInputTextFlags_AllowTabInput;
 	ImGui::InputTextMultiline("bind source", txt_buff, TXT_BUFF_SZ, ImVec2(-1.0f, edit_ht), txt_flag);
 	_hit_bind_window = _dragging&&ImGui::IsMouseHoveringWindow();
-	
 	if (ImGui::Button("test"))
 	{
-		string exp = python_fun_head;
-		exp += param_pass;
-		exp += "):\n";
+	    _exp_calcu = python_fun_head;
+		_exp_calcu += param_pass;
+		_exp_calcu += "):\n";
 		string fun_content;
 		string str_buff = txt_buff;
 		align_expression(str_buff, fun_content);
-		exp += fun_content;
-		bool be_success=g_python_intp.call_python_fun(exp, python_fun_name, vrtn, vlist);
+		_exp_calcu += fun_content;
+		bool be_success=g_python_intp.call_python_fun(_exp_calcu, python_fun_name, vrtn, vlist);
 		if (!be_success)
 		{
 			_be_unsavable = true;
@@ -166,7 +225,7 @@ void bind_edit::bind_source_view()
 			_pnew_bind_unit = cprop_ele_bu.get();
 		}
 		
-		_pnew_bind_unit->_expression = txt_buff;
+		_pnew_bind_unit->_expression = _exp_calcu;
 		for (auto& prp_ele_pos:*pparam_list)
 		{
 			auto& iprop_ref = g_bind_ref_dic.find(prp_ele_pos);
@@ -186,6 +245,33 @@ void bind_edit::bind_source_view()
 				pvprp_pos->emplace_back(_current_prop_ele);
 			}
 		}
+	}
+	if (!_edit_new_obj&&ImGui::Button("remove"))
+	{
+		vprop_pos& param_list=_pnew_bind_unit->_param_list;
+		for (auto& prp_ele_pos:param_list)
+		{
+			auto& iprop_ref = g_bind_ref_dic.find(prp_ele_pos);
+			if (iprop_ref != g_bind_ref_dic.end())
+			{
+				vprop_pos& vprp_pos = *iprop_ref->second;
+				auto ifd = find(vprp_pos.begin(), vprp_pos.end(), _current_prop_ele);
+				if (ifd!=vprp_pos.end())
+				{
+					vprp_pos.erase(ifd);
+				}
+				auto iszie = vprp_pos.size();
+				if (iszie==0)
+				{
+					g_bind_ref_dic.erase(iprop_ref);
+				}
+			}
+		}
+		auto pnew_bind_unit= new prop_ele_bind_unit();
+		pnew_bind_unit->_expression = _pnew_bind_unit->_expression;
+		pnew_bind_unit->_param_list = _pnew_bind_unit->_param_list;
+		_edit_new_obj = true;
+		g_bind_dic.erase(_current_prop_ele);
 	}
 	if (_be_unsavable)
 	{

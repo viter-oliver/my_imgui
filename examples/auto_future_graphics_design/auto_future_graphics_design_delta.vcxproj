@@ -175,6 +175,7 @@
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="afb_output.cpp" />
+    <ClCompile Include="af_bind.cpp" />
     <ClCompile Include="af_font_res_set.cpp" />
     <ClCompile Include="af_model.cpp" />
     <ClCompile Include="af_shader.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="afb_load.h" />
     <ClInclude Include="afb_output.h" />
     <ClInclude Include="afb_res_index.h" />
+    <ClInclude Include="af_bind.h" />
     <ClInclude Include="af_font_res_set.h" />
     <ClInclude Include="af_model.h" />
     <ClInclude Include="af_shader.h" />

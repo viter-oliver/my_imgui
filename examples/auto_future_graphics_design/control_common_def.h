@@ -40,9 +40,6 @@ namespace auto_future
 	};
 	using namespace std;
 	typedef vector<property_range> vproperty_list;
-	extern bind_dic g_bind_dic;
-	extern bind_ref_dic g_bind_ref_dic;
-
 	const unsigned char name_len = 40;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	using namespace Json;
