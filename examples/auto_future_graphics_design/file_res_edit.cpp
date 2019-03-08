@@ -8,6 +8,7 @@
 #include <Commdlg.h>
 #include <GL/gl3w.h> 
 #include <fstream>
+#include "res_internal.h"
 shared_ptr<af_file> _pfile{ nullptr };
 void file_res_edit::draw_file_res_list()
 {
@@ -28,12 +29,12 @@ void file_res_edit::draw_file_res_list()
 		}
 	}
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
-	string icon_str = "files_list";
+	string icon_str = icn_nm_file;
 	if (IconTreeNode(icon_str, "file list", node_flags_root))
 	{
 		for (auto& mf_ut : g_mfiles_list)
 		{
-			icon_str = "file";
+			//icon_str = "file";
 			auto& keyname = mf_ut.first;
 			auto& ttl = mf_ut.second;
 			ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf;

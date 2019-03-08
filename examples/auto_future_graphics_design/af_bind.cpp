@@ -38,3 +38,25 @@ void calcu_bind_node(prop_ele_position& pep)
 		}
 	}
 }
+void calce_prop_ele_pos_index(prop_ele_position& pep, prop_ele_pos_index& pep_id)
+{
+	pep_id.emplace_back(pep._field_index);
+	pep_id.emplace_back(pep._page_index);
+	base_ui_component* ppt = nullptr;
+	base_ui_component* pcur = pep._pobj;
+	while (ppt=pcur->get_parent())
+	{
+		unsigned short idx = 0;
+		size_t sz = ppt->get_child_count();
+		for (;idx < sz;idx++)
+		{
+			auto pcd = ppt->get_child(idx);
+			if (pcd==pcur)
+			{
+				pep_id.emplace_back(idx);
+				break;
+			}
+		}
+		pcur = ppt;
+	}
+}

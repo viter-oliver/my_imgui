@@ -180,9 +180,11 @@
     <ClCompile Include="af_model.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
+    <ClCompile Include="af_state_manager.cpp" />
     <ClCompile Include="base_ui_component.cpp" />
     <ClCompile Include="bind_edit.cpp" />
     <ClCompile Include="command_element_delta.cpp" />
+    <ClCompile Include="easing.cpp" />
     <ClCompile Include="file_outputor.cpp" />
     <ClCompile Include="file_res_edit.cpp" />
     <ClCompile Include="fonts_edit.cpp" />
@@ -224,6 +226,7 @@
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
     <ClCompile Include="shader_uf.cpp" />
+    <ClCompile Include="state_manager_edit.cpp" />
     <ClCompile Include="texture_edit.cpp" />
     <ClCompile Include="texture_res_load.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
@@ -260,10 +263,12 @@
     <ClInclude Include="af_model.h" />
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="af_shader_source_code.h" />
+    <ClInclude Include="af_state_manager.h" />
     <ClInclude Include="af_type.h" />
     <ClInclude Include="bind_edit.h" />
     <ClInclude Include="command_element_delta.h" />
     <ClInclude Include="dir_output.h" />
+    <ClInclude Include="easing.h" />
     <ClInclude Include="file_outputor.h" />
     <ClInclude Include="file_res_edit.h" />
     <ClInclude Include="fonts_edit.h" />
@@ -306,6 +311,7 @@
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="shader_uf.h" />
+    <ClInclude Include="state_manager_edit.h" />
     <ClInclude Include="texture_edit.h" />
     <ClInclude Include="texture_res_load.h" />
     <ClInclude Include="ui_assembler.h" />

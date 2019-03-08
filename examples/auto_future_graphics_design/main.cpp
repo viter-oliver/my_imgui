@@ -42,6 +42,7 @@
 #include "file_res_edit.h"
 #include "model_edit.h"
 #include "bind_edit.h"
+#include "state_manager_edit.h"
 #include "common_functions.h"
 #include "dir_output.h"
 #include "command_element_delta.h"
@@ -52,6 +53,7 @@ static void error_callback(int error, const char* description)
 string g_cureent_project_file_path;
 string g_cureent_directory;
 bind_edit g_bind_edit;
+state_manager_edit g_state_manager_edit;
 //string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
@@ -67,7 +69,7 @@ bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,\
 show_output_format=false,show_model_list=false,show_world_space=false,\
-show_bind_edit=false;
+show_bind_edit=false,show_state_manager_edit=false;
 #define _MY_IMGUI__
 //#define _DEMO_
 int main(int argc, char* argv[])
@@ -623,6 +625,11 @@ int main(int argc, char* argv[])
 				{
 					show_bind_edit = !show_bind_edit;
 				}
+				if (ImGui::MenuItem("State manager edit", NULL, show_state_manager_edit))
+				{
+					show_state_manager_edit = !show_state_manager_edit;
+				}
+
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Setup"))
@@ -750,6 +757,15 @@ int main(int argc, char* argv[])
 		{
 			ImGui::Begin("Bind edit", &show_bind_edit, ImVec2(400, 500));
 			g_bind_edit.bind_source_view();
+			ImGui::End();
+		}
+		if (show_state_manager_edit)
+		{
+			ImGui::Begin("State manager edit", &show_state_manager_edit, ImVec2(500, 600));
+			ImGui::Columns(2);
+			g_state_manager_edit.view_state_managers();
+			ImGui::NextColumn();
+			g_state_manager_edit.view_state_manager_item_property();
 			ImGui::End();
 		}
 		if (show_resource_manager)

@@ -247,6 +247,15 @@
     <ClCompile Include="af_bind.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="af_state_manager.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="easing.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="state_manager_edit.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -488,6 +497,15 @@
     </ClInclude>
     <ClInclude Include="af_bind.h">
       <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="af_state_manager.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="easing.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="state_manager_edit.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

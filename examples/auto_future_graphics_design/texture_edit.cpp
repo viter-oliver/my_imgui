@@ -6,6 +6,7 @@
 #include <ShlObj.h>
 #include <Commdlg.h>
 #include "resource.h"
+#include "res_internal.h"
 #include <WinUser.h>
 #include <mmsystem.h>
 #ifdef IMGUI_WAYLAND
@@ -65,12 +66,12 @@ void texture_edit::draw_texture_list()
 		}
 	}
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
-	string icon_str = "texture_list";
+	string icon_str = icn_nm_texture;
 	if (IconTreeNode(icon_str, "texture list", node_flags_root))
 	{
 		for (auto& mtt_ut : g_mtexture_list)
 		{
-			icon_str = "image";
+			//icon_str =icn_nm_image;
 			auto& keyname = mtt_ut.first;
 			auto& ttl = mtt_ut.second;
 			ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf;

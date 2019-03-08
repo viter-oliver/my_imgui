@@ -20,6 +20,8 @@ namespace auto_future
 		bool relative_contain(af_vec2& point);
 		bool relative_contain(float pos, bool be_h);
 	};
+	REGISTER_CONTROL(ft_base)
+
 	/**
 	*@brief copy the list of the property data block of a ui component object to another
 	*@param vdest destination
@@ -28,5 +30,5 @@ namespace auto_future
 	*/
 	void property_copy(vproperty_list& vdest, vproperty_list& vsource);
 	base_ui_component* get_copy_of_object(base_ui_component* byobject);
-	REGISTER_CONTROL(ft_base)
+	void get_uic_path(base_ui_component* pobj, string& path_rtn);
 }

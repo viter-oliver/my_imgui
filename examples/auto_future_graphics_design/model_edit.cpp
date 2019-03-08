@@ -16,7 +16,7 @@ model_edit::~model_edit()
 void model_edit::draw_model_list()
 {
 
-	bool model_list_open = ImGui::TreeNode("models", "count:%d", g_mmodel_list.size());
+	bool model_list_open = ImGui::TreeNode("model", "count:%d", g_mmodel_list.size());
 	if (model_list_open)
 	{
 		int ix = 0;

@@ -206,4 +206,23 @@ namespace auto_future
 		}
 		return prtn;
 	}
+	void get_uic_path(base_ui_component* pobj, string& path_rtn)
+	{
+		assert(pobj);
+		vector<string> name_list;
+		base_ui_component* ppt = nullptr;
+		base_ui_component* pcur = pobj;
+		name_list.push_back(pcur->get_name());
+		while (ppt = pcur->get_parent())
+		{
+			name_list.push_back(ppt->get_name());
+			pcur = ppt;
+		}
+		auto name_list_sz = name_list.size();
+		for (int ix = name_list_sz - 1; ix >= 0; ix--)
+		{
+			path_rtn += '/';
+			path_rtn += name_list[ix];
+		}
+	}
 }

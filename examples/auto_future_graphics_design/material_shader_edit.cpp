@@ -4,6 +4,7 @@
 #include "user_control_imgui.h"
 #include <fstream>
 #include "dir_output.h"
+#include "res_internal.h"
 #define FILE_NAME_LEN 50
 extern string g_cureent_directory;
 
@@ -13,17 +14,17 @@ shared_ptr<material> pmateral_sel = nullptr;
 void material_shader_edit::draw_shader()
 {
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
-	string icon_str = "shader_list";
+	string icon_str = icn_nm_shader;
 	if (IconTreeNode(icon_str, "shader list", node_flags_root))
 	{
 		for (auto& shd_ut : g_af_shader_list)
 		{
-            icon_str = "shader_source";
+            icon_str = icn_nm_shader_source;
 			auto& shd_ss = shd_ut.second;
 			if (IconTreeNode(icon_str, shd_ss->get_name().c_str(), node_flags_root))
 			{
 				ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf;
-				icon_str = "vertex_shader_source";
+				//icon_str = "vertex_shader_source";
 				if (shd_ss->_vs_selected)
 				{
 					node_flags |= ImGuiTreeNodeFlags_Selected;
@@ -40,7 +41,7 @@ void material_shader_edit::draw_shader()
 				}
 				ImGui::TreePop();
 				node_flags = ImGuiTreeNodeFlags_Leaf;
-				icon_str = "fragment_shader_source";
+				//icon_str = "fragment_shader_source";
 				if (shd_ss->_fs_selected)
 				{
 					node_flags |= ImGuiTreeNodeFlags_Selected;
@@ -241,12 +242,11 @@ void material_shader_edit::draw_material()
 		ImGui::EndPopup();
 	}
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
-	string icon_str = "material_list";
+	string icon_str = icn_nm_material;
 	if (IconTreeNode(icon_str, "material list", node_flags_root))
 	{
 		for (auto& mtl_ut : g_material_list)
 		{
-			icon_str = "material";
 			auto& mtl = mtl_ut.second;
 			ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf;
 			if (mtl->_sel)

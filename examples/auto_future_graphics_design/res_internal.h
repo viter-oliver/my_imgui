@@ -2,7 +2,6 @@
 #include <map>
 #include <string>
 using namespace std;
-
 struct texture_unit
 {
 	float _x0, _y0, _x1, _y1;
@@ -13,3 +12,10 @@ extern int g_txt_width_intl;
 extern int g_txt_height_intl;
 extern int g_txt_id_intl;
 extern mtxt_internal g_mtxt_intl;
+extern const char* icn_nm_file;
+extern const char* icn_nm_shader;
+extern const char* icn_nm_shader_source;
+extern const char* icn_nm_material;
+extern const char* icn_nm_texture;
+extern const char* icn_nm_image;
+extern const char* icn_nm_state_manager;

@@ -4,7 +4,9 @@
 #include <GLFW/glfw3.h>
 #include "common_functions.h"
 #include "python_interpreter.h"
+#include "ft_base.h"
 #include <algorithm>
+//using namespace auto_future;
 void bind_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t page_idx, uint16_t off_idx)
 {
 	if (!be_dragging&&_hit_bind_window)
@@ -83,25 +85,7 @@ void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_
 		//memset(txt_buff, 0, TXT_BUFF_SZ);
 	}
 }
-void get_uic_path(base_ui_component* pobj, string& path_rtn)
-{
-	assert(pobj);
-	vector<string> name_list;
-	base_ui_component* ppt = nullptr;
-	base_ui_component* pcur = pobj;
-	name_list.push_back(pcur->get_name());
-	while (ppt = pcur->get_parent())
-	{
-		name_list.push_back(ppt->get_name());
-		pcur = ppt;
-	}
-	auto name_list_sz = name_list.size();
-	for (int ix = name_list_sz - 1; ix >= 0;ix--)
-	{
-		path_rtn += '/';
-		path_rtn += name_list[ix];
-	}
-}
+
 void bind_edit::bind_source_view()
 {
 	if (!_current_prop_ele._pobj)
