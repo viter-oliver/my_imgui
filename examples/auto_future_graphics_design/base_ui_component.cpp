@@ -3,7 +3,9 @@
 #include "command_element_delta.h"
 #include "factory.h"
 #include "bind_edit.h"
+#include "state_manager_edit.h"
 extern bind_edit g_bind_edit;
+extern state_manager_edit g_state_manager_edit;
 extern bool show_bind_edit;
 
 #define INT_VALUE 45
@@ -379,12 +381,14 @@ namespace auto_future
 						draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
 						draw_list->PopClipRect();
 						g_bind_edit.set_dragging(true, this, pgidx, idx);
+						g_state_manager_edit.set_dragging(true, this, pgidx, idx);
 						//ImGui::Button("Drag Me");
 					}
 					
 					if (ImGui::IsMouseReleased(0))
 					{
 						g_bind_edit.set_dragging(false,this);
+						g_state_manager_edit.set_dragging(false, this);
 					}
 					idx++;
 				}

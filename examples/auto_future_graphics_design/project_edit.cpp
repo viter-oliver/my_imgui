@@ -45,16 +45,16 @@ void project_edit::view_object(base_ui_component& fb)
 		}
 		ImGui::TreePop();
 	}
-	if (ImGui::IsItemActive())
-	{
-		// Draw a line between the button and the mouse cursor
-		ImDrawList* draw_list = ImGui::GetWindowDrawList();
-		draw_list->PushClipRectFullScreen();
-		ImGuiIO& io = ImGui::GetIO();
-		draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
-		draw_list->PopClipRect();
-		//ImGui::Button("Drag Me");
-	}
+	//if (ImGui::IsItemActive())
+	//{
+	//	// Draw a line between the button and the mouse cursor
+	//	ImDrawList* draw_list = ImGui::GetWindowDrawList();
+	//	draw_list->PushClipRectFullScreen();
+	//	ImGuiIO& io = ImGui::GetIO();
+	//	draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
+	//	draw_list->PopClipRect();
+	//	//ImGui::Button("Drag Me");
+	//}
 }
 
 void project_edit::objects_view()

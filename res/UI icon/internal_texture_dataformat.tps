@@ -167,11 +167,51 @@
             <filename>ft_block.png</filename>
             <filename>ft_button.png</filename>
             <filename>ft_cube_3d.png</filename>
-            <filename>ft_fbx_assert_3d.png</filename>
+            <filename>ft_modeling_3d.png</filename>
             <filename>a.png</filename>
             <filename>ft_undo.png</filename>
             <filename>ft_redo.png</filename>
             <filename>ft_circle.png</filename>
+            <filename>file.png</filename>
+            <filename>image.png</filename>
+            <filename>material.png</filename>
+            <filename>shader.png</filename>
+            <filename>shader_source.png</filename>
+            <filename>state_manager.png</filename>
+            <filename>texture.png</filename>
+            <filename>model.png</filename>
+            <filename>EaseInOutQuint.png</filename>
+            <filename>EaseInOutSin.png</filename>
+            <filename>EaseInQuad.png</filename>
+            <filename>EaseInQuart.png</filename>
+            <filename>EaseInQuint.png</filename>
+            <filename>EaseInSin.png</filename>
+            <filename>EaseLinear.png</filename>
+            <filename>EaseOutBack.png</filename>
+            <filename>EaseOutBounce.png</filename>
+            <filename>EaseOutCirc.png</filename>
+            <filename>EaseOutCubic.png</filename>
+            <filename>EaseOutElastic.png</filename>
+            <filename>EaseOutExpo.png</filename>
+            <filename>EaseOutQuad.png</filename>
+            <filename>EaseOutQuart.png</filename>
+            <filename>EaseOutQuint.png</filename>
+            <filename>EaseOutSin.png</filename>
+            <filename>EaseInBack.png</filename>
+            <filename>EaseInBounce.png</filename>
+            <filename>EaseInCirc.png</filename>
+            <filename>EaseInCubic.png</filename>
+            <filename>EaseInElastic.png</filename>
+            <filename>EaseInExpo.png</filename>
+            <filename>EaseInOutBack.png</filename>
+            <filename>EaseInOutBounce.png</filename>
+            <filename>EaseInOutCirc.png</filename>
+            <filename>EaseInOutCubic.png</filename>
+            <filename>EaseInOutElastic.png</filename>
+            <filename>EaseInOutExpo.png</filename>
+            <filename>EaseInOutQuad.png</filename>
+            <filename>EaseInOutQuart.png</filename>
+            <filename>Camera.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

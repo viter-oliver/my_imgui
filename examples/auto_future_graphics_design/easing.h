@@ -37,5 +37,6 @@ enum easing_functions
 };
 
 typedef double(*easingFunction)(double);
+extern const char* const easing_func_name[EaseFuncsCount];
 extern easingFunction easingFun[EaseFuncsCount];
 

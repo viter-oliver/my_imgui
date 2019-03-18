@@ -190,22 +190,6 @@ namespace auto_future
 		static float screenh;
 		static prop_ele null_prop_ele;
 		static field_ele null_field_ele;
-		field_ele& get_filed_ele(int pgidx, int field_idx)
-		{
-			auto vpsz = _vprop_eles.size();
-			if (pgidx>=vpsz)
-			{
-				return null_field_ele;
-			}
-			auto& pele = *_vprop_eles[pgidx];
-			auto vfsz = pele._pro_page.size();
-			if (field_idx>=vfsz)
-			{
-				return null_field_ele;
-			}
-			auto& vfiled = pele._pro_page;
-			return *vfiled[field_idx];
-		}
 		prop_ele& get_prop_ele(int pgidx)
 		{
 			auto vpsz = _vprop_eles.size();
@@ -214,6 +198,17 @@ namespace auto_future
 				return null_prop_ele;
 			}
 			return *_vprop_eles[pgidx];
+		}		
+		field_ele& get_filed_ele(int pgidx, int field_idx)
+		{
+			auto& pele = get_prop_ele(pgidx);
+			auto vfsz = pele._pro_page.size();
+			if (field_idx>=vfsz)
+			{
+				return null_field_ele;
+			}
+			auto& vfiled = pele._pro_page;
+			return *vfiled[field_idx];
 		}
 		/**
 		*@brief draw self on a surface

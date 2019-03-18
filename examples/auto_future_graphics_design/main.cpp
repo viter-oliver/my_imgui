@@ -759,6 +759,11 @@ int main(int argc, char* argv[])
 			g_bind_edit.bind_source_view();
 			ImGui::End();
 		}
+		if (g_state_manager_edit.be_playing())
+		{
+			g_state_manager_edit.trans_play();
+		}
+		else
 		if (show_state_manager_edit)
 		{
 			ImGui::Begin("State manager edit", &show_state_manager_edit, ImVec2(500, 600));
