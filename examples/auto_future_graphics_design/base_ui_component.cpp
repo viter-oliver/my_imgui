@@ -345,7 +345,7 @@ namespace auto_future
 						{
 							if (g.IO.MouseReleased[0])
 							{
-								g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, pmem_address, &before_op_memb_value[0], before_op_memb_value.size()));
+								g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, pmem_address, &bk_memb_value[0], bk_memb_value.size()));
 								be_operating = false;
 								prop_ele_position cur_prp_ele_pos = { this, page_idx, fd_idx };
 								calcu_bind_node(cur_prp_ele_pos);
