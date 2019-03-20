@@ -102,6 +102,11 @@ void bind_edit::bind_source_view()
 	cur_name += cur_field._name;
 	string bind_show = cur_name + "=";
 	ImGui::Text(bind_show.c_str());
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Spacing();
 	prop_ele_bind_unit* pele_bu=  _pnew_bind_unit;
 	
 	auto& prop_ele_unit = *pele_bu;

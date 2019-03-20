@@ -28,7 +28,7 @@ struct state_transition
 {
 
 	int _start_time;//ms{0}
-	int _durition;//ms{250}
+	int _duration;//ms{250}
 	int _easing_func;// {EaseLinear};
 
 	//easing_functions _easing_out_func{ EaseLinear };

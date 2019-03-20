@@ -8,6 +8,8 @@
 #include "dir_output.h"
 #include "primitive_object.h"
 #include "af_model.h"
+#include "af_bind.h"
+#include "af_state_manager.h"
 #include "common_functions.h"
 
 //#include "af_model.h"
@@ -248,6 +250,123 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				 }
 			 }
 			_root.init_property_from_json(jroot);//
+			auto jarry_2_prp_pos = [this](Value& jarry, prop_ele_position&prp_epos){
+				int jsize = jarry.size();
+				assert(jsize > 2);
+				int con_id_max = jsize - 1;
+				base_ui_component* pcontrol = &_root;
+				int ii = con_id_max;
+				for (; ii>1; ii--)
+				{
+					Value& jcid = jarry[ii];
+					auto cid = jcid.asInt();
+					pcontrol = pcontrol->get_child(cid);
+				}
+				prp_epos._pobj = pcontrol;
+				prp_epos._page_index = jarry[1].asInt();
+				ii = 0;
+				prp_epos._field_index = jarry[ii].asInt();
+			};
+			Value& binds = jroot["binds"];
+			Value& jdic = binds["dic"];
+			isize = jdic.size();
+			for (ix = 0; ix < isize;ix++)
+			{
+				Value& jprp_ele = jdic[ix];
+				Value& jkey = jprp_ele["key"];
+				prop_ele_position prp_ele_pos;
+				jarry_2_prp_pos(jkey, prp_ele_pos);
+				Value& jbind_unit = jprp_ele["bind_unit"];
+				auto ps_bind_unit = make_shared<prop_ele_bind_unit>();
+				ps_bind_unit->_expression = jbind_unit["expression"].asString();
+				auto& vparam = ps_bind_unit->_param_list;
+				Value& jvparam = jbind_unit["param_list"];
+				int vsize = jvparam.size();
+				for (int iv = 0; iv < vsize;iv++)
+				{
+					Value& jprp_ele_pos = jvparam[iv];
+					vparam.emplace_back();
+					auto& sub_prp_ele_pos = vparam[iv];
+					jarry_2_prp_pos(jprp_ele_pos, sub_prp_ele_pos);
+				}
+				g_bind_dic[prp_ele_pos] = ps_bind_unit;
+			}
+			Value& jref_dic = binds["ref_dic"];
+			isize = jref_dic.size();
+			for (ix = 0; ix < isize; ix++)
+			{
+				Value& jref_unit = jref_dic[ix];
+				Value& jref_key = jref_unit["key"];
+				prop_ele_position prp_ele_pos;
+				jarry_2_prp_pos(jref_key, prp_ele_pos);
+				auto ps_ref_list = make_shared<vprop_pos>();
+				Value& jref_list = jref_unit["ref_list"];
+				int vsize = jref_list.size();
+				for (int iv = 0; iv < vsize;iv++)
+				{
+					Value& jref = jref_list[iv];
+					ps_ref_list->emplace_back();
+					auto& sub_prp_ele_pos = (*ps_ref_list)[iv];
+					jarry_2_prp_pos(jref, sub_prp_ele_pos);
+				}
+			}
+			Value& jvstate_manager = jroot["state_manager_list"];
+			Value::Members memb(jvstate_manager.getMemberNames());
+			for (auto item = memb.begin(); item != memb.end();++item)
+			{
+				auto& mname = *item;
+				Value& jstm = jvstate_manager[mname];
+				auto ps_stm = make_shared<af_state_manager>();
+				auto& stm = *ps_stm;
+				auto& any_2_any = stm._any_to_any;
+				Value& jany = jstm["any_to_any"];
+				any_2_any._start_time = jany["start_time"].asInt();
+				any_2_any._easing_func = jany["easing_fun"].asInt();
+				any_2_any._duration = jany["duration"].asInt();
+				stm._mstate = (moving_state)jstm["mstate"].asInt();
+				auto& mtrans = stm._mtrans;
+				Value& jmtrans = jstm["mtrans"];
+				int jsz = jmtrans.size();
+				for (int ii = 0; ii < jsz;ii++)
+				{
+					Value&jtrans = jmtrans[ii];
+					trans_key ikey = { jtrans["key_from"].asInt(), jtrans["key_to"].asInt() };
+					auto ps_trans = make_shared<state_transition>();
+					ps_trans->_start_time = jtrans["start_time"].asInt();
+					ps_trans->_duration = jtrans["duration"].asInt();
+					ps_trans->_easing_func = jtrans["easing_fun"].asInt();
+					mtrans[ikey] = ps_trans;
+				}
+				auto& prp_list = stm._prop_list;
+				Value& jprop_list = jstm["prop_list"];
+				jsz = jprop_list.size();
+				for (int ii = 0; ii < jsz;ii++)
+				{
+					prp_list.emplace_back();
+					auto& prp_pos = prp_list[ii];
+					Value& jprp_pos = jprop_list[ii];
+					jarry_2_prp_pos(jprp_pos, prp_pos);
+				}
+				auto& prp_value_list = stm._prop_value_list;
+				Value& jprop_value_list = jstm["prop_value_list"];
+				jsz = jprop_value_list.size();
+				for (int ii = 0; ii < jsz;ii++)
+				{
+					prp_value_list.emplace_back();
+					auto& vprp_block = prp_value_list[ii];
+					Value& jvprp_blck = jprop_value_list[ii];
+					int jjsz = jvprp_blck.size();
+					for (int ix = 0; ix < jjsz;ix++)
+					{
+						Value& jbk_value = jvprp_blck[ix];
+						vprp_block.emplace_back();
+						auto& prp_blcok = vprp_block[ix];
+						string str_value = jbk_value.asString();
+						convert_string_to_binary(str_value, prp_blcok);
+					}
+				}
+				g_mstate_manager[mname] = ps_stm;
+			}
 		}
 		fin.close();
 	}
@@ -413,6 +532,131 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	}
 	jroot["models"] = jmodels;
 	_root.save_property_to_json(jroot);
+	Value binds(objectValue);
+	Value dic(arrayValue);
+	for (auto& idic:g_bind_dic)
+	{
+		Value dic_unit(objectValue);
+		Value dic_key(arrayValue);
+		prop_ele_pos_index pep_id;
+		auto& ikey = idic.first;
+		calcu_prop_ele_pos_index(ikey, pep_id);
+		for (auto keyid:pep_id)
+		{
+			dic_key.append(keyid);
+		}
+		dic_unit["key"] = dic_key;
+		auto& bind_unit = *idic.second;
+		Value jbind_unit(objectValue);
+		Value param_list(arrayValue);
+		for (auto& pele_pos : bind_unit._param_list)
+		{
+			prop_ele_pos_index sub_pep_id;
+			calcu_prop_ele_pos_index(pele_pos, sub_pep_id);
+			Value param(arrayValue);
+			for (auto keyid:sub_pep_id)
+			{
+				param.append(keyid);
+			}
+			param_list.append(param);
+		}
+		jbind_unit["param_list"] = param_list;
+		jbind_unit["expression"] = bind_unit._expression;
+		dic_unit["bind_unit"] = jbind_unit;
+		dic.append(dic_unit);
+	}
+	binds["dic"] = dic;
+	Value ref_dic(arrayValue);
+	for (auto& idic:g_bind_ref_dic)
+	{
+		Value dic_unit(objectValue);
+		Value dic_key(arrayValue);
+		prop_ele_pos_index pep_id;
+		auto& ikey = idic.first;
+		calcu_prop_ele_pos_index(ikey, pep_id);
+		for (auto keyid:pep_id)
+		{
+			dic_key.append(keyid);
+		}
+		dic_unit["key"] = dic_key;
+		auto&ref_bind_unit = *idic.second;
+		Value ref_list(arrayValue);
+		for (auto& iref : ref_bind_unit)
+		{
+			prop_ele_pos_index sub_pep_id;
+			calcu_prop_ele_pos_index(iref, sub_pep_id);
+			Value param(arrayValue);
+			for (auto keyid:sub_pep_id)
+			{
+				param.append(keyid);
+			}
+			ref_list.append(param);
+		}
+		dic_unit["ref_list"] = ref_list;
+		ref_dic.append(dic_unit);
+	}
+	binds["ref_dic"] = ref_dic;
+	jroot["binds"] = binds;
+	Value state_manager(objectValue);
+	for (auto& ism:g_mstate_manager)
+	{
+		Value st_m_unit(objectValue);
+		auto& stm_unit = *ism.second;
+		auto& prop_list = stm_unit._prop_list;
+		Value jprop_list(arrayValue);
+		for (auto& pp_unit:prop_list)
+		{
+			prop_ele_pos_index prp_id;
+			calcu_prop_ele_pos_index(pp_unit, prp_id);
+			Value jprp_id(arrayValue);
+			for (auto keyid:prp_id)
+			{
+				jprp_id.append(keyid);
+			}
+			jprop_list.append(jprp_id);
+		}
+		st_m_unit["prop_list"] = jprop_list;
+		auto& prop_value_list = stm_unit._prop_value_list;
+		Value jprop_value_list(arrayValue);
+		for (auto& vprp_value:prop_value_list)
+		{
+			Value jprp_value(arrayValue);
+			for (auto& prp_value:vprp_value )
+			{
+				string prp_value_value;
+				convert_binary_to_string(&prp_value[0],prp_value.size(),prp_value_value);
+				jprp_value.append(prp_value_value);
+			}
+			jprop_value_list.append(jprp_value);
+		}
+		st_m_unit["prop_value_list"] = jprop_value_list;
+		auto& any_to_any = stm_unit._any_to_any;
+		Value jany(objectValue);
+		jany["start_time"] = any_to_any._start_time;
+		jany["duration"] = any_to_any._duration;
+		jany["easing_fun"] = any_to_any._easing_func;
+		st_m_unit["any_to_any"] = jany;
+		auto& mtrans = stm_unit._mtrans;
+		Value jmstrans(arrayValue);
+		for (auto& itran:mtrans)
+		{
+			Value jtran(objectValue);
+			jtran["key_from"] = itran.first._from;
+			jtran["key_to"] = itran.first._to;
+			auto& tran = *itran.second;
+			jtran["start_time"] = tran._start_time;
+			jtran["duration"] = tran._duration;
+			jtran["easing_fun"] = tran._easing_func;
+			jmstrans.append(jtran);
+		}
+		st_m_unit["mtrans"] = jmstrans;
+		auto& state_idx = stm_unit._state_idx;
+		st_m_unit["state_idx"] = state_idx;
+		auto& mstate = stm_unit._mstate;
+		st_m_unit["mstate"] = mstate;
+		state_manager[ism.first] = st_m_unit;
+	}
+	jroot["state_manager_list"] = state_manager;
 	fout << jroot << endl;
 	fout.close();
 

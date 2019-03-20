@@ -330,7 +330,7 @@ void state_manager_edit::view_state_manager_item_property()
 
 	
 		ImGui::SliderInt("start time", &_trans_edit._start_time, 0, 5000);
-		ImGui::SliderInt("duration", &_trans_edit._durition, 0, 5000);
+		ImGui::SliderInt("duration", &_trans_edit._duration, 0, 5000);
 		//ImGui::Columns(6,false);
 		for (idx = EaseLinear; idx < EaseFuncsCount; idx++)
 		{
@@ -427,10 +427,10 @@ void state_manager_edit::trans_play()
 		auto delta_tm = dur_mills.count() - cur_trans._start_time;
 		if (delta_tm>0)
 		{
-			double tm_pt_mill = (double)delta_tm / cur_trans._durition;
+			double tm_pt_mill = (double)delta_tm / cur_trans._duration;
 			auto& easing_fun = easingFun[cur_trans._easing_func];
 			double value_scale = easing_fun(tm_pt_mill);
-			if (delta_tm < cur_trans._durition)
+			if (delta_tm < cur_trans._duration)
 			{
 				_psel->_mstate = en_state_moving;
 			}

@@ -4,6 +4,7 @@
 #include "factory.h"
 #include "bind_edit.h"
 #include "state_manager_edit.h"
+#include "common_functions.h"
 extern bind_edit g_bind_edit;
 extern state_manager_edit g_state_manager_edit;
 extern bool show_bind_edit;
@@ -398,32 +399,7 @@ namespace auto_future
 			pgidx++;
 		}
 	}
-	const char hex_enc_table[] = "abcdefghijklmnop";
-	void convert_binary_to_string(char* pbin, int len, string& out_str)
-	{
-		out_str.resize(len * 2);
-		int ix = 0;
-		for (; ix < len;ix++)
-		{
-			auto bin_value = *(unsigned char*)pbin;
-			out_str[ix * 2] = hex_enc_table[bin_value >> 4];
-			out_str[ix * 2 + 1] = hex_enc_table[bin_value & 0x0f];
-			pbin++;
-		}
-	}
-
-	void convert_string_to_binary(string& in_str,string& out_bin)
-	{
-		auto out_size = in_str.size()/2;
-		out_bin.resize(out_size);
-		int ix = 0;
-		for (; ix < out_size; ix++)
-		{
-			unsigned char high=in_str[ix * 2]-'a';
-			unsigned char low=in_str[ix * 2 + 1]-'a';
-			out_bin[ix] = high << 4 | low;
-		}
-	}
+	
 	void base_ui_component::init_property_from_json(Value& jvalue){
 
 		for (auto& prop_ele : _vprop_eles)

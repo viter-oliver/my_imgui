@@ -49,4 +49,4 @@ using prop_ele_pos_index = vector<unsigned short>;
 extern bind_dic g_bind_dic;
 extern bind_ref_dic g_bind_ref_dic;
 extern void calcu_bind_node(prop_ele_position& pep);
-extern void calce_prop_ele_pos_index(prop_ele_position& pep, prop_ele_pos_index& pep_id);
+extern void calcu_prop_ele_pos_index(const prop_ele_position& pep, prop_ele_pos_index& pep_id);

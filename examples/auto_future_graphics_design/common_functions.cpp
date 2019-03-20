@@ -406,3 +406,30 @@ void trim_align_expression(string& exp, string&expo)
 		expo += '\n';
 	}
 }
+
+const char hex_enc_table[] = "abcdefghijklmnop";
+void convert_binary_to_string(char* pbin, int len, string& out_str)
+{
+	out_str.resize(len * 2);
+	int ix = 0;
+	for (; ix < len; ix++)
+	{
+		auto bin_value = *(unsigned char*)pbin;
+		out_str[ix * 2] = hex_enc_table[bin_value >> 4];
+		out_str[ix * 2 + 1] = hex_enc_table[bin_value & 0x0f];
+		pbin++;
+	}
+}
+
+void convert_string_to_binary(string& in_str, string& out_bin)
+{
+	auto out_size = in_str.size() / 2;
+	out_bin.resize(out_size);
+	int ix = 0;
+	for (; ix < out_size; ix++)
+	{
+		unsigned char high = in_str[ix * 2] - 'a';
+		unsigned char low = in_str[ix * 2 + 1] - 'a';
+		out_bin[ix] = high << 4 | low;
+	}
+}

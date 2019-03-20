@@ -38,7 +38,7 @@ void calcu_bind_node(prop_ele_position& pep)
 		}
 	}
 }
-void calce_prop_ele_pos_index(prop_ele_position& pep, prop_ele_pos_index& pep_id)
+void calcu_prop_ele_pos_index(const prop_ele_position& pep, prop_ele_pos_index& pep_id)
 {
 	pep_id.emplace_back(pep._field_index);
 	pep_id.emplace_back(pep._page_index);
