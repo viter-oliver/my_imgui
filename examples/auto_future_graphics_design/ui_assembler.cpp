@@ -309,6 +309,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					auto& sub_prp_ele_pos = (*ps_ref_list)[iv];
 					jarry_2_prp_pos(jref, sub_prp_ele_pos);
 				}
+				g_bind_ref_dic[prp_ele_pos] = ps_ref_list;
 			}
 			Value& jvstate_manager = jroot["state_manager_list"];
 			Value::Members memb(jvstate_manager.getMemberNames());

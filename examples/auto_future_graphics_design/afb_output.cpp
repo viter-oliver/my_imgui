@@ -14,6 +14,8 @@
 #include "primitive_object.h"
 #include "af_model.h"
 #include "af_font_res_set.h"
+#include "af_bind.h"
+#include "af_state_manager.h"
 #include "common_functions.h"
 extern "C"{
 #include "image_DXT.h"
@@ -346,6 +348,101 @@ void afb_output::output_afb(const char* afb_file)
 		}
 	}
 	pack_ui_component_data(_pj, pk);//en_control_res
+	pk.pack_array(g_bind_dic.size());//en_bind_dic
+	for (auto& ibind_dic:g_bind_dic)
+	{
+		pk.pack_array(3);
+		prop_ele_pos_index pep_id;
+		auto& ikey = ibind_dic.first;
+		calcu_prop_ele_pos_index(ikey, pep_id);
+		auto bin_sz = pep_id.size()*sizeof(unsigned short);
+		pk.pack_bin(bin_sz);
+		pk.pack_bin_body((char*)&pep_id[0], bin_sz);
+		auto& bind_unit = *ibind_dic.second;
+		auto& pm_list = bind_unit._param_list;
+		pk.pack_array(pm_list.size());
+		for (auto& pele_pos:pm_list)
+		{
+			prop_ele_pos_index sub_pep_id;
+			calcu_prop_ele_pos_index(pele_pos, sub_pep_id);
+			auto sub_bin_sz = sub_pep_id.size()*sizeof(unsigned short);
+			pk.pack_bin(sub_bin_sz);
+			pk.pack_bin_body((char*)&sub_pep_id[0], sub_bin_sz);
+		}
+		auto& expr = bind_unit._expression;
+		pk.pack_str(expr.size());
+		pk.pack_str_body(expr.c_str(), expr.size());
+
+	}
+	pk.pack_array(g_bind_ref_dic.size());//en_bind_ref_dic
+	for (auto& ibind_ref_dic:g_bind_ref_dic)
+	{
+		pk.pack_array(2);
+		auto& ikey = ibind_ref_dic.first;
+		prop_ele_pos_index pep_id;
+		calcu_prop_ele_pos_index(ikey, pep_id);
+		auto bin_sz = pep_id.size()*sizeof(unsigned short);
+		pk.pack_bin(bin_sz);
+		pk.pack_bin_body((char*)&pep_id[0], bin_sz);
+		auto& ref_bind_unit = *ibind_ref_dic.second;
+		pk.pack_array(ref_bind_unit.size());
+		for (auto& iref:ref_bind_unit)
+		{
+			prop_ele_pos_index sub_pep_id;
+			calcu_prop_ele_pos_index(iref, sub_pep_id);
+			auto sub_bin_sz = sub_pep_id.size()*sizeof(unsigned short);
+			pk.pack_bin(sub_bin_sz);
+			pk.pack_bin_body((char*)&sub_pep_id[0], sub_bin_sz);
+		}
+	}
+	pk.pack_array(g_mstate_manager.size());//en_state_manager
+	for (auto& ims:g_mstate_manager)
+	{
+		pk.pack_array(6);
+		auto& ikey=ims.first;
+		pk.pack_str(ikey.size());
+		pk.pack_str_body(ikey.c_str(),ikey.size());
+		auto& stm_unit=*ims.second;
+		auto& prop_list=stm_unit._prop_list;
+		pk.pack_array(prop_list.size());
+		for (auto& pp_unit:prop_list)
+		{
+			prop_ele_pos_index prp_id;
+			calcu_prop_ele_pos_index(pp_unit, prp_id);
+			auto bin_sz = prp_id.size()*sizeof(unsigned short);
+			pk.pack_bin(bin_sz);
+			pk.pack_bin_body((char*)&prp_id[0], bin_sz);
+		}
+		auto& prop_value_list=stm_unit._prop_value_list;
+		pk.pack_array(prop_value_list.size());
+		for (auto& vprp_value:prop_value_list)
+		{
+			pk.pack_array(vprp_value.size());
+			for (auto& prp_value:vprp_value)
+			{
+				pk.pack_bin(prp_value.size());
+				pk.pack_bin_body(prp_value.c_str(), prp_value.size());
+			}
+		}
+		auto& any_to_any=stm_unit._any_to_any;
+		pk.pack_array(3);
+		pk.pack_int(any_to_any._start_time);
+		pk.pack_int(any_to_any._duration);
+		pk.pack_int(any_to_any._easing_func);
+		pk.pack_unsigned_char(stm_unit._state_idx);
+		auto& mtrans=stm_unit._mtrans;
+		pk.pack_array(mtrans.size());
+		for (auto& itran:mtrans)
+		{
+			pk.pack_array(5);
+			pk.pack_int(itran.first._from);
+			pk.pack_int(itran.first._to);
+			auto& tran = *itran.second;
+			pk.pack_int(tran._start_time);
+			pk.pack_int(tran._duration);
+			pk.pack_int(tran._easing_func);
+		}
+	}
 #ifndef _DX5_COMPRESS
 	uint8_t* pout_buff = new uint8_t[sbuff.size()];
 	mz_stream stream = {};

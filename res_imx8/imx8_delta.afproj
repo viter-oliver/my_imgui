@@ -8,6 +8,53 @@
 	"_sizeh" : 0.0,
 	"_sizew" : 0.0,
 	"_visible" : true,
+	"binds" : 
+	{
+		"dic" : 
+		[
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0,v1,v2):\n  return v0+v1+v2\n",
+					"param_list" : 
+					[
+						[ 0, 0, 0, 3, 0 ],
+						[ 1, 0, 0, 3, 0 ],
+						[ 2, 0, 0, 3, 0 ]
+					]
+				},
+				"key" : [ 0, 1, 0, 3, 0 ]
+			}
+		],
+		"ref_dic" : 
+		[
+			
+			{
+				"key" : [ 0, 0, 0, 3, 0 ],
+				"ref_list" : 
+				[
+					[ 0, 1, 0, 3, 0 ]
+				]
+			},
+			
+			{
+				"key" : [ 1, 0, 0, 3, 0 ],
+				"ref_list" : 
+				[
+					[ 0, 1, 0, 3, 0 ]
+				]
+			},
+			
+			{
+				"key" : [ 2, 0, 0, 3, 0 ],
+				"ref_list" : 
+				[
+					[ 0, 1, 0, 3, 0 ]
+				]
+			}
+		]
+	},
 	"childs" : 
 	[
 		
@@ -123,7 +170,7 @@
 							"_aj_model" : 0,
 							"_anchor_type" : 0,
 							"_angle_srd" : 0.0,
-							"_aposx" : 0.0,
+							"_aposx" : 304.9140014648438,
 							"_aposy" : 0.0,
 							"_name" : "icon_wt",
 							"_posx" : 45.0,
@@ -5876,6 +5923,48 @@
 			"vs_name" : ""
 		}
 	],
+	"state_manager_list" : 
+	{
+		"sm1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 25,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 26,
+					"key_from" : 1,
+					"key_to" : 0,
+					"start_time" : 0
+				}
+			],
+			"prop_list" : 
+			[
+				[ 1, 0, 0, 3, 0 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaked" ],
+				[ "ndcnkded" ]
+			],
+			"state_idx" : 0
+		}
+	},
 	"texture_id_index" : 0,
 	"texture_list" : 
 	[

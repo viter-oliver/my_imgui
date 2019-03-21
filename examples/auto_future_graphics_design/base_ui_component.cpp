@@ -189,6 +189,7 @@ namespace auto_future
 					memcpy(&before_op_memb_value[0], memb_address, mtpsz);
 
 					auto& imemb_tp_handl = _mcustom_type_property_handles_container.find(mtype);
+					bool be_base_type = false;
 					if (imemb_tp_handl != _mcustom_type_property_handles_container.end())
 					{
 						imemb_tp_handl->second(memb_address);
@@ -201,6 +202,7 @@ namespace auto_future
 						}
 						else{
 							function<bool(string&, void* )> f_draw_index_prop;
+							
 							if (mtype == "char"){
 								if (array_cnt > 0)
 								{
@@ -223,6 +225,7 @@ namespace auto_future
 									ImGui::SliderInt(mname.c_str(), (int*)memb_address, 0, 255);
 							}
 							else if (mtype == "int"){
+								be_base_type = true;
 								if (rg == "txt")// atexture
 								{
 									f_draw_index_prop = [&](string& str_show, void*maddress){									
@@ -260,6 +263,7 @@ namespace auto_future
 
 							}
 							else if (mtype == "float" || mtype == "double"){
+								be_base_type = true;
 								f_draw_index_prop = [&](string& str_show, void*maddress){
 									return  ImGui::SliderFloat(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
 								};
@@ -296,6 +300,7 @@ namespace auto_future
 								};
 							}
 							else if (mtype == "bool"){
+								be_base_type = true;
 								f_draw_index_prop = [&](string& str_show, void*maddress){
 									return ImGui::Checkbox(str_show.c_str(), (bool*)maddress);
 								};
@@ -307,6 +312,7 @@ namespace auto_future
 							if (f_draw_index_prop)
 							{
 								if (array_cnt>0){
+									be_base_type = false;
 									for (int ix = 0; ix < array_cnt; ++ix)
 									{
 										char str_index[50] = { 0 };
@@ -364,28 +370,30 @@ namespace auto_future
 						g.IO.InputContentChanged = false;
 					}
 					//bind_btn_cp += "#";
-					char idstr[50] = { 0 };
-					sprintf(idstr, "%d_%d", pgidx, idx);
-					string btn_cap = bind_btn_cp + idstr;
-					ImGui::SameLine();
-					if (ImGui::Button(btn_cap.c_str()))
+					if (be_base_type)
 					{
-						g_bind_edit.sel_prop_ele(this, pgidx, idx);
-						show_bind_edit = true;
+						char idstr[50] = { 0 };
+						sprintf(idstr, "%d_%d", pgidx, idx);
+						string btn_cap = bind_btn_cp + idstr;
+						ImGui::SameLine();
+						if (ImGui::Button(btn_cap.c_str()))
+						{
+							g_bind_edit.sel_prop_ele(this, pgidx, idx);
+							show_bind_edit = true;
+						}
+						if (ImGui::IsItemActive())
+						{
+							// Draw a line between the button and the mouse cursor
+							ImDrawList* draw_list = ImGui::GetWindowDrawList();
+							draw_list->PushClipRectFullScreen();
+							ImGuiIO& io = ImGui::GetIO();
+							draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
+							draw_list->PopClipRect();
+							g_bind_edit.set_dragging(true, this, pgidx, idx);
+							g_state_manager_edit.set_dragging(true, this, pgidx, idx);
+							//ImGui::Button("Drag Me");
+						}
 					}
-					if (ImGui::IsItemActive())
-					{
-						// Draw a line between the button and the mouse cursor
-						ImDrawList* draw_list = ImGui::GetWindowDrawList();
-						draw_list->PushClipRectFullScreen();
-						ImGuiIO& io = ImGui::GetIO();
-						draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
-						draw_list->PopClipRect();
-						g_bind_edit.set_dragging(true, this, pgidx, idx);
-						g_state_manager_edit.set_dragging(true, this, pgidx, idx);
-						//ImGui::Button("Drag Me");
-					}
-					
 					if (ImGui::IsMouseReleased(0))
 					{
 						g_bind_edit.set_dragging(false,this);

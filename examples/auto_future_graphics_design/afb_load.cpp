@@ -14,6 +14,8 @@
 #include "material.h"
 #include "primitive_object.h"
 #include "af_model.h"
+#include "af_bind.h"
+#include "af_state_manager.h"
 #define DXT5_DECOMPRESSED
 #ifdef DXT5_DECOMPRESSED
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
@@ -572,5 +574,134 @@ void afb_load::load_afb(const char* afb_file)
 	}
 	auto obj_ui = obj_w.via.array.ptr[en_control_res];
 	init_ui_component_by_mgo(_pj, obj_ui);
+	auto obj_bind_dic = obj_w.via.array.ptr[en_bind_dic];
+	auto obj_bind_dic_sz = obj_bind_dic.via.array.size;
+	auto obj_2_prp_pos = [this](msgpack::v2::object& okey,prop_ele_position&prp_epos){
+		auto obin_sz = okey.via.bin.size;
+		auto rsz = obin_sz / sizeof(unsigned short);
+		prop_ele_pos_index prp_ep_idx;
+		prp_ep_idx.resize(rsz);
+		memcpy(&prp_ep_idx[0], okey.via.bin.ptr, obin_sz);
+		int ii = rsz - 1;
+		base_ui_component* pcontrol = _pj;
+		for (; ii > 1;ii--)
+		{
+			pcontrol = pcontrol->get_child(prp_ep_idx[ii]);
+		}
+		prp_epos._pobj = pcontrol;
+		prp_epos._page_index = prp_ep_idx[1];
+		prp_epos._field_index = prp_ep_idx[0];
+	};
+	for (size_t ix = 0; ix < obj_bind_dic_sz;ix++)
+	{
+		auto oprp_ele = obj_bind_dic.via.array.ptr[ix];
+		auto obind_key = oprp_ele.via.array.ptr[0];
+		prop_ele_position prp_ele_pos;
+		obj_2_prp_pos(obind_key, prp_ele_pos);
+		auto ps_bind_unit = make_shared<prop_ele_bind_unit>();
+		auto& vparam = ps_bind_unit->_param_list;
+		auto opm_list = oprp_ele.via.array.ptr[1];
+		auto opm_list_sz = opm_list.via.array.size;
+		for (size_t iix = 0; iix < opm_list_sz;iix++)
+		{
+			auto opele_pos = opm_list.via.array.ptr[iix];
+			vparam.emplace_back();
+			auto& sub_prp_ele_pos = vparam[iix];
+			obj_2_prp_pos(opele_pos, sub_prp_ele_pos);
+		}
+		auto oexpr = oprp_ele.via.array.ptr[2];
+		auto& expr = ps_bind_unit->_expression;
+		auto exp_sz = oexpr.via.str.size;
+		expr.resize(exp_sz);
+		memcpy(&expr[0], oexpr.via.str.ptr, exp_sz);
+		g_bind_dic[prp_ele_pos] = ps_bind_unit;
+	}
+	auto obj_bind_ref_dic = obj_w.via.array.ptr[en_bind_ref_dic];
+	auto bind_ref_dic_sz = obj_bind_ref_dic.via.array.size;
+	for (size_t ix = 0; ix < bind_ref_dic_sz;ix++)
+	{
+		auto oprp_ele = obj_bind_ref_dic.via.array.ptr[ix];
+		auto obind_key = oprp_ele.via.array.ptr[0];
+		prop_ele_position prp_ele_pos;
+		obj_2_prp_pos(obind_key, prp_ele_pos);
+		auto ps_ref_list = make_shared<vprop_pos>();
+		auto oref_list=oprp_ele.via.array.ptr[1];
+		auto oref_list_sz = oref_list.via.array.size;
+		for (size_t iix = 0; iix < oref_list_sz;iix++)
+		{
+			auto oref = oref_list.via.array.ptr[iix];
+			ps_ref_list->emplace_back();
+			auto& sub_prp_pos = (*ps_ref_list)[iix];
+			obj_2_prp_pos(oref, sub_prp_pos);
+		}
+		g_bind_ref_dic[prp_ele_pos] = ps_ref_list;
+	}
+	auto obj_state_manger = obj_w.via.array.ptr[en_state_manager];
+	auto stm_sz = obj_state_manger.via.array.size;
+	for (size_t ix = 0; ix < stm_sz;ix++)
+	{
+		auto omstm = obj_state_manger.via.array.ptr[ix];
+		auto omkey = omstm.via.array.ptr[0];
+		auto mkey_sz = omkey.via.str.size;
+		string mskey;
+		mskey.resize(mkey_sz);
+		memcpy(&mskey[0], omkey.via.str.ptr, mkey_sz);
+		auto ps_stm = make_shared<af_state_manager>();
+		auto& stm = *ps_stm;
+		auto& prop_list = stm._prop_list;
+		auto oprop_list = omstm.via.array.ptr[1];
+		auto oprp_lst_sz = oprop_list.via.array.size;
+		for (size_t ii = 0; ii < oprp_lst_sz;ii++)
+		{
+			auto oprp_id = oprop_list.via.array.ptr[ii];
+			prop_list.emplace_back();
+			auto& prp_ele_pos = prop_list[ii];
+			obj_2_prp_pos(oprp_id, prp_ele_pos);
+		}
+		auto oprp_value_list = omstm.via.array.ptr[2];
+		auto oprp_value_list_sz = oprp_value_list.via.array.size;
+		auto& prp_value_list = stm._prop_value_list;
+		for (size_t ii = 0; ii < oprp_value_list_sz;ii++)
+		{
+			auto ovprp_value = oprp_value_list.via.array.ptr[ii];
+			prp_value_list.emplace_back();
+			auto& prp_value = prp_value_list[ii];
+			auto ovprp_value_sz = ovprp_value.via.array.size;
+			for (size_t jj = 0; jj< ovprp_value_sz;jj++)
+			{
+				auto ovalue_bock = ovprp_value.via.array.ptr[jj];
+				auto valuesz = ovalue_bock.via.bin.size;
+				prp_value.emplace_back();
+				auto& value_bk = prp_value[jj];
+				value_bk.resize(valuesz);
+				memcpy(&value_bk[0], ovalue_bock.via.bin.ptr, valuesz);
+			}
+		}
+		auto oany= omstm.via.array.ptr[3];
+		auto& any_to_any = stm._any_to_any;
+		any_to_any._start_time = oany.via.array.ptr[0].as<int>();
+		any_to_any._duration=oany.via.array.ptr[1].as<int>();
+		any_to_any._easing_func = oany.via.array.ptr[2].as<int>();
+		stm._state_idx=omstm.via.array.ptr[4].as<unsigned char>();
+		auto omtrans=omstm.via.array.ptr[5];
+		auto& mtrans = stm._mtrans;
+		auto mtrans_sz = omtrans.via.array.size;
+		for (size_t jj = 0; jj < mtrans_sz;jj++)
+		{
+			auto otrans = omtrans.via.array.ptr[jj];
+			auto ofrom = otrans.via.array.ptr[0];
+			auto oto = otrans.via.array.ptr[1];
+			trans_key tkey = { ofrom.as<int>(), oto.as<int>() };
+			auto ostart_tm = otrans.via.array.ptr[2];
+			auto oduration=otrans.via.array.ptr[3];
+			auto oseasing_fun = otrans.via.array.ptr[4];
+			auto ps_trans = make_shared<state_transition>();
+			ps_trans->_start_time = ostart_tm.as<int>();
+			ps_trans->_duration = oduration.as<int>();
+			ps_trans->_easing_func = oseasing_fun.as<int>();
+			mtrans[tkey] = ps_trans;
+		}
+		g_mstate_manager[mskey] = ps_stm;
+	}
 	TIME_CHECK(control list res)
 }
