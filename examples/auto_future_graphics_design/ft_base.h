@@ -19,6 +19,7 @@ namespace auto_future
 		bool contains(float posx, float posy);
 		bool relative_contain(af_vec2& point);
 		bool relative_contain(float pos, bool be_h);
+		bool set_prop_fd_value(int pg_id, int fd_id,void* pvalue);
 	};
 	REGISTER_CONTROL(ft_base)
 

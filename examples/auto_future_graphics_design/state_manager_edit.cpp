@@ -142,7 +142,6 @@ void state_manager_edit::view_state_manager_item_property()
 		get_uic_path(prop_ele_p._pobj, prop_ele_show);
 		auto& pgidx = prop_ele_p._page_index;
 		auto& fidx = prop_ele_p._field_index;
-		auto& pt_pg = prop_ele_p._pobj->get_prop_ele(pgidx);
 		field_ele &fel = prop_ele_p._pobj->get_filed_ele(pgidx, fidx);
 		prop_ele_show += "::";
 		prop_ele_show += fel._name;
@@ -192,8 +191,7 @@ void state_manager_edit::view_state_manager_item_property()
 					auto& fel = p_pos._pobj->get_filed_ele(pgidx, fidx);
 					if (pp_block.size()==fel._tpsz)
 					{
-						auto& pt_pg = p_pos._pobj->get_prop_ele(pgidx);
-						char* ppt_addr = (char*)pt_pg._pro_address + fel._offset;
+						char* ppt_addr =  fel._address;
 						memcpy(ppt_addr, &pp_block[0], fel._tpsz);
 					}
 				}
@@ -219,10 +217,9 @@ void state_manager_edit::view_state_manager_item_property()
 			{
 				auto& pgidx = p_pos._page_index;
 				auto& fidx = p_pos._field_index;
-				auto& pt_pg = p_pos._pobj->get_prop_ele(pgidx);
 				field_ele &fel = p_pos._pobj->get_filed_ele(pgidx, fidx);
 				auto& pp_block = cur_pp_value[iidx];
-				char* ppt_addr = (char*)pt_pg._pro_address + fel._offset;
+				char* ppt_addr = fel._address;
 				int tp_sz = fel._tpsz;
 				pp_block.resize(tp_sz);
 				memcpy(&pp_block[0], ppt_addr, tp_sz);
@@ -450,9 +447,8 @@ void state_manager_edit::trans_play()
 				auto& pgidx = prop._page_index;
 				auto& fdidx = prop._field_index;
 				auto& pobj = prop._pobj;
-				auto& pt_page = pobj->get_prop_ele(pgidx);
 				auto& fel = pobj->get_filed_ele(pgidx, fdidx);
-				char* ppt_addr = (char*)pt_page._pro_address + fel._offset;
+				char* ppt_addr =fel._address;
 				auto& ppt_blk_from = pp_vl_lst_from[idx];
 				auto& ppt_blk_to = pp_vl_lst_to[idx];
 				if (fel._type=="int")

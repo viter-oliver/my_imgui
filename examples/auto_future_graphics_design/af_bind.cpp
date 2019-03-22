@@ -16,9 +16,8 @@ void calcu_bind_node(prop_ele_position& pep)
 			{
 				auto& pgidx = ref_pos._page_index;
 				auto& fdidx = ref_pos._field_index;
-				auto& pt_page = ref_pos._pobj->get_prop_ele(pgidx);
 				auto& field = ref_pos._pobj->get_filed_ele(pgidx, fdidx);
-				char* ppt_addr = (char*)pt_page._pro_address + field._offset;
+				char* ppt_addr = field._address;
 				var_unit vrtn(field._type, ppt_addr);
 				variable_list vlist;
 				auto& param_list = ibind_ut->second->_param_list;
@@ -26,9 +25,8 @@ void calcu_bind_node(prop_ele_position& pep)
 				{
 					auto& cpgidx = param._page_index;
 					auto& cfdidx = param._field_index;
-					auto& cpt_page = param._pobj->get_prop_ele(cpgidx);
 					auto& cfel = param._pobj->get_filed_ele(cpgidx,cfdidx);
-					char* pm_value = (char*)cpt_page._pro_address + cfel._offset;
+					char* pm_value = cfel._address;
 					vlist.emplace_back(var_unit(cfel._type,pm_value));
 				}
 				auto& exp_calcu = ibind_ut->second->_expression;

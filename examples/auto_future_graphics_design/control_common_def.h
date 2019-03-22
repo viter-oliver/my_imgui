@@ -190,6 +190,7 @@ namespace auto_future
 		static float screenh;
 		static prop_ele null_prop_ele;
 		static field_ele null_field_ele;
+		//static field_ele_with_value null_field_ele_with_value;
 		prop_ele& get_prop_ele(int pgidx)
 		{
 			auto vpsz = _vprop_eles.size();
@@ -210,6 +211,7 @@ namespace auto_future
 			auto& vfiled = pele._pro_page;
 			return *vfiled[field_idx];
 		}
+
 		/**
 		*@brief draw self on a surface
 		*/

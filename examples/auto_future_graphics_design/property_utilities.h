@@ -58,12 +58,15 @@ struct field_ele
 	string _name;
 	int _tpsz;
 	int _offset;
+	char* _address;
+	int _count;
 	/*vector<prop_ele_position> _param_list;
 	vector<prop_ele_position> _reference_list;
 	string _expression;*/
 	field_ele(std::string tp, std::string nm, int tpsz, int offset)
-		:_type(tp), _name(nm),_tpsz(tpsz),_offset(offset){}
+		:_type(tp), _name(nm),_tpsz(tpsz),_offset(offset),_address(0),_count(0){}
 };
+
 typedef std::shared_ptr<field_ele> sp_field_ele;
 //
 typedef std::vector<sp_field_ele> vt_field_ele;
@@ -73,7 +76,28 @@ struct  prop_ele
 	int _pro_sz;
 	vt_field_ele _pro_page;
 	prop_ele(void* paddress,int pro_sz) :_pro_address(paddress),_pro_sz(pro_sz){}
+	static void respair(prop_ele& target)
+	{
+		char* phead = (char*)target._pro_address;
+		int prev_value_offset = 0;
+		for (auto& ps_fele:target._pro_page )
+		{
+			auto& fele = *ps_fele;
+			if (prev_value_offset==fele._offset)//not array
+			{
+				fele._address = phead + fele._offset;
+				prev_value_offset = fele._offset + fele._tpsz;
+			}
+			else// is array
+			{
+				fele._address = phead + prev_value_offset;
+				fele._count = (fele._offset - prev_value_offset) / fele._tpsz;
+				prev_value_offset = fele._offset;
+			}
+		}
+	}
 };
+
 #ifdef _MSC_VER 
 #define MSC_PACK_HEAD __pragma(pack(push, 1))
 #define MSC_PACK_END __pragma(pack(pop))
@@ -115,7 +139,7 @@ stname vname{_vprop_eles}; MSC_PACK_END
 	stname(){/*assert(0&&"you should not construct the class this way!");*/}\
 	stname(vp_prop_ele& vprop_ele){sp_prop_ele ppt=make_shared<prop_ele>(this,sizeof(stname));\
 	BOOST_PP_SEQ_FOR_EACH(GET_ELE3,stname,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))\
-	vprop_ele.emplace_back(ppt);\
+	prop_ele::respair(*ppt); vprop_ele.emplace_back(ppt);\
     }\
 };\
 stname vname{_vprop_eles}; MSC_PACK_END

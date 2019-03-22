@@ -135,23 +135,17 @@ namespace auto_future
 			{
 				auto& prop_page = prop_ele->_pro_page;
 				int idx = 0;
-				int prev_memb_offset_p_tpsz = 0;
 				for (auto& memb:prop_page)
 				{
 					auto mtype = memb->_type;
 					auto mname = memb->_name;
 					auto mtpsz = memb->_tpsz;
-					auto moffset = memb->_offset;
-					void* memb_address = 0;
-					int array_cnt = 0;
+					char* memb_address = memb->_address;
+					int array_cnt = memb->_count;
 					string::size_type apos = mname.find('[');
 					if (apos!=string::npos)//is array
 					{
 						mname = mname.substr(0, apos);
-						int wsz = moffset - prev_memb_offset_p_tpsz;
-						array_cnt = wsz / mtpsz;
-						memb_address = (char*)prop_ele->_pro_address + prev_memb_offset_p_tpsz;
-						prev_memb_offset_p_tpsz = moffset;
 					}
 					else{
 						auto eppos = mname.find('=');
@@ -165,8 +159,6 @@ namespace auto_future
 								mname = mname.substr(0, brpos);
 							}
 						}
-						memb_address=  (char*)prop_ele->_pro_address + moffset;
-						prev_memb_offset_p_tpsz = moffset+mtpsz;
 					}
 					string rg = mname.substr(mname.length() - 3, 3);
 					auto& irg = s_rg_tips.find(rg);
@@ -413,23 +405,17 @@ namespace auto_future
 		for (auto& prop_ele : _vprop_eles)
 		{
 			auto& prop_page = prop_ele->_pro_page;
-			int prev_memb_offset_p_tpsz = 0;
 			for (auto& memb : prop_page)
 			{
 				auto mtype = memb->_type;
 				auto mname = memb->_name;
 				auto mtpsz = memb->_tpsz;
-				auto moffset = memb->_offset;
-				void* memb_address = 0;
-				int array_cnt = 0;
+				char* memb_address = memb->_address;
+				int array_cnt = memb->_count;
 				string::size_type apos = mname.find('[');
 				if (apos != string::npos)//is array
 				{
 					mname = mname.substr(0, apos);
-					int wsz = moffset - prev_memb_offset_p_tpsz;
-					array_cnt = wsz / mtpsz;
-					memb_address = (char*)prop_ele->_pro_address + prev_memb_offset_p_tpsz;
-					prev_memb_offset_p_tpsz = moffset;
 				}
 				else{
 					auto eppos = mname.find('=');
@@ -443,10 +429,8 @@ namespace auto_future
 							mname = mname.substr(0, brpos);
 						}
 					}
-					memb_address = (char*)prop_ele->_pro_address + moffset;
-					prev_memb_offset_p_tpsz = moffset + mtpsz;
 				}
-				if (array_cnt > 0){
+				if (array_cnt > 1){
 					if (mtype == "char")
 					{
 						Value vbytes = jvalue[mname];//must be string
@@ -575,23 +559,17 @@ namespace auto_future
 		for (auto& prop_ele : _vprop_eles)
 		{
 			auto& prop_page = prop_ele->_pro_page;
-			int prev_memb_offset_p_tpsz = 0;
 			for (auto& memb : prop_page)
 			{
 				auto mtype = memb->_type;
 				auto mname = memb->_name;
 				auto mtpsz = memb->_tpsz;
-				auto moffset = memb->_offset;
-				void* memb_address = 0;
-				int array_cnt = 0;
+				void* memb_address = memb->_address;
+				int array_cnt = memb->_count;
 				string::size_type apos = mname.find('[');
 				if (apos != string::npos)//is array
 				{
 					mname = mname.substr(0, apos);
-					int wsz = moffset - prev_memb_offset_p_tpsz;
-					array_cnt = wsz / mtpsz;
-					memb_address = (char*)prop_ele->_pro_address + prev_memb_offset_p_tpsz;
-					prev_memb_offset_p_tpsz = moffset;
 				}
 				else{
 					auto eppos = mname.find('=');
@@ -605,8 +583,6 @@ namespace auto_future
 							mname = mname.substr(0, brpos);
 						}
 					}
-					memb_address = (char*)prop_ele->_pro_address + moffset;
-					prev_memb_offset_p_tpsz = moffset + mtpsz;
 				}
 				if (array_cnt > 0){
 					if (mtype == "char")

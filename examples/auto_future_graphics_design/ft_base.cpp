@@ -1,7 +1,7 @@
 #include "ft_base.h"
 #include <GLFW/glfw3.h>
 #include <typeinfo>
-
+#include "af_bind.h"
 namespace auto_future
 {
 	ft_base::ft_base()
@@ -141,6 +141,32 @@ namespace auto_future
 		}
 		return true;
 	}
+	bool ft_base::set_prop_fd_value(int pg_id, int fd_id, void* pvalue)
+	{
+		assert(pvalue);
+		auto pg_sz = _vprop_eles.size();
+		if (pg_id>=pg_sz)
+		{
+			return false;
+		}
+		auto& pg_ele = _vprop_eles[pg_id];
+		auto& vfd_ele = pg_ele->_pro_page;
+		auto vfd_ele_sz = vfd_ele.size();
+		if (fd_id>=vfd_ele_sz)
+		{
+			return false;
+		}
+		auto& fd_ele = *vfd_ele[fd_id];
+		char* pdest = fd_ele._address;
+		int count = fd_ele._count;
+		if (count==0)
+		{
+			count = 1;
+		}
+		memcpy(pdest, pvalue, fd_ele._count + fd_ele._tpsz);
+		prop_ele_position cur_prp_ele_pos = { this, pg_id, fd_id};
+		calcu_bind_node(cur_prp_ele_pos);
+	}
 	base_ui_component* ft_base::get_copy_of_object()
 	{
 		string cname = typeid(*this).name();
@@ -179,7 +205,6 @@ namespace auto_future
 	float base_ui_component::screenh =720.f;
 	prop_ele base_ui_component::null_prop_ele = { nullptr, 0 };
 	field_ele base_ui_component::null_field_ele = {"", "",0,0 };
-	
 	void property_copy(vproperty_list& vdest, vproperty_list& vsource)
 	{
 		for (size_t i = 0; i < vdest.size(); i++)

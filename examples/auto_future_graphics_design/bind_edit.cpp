@@ -96,7 +96,6 @@ void bind_edit::bind_source_view()
 	get_uic_path(_current_prop_ele._pobj, cur_name);
 	auto& cur_pgidx = _current_prop_ele._page_index;
 	auto& cur_fieldidx = _current_prop_ele._field_index;
-	auto& cur_pt_page = _current_prop_ele._pobj->get_prop_ele(cur_pgidx);
 	auto& cur_field = _current_prop_ele._pobj->get_filed_ele(cur_pgidx, cur_fieldidx);
 	cur_name += "::";
 	cur_name += cur_field._name;
@@ -113,7 +112,7 @@ void bind_edit::bind_source_view()
 	int ix = 0;
 	auto& param_list = prop_ele_unit._param_list;
 	string param_pass;
-	char* ppt_addr = (char*)cur_pt_page._pro_address + cur_field._offset;
+	char* ppt_addr = cur_field._address;
 	var_unit vrtn(cur_field._type, ppt_addr);
 	variable_list vlist;
 	for (auto itp = param_list.begin(); itp != param_list.end();)//(auto&prop_ele_p:prop_ele_unit._param_list)
@@ -133,9 +132,8 @@ void bind_edit::bind_source_view()
 		get_uic_path(prop_ele_p._pobj, va);
 		auto& pgidx = prop_ele_p._page_index;
 		auto& fidx = prop_ele_p._field_index;
-		auto& pt_pg = prop_ele_p._pobj->get_prop_ele(pgidx);
 		field_ele &fel = prop_ele_p._pobj->get_filed_ele(pgidx,fidx);
-		char* pm_value = (char*)pt_pg._pro_address + fel._offset;
+		char* pm_value = fel._address;
 		vlist.emplace_back(var_unit(fel._type, pm_value));
 		va += "::";
 		va += fel._name;
