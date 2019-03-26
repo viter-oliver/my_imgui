@@ -145,17 +145,29 @@
     <ClCompile Include="ft_circle.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="af_font_res_set.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="af_model.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="ft_modeling_3d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="af_shader_source_code.cpp">
       <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="af_bind.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="af_state_manager.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="af_font_res_set.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="af_model.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="python_interpreter.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="easing.cpp">
+      <Filter>common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -319,14 +331,26 @@
     <ClInclude Include="property_utilities.h">
       <Filter>controls</Filter>
     </ClInclude>
-    <ClInclude Include="af_font_res_set.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="af_model.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="ft_modeling_3d.h">
       <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="af_bind.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="af_state_manager.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="af_model.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="af_font_res_set.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="python_interpreter.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="easing.h">
+      <Filter>common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

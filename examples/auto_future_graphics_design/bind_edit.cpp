@@ -5,7 +5,7 @@
 #include "common_functions.h"
 #include "python_interpreter.h"
 #include "ft_base.h"
-#include <algorithm>
+//#include <algorithm>
 //using namespace auto_future;
 void bind_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t page_idx, uint16_t off_idx)
 {

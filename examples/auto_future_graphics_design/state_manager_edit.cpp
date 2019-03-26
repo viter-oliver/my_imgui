@@ -5,7 +5,7 @@
 #include "ft_base.h"
 #include "res_internal.h"
 #include <sstream>
-#include <algorithm>
+//#include <algorithm>
 void state_manager_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t page_idx, uint16_t off_idx)
 {
 	if (!be_dragging&&_hit_sm_window)
@@ -270,9 +270,8 @@ void state_manager_edit::view_state_manager_item_property()
 			string str_play = ">>##" + str_sel;
 			if (ImGui::Button(str_play.c_str()))//play the trans
 			{
-				_cur_trans_play_key = itrans->first;
-				_be_playing = true;
-				_cur_trans_play_start = steady_clock::now();
+
+				g_state_trans_player.play_state_trans(_psel, itrans->first._from,itrans->first._to);
 			}
 
 			str_sel = "X##" + str_sel;
@@ -411,85 +410,4 @@ void state_manager_edit::view_state_manager_item_property()
 	}
 	ImGui::EndChild();
 	
-}
-
-void state_manager_edit::trans_play()
-{
-	if (_psel)
-	{
-		auto cur_clk = steady_clock::now();
-		auto dur_mills = duration_cast<milliseconds>(cur_clk - _cur_trans_play_start);
-		auto& icur_trans = _psel->_mtrans.find(_cur_trans_play_key);
-		auto& cur_trans = *icur_trans->second;
-		auto delta_tm = dur_mills.count() - cur_trans._start_time;
-		if (delta_tm>0)
-		{
-			double tm_pt_mill = (double)delta_tm / cur_trans._duration;
-			auto& easing_fun = easingFun[cur_trans._easing_func];
-			double value_scale = easing_fun(tm_pt_mill);
-			if (delta_tm < cur_trans._duration)
-			{
-				_psel->_mstate = en_state_moving;
-			}
-			else
-			{
-				_be_playing = false;
-				_psel->_mstate = en_state_pause;
-				value_scale = 1.0;
-				_psel->_state_idx = _cur_trans_play_key._to;
-			}
-			auto& prop_list = _psel->_prop_list;
-			auto& pp_vl_lst_from = _psel->_prop_value_list[_cur_trans_play_key._from];
-			auto& pp_vl_lst_to = _psel->_prop_value_list[_cur_trans_play_key._to];
-			int idx = 0;
-			for (auto& prop:prop_list)
-			{
-				auto& pgidx = prop._page_index;
-				auto& fdidx = prop._field_index;
-				auto& pobj = prop._pobj;
-				auto& fel = pobj->get_filed_ele(pgidx, fdidx);
-				char* ppt_addr =fel._address;
-				auto& ppt_blk_from = pp_vl_lst_from[idx];
-				auto& ppt_blk_to = pp_vl_lst_to[idx];
-				if (fel._type=="int")
-				{
-					int* pifrom = (int*)&ppt_blk_from[0];
-					int* pito = (int*)&ppt_blk_to[0];
-					int* piprop = (int*)ppt_addr;
-					int ivalue_span = *pito - *pifrom;
-					int idelta_value = ivalue_span*value_scale;
-					*piprop = *pifrom + idelta_value;
-				}
-				else
-				if (fel._type=="float")
-				{
-					float* pffrom = (float*)&ppt_blk_from[0];
-					float* pfto = (float*)&ppt_blk_to[0];
-					float* pfprop = (float*)ppt_addr;
-					float fvalue_span = *pfto - *pffrom;
-					float fdelta_value = fvalue_span*value_scale;
-					*pfprop = *pffrom + fdelta_value;
-				}
-				else
-				if (fel._type=="double")
-				{
-					double* pdfrom = (double*)&ppt_blk_from[0];
-					double* pdto = (double*)&ppt_blk_to[0];
-					double* pdprop = (double*)ppt_addr;
-					double dvalue_span = *pdto - *pdfrom;
-					double ddelta_value = dvalue_span*value_scale;
-					*pdprop = *pdfrom + ddelta_value;
-				}
-				else
-				if (fel._type=="bool")
-				{
-				}
-
-				idx++;
-			}
-			
-
-		}
-		
-	}
 }

@@ -42,6 +42,7 @@
 #include "file_res_edit.h"
 #include "model_edit.h"
 #include "bind_edit.h"
+#include "aliase_edit.h"
 #include "state_manager_edit.h"
 #include "common_functions.h"
 #include "dir_output.h"
@@ -53,6 +54,7 @@ static void error_callback(int error, const char* description)
 string g_cureent_project_file_path;
 string g_cureent_directory;
 bind_edit g_bind_edit;
+aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
 //string g_current_run_path;
 #include <windows.h>
@@ -69,7 +71,7 @@ bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,\
 show_output_format=false,show_model_list=false,show_world_space=false,\
-show_bind_edit=false,show_state_manager_edit=false;
+show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false;
 #define _MY_IMGUI__
 //#define _DEMO_
 int main(int argc, char* argv[])
@@ -629,6 +631,10 @@ int main(int argc, char* argv[])
 				{
 					show_state_manager_edit = !show_state_manager_edit;
 				}
+				if (ImGui::MenuItem("Aliases edit", NULL, show_aliase_edit))
+				{
+					show_aliase_edit = !show_aliase_edit;
+				}
 
 				ImGui::EndMenu();
 			}
@@ -759,9 +765,10 @@ int main(int argc, char* argv[])
 			g_bind_edit.bind_source_view();
 			ImGui::End();
 		}
-		if (g_state_manager_edit.be_playing())
+		
+		if (g_state_trans_player.be_playing())
 		{
-			g_state_manager_edit.trans_play();
+			g_state_trans_player.keep_state_trans_on();
 		}
 		else
 		if (show_state_manager_edit)
@@ -771,6 +778,17 @@ int main(int argc, char* argv[])
 			g_state_manager_edit.view_state_managers();
 			ImGui::NextColumn();
 			g_state_manager_edit.view_state_manager_item_property();
+			ImGui::End();
+		}
+		if (show_aliase_edit)
+		{
+			ImGui::Begin("Aliases edit", &show_aliase_edit, ImVec2(400, 400));
+			ImGui::Columns(2);
+			ImGui::SetColumnWidth(0, 200);
+			g_aliase_edit.aliase_dic_view();
+			ImGui::NextColumn();
+			g_aliase_edit.aliase_item_propoerty();
+			g_aliase_edit.popup_new_aliase();
 			ImGui::End();
 		}
 		if (show_resource_manager)

@@ -58,3 +58,15 @@ void calcu_prop_ele_pos_index(const prop_ele_position& pep, prop_ele_pos_index& 
 		pcur = ppt;
 	}
 }
+aliase_map g_aliase_dic;
+bool set_property_aliase_value(string prp_aliase_name, void* pvalue)
+{
+	auto& ialiase = g_aliase_dic.find(prp_aliase_name);
+	if (ialiase==g_aliase_dic.end())
+	{
+		printf("unknown alias name:%s\n", prp_aliase_name.c_str());
+		return false;
+	}
+	auto& prop_pos =*ialiase->second;
+	return prop_pos._pobj->set_prop_fd_value(prop_pos._page_index, prop_pos._field_index, pvalue);
+}

@@ -17,6 +17,7 @@
 
 #include "Resource.h"
 #include "afb_load.h"
+#include "af_state_manager.h"
 #include "primitive_object.h"
 #include <chrono>
 //extern void instantiating_internal_shader();
@@ -143,9 +144,10 @@ namespace auto_future
 			style.WindowRounding = 0.f;
 			ImGui::Begin("edit window", &show_app, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
 			//
-			onUpdate();
 			if (_proot)
 			{
+				onUpdate();
+				g_state_trans_player.keep_state_trans_on();
 				_proot->draw();
 			}
 			ImGui::End();

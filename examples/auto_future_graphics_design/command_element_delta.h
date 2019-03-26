@@ -1,6 +1,6 @@
 #pragma once
 #include "control_common_def.h"
-#include <algorithm>
+//#include <algorithm>
 namespace auto_future
 {
 	

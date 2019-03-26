@@ -181,6 +181,7 @@
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
     <ClCompile Include="af_state_manager.cpp" />
+    <ClCompile Include="aliase_edit.cpp" />
     <ClCompile Include="base_ui_component.cpp" />
     <ClCompile Include="bind_edit.cpp" />
     <ClCompile Include="command_element_delta.cpp" />
@@ -265,6 +266,7 @@
     <ClInclude Include="af_shader_source_code.h" />
     <ClInclude Include="af_state_manager.h" />
     <ClInclude Include="af_type.h" />
+    <ClInclude Include="aliase_edit.h" />
     <ClInclude Include="bind_edit.h" />
     <ClInclude Include="command_element_delta.h" />
     <ClInclude Include="dir_output.h" />

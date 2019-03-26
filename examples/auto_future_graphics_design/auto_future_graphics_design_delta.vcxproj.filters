@@ -256,6 +256,9 @@
     <ClCompile Include="state_manager_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="aliase_edit.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -505,6 +508,9 @@
       <Filter>render_utilities</Filter>
     </ClInclude>
     <ClInclude Include="state_manager_edit.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="aliase_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>

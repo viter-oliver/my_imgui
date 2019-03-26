@@ -1,6 +1,8 @@
 #pragma once
 #include "af_bind.h"
 #include "easing.h"
+#include<chrono>
+using namespace chrono;
 using prop_value_block = string;
 using vprop_block= vector<prop_value_block>;
 using vvprop_block = vector<vprop_block>;
@@ -57,3 +59,26 @@ struct af_state_manager
 using ps_state_manager = shared_ptr<af_state_manager>;
 using mp_state_manager = map<string, ps_state_manager>;
 extern mp_state_manager g_mstate_manager;
+class state_trans_player
+{
+	bool _be_playing{ false };
+	trans_key _cur_trans_play_key;
+	system_clock::time_point _cur_trans_play_start;
+	ps_state_manager _psel{ nullptr };
+public:
+	void play_state_trans(ps_state_manager pstate, int from, int to);
+	void keep_state_trans_on();
+	ps_state_manager current_ps_stm()
+	{
+		if (_be_playing)
+		{
+			return _psel;
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
+	bool be_playing(){ return _be_playing; }
+};
+extern state_trans_player g_state_trans_player;

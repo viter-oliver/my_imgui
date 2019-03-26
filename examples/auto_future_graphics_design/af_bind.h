@@ -6,6 +6,7 @@ struct prop_ele_position
 	base_ui_component* _pobj;
 	uint16_t _page_index;
 	uint16_t _field_index;
+
 	bool operator <(const prop_ele_position& tpp) const
 	{
 		if (_pobj != tpp._pobj)
@@ -49,4 +50,8 @@ using prop_ele_pos_index = vector<unsigned short>;
 extern bind_dic g_bind_dic;
 extern bind_ref_dic g_bind_ref_dic;
 extern void calcu_bind_node(prop_ele_position& pep);
-extern void calcu_prop_ele_pos_index(const prop_ele_position& pep, prop_ele_pos_index& pep_id);
+extern void calcu_prop_ele_pos_index(const prop_ele_position& pep, prop_ele_pos_index& pep_id); 
+using ps_prp_ele_pos = shared_ptr<prop_ele_position>;
+using aliase_map = map<string, ps_prp_ele_pos>;
+extern aliase_map g_aliase_dic;
+extern bool set_property_aliase_value(string prp_aliase_name, void* pvalue);

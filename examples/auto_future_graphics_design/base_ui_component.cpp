@@ -4,11 +4,13 @@
 #include "factory.h"
 #include "bind_edit.h"
 #include "state_manager_edit.h"
+#include "aliase_edit.h"
 #include "common_functions.h"
 extern bind_edit g_bind_edit;
 extern state_manager_edit g_state_manager_edit;
+extern aliase_edit g_aliase_edit;
 extern bool show_bind_edit;
-
+extern bool show_aliase_edit;
 #define INT_VALUE 45
 #define VALUE_TO_STRING(x) #x
 #define VALUE(x) VALUE_TO_STRING(x)
@@ -120,9 +122,11 @@ namespace auto_future
 			ImGui::EndTooltip();
 		}
 	}
+static	string bind_btn_cp = "->##";
+static	string aliase_btn_cp = "  ##";
+
 	void base_ui_component::draw_peropertys()
 	{
-		string bind_btn_cp = "->##";
 		int pgidx = 0;
 		for (auto& prop_ele:_vprop_eles)
 		{
@@ -362,11 +366,24 @@ namespace auto_future
 						g.IO.InputContentChanged = false;
 					}
 					//bind_btn_cp += "#";
+					char idstr[50] = { 0 };
+					sprintf(idstr, "%d_%d", pgidx, idx);
+					string btn_cap = aliase_btn_cp + idstr;
+					ImGui::SameLine();
+					/*if (ImGui::Button(btn_cap.c_str())&&ImGui::IsMouseDoubleClicked(0))
+					{
+					printf("%s is double clicked\n", idstr);
+					}*/
+					bool be_sel = false;
+					if (ImGui::Selectable(btn_cap.c_str(), &be_sel, ImGuiSelectableFlags_AllowDoubleClick, ImVec2(10, 15)) && ImGui::IsMouseDoubleClicked(0))
+					{
+						printf("%s is double(sel) clicked\n", idstr);
+						show_aliase_edit = true;
+						g_aliase_edit.sel_aliase(this, pgidx, idx);
+					}
 					if (be_base_type)
 					{
-						char idstr[50] = { 0 };
-						sprintf(idstr, "%d_%d", pgidx, idx);
-						string btn_cap = bind_btn_cp + idstr;
+						btn_cap = bind_btn_cp + idstr;
 						ImGui::SameLine();
 						if (ImGui::Button(btn_cap.c_str()))
 						{

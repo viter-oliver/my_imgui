@@ -257,7 +257,7 @@
 	"sourceSize": {"w":88,"h":81}
 },
 {
-	"filename": "a.png",
+	"filename": "aliase.png",
 	"frame": {"x":887,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -535,6 +535,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1957,"h":112},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:d66b639d74e3f818b579e33756d1c8aa$"
+	"smartupdate": "$TexturePacker:SmartUpdate:28a68bbf2205352a10374ebd0c949132$"
 }
 }

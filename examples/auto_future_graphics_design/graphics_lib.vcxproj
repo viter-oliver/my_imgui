@@ -91,13 +91,13 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;E:\Python_27\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\json_lib;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib_d.lib;assimp.lib;freetype_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\json_lib;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;E:\Python_27\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib_d.lib;assimp.lib;freetype_d.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -126,7 +126,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;E:\Python_27\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -134,8 +134,8 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\json_lib;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib.lib;freetype.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\json_lib;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;E:\Python_27\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib.lib;freetype.lib;assimp.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
@@ -169,11 +169,14 @@
     <ClCompile Include="..\..\imgui_draw.cpp" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="afb_load.cpp" />
+    <ClCompile Include="af_bind.cpp" />
     <ClCompile Include="af_font_res_set.cpp" />
     <ClCompile Include="af_model.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
+    <ClCompile Include="af_state_manager.cpp" />
     <ClCompile Include="application.cpp" />
+    <ClCompile Include="easing.cpp" />
     <ClCompile Include="ft_block.cpp" />
     <ClCompile Include="ft_circle.cpp" />
     <ClCompile Include="ft_cube_3d.cpp" />
@@ -203,6 +206,7 @@
     <ClCompile Include="ofbx.cpp" />
     <ClCompile Include="paricles_system.cpp" />
     <ClCompile Include="primitive_object.cpp" />
+    <ClCompile Include="python_interpreter.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
     <ClCompile Include="shader_uf.cpp" />
@@ -225,10 +229,13 @@
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="afb_load.h" />
     <ClInclude Include="afg.h" />
+    <ClInclude Include="af_bind.h" />
     <ClInclude Include="af_font_res_set.h" />
     <ClInclude Include="af_model.h" />
     <ClInclude Include="af_shader.h" />
+    <ClInclude Include="af_state_manager.h" />
     <ClInclude Include="application.h" />
+    <ClInclude Include="easing.h" />
     <ClInclude Include="ft_block.h" />
     <ClInclude Include="ft_circle.h" />
     <ClInclude Include="ft_cube_3d.h" />
@@ -262,6 +269,7 @@
     <ClInclude Include="platform_def.h" />
     <ClInclude Include="primitive_object.h" />
     <ClInclude Include="property_utilities.h" />
+    <ClInclude Include="python_interpreter.h" />
     <ClInclude Include="renderTransform.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="shader_uf.h" />

@@ -181,7 +181,7 @@ namespace auto_future
 		*/
 		void save_property_to_json(Value& junit);
 		virtual void view_components_in_world_space(){}
-
+		virtual bool set_prop_fd_value(int pg_id, int fd_id, void* pvalue) = 0;
 #endif
 	public:
 		/** define the width of screen */
