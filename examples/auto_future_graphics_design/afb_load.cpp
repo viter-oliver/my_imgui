@@ -574,8 +574,6 @@ void afb_load::load_afb(const char* afb_file)
 	}
 	auto obj_ui = obj_w.via.array.ptr[en_control_res];
 	init_ui_component_by_mgo(_pj, obj_ui);
-	auto obj_bind_dic = obj_w.via.array.ptr[en_bind_dic];
-	auto obj_bind_dic_sz = obj_bind_dic.via.array.size;
 	auto obj_2_prp_pos = [this](msgpack::v2::object& okey,prop_ele_position&prp_epos){
 		auto obin_sz = okey.via.bin.size;
 		auto rsz = obin_sz / sizeof(unsigned short);
@@ -591,7 +589,24 @@ void afb_load::load_afb(const char* afb_file)
 		prp_epos._pobj = pcontrol;
 		prp_epos._page_index = prp_ep_idx[1];
 		prp_epos._field_index = prp_ep_idx[0];
-	};
+	};	
+	auto obj_valiase = obj_w.via.array.ptr[en_aliase_dic];
+	auto obj_aliase_sz = obj_valiase.via.array.size;
+	for (size_t ix = 0; ix < obj_aliase_sz;ix++)
+	{
+		auto obj_aliase = obj_valiase.via.array.ptr[ix];
+		auto obj_key = obj_aliase.via.array.ptr[0];
+		auto obj_key_sz = obj_key.via.str.size;
+		string aliase_key;
+		aliase_key.resize(obj_key_sz);
+		memcpy(&aliase_key[0], obj_key.via.str.ptr, obj_key_sz);
+		auto obj_pep_pos = obj_aliase.via.array.ptr[1];
+		auto ps_pep_pos = make_shared<prop_ele_position>();
+		obj_2_prp_pos(obj_pep_pos, *ps_pep_pos);
+		g_aliase_dic[aliase_key] = ps_pep_pos;
+	}
+	auto obj_bind_dic = obj_w.via.array.ptr[en_bind_dic];
+	auto obj_bind_dic_sz = obj_bind_dic.via.array.size;
 	for (size_t ix = 0; ix < obj_bind_dic_sz;ix++)
 	{
 		auto oprp_ele = obj_bind_dic.via.array.ptr[ix];

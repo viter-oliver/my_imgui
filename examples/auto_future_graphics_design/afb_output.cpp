@@ -348,6 +348,20 @@ void afb_output::output_afb(const char* afb_file)
 		}
 	}
 	pack_ui_component_data(_pj, pk);//en_control_res
+	pk.pack_array(g_aliase_dic.size());//en_aliase_dic
+	for (auto& ial:g_aliase_dic)
+	{
+		pk.pack_array(2);
+		auto& ikey = ial.first;
+		pk.pack_str(ikey.size());
+		pk.pack_str_body(ikey.c_str(), ikey.size());
+		auto& opep_pos = *ial.second;
+		prop_ele_pos_index pep_id;
+		calcu_prop_ele_pos_index(opep_pos, pep_id);
+		auto bin_sz = pep_id.size()*sizeof(unsigned short);
+		pk.pack_bin(bin_sz);
+		pk.pack_bin_body((char*)&pep_id[0], bin_sz);
+	}
 	pk.pack_array(g_bind_dic.size());//en_bind_dic
 	for (auto& ibind_dic:g_bind_dic)
 	{

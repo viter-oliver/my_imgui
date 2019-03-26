@@ -267,6 +267,15 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				ii = 0;
 				prp_epos._field_index = jarry[ii].asInt();
 			};
+			Value& alias = jroot["aliase"];
+			Value::Members amemb(alias.getMemberNames());
+			for (auto imemb = amemb.begin(); imemb != amemb.end();++imemb)
+			{
+				Value& jpepid = alias[*imemb];
+				auto ps_pep_pos = make_shared<prop_ele_position>();
+				jarry_2_prp_pos(jpepid, *ps_pep_pos);
+				g_aliase_dic[*imemb] = ps_pep_pos;
+			}
 			Value& binds = jroot["binds"];
 			Value& jdic = binds["dic"];
 			isize = jdic.size();
@@ -533,6 +542,21 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	}
 	jroot["models"] = jmodels;
 	_root.save_property_to_json(jroot);
+	Value aliase(objectValue);
+	for (auto& ialias:g_aliase_dic)
+	{
+		auto& ikey = ialias.first;
+		auto& ipos = *ialias.second;
+		prop_ele_pos_index pep_id;
+		calcu_prop_ele_pos_index(ipos, pep_id);
+		Value jpos(arrayValue);
+		for (auto pos_id:pep_id)
+		{
+			jpos.append(pos_id);
+		}
+		aliase[ikey] = jpos;
+	}
+	jroot["aliase"] = aliase;
 	Value binds(objectValue);
 	Value dic(arrayValue);
 	for (auto& idic:g_bind_dic)

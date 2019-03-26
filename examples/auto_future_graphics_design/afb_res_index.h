@@ -13,6 +13,7 @@ enum afb_res_index
 	en_primitives_res,
 	en_models_res,
 	en_control_res,
+	en_aliase_dic,
 	en_bind_dic,
 	en_bind_ref_dic,
 	en_state_manager,
