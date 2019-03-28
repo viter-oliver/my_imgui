@@ -27,7 +27,7 @@ void calcu_bind_node(prop_ele_position& pep)
 					auto& cfdidx = param._field_index;
 					auto& cfel = param._pobj->get_filed_ele(cpgidx,cfdidx);
 					char* pm_value = cfel._address;
-					vlist.emplace_back(var_unit(cfel._type,pm_value));
+					vlist.emplace_back(cfel._type,pm_value);
 				}
 				auto& exp_calcu = ibind_ut->second->_expression;
 				bool be_success = g_python_intp.call_python_fun(exp_calcu, python_fun_name, vrtn, vlist);

@@ -40,11 +40,11 @@ namespace auto_future
 		ImVec2 pos2 = { pos1.x, pos1.y + sizeh };
 		ImVec2 pos3 = { pos1.x + sizew, pos1.y + sizeh };
 		ImVec2 pos4 = { pos1.x + sizew, pos1.y };
-
-		ImVec2 uv0 = ImVec2(ptext_cd[_img_pt._texture_index_txt]._x0 / texture_width, ptext_cd[_img_pt._texture_index_txt]._y0 / texture_height);
-		ImVec2 uv1 = ImVec2(ptext_cd[_img_pt._texture_index_txt]._x0 / texture_width, (ptext_cd[_img_pt._texture_index_txt]._y1) / texture_height);
-		ImVec2 uv2 = ImVec2((ptext_cd[_img_pt._texture_index_txt]._x1) / texture_width, (ptext_cd[_img_pt._texture_index_txt]._y1) / texture_height);
-		ImVec2 uv3 = ImVec2((ptext_cd[_img_pt._texture_index_txt]._x1) / texture_width, (ptext_cd[_img_pt._texture_index_txt]._y0) / texture_height);
+		int img_txt_id = _img_pt._texture_index_txt;
+		ImVec2 uv0 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, ptext_cd[img_txt_id]._y0 / texture_height);
+		ImVec2 uv1 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
+		ImVec2 uv2 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
+		ImVec2 uv3 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y0) / texture_height);
 
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;

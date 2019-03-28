@@ -1,8 +1,8 @@
 #pragma once
 #include "ft_base.h"
-#include "material.h"
+#include "af_material.h"
 #include "res_output.h"
-#include "primitive_object.h"
+#include "af_primitive_object.h"
 #define FILE_NAME_LEN 50
 namespace auto_future
 {

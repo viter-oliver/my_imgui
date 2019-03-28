@@ -1,8 +1,7 @@
 #pragma once
 #include "ft_base.h"
-#include "basic3d.h"
-#include "material.h"
-#include "primitive_object.h"
+#include "af_material.h"
+#include "af_primitive_object.h"
 namespace auto_future
 {
 	class AFG_EXPORT ft_cube_3d :

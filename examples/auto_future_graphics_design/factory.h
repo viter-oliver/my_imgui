@@ -31,7 +31,7 @@ struct factory
 			factory::get().map_.emplace(key, [] { return new T(); });
         #endif
 		}
-        #if 0
+        #if 1
 		template<typename... Args>
 		register_t(const std::string& key, Args... args)
 		{
@@ -66,11 +66,30 @@ struct factory
 	{
 		return std::shared_ptr<base_ui_component>(produce(key));
 	}
+	void register_res_constrained(std::string cname, function<bool()>res_constrained)
+	{
+		auto& ac_map = factory::get().map_ac_;
+		auto itc = ac_map.find(cname);
+		if (itc!=ac_map.end())
+		{
+			printf("%s has existed!\n", cname);
+		}
+		else
+		{
+			ac_map[cname] = res_constrained;
+		}
+	}
 	void iterate_types(function<void(string,function<base_ui_component*()>)> imp)
 	{
 		for (auto it:map_)
 		{
-			imp((it.first),it.second);
+			bool be_valid = true;
+			auto iac = map_ac_.find(it.first);
+			if (iac!=map_ac_.end())
+			{
+				be_valid = iac->second();
+			}
+			imp((it.first),be_valid?it.second:nullptr);
 		}
 	}
 
@@ -81,6 +100,7 @@ private:
 
 
 	std::map<std::string, std::function<base_ui_component*()>> map_;
+	std::map<std::string, std::function<bool()>> map_ac_;
 public:
 	inline static factory& get()
 	{

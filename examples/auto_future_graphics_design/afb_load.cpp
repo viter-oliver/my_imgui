@@ -11,8 +11,8 @@
 #include"../../deps/glad/glad.h"
 #endif
 #include "af_shader.h"
-#include "material.h"
-#include "primitive_object.h"
+#include "af_material.h"
+#include "af_primitive_object.h"
 #include "af_model.h"
 #include "af_bind.h"
 #include "af_state_manager.h"
@@ -63,6 +63,7 @@ void afb_load::init_ui_component_by_mgo(base_ui_component*&ptar, msgpack::v2::ob
 			ptar->add_child(pchild);
 		}
 	}
+	ptar->clear_rebundent_memory();
 }
 extern GLuint       g_FontTexture;
 #ifdef _DEBUG
@@ -129,6 +130,7 @@ void afb_load::load_afb(const char* afb_file)
 		unpac.reserve_buffer(file_size);
 		fin.read(unpac.buffer(), unpac.buffer_capacity());
 		unpac.buffer_consumed(static_cast<size_t>(fin.gcount()));
+		
 	}
 
 
@@ -227,15 +229,14 @@ void afb_load::load_afb(const char* afb_file)
 	for (size_t ix = 0; ix < re_cnt; ix++)
 	{
 		g_vres_texture_list.emplace_back(res_texture_list());
-		int cur_pos = g_vres_texture_list.size() - 1;
-		res_texture_list& res_unit = g_vres_texture_list[cur_pos];
+		res_texture_list& res_unit = g_vres_texture_list.back();
 		auto bin_res_unit = obj_res.via.array.ptr[ix];
 		auto txt_name = bin_res_unit.via.array.ptr[0];
 		auto txt_name_sz = txt_name.via.str.size;
 		char* txt_kname = new char[txt_name_sz + 1];
 		memcpy(txt_kname, txt_name.via.str.ptr, txt_name_sz);
 		txt_kname[txt_name_sz] = 0;
-		res_unit.texture_pack_file = txt_kname;
+		//res_unit.texture_pack_file = txt_kname;
 		res_unit.texture_width = bin_res_unit.via.array.ptr[1].as<int>();
 		res_unit.texture_height = bin_res_unit.via.array.ptr[2].as<int>();
 		auto res_bin = bin_res_unit.via.array.ptr[3];
@@ -270,8 +271,7 @@ void afb_load::load_afb(const char* afb_file)
 		for (size_t iy = 0; iy < res_data_sz; iy++)
 		{
 			res_unit.vtexture_coordinates.emplace_back(res_texture_coordinate());
-			int curpos = res_unit.vtexture_coordinates.size() - 1;
-			res_texture_coordinate& cd_unit = res_unit.vtexture_coordinates[curpos];
+			res_texture_coordinate& cd_unit = res_unit.vtexture_coordinates.back();
 			auto bin_cd_unit = res_data.via.array.ptr[iy];
 			auto bin_filen = bin_cd_unit.via.array.ptr[0];
 			cd_unit._file_name.reserve(bin_filen.via.str.size + 1);
@@ -620,8 +620,8 @@ void afb_load::load_afb(const char* afb_file)
 		for (size_t iix = 0; iix < opm_list_sz;iix++)
 		{
 			auto opele_pos = opm_list.via.array.ptr[iix];
-			vparam.emplace_back();
-			auto& sub_prp_ele_pos = vparam[iix];
+			vparam.emplace_back();	
+			auto& sub_prp_ele_pos = vparam.back(); //vparam[iix];
 			obj_2_prp_pos(opele_pos, sub_prp_ele_pos);
 		}
 		auto oexpr = oprp_ele.via.array.ptr[2];

@@ -1,6 +1,6 @@
 #pragma once
 #include "ft_base.h"
-#include "material.h"
+#include "af_material.h"
 #include "res_output.h"
 namespace auto_future
 {

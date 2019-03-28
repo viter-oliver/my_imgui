@@ -1,6 +1,6 @@
 #include "material_shader_edit.h"
 #include "af_shader.h"
-#include "material.h"
+#include "af_material.h"
 #include "user_control_imgui.h"
 #include <fstream>
 #include "dir_output.h"

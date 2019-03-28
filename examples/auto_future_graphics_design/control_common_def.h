@@ -181,7 +181,6 @@ namespace auto_future
 		*/
 		void save_property_to_json(Value& junit);
 		virtual void view_components_in_world_space(){}
-		virtual bool set_prop_fd_value(int pg_id, int fd_id, void* pvalue) = 0;
 #endif
 	public:
 		/** define the width of screen */
@@ -218,6 +217,7 @@ namespace auto_future
 		virtual void draw() = 0;
 		virtual bool contains(float posx, float posy) = 0;
 		virtual bool relative_contain(float pos, bool be_h) = 0;
+		virtual bool set_prop_fd_value(int pg_id, int fd_id, void* pvalue) = 0;
 		bool get_border_hit_point(float pos, bool be_h, float& hitpos)
 		{
 			const unsigned int max_repeat_cnt = 1000;
@@ -345,6 +345,11 @@ namespace auto_future
 		{
 			pchild->_parent = this; 
 			_vchilds.push_back(pchild); 
+		}
+		void clear_rebundent_memory()
+		{
+			_vprop_eles.shrink_to_fit();
+			_vchilds.shrink_to_fit();
 		}
 		virtual void remove_child(base_ui_component* pchild)
 		{

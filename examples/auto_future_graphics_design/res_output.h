@@ -27,8 +27,10 @@ struct res_texture_list
 	int texture_width;
 	int texture_height;
 	string txt_buff;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	string texture_pack_file;
 	string texture_data_file;
+#endif
 	bool _is_separated{ false };	//string file_name_sets;
 	vres_txt_cd vtexture_coordinates;
 	unsigned int texture_id()
@@ -43,6 +45,7 @@ struct res_texture_list
 			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, texture_width, texture_height, 0, txt_buff.size(), &txt_buff[0]);
 			glBindTexture(GL_TEXTURE_2D, 0);
 			txt_buff.clear();
+			txt_buff.shrink_to_fit();
 		}
 		return txt_id;
 	}
@@ -98,6 +101,7 @@ struct af_texture
 			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, _width, _height, 0, txt_buff.size(), &txt_buff[0]);
 			glBindTexture(GL_TEXTURE_2D, 0);
 			txt_buff.clear();
+			txt_buff.shrink_to_fit();
 		}
 		return _atxt_id;
 	}
@@ -148,6 +152,6 @@ struct output_bin_format
 {
 	texture_format _txt_fmt;
 	program_format _pgm_fmt;
-	output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
+	//output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
 };
 extern output_bin_format g_output_bin_format;

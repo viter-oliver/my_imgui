@@ -64,7 +64,7 @@ void project_edit::objects_view()
 
 void project_edit::popup_context_menu()
 {
-	if (!_pcurrent_object || g_vres_texture_list.size()==0)
+	if (!_pcurrent_object )
 	{
 		return;
 	}
@@ -112,7 +112,7 @@ void project_edit::popup_context_menu()
 					return;
 				}
 				
-				if (ImGui::MenuItem(cname.c_str(), NULL, false))
+				if (ImGui::MenuItem(cname.c_str(), NULL, false,infun!=nullptr))
 				{
 
 					base_ui_component* pchild = infun();

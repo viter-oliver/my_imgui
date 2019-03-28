@@ -32,15 +32,7 @@ namespace auto_future
 	public:
 		ft_slider();
 		~ft_slider(){}
-		void link()
-		{
-			if (2 == _slider_pt._direction_item) //如果保存的是random，这时候就需从文件中读出点数据
-			{
-				if (NULL != _slider_pt._cbuffer_random_text)
-					read_point_position_file(_slider_pt._cbuffer_random_text);
-			}
-		}
-
+		void link();
 		void set_progress(float value){ _slider_pt._position_nml = value; }
 		float get_progress(){ return _slider_pt._position_nml; }
 

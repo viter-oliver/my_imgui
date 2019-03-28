@@ -4,8 +4,8 @@
 #else
 #include <GL/gl3w.h> 
 #endif
-
- 
+#include "imgui.h"
+#include "imgui_impl_glfw_gl3.h"
 #include <GLFW/glfw3.h>
 #include "SOIL.h"
 #include "texture.h"
@@ -99,9 +99,28 @@ bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, stri
 	return true;
 }
 
-void load_internal_texture_res(mtxt_internal& mptxt, unsigned int txtresid, unsigned int txtformatid)
+void load_internal_texture_res(mtxt_internal& mptxt, unsigned int res_font_id, unsigned int txtresid, unsigned int txtformatid)
 {
 	//MAKEINTRESOURCE
+	HRSRC hrFontData = FindResource(NULL, MAKEINTRESOURCE(res_font_id), "Fonts");
+	if (NULL == hrFontData)
+	{
+		printf("fail to get internal fonts resource!\n");
+		//return;
+	}
+	DWORD dwFontsSize = SizeofResource(NULL, hrFontData);
+	if (dwFontsSize == 0)
+	{
+		printf("this size of internal texture resource is zero!\n");
+		return;
+	}
+	HGLOBAL hFontdataGb = LoadResource(NULL, hrFontData);
+	LPVOID pFontdtBuffer = LockResource(hFontdataGb);
+	if (pFontdtBuffer)
+	{
+		ImGuiIO& io = ImGui::GetIO(); //(void)io;
+		io.Fonts->AddFontFromMemoryTTF(pFontdtBuffer, dwFontsSize, 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
+	}
 	HRSRC hrTxt = FindResource(NULL, MAKEINTRESOURCE(txtresid), "PNG");
 	if (NULL==hrTxt)
 	{
@@ -118,7 +137,7 @@ void load_internal_texture_res(mtxt_internal& mptxt, unsigned int txtresid, unsi
 	LPVOID pbuffer = LockResource(htxtGlobal);
 	g_txt_id_intl = TextureHelper::transferMemory2Texture((unsigned char*)pbuffer,dwSize, g_txt_width_intl, g_txt_height_intl, \
 		GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA);
-	
+    
 	HRSRC hrData = FindResource(NULL, MAKEINTRESOURCE(txtformatid), "dataformat");
 	if (NULL == hrData)
 	{

@@ -34,7 +34,8 @@
 #include "Resource.h"
 #include "res_edit.h"
 #include "afb_output.h"
-#include "primitive_object.h"
+#include "af_font_res_set.h"
+#include "af_primitive_object.h"
 #include "af_model.h"
 #include "material_shader_edit.h"
 #include "texture_edit.h"
@@ -126,7 +127,7 @@ int main(int argc, char* argv[])
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/Cousine-Regular.ttf", 15.0f);
 	//io.Fonts->AddFontFromFileTTF("../../misc/fonts/DroidSans.ttf", 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
     //io.Fonts->AddFontFromFileTTF("../../misc/fonts/ProggyTiny.ttf", 10.0f);
-	if (1)//!g_cureent_project_file_path.empty())
+	if (0)//!g_cureent_project_file_path.empty())
 	{
 		string str_font_path = g_cureent_directory;
 		str_font_path += "fonts\\";
@@ -150,7 +151,7 @@ int main(int argc, char* argv[])
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 #ifdef _MY_IMGUI__
-	load_internal_texture_res(g_mtxt_intl, IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
+	load_internal_texture_res(g_mtxt_intl, IDR_FONTS1,IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
 
 	//g_res_texture_list[0].texture_id = TextureHelper::load2DTexture(g_res_texture_list[0].texture_path, g_res_texture_list[0].texture_width, g_res_texture_list[0].texture_height);
 	//g_vres_texture_list[0].texture_id = \
@@ -196,9 +197,12 @@ int main(int argc, char* argv[])
 	//load_fbx_file();
 
 	_proot = new ft_base;
-	ui_assembler _ui_as(*_proot);
+	_proot->set_name("screen");
+	g_pfont_face_manager = make_shared<font_face_manager>();
+	init_controls_res_constrained();
 	if (!g_cureent_project_file_path.empty())
 	{
+		ui_assembler _ui_as(*_proot);
 		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 	}
 	//init_internal_primitive_list();
@@ -240,7 +244,7 @@ int main(int argc, char* argv[])
 			}
 			g_cureent_project_file_path = "";
 			_proot = new ft_base;
-			_proot->set_name(string("screen"));
+			_proot->set_name("screen");
 			pjedit.reset(new project_edit(*_proot));
 		}
 		break;
@@ -277,6 +281,7 @@ int main(int argc, char* argv[])
 				g_cureent_project_file_path = strFileName;
 
 				_proot = new ft_base;
+				_proot->set_name("screen");
 				ui_assembler _ui_as(*_proot);
 				_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 				

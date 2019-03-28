@@ -1,7 +1,7 @@
 #include "ft_modeling_3d.h"
 #include "af_shader_source_code.h"
 #include "af_model.h"
-#include "primitive_object.h"
+#include "af_primitive_object.h"
 #include "res_output.h"
 #include <sstream>
 namespace auto_future

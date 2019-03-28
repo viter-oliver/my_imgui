@@ -13,4 +13,4 @@ public:
 };
 bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, string& str_txt_data_file);
 
-void load_internal_texture_res(mtxt_internal& mptxt, unsigned int txtresid, unsigned int txtformatid);
+void load_internal_texture_res(mtxt_internal& mptxt, unsigned int res_font_id,unsigned int txtresid, unsigned int txtformatid);

@@ -1,4 +1,4 @@
-#include "material.h"
+#include "af_material.h"
 
 material::material(shared_ptr<af_shader> psd)
 	:_pshader(psd)

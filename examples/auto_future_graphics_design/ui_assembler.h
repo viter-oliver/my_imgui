@@ -10,6 +10,7 @@
 *        or transferring ui components to project file\n
 */
 using namespace auto_future;
+extern void init_controls_res_constrained();
 class ui_assembler
 {
 	base_ui_component& _root;

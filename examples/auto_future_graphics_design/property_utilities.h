@@ -64,7 +64,11 @@ struct field_ele
 	vector<prop_ele_position> _reference_list;
 	string _expression;*/
 	field_ele(std::string tp, std::string nm, int tpsz, int offset)
-		:_type(tp), _name(nm),_tpsz(tpsz),_offset(offset),_address(0),_count(0){}
+		:_type(tp), _name(nm),_tpsz(tpsz),_offset(offset),_address(0),_count(0)
+	{
+		_type.shrink_to_fit();
+		_name.shrink_to_fit();
+	}
 };
 
 typedef std::shared_ptr<field_ele> sp_field_ele;
@@ -139,7 +143,7 @@ stname vname{_vprop_eles}; MSC_PACK_END
 	stname(){/*assert(0&&"you should not construct the class this way!");*/}\
 	stname(vp_prop_ele& vprop_ele){sp_prop_ele ppt=make_shared<prop_ele>(this,sizeof(stname));\
 	BOOST_PP_SEQ_FOR_EACH(GET_ELE3,stname,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))\
-	prop_ele::respair(*ppt); vprop_ele.emplace_back(ppt);\
+	prop_ele::respair(*ppt);ppt->_pro_page.shrink_to_fit(); vprop_ele.emplace_back(ppt);\
     }\
 };\
 stname vname{_vprop_eles}; MSC_PACK_END

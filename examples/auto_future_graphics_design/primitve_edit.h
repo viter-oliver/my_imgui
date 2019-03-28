@@ -1,5 +1,5 @@
 #pragma once
-#include "primitive_object.h"
+#include "af_primitive_object.h"
 class primitve_edit
 {
 	shared_ptr<primitive_object> _pmobj;

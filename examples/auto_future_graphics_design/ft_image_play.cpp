@@ -13,10 +13,60 @@ namespace auto_future
 	ft_image_play::ft_image_play()
 		:ft_base()
 	{
-		memset(_img_pt._texture_name, 0, FILE_NAME_LEN);
-		memset(_img_pt._texture_fmt_name, 0, FILE_NAME_LEN);
+		_img_pt._texture_name[0] = '\0';
+		_img_pt._texture_fmt_name[0] = '\0';
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		reg_property_handle(&_img_pt, 6, [this](void*){
+		reg_property_handle(&_img_pt, 0, [this](void*){
+			if (_ps_texture)
+			{
+				ImGui::Text("Texture object:%s", _img_pt._texture_name);
+				ImGui::SameLine();
+				if (ImGui::Button("Delink ...##0"))
+				{
+					_img_pt._texture_name[0] = '\0';
+					_ps_texture = nullptr;
+				}
+			}
+			else
+			{
+				ImGui::InputText("Texture object", _img_pt._texture_name, FILE_NAME_LEN);
+				if (ImGui::Button("Import texture object"))
+				{
+					auto atex = g_mtexture_list.find(_img_pt._texture_name);
+					if (atex != g_mtexture_list.end())
+					{
+						_ps_texture = atex->second;
+					}
+				}
+			}
+		});
+		reg_property_handle(&_img_pt, 3, [this](void*){
+			if (_vtexture_cd.size()>0)
+			{
+				ImGui::Text("Format file:%s", _img_pt._texture_fmt_name);
+				ImGui::SameLine();
+				if (ImGui::Button("Delink...##1"))
+				{
+					_img_pt._texture_fmt_name[0] = '\0';
+					_vtexture_cd.clear();
+				}
+
+			}
+			else
+			{
+				ImGui::InputText("Format file", _img_pt._texture_fmt_name, FILE_NAME_LEN);
+				if (ImGui::Button("Import Format file"))
+				{
+					auto atxt_fmt = g_mfiles_list.find(_img_pt._texture_fmt_name);
+					if (atxt_fmt != g_mfiles_list.end())
+					{
+						get_txt_uv_vector((char*)atxt_fmt->second->_pbin, _vtexture_cd);
+
+					}
+				}
+			}
+		});
+		reg_property_handle(&_img_pt, 4, [this](void*){
 			int frame_cnt = get_frames_count();
 			ImGui::SliderInt("frame index:", &_img_pt._frame_index, 0, frame_cnt-1);
 		});
@@ -24,7 +74,7 @@ namespace auto_future
 	}
 	void ft_image_play::draw()
 	{
-		if (!_texture || !_vtexture_cd.size())
+		if (!_ps_texture || !_vtexture_cd.size())
 		{
 			return;
 		}
@@ -36,9 +86,9 @@ namespace auto_future
 			return;
 
 		}
-		int texture_id =_texture->_txt_id();
-		int texture_width = _texture->_width;
-		int texture_height = _texture->_height;
+		int texture_id =_ps_texture->_txt_id();
+		int texture_width = _ps_texture->_width;
+		int texture_height = _ps_texture->_height;
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
@@ -97,13 +147,12 @@ namespace auto_future
 		auto atex = g_mtexture_list.find(_img_pt._texture_name);
 		if (atex != g_mtexture_list.end())
 		{
-			_texture = atex->second;
+			_ps_texture = atex->second;
 		}
 		auto atxt_fmt = g_mfiles_list.find(_img_pt._texture_fmt_name);
 		if (atxt_fmt != g_mfiles_list.end())
 		{
 			get_txt_uv_vector((char*)atxt_fmt->second->_pbin, _vtexture_cd);
-
 		}
 	}
 }

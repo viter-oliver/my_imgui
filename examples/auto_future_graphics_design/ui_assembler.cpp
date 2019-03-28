@@ -2,21 +2,53 @@
 #include <fstream>
 #include "texture_res_load.h"
 #include "af_shader.h"
-#include "material.h"
+#include "af_material.h"
 #include "af_font_res_set.h"
 #include "SOIL.h"
 #include "dir_output.h"
-#include "primitive_object.h"
+#include "af_primitive_object.h"
 #include "af_model.h"
 #include "af_bind.h"
 #include "af_state_manager.h"
 #include "common_functions.h"
-
+#include "factory.h"
 //#include "af_model.h"
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory;
 extern bool show_project_window, show_edit_window, \
 show_property_window, show_resource_manager, show_fonts_manager, show_file_manager;
+void init_controls_res_constrained()
+{
+	auto vres_texture_constrain = [&](){return g_vres_texture_list.size() > 0; };
+	factory::get().register_res_constrained("ft_image", vres_texture_constrain);
+	factory::get().register_res_constrained("ft_button", vres_texture_constrain);
+	factory::get().register_res_constrained("ft_polygon_image", vres_texture_constrain);
+	factory::get().register_res_constrained("ft_slider", vres_texture_constrain);
+	factory::get().register_res_constrained("ft_slider_thumb", vres_texture_constrain);
+	factory::get().register_res_constrained("ft_modeling_3d", [&](){return g_mmodel_list.size() > 0; });
+	factory::get().register_res_constrained("ft_textblock", [&](){
+		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+		return ft_nm_list.size() > 0; });
+	factory::get().register_res_constrained("ft_image_play", [&](){return g_mtexture_list.size() > 0 && g_mfiles_list.size()>0; });
+
+}
+void clear_pre_proj_resource()
+{
+	vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+	ft_nm_list.clear();
+	g_output_bin_format = { en_uncompressed_txt, en_shader_code };
+	g_vres_texture_list.clear();
+	g_mtexture_list.clear();
+	g_mfiles_list.clear();
+	g_material_list.clear();
+	g_af_shader_list.clear();
+	g_primitive_list.clear();
+	g_mmodel_list.clear();
+	g_aliase_dic.clear();
+	g_bind_dic.clear();
+	g_bind_ref_dic.clear();
+	g_mstate_manager.clear();
+}
 bool ui_assembler::load_ui_component_from_file(const char* file_path)
 {
 	ifstream fin;
@@ -27,6 +59,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 		Value jroot;
 		if (reader.parse(fin, jroot, false))
 		{
+			clear_pre_proj_resource();
 			Value screenw = jroot["screenw"];
 			Value screenh = jroot["screenh"];
 			if (!screenw.isNull())
@@ -56,7 +89,6 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				show_file_manager=window_show["show_file_manager"].asBool();
 			}
 			Value& fonts = jroot["fonts"];
-			g_pfont_face_manager = make_shared<font_face_manager>();
 			if (!fonts.isNull())
 			{
 				string str_font_path = g_cureent_directory+font_fold;

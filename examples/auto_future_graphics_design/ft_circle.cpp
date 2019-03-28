@@ -1,5 +1,5 @@
 #include "ft_circle.h"
-#include "basic3d.h"
+//#include "basic3d.h"
 
 
 namespace auto_future
@@ -48,7 +48,7 @@ namespace auto_future
 	{
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
-		glm::vec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
 		float xoff = posx - pos0.x;
 		float yoff = posy - pos0.y;
 		float ds_sqrt = xoff*xoff + yoff*yoff;

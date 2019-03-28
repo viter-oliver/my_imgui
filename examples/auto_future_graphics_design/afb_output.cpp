@@ -8,10 +8,10 @@
 #include "imgui.h"
 #include <GL/gl3w.h>
 #include "af_shader.h"
-#include "material.h"
+#include "af_material.h"
 #include "dir_output.h"
 #include "file_outputor.h"
-#include "primitive_object.h"
+#include "af_primitive_object.h"
 #include "af_model.h"
 #include "af_font_res_set.h"
 #include "af_bind.h"

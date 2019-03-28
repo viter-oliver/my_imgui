@@ -2,7 +2,7 @@
 #include "json.h"
 #include "common_functions.h"
 #include "res_output.h"
-#include "primitive_object.h"
+#include "af_primitive_object.h"
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>

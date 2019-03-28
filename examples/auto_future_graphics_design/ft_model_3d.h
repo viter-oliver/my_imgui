@@ -1,6 +1,6 @@
 #pragma once
 #include "ft_base.h"
-#include "material.h"
+#include "af_material.h"
 #include "Mesh.h"
 #include "res_output.h"
 #define FILE_NAME_LEN 50

@@ -1,4 +1,4 @@
-#include "primitive_object.h"
+#include "af_primitive_object.h"
 const float half_side_len = 0.5f;
 
 GLfloat _vertices[] = {
