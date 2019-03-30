@@ -87,7 +87,7 @@ static void ShowExampleAppWindowTitles(bool* p_open);
 static void ShowExampleAppCustomRendering(bool* p_open);
 static void ShowExampleAppMainMenuBar();
 static void ShowExampleMenuFile();
-
+extern void ShowExampleAppCustomNodeGraph(bool* opened);
 static void ShowHelpMarker(const char* desc)
 {
     ImGui::TextDisabled("(?)");
@@ -142,7 +142,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
 
     static bool show_app_metrics = false;
     static bool show_app_about = false;
-
+	static bool show_node_demo = false;
     if (show_app_main_menu_bar)       ShowExampleAppMainMenuBar();
     if (show_app_console)             ShowExampleAppConsole(&show_app_console);
     if (show_app_log)                 ShowExampleAppLog(&show_app_log);
@@ -154,7 +154,8 @@ void ImGui::ShowDemoWindow(bool* p_open)
     if (show_app_fixed_overlay)       ShowExampleAppFixedOverlay(&show_app_fixed_overlay);
     if (show_app_window_titles)       ShowExampleAppWindowTitles(&show_app_window_titles);
     if (show_app_custom_rendering)    ShowExampleAppCustomRendering(&show_app_custom_rendering);
-
+	if (show_node_demo) ShowExampleAppCustomNodeGraph(&show_node_demo);
+	
     if (show_app_metrics)             { ImGui::ShowMetricsWindow(&show_app_metrics); }
     if (show_app_style_editor)        { ImGui::Begin("Style Editor", &show_app_style_editor); ImGui::ShowStyleEditor(); ImGui::End(); }
     if (show_app_about)
@@ -221,6 +222,7 @@ void ImGui::ShowDemoWindow(bool* p_open)
             ImGui::MenuItem("Simple overlay", NULL, &show_app_fixed_overlay);
             ImGui::MenuItem("Manipulating window titles", NULL, &show_app_window_titles);
             ImGui::MenuItem("Custom rendering", NULL, &show_app_custom_rendering);
+			ImGui::MenuItem("Node graph", NULL, &show_node_demo);
             ImGui::EndMenu();
         }
         if (ImGui::BeginMenu("Help"))

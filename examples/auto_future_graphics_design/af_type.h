@@ -28,6 +28,20 @@ namespace auto_future
 			af_vt2 av{ this->x - tar.x, this->y - tar.y };
 			return av;
 		}
+		bool operator == (af_vt2& tar)
+		{
+			return x == tar.x&&y == tar.y;
+		}
+		af_vt2& operator *(T scl)
+		{
+			this->x *= scl;
+			this->y *= scl;
+			return *this;
+		}
+		float norm()
+		{
+			return sqrt(x*x + y*y);
+		}
 	};
 	using af_vi2 = af_vt2<int>;
 	using af_vui2 = af_vt2<unsigned int>;
@@ -132,7 +146,11 @@ namespace auto_future
 		float _near;
 		float _far;
 	};
-
+	struct point_pair
+	{
+		af_vec2 _point0;
+		af_vec2 _point1;
+	};
 /*	struct ft_vertex
 	{
 

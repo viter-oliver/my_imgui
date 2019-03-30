@@ -4,6 +4,8 @@
 #include "ft_base.h"
 namespace auto_future
 {
+
+	typedef vector<point_pair> point_pair_vec;
 	class AFG_EXPORT ft_slider :
 		public ft_base
 	{
@@ -16,7 +18,7 @@ namespace auto_future
 			(float, _hd_txth, { 20.f }),
 			(float, _tb_txtw, { 20.f }),
 			(float, _tb_txth, { 20.f }),
-			(float, _position_nml, {0.f}),
+			(float, _progress_nml, { 0.f }),
 			(int, _direction_item, {0}),
 			(float, _bg_aposx, {0.f}),
 			(float, _bg_aposy, {0.f}),
@@ -25,57 +27,28 @@ namespace auto_future
 			(float, _hd_posx, { 20.f }),
 			(float, _hd_posy, { 20.f }),
 			(int, _texture_head_index_txt,{0}),
-			(float, _tb_posx, { 0.f }),
-			(float, _tb_posy, { 0.f }),
+			(float, _tb_height, { 20.f }),
 			(bool, _thumb_visible, {false}),
 			(int, _texture_thumb_index_txt, {0}))
 	public:
 		ft_slider();
 		~ft_slider(){}
 		void link();
-		void set_progress(float value){ _slider_pt._position_nml = value; }
-		float get_progress(){ return _slider_pt._position_nml; }
-
-		void set_bg_texture_id(int id){ _slider_pt._texture_bg_index_txt = id; }
-		void set_progress_texture_id(int id){ _slider_pt._texture_head_index_txt = id; }
-		void set_thumb_texture_id(int id){ _slider_pt._texture_thumb_index_txt = id; }
+		void set_progress(float value){ _slider_pt._progress_nml = value; }
+		float get_progress(){ return _slider_pt._progress_nml; }
 
 		void draw();
 	private:
 		bool read_point_position_file(const char *str);
+		point_pair_vec _custom_envelope;
+		vector<af_vec2> _custom_track;
+		vector<float> _custom_track_segment;
+		float _custom_trace_length{ 0.f };
 
-		struct random_point_array
-		{
-			ImVec2 top_point;
-			ImVec2 bottom_point;
-			random_point_array(){}
-			random_point_array(ImVec2 &itop, ImVec2 &ibottom)
-				:top_point(itop), bottom_point(ibottom)
-			{}
+		point_pair _pre_point_2vec2;
+		point_pair _next_point_2vec2;
 
-			void operator=(random_point_array &it)
-			{
-				top_point = it.top_point;
-				bottom_point = it.bottom_point;
-			}
-
-			bool operator==(random_point_array &it)
-			{
-				if (it.top_point.x == top_point.x && it.top_point.y == top_point.y && it.bottom_point.x == bottom_point.x && it.bottom_point.x == bottom_point.x)
-				{
-					return true;
-				}
-				return false;
-			}
-		};
-		typedef std::vector<random_point_array> random_point_vec;
-		random_point_vec ft_slider_random_point_vec;
-		float _random_all_length{ 0.f };
-
-		random_point_array _pre_point_2vec2;
-		random_point_array _next_point_2vec2;
-
-		random_point_array _current_point_2vec2_thumb_use;
+		point_pair _current_point_2vec2_thumb_use;
 	};
 
 	REGISTER_CONTROL(ft_slider)

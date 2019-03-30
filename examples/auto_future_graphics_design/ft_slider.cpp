@@ -13,25 +13,12 @@ namespace auto_future
 		en_custom,
 		en_direction_cnt
 	};
-
-	template<class T>
-	inline T qu1et_square(T val) {
-		return val * val;
+	float length_of_p2p(af_vec2& p0, af_vec2&p1)
+	{
+		af_vec2 delta = p1 - p0;
+		return delta.norm();
 	}
-#define qu1et_thr_length(a, b) sqrt(qu1et_square<float>(a) + qu1et_square<float>(b))
-	//计算单个四边形参与周长运算的长度
-#define qu1et_one_quadrangle_length(a, b, c, d) (qu1et_thr_length(d.x-a.x, d.y-a.y) + qu1et_thr_length(b.x-c.x, b.y-c.y))/2
-
-	//计算小矩形中上下的点坐标
-#define qu1et_top_point_pos_x_of_square(a, b, c, d, l, h)  l*abs(d.x - a.x)/h + a.x
-#define qu1et_top_point_pos_y_of_square(a, b, c, d, l, h) l*abs(d.y - a.y)/h + a.y
-#define qu1et_bottom_point_pos_x_of_square(a, b, c, d, l, h) l*abs(c.x - b.x)/h + b.x
-#define qu1et_bottom_point_pos_y_of_square(a, b, c, d, l, h) l*abs(c.y - b.y)/h + b.y
-
-#define ARRAY_COUNT_DIRECTION_ITEM 3
-	const char *const direction_iitem[ARRAY_COUNT_DIRECTION_ITEM] = { "horizontal", "vertical", "custom" };
-
-
+	const char *const direction_iitem[en_direction_cnt] = { "horizontal", "vertical", "custom" };
 	bool ft_slider::read_point_position_file(const char *str)
 	{
 		auto ij = g_mfiles_list.find(str);
@@ -39,29 +26,30 @@ namespace auto_future
 		{
 			return  false;
 		}
-		//printf("*****file size %d\n", ij->second->_fsize);
-
 		char *_pData = (char *)ij->second->_pbin;
 		string str_format(_pData);
 		stringstream sstm_format(str_format);
 		string line;
-		_random_all_length = 0;
-		auto& ft_rp_v= ft_slider_random_point_vec;
-		ImVec2 utp_prev = {-1.f,0.f}, ubp_prev;
+		_custom_trace_length = 0;
+		auto& ft_rp_v= _custom_envelope;
+		af_vec2 mp_prev = { -1.f, 0.f };
 		while (getline(sstm_format,line))
 		{
 			ft_rp_v.emplace_back();
 			auto& rp_unit = ft_rp_v.back();
-			auto& utp = rp_unit.top_point;
-			auto& ubp = rp_unit.bottom_point;
+			auto& utp = rp_unit._point0;
+			auto& ubp = rp_unit._point1;
 			sscanf(line.c_str(), "%f,%f/%f,%f", &utp.x, &utp.y, &ubp.x, &ubp.y);
-			if (utp_prev.x>0)
+			_custom_track.emplace_back();
+			af_vec2& mid_point = _custom_track.back();
+			mid_point = { (utp.x + ubp.x) / 2, (utp.y + ubp.y) / 2 };
+			if (mp_prev.x>0)
 			{
-				auto unit_len = qu1et_one_quadrangle_length(utp_prev, ubp_prev, ubp, utp);
-				_random_all_length += unit_len;
+				auto unit_len = length_of_p2p(mp_prev,mid_point);
+				_custom_track_segment.emplace_back(unit_len);
+				_custom_trace_length += unit_len;
 			}
-			utp_prev = utp;
-			ubp_prev = ubp;
+			mp_prev = mid_point;
 		}
 		return true;
 	}
@@ -73,17 +61,17 @@ namespace auto_future
 		//reg_property_handle(&_slider_pt, 0, [this](void*){});
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_slider_pt, 2, [this](void*){
-			ImGui::Combo("direction", &_slider_pt._direction_item, direction_iitem, ARRAY_COUNT_DIRECTION_ITEM);
-			
+			ImGui::Combo("direction", &_slider_pt._direction_item, direction_iitem, en_direction_cnt);
 			if (en_custom == _slider_pt._direction_item)
 			{
-				if (ft_slider_random_point_vec.size()>0)
+				if (_custom_envelope.size()>0)
 				{
 					ImGui::Text("custom path file:%s", _slider_pt._cbuffer_random_text);
 					ImGui::SameLine();
 					if (ImGui::Button("Delink##custom path"))
 					{
-						ft_slider_random_point_vec.clear();
+						_custom_envelope.clear();
+						_custom_track_segment.clear();
 						_slider_pt._cbuffer_random_text[0] = '\0';
 					}
 				}
@@ -106,8 +94,11 @@ namespace auto_future
 			read_point_position_file(_slider_pt._cbuffer_random_text);
 		}
 	}
-
-
+	ImVec2 operator +(ImVec2& imv2, af_vec2& afv2)
+	{
+		return ImVec2(imv2.x + afv2.x, imv2.y + afv2.y);
+	}
+	
 	void ft_slider::draw()
 	{
 		ft_base::draw();
@@ -125,7 +116,8 @@ namespace auto_future
 		float sizeh = _slider_pt._bg_txth;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
-		ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 screen_base_pos = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 pos1 = screen_base_pos;
 		ImVec2 pos2 = { pos1.x, pos1.y + sizeh };
 		ImVec2 pos3 = { pos1.x + sizew, pos1.y + sizeh };
 		ImVec2 pos4 = { pos1.x + sizew, pos1.y };
@@ -146,7 +138,6 @@ namespace auto_future
 			pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nml, axisBasePos);
 		}
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
-		ImVec2 head_pos(_slider_pt._hd_posx, _slider_pt._hd_posy);
 		auto& txt_hd_id = _slider_pt._texture_head_index_txt;
 		/***********************************************************progress*********************************************************/
 		if (txt_hd_id >= ptext_cd.size())
@@ -154,111 +145,65 @@ namespace auto_future
 			printf("invalid texture index:%d\n", txt_hd_id);
 			txt_hd_id = 0;
 		}
-
+		af_vec2 value_point0, value_point1,direction_thumb;
 		if (en_custom == _slider_pt._direction_item) //任意轨道
 		{
-			if (0 == _random_all_length) return; //第一次进入random时判断
-			float _tmp_length = 0.f;
-			auto it = ft_slider_random_point_vec.begin();
-			//初始坐标
-			_pre_point_2vec2 = *it;
-			_next_point_2vec2 = *(it + 1);
-			float real_length = _random_all_length*_slider_pt._position_nml;
-			float _tmp_for = 0.f;
-			for (; it != (ft_slider_random_point_vec.end() - 1); ++it)
+			if (0 == _custom_trace_length) return; //第一次进入random时判断
+			float tmp_length = 0.f;
+			int idx = 0;
+			float real_length = _custom_trace_length*_slider_pt._progress_nml;
+			ImVec2 uv_org = ImVec2((ptext_cd[txt_hd_id]._x0) / texture_width, (ptext_cd[txt_hd_id]._y0) / texture_height);
+			for (auto seg_unit:_custom_track_segment)
 			{
-				_tmp_for += qu1et_one_quadrangle_length(it->top_point, it->bottom_point, (it + 1)->bottom_point, (it + 1)->top_point);
-				if (_tmp_for > real_length)
+				auto test_len = tmp_length + seg_unit;
+				if (test_len<=real_length)
 				{
-					_next_point_2vec2 = *(it + 1);
-					_pre_point_2vec2 = *it;
-					break;
+					tmp_length = test_len;
+					idx++;
+					auto& pp_prev = _custom_envelope[idx - 1];
+					auto& pp_cur = _custom_envelope[idx];
+					pos1 = screen_base_pos + pp_prev._point0;
+					pos2 = screen_base_pos + pp_prev._point1;
+					pos3 = screen_base_pos + pp_cur._point1;
+					pos4 = screen_base_pos + pp_cur._point0;
+					uv0 = uv_org + ImVec2(pp_prev._point0.x / texture_width, pp_prev._point0.y / texture_height);
+					uv1 = uv_org + ImVec2(pp_prev._point1.x / texture_width, pp_prev._point1.y / texture_height);
+					uv2 = uv_org + ImVec2(pp_cur._point1.x / texture_width, pp_cur._point1.y / texture_height);
+					uv3 = uv_org + ImVec2(pp_cur._point0.x / texture_width, pp_cur._point0.y / texture_height);
+					ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+					if (test_len==real_length)
+					{
+						value_point0 = pp_cur._point0;
+						value_point1 = pp_cur._point1;
+						direction_thumb = _custom_track[idx] - _custom_track[idx - 1];
+						break;
+					}
 				}
 				else
 				{
-					_tmp_length = _tmp_for;
-				}
-			}
-
-			//四边形 上\下\中 边长
-			float _top_distance = 0.f, _bottom_distance = 0.f, _mid_distance = 0.f;
-			_top_distance = qu1et_thr_length((_pre_point_2vec2.top_point.x - _next_point_2vec2.top_point.x), (_pre_point_2vec2.top_point.y - _next_point_2vec2.top_point.y));
-			_bottom_distance = qu1et_thr_length((_pre_point_2vec2.bottom_point.x - _next_point_2vec2.bottom_point.x), (_pre_point_2vec2.bottom_point.y - _next_point_2vec2.bottom_point.y));
-			_mid_distance = (_top_distance + _bottom_distance) / 2.f;
-
-			//参与运算的上下长度差
-			float _top_l_1 = 0.f, _bottom_l_1 = 0.f;
-			_top_l_1 = (real_length - _tmp_length)*_top_distance / _mid_distance;
-			_bottom_l_1 = (real_length - _tmp_length)*_bottom_distance / _mid_distance;
-
-			//上坐标()
-			_current_point_2vec2_thumb_use.top_point.x = _top_l_1 * (_next_point_2vec2.top_point.x - _pre_point_2vec2.top_point.x) / _top_distance + _pre_point_2vec2.top_point.x;
-			_current_point_2vec2_thumb_use.top_point.y = _top_l_1 * (_next_point_2vec2.top_point.y - _pre_point_2vec2.top_point.y) / _top_distance + _pre_point_2vec2.top_point.y;
-
-			//下坐标()
-			_current_point_2vec2_thumb_use.bottom_point.x = _bottom_l_1 * (_next_point_2vec2.bottom_point.x - _pre_point_2vec2.bottom_point.x) / _bottom_distance + _pre_point_2vec2.bottom_point.x;
-			_current_point_2vec2_thumb_use.bottom_point.y = _bottom_l_1 * (_next_point_2vec2.bottom_point.y - _pre_point_2vec2.bottom_point.y) / _bottom_distance + _pre_point_2vec2.bottom_point.y;
-
-
-			float tmp_float = 0.f;
-			//将此点作为原点进行计算
-			ImVec2 uv = ImVec2((ptext_cd[txt_hd_id]._x0) / texture_width, (ptext_cd[txt_hd_id]._y0) / texture_height);
-			for (auto it = ft_slider_random_point_vec.begin(); it != ft_slider_random_point_vec.end() - 1; ++it) //画进度
-			{
-				/*
-				* @brief 先计算出顶点数据，从外部导入的顶点数据是单个图片的纹理坐标位置的位置。
-				*		 计算纹理坐标是相对于原始的单个图片左上角第一个点来计算
-				*
-				*/
-				tmp_float += qu1et_one_quadrangle_length(it->top_point, it->bottom_point, (it + 1)->bottom_point, (it + 1)->top_point);
-				if (tmp_float> real_length)
-				{
-					//自身坐标
-					pos1 = { abpos.x + winpos.x + it->top_point.x, abpos.y + winpos.y + it->top_point.y };
-					pos2 = { abpos.x + winpos.x + it->bottom_point.x, abpos.y + winpos.y + it->bottom_point.y };
-					pos3 = { abpos.x + winpos.x + _current_point_2vec2_thumb_use.bottom_point.x, abpos.y + winpos.y + _current_point_2vec2_thumb_use.bottom_point.y };
-					pos4 = { abpos.x + winpos.x + _current_point_2vec2_thumb_use.top_point.x, abpos.y + winpos.y + _current_point_2vec2_thumb_use.top_point.y };
-
-					//依靠父节点的坐标和角度计算
-					if (_slider_pt._bg_angle_nml != 0.f)
-					{
-						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle_nml, axisBasePos);
-						pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle_nml, axisBasePos);
-						pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle_nml, axisBasePos);
-						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nml, axisBasePos);
-					}
-
-					uv0 = ImVec2(uv.x + it->top_point.x / texture_width, uv.y + it->top_point.y / texture_height);
-					uv1 = ImVec2(uv.x + it->bottom_point.x / texture_width, uv.y + it->bottom_point.y / texture_height);
-					uv2 = ImVec2(uv.x + _current_point_2vec2_thumb_use.bottom_point.x / texture_width, uv.y + _current_point_2vec2_thumb_use.bottom_point.y / texture_height);
-					uv3 = ImVec2(uv.x + _current_point_2vec2_thumb_use.top_point.x / texture_width, uv.y + _current_point_2vec2_thumb_use.top_point.y / texture_height);
-
+					float delta = test_len-real_length ;
+					auto& pp_cur = _custom_envelope[idx];
+					auto& pp_next = _custom_envelope[idx + 1];
+					auto cur_seg = _custom_track_segment[idx];
+					delta = cur_seg - delta;
+					float scale_unit = delta / cur_seg;
+					auto dir0 = pp_next._point0 - pp_cur._point0;
+					auto dir0_nm = dir0.norm();
+					auto dir1 = pp_next._point1 - pp_cur._point1;
+					auto dir1_nm = dir1.norm();
+					value_point0 = pp_cur._point0 + dir0*(delta/dir0_nm);
+					value_point1 = pp_cur._point1 + dir1*(delta/dir1_nm);
+					direction_thumb = _custom_track[idx + 1] - _custom_track[idx];
+					pos1 = screen_base_pos + pp_cur._point0;
+					pos2 = screen_base_pos + pp_cur._point1;
+					pos3 = screen_base_pos + value_point1;
+					pos4 = screen_base_pos + value_point0;
+					uv0 = uv_org + ImVec2(pp_cur._point0.x / texture_width, pp_cur._point0.y / texture_height);
+					uv1 = uv_org + ImVec2(pp_cur._point1.x / texture_width, pp_cur._point1.y / texture_height);
+					uv2 = uv_org + ImVec2(value_point1.x / texture_width, value_point1.y / texture_height);
+					uv3 = uv_org + ImVec2(value_point0.x / texture_width, value_point0.y / texture_height);
 					ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 					break;
-				}
-				else
-				{
-					//自身坐标
-					pos1 = { abpos.x + winpos.x + it->top_point.x, abpos.y + winpos.y + it->top_point.y };
-					pos2 = { abpos.x + winpos.x + it->bottom_point.x, abpos.y + winpos.y + it->bottom_point.y };
-					pos3 = { abpos.x + winpos.x + (it + 1)->bottom_point.x, abpos.y + winpos.y + (it + 1)->bottom_point.y };
-					pos4 = { abpos.x + winpos.x + (it + 1)->top_point.x, abpos.y + winpos.y + (it + 1)->top_point.y };
-
-					//依靠父节点的坐标和角度计算
-					if (_slider_pt._bg_angle_nml != 0.f)
-					{
-						pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle_nml, axisBasePos);
-						pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle_nml, axisBasePos);
-						pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle_nml, axisBasePos);
-						pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nml, axisBasePos);
-					}
-
-					uv0 = ImVec2(uv.x + it->top_point.x / texture_width, uv.y + it->top_point.y / texture_height);
-					uv1 = ImVec2(uv.x + it->bottom_point.x / texture_width, uv.y + it->bottom_point.y / texture_height);
-					uv2 = ImVec2(uv.x + (it + 1)->bottom_point.x / texture_width, uv.y + (it + 1)->bottom_point.y / texture_height);
-					uv3 = ImVec2(uv.x + (it + 1)->top_point.x / texture_width, uv.y + (it + 1)->top_point.y / texture_height);
-
-					ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 				}
 			}
 		}
@@ -266,167 +211,61 @@ namespace auto_future
 		{
 			if (en_horizontal == _slider_pt._direction_item)
 			{
-				sizew = _slider_pt._hd_txtw *_slider_pt._position_nml;
+				sizew = _slider_pt._hd_txtw *_slider_pt._progress_nml;
 				sizeh = _slider_pt._hd_txth;
 
-				pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
+				pos1 = screen_base_pos;
 				pos2 = { pos1.x, pos1.y + sizeh };
 				pos3 = { pos1.x + sizew, pos1.y + sizeh };
 				pos4 = { pos1.x + sizew, pos1.y };
+				direction_thumb = { 1.0, 0 };
 			}
 			else if (en_vertical == _slider_pt._direction_item)
 			{
 				sizew = _slider_pt._hd_txtw;
-				sizeh = _slider_pt._hd_txth *_slider_pt._position_nml;
+				sizeh = _slider_pt._hd_txth *_slider_pt._progress_nml;
 
 				pos1 = { abpos.x + winpos.x, abpos.y + winpos.y - sizeh };
 				pos2 = { pos1.x, abpos.y + winpos.y };
 				pos3 = { pos1.x + sizew, abpos.y + winpos.y };
 				pos4 = { pos1.x + sizew, abpos.y + winpos.y - sizeh };
+				direction_thumb = { 0, 1.0 };
 			}
-
+			value_point0 = {pos3.x,pos3.y};
+			value_point1 = {pos4.x,pos4.y};
 			uv0 = ImVec2(ptext_cd[txt_hd_id]._x0 / texture_width, ptext_cd[txt_hd_id]._y0 / texture_height);
 			uv1 = ImVec2(ptext_cd[txt_hd_id]._x0 / texture_width, (ptext_cd[txt_hd_id]._y1) / texture_height);
 			uv2 = ImVec2((ptext_cd[txt_hd_id]._x1) / texture_width, (ptext_cd[txt_hd_id]._y1) / texture_height);
 			uv3 = ImVec2((ptext_cd[txt_hd_id]._x1) / texture_width, (ptext_cd[txt_hd_id]._y0) / texture_height);
-
 			if (en_horizontal == _slider_pt._direction_item)
 			{
-				uv2.x = uv1.x + _slider_pt._position_nml*(uv2.x - uv1.x);
-				uv3.x = uv0.x + _slider_pt._position_nml*(uv3.x - uv0.x);
+				uv2.x = uv1.x + _slider_pt._progress_nml*(uv2.x - uv1.x);
+				uv3.x = uv0.x + _slider_pt._progress_nml*(uv3.x - uv0.x);
 			}
 			else if (en_vertical == _slider_pt._direction_item)
 			{
-				uv0.y = uv1.y - _slider_pt._position_nml*(uv1.y - uv0.y);
-				uv3.y = uv2.y - _slider_pt._position_nml*(uv2.y - uv3.y);
+				uv0.y = uv1.y - _slider_pt._progress_nml*(uv1.y - uv0.y);
+				uv3.y = uv2.y - _slider_pt._progress_nml*(uv2.y - uv3.y);
 			}
-
-			offsetx = abpos.x - base_pos().x;
-			offsety = abpos.y - base_pos().y;
-			axisBasePos = { offsetx + _slider_pt._bg_aposx + winpos.x, offsety + _slider_pt._bg_aposy + winpos.y };
-			pos1 = rotate_point_by_zaxis(pos1, 0.f, axisBasePos);
-			pos2 = rotate_point_by_zaxis(pos2, 0.f, axisBasePos);
-			pos3 = rotate_point_by_zaxis(pos3, 0.f, axisBasePos);
-			pos4 = rotate_point_by_zaxis(pos4, 0.f, axisBasePos);
-
-			pos1 += head_pos;
-			pos2 += head_pos;
-			pos3 += head_pos;
-			pos4 += head_pos;
-
 			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		}
-		/***********************************************************thumb*********************************************************/
-		//thumb
-		ImVec2 thumb_pos(_slider_pt._tb_posx, _slider_pt._tb_posy);
+		/************************************************thumb**************************************************/
 		if (!_slider_pt._thumb_visible) return;
-		if (en_custom == _slider_pt._direction_item) //任意轨道时，图标移动计算
-		{
-			/*
-			 * @brief 自定义轨道时游标的位置，目前做法不满足一般需求，需改变。
-			 * 目前做法：确定当前位置的中心点后，依靠图片的长和宽算出对应的定点坐标
-			 * 导致的问题，图片不能旋转。
-			 * 后续做法再确定
-			 */
-
-			ImVec2 _center_positon_point = ImVec2((_current_point_2vec2_thumb_use.top_point.x + _current_point_2vec2_thumb_use.bottom_point.x) / 2, (_current_point_2vec2_thumb_use.top_point.y + _current_point_2vec2_thumb_use.bottom_point.y) / 2);
-
-			ImVec2 uv0 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index_txt]._x0 / texture_width, ptext_cd[_slider_pt._texture_thumb_index_txt]._y0 / texture_height);
-			ImVec2 uv1 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index_txt]._x0 / texture_width, (ptext_cd[_slider_pt._texture_thumb_index_txt]._y1) / texture_height);
-			ImVec2 uv2 = ImVec2((ptext_cd[_slider_pt._texture_thumb_index_txt]._x1) / texture_width, (ptext_cd[_slider_pt._texture_thumb_index_txt]._y1) / texture_height);
-			ImVec2 uv3 = ImVec2((ptext_cd[_slider_pt._texture_thumb_index_txt]._x1) / texture_width, (ptext_cd[_slider_pt._texture_thumb_index_txt]._y0) / texture_height);
-
-			//窗口坐标加自身坐标
-			pos1 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._tb_txth / 2);
-			pos2 = ImVec2(abpos.x + winpos.x + _center_positon_point.x - _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._tb_txth / 2);
-			pos3 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y + _slider_pt._tb_txth / 2);
-			pos4 = ImVec2(abpos.x + winpos.x + _center_positon_point.x + _slider_pt._tb_txtw / 2, abpos.y + winpos.y + _center_positon_point.y - _slider_pt._tb_txth / 2);
-
-			//依靠父节点的坐标和角度计算
-			if (_slider_pt._bg_angle_nml != 0.f)
-			{
-				pos1 = rotate_point_by_zaxis(pos1, _slider_pt._bg_angle_nml, axisBasePos);
-				pos2 = rotate_point_by_zaxis(pos2, _slider_pt._bg_angle_nml, axisBasePos);
-				pos3 = rotate_point_by_zaxis(pos3, _slider_pt._bg_angle_nml, axisBasePos);
-				pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nml, axisBasePos);
-			}
-			
-			pos1 += thumb_pos;
-			pos2 += thumb_pos;
-			pos3 += thumb_pos;
-			pos4 += thumb_pos;
-
-			//计算当前轨道的角度后旋转四个点 _next_point_2vec2.top  _pre_point_2vec2.top
-			//注释：由于角度计算是根据采集的点进行的，所以受采集点影响比较大，要做到旋转很难
-			//
-			//float _ang = atan((_next_point_2vec2.top_point.y - _pre_point_2vec2.top_point.y) / (_next_point_2vec2.top_point.x - _pre_point_2vec2.top_point.x));
-			//ImVec2 _center_tmp(_center_positon_point.x +abpos.x + winpos.x, _center_positon_point.y +abpos.y + winpos.y); //中心点需加窗口坐标
-			//pos1 = rotate_point_by_zaxis(pos1, _ang, _center_tmp);
-			//pos2 = rotate_point_by_zaxis(pos2, _ang, _center_tmp);
-			//pos3 = rotate_point_by_zaxis(pos3, _ang, _center_tmp);
-			//pos4 = rotate_point_by_zaxis(pos4, _ang, _center_tmp);
-
-			//printf("angle:%f\n", _ang);
-			//printf("_center_positon_point:%f,%f\n", _center_tmp.x, _center_tmp.y);
-			//printf("pos1:%f,%f\n", pos1.x, pos1.y);
-			//printf("pos2:%f,%f\n", pos2.x, pos2.y);
-			//printf("pos3:%f,%f\n", pos3.x, pos3.y);
-			//printf("pos4:%f,%f\n", pos4.x, pos4.y);
-
-			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
-		}
-		else
-		{
-			if (_slider_pt._texture_thumb_index_txt >= ptext_cd.size())
-			{
-				printf("invalid texture index:%d\n", _slider_pt._texture_thumb_index_txt);
-				_slider_pt._texture_thumb_index_txt = 0;
-			}
-			texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-			texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
-
-			abpos = absolute_coordinate_of_base_pos();
-			winpos = ImGui::GetWindowPos();
-
-			pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
-			pos2 = { pos1.x, pos1.y + _slider_pt._tb_txth };
-			pos3 = { pos1.x + _slider_pt._tb_txtw, pos1.y + _slider_pt._tb_txth };
-			pos4 = { pos1.x + _slider_pt._tb_txtw, pos1.y };
-
-			uv0 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index_txt]._x0 / texture_width, ptext_cd[_slider_pt._texture_thumb_index_txt]._y0 / texture_height);
-			uv1 = ImVec2(ptext_cd[_slider_pt._texture_thumb_index_txt]._x0 / texture_width, (ptext_cd[_slider_pt._texture_thumb_index_txt]._y1) / texture_height);
-			uv2 = ImVec2((ptext_cd[_slider_pt._texture_thumb_index_txt]._x1) / texture_width, (ptext_cd[_slider_pt._texture_thumb_index_txt]._y1) / texture_height);
-			uv3 = ImVec2((ptext_cd[_slider_pt._texture_thumb_index_txt]._x1) / texture_width, (ptext_cd[_slider_pt._texture_thumb_index_txt]._y0) / texture_height);
-
-			offsetx = abpos.x - base_pos().x;
-			offsety = abpos.y - base_pos().y;
-			axisBasePos = { offsetx + _slider_pt._bg_aposx + winpos.x, offsety + _slider_pt._bg_aposy + winpos.y };
-
-			pos1 += thumb_pos;
-			pos2 += thumb_pos;
-			pos3 += thumb_pos;
-			pos4 += thumb_pos;
-			if (en_horizontal == _slider_pt._direction_item)
-			{
-				pos1.x += _slider_pt._hd_txtw*_slider_pt._position_nml;
-				pos2.x += _slider_pt._hd_txtw*_slider_pt._position_nml;
-				pos3.x += _slider_pt._hd_txtw*_slider_pt._position_nml;
-				pos4.x += _slider_pt._hd_txtw*_slider_pt._position_nml;
-			}
-			else if (en_vertical == _slider_pt._direction_item)
-			{
-				pos1.y -= _slider_pt._hd_txth*_slider_pt._position_nml;
-				pos2.y -= _slider_pt._hd_txth*_slider_pt._position_nml;
-				pos3.y -= _slider_pt._hd_txth*_slider_pt._position_nml;
-				pos4.y -= _slider_pt._hd_txth*_slider_pt._position_nml;
-			}
-
-			pos1 = rotate_point_by_zaxis(pos1, 0.f, axisBasePos);
-			pos2 = rotate_point_by_zaxis(pos2, 0.f, axisBasePos);
-			pos3 = rotate_point_by_zaxis(pos3, 0.f, axisBasePos);
-			pos4 = rotate_point_by_zaxis(pos4, 0.f, axisBasePos);
-
-			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
-		}
+		auto tb_height = _slider_pt._tb_height;
+		auto tb_dir_nm = direction_thumb.norm();
+		auto tb_scale = tb_height / tb_dir_nm;
+		af_vec2 dir_delta = direction_thumb*tb_scale;
+		af_vec2 value_point2 = value_point1 + dir_delta;
+		af_vec2 value_point3 = value_point0 + dir_delta;
+		pos1 = screen_base_pos + value_point0;
+		pos2 = screen_base_pos + value_point1;
+		pos3 = screen_base_pos + value_point2;
+		pos4 = screen_base_pos + value_point3;
+		auto tb_id = _slider_pt._texture_thumb_index_txt;
+		uv0 = ImVec2(ptext_cd[tb_id]._x0 / texture_width, ptext_cd[tb_id]._y0 / texture_height);
+		uv1 = ImVec2(ptext_cd[tb_id]._x0 / texture_width, (ptext_cd[tb_id]._y1) / texture_height);
+		uv2 = ImVec2((ptext_cd[tb_id]._x1) / texture_width, (ptext_cd[tb_id]._y1) / texture_height);
+		uv3 = ImVec2((ptext_cd[tb_id]._x1) / texture_width, (ptext_cd[tb_id]._y0) / texture_height);
+		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 	}
 }

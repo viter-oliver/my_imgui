@@ -124,9 +124,6 @@
     <ClCompile Include="afb_load.cpp">
       <Filter>afb_manager</Filter>
     </ClCompile>
-    <ClCompile Include="ft_slider.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="af_shader.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
@@ -259,6 +256,15 @@
     <ClCompile Include="af_primitive_object.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\imgui_node_graph_test.cpp">
+      <Filter>user_imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="slider_path_picker.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_slider.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -365,9 +371,6 @@
     </ClInclude>
     <ClInclude Include="afb_load.h">
       <Filter>afb_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_slider.h">
-      <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="shader_uf.h">
       <Filter>render_utilities</Filter>
@@ -512,6 +515,12 @@
     </ClInclude>
     <ClInclude Include="af_primitive_object.h">
       <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="slider_path_picker.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_slider.h">
+      <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

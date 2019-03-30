@@ -165,6 +165,7 @@
     <ClCompile Include="..\..\imgui.cpp" />
     <ClCompile Include="..\..\imgui_demo.cpp" />
     <ClCompile Include="..\..\imgui_draw.cpp" />
+    <ClCompile Include="..\..\imgui_node_graph_test.cpp" />
     <ClCompile Include="..\..\json\json_reader.cpp" />
     <ClCompile Include="..\..\json\json_value.cpp" />
     <ClCompile Include="..\..\json\json_writer.cpp" />
@@ -227,6 +228,7 @@
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
     <ClCompile Include="shader_uf.cpp" />
+    <ClCompile Include="slider_path_picker.cpp" />
     <ClCompile Include="state_manager_edit.cpp" />
     <ClCompile Include="texture_edit.cpp" />
     <ClCompile Include="texture_res_load.cpp" />
@@ -313,6 +315,7 @@
     <ClInclude Include="res_internal.h" />
     <ClInclude Include="res_output.h" />
     <ClInclude Include="shader_uf.h" />
+    <ClInclude Include="slider_path_picker.h" />
     <ClInclude Include="state_manager_edit.h" />
     <ClInclude Include="texture_edit.h" />
     <ClInclude Include="texture_res_load.h" />

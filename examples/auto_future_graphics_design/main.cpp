@@ -45,6 +45,7 @@
 #include "bind_edit.h"
 #include "aliase_edit.h"
 #include "state_manager_edit.h"
+#include "slider_path_picker.h"
 #include "common_functions.h"
 #include "dir_output.h"
 #include "command_element_delta.h"
@@ -57,6 +58,7 @@ string g_cureent_directory;
 bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
+slider_path_picker g_slider_path_picker;
 //string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
@@ -150,8 +152,8 @@ int main(int argc, char* argv[])
 	bool show_edit_window = true;
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-#ifdef _MY_IMGUI__
 	load_internal_texture_res(g_mtxt_intl, IDR_FONTS1,IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
+#ifdef _MY_IMGUI__
 
 	//g_res_texture_list[0].texture_id = TextureHelper::load2DTexture(g_res_texture_list[0].texture_path, g_res_texture_list[0].texture_width, g_res_texture_list[0].texture_height);
 	//g_vres_texture_list[0].texture_id = \
@@ -640,6 +642,11 @@ int main(int argc, char* argv[])
 				{
 					show_aliase_edit = !show_aliase_edit;
 				}
+				bool is_open = g_slider_path_picker.is_open();
+				if (ImGui::MenuItem("Slider path pick", NULL, is_open))
+				{
+					g_slider_path_picker.set_open(!is_open);
+				}
 
 				ImGui::EndMenu();
 			}
@@ -785,6 +792,7 @@ int main(int argc, char* argv[])
 			g_state_manager_edit.view_state_manager_item_property();
 			ImGui::End();
 		}
+		g_slider_path_picker.view();
 		if (show_aliase_edit)
 		{
 			ImGui::Begin("Aliases edit", &show_aliase_edit, ImVec2(400, 400));
