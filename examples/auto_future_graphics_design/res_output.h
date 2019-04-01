@@ -119,6 +119,7 @@ struct af_file
 #endif
 	af_file(GLuint fsize);
 	//af_file(){}
+	void re_alloc(GLuint fsize);
 	~af_file();
 };
 #include<map>
@@ -127,6 +128,8 @@ typedef map<string, shared_ptr<af_texture>> mtexture_list;
 typedef map<string, shared_ptr<af_file>>mfile_list;
 extern mtexture_list g_mtexture_list;
 extern mfile_list g_mfiles_list;
+void save_ojfile_to_file(string& key_name);
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 extern bool add_image_to_mtexure_list(string& imgPath,bool is_mipmap);
 extern void add_file_to_mfiles_list(string& file_path);

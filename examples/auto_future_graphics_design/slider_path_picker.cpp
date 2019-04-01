@@ -1,4 +1,5 @@
 #include "slider_path_picker.h"
+#include "common_functions.h"
 #include "res_output.h"
 #include <GLFW/glfw3.h>
 #include <sstream>
@@ -14,11 +15,84 @@ void slider_path_picker::view()
 		ImGui::End();
 		return;
 	}
+	static char track_file_name[FILE_NAME_LEN];
+	if (_cur_tacks_file_name.empty())
+	{
+		ImGui::InputText("track file name", track_file_name, FILE_NAME_LEN);
+		if (ImGui::Button("import"))
+		{
+			auto ifl = g_mfiles_list.find(track_file_name);
+			if (ifl==g_mfiles_list.end())
+			{
+				track_file_name[0] = '\0';
+				return;
+			}
+			char* pData = (char*)ifl->second->_pbin;
+			auto buff_sz = ifl->second->_fsize;
+			auto alen = conver_track_buff_to_pair(pData, buff_sz, _vtrack0, _vtrack1);
+			if (alen==0)
+			{
+				track_file_name[0] = '\0';
+				return;
+			}
+			_cur_tacks_file_name = track_file_name;
+		}
+	}
+	else
+	{
+		ImGui::Text("track file name:%s", _cur_tacks_file_name.c_str());
+	}
+	if (ImGui::Button("Save to track file"))
+	{
+		auto alen = _vtrack0.size();
+		auto asize = sizeof(ImVec2)*alen;
+		GLuint file_sz = asize * 2 + 4;
+		if (_cur_tacks_file_name.empty())
+		{
+			if (strlen(track_file_name)>0)
+			{
+				string key_tmp(track_file_name);
+				auto file_key_name = find_a_key_from_mp(g_mfiles_list, key_tmp);
+				auto ps_file = make_shared<af_file>(file_sz);
+				int *file_head = (int*)ps_file->_pbin;
+				*file_head = alen;
+				char* buff_head = (char*)ps_file->_pbin + 4;
+				memcpy(buff_head, &_vtrack0[0], asize);
+				memcpy(buff_head + asize, &_vtrack1[0], asize);
+				g_mfiles_list[file_key_name] = ps_file;
+				save_ojfile_to_file(file_key_name);
+				track_file_name[0] = '\0';
+			}
+		}
+		else
+		{
+			auto ifl = g_mfiles_list.find(_cur_tacks_file_name);
+			auto& objf=*ifl->second;
+			if (objf._fsize!=file_sz)
+			{
+				objf.re_alloc(file_sz);
+			}
+			int *file_head = (int*)objf._pbin;
+			*file_head = alen;
+			char* buff_head = (char*)objf._pbin + 4;
+			memcpy(buff_head, &_vtrack0[0], asize);
+			memcpy(buff_head + asize, &_vtrack1[0], asize);
+			save_ojfile_to_file(_cur_tacks_file_name);
+			_cur_tacks_file_name.clear();
+		}
+	}	
 	static float view_scale = 1.0;
 	ImGui::SliderFloat("view scale", &view_scale, 0.2, 20);
 	int _txt_index = g_cur_texture_id_index;
 	auto isize = g_vres_texture_list[_txt_index].vtexture_coordinates.size();
 	bool be_changed = ImGui::Combo("picker target", &_img_id, &get_texture_item, &g_vres_texture_list[_txt_index], isize);
+	if (be_changed)
+	{
+		auto& icon_name= g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[_img_id]._file_name;
+		string tr_strk_name = icon_name.substr(0,icon_name.find_last_of('.'));
+		tr_strk_name += ".trk";
+		strcpy(track_file_name, tr_strk_name.c_str());
+	}
 	auto& res_coors = g_vres_texture_list[_txt_index].vtexture_coordinates;
 	auto res_w = res_coors[_img_id].owidth();
 	auto res_h = res_coors[_img_id].oheight();

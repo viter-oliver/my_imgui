@@ -28,6 +28,7 @@ namespace auto_future
 			(float, _hd_posy, { 20.f }),
 			(int, _texture_head_index_txt,{0}),
 			(float, _tb_height, { 20.f }),
+			(float, _tb_offset, { 0.f }),
 			(bool, _thumb_visible, {false}),
 			(int, _texture_thumb_index_txt, {0}))
 	public:
@@ -40,8 +41,11 @@ namespace auto_future
 		void draw();
 	private:
 		bool read_point_position_file(const char *str);
-		point_pair_vec _custom_envelope;
-		vector<af_vec2> _custom_track;
+		//point_pair_vec _custom_envelope;
+
+		vector<ImVec2> _custom_track0;
+		vector<ImVec2> _custom_track1;
+		vector<ImVec2> _custom_mid_track;
 		vector<float> _custom_track_segment;
 		float _custom_trace_length{ 0.f };
 

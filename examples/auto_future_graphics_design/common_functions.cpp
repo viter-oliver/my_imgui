@@ -433,3 +433,22 @@ void convert_string_to_binary(string& in_str, string& out_bin)
 		out_bin[ix] = high << 4 | low;
 	}
 }
+unsigned int conver_track_buff_to_pair(char* pbuff,unsigned int buff_len, vector<ImVec2>& vtrack0, vector<ImVec2>& vtrack1)
+{
+	int* parray_len = (int*)pbuff;
+	int array_len = *parray_len;
+	int wtrack_sz = sizeof(ImVec2)*array_len ;
+	int bf_track_sz = buff_len - sizeof(int);
+	if (wtrack_sz* 2!=bf_track_sz)
+	{
+		printf("invalid slider track buff\n");
+		return 0;
+	}
+	char* phead0 = pbuff + sizeof(int);
+	vtrack0.resize(array_len);
+	memcpy(&vtrack0[0], phead0, wtrack_sz);
+	char* phead1 = phead0 + wtrack_sz;
+	vtrack1.resize(array_len);
+	memcpy(&vtrack1[0], phead1, wtrack_sz);
+	return array_len;
+}
