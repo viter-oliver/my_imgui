@@ -10,11 +10,7 @@ static inline ImVec2 operator*(const ImVec2& lhs, const float scl) { return ImVe
 void slider_path_picker::view()
 {
 	ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiSetCond_FirstUseEver);
-	if (!ImGui::Begin("Slider path picker", &_be_open))
-	{
-		ImGui::End();
-		return;
-	}
+
 	static char track_file_name[FILE_NAME_LEN];
 	if (_cur_tacks_file_name.empty())
 	{
@@ -62,6 +58,8 @@ void slider_path_picker::view()
 				g_mfiles_list[file_key_name] = ps_file;
 				save_ojfile_to_file(file_key_name);
 				track_file_name[0] = '\0';
+				_vtrack0.clear();
+				_vtrack1.clear();
 			}
 		}
 		else
@@ -79,6 +77,8 @@ void slider_path_picker::view()
 			memcpy(buff_head + asize, &_vtrack1[0], asize);
 			save_ojfile_to_file(_cur_tacks_file_name);
 			_cur_tacks_file_name.clear();
+			_vtrack0.clear();
+			_vtrack1.clear();
 		}
 	}	
 	static float view_scale = 1.0;
@@ -209,6 +209,4 @@ void slider_path_picker::view()
 		}
 	}
 	ImGui::EndGroup();
-	ImGui::End();
-
 }

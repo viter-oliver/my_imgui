@@ -475,30 +475,27 @@ void afb_load::load_afb(const char* afb_file)
 		auto vbo_len = p_vt_bf_len.as<GLuint>();
 		GLfloat* pvbo = 0;
 		GLuint* pebo = 0;
-		auto vbo_key = key_name + ".vbo";
-		auto ifile = g_mfiles_list.find(vbo_key);
+		auto ifile = g_mfiles_list.find(key_name);
 		if (ifile!=g_mfiles_list.end())
 		{
 			auto& fobj = *ifile->second;
-			pvbo = (GLfloat*)fobj._pbin;
-		}
-		if (ebo_len)
-		{
-			auto ebo_key = key_name + ".ebo";
-			auto iefile = g_mfiles_list.find(ebo_key);
-			if (iefile != g_mfiles_list.end())
+			char* phead = (char*)fobj._pbin;
+			GLuint* phead_len = (GLuint*)phead;
+			phead += 4;
+			pvbo = (GLfloat*)phead;
+			if (ebo_len)
 			{
-				auto& pefile = iefile->second;
-				auto& efile = *pefile;
-				pebo = (GLuint*)efile._pbin;
+				pebo = (GLuint*)phead + *phead_len;
 			}
 		}
+		
 		vector<GLubyte> ele_fmt;
 		auto fmt_sz = pformat.via.bin.size;
 		ele_fmt.resize(fmt_sz);
 		memcpy(&ele_fmt[0], pformat.via.bin.ptr, fmt_sz);
 		p_obj->set_ele_format(ele_fmt);
 		p_obj->load_vertex_data(pvbo, vbo_len, pebo, ebo_len);
+		p_obj->_ps_file = ifile->second;
 		g_primitive_list[key_name] = p_obj;
 	}
 	auto obj_models = obj_w.via.array.ptr[en_models_res];
@@ -530,6 +527,9 @@ void afb_load::load_afb(const char* afb_file)
 			auto prim_id_sz = obj_prmid.via.str.size;
 			prim_id.resize(prim_id_sz);
 			memcpy(&prim_id[0], obj_prmid.via.str.ptr, prim_id_sz);
+			auto& iprim = g_primitive_list.find(prim_id);
+			assert(iprim != g_primitive_list.end() && "prim id is missed?");
+			mesh_unit._ps_prm_id = iprim->second;
 			auto obj_diffs_sz = obj_diffs.via.array.size;
 			for (size_t id = 0; id < obj_diffs_sz;++id)
 			{
@@ -539,6 +539,11 @@ void afb_load::load_afb(const char* afb_file)
 				diff.resize(obj_diff_sz);
 				memcpy(&diff[0], obj_diff.via.str.ptr, obj_diff_sz);
 				mesh_unit._text_diffuse_list.emplace_back(diff);
+				auto& idiff = g_mtexture_list.find(diff);
+				if (idiff!=g_mtexture_list.end())
+				{
+					mesh_unit._ps_text_diffuse_list.emplace_back(idiff->second);
+				}
 			}
 			auto obj_speculars_sz = obj_speculars.via.array.size;
 			for (size_t id = 0; id < obj_speculars_sz; ++id)
@@ -549,6 +554,11 @@ void afb_load::load_afb(const char* afb_file)
 				specular.resize(obj_specular_sz);
 				memcpy(&specular[0], obj_specular.via.str.ptr, obj_specular_sz);
 				mesh_unit._text_specular_list.emplace_back(specular);
+				auto& ispec = g_mtexture_list.find(specular);
+				if (ispec!=g_mtexture_list.end())
+				{
+					mesh_unit._ps_text_specular_list.emplace_back(ispec->second);
+				}
 			}
 			auto obj_heights_sz = obj_heights.via.array.size;
 			for (size_t id = 0; id < obj_heights_sz; ++id)
@@ -559,6 +569,11 @@ void afb_load::load_afb(const char* afb_file)
 				height.resize(obj_height_sz);
 				memcpy(&height[0], obj_height.via.str.ptr, obj_height_sz);
 				mesh_unit._text_height_list.emplace_back(height);
+				auto& iheight = g_mtexture_list.find(height);
+				if (iheight!=g_mtexture_list.end())
+				{
+					mesh_unit._ps_text_height_list.emplace_back(iheight->second);
+				}
 			}
 			auto obj_ambients_sz = obj_ambients.via.array.size;
 			for (size_t id = 0; id < obj_ambients_sz; ++id)
@@ -569,6 +584,11 @@ void afb_load::load_afb(const char* afb_file)
 				ambient.resize(obj_ambient_sz);
 				memcpy(&ambient[0], obj_ambient.via.str.ptr, obj_ambient_sz);
 				mesh_unit._text_ambient_list.emplace_back(ambient);
+				auto& iamb = g_mtexture_list.find(ambient);
+				if (iamb!=g_mtexture_list.end())
+				{
+					mesh_unit._ps_text_ambient_list.emplace_back(iamb->second);
+				}
 			}
 		}
 	}

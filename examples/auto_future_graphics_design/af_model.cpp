@@ -1,8 +1,6 @@
 #include "af_model.h"
 #include "json.h"
 #include "common_functions.h"
-#include "res_output.h"
-#include "af_primitive_object.h"
 #include <assimp/Importer.hpp>
 #include <assimp/scene.h>
 #include <assimp/postprocess.h>
@@ -101,9 +99,22 @@ void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, a
 	}
 	obj_pm.set_ele_format({ 3, 2, 3 });
 	auto float_size = sizeof(af_vertex) / sizeof(float);
-	obj_pm.load_vertex_data((GLfloat*)pvertexs, float_size*mesh->mNumVertices, pface_idx, face_len);
+	auto float_cnt = float_size*mesh->mNumVertices;
+	obj_pm.load_vertex_data((GLfloat*)pvertexs, float_cnt, pface_idx, face_len);
+	auto buff_len = 4+float_cnt*sizeof(float) + face_len* sizeof(GLuint);
+	ps_af_file ps_file = make_shared<af_file>(buff_len);
+	char* phead = (char*)ps_file->_pbin;
+	GLuint* phead_len = (GLuint*)phead;
+	*phead_len = float_cnt*sizeof(float);
+	phead += 4;
+	memcpy(phead, pvertexs, *phead_len);
+	phead += *phead_len;
+	memcpy(phead, pface_idx, face_len*sizeof(GLuint));
 	delete[] pvertexs;
 	delete[] pface_idx;
+	g_mfiles_list[mesh_unit._prm_id] = ps_file;
+	save_ojfile_to_file(mesh_unit._prm_id);
+	obj_pm._ps_file = ps_file;
 	// process materials
 	aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 	// we assume a convention for sampler names in the shaders. Each diffuse texture should be named
@@ -141,6 +152,7 @@ void processNode(aiNode *node, const aiScene *scene,af_model& md,string& mesh_ba
 		md.emplace_back();
 		auto& cmesh = md[id];
 		cmesh._prm_id = mesh_kname;
+		cmesh._ps_prm_id = pmtv;
 		processMesh(mesh, scene,*pmtv, cmesh);
 
 	}

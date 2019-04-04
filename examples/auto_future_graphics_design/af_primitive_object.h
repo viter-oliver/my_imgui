@@ -4,6 +4,7 @@
 #include <string>
 #include <memory>
 #include <vector>
+#include "res_output.h"
 #if !defined(IMGUI_WAYLAND)
 #include <GL/gl3w.h>
 #else
@@ -21,6 +22,7 @@ struct primitive_object
 	vector<GLubyte> _ele_format;
 	GLuint _vertex_buf_len;
 	GLuint _ele_buf_len;
+	ps_af_file _ps_file;
 	primitive_object()
 		: _vertex_buf_len(0), _ele_buf_len(0)
 	{
@@ -52,8 +54,8 @@ struct primitive_object
 
 	void load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff = 0, GLuint ele_cnt = 0);
 };
-
-typedef map<string, shared_ptr<primitive_object>> mp_primitive;
+using ps_primrive_object = shared_ptr<primitive_object>;
+typedef map<string, ps_primrive_object> mp_primitive;
 /**
 *@brief put all primitive defined object into g_primitive_list
 */

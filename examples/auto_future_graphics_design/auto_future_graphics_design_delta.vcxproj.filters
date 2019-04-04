@@ -265,6 +265,9 @@
     <ClCompile Include="ft_slider.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="unreferenced_items.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -521,6 +524,9 @@
     </ClInclude>
     <ClInclude Include="ft_slider.h">
       <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="unreferenced_items.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

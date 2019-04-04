@@ -233,6 +233,7 @@
     <ClCompile Include="texture_edit.cpp" />
     <ClCompile Include="texture_res_load.cpp" />
     <ClCompile Include="ui_assembler.cpp" />
+    <ClCompile Include="unreferenced_items.cpp" />
     <ClCompile Include="user_control_imgui.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +321,7 @@
     <ClInclude Include="texture_edit.h" />
     <ClInclude Include="texture_res_load.h" />
     <ClInclude Include="ui_assembler.h" />
+    <ClInclude Include="unreferenced_items.h" />
     <ClInclude Include="user_control_imgui.h" />
   </ItemGroup>
   <ItemGroup>

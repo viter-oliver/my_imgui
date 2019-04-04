@@ -35,7 +35,6 @@ public:
 	*/
 	bool update_texture_res();
 private:
-	void output_primitive_to_file();
 
 	void load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len);
 };

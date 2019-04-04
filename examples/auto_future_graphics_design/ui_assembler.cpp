@@ -15,8 +15,9 @@
 //#include "af_model.h"
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory;
-extern bool show_project_window, show_edit_window, \
-show_property_window, show_resource_manager, show_fonts_manager, show_file_manager;
+extern bool show_project_window, show_edit_window, show_property_window,\
+show_resource_manager, show_fonts_manager, show_file_manager,show_state_manager_edit,\
+show_aliase_edit, show_slider_path_picker;
 void init_controls_res_constrained()
 {
 	auto vres_texture_constrain = [&](){return g_vres_texture_list.size() > 0; };
@@ -87,6 +88,10 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				show_resource_manager = window_show["show_resource_manager"].asBool();
 				show_fonts_manager = window_show["show_fonts_manager"].asBool();
 				show_file_manager=window_show["show_file_manager"].asBool();
+				show_state_manager_edit=window_show["show_state_manager_edit"].asBool();
+				show_aliase_edit = window_show["show_aliase_edit"].asBool();
+				show_slider_path_picker = window_show["show_slider_path_picker"].asBool();
+
 			}
 			Value& fonts = jroot["fonts"];
 			if (!fonts.isNull())
@@ -250,12 +255,20 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 						 mdl.emplace_back();
 						 af_mesh& mesh_unit = mdl[iix];
 						 mesh_unit._prm_id = jmesh_unit["prim_id"].asString();
+						 auto iprim = g_primitive_list.find(mesh_unit._prm_id);
+						 assert(iprim != g_primitive_list.end() && "primitive is missed?");
+						 mesh_unit._ps_prm_id = iprim->second;
 						 Value& jdiffuse_list = jmesh_unit["diffuse_list"];
 						 int jdsize = jdiffuse_list.size();
 						 for (int jd = 0; jd < jdsize; ++jd)
 						 {
 							 auto& diff_txt = jdiffuse_list[jd].asString();
 							 mesh_unit._text_diffuse_list.emplace_back(diff_txt);
+							 auto& idiff = g_mtexture_list.find(diff_txt);
+							 if (idiff!=g_mtexture_list.end())
+							 {
+								 mesh_unit._ps_text_diffuse_list.emplace_back(idiff->second);
+							 }
 						 }
 						 Value& jspecular_list = jmesh_unit["specular_list"];
 						 jdsize = jspecular_list.size();
@@ -263,6 +276,11 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 						 {
 							 auto& specular_txt = jspecular_list[jd].asString();
 							 mesh_unit._text_specular_list.emplace_back(specular_txt);
+							 auto& ispec = g_mtexture_list.find(specular_txt);
+							 if (ispec!=g_mtexture_list.end())
+							 {
+								 mesh_unit._ps_text_specular_list.emplace_back(ispec->second);
+							 }
 						 }
 						 Value& jheight_list = jmesh_unit["height_list"];
 						 jdsize = jheight_list.size();
@@ -270,6 +288,11 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 						 {
 							 auto& height_txt = jheight_list[jd].asString();
 							 mesh_unit._text_height_list.emplace_back(height_txt);
+							 auto& iheight = g_mtexture_list.find(height_txt);
+							 if (iheight!=g_mtexture_list.end())
+							 {
+								 mesh_unit._ps_text_height_list.emplace_back(iheight->second);
+							 }
 						 }
 						 Value& jambient_list = jmesh_unit["ambient_list"];
 						 jdsize = jambient_list.size();
@@ -277,6 +300,11 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 						 {
 							 auto& ambient_txt = jambient_list[jd].asString();
 							 mesh_unit._text_ambient_list.emplace_back(ambient_txt);
+							 auto& iamb = g_mtexture_list.find(ambient_txt);
+							 if (iamb!=g_mtexture_list.end())
+							 {
+								 mesh_unit._ps_text_ambient_list.emplace_back(iamb->second);
+							 }
 						 }
 					 }
 				 }
@@ -423,7 +451,6 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 
 bool ui_assembler::output_ui_component_to_file(const char* file_path)
 {
-	output_primitive_to_file();
 
 	ofstream fout;
 	fout.open(file_path);
@@ -437,6 +464,9 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	window_show["show_resource_manager"] = show_resource_manager;
 	window_show["show_fonts_manager"] = show_fonts_manager;
 	window_show["show_file_manager"] = show_file_manager;
+	window_show["show_state_manager_edit"] = show_state_manager_edit;
+	window_show["show_aliase_edit"] = show_aliase_edit;
+	window_show["show_slider_path_picker"] = show_slider_path_picker;
 
 	jroot["window_show"] = window_show;
 	Value fonts(arrayValue);
@@ -781,65 +811,27 @@ bool ui_assembler::update_texture_res()
 	return true;
 }
 
-void ui_assembler::output_primitive_to_file()
-{
-	for (auto& pm : g_primitive_list)
-	{
-		auto& pkey = pm.first;
-		string file_key = pkey + ".vbo";
-		auto ifile = g_mfiles_list.find(file_key);
-		if (ifile!=g_mfiles_list.end())
-		{
-			continue;
-		}
-		auto& pmu = pm.second;
-		GLuint file_size = pmu->_vertex_buf_len * sizeof(GLfloat);
-		g_mfiles_list[file_key] = make_shared<af_file>(file_size);
-		glBindBuffer(GL_ARRAY_BUFFER, pmu->_vbo);
-		GLfloat* pvbo = (GLfloat*)glMapBuffer(GL_ARRAY_BUFFER, GL_READ_ONLY);
-		memcpy(g_mfiles_list[file_key]->_pbin, pvbo, file_size);
-		glUnmapBuffer(GL_ARRAY_BUFFER);
-		if (pmu->_ele_buf_len)
-		{
-			auto file_ebo_key = pkey + ".ebo";
-			GLuint efile_size = pmu->_ele_buf_len * sizeof(GLuint);
-			g_mfiles_list[file_ebo_key] = make_shared<af_file>(efile_size);
-			glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, pmu->_ebo);
-			GLuint* pebo = (GLuint*)glMapBuffer(GL_ELEMENT_ARRAY_BUFFER, GL_READ_ONLY);
-			memcpy(g_mfiles_list[file_ebo_key]->_pbin, pebo, efile_size);
-			glUnmapBuffer(GL_ELEMENT_ARRAY_BUFFER);
-		}
-	}
-}
-
 void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len)
 {
 	GLfloat* pvbo = 0;
 	GLuint* pebo = 0;
-	auto vbo_key = kname + ".vbo";
-	auto ifile = g_mfiles_list.find(vbo_key);
+	auto ifile = g_mfiles_list.find(kname);
 	if (ifile!=g_mfiles_list.end())
 	{
 		auto& pfobj = ifile->second;
 		auto& fopj = *pfobj;
-		pvbo = (GLfloat*)fopj._pbin;
-	}
-	
-
-	if (ebo_len)
-	{
-		auto ebo_key = kname + ".ebo";
-		auto iefile = g_mfiles_list.find(ebo_key);
-		if (iefile!=g_mfiles_list.end())
+		char* phead = (char*)fopj._pbin;
+		GLuint* phead_len = (GLuint*)phead;
+		phead += 4;
+		pvbo = (GLfloat*)phead;
+		if (ebo_len)
 		{
-			auto& pefile = iefile->second;
-			auto& efile = *pefile;
-			pebo = (GLuint*)efile._pbin;
+			pebo = (GLuint*)(phead + *phead_len);
 		}
 	}
-
 	g_primitive_list[kname] = make_shared<primitive_object>();
 	g_primitive_list[kname]->set_ele_format(ele_format);
 	g_primitive_list[kname]->load_vertex_data(pvbo, vbo_len, pebo, ebo_len);
+	g_primitive_list[kname]->_ps_file = ifile->second;
 	
 }

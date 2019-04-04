@@ -124,8 +124,10 @@ struct af_file
 };
 #include<map>
 #include <memory>
-typedef map<string, shared_ptr<af_texture>> mtexture_list;
-typedef map<string, shared_ptr<af_file>>mfile_list;
+using ps_af_texture = shared_ptr<af_texture>;
+using ps_af_file = shared_ptr<af_file>;
+typedef map<string, ps_af_texture> mtexture_list;
+typedef map<string, ps_af_file>mfile_list;
 extern mtexture_list g_mtexture_list;
 extern mfile_list g_mfiles_list;
 void save_ojfile_to_file(string& key_name);

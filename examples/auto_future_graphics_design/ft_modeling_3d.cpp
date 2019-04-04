@@ -142,25 +142,51 @@ namespace auto_future
 		//my_shader.uniform("")
 		for (auto& amesh:my_model)
 		{
-			auto& iprmid = g_primitive_list.find(amesh._prm_id);
-			if (iprmid==g_primitive_list.end())
+			
+			auto& primid=*amesh._ps_prm_id;
+			auto& ps_diffuse_list = amesh._ps_text_diffuse_list;
+			auto& ps_specular_list = amesh._ps_text_specular_list;
+			//auto& ps_height_list = amesh._ps_text_height_list;
+			//auto& ps_ambient_list = amesh._ps_text_ambient_list;
+
+			if (ps_diffuse_list.size()==0)
 			{
-				continue;
+				auto& diffuse_list = amesh._text_diffuse_list;
+				for (auto& diff:diffuse_list)
+				{
+					ps_diffuse_list.emplace_back();
+					auto& txt_diff = ps_diffuse_list.back();
+					auto& itxt = g_mtexture_list.find(diff);
+					if (itxt!=g_mtexture_list.end())
+					{
+						txt_diff = itxt->second;
+					}
+				}
+				
+				//auto& height_list = amesh._text_height_list;
+				//auto& ambient_list = amesh._text_ambient_list;
+
 			}
-			auto& primid=*(iprmid->second);
-			auto& diffuse_list = amesh._text_diffuse_list;
-			auto& specular_list = amesh._text_specular_list;
+			if (ps_specular_list.size() == 0)
+			{
+				auto& specular_list = amesh._text_specular_list;
+				for (auto& spec:specular_list)
+				{
+					ps_specular_list.emplace_back();
+					auto& txt_spec = ps_specular_list.back();
+					auto& itxt = g_mtexture_list.find(spec);
+					if (itxt != g_mtexture_list.end())
+					{
+						txt_spec = itxt->second;
+					}
+				}
+			}
 			//auto& height_list = amesh._text_height_list;
 			//auto& ambient_list = amesh._text_ambient_list;
 			int ix = 0,itx_cnt=0;
-			for (auto& specular:diffuse_list)
+			for (auto& diff:ps_diffuse_list)
 			{
-				auto& itxt = g_mtexture_list.find(specular);
-				if (itxt==g_mtexture_list.end())
-				{
-					continue;
-				}
-				auto& txt = *(itxt->second);
+				auto& txt = *diff;
 				glActiveTexture(GL_TEXTURE0 + itx_cnt);
 				glBindTexture(GL_TEXTURE_2D, txt._txt_id());
 				stringstream stm;
@@ -168,14 +194,9 @@ namespace auto_future
 				my_shader.uniform(stm.str(), itx_cnt++);
 			}
 			ix = 0;
-			for (auto& specular : specular_list)
+			for (auto& specular : ps_specular_list)
 			{
-				auto& itxt = g_mtexture_list.find(specular);
-				if (itxt==g_mtexture_list.end())
-				{
-					continue;
-				}
-				auto& txt = *(itxt->second);
+				auto& txt = *specular;
 				glActiveTexture(GL_TEXTURE0 + itx_cnt);
 				glBindTexture(GL_TEXTURE_2D, txt._txt_id());
 				stringstream stm;

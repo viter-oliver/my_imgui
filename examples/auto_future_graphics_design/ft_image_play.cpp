@@ -49,6 +49,7 @@ namespace auto_future
 				{
 					_img_pt._texture_fmt_name[0] = '\0';
 					_vtexture_cd.clear();
+					_ps_format = nullptr;
 				}
 
 			}
@@ -60,7 +61,8 @@ namespace auto_future
 					auto atxt_fmt = g_mfiles_list.find(_img_pt._texture_fmt_name);
 					if (atxt_fmt != g_mfiles_list.end())
 					{
-						get_txt_uv_vector((char*)atxt_fmt->second->_pbin, _vtexture_cd);
+						_ps_format = atxt_fmt->second;
+						get_txt_uv_vector((char*)_ps_format->_pbin, _vtexture_cd);
 
 					}
 				}
@@ -152,7 +154,8 @@ namespace auto_future
 		auto atxt_fmt = g_mfiles_list.find(_img_pt._texture_fmt_name);
 		if (atxt_fmt != g_mfiles_list.end())
 		{
-			get_txt_uv_vector((char*)atxt_fmt->second->_pbin, _vtexture_cd);
+			_ps_format = atxt_fmt->second;
+			get_txt_uv_vector((char*)_ps_format->_pbin, _vtexture_cd);
 		}
 	}
 }

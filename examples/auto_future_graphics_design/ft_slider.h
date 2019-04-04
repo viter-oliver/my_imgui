@@ -2,6 +2,8 @@
 #include <vector>
 #include <math.h>
 #include "ft_base.h"
+#include "res_output.h"
+
 namespace auto_future
 {
 
@@ -42,7 +44,7 @@ namespace auto_future
 	private:
 		bool read_point_position_file(const char *str);
 		//point_pair_vec _custom_envelope;
-
+		shared_ptr<af_file> _ps_track_file;
 		vector<ImVec2> _custom_track0;
 		vector<ImVec2> _custom_track1;
 		vector<ImVec2> _custom_mid_track;

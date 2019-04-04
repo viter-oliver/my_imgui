@@ -49,6 +49,7 @@
 #include "common_functions.h"
 #include "dir_output.h"
 #include "command_element_delta.h"
+#include "unreferenced_items.h"
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -59,6 +60,7 @@ bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
 slider_path_picker g_slider_path_picker;
+unreferenced_items g_unreferenced_items;
 //string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
@@ -74,7 +76,8 @@ bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,\
 show_output_format=false,show_model_list=false,show_world_space=false,\
-show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false;
+show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false,\
+show_slider_path_picker=false;
 #define _MY_IMGUI__
 //#define _DEMO_
 int main(int argc, char* argv[])
@@ -598,7 +601,19 @@ int main(int argc, char* argv[])
 				if (ImGui::MenuItem("Redo", "CTRL+Y", false, g_ui_edit_command_mg.redo_able())) 
 				{
 					g_ui_edit_command_mg.redo_command();
-				}  // Disabled item
+				}
+				if (ImGui::Button("Delete unreferenced items"))
+				{
+					ImGui::OpenPopup("Delete unreferenced Items");
+					g_unreferenced_items.search_unreferenced_items();
+				}
+				if (ImGui::BeginPopupModal("Delete unreferenced Items"))
+				{
+					g_unreferenced_items.show_delete_unreferenced_items();
+					ImGui::EndPopup();
+				}
+
+				// Disabled item
 				ImGui::Separator();
 				if (ImGui::MenuItem("Cut", "CTRL+X")) 
 				{
@@ -642,10 +657,9 @@ int main(int argc, char* argv[])
 				{
 					show_aliase_edit = !show_aliase_edit;
 				}
-				bool is_open = g_slider_path_picker.is_open();
-				if (ImGui::MenuItem("Slider path pick", NULL, is_open))
+				if (ImGui::MenuItem("Slider path pick", NULL, show_slider_path_picker))
 				{
-					g_slider_path_picker.set_open(!is_open);
+					show_slider_path_picker = !show_slider_path_picker;
 				}
 
 				ImGui::EndMenu();
@@ -687,6 +701,7 @@ int main(int argc, char* argv[])
 			
 			ImGui::EndMainMenuBar();
 		}
+
 		if (show_output_format)
 		{
 			ImGui::Begin("output binary format", &show_output_format, ImVec2(400, 100));
@@ -792,7 +807,12 @@ int main(int argc, char* argv[])
 			g_state_manager_edit.view_state_manager_item_property();
 			ImGui::End();
 		}
-		g_slider_path_picker.view();
+		if (show_slider_path_picker)
+		{
+			ImGui::Begin("Slider path picker", &show_slider_path_picker, ImVec2(500, 600));
+			g_slider_path_picker.view();
+			ImGui::End();
+		}
 		if (show_aliase_edit)
 		{
 			ImGui::Begin("Aliases edit", &show_aliase_edit, ImVec2(400, 400));

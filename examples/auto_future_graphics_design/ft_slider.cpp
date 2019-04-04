@@ -1,7 +1,6 @@
 #include <fstream>
 #include <string>
 #include "ft_slider.h"
-#include "res_output.h"
 #include "common_functions.h"
 #include <sstream>
 //#define  IMGUI_DEFINE_MATH_OPERATORS
@@ -31,8 +30,9 @@ namespace auto_future
 		{
 			return  false;
 		}
-		char *pData = (char *)ij->second->_pbin;
-		auto buff_sz = ij->second->_fsize;
+		_ps_track_file = ij->second;
+		char *pData = (char *)_ps_track_file->_pbin;
+		auto buff_sz = _ps_track_file->_fsize;
 		auto alen = conver_track_buff_to_pair(pData, buff_sz, _custom_track0, _custom_track1);
 		if (alen>0)
 		{
@@ -78,6 +78,8 @@ namespace auto_future
 						_custom_track0.clear();
 						_custom_track1.clear();
 						_custom_mid_track.clear();
+						_custom_trace_length = 0;
+						_ps_track_file = nullptr;
 						_slider_pt._cbuffer_random_text[0] = '\0';
 					}
 				}

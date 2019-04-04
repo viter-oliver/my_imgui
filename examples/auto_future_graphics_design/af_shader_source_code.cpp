@@ -1,4 +1,4 @@
-#include "af_shader_source_code.h"
+ï»¿#include "af_shader_source_code.h"
 
 const char* single_txt;
 const char* single_txt_vs = R"glsl(
@@ -170,10 +170,10 @@ uniform mat4 projection;
 void main()
 {
     gl_Position = projection * view * model * vec4(position, 1.0);
-	FragPos = vec3(model * vec4(position, 1.0)); // ÔÚÊÀ½ç×ø±êÏµÖĞÖ¸¶¨Æ¬ÔªÎ»ÖÃ
+	FragPos = vec3(model * vec4(position, 1.0)); // åœ¨ä¸–ç•Œåæ ‡ç³»ä¸­æŒ‡å®šç‰‡å…ƒä½ç½®
 	TextCoord = textCoord;
 	mat3 normalMatrix = mat3(transpose(inverse(model)));
-	FragNormal = normalMatrix * normal; // ¼ÆËã·¨ÏòÁ¿¾­¹ıÄ£ĞÍ±ä»»ºóÖµ
+	FragNormal = normalMatrix * normal; // è®¡ç®—æ³•å‘é‡ç»è¿‡æ¨¡å‹å˜æ¢åå€¼
 }
 )glsl";
 const char* modeling_fs=R"glsl(
@@ -183,7 +183,7 @@ in vec3 FragPos;
 in vec2 TextCoord;
 in vec3 FragNormal;
 
-// ¹âÔ´ÊôĞÔ½á¹¹Ìå
+// å…‰æºå±æ€§ç»“æ„ä½“
 struct LightAttr
 {
 	vec3 position;
@@ -191,9 +191,9 @@ struct LightAttr
 	vec3 diffuse;
 	vec3 specular;
 
-	float constant;	// Ë¥¼õ³£Êı
-	float linear;   // Ë¥¼õÒ»´ÎÏµÊı
-	float quadratic; // Ë¥¼õ¶ş´ÎÏµÊı
+	float constant;	// è¡°å‡å¸¸æ•°
+	float linear;   // è¡°å‡ä¸€æ¬¡ç³»æ•°
+	float quadratic; // è¡°å‡äºŒæ¬¡ç³»æ•°
 };
 
 uniform LightAttr light;
@@ -209,24 +209,24 @@ out vec4 color;
 
 void main()
 {
-	// »·¾³¹â³É·Ö
+	// ç¯å¢ƒå…‰æˆåˆ†
 	vec3	ambient = light.ambient * vec3(texture(texture_diffuse0, TextCoord));
 
-	// Âş·´Éä¹â³É·Ö ´ËÊ±ĞèÒª¹âÏß·½ÏòÎªÖ¸Ïò¹âÔ´
+	// æ¼«åå°„å…‰æˆåˆ† æ­¤æ—¶éœ€è¦å…‰çº¿æ–¹å‘ä¸ºæŒ‡å‘å…‰æº
 	vec3	lightDir = normalize(light.position - FragPos);
 	vec3	normal = normalize(FragNormal);
 	float	diffFactor = max(dot(lightDir, normal), 0.0);
 	vec3	diffuse = diffFactor * light.diffuse * vec3(texture(texture_diffuse0, TextCoord));
 
-	// ¾µÃæ·´Éä³É·Ö ´ËÊ±ĞèÒª¹âÏß·½ÏòÎªÓÉ¹âÔ´Ö¸³ö
+	// é•œé¢åå°„æˆåˆ† æ­¤æ—¶éœ€è¦å…‰çº¿æ–¹å‘ä¸ºç”±å…‰æºæŒ‡å‡º
 	float	specularStrength = 0.5f;
 	vec3	reflectDir = normalize(reflect(-lightDir, normal));
 	vec3	viewDir = normalize(viewPos - FragPos);
 	float	specFactor = pow(max(dot(reflectDir, viewDir), 0.0), 64.0f);
 	vec3	specular = specFactor * light.specular * vec3(texture(texture_specular0, TextCoord));
 
-	// ¼ÆËãË¥¼õÒò×Ó
-	float distance = length(light.position - FragPos); // ÔÚÊÀ½ç×ø±êÏµÖĞ¼ÆËã¾àÀë
+	// è®¡ç®—è¡°å‡å› å­
+	float distance = length(light.position - FragPos); // åœ¨ä¸–ç•Œåæ ‡ç³»ä¸­è®¡ç®—è·ç¦»
 	float attenuation = 1.0f / (light.constant 
 			+ light.linear * distance
 			+ light.quadratic * distance * distance);

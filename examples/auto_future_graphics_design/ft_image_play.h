@@ -15,7 +15,8 @@ namespace auto_future
 			(char, _texture_fmt_name[FILE_NAME_LEN]),
 			(int, _frame_index, {0}),
 			(float, _angle_nml, {0.f}))
-		shared_ptr<af_texture> _ps_texture;
+		ps_af_texture _ps_texture;
+		ps_af_file _ps_format;
 		vres_txt_cd _vtexture_cd;
 	public:
 		ft_image_play();
