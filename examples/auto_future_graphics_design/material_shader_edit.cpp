@@ -97,7 +97,13 @@ void material_shader_edit::load_shader()
 		static char fs_name_str[FILE_NAME_LEN] = "";
 		ImGui::InputText("shader name", shd_name_str, FILE_NAME_LEN);
 		ImGui::InputText("vertex shader file", vs_name_str, FILE_NAME_LEN);
-		ImGui::InputText("fragment shader file", fs_name_str, FILE_NAME_LEN);			
+		ImGui::InputText("fragment shader file", fs_name_str, FILE_NAME_LEN);	
+		bool be_enabled = strlen(shd_name_str) > 0 && strlen(vs_name_str) > 0 && strlen(fs_name_str) > 0;
+		if (!be_enabled)
+		{
+			ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+			ImGui::PushStyleVar(ImGuiStyleVar_Alpha, ImGui::GetStyle().Alpha * 0.5f);
+		}
 		if (ImGui::Button("add new shader"))
 		{
 			string str_shader_file = g_cureent_directory+shaders_fold;
@@ -152,6 +158,11 @@ COMPAIR_SHADER_END:
 			memset(fs_name_str, 0, FILE_NAME_LEN);
 			memset(shd_name_str, 0, FILE_NAME_LEN);
 			ImGui::CloseCurrentPopup();
+		}
+		if (!be_enabled)
+		{
+			ImGui::PopItemFlag();
+			ImGui::PopStyleVar();
 		}
 		ImGui::SameLine();
 		if (ImGui::Button("cancel"))

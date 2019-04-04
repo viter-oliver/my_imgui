@@ -16,11 +16,14 @@ namespace auto_future
 		_pty_page._light_diffuse_clr = { 0.5f, 0.5f, 0.5f };
 		_pty_page._light_specular_clr = { 1.f, 1.f, 1.f };
 		_pty_page._light_position_shd = { -1.f, 1.f, -2.f };
-		auto shd_modeling = g_af_shader_list.find(modeling);
+		string str_modeling(modeling);
+		auto shd_modeling = g_af_shader_list.find(str_modeling);
 		if (shd_modeling==g_af_shader_list.end())
 		{
 			_pshd_modeling = make_shared<af_shader>(modeling_vs, modeling_fs);
-			_pshd_modeling->set_name(modeling);
+			_pshd_modeling->set_name(str_modeling);
+			_pshd_modeling->_vs_name = str_modeling + ".vs";
+			_pshd_modeling->_fs_name = str_modeling + ".fs";
 			g_af_shader_list[modeling] = _pshd_modeling;
 		}
 		else

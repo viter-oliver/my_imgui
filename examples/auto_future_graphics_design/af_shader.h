@@ -60,8 +60,8 @@ public:
 	void refresh_viarable_list();
 	af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source);
 	void build();
-	string get_vs_code(){ return _vs_code; }
-	string get_fs_code(){ return _fs_code; }
+	string& get_vs_code(){ return _vs_code; }
+	string& get_fs_code(){ return _fs_code; }
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 public:
 	void refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source);

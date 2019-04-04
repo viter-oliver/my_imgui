@@ -48,7 +48,7 @@ public:
 	bool _sel{ false };
 
 	void output_2_json(Value& jvalue);
-	void init_from_json(Value& jvalue);
+	bool init_from_json(Value& jvalue);
 	void refresh();
 
 #endif

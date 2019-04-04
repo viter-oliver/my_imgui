@@ -212,7 +212,7 @@ void material::output_2_json(Value& jvalue)
 	}
 	jvalue["uniform_list"] = junifs;
 }
-void material::init_from_json(Value& jvalue)
+bool material::init_from_json(Value& jvalue)
 {
 	_name = jvalue["name"].asString();
 	auto& shd_name = jvalue["shader"].asString();
@@ -221,6 +221,10 @@ void material::init_from_json(Value& jvalue)
 	if (shd_unit != g_af_shader_list.end())
 	{
 		_pshader = shd_unit->second;
+	}
+	else
+	{
+		return false;
 	}
 	
 	Value& uniform_list = jvalue["uniform_list"];
@@ -237,6 +241,7 @@ void material::init_from_json(Value& jvalue)
 		shared_ptr<shader_uf> pnunf = _mp_shader_uf[mname];
 		pnunf->init_from_json(junif);
 	}
+	return true;
 }
 void material::refresh()
 {

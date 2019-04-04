@@ -196,11 +196,30 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			}
 			Value& shader_list = jroot["shader_list"];
 			isize = shader_list.size();
+			string str_shader_path = g_cureent_directory + shaders_fold;
 			for (ix = 0; ix < isize; ix++)
 			{
 				Value& shd_unit = shader_list[ix];
-				auto& vs_code = shd_unit["vs_code"].asString();
-				auto& fs_code = shd_unit["fs_code"].asString();
+				//auto& vs_code = shd_unit["vs_code"].asString();
+				//auto& fs_code = shd_unit["fs_code"].asString();
+				string vs_file = str_shader_path + shd_unit["vs_name"].asString();
+				string fs_file = str_shader_path + shd_unit["fs_name"].asString();
+				ifstream ifs_shd;
+				string vs_code, fs_code;
+				ifs_shd.open(vs_file);
+				if (!ifs_shd.is_open())
+				{
+					continue;
+				}
+				getline(ifs_shd, vs_code, (char)EOF);
+				ifs_shd.close();
+				ifs_shd.open(fs_file);
+				if (!ifs_shd.is_open())
+				{
+					continue;
+				}
+				getline(ifs_shd, fs_code, (char)EOF);
+				ifs_shd.close();
 				shared_ptr<af_shader> pshd = make_shared<af_shader>(vs_code.c_str(), fs_code.c_str());
 				pshd->_vs_name = shd_unit["vs_name"].asString();
 				pshd->_fs_name = shd_unit["fs_name"].asString();
@@ -213,8 +232,8 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			{
 				Value& mtl_unit = material_list[ix];
 				shared_ptr<material> pmtl = make_shared<material>();
-				pmtl->init_from_json(mtl_unit);
-				g_material_list[pmtl->get_name()]=pmtl;
+				if(pmtl->init_from_json(mtl_unit))
+					g_material_list[pmtl->get_name()]=pmtl;
 
 			}
 			Value& primitive_list = jroot["primitive_list"];
@@ -521,6 +540,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	}
 	jroot["file_list"] = file_list;
 	Value jshader(arrayValue);
+	string str_shader_path = g_cureent_directory + shaders_fold;
 	for (auto& shd_ut : g_af_shader_list)
 	{
 		Value jshd_unit(objectValue);
@@ -529,8 +549,17 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		jshd_unit["name"] = sd_name;
 		jshd_unit["vs_name"] = p_sd->_vs_name;
 		jshd_unit["fs_name"] = p_sd->_fs_name;
-		jshd_unit["vs_code"] = p_sd->get_vs_code();
-		jshd_unit["fs_code"] = p_sd->get_fs_code();
+		string vs_file = str_shader_path + p_sd->_vs_name;
+		string fs_file = str_shader_path + p_sd->_fs_name;
+		string& vs_code=p_sd->get_vs_code();
+		string& fs_code = p_sd->get_fs_code();
+		ofstream ofs_shd;
+		ofs_shd.open(vs_file, ios::out);
+		ofs_shd.write(vs_code.c_str(), vs_code.size());
+		ofs_shd.close();
+		ofs_shd.open(fs_file, ios::out);
+		ofs_shd.write(fs_code.c_str(), fs_code.size());
+		ofs_shd.close();
 		jshader.append(jshd_unit);
 	}
 	jroot["shader_list"] = jshader;
