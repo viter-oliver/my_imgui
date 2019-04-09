@@ -485,7 +485,7 @@ void afb_load::load_afb(const char* afb_file)
 			pvbo = (GLfloat*)phead;
 			if (ebo_len)
 			{
-				pebo = (GLuint*)phead + *phead_len;
+				pebo = (GLuint*)(phead + *phead_len);
 			}
 		}
 		

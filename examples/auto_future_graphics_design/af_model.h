@@ -25,4 +25,3 @@ using af_mesh_list = af_model;
 using mp_model=map<string, shared_ptr<af_model>>;
 extern mp_model g_mmodel_list;
 //extern const char* model_group_name;
-bool import_models(const char* md_file_name);

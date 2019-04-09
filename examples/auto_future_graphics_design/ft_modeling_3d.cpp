@@ -16,6 +16,7 @@ namespace auto_future
 		_pty_page._light_diffuse_clr = { 0.5f, 0.5f, 0.5f };
 		_pty_page._light_specular_clr = { 1.f, 1.f, 1.f };
 		_pty_page._light_position_shd = { -1.f, 1.f, -2.f };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		string str_modeling(modeling);
 		auto shd_modeling = g_af_shader_list.find(str_modeling);
 		if (shd_modeling==g_af_shader_list.end())
@@ -30,7 +31,7 @@ namespace auto_future
 		{
 			_pshd_modeling = shd_modeling->second;
 		}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+
 		reg_property_handle(&_pty_page, 0, [this](void*member_address){
 			ImGui::InputText("Model name:", _pty_page._model_name, FILE_NAME_LEN);
 			if (ImGui::Button("import"))

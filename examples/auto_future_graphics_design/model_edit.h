@@ -10,4 +10,4 @@ public:
 	void draw_model_list();
 	void draw_model_item_property();
 };
-
+bool import_models(const char* md_file_name);

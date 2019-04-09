@@ -171,7 +171,9 @@
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="af_bind.cpp" />
     <ClCompile Include="af_font_res_set.cpp" />
+    <ClCompile Include="af_material.cpp" />
     <ClCompile Include="af_model.cpp" />
+    <ClCompile Include="af_primitive_object.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
     <ClCompile Include="af_state_manager.cpp" />
@@ -201,11 +203,9 @@
     <ClCompile Include="ft_textblock.cpp" />
     <ClCompile Include="ft_trajectory_box_3d.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
-    <ClCompile Include="material.cpp" />
     <ClCompile Include="miniz.c" />
     <ClCompile Include="ofbx.cpp" />
     <ClCompile Include="paricles_system.cpp" />
-    <ClCompile Include="primitive_object.cpp" />
     <ClCompile Include="python_interpreter.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="factory.h" />
@@ -231,7 +231,9 @@
     <ClInclude Include="afg.h" />
     <ClInclude Include="af_bind.h" />
     <ClInclude Include="af_font_res_set.h" />
+    <ClInclude Include="af_material.h" />
     <ClInclude Include="af_model.h" />
+    <ClInclude Include="af_primitive_object.h" />
     <ClInclude Include="af_shader.h" />
     <ClInclude Include="af_state_manager.h" />
     <ClInclude Include="application.h" />
@@ -262,12 +264,10 @@
     <ClInclude Include="ft_trajectory_box_3d.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="material.h" />
     <ClInclude Include="miniz.h" />
     <ClInclude Include="ofbx.h" />
     <ClInclude Include="paricles_system.h" />
     <ClInclude Include="platform_def.h" />
-    <ClInclude Include="primitive_object.h" />
     <ClInclude Include="property_utilities.h" />
     <ClInclude Include="python_interpreter.h" />
     <ClInclude Include="renderTransform.h" />
