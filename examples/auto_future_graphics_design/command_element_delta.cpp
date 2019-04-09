@@ -24,5 +24,5 @@ namespace auto_future
 	auto cur_cmd = _edit_command_list[_cur_command_id];
 	cur_cmd.exe_cute();
 	}*/
-	commmand_manager<base_ui_component> g_ui_edit_command_mg;
+	bc_cmd_mg g_ui_edit_command_mg;
 }

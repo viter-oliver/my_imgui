@@ -50,6 +50,12 @@
 #include "dir_output.h"
 #include "command_element_delta.h"
 #include "unreferenced_items.h"
+#ifdef _WIN32
+#undef APIENTRY
+#define GLFW_EXPOSE_NATIVE_WIN32
+#define GLFW_EXPOSE_NATIVE_WGL
+#include <GLFW/glfw3native.h>
+#endif
 static void error_callback(int error, const char* description)
 {
     fprintf(stderr, "Error %d: %s\n", error, description);
@@ -61,6 +67,8 @@ aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
 slider_path_picker g_slider_path_picker;
 unreferenced_items g_unreferenced_items;
+base_ui_component* _proot = NULL;
+shared_ptr<project_edit> prj_edit;
 //string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
@@ -72,22 +80,55 @@ enum en_short_cut_item
 	en_ctrl_f2,
 	an_alt_f4,
 };
+function<void(en_short_cut_item)> fun_shortct;
 bool show_project_window = true, show_edit_window = true, \
 show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,\
 show_output_format=false,show_model_list=false,show_world_space=false,\
 show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false,\
 show_slider_path_picker=false;
+
+void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
+{
+	int last_id = cnt - 1;
+	g_cureent_project_file_path = fpaths[last_id];
+	g_cureent_directory = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
+	if (g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able())
+	{
+		int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+		if (result == IDCANCEL)
+		{
+			return;
+		}
+		else
+			if (result == IDYES)
+			{
+				fun_shortct(en_ctrl_s);
+			}
+	}
+	prj_edit->clear_sel_item();
+	delete _proot;
+
+	_proot = new ft_base;
+	_proot->set_name("screen");
+	ui_assembler _ui_as(*_proot);
+	_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
+
+	prj_edit.reset(new project_edit(*_proot));
+}
 #define _MY_IMGUI__
 //#define _DEMO_
 int main(int argc, char* argv[])
 {
+	HWND hwnd = GetConsoleWindow();
+	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));
     // Setup window
 	if (argc>1)
 	{
 		g_cureent_project_file_path = argv[1];
 		g_cureent_directory=g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
 	}
+
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
         return 1;
@@ -102,9 +143,13 @@ int main(int argc, char* argv[])
 	int iw, ih;
 	iw = mode->width;
 	ih = mode->height;
-
+	//printf("x%", this);
     GLFWwindow* window = glfwCreateWindow(iw, ih, "Auto Future Graphics Designer", NULL, NULL);
+	HWND hwnd_main = glfwGetWin32Window(window);
+	SendMessage(hwnd_main, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));
+
     glfwMakeContextCurrent(window);
+
     glfwSwapInterval(1); // Enable vsync
     gl3wInit();
 
@@ -165,7 +210,7 @@ int main(int argc, char* argv[])
 	int max_txt_size;
 	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max_txt_size);
 	printf("max texture size=%d\n", max_txt_size);
-	base_ui_component* _proot = NULL;
+
 	base_ui_component* _pselect = NULL;
 	shared_ptr<res_edit> _pres_mg;
 	shared_ptr<material_shader_edit> _pml_shd_mg;
@@ -216,12 +261,12 @@ int main(int argc, char* argv[])
 	_pml_shd_mg = make_shared<material_shader_edit>();
 	auto ptexture = make_shared<texture_edit>();
 	//project_edit pjedit(*_proot);
-	auto pjedit = make_shared<project_edit>(*_proot);
+	prj_edit = make_shared<project_edit>(*_proot);
 
 	auto pfonts_edit = make_shared<fonts_edit>();
 	auto pfiles_edit = make_shared<file_res_edit>();
 	auto pmodel_edit = make_shared<model_edit>();
-	function<void(en_short_cut_item)> fun_shortct = [&](en_short_cut_item enshort) mutable {
+	fun_shortct = [&](en_short_cut_item enshort) mutable {
 		if (!_proot)
 		{
 			return;
@@ -242,7 +287,7 @@ int main(int argc, char* argv[])
 				{
 					fun_shortct(en_ctrl_s);
 				}
-				pjedit->clear_sel_item();
+				prj_edit->clear_sel_item();
 				delete _proot;
 				_proot = NULL;
 
@@ -250,7 +295,7 @@ int main(int argc, char* argv[])
 			g_cureent_project_file_path = "";
 			_proot = new ft_base;
 			_proot->set_name("screen");
-			pjedit.reset(new project_edit(*_proot));
+			prj_edit.reset(new project_edit(*_proot));
 		}
 		break;
 		case en_ctrl_o:
@@ -267,7 +312,7 @@ int main(int argc, char* argv[])
 			if (GetOpenFileName(&ofn))
 			{
 				printf("open file%s\n", strFileName);
-				if (_proot)
+				if (_proot && (g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able()))
 				{
 					int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
 					if (result==IDCANCEL)
@@ -279,18 +324,18 @@ int main(int argc, char* argv[])
 					{
 						fun_shortct(en_ctrl_s);
 					}
-					pjedit->clear_sel_item();				
+					prj_edit->clear_sel_item();				
 					delete _proot;
 					_proot = NULL;
 				}
 				g_cureent_project_file_path = strFileName;
-
+				g_cureent_directory = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
 				_proot = new ft_base;
 				_proot->set_name("screen");
 				ui_assembler _ui_as(*_proot);
 				_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 				
-				pjedit.reset(new project_edit(*_proot));
+				prj_edit.reset(new project_edit(*_proot));
 			}
 		}
 		break;
@@ -388,6 +433,7 @@ int main(int argc, char* argv[])
 		break;
 		}
 	};
+	glfwSetDropCallback(window, drag_dop_callback);
 #endif
 	//glShaderBinary GL_NUM_SHADER_BINARY_FORMATS GL_SHADER_BINARY_FORMATS
 	//GL_NUM_PROGRAM_BINARY_FORMATS,GL_PROGRAM_BINARY_FORMATS GL_PROGRAM_BINARY_LENGTH
@@ -594,7 +640,17 @@ int main(int argc, char* argv[])
 			}
 			if (ImGui::BeginMenu("Edit"))
 			{
-				if (ImGui::MenuItem("Undo", "CTRL+Z",false,g_ui_edit_command_mg.undo_able())) 
+				//int addr;
+				//__asm
+				//{
+				//	call _here
+				//	_here : pop eax
+				//			; eax now holds the PC.
+				//			mov[addr], eax
+				//}
+				//printf("%x\n", addr);
+				bool uable = g_ui_edit_command_mg.undo_able();
+				if (ImGui::MenuItem("Undo", "CTRL+Z",false,uable)) 
 				{
 					g_ui_edit_command_mg.undo_command();
 				}
@@ -672,33 +728,6 @@ int main(int argc, char* argv[])
 				ImGui::EndMenu();
 			}
 			
-			//auto itxt_unit = g_mtxt_intl.find("ft_undo");
-			//if (itxt_unit != g_mtxt_intl.end())
-			//{
-			//	auto& txt_unit = itxt_unit->second;
-			//	ImVec2 uv0(txt_unit._x0 / g_txt_width_intl, txt_unit._y0 / g_txt_height_intl);
-			//	ImVec2 uv1(txt_unit._x1 / g_txt_width_intl, txt_unit._y1 / g_txt_height_intl);
-			//	int flags = g_ui_edit_command_mg.undo_able() ? 0:ImGuiButtonFlags_Disabled;
-			//	//printf("flags=%d\n", flags);
-			//	if (ImGui::ImageButton((ImTextureID)g_txt_id_intl, ImVec2(25.f, 23.f), uv0, uv1,flags))
-			//	{
-			//		g_ui_edit_command_mg.undo_command();
-			//	}
-			//}
-			//itxt_unit = g_mtxt_intl.find("ft_redo");
-			//if (itxt_unit != g_mtxt_intl.end())
-			//{
-			//	auto& txt_unit = itxt_unit->second;
-			//	ImVec2 uv0(txt_unit._x0 / g_txt_width_intl, txt_unit._y0 / g_txt_height_intl);
-			//	ImVec2 uv1(txt_unit._x1 / g_txt_width_intl, txt_unit._y1 / g_txt_height_intl);
-			//	int flags = g_ui_edit_command_mg.redo_able() ? 0 : ImGuiButtonFlags_Disabled;
-			//	//printf("flags1=%d\n", flags);
-			//	if (ImGui::ImageButton((ImTextureID)g_txt_id_intl, ImVec2(25.f, 23.f), uv0, uv1, flags))
-			//	{
-			//		g_ui_edit_command_mg.redo_command();
-			//	}
-			//}
-			
 			ImGui::EndMainMenuBar();
 		}
 
@@ -724,21 +753,21 @@ int main(int argc, char* argv[])
 				auto search_ctrl = find_a_uc_from_uc(*_proot, str_ctrl_name);
 				if (search_ctrl)
 				{
-					pjedit->sel_ui_component(search_ctrl);
+					prj_edit->sel_ui_component(search_ctrl);
 				}
 			}
 			//ImGui::Text("\xE4\xBD\xA0\xE5\xA5\xBD");
 			if (_proot)
 			{
-				pjedit->objects_view();
-				pjedit->popup_context_menu();
+				prj_edit->objects_view();
+				prj_edit->popup_context_menu();
 			}
 			ImGui::End();
 		}
 		if (show_property_window)
 		{
 			ImGui::Begin("property");
-			_pselect = pjedit->current_object();
+			_pselect = prj_edit->current_object();
 			if (_pselect)
 			{
 				//_pselect->draw_peroperty_page();
@@ -769,7 +798,7 @@ int main(int argc, char* argv[])
 				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
 				if (psel_ui)
 				{
-					pjedit->sel_ui_component(psel_ui);
+					prj_edit->sel_ui_component(psel_ui);
 				}
 			}
 			ImGui::End();
@@ -778,7 +807,7 @@ int main(int argc, char* argv[])
 		if (show_world_space)
 		{
 			ImGui::Begin("World space", &show_world_space, ImVec2(400, 500));
-			_pselect = pjedit->current_object();
+			_pselect = prj_edit->current_object();
 			if (_pselect)
 			{
 				//_pselect->draw_peroperty_page();

@@ -39,6 +39,10 @@ namespace auto_future
 		ImVec2 dpos = abpos + winpos;
 		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
 		auto font_cnt = ft_nm_list.size();
+		if (font_cnt==0)
+		{
+			return;
+		}
 		if (_txt_pt._font_id>=font_cnt)
 		{
 			_txt_pt._font_id = 0;

@@ -78,25 +78,27 @@ void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, a
 	GLuint* pface_idx = NULL;
 	GLuint num_indices = 0;
 	GLuint face_len = 0;
-	if (mesh->mNumFaces>0)
+	if (mesh->mNumFaces==0)
 	{
-		aiFace face = mesh->mFaces[0];
-		num_indices = face.mNumIndices;
-		face_len = mesh->mNumFaces * num_indices;
-		pface_idx = new GLuint[face_len];
-		for (unsigned int ix = 0; ix < mesh->mNumFaces; ix++)
-		{
-			aiFace face = mesh->mFaces[ix];
-			// retrieve all indices of the face and store them in the indices vector
+		return;
+	}
+	aiFace face = mesh->mFaces[0];
+	num_indices = face.mNumIndices;
+	face_len = mesh->mNumFaces * num_indices;
+	pface_idx = new GLuint[face_len];
+	for (unsigned int ix = 0; ix < mesh->mNumFaces; ix++)
+	{
+		aiFace face = mesh->mFaces[ix];
+		// retrieve all indices of the face and store them in the indices vector
 	
-			auto id = ix * 3;
-			for (int idx = 0; idx < num_indices;idx++)
-			{
-				pface_idx[id+idx] = face.mIndices[idx];
+		auto id = ix * 3;
+		for (int idx = 0; idx < num_indices;idx++)
+		{
+			pface_idx[id+idx] = face.mIndices[idx];
 
-			}
 		}
 	}
+	
 	obj_pm.set_ele_format({ 3, 2, 3 });
 	auto float_size = sizeof(af_vertex) / sizeof(float);
 	auto float_cnt = float_size*mesh->mNumVertices;

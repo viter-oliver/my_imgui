@@ -31,7 +31,7 @@ namespace auto_future
 	void ft_listbox::set_scroll_value(float scvalue)
 	{
 		size_t icnt = child_count();
-		af_vec2 init_pos;
+		af_vec2 init_pos={0.,0.};
 		if (_lt_pt._vertical)
 		{
 			for (size_t ix = 0; ix < icnt; ix++)

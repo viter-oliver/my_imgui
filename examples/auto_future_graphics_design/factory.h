@@ -72,7 +72,7 @@ struct factory
 		auto itc = ac_map.find(cname);
 		if (itc!=ac_map.end())
 		{
-			printf("%s has existed!\n", cname);
+			printf("%s has existed!\n", cname.c_str());
 		}
 		else
 		{

@@ -121,7 +121,7 @@ namespace auto_future
 			bool& be_full = fp._be_full;
 			auto& face_it = _dic_face.find(fontFaceName);
 			if (face_it == _dic_face.end()){
-				printf("fail to load chars from unknown font face %d!\n", fontFaceName.c_str());
+				printf("fail to load chars from unknown font face %s!\n", fontFaceName.c_str());
 				return;
 			}
 			glBindTexture(GL_TEXTURE_2D, txtid);
@@ -143,7 +143,8 @@ namespace auto_future
 
 				if (FT_Load_Char(face, str_it, FT_LOAD_RENDER))
 				{
-					wprintf(L"fail to find %c in font face %s\n", str_it, fontFaceName.c_str());
+					wprintf(L"fail to find %c in font face ", str_it);
+					printf("%s\n", fontFaceName.c_str());
 					continue;
 				}
 				auto tw = face->glyph->bitmap.width;

@@ -28,11 +28,17 @@ namespace auto_future
 	};
 	template<class T> class commmand_manager
 	{
-		int _cur_command_id = {-1};
+		int _cur_command_id;
 		vector<edit_commd<T>> _edit_command_list;
-		bool _lack_cur_value_cmd = { false };
+		bool _lack_cur_value_cmd;
 	public:
-		commmand_manager(){}
+		commmand_manager()
+			:_cur_command_id(0), _lack_cur_value_cmd(false)
+		{
+		}
+		~commmand_manager()
+		{
+		}
 		void create_command(edit_commd<T>& ecommd)
 		{
 			if (_cur_command_id<_edit_command_list.size()-1)
@@ -62,8 +68,16 @@ namespace auto_future
 			auto cur_cmd = _edit_command_list[_cur_command_id];
 			cur_cmd.execute();
 		}
-		bool redo_able(){return _cur_command_id < _edit_command_list.size() - 1; }
-		bool undo_able(){ return _cur_command_id > 0 || _cur_command_id == _edit_command_list.size()-1; }
+		bool redo_able()
+		{
+			int last_id=_edit_command_list.size() - 1;
+			return _cur_command_id < last_id;
+		}
+		bool undo_able()
+		{ 
+			int last_id=_edit_command_list.size() - 1;
+			return _cur_command_id > 0 || _cur_command_id == last_id; 
+		}
 		void clear_cmds_by_component(T* target)
 		{
 			_cur_command_id = 0;
@@ -72,7 +86,8 @@ namespace auto_future
 			}), _edit_command_list.end());
 		}
 	};
-
-	extern commmand_manager<base_ui_component> g_ui_edit_command_mg;
+	using bc_cmd_mg = commmand_manager<base_ui_component>;
+	//extern bc_cmd_mg g_ui_edit_command_mg1;
+	extern bc_cmd_mg g_ui_edit_command_mg;
 
 }
