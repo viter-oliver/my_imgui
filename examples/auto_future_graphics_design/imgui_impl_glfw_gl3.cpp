@@ -317,7 +317,7 @@ bool ImGui_ImplGlfwGL3_CreateFontsTexture()
     ImGuiIO& io = ImGui::GetIO();
     unsigned char* pixels;
     int width, height;
-#ifndef IMGUI_DISABLE_DEMO_WINDOWS
+#if defined(_MY_IMGUI__) 
 	unsigned int flags = ImGuiFreeType::NoHinting;
 	ImGuiFreeType::BuildFontAtlas(io.Fonts, flags);
 #endif //  IMGUI_DISABLE_DEMO_WINDOWS

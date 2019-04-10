@@ -1395,13 +1395,14 @@ ImFontAtlas::~ImFontAtlas()
 
 void    ImFontAtlas::ClearInputData()
 {
+#if !defined(_MY_IMGUI__)//my_imgui ttf file is loaded from .rc file
     for (int i = 0; i < ConfigData.Size; i++)
         if (ConfigData[i].FontData && ConfigData[i].FontDataOwnedByAtlas)
         {
             ImGui::MemFree(ConfigData[i].FontData);
             ConfigData[i].FontData = NULL;
         }
-
+#endif
     // When clearing this we lose access to the font name and other information used to build the font.
     for (int i = 0; i < Fonts.Size; i++)
         if (Fonts[i]->ConfigData >= ConfigData.Data && Fonts[i]->ConfigData < ConfigData.Data + ConfigData.Size)

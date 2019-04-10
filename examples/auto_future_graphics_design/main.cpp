@@ -62,6 +62,7 @@ static void error_callback(int error, const char* description)
 }
 string g_cureent_project_file_path;
 string g_cureent_directory;
+string g_app_path;
 bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
@@ -88,6 +89,50 @@ show_output_format=false,show_model_list=false,show_world_space=false,\
 show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false,\
 show_slider_path_picker=false;
 
+void register_app_and_icon(string& app_path)
+{
+	string app_name = app_path.substr(app_path.find_last_of('\\') + 1);
+	string app_key = app_name.substr(0, app_name.find_last_of('.'));
+	LPCTSTR lpRun = ".afg";
+	//auto result = RegQueryValueEx(HKEY_CLASSES_ROOT, lpRun, NULL, NULL, NULL, NULL);
+	HKEY hKey;
+	DWORD state;
+	auto result = RegOpenKeyEx(HKEY_CLASSES_ROOT, lpRun, NULL, KEY_WRITE,&hKey);
+	if (result == ERROR_SUCCESS)
+	{
+		printf("open the afg key\n");
+	}
+	else if (result == ERROR_FILE_NOT_FOUND)
+	{
+		result = RegCreateKeyEx(HKEY_CLASSES_ROOT, lpRun, 0, NULL, 0, KEY_WRITE, NULL, &hKey, &state);
+	}
+	result = RegSetValueEx(hKey, NULL, 0, REG_SZ, (BYTE*)app_key.c_str(), app_key.size());
+	RegCloseKey(hKey);
+	string shellCmd = app_key + "\\shell\\open\\command";
+	string shellCmdValue = app_path + " %1";
+	result = RegOpenKeyEx(HKEY_CLASSES_ROOT, shellCmd.c_str(), NULL, KEY_WRITE, &hKey);
+	if (result==ERROR_FILE_NOT_FOUND)
+	{
+		result = RegCreateKeyEx(HKEY_CLASSES_ROOT, shellCmd.c_str(),0, NULL, 0,KEY_WRITE,NULL, &hKey,&state);
+	}
+	result = RegSetValueEx(hKey, NULL, 0, REG_SZ, (BYTE*)shellCmdValue.c_str(), shellCmdValue.size());
+	RegCloseKey(hKey);
+	string strIcon = app_key + "\\DefaultIcon";
+	result = RegOpenKeyEx(HKEY_CLASSES_ROOT, strIcon.c_str(), NULL, KEY_WRITE, &hKey);
+	if (result == ERROR_FILE_NOT_FOUND)
+	{
+		result = RegCreateKeyEx(HKEY_CLASSES_ROOT, strIcon.c_str(), 0, NULL,0, KEY_WRITE,NULL, &hKey, &state);
+	}
+	HRSRC hricon = FindResource(NULL, MAKEINTRESOURCE(IDI_ICON1), "Icon");
+	DWORD dwSz = SizeofResource(NULL, hricon);
+	HGLOBAL hiconGb = LoadResource(NULL, hricon);
+	LPVOID piconBuff = LockResource(hiconGb);
+	result = RegSetValueEx(hKey, NULL, 0, REG_BINARY, (BYTE*)piconBuff, dwSz);
+	RegCloseKey(hKey);
+
+	SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
+
+}
 void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 {
 	int last_id = cnt - 1;
@@ -116,12 +161,17 @@ void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 
 	prj_edit.reset(new project_edit(*_proot));
 }
-#define _MY_IMGUI__
+//#define _MY_IMGUI__
 //#define _DEMO_
 int main(int argc, char* argv[])
 {
-	HWND hwnd = GetConsoleWindow();
-	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));
+	/*HWND hwnd = GetConsoleWindow();
+	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));*/
+	g_app_path = argv[0];
+	//register_app_and_icon(g_app_path);
+	printf("%s__%d\n", __FILE__, __LINE__);
+	cout<<"ssss"<<endl;
+
     // Setup window
 	if (argc>1)
 	{
@@ -186,65 +236,21 @@ int main(int argc, char* argv[])
 
 		io.Fonts->AddFontFromFileTTF(FZLanTingHeiS.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
 	}
-    //ImFont* font = io.Fonts->AddFontFromFileTTF("c:\\Windows\\Fonts\\ArialUni.ttf", 18.0f, NULL, io.Fonts->GetGlyphRangesJapanese());
-    //IM_ASSERT(font != NULL);
-	//char buffer[MAX_PATH];
-	//GetCurrentDirectory(MAX_PATH, buffer);
-	//g_current_run_path = buffer;
-	//g_current_run_path += "\\";
 
-	
-	//instantiating_internal_shader();
     bool show_demo_window = true;
     bool show_another_window = false;
 	bool show_edit_window = true;
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
-	load_internal_texture_res(g_mtxt_intl, IDR_FONTS1,IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
 #ifdef _MY_IMGUI__
+	load_internal_texture_res(g_mtxt_intl, IDR_FONTS1,IDB_INTERNAL_TXT_RES, IDR_INTERNAL_TXT_FMT);
 
-	//g_res_texture_list[0].texture_id = TextureHelper::load2DTexture(g_res_texture_list[0].texture_path, g_res_texture_list[0].texture_width, g_res_texture_list[0].texture_height);
-	//g_vres_texture_list[0].texture_id = \
-	//	TextureHelper::load2DTexture(g_vres_texture_list[0].texture_path, g_vres_texture_list[0].texture_width, g_vres_texture_list[0].texture_height,\
-	//	GL_RGBA,GL_RGBA,SOIL_LOAD_RGBA);
 	int max_txt_size;
 	glGetIntegerv(GL_MAX_TEXTURE_SIZE, &max_txt_size);
-	printf("max texture size=%d\n", max_txt_size);
 
 	base_ui_component* _pselect = NULL;
 	shared_ptr<res_edit> _pres_mg;
 	shared_ptr<material_shader_edit> _pml_shd_mg;
-
-	//if (!g_cureent_project_file_path.empty())
-	//{
-	//	_proot = new ft_base;
-	//	ui_assembler _ui_as(*_proot);
-	//	_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
-	//	_pres_mg = make_shared< res_edit>();
-	//	_pml_shd_mg = make_shared<material_shader_edit>();
-
-	//class rotate_pointer
-	//{
-	//	ft_image* _pointer_image_left;
-	//	ft_image* _pointer_image_right;
-	//public:
-	//	rotate_pointer(ft_base&root)
-	//	{
-	//		_pointer_image_left = static_cast<ft_image*>(find_a_uc_from_uc(root, "pointer_left"));
-	//		_pointer_image_right = static_cast<ft_image*>(find_a_uc_from_uc(root, "pointer_right"));
-
-	//	}
-	//	void rotate()
-	//	{
-	//		static float ia = 0.0f;
-	//		ia += 0.01f;
-	//		_pointer_image_left->rotate(ia);
-	//	}
-	//}_rt_pointer(*_proot);
-	//_app.register_update_fun("rotate_pointer", bind(&rotate_pointer::rotate, &_rt_pointer));
-	//}
-
-	//load_fbx_file();
 
 	_proot = new ft_base;
 	_proot->set_name("screen");
@@ -302,12 +308,12 @@ int main(int argc, char* argv[])
 		{
 			OPENFILENAME ofn = { sizeof(OPENFILENAME) };
 			ofn.hwndOwner = GetForegroundWindow();
-			ofn.lpstrFilter = "valid file:\0*.afproj\0\0";
+			ofn.lpstrFilter = "valid file:\0*.afg\0\0";
 			char strFileName[MAX_PATH] = { 0 };
 			ofn.nFilterIndex = 1;
 			ofn.lpstrFile = strFileName;
 			ofn.nMaxFile = sizeof(strFileName);
-			ofn.lpstrTitle = "select a auto-future graphics design project file(*.afproj) please!";
+			ofn.lpstrTitle = "select a auto-future graphics design project file(*.afg) please!";
 			ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
 			if (GetOpenFileName(&ofn))
 			{
@@ -345,8 +351,8 @@ int main(int argc, char* argv[])
 			{
 				OPENFILENAME sfn = { sizeof(OPENFILENAME) };
 				sfn.hwndOwner = GetForegroundWindow();
-				sfn.lpstrFilter = "afd project file:\0*.afproj\0\0";
-				sfn.lpstrDefExt = "afproj";
+				sfn.lpstrFilter = "afg project file:\0*.afg\0\0";
+				sfn.lpstrDefExt = "afg";
 				char strFileName[MAX_PATH] = { 0 };
 				sfn.nFilterIndex = 1;
 				sfn.lpstrFile = strFileName;
@@ -597,7 +603,7 @@ int main(int argc, char* argv[])
 				}
 				if (ImGui::BeginMenu("Open Recent"))
 				{
-					ImGui::MenuItem("haima.afproj");
+					ImGui::MenuItem("haima.afg");
 					ImGui::EndMenu();
 				}
 				if (ImGui::GetIO().KeyCtrl)
@@ -905,13 +911,11 @@ int main(int argc, char* argv[])
 				ImGui::EndChild();
 
 			}
-			/**/
 			ImGui::End();
 		}
 		if (show_fonts_manager)
 		{
 			ImGui::Begin("Fonts Manager", &show_fonts_manager);
-			//
 			pfonts_edit->draw_fonts_list();
 			ImGui::End();
 		}
