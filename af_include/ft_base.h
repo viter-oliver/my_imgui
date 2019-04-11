@@ -1,5 +1,5 @@
 #pragma once
-#include "factory.h"
+#include "af_factory.h"
 namespace auto_future
 {
 	class AFG_EXPORT ft_base :

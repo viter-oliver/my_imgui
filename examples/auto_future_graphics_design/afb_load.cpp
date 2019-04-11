@@ -1,6 +1,6 @@
 #include "afb_load.h"
 
-#include "factory.h"
+#include "af_factory.h"
 #include "res_output.h"
 #include "af_font_res_set.h"
 #include <fstream>

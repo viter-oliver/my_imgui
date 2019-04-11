@@ -11,7 +11,7 @@
 #include "af_bind.h"
 #include "af_state_manager.h"
 #include "common_functions.h"
-#include "factory.h"
+#include "af_factory.h"
 //#include "af_model.h"
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory;

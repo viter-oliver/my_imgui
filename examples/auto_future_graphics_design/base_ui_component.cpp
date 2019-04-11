@@ -1,7 +1,7 @@
 #include "control_common_def.h"
 #include "res_output.h"
 #include "command_element_delta.h"
-#include "factory.h"
+#include "af_factory.h"
 #include "bind_edit.h"
 #include "state_manager_edit.h"
 #include "aliase_edit.h"

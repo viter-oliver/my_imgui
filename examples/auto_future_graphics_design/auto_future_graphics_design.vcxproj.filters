@@ -44,6 +44,9 @@
     <Filter Include="miniz">
       <UniqueIdentifier>{32d97c66-3af0-4853-b6bf-8c1edae1d984}</UniqueIdentifier>
     </Filter>
+    <Filter Include="af_include">
+      <UniqueIdentifier>{8e637091-33e1-4975-ab02-1192d80ea1a5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,9 +66,6 @@
     </ClCompile>
     <ClCompile Include="res_output.cpp">
       <Filter>res_manager</Filter>
-    </ClCompile>
-    <ClCompile Include="factory.h">
-      <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="ui_assembler.cpp">
       <Filter>controls</Filter>
@@ -294,25 +294,7 @@
     <ClInclude Include="res_output.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="control_common_def.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="ui_assembler.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_button.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_base.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_polygon_image.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_listbox.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_image.h">
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="common_functions.h">
@@ -338,9 +320,6 @@
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>res</Filter>
-    </ClInclude>
-    <ClInclude Include="af_shader.h">
-      <Filter>render_utilities</Filter>
     </ClInclude>
     <ClInclude Include="..\..\json\autolink.h">
       <Filter>json</Filter>
@@ -375,9 +354,6 @@
     <ClInclude Include="afb_load.h">
       <Filter>afb_manager</Filter>
     </ClInclude>
-    <ClInclude Include="shader_uf.h">
-      <Filter>render_utilities</Filter>
-    </ClInclude>
     <ClInclude Include="material_shader_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
@@ -399,50 +375,8 @@
     <ClInclude Include="dir_output.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="ft_scene.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_particles_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_particles_effect_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_particles1_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_plane_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_sphere_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_trajectory_box_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="file_outputor.h">
       <Filter>res_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_slider_thumb.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_image_play.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_plane_play_2d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_block.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_plot_lines.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="property_utilities.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_circle.h">
-      <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="command_element_delta.h">
       <Filter>controls</Filter>
@@ -465,20 +399,11 @@
     <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h">
       <Filter>soil</Filter>
     </ClInclude>
-    <ClInclude Include="ft_textblock.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="af_shader_source_code.h">
       <Filter>render_utilities</Filter>
     </ClInclude>
     <ClInclude Include="miniz.h">
       <Filter>miniz</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_modeling_3d.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="af_model.h">
-      <Filter>render_utilities</Filter>
     </ClInclude>
     <ClInclude Include="model_edit.h">
       <Filter>res_manager</Filter>
@@ -492,12 +417,6 @@
     <ClInclude Include="bind_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="af_bind.h">
-      <Filter>render_utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="af_state_manager.h">
-      <Filter>render_utilities</Filter>
-    </ClInclude>
     <ClInclude Include="easing.h">
       <Filter>render_utilities</Filter>
     </ClInclude>
@@ -507,26 +426,140 @@
     <ClInclude Include="aliase_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="af_font_res_set.h">
-      <Filter>render_utilities</Filter>
-    </ClInclude>
     <ClInclude Include="af_type.h">
       <Filter>common</Filter>
-    </ClInclude>
-    <ClInclude Include="af_material.h">
-      <Filter>render_utilities</Filter>
-    </ClInclude>
-    <ClInclude Include="af_primitive_object.h">
-      <Filter>render_utilities</Filter>
     </ClInclude>
     <ClInclude Include="slider_path_picker.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="ft_slider.h">
-      <Filter>controls</Filter>
-    </ClInclude>
     <ClInclude Include="unreferenced_items.h">
       <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_bind.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_font_res_set.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_material.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_model.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_primitive_object.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_shader.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_state_manager.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_type.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\afb_load.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\afb_output.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\afb_res_index.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\afg.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\application.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_base.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_block.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_button.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_circle.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_cube_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_fbx_assert_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_image.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_image_play.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_listbox.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_logo_animation.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_model_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_modeling_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_particles_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_particles_effect_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_particles1_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_plane_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_plane_play_2d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_plot_lines.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_polygon_image.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_scene.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_slider.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_slider_thumb.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_sphere_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_textblock.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_textblock_bk.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_trajectory_box_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\property_utilities.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\shader_uf.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\control_common_def.h">
+      <Filter>af_include</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

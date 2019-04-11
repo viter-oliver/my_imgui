@@ -92,7 +92,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;$(SolutionDir)\..\af_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;WIN32_LEAN_AND_MEAN;RCF_COMM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -124,7 +124,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\rcf\include;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\rcf_interface_def;$(SolutionDir)\..\rcf_service;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;$(SolutionDir)\..\af_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;WIN32_LEAN_AND_MEAN;NDEBUG;RCF_COMM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -164,7 +164,6 @@
     <ClInclude Include="key_def.h" />
     <ClInclude Include="main_menu_controller.h" />
     <ClInclude Include="my_application.h" />
-    <ClInclude Include="platform_def.h" />
     <ClInclude Include="pop_up_dlg_controller.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="signal_light_controller.h" />

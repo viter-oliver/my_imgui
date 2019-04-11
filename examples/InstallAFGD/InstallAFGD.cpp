@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
 		FindClose(hFind);
 	}
 	HKEY hKey;
-	LPCTSTR lpRun = ".afproj";
+	LPCTSTR lpRun = ".afg";
 	DWORD state;
 	long lRet;
 	char reBuff[10] = { 0 };

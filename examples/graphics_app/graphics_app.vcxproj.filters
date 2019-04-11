@@ -16,9 +16,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="platform_def.h">
-      <Filter>sources</Filter>
-    </ClInclude>
     <ClInclude Include="my_application.h">
       <Filter>sources</Filter>
     </ClInclude>
