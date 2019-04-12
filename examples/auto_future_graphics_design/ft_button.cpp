@@ -5,7 +5,7 @@ namespace auto_future
 	ft_button::ft_button()
 		:ft_base()
 	{
-		
+
 	}
 	void ft_button::draw()
 	{
@@ -13,7 +13,7 @@ namespace auto_future
 		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
 		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 		int cur_txt_id = get_cur_txt_id();
-		
+		printf("cur_txt_id=%d\n", cur_txt_id);
 		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
 		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 		float sizew = _in_p._sizew;

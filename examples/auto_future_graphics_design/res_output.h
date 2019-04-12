@@ -22,19 +22,21 @@ struct res_texture_coordinate
 typedef vector<res_texture_coordinate> vres_txt_cd;
 struct res_texture_list
 {
-	atomic<bool> _loaded{ false };
 	GLuint txt_id{0};
 	int texture_width;
 	int texture_height;
-	string txt_buff;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	string texture_pack_file;
 	string texture_data_file;
+#else
+	atomic<bool> _loaded{ false };
+	string txt_buff;
 #endif
 	bool _is_separated{ false };	//string file_name_sets;
 	vres_txt_cd vtexture_coordinates;
 	unsigned int texture_id()
 	{
+#ifdef IMGUI_DISABLE_DEMO_WINDOWS
 		while (!_loaded)
 		{
 			this_thread::yield();
@@ -47,6 +49,7 @@ struct res_texture_list
 			txt_buff.clear();
 			txt_buff.shrink_to_fit();
 		}
+#endif
 		return txt_id;
 	}
 	res_texture_list()
@@ -84,13 +87,16 @@ extern int g_cur_texture_id_index;
 extern bool get_texture_item(void* data, int idx, const char** out_str);
 struct af_texture
 {
-	atomic<bool> _loaded{ false };
 	bool _mip_map{ false };
 	GLuint _atxt_id{ 0 };
-	string txt_buff;
 	GLuint _width{ 0 }, _height{ 0 };
+#ifdef IMGUI_DISABLE_DEMO_WINDOWS
+	atomic<bool> _loaded{ false };
+	string txt_buff;
+#endif
 	GLuint _txt_id()
 	{
+#ifdef IMGUI_DISABLE_DEMO_WINDOWS
 		while (!_loaded)
 		{
 			this_thread::yield();
@@ -103,6 +109,7 @@ struct af_texture
 			txt_buff.clear();
 			txt_buff.shrink_to_fit();
 		}
+#endif
 		return _atxt_id;
 	}
 	bool _is_separated{ false };

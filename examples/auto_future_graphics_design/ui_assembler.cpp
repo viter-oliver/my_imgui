@@ -12,6 +12,7 @@
 #include "af_state_manager.h"
 #include "common_functions.h"
 #include "af_factory.h"
+#include "imgui_impl_glfw_gl3.h"
 //#include "af_model.h"
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory;
@@ -50,8 +51,12 @@ void clear_pre_proj_resource()
 	g_bind_ref_dic.clear();
 	g_mstate_manager.clear();
 }
+extern HCURSOR g_hcursor_wait;
 bool ui_assembler::load_ui_component_from_file(const char* file_path)
 {
+	//ImGuiMouseCursor old_cursor=setMouseCusor()
+	HCURSOR hcur_cursor= GetCursor();
+	SetCursor(g_hcursor_wait);
 	ifstream fin;
 	fin.open(file_path);
 	if (fin.is_open())
@@ -137,7 +142,6 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					break;
 				}
 				auto pimge = make_shared<af_texture>();
-				pimge->_loaded = true;
 				pimge->_is_separated = txt_unit["separated"].asBool();
 				pimge->_mip_map = txt_unit["mipmap"].asBool();
 				pimge->_width = width;
@@ -462,15 +466,17 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 	else
 	{
 		printf("invalid file_path:%s\n", file_path);
-		return false;
+		//return false;
 	}
+	SetCursor(hcur_cursor);
 
 	return true;
 }
 
 bool ui_assembler::output_ui_component_to_file(const char* file_path)
 {
-
+	HCURSOR hcur_cursor = GetCursor();
+	SetCursor(g_hcursor_wait);
 	ofstream fout;
 	fout.open(file_path);
 	Value jroot(objectValue);
@@ -775,9 +781,8 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	jroot["state_manager_list"] = state_manager;
 	fout << jroot << endl;
 	fout.close();
-
 	//save_fbx_file();
-
+	SetCursor(hcur_cursor);
 	return true;
 }
 int real_id_after_update(string& file_name)

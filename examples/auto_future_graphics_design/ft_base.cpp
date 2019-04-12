@@ -9,9 +9,30 @@ namespace auto_future
 	{
 		//cout << "size of base_prop:" << sizeof(base_prop) << endl;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_property_handle(&_in_p, 2, [this](void*){
+			if (ImGui::Checkbox("Keep scale", &_keep_scale)&&_keep_scale)
+			{
+				if (_in_p._sizeh>0)
+				{
+					_w2h = _in_p._sizew / _in_p._sizeh;
+				}
+			}
+			if (ImGui::SliderFloat("width", &_in_p._sizew, 1.0, base_ui_component::screenw) && _keep_scale&&_w2h>0.001)
+			{
+				_in_p._sizeh = _in_p._sizew / _w2h;
+			}
+		});
+		reg_property_handle(&_in_p, 3, [this](void*){
+			if (ImGui::SliderFloat("height", &_in_p._sizeh, 1.0, base_ui_component::screenh) && _keep_scale)
+			{
+				_in_p._sizew = _in_p._sizeh*_w2h;
+			}
+
+		});
 		reg_property_handle(&_in_p, 5, [this](void*){
 			ImGui::Combo("adjacent to parent:", &_in_p._aj_model, "fixed\0horisontal\0vertical\0\0");
 		});
+
 #endif
 	}
 	void ft_base::draw()

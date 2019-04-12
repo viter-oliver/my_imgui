@@ -70,6 +70,7 @@ slider_path_picker g_slider_path_picker;
 unreferenced_items g_unreferenced_items;
 base_ui_component* _proot = NULL;
 shared_ptr<project_edit> prj_edit;
+HCURSOR g_hcursor_wait;
 //string g_current_run_path;
 #include <windows.h>
 enum en_short_cut_item
@@ -182,6 +183,7 @@ int main(int argc, char* argv[])
     glfwSetErrorCallback(error_callback);
     if (!glfwInit())
         return 1;
+	g_hcursor_wait = LoadCursor(NULL, IDC_WAIT);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -467,6 +469,11 @@ int main(int argc, char* argv[])
         // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
         // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
         // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
+		if (glfwGetWindowAttrib(window,GLFW_ICONIFIED))
+		{
+			glfwWaitEvents();
+			continue;
+		}
         glfwPollEvents();
         ImGui_ImplGlfwGL3_NewFrame();
 		//socketpair
@@ -948,7 +955,14 @@ int main(int argc, char* argv[])
         ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
     }
-
+	if (g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able())
+	{
+		int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+		if (result == IDYES)
+		{
+			fun_shortct(en_ctrl_s);
+		}
+	}
     // Cleanup
     ImGui_ImplGlfwGL3_Shutdown();
     ImGui::DestroyContext();

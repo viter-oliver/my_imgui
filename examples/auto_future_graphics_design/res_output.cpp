@@ -101,7 +101,6 @@ bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 	// Step5 释放纹理图片资源
 	SOIL_free_image_data(imgdata);
 	auto pimge = make_shared<af_texture>();
-	pimge->_loaded = true;
 	pimge->_atxt_id = textureId;
 	pimge->_mip_map = is_mipmap;
 	pimge->_width = width;

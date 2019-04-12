@@ -14,10 +14,10 @@ namespace auto_future
 			en_state_cnt
 		};
 	private:
-		DEF_STRUCT(intl_pt,_pt,
-			(int, _texture_indices_nm_tt),
-			(int, _texture_indices_dn_tt),
-			(int, _texture_indices_sl_tt))
+		DEF_STRUCT_WITH_INIT(intl_pt, _pt,
+			(int, _image_normal_txt, {0}),
+			(int, _image_press_txt, { 0 }), 
+			(int, _image_select_txt, { 0 }))
 		state _state = { en_normal };
 
 	public:
@@ -34,13 +34,19 @@ namespace auto_future
 		{
 			return _state;
 		}
-		int get_txt_id_by_state(state st)
-		{
-			return *(&_pt._texture_indices_nm_tt+st);
-		}
+
 		int get_cur_txt_id()
 		{
-			return get_txt_id_by_state(_state);
+			switch (_state)
+			{
+			case auto_future::ft_button::en_normal:
+				return _pt._image_normal_txt;
+			case auto_future::ft_button::en_pressed:
+				return _pt._image_press_txt;
+			case auto_future::ft_button::en_selected:
+				return _pt._image_select_txt;
+			}
+			return 0;
 		}
 
 

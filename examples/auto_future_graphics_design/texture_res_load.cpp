@@ -29,7 +29,6 @@ void texture_res_load::load_res_from_json(Value& jroot)
 		Value& texture_data_file = junit["texture_data_file"];
 		_texture_res_tar.emplace_back();
 		res_texture_list& rtlist = _texture_res_tar[ix];
-		rtlist._loaded = true;
 		rtlist.texture_pack_file = texture_pack_file.asString();
 		rtlist.texture_data_file = texture_data_file.asString();
 		rtlist._is_separated = junit["separated"].asBool();

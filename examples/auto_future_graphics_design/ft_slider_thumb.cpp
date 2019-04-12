@@ -2,6 +2,53 @@
 
 namespace auto_future
 {
+	ft_slider_thumb::ft_slider_thumb()
+	{
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_property_handle(&_img_pt, 5, [this](void*){
+			if (ImGui::Checkbox("Keep min scale", &_keep_min_scale) && _keep_min_scale)
+			{
+				if (_img_pt._size_minw > 0)
+				{
+					_w2h_min = _img_pt._size_minw / _img_pt._size_minh;
+				}
+			}
+			if (ImGui::SliderFloat("min width", &_img_pt._size_minw, 1.0, base_ui_component::screenw) && _keep_min_scale&&_w2h_min > 0.001)
+			{
+				_img_pt._size_minh = _img_pt._size_minw / _w2h_min;
+			}
+		});
+		reg_property_handle(&_img_pt, 6, [this](void*){
+			if (ImGui::SliderFloat("min height", &_img_pt._size_minh, 1.0, base_ui_component::screenh) && _keep_min_scale)
+			{
+				_img_pt._size_minw = _img_pt._size_minh*_w2h_min;
+			}
+			ImGui::Spacing();
+			ImGui::Spacing();
+		});
+		reg_property_handle(&_img_pt,9, [this](void*){
+			if (ImGui::Checkbox("Keep max scale", &_keep_max_scale) && _keep_max_scale)
+			{
+				if (_img_pt._size_maxw > 0)
+				{
+					_w2h_max = _img_pt._size_maxw / _img_pt._size_maxh;
+				}
+			}
+			if (ImGui::SliderFloat("max width", &_img_pt._size_maxw, 1.0, base_ui_component::screenw) && _keep_max_scale&&_w2h_max > 0.001)
+			{
+				_img_pt._size_maxh = _img_pt._size_maxw / _w2h_max;
+			}
+		});
+		reg_property_handle(&_img_pt, 10, [this](void*){
+			if (ImGui::SliderFloat("max height", &_img_pt._size_maxh, 1.0, base_ui_component::screenh) && _keep_max_scale)
+			{
+				_img_pt._size_maxw = _img_pt._size_maxh*_w2h_max;
+			}
+		});
+		
+
+#endif
+	}
 	void ft_slider_thumb::draw()
 	{
 		if (_thumb.get_texture_id()!=_img_pt._thumb_id_txt)

@@ -11,6 +11,8 @@ namespace auto_future
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	private:
 		enum { en_pt_name, en_pt_pos_x, en_pt_pos_y, en_pt_visible };
+		bool _keep_scale{false};
+		float _w2h{1.};
 	public:
 		base_ui_component* get_hit_ui_object(float posx, float posy);
 #endif

@@ -121,9 +121,6 @@
     <ClCompile Include="afb_output.cpp">
       <Filter>afb_manager</Filter>
     </ClCompile>
-    <ClCompile Include="afb_load.cpp">
-      <Filter>afb_manager</Filter>
-    </ClCompile>
     <ClCompile Include="af_shader.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
@@ -349,9 +346,6 @@
       <Filter>json</Filter>
     </ClInclude>
     <ClInclude Include="afb_output.h">
-      <Filter>afb_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="afb_load.h">
       <Filter>afb_manager</Filter>
     </ClInclude>
     <ClInclude Include="material_shader_edit.h">

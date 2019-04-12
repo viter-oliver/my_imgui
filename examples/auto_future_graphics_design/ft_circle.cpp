@@ -6,10 +6,11 @@ namespace auto_future
 {
 	ft_circle::ft_circle()
 	{
-		//reg_property_handle(&_pt, 2, [this](void* memb_adress)
-		//{
-		//	ImGui::ColorEdit4("block color:", (float*)memb_adress);
-		//});
+		_pt._bkclr = { 1., 1., 0., 1. };
+		reg_property_handle(&_pt, 2, [this](void* memb_adress)
+		{
+			ImGui::SliderInt("Number of segments",&_pt._numb_segs,3,60);
+		});
 	}
 	void ft_circle::draw()
 	{

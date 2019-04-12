@@ -13,17 +13,22 @@ namespace auto_future
 			(float, _progress_value_uhd, { 0.f }),
 			(float, _pos_minx, { 0.f }),
 			(float, _pos_miny, { 0.f }),
-			(float, _pos_maxx, { 0.f }),
-			(float, _pos_maxy, { 0.f }),
-			(float, _size_minw, { 0.f }),
-			(float, _size_minh, { 0.f }),
-			(float, _size_maxw, { 0.f }),
-			(float, _size_maxh, { 0.f }),
+			(float, _size_minw, { 20.f }),
+			(float, _size_minh, { 20.f }),
+			(float, _pos_maxx, { 20.f }),
+			(float, _pos_maxy, { 20.f }),
+			(float, _size_maxw, { 40.f }),
+			(float, _size_maxh, { 40.f }),
 			(int, _thumb_id_txt, {0}))
 		ft_image _thumb;
-
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		bool _keep_min_scale{false};
+		float _w2h_min{ 1.0 };
+		bool _keep_max_scale{ false };
+		float _w2h_max{ 1.0 };
+#endif
 	public:
-		ft_slider_thumb() :ft_base(){}
+		ft_slider_thumb();
 		~ft_slider_thumb(){}
 		
         void set_progress_value(float pg_value)

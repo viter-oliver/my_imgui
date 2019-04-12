@@ -33,15 +33,28 @@ namespace auto_future
 		}
 
 		reg_property_handle(&_pty_page, 0, [this](void*member_address){
-			ImGui::InputText("Model name:", _pty_page._model_name, FILE_NAME_LEN);
-			if (ImGui::Button("import"))
+			if (_pmodel)
 			{
-				auto imodel = g_mmodel_list.find(_pty_page._model_name);
-				if (imodel!=g_mmodel_list.end())
+				ImGui::Text("Model name:%s", _pty_page._model_name);
+				ImGui::SameLine();
+				if (ImGui::Button("Delink##model_name"))
 				{
-					_pmodel = imodel->second;
+					_pmodel = nullptr;
 				}
 			}
+			else
+			{
+				ImGui::InputText("Model name:", _pty_page._model_name, FILE_NAME_LEN);
+				if (ImGui::Button("import"))
+				{
+					auto imodel = g_mmodel_list.find(_pty_page._model_name);
+					if (imodel != g_mmodel_list.end())
+					{
+						_pmodel = imodel->second;
+					}
+				}
+			}
+			
 		});
 		reg_property_handle(&_pty_page, 7, [this](void* member_address){
 			ImGui::Text("Light position:");
