@@ -56,9 +56,13 @@ struct primitive_object
 };
 using ps_primrive_object = shared_ptr<primitive_object>;
 typedef map<string, ps_primrive_object> mp_primitive;
-/**
-*@brief put all primitive defined object into g_primitive_list
-*/
-void init_internal_primitive_list();
+
+
 /** the primitive object of g_primitive_list will be referenced by some ui components */
 extern mp_primitive g_primitive_list;
+/**
+*@brief refer a internal primitive object
+*/
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+extern bool ref_a_intenal_primitive(string& prm_name);
+#endif

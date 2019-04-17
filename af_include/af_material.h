@@ -19,6 +19,14 @@ public:
 	{
 		_pshader = psd;
 	}
+	bool is_valid()
+	{
+		if (_pshader)
+		{
+			return _pshader->_valid;
+		}
+		return false;
+	}
 	shared_ptr<af_shader>& get_shader()
 	{
 		return _pshader;

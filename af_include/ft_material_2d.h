@@ -19,7 +19,6 @@ namespace auto_future
 			en_gl_count
 		};
 		DEF_STRUCT_WITH_INIT(intl_pt, _pt,
-			(bool, _draw_array, { false }),
 			(int, _draw_mode, {en_gl_triangles}),
 			(char, _primitive_name[FILE_NAME_LEN]),
 			(char, _material_name[FILE_NAME_LEN]))

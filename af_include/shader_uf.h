@@ -342,6 +342,10 @@ public:
 	}
 	void set_to_loaction(GLuint location)
 	{
+		if (!_pdtxt)
+		{
+			return;
+		}
 		glActiveTexture(GL_TEXTURE0 + _sample_index);
 		glBindTexture(GL_TEXTURE_2D, _pdtxt->_atxt_id);
 		glUniform1i(location, _sample_index);

@@ -1,6 +1,32 @@
 #include "af_primitive_object.h"
-const float half_side_len = 0.5f;
 
+void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff, GLuint ele_cnt)
+{
+	_vertex_buf_len = vetexlen;
+	_ele_buf_len = ele_cnt;
+	glBindVertexArray(_vao);
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, GL_STATIC_DRAW);
+	if (pele_buff)
+	{
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*_ele_buf_len, pele_buff, GL_STATIC_DRAW);
+	}	
+	GLuint idx = 0;
+	GLubyte stride = get_stride();
+	int pointer = 0;
+	for (auto& el : _ele_format)
+	{
+		glEnableVertexAttribArray(idx);
+		glVertexAttribPointer(idx, el, GL_FLOAT, GL_FALSE, stride * sizeof(GLfloat), (void*)(pointer*sizeof(GLfloat)));//
+		pointer += el;
+		idx++;
+	}
+	glBindVertexArray(0);
+}
+mp_primitive g_primitive_list;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+const float half_side_len = 0.5f;
 GLfloat _vertices[] = {
 	-half_side_len, -half_side_len, -half_side_len, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f,
 	half_side_len, -half_side_len, -half_side_len, 1.0f, 1.0f, 0.0f, 1.0f, 0.0f,
@@ -32,65 +58,53 @@ GLuint _indices[] = {
 	6, 5, 4
 };
 GLfloat _plain_vertices[] = {
-	-half_side_len, -half_side_len, 0.f, 0.0f, 0.0f,
-	half_side_len, -half_side_len, 0.f, 1.0f, 0.0f,
-	-half_side_len, half_side_len, 0.f, 1.0f, 1.0f,
-	half_side_len, half_side_len, 0.f,  0.0f, 1.0f,
+	-half_side_len, -half_side_len, 0.f, 0.0f, 1.0f,
+	half_side_len, -half_side_len, 0.f, 1.0f, 1.0f,
+	-half_side_len, half_side_len, 0.f, 0.0f, 0.0f,
+	half_side_len, half_side_len, 0.f, 1.0f, 0.0f,
 };
 GLfloat _direction[] =
 {
 	0, 0, 0,
 	1.f, 0, 0,
 };
-GLfloat _arrow[]=
+GLfloat _arrow[] =
 {
-	0.75f,-0.25f,0.f,
-	  1.f,   0.f,0.f,
-	0.75f,0.25f,0.f,
+	0.75f, -0.25f, 0.f,
+	1.f, 0.f, 0.f,
+	0.75f, 0.25f, 0.f,
 };
-void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff, GLuint ele_cnt)
+struct internal_prm  
 {
-	_vertex_buf_len = vetexlen;
-	_ele_buf_len = ele_cnt;
-	glBindVertexArray(_vao);
-	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, GL_STATIC_DRAW);
-	if (pele_buff)
+	string _name;
+	vector<GLubyte> _fmt;
+	GLfloat* _pvert;
+	GLuint _vert_cnt;
+	GLuint* _ele;
+	GLuint _ele_cnt;
+};
+static internal_prm internal_primitive_name_list[] =
+{
+	{ "cube", { 3, 3, 2 }, _vertices, sizeof(_vertices) / sizeof(GLfloat), _indices, sizeof(_indices) / sizeof(GLuint) },
+	{ "plain", {3,2},_plain_vertices,sizeof(_plain_vertices)/sizeof(GLfloat),0,0 },
+};
+bool ref_a_intenal_primitive(string& prm_name)
+{
+	auto& itn_prm_lst = internal_primitive_name_list;
+	GLuint isz = sizeof(itn_prm_lst) / sizeof(internal_prm);
+	for (int ix = 0; ix < isz;ix++)
 	{
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*_ele_buf_len, pele_buff, GL_STATIC_DRAW);
-	}	
-	GLuint idx = 0;
-	GLubyte stride = get_stride();
-	int pointer = 0;
-	for (auto& el : _ele_format)
-	{
-		glEnableVertexAttribArray(idx);
-		glVertexAttribPointer(idx, el, GL_FLOAT, GL_FALSE, stride * sizeof(GLfloat), (void*)(pointer*sizeof(GLfloat)));//
-		pointer += el;
-		idx++;
+		auto& prm_un = itn_prm_lst[ix];
+		if (prm_name == prm_un._name)
+		{
+			auto ps_prm = make_shared<primitive_object>();
+			ps_prm->set_ele_format(prm_un._fmt);
+			ps_prm->load_vertex_data(prm_un._pvert, prm_un._vert_cnt, prm_un._ele, prm_un._ele_cnt);
+			g_primitive_list[prm_name] = ps_prm;
+			return true;
+		}
 	}
-	glBindVertexArray(0);
+	return false;
 }
 
-
-void init_internal_primitive_list()
-{
-	auto acube = g_primitive_list.find("cube");
-	if (acube==g_primitive_list.end())
-	{
-		g_primitive_list["cube"] = make_shared<primitive_object>();
-		g_primitive_list["cube"]->set_ele_format({ 3, 3, 2 });
-		g_primitive_list["cube"]->load_vertex_data(_vertices, sizeof(_vertices) / sizeof(GLfloat), \
-			_indices, sizeof(_indices) / sizeof(GLuint));
-	}
-	auto aplain = g_primitive_list.find("plain");
-	if (aplain==g_primitive_list.end())
-	{
-		g_primitive_list["plain"] = make_shared<primitive_object>();
-		g_primitive_list["plain"]->set_ele_format({ 3, 2 });
-		g_primitive_list["plain"]->load_vertex_data(_plain_vertices, sizeof(_plain_vertices) / sizeof(GLfloat));
-	}
-	//g_primitive_list["cube"] = make_shared<primitive_cube>();
-}
-mp_primitive g_primitive_list;
+#endif

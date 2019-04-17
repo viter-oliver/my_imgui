@@ -93,6 +93,10 @@ material::material(shared_ptr<af_shader> psd)
 
 void material::use()
 {
+	if (!_pshader->_valid)
+	{
+		return;
+	}
 	_pshader->use();
 	auto& sd_uf_def = _pshader->get_uf_defs();
 	shader_uf_txt::reset_sample_index();
@@ -172,7 +176,7 @@ void material::refresh_shader_uf()
 	{
 		auto& ikey = iuf->first;
 		auto& isdu = sd_uf_def.find(ikey);
-		if (isdu != sd_uf_def.end())
+		if (isdu == sd_uf_def.end())
 		{
 			iuf = _mp_shader_uf.erase(iuf);
 		}

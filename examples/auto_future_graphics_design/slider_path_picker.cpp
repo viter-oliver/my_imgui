@@ -10,7 +10,11 @@ static inline ImVec2 operator*(const ImVec2& lhs, const float scl) { return ImVe
 void slider_path_picker::view()
 {
 	ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiSetCond_FirstUseEver);
-
+	auto vtx_sz = g_vres_texture_list.size();
+	if (vtx_sz==0)
+	{
+		return;
+	}
 	static char track_file_name[FILE_NAME_LEN];
 	if (_cur_tacks_file_name.empty())
 	{

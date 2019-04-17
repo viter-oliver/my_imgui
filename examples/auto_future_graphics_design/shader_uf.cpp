@@ -292,7 +292,7 @@ void shader_uf_double::init_from_json(Value& jvalue)
 
 void shader_uf_txt::edit()
 {
-	char str_txt_name[FILE_NAME_LEN] = { 0 };
+	static char str_txt_name[FILE_NAME_LEN] = { 0 };
 	if (_pdtxt)
 	{
 		ImGui::Text("Texture name:%s", _txt_name.c_str());

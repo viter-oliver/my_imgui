@@ -278,7 +278,9 @@ bool af_shader::match_format(vector<GLubyte>& fmt)
 	{
 		GLubyte fmt_stride = fmt[ix];
 		auto attr_type = _att_list[ix]._variable_type;
-		GLubyte attr_stride = shader_variable_type_size[attr_type]._cnt*shader_variable_type_size[attr_type]._utsize;
+		auto cnt = shader_variable_type_size[attr_type]._cnt;
+		//auto sz=shader_variable_type_size[attr_type]._utsize;
+		GLubyte attr_stride = cnt;
 		if (fmt_stride!=attr_stride)
 		{
 			return false;
