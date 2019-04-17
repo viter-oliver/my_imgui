@@ -1,5 +1,7 @@
 #pragma once
 //#prama execution_character_set("utf-8")
+#define TXT_BUFF_SZ 1024 * 16
+
 namespace auto_future
 {
 	template <class T>

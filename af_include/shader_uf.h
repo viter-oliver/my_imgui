@@ -13,6 +13,7 @@ using namespace Json;
 #define ASSERT_MESSAGE(condition, message) if (!(condition)) throw std::runtime_error(message);
 #include <string>
 #include "fab.h"
+#include "res_output.h"
 using namespace fab;
 using namespace std;
 class shader_uf
@@ -324,3 +325,54 @@ public:
 	}
 };
 REG_SHADER_UF(shader_uf_double);
+
+class shader_uf_txt :public shader_uf
+{
+	string _txt_name;
+	ps_af_texture _pdtxt;
+	static GLuint _sample_index;
+public:
+	shader_uf_txt(GLuint usize, GLuint el_sz) :shader_uf(usize, el_sz)
+	{
+		_pdtxt = nullptr;
+	}
+	static void reset_sample_index()
+	{
+		_sample_index = 0;
+	}
+	void set_to_loaction(GLuint location)
+	{
+		glActiveTexture(GL_TEXTURE0 + _sample_index);
+		glBindTexture(GL_TEXTURE_2D, _pdtxt->_atxt_id);
+		glUniform1i(location, _sample_index);
+		_sample_index++;
+		/*
+		switch (_utype)
+		{
+		case GL_SAMPLER_2D:
+		case GL_SAMPLER_1D:
+		case GL_SAMPLER_3D:
+
+			glUniform1i(location, _sample_index);
+			break;
+
+		default:
+			printf("invalid type:%d\n", _utype);
+			break;
+		}*/
+	}
+	void* get_data_head()
+	{
+		return 0;
+	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	void edit();
+	void output_2_json(Value& jvalue);
+	void init_from_json(Value& jvalue);
+#endif
+
+	~shader_uf_txt()
+	{
+	}
+};
+REG_SHADER_UF(shader_uf_txt);

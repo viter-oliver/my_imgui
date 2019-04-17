@@ -124,57 +124,78 @@ af_shader::~af_shader()
 
 af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source)
 {
-	_vs_code = vertex_shader_source;
-	_fs_code = fragment_shader_source;
-	build();
+	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
+	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
+	_shader_program_id = glCreateProgram();
+	string vs_code(vertex_shader_source);
+	string fs_code(fragment_shader_source);
+	build_vs_code(vs_code);
+	build_fs_code(fs_code);
+	if (_vs_code_valid&&_fs_code_valid)
+	{
+		link();
+	}
 	if (_valid)
 	{
 		refresh_viarable_list();
 	}
 	
 }
-
-void af_shader::build()
+static char buffer[512];
+bool af_shader::build_vs_code(string& vs_code)
 {
-	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-	char* pvs = &_vs_code[0];
+	_vs_code = vs_code;
+	char* pvs = &vs_code[0];
 	glShaderSource(_vertex_shader, 1, &pvs, NULL);
 	glCompileShader(_vertex_shader);
 	GLint status;
-	char buffer[512];
 	glGetShaderiv(_vertex_shader, GL_COMPILE_STATUS, &status);
+	buffer[0] = '\0';
+	bool be_success = true;
 	if (status != GL_TRUE)
 	{
 		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
 		printf("vertex shader error:%s\n", buffer);
 		_valid = false;
-		glDeleteShader(_vertex_shader);
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		compile_error_info = buffer;
-#endif
-		return;
+		be_success = false;
 	}
-	//fragment shader
-	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	char* pfs = &_fs_code[0];
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	compile_error_info = buffer;
+	_vs_code_valid = be_success;
+#endif
+	return be_success;
+}
+bool af_shader::build_fs_code(string& fs_code)
+{
+	_fs_code = fs_code;
+	char* pfs = &fs_code[0];
 	glShaderSource(_fragment_shader, 1, &pfs, NULL);
 	glCompileShader(_fragment_shader);
-
+	GLint status;
 	glGetShaderiv(_fragment_shader, GL_COMPILE_STATUS, &status);
+	bool be_success = true;
+	buffer[0] = '\0';
 	if (status != GL_TRUE)
 	{
 		glGetShaderInfoLog(_fragment_shader, 512, NULL, buffer);
-		printf("fragment shader error:%s\n",buffer);
+		printf("fragment shader error:%s\n", buffer);
+		be_success= false;
 		_valid = false;
-		glDeleteShader(_vertex_shader);
-		glDeleteShader(_fragment_shader);
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		compile_error_info = buffer;
-#endif
-		return;
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	compile_error_info = buffer;
+	_fs_code_valid = be_success;
+#endif
+	return be_success;
+}
+void af_shader::link()
+{
 	//link
+	/*if (_shader_program_id!=0)
+	{
+	glDeleteProgram(_shader_program_id);
 	_shader_program_id = glCreateProgram();
+	}*/
 	glAttachShader(_shader_program_id, _vertex_shader);
 	glAttachShader(_shader_program_id, _fragment_shader);
 	glBindFragDataLocation(_shader_program_id, 0, "outColor");
@@ -182,7 +203,9 @@ void af_shader::build()
 	glReleaseShaderCompiler();
 	glUseProgram(_shader_program_id);
 	_valid = true;
+
 }
+
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source)
@@ -193,9 +216,12 @@ void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragmen
 		glDeleteShader(_vertex_shader);
 		glDeleteShader(_fragment_shader);
 	}
-	_vs_code = vertex_shader_source;
-	_fs_code = fragment_shader_source;
-	build();
+	build_vs_code(vertex_shader_source);
+	build_fs_code(fragment_shader_source);
+	if (_vs_code_valid&&_fs_code_valid)
+	{
+		link();
+	}
 	if (_valid)
 	{
 		refresh_viarable_list();
@@ -223,9 +249,11 @@ void af_shader::refresh_viarable_list()
 	{
 		glGetActiveAttrib(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
 
-		printf("Attribute #%d Type: %u Name: %s\n", idx, type, name);
+		printf("Attribute #%d Type: 0x%x Name: %s\n", idx, type, name);
 		GLuint location = glGetAttribLocation(_shader_program_id, name);
-		_att_list[name] = shader_variable(type, location, size);
+		//_att_list[name] = shader_variable(type, location, size);
+		_att_list.emplace_back(); 
+		_att_list.back()={name, type, location, size};
 	}
 
 	glGetProgramiv(_shader_program_id, GL_ACTIVE_UNIFORMS, &count);
@@ -235,31 +263,42 @@ void af_shader::refresh_viarable_list()
 	{
 		glGetActiveUniform(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
 
-		printf("Uniform #%d Type: %u Name: %s\n", idx, type, name);
+		printf("Uniform #%d Type: 0x%x Name: %s\n", idx, type, name);
 		GLint location = glGetUniformLocation(_shader_program_id, name);
 		_unf_list[name] = shader_variable(type, location, size);
 	}
 }
-
-bool af_shader::vertex_att_pointer(initializer_list<string> att_name_list)
+bool af_shader::match_format(vector<GLubyte>& fmt)
 {
-	int stride=0;
-	for (auto& iname : att_name_list)
+	if (fmt.size()!=_att_list.size())
 	{
-		auto& iatt = _att_list.find(iname);
-		if (iatt==_att_list.end())
+		return false;
+	}
+	for (int ix = 0; ix < fmt.size();ix++)
+	{
+		GLubyte fmt_stride = fmt[ix];
+		auto attr_type = _att_list[ix]._variable_type;
+		GLubyte attr_stride = shader_variable_type_size[attr_type]._cnt*shader_variable_type_size[attr_type]._utsize;
+		if (fmt_stride!=attr_stride)
 		{
-			printf("fail to find attribute name:%s\n", iname.c_str());
 			return false;
 		}
-		auto& shd_atr = iatt->second;
-		stride += shader_variable_type_size[shd_atr._variable_type]._cnt* shader_variable_type_size[shd_atr._variable_type]._utsize;
 	}
+	return true;
+}
+bool af_shader::vertex_att_pointer()
+{
+	int stride=0;
+	for (auto& iattr:_att_list)
+	{
+		stride += shader_variable_type_size[iattr._variable_type]._cnt* shader_variable_type_size[iattr._variable_type]._utsize;
+	}
+	
 	int pointer = 0;
-	for (auto& iname : att_name_list)
+	for (auto& iattr : _att_list)
 	{
 
-		auto& attr = _att_list[iname];
+		auto& attr = iattr;
 		glEnableVertexAttribArray(attr._location);
 		auto& shd_tp_sz = shader_variable_type_size[attr._variable_type];
 		glVertexAttribPointer(attr._location, shd_tp_sz._cnt, attr._variable_type, GL_FALSE, stride, (void*)(pointer));

@@ -265,6 +265,9 @@
     <ClCompile Include="unreferenced_items.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="ft_material_2d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -553,6 +556,9 @@
       <Filter>af_include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\af_include\control_common_def.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_material_2d.h">
       <Filter>af_include</Filter>
     </ClInclude>
   </ItemGroup>

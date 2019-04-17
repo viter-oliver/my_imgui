@@ -4,7 +4,6 @@ const char* single_txt;
 const char* single_txt_vs = R"glsl(
 layout(location = 0)attribute vec3 position;
 layout(location = 1)attribute vec2 textcoord;
-layout(location = 2)attribute vec3 normal;
 varying vec2 Textcoord;
 uniform mat4 proj;
 uniform mat4 view;

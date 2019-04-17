@@ -1,5 +1,77 @@
 #include "af_material.h"
-
+shared_ptr<shader_uf> get_sd_uf(shader_variable& unif)
+{
+	switch (unif._variable_type)
+	{
+	case GL_FLOAT:
+		return make_shared<shader_uf_float>(unif._size, 1);
+	case GL_FLOAT_VEC2:
+		return  make_shared<shader_uf_float>(unif._size, 2);
+	case GL_FLOAT_VEC3:
+		return  make_shared<shader_uf_float>(unif._size, 3);
+	case GL_FLOAT_VEC4:
+	case GL_FLOAT_MAT2:
+		return  make_shared<shader_uf_float>(unif._size, 4);
+	case GL_FLOAT_MAT3:
+		return  make_shared<shader_uf_float>(unif._size, 9);
+	case GL_FLOAT_MAT4:
+		return  make_shared<shader_uf_float>(unif._size, 16);
+	case GL_FLOAT_MAT2x3:
+	case GL_FLOAT_MAT3x2:
+		return  make_shared<shader_uf_float>(unif._size, 6);
+	case GL_FLOAT_MAT2x4:
+	case GL_FLOAT_MAT4x2:
+		return  make_shared<shader_uf_float>(unif._size, 8);
+	case GL_FLOAT_MAT3x4:
+	case GL_FLOAT_MAT4x3:
+		return  make_shared<shader_uf_float>(unif._size, 12);
+	case GL_DOUBLE:
+		return  make_shared<shader_uf_double>(unif._size, 1);
+	case GL_DOUBLE_VEC2:
+		return  make_shared<shader_uf_double>(unif._size, 2);
+	case GL_DOUBLE_VEC3:
+		return  make_shared<shader_uf_double>(unif._size, 3);
+	case GL_DOUBLE_VEC4:
+	case GL_DOUBLE_MAT2:
+		return  make_shared<shader_uf_double>(unif._size, 4);
+	case GL_DOUBLE_MAT3:
+		return  make_shared<shader_uf_double>(unif._size, 9);
+	case GL_DOUBLE_MAT4:
+		return  make_shared<shader_uf_double>(unif._size, 16);
+	case GL_DOUBLE_MAT2x3:
+	case GL_DOUBLE_MAT3x2:
+		return  make_shared<shader_uf_double>(unif._size, 6);
+		break;
+	case GL_DOUBLE_MAT2x4:
+	case GL_DOUBLE_MAT4x2:
+		return  make_shared<shader_uf_double>(unif._size, 8);
+	case GL_DOUBLE_MAT3x4:
+	case GL_DOUBLE_MAT4x3:
+		return  make_shared<shader_uf_double>(unif._size, 12);
+	case GL_INT:
+		return  make_shared<shader_uf_int>(unif._size, 1);
+	case GL_INT_VEC2:
+		return  make_shared<shader_uf_int>(unif._size, 2);
+	case GL_INT_VEC3:
+		return  make_shared<shader_uf_int>(unif._size, 3);
+	case GL_INT_VEC4:
+		return  make_shared<shader_uf_int>(unif._size, 4);
+		break;
+	case GL_UNSIGNED_INT:
+		return  make_shared<shader_uf_uint>(unif._size, 1);
+	case GL_UNSIGNED_INT_VEC2:
+		return  make_shared<shader_uf_uint>(unif._size, 2);
+	case GL_UNSIGNED_INT_VEC3:
+		return  make_shared<shader_uf_uint>(unif._size, 3);
+	case GL_UNSIGNED_INT_VEC4:
+		return  make_shared<shader_uf_uint>(unif._size, 4);
+	case GL_SAMPLER_1D:
+	case GL_SAMPLER_2D:
+	case GL_SAMPLER_3D:
+		return  make_shared<shader_uf_txt>(unif._size, 1);
+	}
+	return nullptr;
+}
 material::material(shared_ptr<af_shader> psd)
 	:_pshader(psd)
 {
@@ -8,96 +80,7 @@ material::material(shared_ptr<af_shader> psd)
 	{
 		auto& un_name = uf_def_ut.first;
 		auto& unif = uf_def_ut.second;
-		shared_ptr<shader_uf> pnunf = nullptr;
-		switch (unif._variable_type)
-		{
-		case GL_FLOAT:
-			pnunf = make_shared<shader_uf_float>(unif._size,1);
-			break;
-		case GL_FLOAT_VEC2:
-			pnunf = make_shared<shader_uf_float>(unif._size , 2);
-			break;
-		case GL_FLOAT_VEC3:
-			pnunf = make_shared<shader_uf_float>(unif._size , 3);
-			break;
-		case GL_FLOAT_VEC4:
-		case GL_FLOAT_MAT2:
-			pnunf = make_shared<shader_uf_float>(unif._size , 4);
-			break;
-		case GL_FLOAT_MAT3:
-			pnunf = make_shared<shader_uf_float>(unif._size , 9);
-			break;
-		case GL_FLOAT_MAT4:
-			pnunf = make_shared<shader_uf_float>(unif._size , 16);
-			break;
-		case GL_FLOAT_MAT2x3:
-		case GL_FLOAT_MAT3x2:
-			pnunf = make_shared<shader_uf_float>(unif._size , 6);
-			break;
-		case GL_FLOAT_MAT2x4:
-		case GL_FLOAT_MAT4x2:
-			pnunf = make_shared<shader_uf_float>(unif._size , 8);
-			break;
-		case GL_FLOAT_MAT3x4:
-		case GL_FLOAT_MAT4x3:
-			pnunf = make_shared<shader_uf_float>(unif._size , 12);
-			break;
-		case GL_DOUBLE:
-			pnunf = make_shared<shader_uf_double>(unif._size,1);
-			break;
-		case GL_DOUBLE_VEC2:
-			pnunf = make_shared<shader_uf_double>(unif._size , 2);
-			break;
-		case GL_DOUBLE_VEC3:
-			pnunf = make_shared<shader_uf_double>(unif._size , 3);
-			break;
-		case GL_DOUBLE_VEC4:
-		case GL_DOUBLE_MAT2:
-			pnunf = make_shared<shader_uf_double>(unif._size , 4);
-			break;
-		case GL_DOUBLE_MAT3:
-			pnunf = make_shared<shader_uf_double>(unif._size , 9);
-			break;
-		case GL_DOUBLE_MAT4:
-			pnunf = make_shared<shader_uf_double>(unif._size , 16);
-			break;
-		case GL_DOUBLE_MAT2x3:
-		case GL_DOUBLE_MAT3x2:
-			pnunf = make_shared<shader_uf_double>(unif._size , 6);
-			break;
-		case GL_DOUBLE_MAT2x4:
-		case GL_DOUBLE_MAT4x2:
-			pnunf = make_shared<shader_uf_double>(unif._size , 8);
-			break;
-		case GL_DOUBLE_MAT3x4:
-		case GL_DOUBLE_MAT4x3:
-			pnunf = make_shared<shader_uf_double>(unif._size , 12);
-			break;
-		case GL_INT:
-			pnunf = make_shared<shader_uf_int>(unif._size,1);
-			break;
-		case GL_INT_VEC2:
-			pnunf = make_shared<shader_uf_int>(unif._size , 2);
-			break;
-		case GL_INT_VEC3:
-			pnunf = make_shared<shader_uf_int>(unif._size , 3);
-			break;
-		case GL_INT_VEC4:
-			pnunf = make_shared<shader_uf_int>(unif._size , 4);
-			break;
-		case GL_UNSIGNED_INT:
-			pnunf = make_shared<shader_uf_uint>(unif._size,1);
-			break;
-		case GL_UNSIGNED_INT_VEC2:
-			pnunf = make_shared<shader_uf_uint>(unif._size , 2);
-			break;
-		case GL_UNSIGNED_INT_VEC3:
-			pnunf = make_shared<shader_uf_uint>(unif._size , 3);
-			break;
-		case GL_UNSIGNED_INT_VEC4:
-			pnunf = make_shared<shader_uf_uint>(unif._size , 4);
-			break;
-		}
+		shared_ptr<shader_uf> pnunf = get_sd_uf(unif);
 		if (pnunf)
 		{
 			pnunf->_unf_name = un_name;
@@ -107,23 +90,21 @@ material::material(shared_ptr<af_shader> psd)
 		}
 	}
 }
+
 void material::use()
 {
 	_pshader->use();
 	auto& sd_uf_def = _pshader->get_uf_defs();
+	shader_uf_txt::reset_sample_index();
 	for (auto& shd_uf_value : _mp_shader_uf)
 	{
 		auto& kname = shd_uf_value.first;
 		auto& ufdef = sd_uf_def[kname];
 		auto& sd_uf = shd_uf_value.second;
-		sd_uf->set_to_loaction(ufdef._location);
-		/*switch (shd_uf_value.second.value_type())
-		{
-		}*/
-		//_shader.uniform(shd_uf_value.first, &shd_uf_value.second[);
-		
+		sd_uf->set_to_loaction(ufdef._location);	
 	}
 }
+
 void material::set_value(string unf_name, float* pfvalue, GLuint len)
 {
 	auto& shd_ut = _mp_shader_uf.find(unf_name);
@@ -184,6 +165,46 @@ void material::set_value(string unf_name, double* pdvalue, GLuint len)
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 #include "user_control_imgui.h"
+void material::refresh_shader_uf()
+{
+	auto& sd_uf_def = _pshader->get_uf_defs();
+	for (auto& iuf = _mp_shader_uf.begin(); iuf != _mp_shader_uf.end();)
+	{
+		auto& ikey = iuf->first;
+		auto& isdu = sd_uf_def.find(ikey);
+		if (isdu != sd_uf_def.end())
+		{
+			iuf = _mp_shader_uf.erase(iuf);
+		}
+		else
+		{
+			auto& sd_uf = *iuf->second;
+			auto& sd_var = isdu->second;
+			if (sd_uf.get_type() != sd_var._variable_type)
+			{
+				iuf = _mp_shader_uf.erase(iuf);
+			}
+			else
+			{
+				iuf++;
+			}
+		}
+	}
+	for (auto& isu_var : sd_uf_def)
+	{
+		auto& iuf = _mp_shader_uf.find(isu_var.first);
+		if (iuf == _mp_shader_uf.end())
+		{
+			auto& un_name = isu_var.first;
+			auto& unif = isu_var.second;
+			shared_ptr<shader_uf> pnunf = get_sd_uf(unif);
+			if (pnunf)
+			{
+				_mp_shader_uf[un_name] = pnunf;
+			}
+		}
+	}
+}
 void material::edit_ufs()
 {
 	string shd_name = "shader name:";
@@ -243,129 +264,7 @@ bool material::init_from_json(Value& jvalue)
 	}
 	return true;
 }
-void material::refresh()
-{
-	mshader_variable_list& sd_uf_def = _pshader->get_uf_defs();
-	for (auto& uf_def_ut : sd_uf_def)
-	{
-		auto& un_name = uf_def_ut.first;
-		auto& unif = uf_def_ut.second;
-		auto ifd = _mp_shader_uf.find(un_name);
-		if (ifd == _mp_shader_uf.end() || ifd->second->get_type() != unif._variable_type && (_mp_shader_uf.erase(ifd), true))
-		{
 
-			shared_ptr<shader_uf> pnunf = nullptr;
-			switch (unif._variable_type)
-			{
-			case GL_FLOAT:
-				pnunf = make_shared<shader_uf_float>(unif._size, 1);
-				break;
-			case GL_FLOAT_VEC2:
-				pnunf = make_shared<shader_uf_float>(unif._size, 2);
-				break;
-			case GL_FLOAT_VEC3:
-				pnunf = make_shared<shader_uf_float>(unif._size, 3);
-				break;
-			case GL_FLOAT_VEC4:
-			case GL_FLOAT_MAT2:
-				pnunf = make_shared<shader_uf_float>(unif._size, 4);
-				break;
-			case GL_FLOAT_MAT3:
-				pnunf = make_shared<shader_uf_float>(unif._size, 9);
-				break;
-			case GL_FLOAT_MAT4:
-				pnunf = make_shared<shader_uf_float>(unif._size, 16);
-				break;
-			case GL_FLOAT_MAT2x3:
-			case GL_FLOAT_MAT3x2:
-				pnunf = make_shared<shader_uf_float>(unif._size, 6);
-				break;
-			case GL_FLOAT_MAT2x4:
-			case GL_FLOAT_MAT4x2:
-				pnunf = make_shared<shader_uf_float>(unif._size, 8);
-				break;
-			case GL_FLOAT_MAT3x4:
-			case GL_FLOAT_MAT4x3:
-				pnunf = make_shared<shader_uf_float>(unif._size, 12);
-				break;
-			case GL_DOUBLE:
-				pnunf = make_shared<shader_uf_double>(unif._size, 1);
-				break;
-			case GL_DOUBLE_VEC2:
-				pnunf = make_shared<shader_uf_double>(unif._size, 2);
-				break;
-			case GL_DOUBLE_VEC3:
-				pnunf = make_shared<shader_uf_double>(unif._size, 3);
-				break;
-			case GL_DOUBLE_VEC4:
-			case GL_DOUBLE_MAT2:
-				pnunf = make_shared<shader_uf_double>(unif._size, 4);
-				break;
-			case GL_DOUBLE_MAT3:
-				pnunf = make_shared<shader_uf_double>(unif._size, 9);
-				break;
-			case GL_DOUBLE_MAT4:
-				pnunf = make_shared<shader_uf_double>(unif._size, 16);
-				break;
-			case GL_DOUBLE_MAT2x3:
-			case GL_DOUBLE_MAT3x2:
-				pnunf = make_shared<shader_uf_double>(unif._size, 6);
-				break;
-			case GL_DOUBLE_MAT2x4:
-			case GL_DOUBLE_MAT4x2:
-				pnunf = make_shared<shader_uf_double>(unif._size, 8);
-				break;
-			case GL_DOUBLE_MAT3x4:
-			case GL_DOUBLE_MAT4x3:
-				pnunf = make_shared<shader_uf_double>(unif._size, 12);
-				break;
-			case GL_INT:
-				pnunf = make_shared<shader_uf_int>(unif._size, 1);
-				break;
-			case GL_INT_VEC2:
-				pnunf = make_shared<shader_uf_int>(unif._size, 2);
-				break;
-			case GL_INT_VEC3:
-				pnunf = make_shared<shader_uf_int>(unif._size, 3);
-				break;
-			case GL_INT_VEC4:
-				pnunf = make_shared<shader_uf_int>(unif._size, 4);
-				break;
-			case GL_UNSIGNED_INT:
-				pnunf = make_shared<shader_uf_uint>(unif._size, 1);
-				break;
-			case GL_UNSIGNED_INT_VEC2:
-				pnunf = make_shared<shader_uf_uint>(unif._size, 2);
-				break;
-			case GL_UNSIGNED_INT_VEC3:
-				pnunf = make_shared<shader_uf_uint>(unif._size, 3);
-				break;
-			case GL_UNSIGNED_INT_VEC4:
-				pnunf = make_shared<shader_uf_uint>(unif._size, 4);
-				break;
-			}
-			if (pnunf)
-			{
-				pnunf->_unf_name = un_name;
-				pnunf->set_type(unif._variable_type);
-				_mp_shader_uf[un_name] = pnunf;
-			}
-		}
-	}
-	for (auto idd = _mp_shader_uf.begin(); idd != _mp_shader_uf.end();)
-	{
-		auto kname = idd->first;
-		auto iff = sd_uf_def.find(kname);
-		if (iff != sd_uf_def.end())
-		{
-			idd = _mp_shader_uf.erase(idd);
-		}
-		else
-		{
-			idd++;
-		}
-	}
-}
 #endif
 mmaterial g_material_list;
 bool create_material(string& shader_name, string& material_name, string& real_material_name)
@@ -399,7 +298,7 @@ void refresh_material(shared_ptr<af_shader> pshd)
 		auto pmtl = mtl.second;
 		if (pmtl->get_shader()==pshd)
 		{
-			pmtl->refresh();
+			pmtl->refresh_shader_uf();
 		}
 
 	}

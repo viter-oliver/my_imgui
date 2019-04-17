@@ -49,11 +49,12 @@ public:
 
 	void output_2_json(Value& jvalue);
 	bool init_from_json(Value& jvalue);
-	void refresh();
+	void refresh_shader_uf();
 
 #endif
 };
-typedef map<string,shared_ptr<material>> mmaterial;
+using ps_mtl = shared_ptr<material>;
+using mmaterial = map<string, ps_mtl>;
 /** material of g_material_list will be referenced by some ui components*/
 extern mmaterial g_material_list;
 extern bool create_material(string& shader_name, string& material_name, string& real_material_name);

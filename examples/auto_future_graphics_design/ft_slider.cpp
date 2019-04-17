@@ -86,7 +86,7 @@ namespace auto_future
 				else
 				{
 					ImGui::InputText("custom path file", _slider_pt._cbuffer_random_text, sizeof(_slider_pt._cbuffer_random_text));
-					if (ImGui::Button("import"))
+					if (ImGui::Button("Link"))
 					{
 						read_point_position_file(_slider_pt._cbuffer_random_text);
 					}

@@ -1,6 +1,5 @@
 #pragma once
 #include "af_bind.h"
-#define TXT_BUFF_SZ 1024 * 16
 class bind_edit
 {
 	prop_ele_bind_unit* _pnew_bind_unit{nullptr};

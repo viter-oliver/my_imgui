@@ -81,7 +81,7 @@
     <OutDir>$(ProjectDir)..\..\running\</OutDir>
     <IntDir>$(ProjectDir)$(Configuration)\</IntDir>
     <IncludePath>$(IncludePath)</IncludePath>
-    <TargetName>$(ProjectName)</TargetName>
+    <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(ProjectDir)$(Configuration)\</OutDir>
@@ -191,6 +191,7 @@
     <ClCompile Include="fonts_edit.cpp" />
     <ClCompile Include="ft_block.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
+    <ClCompile Include="ft_material_2d.cpp" />
     <ClCompile Include="ft_modeling_3d.cpp" />
     <ClCompile Include="ft_particles_3d.cpp" />
     <ClCompile Include="ft_particles1_3d.cpp" />
@@ -259,6 +260,7 @@
     <ClInclude Include="..\..\af_include\ft_image_play.h" />
     <ClInclude Include="..\..\af_include\ft_listbox.h" />
     <ClInclude Include="..\..\af_include\ft_logo_animation.h" />
+    <ClInclude Include="..\..\af_include\ft_material_2d.h" />
     <ClInclude Include="..\..\af_include\ft_modeling_3d.h" />
     <ClInclude Include="..\..\af_include\ft_model_3d.h" />
     <ClInclude Include="..\..\af_include\ft_particles1_3d.h" />
