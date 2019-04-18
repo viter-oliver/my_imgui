@@ -42,11 +42,6 @@ namespace auto_future
 					if (iprm!=g_primitive_list.end())
 					{
 						_ps_prm = iprm->second;
-						if (_ps_mtl)
-						{
-							auto& ps_sd = _ps_mtl->get_shader();
-							_matched = ps_sd->match_format(_ps_prm->_ele_format);
-						}
 					}
 					else
 					{
@@ -54,11 +49,6 @@ namespace auto_future
 						if (ref_a_intenal_primitive(str_prm_nm))
 						{
 							_ps_prm = g_primitive_list[str_prm_nm];
-							if (_ps_mtl)
-							{
-								auto& ps_sd = _ps_mtl->get_shader();
-								_matched = ps_sd->match_format(_ps_prm->_ele_format);
-							}
 						}
 					}
 				}
@@ -85,22 +75,49 @@ namespace auto_future
 					if (imtl!=g_material_list.end())
 					{
 						_ps_mtl = imtl->second;
-						if (_ps_prm)
-						{
-							auto& ps_sd = _ps_mtl->get_shader();
-							_matched = ps_sd->match_format(_ps_prm->_ele_format);
-						}
 					}
 				}
 			}
-
+			if (!_matched)
+			{
+				ImGui::Text("material is unmatched to primitive object");
+			}
+			
 		});
 
 #endif
 	}
-
+	void ft_material_2d::link()
+	{
+		int imatch = 0;
+		auto imt=g_material_list.find(_pt._material_name);
+		if (imt!=g_material_list.end())
+		{
+			_ps_mtl = imt->second;
+			imatch++;
+		}
+		
+		auto iprm = g_primitive_list.find(_pt._primitive_name);
+		if (iprm!=g_primitive_list.end())
+		{
+			_ps_prm = iprm->second;
+			imatch++;
+		}
+		_matched = imatch==2;
+	}
 	void ft_material_2d::draw()
 	{
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		if (_ps_mtl&&_ps_mtl->is_valid()&&_ps_prm)
+		{
+			auto& ps_sd = _ps_mtl->get_shader();
+			_matched = ps_sd->match_format(_ps_prm->_ele_format);
+		}
+		else
+		{
+			_matched = false;
+		}
+#endif
 		if (_matched)
 		{
 			if (!_ps_mtl->is_valid())

@@ -23,6 +23,10 @@ struct primitive_object
 	GLuint _vertex_buf_len;
 	GLuint _ele_buf_len;
 	ps_af_file _ps_file;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+	bool _sel{ false };
+#endif // !Im
+
 	primitive_object()
 		: _vertex_buf_len(0), _ele_buf_len(0)
 	{

@@ -46,6 +46,7 @@
 #include "aliase_edit.h"
 #include "state_manager_edit.h"
 #include "slider_path_picker.h"
+#include "primitve_edit.h"
 #include "common_functions.h"
 #include "dir_output.h"
 #include "command_element_delta.h"
@@ -68,6 +69,7 @@ aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
 slider_path_picker g_slider_path_picker;
 unreferenced_items g_unreferenced_items;
+primitve_edit g_primitive_edit;
 base_ui_component* _proot = NULL;
 shared_ptr<project_edit> prj_edit;
 HCURSOR g_hcursor_wait;
@@ -88,7 +90,7 @@ show_property_window = true, show_resource_manager = true,\
 show_fonts_manager=true,show_file_manager=true,\
 show_output_format=false,show_model_list=false,show_world_space=false,\
 show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false,\
-show_slider_path_picker=false;
+show_slider_path_picker=false,show_prm_edit=false;
 
 void register_app_and_icon(string& app_path)
 {
@@ -730,7 +732,10 @@ int main(int argc, char* argv[])
 				{
 					show_slider_path_picker = !show_slider_path_picker;
 				}
-
+				if (ImGui::MenuItem("Primitive objects", NULL, show_prm_edit))
+				{
+					show_prm_edit = !show_prm_edit;
+				}
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Setup"))
@@ -855,6 +860,7 @@ int main(int argc, char* argv[])
 			g_slider_path_picker.view();
 			ImGui::End();
 		}
+		
 		if (show_aliase_edit)
 		{
 			ImGui::Begin("Aliases edit", &show_aliase_edit, ImVec2(400, 400));
@@ -864,6 +870,16 @@ int main(int argc, char* argv[])
 			ImGui::NextColumn();
 			g_aliase_edit.aliase_item_propoerty();
 			g_aliase_edit.popup_new_aliase();
+			ImGui::End();
+		}
+		if (show_prm_edit)
+		{
+			ImGui::Begin("Primitive objects", &show_prm_edit, ImVec2(600, 500));
+			ImGui::Columns(2);
+			ImGui::SetColumnWidth(0, 200);
+			g_primitive_edit.draw_primitive_list();
+			ImGui::NextColumn();
+			g_primitive_edit.draw_primitive_item_property();
 			ImGui::End();
 		}
 		if (show_resource_manager)

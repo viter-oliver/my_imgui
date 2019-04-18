@@ -1,10 +1,7 @@
 #include "primitve_edit.h"
 #include <string>
 #include "user_control_imgui.h"
-#include <windows.h>
-#include <locale.h>  
-#include <ShlObj.h>
-#include <Commdlg.h>
+#include "res_internal.h"
 #ifdef IMGUI_WAYLAND
 #include "../../deps/glad/glad.h"
 #else
@@ -13,38 +10,65 @@
 
 void primitve_edit::draw_primitive_list()
 {
-	char str_size[50] = { 0 };
-	sprintf(str_size, "count of vertex:%d", _pmobj->_vertex_buf_len);
-	ImGui::Text(str_size);
-	if (ImGui::Button("load vertices from file..."))
+
+	if (ImGui::Button("New primitive object..."))
 	{
-		OPENFILENAME ofn = { sizeof(OPENFILENAME) };
-		ofn.hwndOwner = GetForegroundWindow();
-		ofn.lpstrFilter = "image file:\0*.fbx;*.obj\0\0";
-		char strFileName[MAX_PATH] = { 0 };
-		ofn.nFilterIndex = 1;
-		ofn.lpstrFile = strFileName;
-		ofn.nMaxFile = sizeof(strFileName);
-		ofn.lpstrTitle = "Loading vertices...";
-		ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
-		if (GetOpenFileName(&ofn))
+
+	}
+	ImGuiTreeNodeFlags node_flag = ImGuiTreeNodeFlags_DefaultOpen;
+	string icon_str = icn_primitive;
+	if (IconTreeNode(icon_str,"primitive objects",node_flag))
+	{
+		for (auto& iprm:g_primitive_list)
 		{
-			extern string g_cureent_project_file_path;
-			string strimg_file = strFileName;
-			string obj_file_name = strimg_file.substr(strimg_file.find_last_of('\\') + 1);
-			string obj_file_path = strimg_file.substr(0, strimg_file.find_last_of('\\') + 1);
-
-			string extname = strimg_file.substr(strimg_file.find_last_of('.') + 1);
-			if (extname=="fbx")
+			auto& key_name = iprm.first;
+			auto& prm = iprm.second;
+			node_flag = ImGuiTreeNodeFlags_Leaf;
+			if (prm->_sel)
 			{
-
+				node_flag |= ImGuiTreeNodeFlags_Selected;
 			}
-
+			IconTreeNode(icon_str, key_name.c_str(), node_flag);
+			if (ImGui::IsItemClicked())
+			{
+				if (_pmobj)
+				{
+					_pmobj->_sel = false;
+				}
+				_pmobj = prm;
+				_pmobj->_sel = true;
+			}
+			ImGui::TreePop();
 		}
+		ImGui::TreePop();
 	}
 }
 
 void primitve_edit::draw_primitive_item_property()
 {
-
+	if (_pmobj)
+	{
+		ImGui::Text("Vertex buffer length:%d ,element buffer length:", _pmobj->_vertex_buf_len, _pmobj->_ele_buf_len);
+		ImGui::Text("Element format:");
+		auto& fmts = _pmobj->_ele_format;
+		string str_fmt = "##";
+		for (auto& fmt_u:fmts)
+		{
+			ImGui::SameLine();
+			ImGui::InputInt(str_fmt.c_str(), (int*)&fmt_u, 1, 10);
+			str_fmt += "#";
+		}
+		if (ImGui::Button("+"))
+		{
+			fmts.emplace_back();
+			fmts.back() = 1;
+		}
+		ImGui::SameLine(20);
+		auto fsz = fmts.size();
+		if (fsz>1&& ImGui::Button("-"))
+		{
+			fmts.resize(fsz - 1);
+		}
+		
+	}
 }

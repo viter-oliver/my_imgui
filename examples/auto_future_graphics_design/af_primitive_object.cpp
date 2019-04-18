@@ -1,5 +1,5 @@
 #include "af_primitive_object.h"
-
+#include "common_functions.h"
 void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff, GLuint ele_cnt)
 {
 	_vertex_buf_len = vetexlen;
@@ -100,6 +100,21 @@ bool ref_a_intenal_primitive(string& prm_name)
 			auto ps_prm = make_shared<primitive_object>();
 			ps_prm->set_ele_format(prm_un._fmt);
 			ps_prm->load_vertex_data(prm_un._pvert, prm_un._vert_cnt, prm_un._ele, prm_un._ele_cnt);
+			auto buff_len = 4 + prm_un._vert_cnt*sizeof(float) + prm_un._ele_cnt*sizeof(GLuint);
+			ps_af_file ps_file = make_shared<af_file>(buff_len);
+			char* phead = (char*)ps_file->_pbin;
+			GLuint* phead_len = (GLuint*)phead;
+			*phead_len = prm_un._vert_cnt*sizeof(float);
+			phead += 4;
+			memcpy(phead, prm_un._pvert, *phead_len);
+			if (prm_un._ele_cnt)
+			{
+				phead += *phead_len;
+				memcpy(phead, prm_un._ele, prm_un._ele_cnt*sizeof(GLuint));
+			}
+			prm_name = find_a_key_from_mp(g_primitive_list, prm_name);
+			prm_name = find_a_key_from_mp(g_mfiles_list, prm_name);
+			g_mfiles_list[prm_name]= ps_file;
 			g_primitive_list[prm_name] = ps_prm;
 			return true;
 		}

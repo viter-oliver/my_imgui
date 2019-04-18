@@ -28,7 +28,7 @@ namespace auto_future
 	public:
 		ft_material_2d();
 		~ft_material_2d(){}
-
+		void link();
 		void draw();
 	};
 	REGISTER_CONTROL(ft_material_2d)

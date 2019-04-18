@@ -12,3 +12,4 @@ const char* icn_nm_texture = "texture";
 const char* icn_nm_image = "image";
 const char* icn_nm_state_manager = "state_manager";
 const char* icn_aliase = "aliase";
+const char* icn_primitive = "primitive";

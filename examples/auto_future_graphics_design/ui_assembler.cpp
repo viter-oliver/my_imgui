@@ -862,6 +862,7 @@ void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_f
 		{
 			pebo = (GLuint*)(phead + *phead_len);
 		}
+
 	}
 	g_primitive_list[kname] = make_shared<primitive_object>();
 	g_primitive_list[kname]->set_ele_format(ele_format);

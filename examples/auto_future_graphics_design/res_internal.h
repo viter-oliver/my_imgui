@@ -20,3 +20,4 @@ extern const char* icn_nm_texture;
 extern const char* icn_nm_image;
 extern const char* icn_nm_state_manager;
 extern const char* icn_aliase;
+extern const char* icn_primitive;
