@@ -505,7 +505,7 @@
 	"sourceSize": {"w":32,"h":32}
 },
 {
-	"filename": "primitve.png",
+	"filename": "primitive.png",
 	"frame": {"x":791,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -551,6 +551,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1982,"h":112},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:b5b61ab7ca3d869ad63912ae70c9218d$"
+	"smartupdate": "$TexturePacker:SmartUpdate:fde5bdd7659b15a900f76a0b3e1ffad4$"
 }
 }

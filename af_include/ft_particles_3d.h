@@ -9,7 +9,7 @@ namespace auto_future
 	{
 		GLuint _vbo_uv, _vbo_pos, _vbo_color;
 		GLuint _vao;
-		shared_ptr<material> _particle_material;
+		ps_shader _ps_sd_particle;
 		shared_ptr<af_texture> _texture;
 		double lastTime;
 		enum particles_algorithm
@@ -25,11 +25,13 @@ namespace auto_future
 			(af_vec3, _pos0_shd),
 			(af_vec3, _v0_shd),
 			(af_vec3, _a0_shd),
+			(char, _txt_particle_name[FILE_NAME_LEN]),
 			(float, _life, {5.f}),
 			(int, _pa, {en_normal}))
 	public:
 		ft_particles_3d();
 		~ft_particles_3d();
+		void link();
 		void draw();
 
 	};

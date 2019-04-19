@@ -5,7 +5,7 @@
 #include <GLFW/glfw3.h>
 #include <chrono>
 #include <random>
-
+#include "af_shader_source_code.h"
 namespace auto_future
 {
 	enum dimensions { X, Y, Z };
@@ -139,24 +139,45 @@ namespace auto_future
 		reg_value_range(&_pt, 3, 0.f, 20.f);
 		reg_value_range(&_pt, 4, 0.f, 50.f);
 		reg_value_range(&_pt, 5, -40.f, 40.f);
+		reg_property_handle(&_pt, 3, [this](void*){
+			if (_texture)
+			{
+				ImGui::Text("Particle texture:%s", _pt._txt_particle);
+				ImGui::SameLine();
+				if (ImGui::Button("Delink##txt_particle"))
+				{
+					_texture = nullptr;
+				}
+			}
+			else
+			{
+				ImGui::InputText("Particle texture:", _pt._txt_particle, FILE_NAME_LEN);
+				if (ImGui::Button("Link##particle_txt"))
+				{
+					auto itxt = g_mtexture_list.find(_pt._txt_particle);
+					if (itxt != g_mtexture_list.end())
+					{
+						_texture = itxt->second;
+					}
+				}
+			}
+		});
 #endif
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
-		auto& mut = g_material_list.find("particles1");
-		_particle_material = mut->second;
-		
+		_ps_sd_particle = make_shared<af_shader>(particles1_vs, particles1_fs);
 		float cmr_wp[] = { 0.999137f, -0.000177f, 0.041540f };
-		_particle_material->set_value("CameraRight_worldspace", cmr_wp, 3);
+		_ps_sd_particle->uniform("CameraRight_worldspace", cmr_wp);
 		//glUniform3f(CameraRight_worldspace_ID, ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 		float cmu_wp[] = { -0.009298f, 0.973666f, 0.227788f };
-		_particle_material->set_value("CameraUp_worldspace", cmu_wp, 3);
+		_ps_sd_particle->uniform("CameraUp_worldspace", cmu_wp);
 		//glUniform3f(CameraUp_worldspace_ID, ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
 		float vwpj[] = { 1.809097f, -0.022448f, 0.040568f, 0.040486f,
 			-0.000320f, 2.350639f, 0.228434f, 0.227978f,
 			0.075215f, 0.549929f, -0.974772f, -0.972824f,
 			-0.376075f, -2.749644f, 4.673659f, 4.864121f };
-		_particle_material->set_value("VP", vwpj, 16);
-		_particle_material->set_value("uvcol[0]", uvs, sizeof(uvs));
+		_ps_sd_particle->uniform("VP", vwpj);
+		_ps_sd_particle->uniform("uvcol[0]", uvs);
 
 		auto& mtx = g_mtexture_list.find("flame_fire.png");
 		_texture = mtx->second;
@@ -193,7 +214,14 @@ namespace auto_future
 	{
 		0, 1, 2, 3, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 12, 12, 13, 13, 14, 14, 15, 15, 15, 15, 15, 16, 16, 16, 16, 16, 16, 17, 17, 17, 18, 18, 18, 19, 19, 19, 20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 26, 27, 28, 29,
 	};
-
+	void ft_particles1_3d::link()
+	{
+		auto itxt = g_mtexture_list.find(_pt._txt_particle);
+		if (itxt != g_mtexture_list.end())
+		{
+			_texture = itxt->second;
+		}
+	}
 	void ft_particles1_3d::draw()
 	{
 		double currentTime = glfwGetTime();
@@ -391,7 +419,7 @@ namespace auto_future
 		//SortParticles();
 		//printf("particles count:%d\n", ParticlesCount);
 		// Use our shader
-		_particle_material->use();
+		_ps_sd_particle->use();
 		glBindVertexArray(_vao);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo_pos);
 		glBufferData(GL_ARRAY_BUFFER, ParticlesCount * 4 * sizeof(GLfloat), g_particule_position_size_data, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf. See above link for details.

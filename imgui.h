@@ -7,7 +7,8 @@
 // Get latest version at https://github.com/ocornut/imgui
 
 #pragma once
-#define _MY_IMGUI__////#define _DEMO_
+#define _MY_IMGUI__
+//#define _DEMO_
 #if defined(IMGUI_DISABLE_DEMO_WINDOWS)
 #undef _MY_IMGUI__
 #endif

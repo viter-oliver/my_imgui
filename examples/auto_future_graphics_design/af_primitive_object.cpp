@@ -114,8 +114,10 @@ bool ref_a_intenal_primitive(string& prm_name)
 			}
 			prm_name = find_a_key_from_mp(g_primitive_list, prm_name);
 			prm_name = find_a_key_from_mp(g_mfiles_list, prm_name);
+			ps_prm->_ps_file = ps_file;
 			g_mfiles_list[prm_name]= ps_file;
 			g_primitive_list[prm_name] = ps_prm;
+		
 			return true;
 		}
 	}

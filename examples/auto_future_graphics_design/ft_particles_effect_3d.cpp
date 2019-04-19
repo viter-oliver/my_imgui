@@ -4,6 +4,7 @@
 #include "texture.h"
 #include <GLFW/glfw3.h>
 #include "paricles_system.h"
+#include "af_shader_source_code.h"
 #include "common_functions.h"
 #include <chrono>
 #include <random>
@@ -38,34 +39,78 @@ namespace auto_future
 		reg_value_range(&_pt, 3, 0.f, 20.f);
 		reg_value_range(&_pt, 4, 0.f, 50.f);
 		reg_value_range(&_pt, 5, -40.f, 40.f);
-		reg_property_handle(&_pt, 6, [this](void*){
+		reg_property_handle(&_pt, 3, [this](void*){
+			if (_texture)
+			{
+				ImGui::Text("Particle texture:%s", _pt._txt_particle);
+				ImGui::SameLine();
+				if (ImGui::Button("Delink##txt_particle"))
+				{
+					_texture = nullptr;
+				}
+			}
+			else
+			{
+				ImGui::InputText("Particle texture:", _pt._txt_particle, FILE_NAME_LEN);
+				if (ImGui::Button("Link##particle_txt"))
+				{
+					auto itxt = g_mtexture_list.find(_pt._txt_particle);
+					if (itxt != g_mtexture_list.end())
+					{
+						_texture = itxt->second;
+					}
+				}
+			}
+		});
+		reg_property_handle(&_pt, 4, [this](void*){
+			if (_ps_file)
+			{
+				ImGui::Text("Texture format:%s", _pt._fmt_particle);
+				ImGui::SameLine();
+				if (ImGui::Button("Delink##txt_format"))
+				{
+					_ps_file = nullptr;
+				}
+			}
+			else
+			{
+				ImGui::InputText("Texture format:", _pt._fmt_particle, FILE_NAME_LEN);
+				if (ImGui::Button("Link##txt format"))
+				{
+					auto ifle = g_mfiles_list.find(_pt._fmt_particle);
+					if (ifle != g_mfiles_list.end())
+					{
+						_ps_file = ifle->second;
+						int rlen;
+						GLfloat* puvs = get_txt_uvs((char*)_ps_file->_pbin, rlen);
+						_ps_particle->uniform("uvcol[0]", puvs);
+					}
+				}
+			}
+		});
+
+		reg_property_handle(&_pt, 8, [this](void*){
 			static const char* a_show[]{"normal", "gravity", "fountain", "fire", "fire with smoke", };
 			ImGui::Combo("particles type:", &_pt._pa, a_show, en_alg_cnt);
 			g_ptcl_sys->draw_property();
 		});
 #endif
+		_ps_particle = make_shared<af_shader>(particles2_vs, particles2_fs);
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
-		auto& mut = g_material_list.find("particles1");
-		_particle_material = mut->second;
+
 		float cmr_wp[] = { 0.999137f, -0.000177f, 0.041540f };
-		_particle_material->set_value("CameraRight_worldspace", cmr_wp, 3);
+		_ps_particle->uniform("CameraRight_worldspace", cmr_wp);
 		//glUniform3f(CameraRight_worldspace_ID, ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 		float cmu_wp[] = { -0.009298f, 0.973666f, 0.227788f };
-		_particle_material->set_value("CameraUp_worldspace", cmu_wp, 3);
+		_ps_particle->uniform("CameraUp_worldspace", cmu_wp);
 		//glUniform3f(CameraUp_worldspace_ID, ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
 		float vwpj[] = { 1.809097f, -0.022448f, 0.040568f, 0.040486f,
 			-0.000320f, 2.350639f, 0.228434f, 0.227978f,
 			0.075215f, 0.549929f, -0.974772f, -0.972824f,
 			-0.376075f, -2.749644f, 4.673659f, 4.864121f };
-		_particle_material->set_value("VP", vwpj, 16);
-		auto& muf = g_mfiles_list.find("flame_fire.js");
-		auto _pfile = muf->second;
-		int rlen;
-		GLfloat* puvs = get_txt_uvs((char*)_pfile->_pbin, rlen);
-		_particle_material->set_value("uvcol[0]", puvs, rlen);
-		auto& mtx = g_mtexture_list.find("flame_fire1.png");
-		_texture = mtx->second;
+		_ps_particle->uniform("VP", vwpj);
+	
 		
 
 		glGenBuffers(1, &_vbo_uv);
@@ -144,9 +189,28 @@ namespace auto_future
 	ft_particles_effect_3d::~ft_particles_effect_3d()
 	{
 	}
-
+	void ft_particles_effect_3d::link()
+	{
+		auto itxt = g_mtexture_list.find(_pt._txt_particle);
+		if (itxt != g_mtexture_list.end())
+		{
+			_texture = itxt->second;
+		}
+		auto ifle = g_mfiles_list.find(_pt._fmt_particle);
+		if (ifle != g_mfiles_list.end())
+		{
+			_ps_file = ifle->second;
+			int rlen;
+			GLfloat* puvs = get_txt_uvs((char*)_ps_file->_pbin, rlen);
+			_ps_particle->uniform("uvcol[0]", puvs);
+		}
+	}
 	void ft_particles_effect_3d::draw()
 	{
+		if (!_texture||_ps_file)
+		{
+			return;
+		}
 		double currentTime = glfwGetTime();
 		double delta = currentTime - lastTime;
 		lastTime = currentTime;
@@ -161,7 +225,7 @@ namespace auto_future
 		//SortParticles();
 		//printf("particles count:%d\n", ParticlesCount);
 		// Use our shader
-		_particle_material->use();
+		_ps_particle->use();
 		glBindVertexArray(_vao);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo_pos);
 		glBufferData(GL_ARRAY_BUFFER, g_ptcl_sys->valid_data_count() * sizeof(GLfloat), g_ptcl_sys->get_pPos_data(), GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf. See above link for details.

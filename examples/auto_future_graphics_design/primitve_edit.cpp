@@ -48,27 +48,31 @@ void primitve_edit::draw_primitive_item_property()
 {
 	if (_pmobj)
 	{
-		ImGui::Text("Vertex buffer length:%d ,element buffer length:", _pmobj->_vertex_buf_len, _pmobj->_ele_buf_len);
-		ImGui::Text("Element format:");
+		ImGui::Text("Vertex buffer length:%d ,element buffer length:%d", _pmobj->_vertex_buf_len, _pmobj->_ele_buf_len);
 		auto& fmts = _pmobj->_ele_format;
-		string str_fmt = "##";
+		static char str_numb[0xa] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+		string str_plus = "+##";
+		string str_minus = "-##";
+		string str_fmt;
 		for (auto& fmt_u:fmts)
 		{
-			ImGui::SameLine();
-			ImGui::InputInt(str_fmt.c_str(), (int*)&fmt_u, 1, 10);
-			str_fmt += "#";
+			str_fmt += str_numb[fmt_u];
+			str_fmt += ':';
+			//ImGui::Text(str_numb[fmt_u]);
 		}
-		if (ImGui::Button("+"))
-		{
-			fmts.emplace_back();
-			fmts.back() = 1;
-		}
-		ImGui::SameLine(20);
-		auto fsz = fmts.size();
-		if (fsz>1&& ImGui::Button("-"))
-		{
-			fmts.resize(fsz - 1);
-		}
+		str_fmt.back() = '\0';
+		ImGui::Text("Element format:%s",str_fmt.c_str());
+		//if (ImGui::Button("new"))
+		//{
+		//	fmts.emplace_back();
+		//	fmts.back() = 1;
+		//}
+		//ImGui::SameLine();
+		//auto fsz = fmts.size();
+		//if (fsz>1&& ImGui::Button("del"))
+		//{
+		//	fmts.resize(fsz - 1);
+		//}
 		
 	}
 }

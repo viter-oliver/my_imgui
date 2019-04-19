@@ -97,6 +97,6 @@ public:
 	bool uniform(string unf_name, int ivalue);
 
 };
-
-typedef map<string,shared_ptr<af_shader>> maf_shader;
+using ps_shader = shared_ptr<af_shader>;
+typedef map<string,ps_shader> maf_shader;
 extern maf_shader g_af_shader_list;
