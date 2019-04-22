@@ -6,11 +6,12 @@ void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, 
 	_ele_buf_len = ele_cnt;
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, GL_STATIC_DRAW);
+	GLuint mem_usage = _read_only ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, mem_usage);
 	if (pele_buff)
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*_ele_buf_len, pele_buff, GL_STATIC_DRAW);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*_ele_buf_len, pele_buff, mem_usage);
 	}	
 	GLuint idx = 0;
 	GLubyte stride = get_stride();
@@ -98,6 +99,7 @@ bool ref_a_intenal_primitive(string& prm_name)
 		if (prm_name == prm_un._name)
 		{
 			auto ps_prm = make_shared<primitive_object>();
+			ps_prm->_read_only = false;
 			ps_prm->set_ele_format(prm_un._fmt);
 			ps_prm->load_vertex_data(prm_un._pvert, prm_un._vert_cnt, prm_un._ele, prm_un._ele_cnt);
 			auto buff_len = 4 + prm_un._vert_cnt*sizeof(float) + prm_un._ele_cnt*sizeof(GLuint);
@@ -114,10 +116,11 @@ bool ref_a_intenal_primitive(string& prm_name)
 			}
 			prm_name = find_a_key_from_mp(g_primitive_list, prm_name);
 			prm_name = find_a_key_from_mp(g_mfiles_list, prm_name);
+			ps_prm->_file_name = prm_name;
 			ps_prm->_ps_file = ps_file;
 			g_mfiles_list[prm_name]= ps_file;
 			g_primitive_list[prm_name] = ps_prm;
-		
+		    
 			return true;
 		}
 	}

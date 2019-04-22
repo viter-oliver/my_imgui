@@ -7,7 +7,7 @@
 #else
 #include <GL/gl3w.h> 
 #endif
-
+#include <sstream>
 void primitve_edit::draw_primitive_list()
 {
 
@@ -29,7 +29,7 @@ void primitve_edit::draw_primitive_list()
 				node_flag |= ImGuiTreeNodeFlags_Selected;
 			}
 			IconTreeNode(icon_str, key_name.c_str(), node_flag);
-			if (ImGui::IsItemClicked())
+			if (ImGui::IsItemClicked() && _pmobj!=prm)
 			{
 				if (_pmobj)
 				{
@@ -37,6 +37,12 @@ void primitve_edit::draw_primitive_list()
 				}
 				_pmobj = prm;
 				_pmobj->_sel = true;
+				auto& ps_file = _pmobj->_ps_file;
+				char* phead = (char*)ps_file->_pbin;
+				GLuint* phead_buff_len = (GLuint*)phead;
+				phead += 4;
+				_vertex_buff.resize(_pmobj->_vertex_buf_len);
+				memcpy(&_vertex_buff[0], phead, *phead_buff_len);
 			}
 			ImGui::TreePop();
 		}
@@ -51,28 +57,157 @@ void primitve_edit::draw_primitive_item_property()
 		ImGui::Text("Vertex buffer length:%d ,element buffer length:%d", _pmobj->_vertex_buf_len, _pmobj->_ele_buf_len);
 		auto& fmts = _pmobj->_ele_format;
 		static char str_numb[0xa] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-		string str_plus = "+##";
-		string str_minus = "-##";
-		string str_fmt;
-		for (auto& fmt_u:fmts)
+		if (_pmobj->_read_only)
 		{
-			str_fmt += str_numb[fmt_u];
-			str_fmt += ':';
-			//ImGui::Text(str_numb[fmt_u]);
+			string str_fmt;
+			for (auto& fmt_u : fmts)
+			{
+				str_fmt += str_numb[fmt_u];
+				str_fmt += ':';
+			}
+			str_fmt.back() = '\0';
+			ImGui::Text("Element format:%s", str_fmt.c_str());
 		}
-		str_fmt.back() = '\0';
-		ImGui::Text("Element format:%s",str_fmt.c_str());
-		//if (ImGui::Button("new"))
-		//{
-		//	fmts.emplace_back();
-		//	fmts.back() = 1;
-		//}
-		//ImGui::SameLine();
-		//auto fsz = fmts.size();
-		//if (fsz>1&& ImGui::Button("del"))
-		//{
-		//	fmts.resize(fsz - 1);
-		//}
+		else
+		{
+			ImGui::Text("Element format:");
+			string str_minus("-##");
+			auto fsz = fmts.size();
+			string str_plus("+##");
+			GLuint stride = 0;
+			for (int ix = 0; ix < fsz; ix++)
+			{
+				stride += fmts[ix];
+				ImGui::Text("%d",fmts[ix]);
+				if (fmts[ix]>1)
+				{
+					ImGui::SameLine();
+					str_minus += "1";
+					if (ImGui::Button(str_minus.c_str()))
+					{
+						fmts[ix]--;
+					}
+				}
+				if (fmts[ix]<10)
+				{
+					ImGui::SameLine();
+					str_plus += "1";
+					if (ImGui::Button(str_plus.c_str()))
+					{
+						fmts[ix]++;
+					}
+				}
+			}
+
+			if (fsz < 10)
+			{
+				if (ImGui::Button("Add..."))
+				{
+					fmts.emplace_back();
+					fmts.back() = 1;
+				}
+			}
+			if (fsz>1)
+			{
+				if (fsz<10)
+				{
+					ImGui::SameLine();
+				}
+				if (ImGui::Button("Del..."))
+				{
+					fmts.resize(fsz - 1);
+				}
+			}
+			static bool show_xy = true, show_xz = false, show_yz = false;
+
+			if (fmts[0]>2)
+			{
+				if (ImGui::Checkbox("x_y", &show_xy) && show_xy)
+				{
+					show_xz = false;
+					show_yz = false;
+				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("x_z", &show_xz) && show_xz)
+				{
+					show_xy = false;
+					show_yz = false;
+				}
+				ImGui::SameLine();
+				if (ImGui::Checkbox("y_z", &show_yz) && show_yz)
+				{
+					show_xy = false;
+					show_xz = false;
+				}
+
+			}
+			ImGui::SliderFloat("Width of canvas", &canvas_w, 100., 900.);
+			//ImGui::SameLine();
+			ImGui::SliderFloat("Height of canvas", &canvas_h, 100., 900.);
+			if (ImGui::Button("Save..."))
+			{
+				auto& ps_file = _pmobj->_ps_file;
+				char* phead = (char*)ps_file->_pbin;
+				GLuint* phead_buff_len = (GLuint*)phead;
+				phead += 4;
+				memcpy(phead, &_vertex_buff[0], *phead_buff_len);
+				glBindBuffer(GL_ARRAY_BUFFER, _pmobj->_vbo);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_pmobj->_vertex_buf_len, phead, GL_DYNAMIC_DRAW);
+			}
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+			ImGui::PushStyleColor(ImGuiCol_ChildWindowBg, IM_COL32(60, 60, 70, 200));
+			ImVec2 chd_wd_sz(canvas_w, canvas_h);
+
+			ImGui::BeginChild("canvas", chd_wd_sz, true, ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoMove);
+			ImVec2 origin = ImGui::GetCursorScreenPos()+ImVec2(canvas_w/2,canvas_h/2);
+			ImDrawList* draw_list = ImGui::GetWindowDrawList();
+			ImU32 GRID_COLOR = IM_COL32(200, 200, 200, 40);
+			draw_list->AddLine(origin-ImVec2(0,canvas_h/2), origin + ImVec2(0, canvas_h/2), GRID_COLOR);
+			draw_list->AddLine(origin-ImVec2(canvas_w/2,0), origin + ImVec2(canvas_w/2, 0), GRID_COLOR);
+			//auto pt_cnt = _pmobj->_vertex_buf_len / stride;
+			const float pt_radius = 4.;
+			ImU32 pt_col = IM_COL32(200, 150, 150, 250);
+			for (int ix = 0; ix < _pmobj->_vertex_buf_len; ix += stride)
+			{
+				float* pPosx;
+				float* pPosy;
+				if (show_xy)
+				{
+					pPosx= &_vertex_buff[ix];
+					pPosy = &_vertex_buff[ix+1];
+				}
+				else
+				if (show_xz)
+				{
+					pPosx = &_vertex_buff[ix];
+					pPosy = &_vertex_buff[ix + 2];
+				}
+				else
+				{
+					pPosx = &_vertex_buff[ix+1];
+					pPosy = &_vertex_buff[ix + 2];
+				}
+				ImVec2 potrkPt = origin+ImVec2(*pPosx, *pPosy)*ImVec2(canvas_w / 2, canvas_h / 2);
+				draw_list->AddCircleFilled(potrkPt, pt_radius,pt_col);
+				ImVec2 btn_pos = potrkPt - ImVec2(4., 4.);
+				ImGui::SetCursorScreenPos(btn_pos);
+				stringstream stm_tmp;
+				stm_tmp << "in" << ix;
+				string btn_cap=stm_tmp.str();
+				ImGui::InvisibleButton(btn_cap.c_str(), ImVec2(8, 8));
+				if (ImGui::IsItemActive()&&ImGui::IsMouseDragging(0))
+				{
+					auto delta = ImGui::GetIO().MouseDelta*ImVec2(2 / canvas_w, 2 / canvas_h);
+					*pPosx = *pPosx + delta.x;
+					*pPosy = *pPosy + delta.y;
+				}
+			}
+
+			ImGui::EndChild();
+			ImGui::PopStyleColor();
+			ImGui::PopStyleVar();
+		}
+		
 		
 	}
 }

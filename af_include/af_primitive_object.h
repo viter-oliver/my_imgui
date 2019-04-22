@@ -22,9 +22,11 @@ struct primitive_object
 	vector<GLubyte> _ele_format;
 	GLuint _vertex_buf_len;
 	GLuint _ele_buf_len;
+	string _file_name;
 	ps_af_file _ps_file;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
+	bool _read_only{ true };
 #endif // !Im
 
 	primitive_object()

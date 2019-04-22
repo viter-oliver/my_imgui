@@ -165,6 +165,7 @@ void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, a
 	delete[] pface_idx;
 	g_mfiles_list[mesh_unit._prm_id] = ps_file;
 	save_ojfile_to_file(mesh_unit._prm_id);
+	obj_pm._file_name = mesh_unit._prm_id;
 	obj_pm._ps_file = ps_file;
 	// process materials
 	aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];

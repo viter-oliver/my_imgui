@@ -1,5 +1,6 @@
 #include "ft_polygon_image.h"
 #include "res_output.h"
+#include <sstream>
 namespace auto_future
 {
 	ft_polygon_image::ft_polygon_image()
@@ -8,8 +9,19 @@ namespace auto_future
 		memset((char*)_img_pt._pos, 0, sizeof(_img_pt._pos));
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 0, [this](void*){
-			ImGui::SliderInt("pos pair count", &_img_pt._pos_pair_cnt, 2, MAX_POS_PAIR_CNT/2);
+			ImGui::SliderInt("pos pair count", &_img_pt._pos_pair_cnt, 2, MAX_POS_PAIR_CNT);
 		});
+		reg_property_handle(&_img_pt, 1, [this](void*){
+			stringstream stm;
+			for (int ix = 0; ix < _img_pt._pos_pair_cnt;ix++)
+			{
+				stm << "pos pair" << ix;
+				ImGui::SliderFloat4(stm.str().c_str(), (float*)&_img_pt._pos[ix * 2], 0., 400.);
+				stm.str(string());
+				stm.clear();
+			}
+		});
+
 #endif
 	}
 	void ft_polygon_image::draw()
