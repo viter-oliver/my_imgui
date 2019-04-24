@@ -85,22 +85,45 @@ void slider_path_picker::view()
 			_vtrack1.clear();
 		}
 	}	
+	if (!_cur_tacks_file_name.empty())
+	{
+		ImGui::SameLine();
+		if (ImGui::Button("Abandon"))
+		{
+			_cur_tacks_file_name.clear();
+			_vtrack0.clear();
+			_vtrack1.clear();
+		}
+	}
 	static float view_scale = 1.0;
 	ImGui::SliderFloat("view scale", &view_scale, 0.2, 20);
+	static float range_w{ 0. }, range_h{0.};
+	static bool trak_a_image = true;
 	int _txt_index = g_cur_texture_id_index;
 	auto isize = g_vres_texture_list[_txt_index].vtexture_coordinates.size();
-	bool be_changed = ImGui::Combo("picker target", &_img_id, &get_texture_item, &g_vres_texture_list[_txt_index], isize);
-	if (be_changed)
-	{
-		auto& icon_name= g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[_img_id]._file_name;
-		string tr_strk_name = icon_name.substr(0,icon_name.find_last_of('.'));
-		tr_strk_name += ".trk";
-		strcpy(track_file_name, tr_strk_name.c_str());
-	}
+	ImGui::Checkbox("Track a image", &trak_a_image);
 	auto& res_coors = g_vres_texture_list[_txt_index].vtexture_coordinates;
-	auto res_w = res_coors[_img_id].owidth();
-	auto res_h = res_coors[_img_id].oheight();
-	ImGui::Text("original size:%f,%f", res_w, res_h);
+	if (trak_a_image)
+	{
+		bool be_changed = ImGui::Combo("picker target", &_img_id, &get_texture_item, &g_vres_texture_list[_txt_index], isize);
+		if (be_changed)
+		{
+			auto& icon_name = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[_img_id]._file_name;
+			string tr_strk_name = icon_name.substr(0, icon_name.find_last_of('.'));
+			tr_strk_name += ".trk";
+			strcpy(track_file_name, tr_strk_name.c_str());
+		}
+		range_w = res_coors[_img_id].owidth();
+		range_h = res_coors[_img_id].oheight();
+		ImGui::Text("original size:%f,%f", range_w, range_h);
+	}
+	else
+	{
+		ImGui::SliderFloat("Width of range", &range_w, 100, 2000);
+		ImGui::SliderFloat("Height of range", &range_h, 100, 2000);
+
+	}
+
 	bool be_short_cut_add = ImGui::GetIO().KeyCtrl&&ImGui::GetIO().KeysDown[GLFW_KEY_A];
 	static bool be_adding = false;
 	if (!be_short_cut_add)
@@ -145,16 +168,25 @@ void slider_path_picker::view()
 
 	}
 	ImGui::BeginGroup();
-	int txt_id = g_vres_texture_list[_txt_index].texture_id();
-	ImVec2 draw_size(res_w*view_scale, res_h*view_scale);
-	float wtxt_w = g_vres_texture_list[_txt_index].texture_width;
-	float wtxt_h = g_vres_texture_list[_txt_index].texture_height;
-	ImVec2 uv0(res_coors[_img_id]._x0 / wtxt_w, res_coors[_img_id]._y0 / wtxt_h);
-	ImVec2 uv1(res_coors[_img_id]._x1 / wtxt_w, res_coors[_img_id]._y1 / wtxt_h);
 	ImVec2 offset = ImGui::GetCursorScreenPos();
-	ImGui::Image((ImTextureID)txt_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
-	//display tracks
 	ImDrawList* draw_list = ImGui::GetWindowDrawList();
+	ImVec2 draw_size(range_w*view_scale, range_h*view_scale);
+	if (trak_a_image)
+	{
+		int txt_id = g_vres_texture_list[_txt_index].texture_id();
+		float wtxt_w = g_vres_texture_list[_txt_index].texture_width;
+		float wtxt_h = g_vres_texture_list[_txt_index].texture_height;
+		ImVec2 uv0(res_coors[_img_id]._x0 / wtxt_w, res_coors[_img_id]._y0 / wtxt_h);
+		ImVec2 uv1(res_coors[_img_id]._x1 / wtxt_w, res_coors[_img_id]._y1 / wtxt_h);
+		ImGui::Image((ImTextureID)txt_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+	}
+	else
+	{
+		ImVec2 pos0 = offset;
+		ImVec2 pos1 = offset + draw_size;
+		draw_list->AddRect(pos0, pos1, IM_COL32(255, 255, 0, 255));
+	}
+	//display tracks
 	int idm = _vtrack0.size() - 1;
 	ImU32 GRID_COLOR = IM_COL32(200, 250, 250, 250);
 	const float pt_radius = 4.;
@@ -195,17 +227,17 @@ void slider_path_picker::view()
 				{
 					trk_itm.x = 0;
 				}
-				if (trk_itm.x>res_w)
+				if (trk_itm.x>range_w)
 				{
-					trk_itm.x = res_w;
+					trk_itm.x = range_w;
 				}
 				if (trk_itm.y < 0)
 				{
 					trk_itm.y = 0;
 				}
-				if (trk_itm.y > res_h)
+				if (trk_itm.y > range_h)
 				{
-					trk_itm.y = res_h;
+					trk_itm.y = range_h;
 				}
 
 

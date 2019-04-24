@@ -795,7 +795,7 @@ int main(int argc, char* argv[])
 		}
 		if (show_edit_window)
 		{
-			ImGui::SetNextWindowSize(ImVec2(1920, 720), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowSize(ImVec2(base_ui_component::screenw, base_ui_component::screenh), ImGuiCond_FirstUseEver);
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
 			
@@ -856,7 +856,7 @@ int main(int argc, char* argv[])
 		}
 		if (show_slider_path_picker)
 		{
-			ImGui::Begin("Slider path picker", &show_slider_path_picker, ImVec2(500, 600));
+			ImGui::Begin("Slider path picker", &show_slider_path_picker, ImVec2(500, 600),0.5);
 			g_slider_path_picker.view();
 			ImGui::End();
 		}

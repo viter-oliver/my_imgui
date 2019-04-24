@@ -6,6 +6,8 @@
 #include <ShlObj.h>
 #include <Commdlg.h>
 #include "texture_res_load.h"
+#include "control_common_def.h"
+
 res_edit::res_edit()
 {
 	_tmp_current_txt_id_index = g_cur_texture_id_index;
@@ -20,6 +22,9 @@ res_edit::~res_edit()
 
 void res_edit::draw_res_list()
 {
+	ImGui::SliderFloat("Width of screen", &base_ui_component::screenw,100.,2000.);
+	ImGui::SliderFloat("Height of screen", &base_ui_component::screenh, 100., 2000.);
+
 	int isize=g_vres_texture_list.size();
 	static const char* texture_res_show[]{"texture0", "texture1", "texture2", "texture3", "texture4",};
 	ImGui::Combo("Spliced texture list", &_tmp_current_txt_id_index, texture_res_show, isize);

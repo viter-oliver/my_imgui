@@ -37,6 +37,7 @@ namespace auto_future
 		if (alen>0)
 		{
 			_custom_mid_track.resize(alen);
+			_custom_track_segment.clear();
 			ImVec2 prev_midpoint = { -1, 0 };
 			_custom_trace_length = 0;
 			for (int ix = 0; ix < alen;++ix)

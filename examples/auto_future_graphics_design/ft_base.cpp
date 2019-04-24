@@ -187,6 +187,7 @@ namespace auto_future
 		memcpy(pdest, pvalue, fd_ele._count + fd_ele._tpsz);
 		prop_ele_position cur_prp_ele_pos = { this, pg_id, fd_id};
 		calcu_bind_node(cur_prp_ele_pos);
+		return true;
 	}
 	base_ui_component* ft_base::get_copy_of_object()
 	{

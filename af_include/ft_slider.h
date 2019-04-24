@@ -50,11 +50,6 @@ namespace auto_future
 		vector<ImVec2> _custom_mid_track;
 		vector<float> _custom_track_segment;
 		float _custom_trace_length{ 0.f };
-
-		point_pair _pre_point_2vec2;
-		point_pair _next_point_2vec2;
-
-		point_pair _current_point_2vec2_thumb_use;
 	};
 
 	REGISTER_CONTROL(ft_slider)
