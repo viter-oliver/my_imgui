@@ -42,9 +42,10 @@ void slider_path_picker::view()
 	{
 		ImGui::Text("track file name:%s", _cur_tacks_file_name.c_str());
 	}
+	auto alen = _vtrack0.size();
+
 	if (ImGui::Button("Save to track file"))
 	{
-		auto alen = _vtrack0.size();
 		auto asize = sizeof(ImVec2)*alen;
 		GLuint file_sz = asize * 2 + 4;
 		if (_cur_tacks_file_name.empty())
@@ -123,7 +124,107 @@ void slider_path_picker::view()
 		ImGui::SliderFloat("Height of range", &range_h, 100, 2000);
 
 	}
+	alen = _vtrack0.size();
+	ImGui::SliderInt("Pair id", &_pair_id, 0, alen - 1);
+	if (_pair_id<alen)
+	{
+		ImGui::SliderFloat2("left point", (float*)&_vtrack0[_pair_id], 0,range_w);
+		ImGui::SliderFloat2("right point", (float*)&_vtrack1[_pair_id], 0, range_w);
 
+	}
+	static bool smooth_x=true;
+	ImGui::Checkbox("Smooth x:", &smooth_x);
+	static const int algorithm_cnt = 3;
+	static int algorithm_id = 0;
+	static bool(*smooth_algorithm[algorithm_cnt])(vector<ImVec2>&, bool) =
+	{
+		smooth_algorithm_5_points_3_times,
+		smooth_algoritm_3_points_average,
+		smooth_algorithm_5_points_average
+	};
+	static const char* smooth_algorithm_name[algorithm_cnt] =
+	{
+		"5 points and 3 times",
+		"average of 3 points",
+		"average of 5 points",
+	};
+	ImGui::Combo("smooth algorithm:", &algorithm_id, smooth_algorithm_name,algorithm_cnt);
+	if (ImGui::Button("Smooth the track"))
+	{
+		vector<float> tk_seg_len;
+		int tlen = _vtrack0.size();
+		tk_seg_len.resize(tlen);
+		if (smooth_x)
+		{
+			for (int ix = 0; ix < tlen;ix++)
+			{
+				tk_seg_len[ix] = _vtrack1[ix].x - _vtrack0[ix].x;
+			}
+			smooth_algorithm[algorithm_id](_vtrack0,true);
+			for (int ix = 0; ix < tlen;ix++)
+			{
+				_vtrack1[ix].x = _vtrack0[ix].x + tk_seg_len[ix];
+			}
+		}
+		else
+		{
+			for (int ix = 0; ix < tlen; ix++)
+			{
+				tk_seg_len[ix] = _vtrack1[ix].y - _vtrack0[ix].y;
+			}
+			smooth_algorithm[algorithm_id](_vtrack0, false);
+			for (int ix = 0; ix < tlen; ix++)
+			{
+				_vtrack1[ix].y = _vtrack0[ix].y + tk_seg_len[ix];
+			}
+		}
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Level the track"))
+	{
+		int tlen = _vtrack0.size();
+		for (int ix = 0; ix < tlen;ix++)
+		{
+			_vtrack1[ix].y = _vtrack0[ix].y;
+		}
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Average the width"))
+	{
+		int tlen = _vtrack0.size();
+		if (tlen>2)
+		{
+			float wd0 = _vtrack1[0].x - _vtrack0[0].x;
+			float wd1 = _vtrack1[1].x - _vtrack0[1].x;
+			float wdelta = wd1 - wd0;
+			for (int ix = 2; ix < tlen;ix++)
+			{
+				wd1 += wdelta;
+				_vtrack1[ix].x = _vtrack0[ix].x + wd1;
+			}
+		}
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Average the height"))
+	{
+		int tlen = _vtrack0.size();
+		if (tlen > 2)
+		{
+			float hd0 = _vtrack0[1].y - _vtrack0[0].y;
+			float hd1 = _vtrack0[2].y - _vtrack0[1].y;
+			float hdelta = hd1 - hd0;
+			float y0 = _vtrack0[2].y;
+			float y1 = _vtrack1[2].y;
+			for (int ix = 3; ix < tlen; ix++)
+			{
+				hd1 += hdelta;
+				y0 += hd1;
+				y1 += hd1;
+				_vtrack0[ix].y = y0;
+				_vtrack1[ix].y = y1;
+			}
+		}
+	}
 	bool be_short_cut_add = ImGui::GetIO().KeyCtrl&&ImGui::GetIO().KeysDown[GLFW_KEY_A];
 	static bool be_adding = false;
 	if (!be_short_cut_add)

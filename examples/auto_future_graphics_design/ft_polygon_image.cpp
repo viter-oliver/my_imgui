@@ -8,17 +8,23 @@ namespace auto_future
 	extern float length_of_p2p(ImVec2& p0, ImVec2&p1);
 	void ft_polygon_image::read_track_file(const char* track_file)
 	{
-		auto ifile = g_mfiles_list.find(track_file);
+		auto& ifile = g_mfiles_list.find(track_file);
 		if (ifile != g_mfiles_list.end())
 		{
-			_ps_track_file = ifile->second;
-			char* pData = (char*)_ps_track_file->_pbin;
-			auto buff_sz = _ps_track_file->_fsize;
+			auto& p_trk_file=ifile->second;
+			char* pData = (char*)p_trk_file->_pbin;
+			auto buff_sz = p_trk_file->_fsize;
 			auto alen = conver_track_buff_to_pair(pData, buff_sz, _track0, _track1);
 			_track_segs0.clear();
 			_track_segs1.clear();
 			_seg_len0 = _seg_len1 = 0.;
-			for (int ix = 0; ix < alen - 1; ix++)
+			_ps_track_file = ifile->second;
+			if (alen<2)
+			{
+				_ps_track_file = nullptr;
+				return;
+			}
+			for (int ix = 0; ix < (int)alen - 1; ix++)
 			{
 				auto back0 = length_of_p2p(_track0[ix], _track0[ix + 1]);
 				_seg_len0 += back0;
@@ -90,6 +96,10 @@ namespace auto_future
 		float udelta = x1 - x0;
 		float vdelta = y1 - y0;
 		auto pt_cnt = _track0.size();
+		if (pt_cnt<2)
+		{
+			return;
+		}
 		float prs_value0 = _img_pt._progrss_nml*_seg_len0;
 		float prs_value1 = _img_pt._progrss_nml*_seg_len1;
 		float prs_value = (prs_value0 + prs_value1) / 2.0;
@@ -173,17 +183,19 @@ namespace auto_future
 			ImVec2 pos1 = basePpos + _track0[ix + 1];
 			ImVec2 pos2 = basePpos + _track1[ix + 1];
 			ImVec2 pos3 = basePpos + _track1[ix];
-			auto v_p0 = v_seg0 / _seg_len0;
-			auto v_p1 = v_seg1 / _seg_len1;
-			auto v_n0 = _track_segs0[ix] / _seg_len0;
-			auto v_n1 = _track_segs1[ix] / _seg_len1;
+			v_p0 = v_seg0 / _seg_len0;
+			v_p1 = v_seg1 / _seg_len1;
+			v_seg0 += _track_segs0[ix];
+			v_seg1 += _track_segs1[ix];
+
+			v_n0 = v_seg0 / _seg_len0;
+			v_n1 = v_seg1 / _seg_len1;
+
 			ImVec2 uv0(x0, ybase + v_p0 * vdelta);
 			ImVec2 uv1(x0, ybase + v_n0 * vdelta);
 			ImVec2 uv2(x1, ybase + v_n1 * vdelta);
 			ImVec2 uv3(x1, ybase + v_p1 * vdelta);
 			ImGui::ImageQuad((ImTextureID)texture_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3);
-			v_seg0 = _track_segs0[ix];
-			v_seg1 = _track_segs1[ix];
 		}
 
 		ft_base::draw();

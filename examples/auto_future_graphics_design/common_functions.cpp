@@ -452,3 +452,127 @@ unsigned int conver_track_buff_to_pair(char* pbuff,unsigned int buff_len, vector
 	memcpy(&vtrack1[0], phead1, wtrack_sz);
 	return array_len;
 }
+//5点3次平滑法
+bool smooth_algorithm_5_points_3_times(vector<ImVec2>& point_list, bool x_direction)
+{
+	int pt_cnt = point_list.size();
+	if (pt_cnt<5)
+	{
+		return false;
+	}
+	vector<float> t_v;
+	t_v.resize(pt_cnt);
+	if (x_direction)
+	{
+		t_v[0] = (5 * point_list[0].x + 2 * point_list[1].x - point_list[2].x)  / 6;
+		t_v[pt_cnt - 1] = (2 * point_list[pt_cnt - 2].x - point_list[pt_cnt - 3].x + 5 * point_list[pt_cnt - 1].x) / 6;
+		for (int i = 1; i < pt_cnt - 1;i++)
+		{
+			t_v[i] = (point_list[i - 1].x + point_list[i].x + point_list[i + 1].x) / 3;
+		}
+		for (int i = 0; i < pt_cnt; i++)
+		{
+			point_list[i].x = t_v[i];
+		}
+	}
+	else
+	{
+		t_v[0] = (5 * point_list[0].y + 2 * point_list[1].y - point_list[2].y) / 6;
+		t_v[pt_cnt - 1] = (2 * point_list[pt_cnt - 2].y - point_list[pt_cnt - 3].y + 5 * point_list[pt_cnt - 1].y) / 6;
+		for (int i = 1; i < pt_cnt - 1; i++)
+		{
+			t_v[i] = (point_list[i - 1].y + point_list[i].y + point_list[i + 1].y) / 3;
+		}
+		for (int i = 0; i < pt_cnt; i++)
+		{
+			point_list[i].y = t_v[i];
+		}
+
+	}
+	return true;
+}
+//直线3点平均平滑法
+bool smooth_algoritm_3_points_average(vector<ImVec2>& point_list, bool x_direction)
+{
+	int pt_cnt = point_list.size();
+	if (pt_cnt < 4)
+	{
+		return false;
+	}
+	vector<float> t_v;
+	t_v.resize(pt_cnt);
+	if (x_direction)
+	{
+		t_v[0] = (3 * point_list[0].x + 2 * point_list[1].x+point_list[2].x - point_list[4].x) / 5;
+		t_v[1] = (4 * point_list[0].x + 3 * point_list[1].x + 2 * point_list[2].x + point_list[3].x) / 10;
+		t_v[pt_cnt - 2] = (point_list[pt_cnt - 4].x + 2 * point_list[pt_cnt - 3].x + 3 * point_list[pt_cnt - 2].x+ 4 * point_list[pt_cnt - 1].x) /10;
+		t_v[pt_cnt - 1] = (point_list[pt_cnt - 3].x - point_list[pt_cnt - 5].x + 2 * point_list[pt_cnt - 2].x + 3 * point_list[pt_cnt - 1].x) / 5;
+		for (int i = 2; i < pt_cnt - 2; i++)
+		{
+			t_v[i] = (point_list[i - 2].x + point_list[i - 1].x + point_list[i].x + point_list[i + 1].x + point_list[i + 2].x) / 5;
+		}
+		for (int i = 0; i < pt_cnt; i++)
+		{
+			point_list[i].x = t_v[i];
+		}
+	}
+	else
+	{
+		t_v[0] = (3 * point_list[0].y + 2 * point_list[1].y + point_list[2].y - point_list[4].y) / 5;
+		t_v[1] = (4 * point_list[0].y + 3 * point_list[1].y + 2 * point_list[2].y + point_list[3].y) / 10;
+		t_v[pt_cnt - 2] = (point_list[pt_cnt - 4].y + 2 * point_list[pt_cnt - 3].y + 3 * point_list[pt_cnt - 2].y + 4 * point_list[pt_cnt - 1].y) / 10;
+		t_v[pt_cnt - 1] = (point_list[pt_cnt - 3].y - point_list[pt_cnt - 5].y + 2 * point_list[pt_cnt - 2].y + 3 * point_list[pt_cnt - 1].y) / 5;
+		for (int i = 2; i < pt_cnt - 2; i++)
+		{
+			t_v[i] = (point_list[i - 2].y + point_list[i - 1].y + point_list[i].y + point_list[i + 1].y + point_list[i + 2].y) / 5;
+		}
+		for (int i = 0; i < pt_cnt; i++)
+		{
+			point_list[i].y = t_v[i];
+		}
+	}
+	return true;
+}
+//直线5点平均平滑法
+bool smooth_algorithm_5_points_average(vector<ImVec2>& point_list, bool x_direction)
+{
+	int pt_cnt = point_list.size();
+	if (pt_cnt <5)
+	{
+		return false;
+	}
+	vector<float> t_v;
+	t_v.resize(pt_cnt);
+	if (x_direction)
+	{
+		t_v[0] = (69 * point_list[0].x + 4 * (point_list[1].x + point_list[3].x) - 6*point_list[3].x - point_list[5].x) / 70;
+		t_v[1] = (2 * (point_list[0].x + point_list[4].x) + 27 * point_list[1].x + 12 * point_list[2].x - 8*point_list[3].x) / 35;
+		t_v[pt_cnt - 2] = (2 * (point_list[pt_cnt - 5].x+point_list[pt_cnt - 1].x) - 8 * point_list[pt_cnt - 4].x + 12 * point_list[pt_cnt - 3].x + 27 * point_list[pt_cnt - 2].x) / 35;
+		t_v[pt_cnt - 1] = (4 * (point_list[pt_cnt - 4].x + point_list[pt_cnt - 2].x) - point_list[pt_cnt - 5].x + 6 * point_list[pt_cnt - 3].x + 69 * point_list[pt_cnt - 1].x) / 70;
+		for (int i = 2; i < pt_cnt - 2; i++)
+		{
+			t_v[i] = (12*(point_list[i - 1].x + point_list[i + 1].x) -3*( point_list[i-2].x + point_list[i + 2].x) + 17*point_list[i].x) / 35;
+		}
+		for (int i = 0; i < pt_cnt; i++)
+		{
+			point_list[i].x = t_v[i];
+		}
+	}
+	else
+	{
+		t_v[0] = (69 * point_list[0].y + 4 * (point_list[1].y + point_list[3].y) - 6 * point_list[3].y - point_list[5].y) / 70;
+		t_v[1] = (2 * (point_list[0].y + point_list[4].y) + 27 * point_list[1].y + 12 * point_list[2].y - 8 * point_list[3].y) / 35;
+		t_v[pt_cnt - 2] = (2 * (point_list[pt_cnt - 5].y + point_list[pt_cnt - 1].y) - 8 * point_list[pt_cnt - 4].y + 12 * point_list[pt_cnt - 3].y + 27 * point_list[pt_cnt - 2].y) / 35;
+		t_v[pt_cnt - 1] = (4 * (point_list[pt_cnt - 4].y + point_list[pt_cnt - 2].y) - point_list[pt_cnt - 5].y + 6 * point_list[pt_cnt - 3].y + 69 * point_list[pt_cnt - 1].y) / 70;
+		for (int i = 2; i < pt_cnt - 2; i++)
+		{
+			t_v[i] = (12 * (point_list[i - 1].y + point_list[i + 1].y) - 3 * (point_list[i - 2].y + point_list[i + 2].y) + 17 * point_list[i].y) / 35;
+		}
+		for (int i = 0; i < pt_cnt; i++)
+		{
+			point_list[i].y = t_v[i];
+		}
+	}
+	return true;
+	return true;
+}

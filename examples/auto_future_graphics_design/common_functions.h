@@ -26,6 +26,13 @@ extern void trim_align_expression(string& exp, string&expo);
 extern void convert_binary_to_string(char* pbin, int len, string& out_str);
 extern void convert_string_to_binary(string& in_str, string& out_bin);
 extern unsigned int conver_track_buff_to_pair(char* pbuff,unsigned int buff_len, vector<ImVec2>& vtrack0, vector<ImVec2>& vtrack1);
+//5点3次平滑法
+extern bool smooth_algorithm_5_points_3_times(vector<ImVec2>& point_list, bool x_direction = true);
+//直线3点平均平滑法
+extern bool smooth_algoritm_3_points_average(vector<ImVec2>& point_list, bool x_direction = true);
+//直线5点平均平滑法
+extern bool smooth_algorithm_5_points_average(vector<ImVec2>& point_list, bool x_direction = true);
+
 template<class T> string find_a_key_from_mp(T& mp, string& ref_key)
 {
 	string chk_key = ref_key;
