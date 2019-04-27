@@ -6,7 +6,15 @@
 static inline ImVec2 operator+(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x + rhs.x, lhs.y + rhs.y); }
 static inline ImVec2 operator-(const ImVec2& lhs, const ImVec2& rhs) { return ImVec2(lhs.x - rhs.x, lhs.y - rhs.y); }
 static inline ImVec2 operator*(const ImVec2& lhs, const float scl) { return ImVec2(lhs.x *scl, lhs.y*scl); }
-
+static float leng_of_imv(ImVec2& vt)
+{
+	return sqrt(vt.x*vt.x+vt.y*vt.y);
+}
+static float length_of_p2p(ImVec2& p0, ImVec2&p1)
+{
+	ImVec2 delta = p1 - p0;
+	return leng_of_imv(delta);
+}
 void slider_path_picker::view()
 {
 	ImGui::SetNextWindowSize(ImVec2(700, 600), ImGuiSetCond_FirstUseEver);
@@ -183,27 +191,22 @@ void slider_path_picker::view()
 	if (ImGui::Button("Level the track"))
 	{
 		int tlen = _vtrack0.size();
-		for (int ix = 0; ix < tlen;ix++)
-		{
-			_vtrack1[ix].y = _vtrack0[ix].y;
-		}
-	}
-	ImGui::SameLine();
-	if (ImGui::Button("Average the width"))
-	{
-		int tlen = _vtrack0.size();
 		if (tlen>2)
 		{
-			float wd0 = _vtrack1[0].x - _vtrack0[0].x;
-			float wd1 = _vtrack1[1].x - _vtrack0[1].x;
+
+			float wd0 = length_of_p2p(_vtrack1[0], _vtrack0[0]);
+			float wd1 = length_of_p2p(_vtrack1[1], _vtrack0[1]);
 			float wdelta = wd1 - wd0;
-			for (int ix = 2; ix < tlen;ix++)
+			float wdnm = 1 / wd0;
+			ImVec2 dir = (_vtrack1[0] - _vtrack0[0])*wdnm;
+			for (int ix = 1; ix < tlen; ix++)
 			{
-				wd1 += wdelta;
-				_vtrack1[ix].x = _vtrack0[ix].x + wd1;
+				wd0 += wdelta;
+				_vtrack1[ix] = _vtrack0[ix] + dir*wd0;
 			}
 		}
 	}
+	
 	ImGui::SameLine();
 	if (ImGui::Button("Average the height"))
 	{
@@ -222,6 +225,24 @@ void slider_path_picker::view()
 				y1 += hd1;
 				_vtrack0[ix].y = y0;
 				_vtrack1[ix].y = y1;
+			}
+		}
+	}
+	ImGui::SameLine();
+	if (ImGui::Button("Straighten"))
+	{
+		int tlen = _vtrack0.size();
+		if (tlen > 2)
+		{
+			ImVec2 wdir = _vtrack0[0] - _vtrack0[tlen - 1];
+			float wlen = leng_of_imv(wdir);
+			float plen = wlen / (tlen - 1);
+			float wlen_nm = 1/wlen;
+			ImVec2 wdir_nm = wdir*wlen_nm;
+			for (int ix = 1; ix < tlen;ix++)
+			{
+				_vtrack0[ix] = _vtrack0[0] - wdir_nm*plen*ix;
+				_vtrack1[ix] = _vtrack1[0] - wdir_nm*plen*ix;
 			}
 		}
 	}

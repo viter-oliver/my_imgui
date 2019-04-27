@@ -203,6 +203,7 @@
     <ClCompile Include="ft_plane_play_2d.cpp" />
     <ClCompile Include="ft_plot_lines.cpp" />
     <ClCompile Include="ft_circle.cpp" />
+    <ClCompile Include="ft_quad_image.cpp" />
     <ClCompile Include="ft_slider.cpp" />
     <ClCompile Include="ft_slider_thumb.cpp" />
     <ClCompile Include="ft_sphere_3d.cpp" />
@@ -273,6 +274,7 @@
     <ClInclude Include="..\..\af_include\ft_plane_play_2d.h" />
     <ClInclude Include="..\..\af_include\ft_plot_lines.h" />
     <ClInclude Include="..\..\af_include\ft_polygon_image.h" />
+    <ClInclude Include="..\..\af_include\ft_quad_image.h" />
     <ClInclude Include="..\..\af_include\ft_scene.h" />
     <ClInclude Include="..\..\af_include\ft_slider.h" />
     <ClInclude Include="..\..\af_include\ft_slider_thumb.h" />

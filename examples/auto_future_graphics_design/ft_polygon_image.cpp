@@ -93,6 +93,9 @@ namespace auto_future
 		float y0 = ptext_cd[_img_pt._img_txt]._y0/th;
 		float x1 = ptext_cd[_img_pt._img_txt]._x1/tw;
 		float y1 = ptext_cd[_img_pt._img_txt]._y1/th;
+		float wdelta = (y1 - y0) / 80.0;
+		y0 += wdelta;
+		y1 -= wdelta;
 		float udelta = x1 - x0;
 		float vdelta = y1 - y0;
 		auto pt_cnt = _track0.size();
@@ -161,7 +164,8 @@ namespace auto_future
 		{
 			ImGui::ImageQuad((ImTextureID)texture_id, cs_pos0, cs_pos_c0, cs_pos_c1, cs_pos1, cs_uv0, cs_uv_c0, cs_uv_c1, cs_uv1);
 		}
-
+		cs_pos_c0 = cs_pos0 + dir0_nml*(delta_len0-delta_len0/10);
+		cs_pos_c1 = cs_pos1 + dir1_nml*(delta_len1-delta_len1/10);
 		ybase = y0;
 		cs_uv_c0 = { x0, ybase };
 		cs_uv_c1 = { x0, ybase };

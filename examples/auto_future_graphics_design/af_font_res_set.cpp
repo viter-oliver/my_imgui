@@ -38,23 +38,36 @@ namespace auto_future
 		//	_font_mg.clear_texture(_font_rp._txt_id);
 		//	_font_rp._font_size = fontSize;
 		//}
-		auto ifrp = _dic_frep.find(fontSize);
+
 		txt_font_repository* pfrp = nullptr;
-		if (ifrp==_dic_frep.end())
+		GLint max_beary = 0;
+		auto& ifont = _dic_fonts.find(fontFace);
+		if (ifont!=_dic_fonts.end())
 		{
-			init_txt_font_repository(fontSize, _dic_frep[fontSize]);
-			pfrp = &_dic_frep[fontSize];
+			auto& f_u = *ifont->second;
+			auto& irep= f_u._ft_rep.find(fontSize);
+			if (irep!=f_u._ft_rep.end())
+			{
+				pfrp = &irep->second;
+			}
+			else
+			{
+				init_txt_font_repository(fontSize, f_u._ft_rep[fontSize]);
+				pfrp = &f_u._ft_rep[fontSize];
+			}
+			if (!pfrp->_be_full)
+			{
+				load_chars(f_u._ft_face, *pfrp, str_content, max_beary);
+			}
 		}
 		else
 		{
-			pfrp =& ifrp->second;
+			printf("unknown fontface:%s\n", fontFace.c_str());
+			return;
 		}
-		GLint max_beary = 0;
+
 		bool be_break = str_content[0] == L'O'&&str_content[1] == L'S';
-		if (!pfrp->_be_full)
-		{
-			load_chars(fontFace, *pfrp, str_content, max_beary);
-		}
+		
 		end_pos = start_pos;
 		float base_line = start_pos.y + (float)max_beary;
 		float str_most_right_edge = start_pos.x + width;
@@ -83,7 +96,7 @@ namespace auto_future
 					if (omit_rest)
 					{
 						wstring omit_sign = L"…";
-						load_chars(fontFace, *pfrp, omit_sign, max_beary);
+						load_chars(ifont->second->_ft_face, *pfrp, omit_sign, max_beary);
 						auto& glyph_omit = txt_cd_container.find(omit_sign[0]);
 						auto& glyph_omit_txt_cd = glyph_omit->second;
 						bearing = glyph_omit_txt_cd._bearing;
