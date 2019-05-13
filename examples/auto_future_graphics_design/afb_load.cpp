@@ -449,6 +449,7 @@ void afb_load::load_afb(const char* afb_file)
 			auto shd_data = shd_uf_unit.via.array.ptr[5];
 			auto wsize = shd_uf_usize.as<GLuint>()*shd_uf_el_size.as<GLuint>();
 			memcpy(pnunf->get_data_head(), shd_data.via.bin.ptr,wsize);
+			pnunf->link();
 			mpshd_uf[pshd_uf_name] = pnunf;
 			delete[] pshd_uf_name;
 			delete[] pshd_uf_type;

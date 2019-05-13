@@ -37,6 +37,10 @@ struct res_texture_list
 	unsigned int texture_id()
 	{
 #ifdef IMGUI_DISABLE_DEMO_WINDOWS
+		if(!_is_separated)
+		{
+			return txt_id;
+		}
 		while (!_loaded)
 		{
 			this_thread::yield();
@@ -97,6 +101,10 @@ struct af_texture
 	GLuint _txt_id()
 	{
 #ifdef IMGUI_DISABLE_DEMO_WINDOWS
+		if(!_is_separated)
+		{
+			return _atxt_id;
+		}
 		while (!_loaded)
 		{
 			this_thread::yield();

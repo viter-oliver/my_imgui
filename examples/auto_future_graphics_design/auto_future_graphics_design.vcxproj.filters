@@ -271,6 +271,9 @@
     <ClCompile Include="ft_quad_image.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="ft_material_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -583,6 +586,7 @@
       <Filter>json</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="..\graphics_app_arhud\graphics_app_scomm_arhud.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="auto_future_graphics_design.rc">

@@ -13,6 +13,7 @@ using namespace Json;
 #define ASSERT_MESSAGE(condition, message) if (!(condition)) throw std::runtime_error(message);
 #include <string>
 #include "fab.h"
+#include "af_type.h"
 #include "res_output.h"
 using namespace fab;
 using namespace std;
@@ -34,8 +35,9 @@ public:
 	void set_type(GLenum uft){ _utype = uft; }
 	GLenum get_type(){ return _utype; }
 	virtual ~shader_uf(){}
-	GLuint usize(){ return _usize; }
-	GLuint elsize(){ return _el_size; }
+	virtual GLuint usize(){ return _usize; }
+	virtual GLuint elsize(){ return _el_size; }
+	virtual void link(){}
 	virtual void set_to_loaction(GLuint location)=0;
 
 };
@@ -328,7 +330,7 @@ REG_SHADER_UF(shader_uf_double);
 
 class shader_uf_txt :public shader_uf
 {
-	string _txt_name;
+	char _txt_name[FILE_NAME_LEN];
 	ps_af_texture _pdtxt;
 	static GLuint _sample_index;
 public:
@@ -340,6 +342,7 @@ public:
 	{
 		_sample_index = 0;
 	}
+
 	void set_to_loaction(GLuint location)
 	{
 		if (!_pdtxt)
@@ -367,7 +370,16 @@ public:
 	}
 	void* get_data_head()
 	{
-		return 0;
+		return &_txt_name[0];
+	}
+	GLuint usize(){ return 1; }
+	GLuint elsize(){ return strlen(_txt_name); }
+	void link(){
+		auto& itxt = g_mtexture_list.find(_txt_name);
+		if (itxt != g_mtexture_list.end())
+		{
+			_pdtxt = itxt->second;
+		}
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void edit();

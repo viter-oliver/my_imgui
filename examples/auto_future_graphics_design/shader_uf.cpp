@@ -1,7 +1,6 @@
 #include "shader_uf.h"
 #include<string>
 #include<sstream>
-#include "af_type.h"
 using namespace std;
 #include "user_control_imgui.h"
 GLuint shader_uf_txt::_sample_index = 0;
@@ -292,16 +291,14 @@ void shader_uf_double::init_from_json(Value& jvalue)
 
 void shader_uf_txt::edit()
 {
-	static char str_txt_name[FILE_NAME_LEN] = { 0 };
 	if (_pdtxt)
 	{
-		ImGui::Text("Texture name:%s", _txt_name.c_str());
+		ImGui::Text("Texture name:%s", _txt_name);
 		ImGui::SameLine();
 		if (ImGui::Button("Delink##txtname"))
 		{
 			_pdtxt = nullptr;
-			_txt_name = "";
-			str_txt_name[0] = '\0';
+			_txt_name[0] = '\0';
 		}
 		ImGui::Text("Size:%u,%u", _pdtxt->_width, _pdtxt->_height);
 		float imw = _pdtxt->_width, imh = _pdtxt->_height;
@@ -314,18 +311,17 @@ void shader_uf_txt::edit()
 	}
 	else
 	{
-		ImGui::InputText("Texture name", str_txt_name, FILE_NAME_LEN);
+		ImGui::InputText("Texture name", _txt_name, FILE_NAME_LEN);
 		if (ImGui::Button("Link##txtobj"))
 		{
-			auto& itxt = g_mtexture_list.find(str_txt_name);
+			auto& itxt = g_mtexture_list.find(_txt_name);
 			if (itxt!=g_mtexture_list.end())
 			{
 				_pdtxt = itxt->second;
-				_txt_name = str_txt_name;
 			}
 			else
 			{
-				str_txt_name[0] = '\0';
+				_txt_name[0] = '\0';
 			}
 		}
 	}
@@ -339,7 +335,7 @@ void shader_uf_txt::output_2_json(Value& jvalue)
 void shader_uf_txt::init_from_json(Value& jvalue)
 {
 	shader_uf::init_from_json(jvalue);
-	_txt_name = jvalue["txt_name"].asString();
+	strcpy(_txt_name,jvalue["txt_name"].asCString());
 	auto& itxt = g_mtexture_list.find(_txt_name);
 	if (itxt!=g_mtexture_list.end())
 	{

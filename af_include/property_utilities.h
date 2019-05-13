@@ -60,9 +60,7 @@ struct field_ele
 	int _offset;
 	char* _address;
 	int _count;
-	/*vector<prop_ele_position> _param_list;
-	vector<prop_ele_position> _reference_list;
-	string _expression;*/
+
 	field_ele(std::string tp, std::string nm, int tpsz, int offset)
 		:_type(tp), _name(nm),_tpsz(tpsz),_offset(offset),_address(0),_count(0)
 	{

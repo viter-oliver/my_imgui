@@ -195,6 +195,7 @@
     <ClCompile Include="ft_block.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
     <ClCompile Include="ft_material_2d.cpp" />
+    <ClCompile Include="ft_material_3d.cpp" />
     <ClCompile Include="ft_modeling_3d.cpp" />
     <ClCompile Include="ft_particles_3d.cpp" />
     <ClCompile Include="ft_particles1_3d.cpp" />
@@ -343,6 +344,7 @@
     <None Include="..\..\json\json_internalarray.inl" />
     <None Include="..\..\json\json_internalmap.inl" />
     <None Include="..\..\json\json_valueiterator.inl" />
+    <None Include="..\graphics_app_arhud\graphics_app_scomm_arhud.vcxproj" />
     <None Include="..\README.txt" />
     <None Include="ClassDiagram.cd" />
     <None Include="internal_texture_dataformat.json" />

@@ -865,7 +865,7 @@ int main(int argc, char* argv[])
 		{
 			ImGui::Begin("Aliases edit", &show_aliase_edit, ImVec2(400, 400));
 			ImGui::Columns(2);
-			ImGui::SetColumnWidth(0, 200);
+			//ImGui::SetColumnWidth(0, 200);
 			g_aliase_edit.aliase_dic_view();
 			ImGui::NextColumn();
 			g_aliase_edit.aliase_item_propoerty();

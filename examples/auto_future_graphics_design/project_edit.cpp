@@ -3,6 +3,7 @@
 #include "res_output.h"
 #include <GLFW/glfw3.h>
 #include "command_element_delta.h"
+#include "af_state_manager.h"
 /*
 1、如果是末端则flags|leaf，否则flags|openonarrow
 2、所有node都是selectable,如果ctrl则保留上次的node的selected状态，如果此次!ctrl则遗弃上次的selected node状态
@@ -140,9 +141,78 @@ void project_edit::popup_context_menu()
 			base_ui_component* pparent = _pcurrent_object->get_parent();
 			if (pparent)
 			{
+				bool find_ref = false;
+				auto find_ref_in_mstate_manager = [&](base_ui_component* pobj){
+					for (auto& istm : g_mstate_manager)
+					{
+						auto& stm = *istm.second;
+						int ix = 0, isz = stm._prop_list.size();
+						for (; ix < isz; ix++)
+						{
+							auto& prp_pos = stm._prop_list[ix];
+							if (prp_pos._pobj == pobj)
+							{
+								return true;
+							}
+						}
+					}
+					return false;
+				};
+				auto find_ref_in_alias = [&](base_ui_component* pobj){
+					for (auto& ialias:g_aliase_dic)
+					{
+						auto& ele_pos = *ialias.second;
+						if (ele_pos._pobj==pobj)
+						{
+							return true;
+						}
+					}
+					return false;
+				};
+				auto find_ref_in_binds = [&](base_ui_component* pobj){
+					for (auto& ibind : g_bind_dic)
+					{
+						if (ibind.first._pobj == pobj)
+						{
+							return true;
+						}
+					}
+					for (auto& ibindrec : g_bind_ref_dic)
+					{
+						if (ibindrec.first._pobj == pobj)
+						{
+							return true;
+						}
+					}
+					return false;
+				};
+				find_ref = find_ref_in_mstate_manager(_pcurrent_object);
+				if (find_ref)
+				{
+					MessageBox(GetForegroundWindow(), "you can't delete the node, because the node is reference by state manager", "Warning", MB_OK);
+					ImGui::EndPopup();
+					return;
+				}
+				find_ref = find_ref_in_alias(_pcurrent_object);
+				if (find_ref)
+				{
+					MessageBox(GetForegroundWindow(), "you can't delete the node, because the node is reference by alias list", "Warning", MB_OK);
+					ImGui::EndPopup();
+					return;
+				}
+				find_ref = find_ref_in_binds(_pcurrent_object);
+				if (find_ref)
+				{
+					MessageBox(GetForegroundWindow(), "you can't delete the node, because the node is reference by binds manager", "Warning", MB_OK);
+					ImGui::EndPopup();
+					return;
+				}
+				
+				
 				g_ui_edit_command_mg.clear_cmds_by_component(_pcurrent_object);
 				pparent->remove_child(_pcurrent_object);
 				_pcurrent_object = pparent;
+
 			}
 		}
 		if (ImGui::MenuItem("up",NULL,false))

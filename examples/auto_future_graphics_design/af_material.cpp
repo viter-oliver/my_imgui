@@ -112,6 +112,11 @@ void material::use()
 void material::set_value(string unf_name, float* pfvalue, GLuint len)
 {
 	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	if (shd_ut==_mp_shader_uf.end())
+	{
+		printf("fail to set uniform:%s\n", unf_name.c_str());
+		return;
+	}
 	auto& pshd = shd_ut->second;
 	string cname = typeid(*pshd).name();
 	cname = cname.substr(sizeof("class"));
@@ -126,6 +131,11 @@ void material::set_value(string unf_name, float* pfvalue, GLuint len)
 void material::set_value(string unf_name, int* pivalue, GLuint len)
 {
 	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	if (shd_ut == _mp_shader_uf.end())
+	{
+		printf("fail to set uniform:%s\n", unf_name.c_str());
+		return;
+	}
 	auto& pshd = shd_ut->second;
 	string cname = typeid(*pshd).name();
 	cname = cname.substr(sizeof("class"));
@@ -140,6 +150,11 @@ void material::set_value(string unf_name, int* pivalue, GLuint len)
 void material::set_value(string unf_name, unsigned int* puivalue, GLuint len)
 {
 	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	if (shd_ut == _mp_shader_uf.end())
+	{
+		printf("fail to set uniform:%s\n", unf_name.c_str());
+		return;
+	}
 	auto& pshd = shd_ut->second;
 	string cname = typeid(*pshd).name();
 	cname = cname.substr(sizeof("class"));
@@ -155,6 +170,11 @@ void material::set_value(string unf_name, unsigned int* puivalue, GLuint len)
 void material::set_value(string unf_name, double* pdvalue, GLuint len)
 {
 	auto& shd_ut = _mp_shader_uf.find(unf_name);
+	if (shd_ut == _mp_shader_uf.end())
+	{
+		printf("fail to set uniform:%s\n", unf_name.c_str());
+		return;
+	}
 	auto& pshd = shd_ut->second;
 	string cname = typeid(*pshd).name();
 	cname = cname.substr(sizeof("class"));
@@ -204,6 +224,8 @@ void material::refresh_shader_uf()
 			shared_ptr<shader_uf> pnunf = get_sd_uf(unif);
 			if (pnunf)
 			{
+				pnunf->_unf_name = un_name;
+				pnunf->set_type(unif._variable_type);
 				_mp_shader_uf[un_name] = pnunf;
 			}
 		}
@@ -220,6 +242,7 @@ void material::edit_ufs()
 		unf_name += ":";
 		ImGui::Text(unf_name.c_str());
 		auto& pshd_fu = *shd_uf_value.second;
+		pshd_fu._unf_name = shd_uf_value.first;
 		pshd_fu.edit();
 		//for (int ix = 0;ix)
 	}

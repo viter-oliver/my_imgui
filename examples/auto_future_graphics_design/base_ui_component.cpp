@@ -358,7 +358,7 @@ static	string aliase_btn_cp = "  ##";
 						else if (before_op_memb_value != after_op_memb_value)
 						{
 							g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, memb_address, &before_op_memb_value[0], before_op_memb_value.size()));
-							prop_ele_position cur_prp_ele_pos = { this, page_idx, fd_idx };
+							prop_ele_position cur_prp_ele_pos = { this, pgidx, idx };
 							calcu_bind_node(cur_prp_ele_pos);
 							page_idx = fd_idx = -1;
 						}

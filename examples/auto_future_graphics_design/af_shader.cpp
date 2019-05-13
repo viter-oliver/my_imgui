@@ -191,11 +191,11 @@ bool af_shader::build_fs_code(string& fs_code)
 void af_shader::link()
 {
 	//link
-	/*if (_shader_program_id!=0)
+	if (_shader_program_id!=0)
 	{
-	glDeleteProgram(_shader_program_id);
-	_shader_program_id = glCreateProgram();
-	}*/
+		glDeleteProgram(_shader_program_id);
+		_shader_program_id = glCreateProgram();
+	}
 	glAttachShader(_shader_program_id, _vertex_shader);
 	glAttachShader(_shader_program_id, _fragment_shader);
 	glBindFragDataLocation(_shader_program_id, 0, "outColor");
