@@ -1,0 +1,16 @@
+layout (location = 0) attribute vec3 aposition;
+layout (location = 1) attribute vec2 btextcoord;
+layout (location = 2) attribute vec3 cnormal;
+varying vec2 Textcoord;
+uniform mat4 proj;
+uniform mat4 view;
+uniform mat4 model;
+uniform float dy;
+void main()
+{
+    float nml=cnormal.z;
+    gl_Position = proj * view * model * vec4(aposition, 1.0);
+    
+    float fdy=dy+1.0-nml;
+    Textcoord = vec2(btextcoord.x,btextcoord.y-fdy);
+}

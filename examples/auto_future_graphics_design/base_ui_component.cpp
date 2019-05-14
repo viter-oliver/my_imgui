@@ -185,7 +185,7 @@ static	string aliase_btn_cp = "  ##";
 					memcpy(&before_op_memb_value[0], memb_address, mtpsz);
 
 					auto& imemb_tp_handl = _mcustom_type_property_handles_container.find(mtype);
-					bool be_base_type = false;
+					bool be_base_type = mtype == "int" || mtype == "float" || mtype == "double" || mtype == "bool";
 					if (imemb_tp_handl != _mcustom_type_property_handles_container.end())
 					{
 						imemb_tp_handl->second(memb_address);
@@ -221,7 +221,7 @@ static	string aliase_btn_cp = "  ##";
 									ImGui::SliderInt(mname.c_str(), (int*)memb_address, 0, 255);
 							}
 							else if (mtype == "int"){
-								be_base_type = true;
+								//be_base_type = true;
 								if (rg == "txt")// atexture
 								{
 									f_draw_index_prop = [&](string& str_show, void*maddress){									
@@ -259,7 +259,7 @@ static	string aliase_btn_cp = "  ##";
 
 							}
 							else if (mtype == "float" || mtype == "double"){
-								be_base_type = true;
+								//be_base_type = true;
 								f_draw_index_prop = [&](string& str_show, void*maddress){
 									return  ImGui::SliderFloat(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
 								};
@@ -296,7 +296,7 @@ static	string aliase_btn_cp = "  ##";
 								};
 							}
 							else if (mtype == "bool"){
-								be_base_type = true;
+								//be_base_type = true;
 								f_draw_index_prop = [&](string& str_show, void*maddress){
 									return ImGui::Checkbox(str_show.c_str(), (bool*)maddress);
 								};
@@ -308,7 +308,7 @@ static	string aliase_btn_cp = "  ##";
 							if (f_draw_index_prop)
 							{
 								if (array_cnt>0){
-									be_base_type = false;
+									//be_base_type = false;
 									for (int ix = 0; ix < array_cnt; ++ix)
 									{
 										char str_index[50] = { 0 };
