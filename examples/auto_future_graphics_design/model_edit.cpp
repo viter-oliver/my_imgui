@@ -81,9 +81,9 @@ void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, a
 
 	struct  af_vertex
 	{
+		float _nms[3];
 		float _pos[3];
 		float _txt[2];
-		float _nms[3];
 	};
 	af_vertex* pvertexs = new af_vertex[mesh->mNumVertices];
 	// Walk through each of the mesh's vertices
@@ -148,7 +148,7 @@ void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, a
 		}
 	}
 
-	obj_pm.set_ele_format({ 3, 2, 3 });
+	obj_pm.set_ele_format({ 3, 3, 2 });
 	auto float_size = sizeof(af_vertex) / sizeof(float);
 	auto float_cnt = float_size*mesh->mNumVertices;
 	obj_pm.load_vertex_data((GLfloat*)pvertexs, float_cnt, pface_idx, face_len);

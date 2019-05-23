@@ -54,4 +54,4 @@ extern void calcu_prop_ele_pos_index(const prop_ele_position& pep, prop_ele_pos_
 using ps_prp_ele_pos = shared_ptr<prop_ele_position>;
 using aliase_map = map<string, ps_prp_ele_pos>;
 extern aliase_map g_aliase_dic;
-extern bool set_property_aliase_value(string prp_aliase_name, void* pvalue);
+extern bool AFG_EXPORT set_property_aliase_value(string prp_aliase_name, void* pvalue);

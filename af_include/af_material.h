@@ -1,13 +1,14 @@
 #pragma once
 #include "af_shader.h"
 #include "shader_uf.h"
+#include "platform_def.h"
 typedef map<string, shared_ptr<shader_uf>> mp_shader_uf;
 /**
 * @brief is instance of the shader  \n
 * description:
 * - a material contain a variable list which is correspond to the shader variable type of the shader referenced by the material
 */
-class material
+class AFG_EXPORT material
 {
 	shared_ptr<af_shader> _pshader;
 	mp_shader_uf _mp_shader_uf;
@@ -23,7 +24,7 @@ public:
 	{
 		if (_pshader)
 		{
-			return _pshader->_valid;
+			return _pshader->is_valid();
 		}
 		return false;
 	}
@@ -64,8 +65,9 @@ public:
 using ps_mtl = shared_ptr<material>;
 using mmaterial = map<string, ps_mtl>;
 /** material of g_material_list will be referenced by some ui components*/
-extern mmaterial g_material_list;
+extern AFG_EXPORT mmaterial g_material_list;
 extern bool create_material(string& shader_name, string& material_name, string& real_material_name);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 extern void refresh_material(shared_ptr<af_shader> pshd);
 #endif
+extern bool AFG_EXPORT set_mp_text_uf(const char* mtl_nm, const char* txt_uf_nm, const char* txt_nm);

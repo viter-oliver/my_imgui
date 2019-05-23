@@ -307,7 +307,7 @@ void material_shader_edit::draw_shader_item_property()
 }
 void material_shader_edit::draw_material()
 {
-	if (pshd_sel&&pshd_sel->_valid&& ImGui::Button("create material"))
+	if (pshd_sel&&pshd_sel->is_valid()&& ImGui::Button("create material"))
 		ImGui::OpenPopup("create material");
 	if (ImGui::BeginPopupModal("create material"))
 	{

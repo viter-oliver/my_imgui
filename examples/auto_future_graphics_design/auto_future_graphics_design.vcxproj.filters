@@ -570,6 +570,9 @@
     <ClInclude Include="..\..\af_include\ft_quad_image.h">
       <Filter>af_include</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_material_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

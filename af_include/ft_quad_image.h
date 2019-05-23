@@ -2,14 +2,7 @@
 #include "ft_base.h"
 namespace auto_future
 {
-	enum anchor_type
-	{
-		en_anchor_top_left,
-		en_anchor_top_right,
-		en_anchor_bottom_right,
-		en_anchor_bottom_left,
-		en_anchor_center,
-	};
+
 	class AFG_EXPORT ft_quad_image :
 		public ft_base
 	{

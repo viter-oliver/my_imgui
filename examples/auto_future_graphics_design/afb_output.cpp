@@ -181,7 +181,7 @@ void afb_output::output_afb(const char* afb_file)
 	{
 		auto& kname = txt_unit.first;
 		auto& txtv = txt_unit.second;
-		pk.pack_array(4);
+		pk.pack_array(5);
 		pk.pack_str(kname.size());
 		pk.pack_str_body(kname.c_str(), kname.size());
 		pk.pack_uint32(txtv->_width);
@@ -192,6 +192,7 @@ void afb_output::output_afb(const char* afb_file)
 		glBindTexture(GL_TEXTURE_2D, txtv->_txt_id());
 		glGetTexImage(GL_TEXTURE_2D, 0, GL_RGBA, GL_UNSIGNED_BYTE, txt_data);
 		DDS_data = ftxt_press(txt_data, txtv->_width, txtv->_height, DDS_size);
+
 		if (txtv->_is_separated)
 		{
 			pk.pack_uint8(0);
@@ -207,6 +208,8 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_bin(DDS_size);
 			pk.pack_bin_body(reinterpret_cast<char const*>(DDS_data), DDS_size);
 		}
+		uint8_t mipv = txtv->_mip_map;
+		pk.pack_uint8(mipv);
 		if (DDS_data != txt_data)
 		{
 			SOIL_free_image_data(DDS_data);

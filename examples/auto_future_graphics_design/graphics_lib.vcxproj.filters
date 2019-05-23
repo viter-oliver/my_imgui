@@ -166,6 +166,15 @@
     <ClCompile Include="af_primitive_object.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="ft_material_2d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_material_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_quad_image.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">

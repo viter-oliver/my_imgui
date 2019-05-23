@@ -25,6 +25,24 @@ void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, 
 	}
 	glBindVertexArray(0);
 }
+void primitive_object::enableVertex()
+{
+	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
+	if (_ele_buf_len > 0)
+	{
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
+	}
+	GLuint idx = 0;
+	GLubyte stride = get_stride();
+	int pointer = 0;
+	for (auto& el : _ele_format)
+	{
+		glEnableVertexAttribArray(idx);
+		glVertexAttribPointer(idx, el, GL_FLOAT, GL_FALSE, stride * sizeof(GLfloat), (void*)(pointer*sizeof(GLfloat)));//
+		pointer += el;
+		idx++;
+	}
+}
 mp_primitive g_primitive_list;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 const float half_side_len = 0.5f;
@@ -128,3 +146,12 @@ bool ref_a_intenal_primitive(string& prm_name)
 }
 
 #endif
+ps_primrive_object get_prm_object(const char* prm_name)
+{
+	auto iprm = g_primitive_list.find(prm_name);
+	if (iprm != g_primitive_list.end())
+	{
+		return iprm->second;
+		
+	}
+}

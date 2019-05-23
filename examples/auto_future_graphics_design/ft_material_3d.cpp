@@ -111,7 +111,8 @@ namespace auto_future
 	}
 	void ft_material_3d::draw()
 	{
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#if 1//!defined(IMGUI_DISABLE_DEMO_WINDOWS)
+
 		if (_ps_mtl&&_ps_mtl->is_valid()&&_ps_prm)
 		{
 			auto& ps_sd = _ps_mtl->get_shader();

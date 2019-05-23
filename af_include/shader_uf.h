@@ -15,9 +15,10 @@ using namespace Json;
 #include "fab.h"
 #include "af_type.h"
 #include "res_output.h"
+#include "platform_def.h"
 using namespace fab;
 using namespace std;
-class shader_uf
+class AFG_EXPORT shader_uf
 {
 protected:
 	GLuint _el_size;
@@ -66,7 +67,7 @@ struct fac_shader_uf
 #define REG_SHADER_UF(shd_type) static fac_shader_uf::shader_uf_assist<shd_type> reg_##shd_type(#shd_type)
 
 
-class shader_uf_float :public shader_uf
+class AFG_EXPORT shader_uf_float :public shader_uf
 {
 	float* _pfvalue;
 public:
@@ -202,7 +203,7 @@ public:
 };
 REG_SHADER_UF(shader_uf_int);
 
-class shader_uf_uint :public shader_uf
+class AFG_EXPORT shader_uf_uint :public shader_uf
 {
 	unsigned int* _puivalue;
 public:
@@ -253,7 +254,7 @@ public:
 	}
 };
 REG_SHADER_UF(shader_uf_uint);
-class shader_uf_double :public shader_uf
+class AFG_EXPORT shader_uf_double : public shader_uf
 {
 	double* _pdvalue;
 public:
@@ -328,14 +329,15 @@ public:
 };
 REG_SHADER_UF(shader_uf_double);
 
-class shader_uf_txt :public shader_uf
+class AFG_EXPORT shader_uf_txt :public shader_uf
 {
 	char _txt_name[FILE_NAME_LEN];
 	ps_af_texture _pdtxt;
-	static GLuint _sample_index;
+	static GLuint  _sample_index;
 public:
 	shader_uf_txt(GLuint usize, GLuint el_sz) :shader_uf(usize, el_sz)
 	{
+		memset(_txt_name, 0, FILE_NAME_LEN);
 		_pdtxt = nullptr;
 	}
 	static void reset_sample_index()
@@ -374,13 +376,7 @@ public:
 	}
 	GLuint usize(){ return 1; }
 	GLuint elsize(){ return strlen(_txt_name); }
-	void link(){
-		auto& itxt = g_mtexture_list.find(_txt_name);
-		if (itxt != g_mtexture_list.end())
-		{
-			_pdtxt = itxt->second;
-		}
-	}
+	void link();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	void edit();
 	void output_2_json(Value& jvalue);

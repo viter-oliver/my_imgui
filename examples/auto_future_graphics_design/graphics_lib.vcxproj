@@ -183,6 +183,8 @@
     <ClCompile Include="ft_circle.cpp" />
     <ClCompile Include="ft_cube_3d.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
+    <ClCompile Include="ft_material_2d.cpp" />
+    <ClCompile Include="ft_material_3d.cpp" />
     <ClCompile Include="ft_modeling_3d.cpp" />
     <ClCompile Include="ft_model_3d.cpp" />
     <ClCompile Include="ft_particles_3d.cpp" />
@@ -190,6 +192,7 @@
     <ClCompile Include="ft_particles_effect_3d.cpp" />
     <ClCompile Include="ft_plane_3d.cpp" />
     <ClCompile Include="ft_plot_lines.cpp" />
+    <ClCompile Include="ft_quad_image.cpp" />
     <ClCompile Include="ft_slider.cpp" />
     <ClCompile Include="ft_slider_thumb.cpp" />
     <ClCompile Include="ft_sphere_3d.cpp" />

@@ -48,7 +48,17 @@ struct res_texture_list
 		if (txt_buff.size()>0)
 		{
 			glBindTexture(GL_TEXTURE_2D, txt_id);
-			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, texture_width, texture_height, 0, txt_buff.size(), &txt_buff[0]);
+			int pix_sz = texture_width*texture_height * 4;
+			if (txt_buff.size()<pix_sz)// texture is compressed
+			{
+				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, texture_width, texture_height, 0, txt_buff.size(), &txt_buff[0]);
+			}
+			else
+			{
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture_width, texture_height,
+					0, GL_RGBA, GL_UNSIGNED_BYTE, &txt_buff[0]);
+
+			}
 			glBindTexture(GL_TEXTURE_2D, 0);
 			txt_buff.clear();
 			txt_buff.shrink_to_fit();
@@ -112,7 +122,25 @@ struct af_texture
 		if (txt_buff.size() > 0)
 		{
 			glBindTexture(GL_TEXTURE_2D, _atxt_id);
-			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, _width, _height, 0, txt_buff.size(), &txt_buff[0]);
+			int pix_sz = _width*_height * 4;
+			if (_mip_map)
+			{
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+			}
+			if (txt_buff.size() < pix_sz)// texture is compressed
+			{
+				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, _width, _height, 0, txt_buff.size(), &txt_buff[0]);
+			}
+			else
+			{
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height,
+					0, GL_RGBA, GL_UNSIGNED_BYTE, &txt_buff[0]);
+
+			}
+			if (_mip_map)
+			{
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
 			glBindTexture(GL_TEXTURE_2D, 0);
 			txt_buff.clear();
 			txt_buff.shrink_to_fit();

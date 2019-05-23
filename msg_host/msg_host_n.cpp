@@ -4,7 +4,6 @@
 //#include "RmtBusReceiver.h"
 namespace auto_future_utilities
 { 
- bool msg_host_n::key_unit::is_byid = true;
 msg_host_n::msg_host_n()
 	:_task_entry(0)
 	, _be_running(false)
@@ -151,7 +150,6 @@ msg_host_n::data_unit& msg_host_n::find_data_unit_by_key_unit(key_unit& ku, msg_
 
 bool msg_host_n::attach_monitor(const char* object_name, msg_handle fn_obj)
 {
-	key_unit::is_byid = false;
 	key_unit kut(0,object_name);
 	auto& tar_data_unit = find_data_unit_by_key_unit(kut, _root_protocol_receive_data_map);
 	if (tar_data_unit._is_root)
@@ -188,7 +186,6 @@ msg_host_n::data_unit& msg_host_n::find_data_unit_by_id(u8* pin_buff, msg_host_n
 
 void msg_host_n::pick_valid_data(u8* pbuff, int len)
 {
-	//key_unit::is_byid = true;
 	//pbuff--;
 	//len++;
 	//*pbuff = 0;//for find root

@@ -183,9 +183,9 @@ void afb_load::load_afb(const char* afb_file)
 
 	auto obj_res = obj_w.via.array.ptr[en_vtextures_res];
 	auto re_cnt = obj_res.via.array.size;
-	function<unsigned int(const char*, int, int, unsigned int)> f_gen_txt;
+	function<unsigned int(const char*, int, int, unsigned int,bool mipv)> f_gen_txt;
 	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
-		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bin_sz){
+		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bin_sz,bool mipv){
 			GLuint txt_id;
 			glGenTextures(1, &txt_id);
 			glBindTexture(GL_TEXTURE_2D, txt_id);
@@ -196,17 +196,26 @@ void afb_load::load_afb(const char* afb_file)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			// Step3 设定filter参数
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, iw, ih,
-				0, GL_RGBA, GL_UNSIGNED_BYTE, ptxt_data);
-
+			if (mipv)
+			{
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, iw, ih,
+					0, GL_RGBA, GL_UNSIGNED_BYTE, ptxt_data);
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
+			else
+			{
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, iw, ih,
+					0, GL_RGBA, GL_UNSIGNED_BYTE, ptxt_data);
+			}
 			//glGenerateMipmap(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, 0);
 			return txt_id;
 		};
 	}
 	else if (g_output_bin_format._txt_fmt == en_dxt5){
-		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bin_sz){
+		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bin_sz,bool mipv){
 			GLuint txt_id;
 			glGenTextures(1, &txt_id);
 			printf("gen txtid:%u\n", txt_id);
@@ -218,8 +227,17 @@ void afb_load::load_afb(const char* afb_file)
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			// Step3 设定filter参数
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bin_sz, ptxt_data);
+			if (mipv)
+			{
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bin_sz, ptxt_data);
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
+			else
+			{
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bin_sz, ptxt_data);
+			}
 
 			//glGenerateMipmap(GL_TEXTURE_2D);
 			glBindTexture(GL_TEXTURE_2D, 0);
@@ -242,7 +260,7 @@ void afb_load::load_afb(const char* afb_file)
 		auto res_bin = bin_res_unit.via.array.ptr[3];
 		if (res_bin.type == msgpack::type::POSITIVE_INTEGER)
 		{
-			res_unit.txt_id = f_gen_txt(0, res_unit.texture_width, res_unit.texture_height, 0);
+			res_unit.txt_id = f_gen_txt(0, res_unit.texture_width, res_unit.texture_height, 0,false);
 			string res_file = cur_dir + txt_kname;
 			res_file += ".safb";
 			thread th_lod_res([&](string fnm){
@@ -263,7 +281,7 @@ void afb_load::load_afb(const char* afb_file)
 		else
 		{
 			auto bin_sz = res_bin.via.bin.size;
-			res_unit.txt_id = f_gen_txt(res_bin.via.bin.ptr, res_unit.texture_width, res_unit.texture_height, bin_sz);
+			res_unit.txt_id = f_gen_txt(res_bin.via.bin.ptr, res_unit.texture_width, res_unit.texture_height, bin_sz,false);
 		}
 		delete[] txt_kname;
 		auto res_data = bin_res_unit.via.array.ptr[4];
@@ -295,6 +313,8 @@ void afb_load::load_afb(const char* afb_file)
 		auto txt_width = txt_unit.via.array.ptr[1].as<uint32_t>();
 		auto txt_height = txt_unit.via.array.ptr[2].as<uint32_t>();
 		auto txt_bin = txt_unit.via.array.ptr[3];
+		auto txt_mip = txt_unit.via.array.ptr[4];
+		bool mipv = txt_mip.as<uint8_t>()>0;
 		auto txt_name_sz = txt_name.via.str.size;
 		char* txt_kname = new char[txt_name_sz+1];
 		memset(txt_kname, 0, txt_name_sz + 1);
@@ -303,9 +323,10 @@ void afb_load::load_afb(const char* afb_file)
 		auto& a_txt = g_mtexture_list[txt_kname];
 		a_txt->_width = txt_width;
 		a_txt->_height = txt_height;
+		a_txt->_mip_map = mipv;
 		if (txt_bin.type == msgpack::type::POSITIVE_INTEGER)
 		{
-			a_txt->_atxt_id = f_gen_txt(0, a_txt->_width, a_txt->_height, 0);
+			a_txt->_atxt_id = f_gen_txt(0, a_txt->_width, a_txt->_height, 0, mipv);
 
 			string res_file = cur_dir + txt_kname;
 			res_file += ".safb";
@@ -328,7 +349,7 @@ void afb_load::load_afb(const char* afb_file)
 		else
 		{
 			auto txt_bin_sz = txt_bin.via.bin.size;
-			a_txt->_atxt_id = f_gen_txt(txt_bin.via.bin.ptr, txt_width, txt_height, txt_bin_sz);
+			a_txt->_atxt_id = f_gen_txt(txt_bin.via.bin.ptr, txt_width, txt_height, txt_bin_sz, mipv);
 			a_txt->_loaded = true;
 		}
 	

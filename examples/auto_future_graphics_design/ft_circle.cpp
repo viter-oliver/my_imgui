@@ -7,10 +7,12 @@ namespace auto_future
 	ft_circle::ft_circle()
 	{
 		_pt._bkclr = { 1., 1., 0., 1. };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_pt, 2, [this](void* memb_adress)
 		{
 			ImGui::SliderInt("Number of segments",&_pt._numb_segs,3,60);
 		});
+#endif
 	}
 	void ft_circle::draw()
 	{

@@ -1,5 +1,7 @@
 #include "af_shader.h"
-
+#include <sstream>
+#include <regex>
+#include <algorithm>
 struct vtype_size 
 {
 	int _utsize,_cnt; 
@@ -161,8 +163,8 @@ bool af_shader::build_vs_code(string& vs_code)
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	compile_error_info = buffer;
-	_vs_code_valid = be_success;
 #endif
+	_vs_code_valid = be_success;
 	return be_success;
 }
 bool af_shader::build_fs_code(string& fs_code)
@@ -184,9 +186,39 @@ bool af_shader::build_fs_code(string& fs_code)
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	compile_error_info = buffer;
-	_fs_code_valid = be_success;
 #endif
+	_fs_code_valid = be_success;
 	return be_success;
+}
+using vattr = vector<string>;
+void collect_attr(string& vscode, vattr& vat)
+{
+	stringstream sexp(vscode);
+	string line;
+	std::regex re_layout("layout");
+	std::regex re_attribute("attribute");
+	std::regex re(".*attribute.*vec\\d\\s*|\\s*;\\s*");
+    std::regex re_main("main");
+	while (getline(sexp,line))
+	{
+		if (std::regex_search(line, re_layout))
+		{
+			printf("layout exists!\n");
+			vat.clear();
+			return;
+		}
+		else
+		{
+			if (std::regex_search(line, re_main))
+			{
+				return;
+			}
+			if (std::regex_search(line, re_attribute))
+			{
+				vat.push_back(std::regex_replace(line, re, ""));
+			}
+		}
+	}
 }
 void af_shader::link()
 {
@@ -196,9 +228,26 @@ void af_shader::link()
 		glDeleteProgram(_shader_program_id);
 		_shader_program_id = glCreateProgram();
 	}
+	_att_list.clear();
+	_unf_list.clear();
 	glAttachShader(_shader_program_id, _vertex_shader);
 	glAttachShader(_shader_program_id, _fragment_shader);
-	glBindFragDataLocation(_shader_program_id, 0, "outColor");
+	vattr vat;
+	collect_attr(_vs_code, vat);
+	if (vat.size()>0)
+	{
+		sort(vat.begin(), vat.end());
+		for (int ix = 0; ix < vat.size();ix++)
+		{
+			_att_list.emplace_back();
+			auto& attr=_att_list.back();
+			attr._name = vat[ix];
+			attr._location = ix;
+			//attr._variable_type;
+			glBindAttribLocation(_shader_program_id, ix, vat[ix].c_str());
+		}
+	}
+	//glBindFragDataLocation(_shader_program_id, 0, "outColor");
 	glLinkProgram(_shader_program_id);
 	glReleaseShaderCompiler();
 	glUseProgram(_shader_program_id);
@@ -218,6 +267,7 @@ void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragmen
 	}
 	build_vs_code(vertex_shader_source);
 	build_fs_code(fragment_shader_source);
+
 	if (_vs_code_valid&&_fs_code_valid)
 	{
 		link();
@@ -240,21 +290,33 @@ void af_shader::refresh_viarable_list()
 	const GLsizei bufSize = 256; // maximum name length
 	GLchar name[bufSize]; // variable name in GLSL
 	GLsizei length; // name length
-	_att_list.clear();
-	_unf_list.clear();
-	glGetProgramiv(_shader_program_id, GL_ACTIVE_ATTRIBUTES, &count);
-	printf("Active Attributes: %d\n", count);
-
-	for (idx = 0; idx < count; idx++)
+	if (_att_list.size()==0)
 	{
-		glGetActiveAttrib(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
+		glGetProgramiv(_shader_program_id, GL_ACTIVE_ATTRIBUTES, &count);
+		printf("Active Attributes: %d\n", count);
+		for (idx = 0; idx < count; idx++)
+		{
+			glGetActiveAttrib(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
 
-		printf("Attribute #%d Type: 0x%x Name: %s\n", idx, type, name);
-		GLuint location = glGetAttribLocation(_shader_program_id, name);
-		//_att_list[name] = shader_variable(type, location, size);
-		_att_list.emplace_back(); 
-		_att_list.back()={name, type, location, size};
+			printf("Attribute #%d Type: 0x%x Name: %s\n", idx, type, name);
+			GLuint location = glGetAttribLocation(_shader_program_id, name);
+			//_att_list[name] = shader_variable(type, location, size);
+			_att_list.emplace_back(); 
+			_att_list.back()={name, type, location, size};
+		}
 	}
+	else
+	{
+		int count = _att_list.size();
+		for (idx = 0; idx < count; idx++)
+		{
+			glGetActiveAttrib(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
+			_att_list[idx]._variable_type = type;
+			_att_list[idx]._size = size;
+
+		}
+	}
+
 
 	glGetProgramiv(_shader_program_id, GL_ACTIVE_UNIFORMS, &count);
 	printf("Active Uniforms: %d\n", count);

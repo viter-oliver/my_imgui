@@ -53,7 +53,9 @@ class af_shader
 	string _name;
 	/** whether shader is valid */
 	/** vertex shader source code and fragment shader source code */
+	bool _valid{ false };
 public:
+	bool _vs_code_valid{ false }, _fs_code_valid{ false };
 	af_shader(GLenum binFormat, void* bin, GLsizei binLength);
 	~af_shader();
 	string get_name() { return _name; }
@@ -66,10 +68,11 @@ public:
 	
 	void refresh_viarable_list();
 	af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source);
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)	
+	
 	bool build_vs_code(string& vs_code);
 	bool build_fs_code(string& fs_code);
 	void link();
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	string& get_vs_code(){ return _vs_code; }
 	string& get_fs_code(){ return _fs_code; }
 
@@ -77,9 +80,6 @@ public:
 	void refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source);
 	string compile_error_info;
 	string _vs_name, _fs_name;
-
-	bool _vs_code_valid{ false }, _fs_code_valid{ false };
-	bool _valid{ false };
 	bool _read_only{ false };
 	bool _vs_selected{ false };
 	bool _fs_selected{ false };
@@ -87,7 +87,10 @@ public:
 #endif
 	bool match_format(vector<GLubyte>& fmt);
 	bool is_valid(){ return _valid; }
-	void use(){ glUseProgram(_shader_program_id); }
+	void use(){ 
+		glUseProgram(_shader_program_id); 
+
+	}
 	bool vertex_att_pointer();
 	//template<typename T> bool uniform(string unf_name, GLsizei icnt, T* pvalue);
 	bool uniform(string unf_name, float* pvalue);

@@ -25,7 +25,7 @@ class AFG_EXPORT msg_host_n
 		u8 _id;
 		string _name;
 		key_unit() :_id(0){}
-		key_unit(u8 id, const string& mname) :_id(id), _name(mname){}
+		key_unit(u8 id, const string& mname) :_id(id), _name(mname){ _name.shrink_to_fit(); }
 		/*
 		bool operator ==(const key_unit& ku) const
 		{

@@ -348,3 +348,10 @@ void shader_uf_txt::init_from_json(Value& jvalue)
 	}
 }
 #endif
+void shader_uf_txt::link(){
+	auto& itxt = g_mtexture_list.find(_txt_name);
+	if (itxt != g_mtexture_list.end())
+	{
+		_pdtxt = itxt->second;
+	}
+}

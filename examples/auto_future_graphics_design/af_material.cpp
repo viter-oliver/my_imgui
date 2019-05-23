@@ -93,7 +93,7 @@ material::material(shared_ptr<af_shader> psd)
 
 void material::use()
 {
-	if (!_pshader->_valid)
+	if (!_pshader->is_valid())
 	{
 		return;
 	}
@@ -331,3 +331,22 @@ void refresh_material(shared_ptr<af_shader> pshd)
 	}
 }
 #endif
+bool set_mp_text_uf(const char* mtl_nm, const char* txt_uf_nm, const char* txt_nm)
+{
+	const auto& imtl = g_material_list.find(mtl_nm);
+	if (imtl != g_material_list.end())
+	{
+		auto& mtl = *imtl->second;
+		auto& mp_sduf = mtl.get_mp_sd_uf();
+		auto& isduf = mp_sduf.find(txt_uf_nm);
+		if (isduf != mp_sduf.end())
+		{
+			auto& txt_sduf = *isduf->second;
+			auto data_hd = txt_sduf.get_data_head();
+			memcpy(data_hd, txt_nm, strlen(txt_nm));
+			txt_sduf.link();
+			return true;
+		}
+	}
+	return false;
+}

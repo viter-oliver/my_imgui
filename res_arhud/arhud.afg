@@ -10,64 +10,64 @@
 	"_visible" : true,
 	"aliase" : 
 	{
-		"acc_control" : [ 3, 1, 0, 2 ],
-		"acc_show" : [ 6, 0, 0, 2 ],
-		"acc_speed" : [ 4, 1, 0, 0, 2 ],
-		"acc_speed_color" : [ 0, 1, 0, 0, 2 ],
-		"active_navigation" : [ 6, 0, 12, 1 ],
-		"aeb_control" : [ 3, 1, 1, 2 ],
-		"aeb_show" : [ 6, 0, 1, 2 ],
-		"camera1" : [ 6, 0, 1, 3 ],
-		"camera2" : [ 6, 0, 0, 3 ],
-		"car_speed_prog" : [ 7, 1, 0, 1 ],
-		"car_speed_unit" : [ 4, 1, 0, 13, 1 ],
-		"control_beam_low_high" : [ 3, 1, 2, 2 ],
-		"control_lane0" : [ 3, 1, 0, 6, 3 ],
-		"control_lane1" : [ 3, 1, 1, 6, 3 ],
-		"control_lane2" : [ 3, 1, 2, 6, 3 ],
-		"control_lane3" : [ 3, 1, 3, 6, 3 ],
-		"control_lane4" : [ 3, 1, 4, 6, 3 ],
-		"control_lane5" : [ 3, 1, 5, 6, 3 ],
-		"control_lane6" : [ 3, 1, 6, 6, 3 ],
-		"control_lane7" : [ 3, 1, 7, 6, 3 ],
-		"control_media_icon" : [ 3, 1, 0, 4 ],
-		"control_nseatbelt_abtire_fdring" : [ 3, 1, 5, 2 ],
-		"cur_lane" : [ 6, 0, 0, 8, 1 ],
-		"media_content" : [ 4, 1, 1, 0, 4 ],
-		"navi_direction" : [ 6, 0, 6, 3 ],
-		"next_road_name" : [ 4, 1, 3, 3 ],
-		"number_of_lanes" : [ 2, 0, 6, 3 ],
-		"peds_war1" : [ 6, 0, 15, 1 ],
-		"peds_war2" : [ 6, 0, 16, 1 ],
-		"pop_warning_dlg" : [ 6, 0, 6 ],
-		"prohibit_left_lane_change" : [ 6, 0, 17, 1 ],
-		"prohibit_right_lane_change" : [ 6, 0, 18, 1 ],
-		"rotate_speed_prog" : [ 7, 1, 1, 1 ],
-		"select_left_turn_low_fuel_hot_water" : [ 3, 1, 3, 2 ],
-		"select_right_turn_doors_open" : [ 3, 1, 4, 2 ],
-		"show_beam_low_high" : [ 6, 0, 2, 2 ],
-		"show_distance0" : [ 6, 0, 2, 1 ],
-		"show_distance1" : [ 6, 0, 3, 1 ],
-		"show_distance2" : [ 6, 0, 4, 1 ],
-		"show_distance3" : [ 6, 0, 5, 1 ],
-		"show_distance4" : [ 6, 0, 6, 1 ],
-		"show_distance5" : [ 6, 0, 7, 1 ],
-		"show_left_turn_low_fuel_hot_water" : [ 6, 0, 3, 2 ],
-		"show_limited_speed" : [ 6, 0, 2, 3 ],
-		"show_media_info" : [ 6, 0, 0, 4 ],
-		"show_north_direction" : [ 6, 0, 4, 3 ],
-		"show_nseatbelt_abtire_fdring" : [ 6, 0, 5, 2 ],
-		"show_right_turn_doors_open" : [ 6, 0, 4, 2 ],
-		"show_third_call" : [ 6, 0, 0, 0, 4 ],
-		"speed_limited" : [ 4, 1, 0, 2, 3 ],
-		"value_car_speed" : [ 4, 1, 13, 1 ],
-		"value_endurance" : [ 4, 1, 10, 1 ],
-		"value_gear" : [ 4, 1, 14, 1 ],
-		"value_north_direction" : [ 4, 1, 4, 3 ],
-		"value_remain_mileage" : [ 4, 1, 12, 1 ],
-		"value_remain_time" : [ 4, 1, 9, 1 ],
-		"value_rotate_speed" : [ 4, 1, 11, 1 ],
-		"warning_content" : [ 4, 1, 0, 0, 6 ]
+		"acc_control" : [ 3, 1, 0, 3 ],
+		"acc_show" : [ 6, 0, 0, 3 ],
+		"acc_speed" : [ 4, 1, 0, 0, 3 ],
+		"acc_speed_color" : [ 0, 1, 0, 0, 3 ],
+		"active_navigation" : [ 6, 0, 12, 2 ],
+		"aeb_control" : [ 3, 1, 1, 3 ],
+		"aeb_show" : [ 6, 0, 1, 3 ],
+		"camera1" : [ 6, 0, 1, 4 ],
+		"camera2" : [ 6, 0, 0, 4 ],
+		"car_speed_prog" : [ 7, 1, 1, 2 ],
+		"car_speed_unit" : [ 4, 1, 0, 13, 2 ],
+		"control_beam_low_high" : [ 3, 1, 2, 3 ],
+		"control_lane0" : [ 3, 1, 0, 6, 4 ],
+		"control_lane1" : [ 3, 1, 1, 6, 4 ],
+		"control_lane2" : [ 3, 1, 2, 6, 4 ],
+		"control_lane3" : [ 3, 1, 3, 6, 4 ],
+		"control_lane4" : [ 3, 1, 4, 6, 4 ],
+		"control_lane5" : [ 3, 1, 5, 6, 4 ],
+		"control_lane6" : [ 3, 1, 6, 6, 4 ],
+		"control_lane7" : [ 3, 1, 7, 6, 4 ],
+		"control_media_icon" : [ 3, 1, 0, 5 ],
+		"control_nseatbelt_abtire_fdring" : [ 3, 1, 5, 3 ],
+		"cur_lane" : [ 6, 0, 0, 0, 2 ],
+		"media_content" : [ 4, 1, 1, 0, 5 ],
+		"navi_direction" : [ 6, 0, 6, 4 ],
+		"next_road_name" : [ 4, 1, 3, 4 ],
+		"number_of_lanes" : [ 2, 0, 6, 4 ],
+		"peds_war1" : [ 6, 0, 15, 2 ],
+		"peds_war2" : [ 6, 0, 17, 2 ],
+		"pop_warning_dlg" : [ 6, 0, 7 ],
+		"prohibit_left_lane_change" : [ 6, 0, 16, 2 ],
+		"prohibit_right_lane_change" : [ 6, 0, 18, 2 ],
+		"rotate_speed_prog" : [ 7, 1, 2, 2 ],
+		"select_left_turn_low_fuel_hot_water" : [ 3, 1, 3, 3 ],
+		"select_right_turn_doors_open" : [ 3, 1, 4, 3 ],
+		"show_beam_low_high" : [ 6, 0, 2, 3 ],
+		"show_distance0" : [ 6, 0, 3, 2 ],
+		"show_distance1" : [ 6, 0, 4, 2 ],
+		"show_distance2" : [ 6, 0, 5, 2 ],
+		"show_distance3" : [ 6, 0, 6, 2 ],
+		"show_distance4" : [ 6, 0, 7, 2 ],
+		"show_distance5" : [ 6, 0, 8, 2 ],
+		"show_left_turn_low_fuel_hot_water" : [ 6, 0, 3, 3 ],
+		"show_limited_speed" : [ 6, 0, 2, 4 ],
+		"show_media_info" : [ 6, 0, 0, 5 ],
+		"show_north_direction" : [ 6, 0, 4, 4 ],
+		"show_nseatbelt_abtire_fdring" : [ 6, 0, 5, 3 ],
+		"show_right_turn_doors_open" : [ 6, 0, 4, 3 ],
+		"show_third_call" : [ 6, 0, 0, 0, 5 ],
+		"speed_limited" : [ 4, 1, 0, 2, 4 ],
+		"value_car_speed" : [ 4, 1, 13, 2 ],
+		"value_endurance" : [ 4, 1, 10, 2 ],
+		"value_gear" : [ 4, 1, 14, 2 ],
+		"value_north_direction" : [ 4, 1, 4, 4 ],
+		"value_remain_mileage" : [ 4, 1, 12, 2 ],
+		"value_remain_time" : [ 4, 1, 9, 2 ],
+		"value_rotate_speed" : [ 4, 1, 11, 2 ],
+		"warning_content" : [ 4, 1, 0, 0, 7 ]
 	},
 	"binds" : 
 	{
@@ -80,22 +80,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 12, 1 ]
+						[ 6, 0, 12, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 9, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 12, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 11, 1 ]
+				"key" : [ 6, 0, 9, 2 ]
 			},
 			
 			{
@@ -104,10 +92,22 @@
 					"expression" : "def bind_fun(v0):\n  if v0:\n      return 110\n  else:\n      return 660\n",
 					"param_list" : 
 					[
-						[ 6, 0, 12, 1 ]
+						[ 6, 0, 12, 2 ]
 					]
 				},
-				"key" : [ 0, 0, 10, 1 ]
+				"key" : [ 0, 0, 10, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 12, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 11, 2 ]
 			},
 			
 			{
@@ -116,10 +116,10 @@
 					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
 					"param_list" : 
 					[
-						[ 6, 0, 12, 1 ]
+						[ 6, 0, 12, 2 ]
 					]
 				},
-				"key" : [ 1, 0, 13, 1 ]
+				"key" : [ 1, 0, 13, 2 ]
 			},
 			
 			{
@@ -128,10 +128,10 @@
 					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 0, 0, 6, 3 ]
+				"key" : [ 0, 0, 6, 4 ]
 			},
 			
 			{
@@ -140,10 +140,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0>0\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 0, 6, 3 ]
+				"key" : [ 6, 0, 0, 6, 4 ]
 			},
 			
 			{
@@ -152,10 +152,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0>1\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 1, 6, 3 ]
+				"key" : [ 6, 0, 1, 6, 4 ]
 			},
 			
 			{
@@ -164,10 +164,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 2, 6, 3 ]
+				"key" : [ 6, 0, 2, 6, 4 ]
 			},
 			
 			{
@@ -176,10 +176,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 3, 6, 3 ]
+				"key" : [ 6, 0, 3, 6, 4 ]
 			},
 			
 			{
@@ -188,10 +188,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 4, 6, 3 ]
+				"key" : [ 6, 0, 4, 6, 4 ]
 			},
 			
 			{
@@ -200,10 +200,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0>5\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 6, 3 ]
+				"key" : [ 6, 0, 5, 6, 4 ]
 			},
 			
 			{
@@ -212,10 +212,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 6, 6, 3 ]
+				"key" : [ 6, 0, 6, 6, 4 ]
 			},
 			
 			{
@@ -224,39 +224,39 @@
 					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 3 ]
+						[ 2, 0, 6, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 7, 6, 3 ]
+				"key" : [ 6, 0, 7, 6, 4 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 6, 0, 12, 1 ],
+				"key" : [ 6, 0, 12, 2 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 11, 1 ],
-					[ 6, 0, 9, 1 ],
-					[ 0, 0, 10, 1 ],
-					[ 1, 0, 13, 1 ]
+					[ 6, 0, 11, 2 ],
+					[ 6, 0, 9, 2 ],
+					[ 0, 0, 10, 2 ],
+					[ 1, 0, 13, 2 ]
 				]
 			},
 			
 			{
-				"key" : [ 2, 0, 6, 3 ],
+				"key" : [ 2, 0, 6, 4 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 0, 6, 3 ],
-					[ 6, 0, 1, 6, 3 ],
-					[ 6, 0, 2, 6, 3 ],
-					[ 6, 0, 3, 6, 3 ],
-					[ 6, 0, 4, 6, 3 ],
-					[ 6, 0, 5, 6, 3 ],
-					[ 6, 0, 6, 6, 3 ],
-					[ 6, 0, 7, 6, 3 ],
-					[ 0, 0, 6, 3 ]
+					[ 6, 0, 0, 6, 4 ],
+					[ 6, 0, 1, 6, 4 ],
+					[ 6, 0, 2, 6, 4 ],
+					[ 6, 0, 3, 6, 4 ],
+					[ 6, 0, 4, 6, 4 ],
+					[ 6, 0, 5, 6, 4 ],
+					[ 6, 0, 6, 6, 4 ],
+					[ 6, 0, 7, 6, 4 ],
+					[ 0, 0, 6, 4 ]
 				]
 			}
 		]
@@ -267,11 +267,40 @@
 		{
 			"_adjacent_to_p" : 0.0,
 			"_aj_model" : 0,
+			"_bdclr" : 
+			{
+				"w" : 1.0,
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"_bkclr" : 
+			{
+				"w" : 1.0,
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"_border_width_uhd" : 1.0,
+			"_name" : "back",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_round_utn" : 0.0,
+			"_sizeh" : 267.0,
+			"_sizew" : 800.0,
+			"_visible" : true,
+			"_with_border" : false,
+			"type" : "ft_block"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_anchor_type" : 0,
 			"_angle_srd" : 0.0,
 			"_aposx" : 0.0,
 			"_aposy" : 0.0,
-			"_name" : "back_ground",
+			"_name" : "ft_image",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
 			"_sizeh" : 267.0,
@@ -292,6 +321,49 @@
 			"_visible" : true,
 			"childs" : 
 			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bk_clr" : 
+					{
+						"w" : 0.7843137383460999,
+						"x" : 9.873417639028048e-007,
+						"y" : 9.905066917781369e-007,
+						"z" : 9.999999974752427e-007
+					},
+					"_name" : "ft_scene",
+					"_posx" : 182.0,
+					"_posy" : -150.0,
+					"_sizeh" : 338.8910217285156,
+					"_sizew" : 590.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_cam" : "aaaaaaaaaaaaaaaaaaaadoedaaaaaaaaaaaamaebaaaaaaaaaaaaaaaaaaaaiadpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "mt_sp",
+							"_name" : "ft_material_3d",
+							"_pj" : "aaaamiecaknhcddmaaaabgee",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "road.FBX0",
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans" : "mdpfcidpmdpfcidpmdpfcidpaaaacaecaaaaaaaaaaaaaaaaaaaaaaaaaaaaimmcaaaacaecabmnmnmn",
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : true,
+							"type" : "ft_material_3d"
+						}
+					],
+					"type" : "ft_scene"
+				},
 				
 				{
 					"_adjacent_to_p" : 0.0,
@@ -571,49 +643,6 @@
 					"_texture_index_txt" : 9,
 					"_visible" : false,
 					"type" : "ft_quad_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_bk_clr" : 
-					{
-						"w" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0,
-						"z" : 0.0
-					},
-					"_name" : "ft_scene",
-					"_posx" : 146.8850097656250,
-					"_posy" : -155.0,
-					"_sizeh" : 338.8910217285156,
-					"_sizew" : 635.4230346679688,
-					"_visible" : true,
-					"childs" : 
-					[
-						
-						{
-							"_adjacent_to_p" : 0.0,
-							"_aj_model" : 0,
-							"_cam" : "aaaaaaaaaaaabaebaaaakgecaaaaaaaaaaaafaebaaaaiiecaaaaaaaaaaaaiadpaaaaaaaa",
-							"_draw_mode" : 4,
-							"_material_name" : "mt_sp",
-							"_name" : "ft_material_3d",
-							"_pj" : "aaaafiecaknhcddmaaaacpee",
-							"_posx" : 0.0,
-							"_posy" : 0.0,
-							"_primitive_name" : "road.FBX0",
-							"_sizeh" : 20.0,
-							"_sizew" : 20.0,
-							"_trans" : "fclijodofclijodofclijodoaaaajcecaaaaaaaaaaaaaaaaaaaaaaaaaaaacaecaaaaaaaaabmnmnmn",
-							"_uf_model_name" : "model",
-							"_uf_proj_name" : "proj",
-							"_uf_view_name" : "view",
-							"_visible" : true,
-							"type" : "ft_material_3d"
-						}
-					],
-					"type" : "ft_scene"
 				},
 				
 				{
@@ -957,24 +986,7 @@
 					"_posy" : -126.0,
 					"_sizeh" : 41.0,
 					"_sizew" : 43.0,
-					"_texture_index_txt" : 38,
-					"_visible" : false,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "people_war2",
-					"_posx" : 297.0,
-					"_posy" : -132.0,
-					"_sizeh" : 69.0,
-					"_sizew" : 69.0,
-					"_texture_index_txt" : 39,
+					"_texture_index_txt" : 50,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1010,9 +1022,26 @@
 					"_posy" : -155.0,
 					"_sizeh" : 232.0490112304688,
 					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 40,
+					"_texture_index_txt" : 52,
 					"_visible" : false,
 					"type" : "ft_quad_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "people_war2",
+					"_posx" : 297.0,
+					"_posy" : -132.0,
+					"_sizeh" : 69.0,
+					"_sizew" : 69.0,
+					"_texture_index_txt" : 51,
+					"_visible" : false,
+					"type" : "ft_image"
 				},
 				
 				{
@@ -1046,7 +1075,7 @@
 					"_posy" : -155.0,
 					"_sizeh" : 232.0490112304688,
 					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 40,
+					"_texture_index_txt" : 52,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				}
@@ -1078,8 +1107,8 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 56,
-					"_visible" : true,
+					"_texture_index_txt" : 68,
+					"_visible" : false,
 					"childs" : 
 					[
 						
@@ -1125,8 +1154,8 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 51,
-					"_visible" : true,
+					"_texture_index_txt" : 63,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -1142,8 +1171,8 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 57,
-					"_visible" : true,
+					"_texture_index_txt" : 69,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -1159,8 +1188,8 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 62,
-					"_visible" : true,
+					"_texture_index_txt" : 74,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -1176,8 +1205,8 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 65,
-					"_visible" : true,
+					"_texture_index_txt" : 77,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -1193,8 +1222,8 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 64,
-					"_visible" : true,
+					"_texture_index_txt" : 76,
+					"_visible" : false,
 					"type" : "ft_image"
 				}
 			],
@@ -1226,7 +1255,7 @@
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
 					"_texture_index_txt" : 15,
-					"_visible" : true,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -1243,7 +1272,7 @@
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
 					"_texture_index_txt" : 15,
-					"_visible" : true,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -1260,7 +1289,7 @@
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
 					"_texture_index_txt" : 16,
-					"_visible" : true,
+					"_visible" : false,
 					"childs" : 
 					[
 						
@@ -1297,12 +1326,12 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_content" : "东海国际中心",
+					"_content" : "东海国际心东海国际心东海国际心东海国际心东海国际心",
 					"_font_id" : 0,
 					"_font_scale" : 1.0,
 					"_font_size" : 22,
 					"_name" : "poi_name",
-					"_omit_rest" : false,
+					"_omit_rest" : true,
 					"_posx" : 323.5950012207031,
 					"_posy" : 159.6410064697266,
 					"_sizeh" : 20.0,
@@ -1316,8 +1345,8 @@
 						"z" : 1.0
 					},
 					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
+					"_width" : 180.0,
+					"_width_limit" : true,
 					"type" : "ft_textblock"
 				},
 				
@@ -1351,7 +1380,7 @@
 					"_sizeh" : 48.0,
 					"_sizew" : 48.0,
 					"_texture_index_txt" : 11,
-					"_visible" : true,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -1379,7 +1408,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 29,
+							"_texture_index_txt" : 31,
 							"_visible" : true,
 							"type" : "ft_image"
 						},
@@ -1396,7 +1425,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 29,
+							"_texture_index_txt" : 31,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1413,7 +1442,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 29,
+							"_texture_index_txt" : 31,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1430,7 +1459,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 35,
+							"_texture_index_txt" : 41,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1447,7 +1476,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 35,
+							"_texture_index_txt" : 41,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1464,7 +1493,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 35,
+							"_texture_index_txt" : 41,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1481,7 +1510,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 35,
+							"_texture_index_txt" : 41,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1498,7 +1527,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 35,
+							"_texture_index_txt" : 41,
 							"_visible" : false,
 							"type" : "ft_image"
 						}
@@ -1534,7 +1563,7 @@
 					"_sizeh" : 52.0,
 					"_sizew" : 52.0,
 					"_texture_index_txt" : 25,
-					"_visible" : true,
+					"_visible" : false,
 					"childs" : 
 					[
 						
@@ -1612,7 +1641,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 43,
+					"_texture_index_txt" : 55,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1629,7 +1658,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 44,
+					"_texture_index_txt" : 56,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1646,7 +1675,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 45,
+					"_texture_index_txt" : 57,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1663,7 +1692,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 46,
+					"_texture_index_txt" : 58,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1680,7 +1709,7 @@
 					"_posy" : 76.0,
 					"_sizeh" : 114.0,
 					"_sizew" : 56.0,
-					"_texture_index_txt" : 42,
+					"_texture_index_txt" : 54,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1697,7 +1726,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 47,
+					"_texture_index_txt" : 59,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1714,7 +1743,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 48,
+					"_texture_index_txt" : 60,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1731,7 +1760,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 49,
+					"_texture_index_txt" : 61,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1748,7 +1777,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 50,
+					"_texture_index_txt" : 62,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1765,7 +1794,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1782,7 +1811,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1799,7 +1828,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1816,7 +1845,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1833,7 +1862,7 @@
 					"_posy" : 55.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1850,7 +1879,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1867,7 +1896,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1884,7 +1913,7 @@
 					"_posy" : 56.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 53,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -1954,13 +1983,7 @@
 			"type" : "ft_base"
 		}
 	],
-	"file_list" : 
-	[
-		"curve_road1.trk",
-		"img_ring_left_full.trk",
-		"img_ring_right_full.trk",
-		"road.FBX0"
-	],
+	"file_list" : [ "img_ring_left_full.trk", "img_ring_right_full.trk", "road.FBX0" ],
 	"fonts" : 
 	[
 		"FZLanTingHeiS-R-GB.TTF",
@@ -1981,7 +2004,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ 0.0 ]
+					"value_list" : [ 0.1199999973177910 ]
 				},
 				"model" : 
 				{
@@ -1991,21 +2014,21 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						0.3100000023841858,
+						0.6600000262260437,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						0.09063525497913361,
-						0.2964544594287872,
+						0.5055893659591675,
+						0.4242398142814636,
 						0.0,
 						0.0,
-						-0.2964544594287872,
-						0.09063525497913361,
+						-0.4242398142814636,
+						0.5055893659591675,
 						0.0,
 						0.0,
+						-70.0,
 						40.0,
-						0.0,
 						1.0
 					]
 				},
@@ -2017,21 +2040,21 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						1.046721696853638,
+						0.4819717407226563,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						1.962610602378845,
+						0.8390995860099793,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						-1.000028610229492,
+						-1.000033378601074,
 						-1.0,
 						0.0,
 						0.0,
-						-0.02000028640031815,
+						-0.02000033296644688,
 						0.0
 					]
 				},
@@ -2056,16 +2079,16 @@
 						-0.0,
 						0.0,
 						-0.0,
-						0.9662349224090576,
-						-0.2576626539230347,
+						0.9921163320541382,
+						-0.1253199577331543,
 						0.0,
 						0.0,
-						0.2576626539230347,
-						0.9662349224090576,
+						0.1253199577331543,
+						0.9921163320541382,
 						0.0,
 						-0.0,
-						-30.08211517333984,
-						-77.87854003906250,
+						-23.8107910156250,
+						-188.5021057128906,
 						1.0
 					]
 				}
@@ -2096,7 +2119,7 @@
 		
 		{
 			"ebo_len" : 126,
-			"format" : [ 3, 2, 3 ],
+			"format" : [ 3, 3, 2 ],
 			"name" : "road.FBX0",
 			"vbo_len" : 1008
 		}
@@ -2118,19 +2141,19 @@
 	[
 		
 		{
-			"mipmap" : false,
+			"mipmap" : true,
 			"name" : "ldw_left.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : false,
+			"mipmap" : true,
 			"name" : "ldw_righr.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : false,
+			"mipmap" : true,
 			"name" : "road.png",
 			"separated" : false
 		}
