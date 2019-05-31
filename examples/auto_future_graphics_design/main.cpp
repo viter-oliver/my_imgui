@@ -166,8 +166,13 @@ void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 }
 //#define _MY_IMGUI__
 //#define _DEMO_
+#pragma data_seg("afg_seg")
+uint32_t s_user_count=0;
+#pragma data_seg()
+#pragma comment(linker,"/section:afg_seg,RWS")
 int main(int argc, char* argv[])
 {
+	s_user_count++;
 	/*HWND hwnd = GetConsoleWindow();
 	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));*/
 	g_app_path = argv[0];

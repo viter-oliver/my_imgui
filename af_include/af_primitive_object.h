@@ -75,3 +75,5 @@ extern AFG_EXPORT mp_primitive g_primitive_list;
 extern bool ref_a_intenal_primitive(string& prm_name);
 #endif
 extern ps_primrive_object AFG_EXPORT get_prm_object(const char* prm_name);
+extern bool AFG_EXPORT get_prm_data(const char* prm_name,float* pbuff,uint32_t buff_len);
+extern bool AFG_EXPORT update_prm_vbo(const char* prm_name, float* pvertex, uint32_t buff_len);

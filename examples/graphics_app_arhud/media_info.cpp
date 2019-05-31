@@ -10,6 +10,7 @@ extern msg_host_n g_msg_host;
 static char str_show[MAX_CONTENT_LEN] = { 0 };
 static bool bvalue = false;
 static int media_icon_txt = en_media_fm_png;
+MSC_PACK_HEAD
 void register_media_cmd_handl()
 {
 	g_msg_host.attach_monitor("entertainment info",[&](u8*pbuff,int len){

@@ -197,21 +197,21 @@ void msg_host_n::execute_data_handle_cmd()
 	{
 		auto& bunt = _cmd_queue[_rear_id];
 		u8* pdata = bunt._data_len > static_buff_len ? bunt._pdynamic_buff : bunt._static_buff;
-		char kid[5];
 		struct cmd_data
 		{
-			u8 data0 : 4;
-			u8 data1 : 4;
-			u8 data2 : 4;
-			u8 data3 : 4;
+			u8 data0:4;
+			u8 data1:4;
+			u8 data2:4;
+			u8 data3:4;		
 		};
-		cmd_data* pcmd = (cmd_data*)pdata;
-		char kid[5];
-		kid[0] = num_tb[pcmd->data0]; kid[1] = num_tb[pcmd->data1];
-		kid[2] = num_tb[pcmd->data2]; kid[3] = num_tb[pcmd->data3];
+		cmd_data* pcmd=(cmd_data*)pdata;
+		static char kid[5]={'0','0','0','0','\0'};
+		kid[0] = num_tb[pcmd->data3]; kid[1] = num_tb[pcmd->data2];
+		kid[2] = num_tb[pcmd->data1]; kid[3] = num_tb[pcmd->data0];
 		pdata += 2;
-		kid[4] = '\0';
-		auto& idata_u = _recieve_protocol.find(kid);
+		//kid[4] = '\0';
+		//printf("command 0x%s\n",kid);
+		const auto& idata_u = _recieve_protocol.find(kid);
 		if (idata_u!=_recieve_protocol.end())
 		{
 			auto& data_u = *idata_u->second;
@@ -231,6 +231,10 @@ void msg_host_n::execute_data_handle_cmd()
 				}
 			}
 		}
+		else
+		{
+			//printf("unkown command:%s datalen=%d\n",kid, bunt._data_len);
+		}
 		if (bunt._pdynamic_buff)
 		{
 			delete[] bunt._pdynamic_buff;
@@ -242,7 +246,7 @@ void msg_host_n::send_data(const char* object_name,u8* pbuff, int len)
 {
    if (_send_cmd)
    {
-	   auto ivdata = _protocol_send_data_map.find(object_name);
+	   const auto& ivdata = _protocol_send_data_map.find(object_name);
 	   if (ivdata!=_protocol_send_data_map.end())
 	   {
 		   int dlen = ivdata->second.size() + len;

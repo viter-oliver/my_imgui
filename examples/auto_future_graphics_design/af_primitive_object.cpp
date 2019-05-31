@@ -155,3 +155,33 @@ ps_primrive_object get_prm_object(const char* prm_name)
 		
 	}
 }
+
+bool get_prm_data(const char* prm_name, float* pbuff, uint32_t buff_len)
+{
+	const auto& iprm = g_primitive_list.find(prm_name);
+	if (iprm==g_primitive_list.end())
+	{
+		return false;
+	}
+	auto& ps_prm_obj = iprm->second;
+	auto& ps_file = ps_prm_obj->_ps_file;
+	char* phead = (char*)ps_file->_pbin;
+	GLuint* phead_buff_len = (GLuint*)phead;
+	phead += 4;
+	assert(*phead_buff_len == buff_len * sizeof(float)&&"cannot get primitive data for invalid buff_len");
+	memcpy(pbuff, phead, *phead_buff_len);
+	return true;
+}
+bool update_prm_vbo(const char* prm_name, float* pvertex, uint32_t buff_len)
+{
+	const auto& iprm = g_primitive_list.find(prm_name);
+	if (iprm == g_primitive_list.end())
+	{
+		return false;
+	}
+	auto& prm_obj = *iprm->second;
+	assert(buff_len == prm_obj._vertex_buf_len&&"cannot update vbo for invalid buff_len");
+	glBindBuffer(GL_ARRAY_BUFFER, prm_obj._vbo);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*prm_obj._vertex_buf_len, pvertex, GL_DYNAMIC_DRAW);
+	return true;
+}

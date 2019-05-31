@@ -9,6 +9,7 @@ extern msg_host_n g_msg_host;
 #define MAX_CONTENT_LEN 0x100
 static char str_show[MAX_CONTENT_LEN] = { 0 };
 static bool bvalue = false;
+MSC_PACK_HEAD
 struct signal_light_control 
 {
 	bool _visible;
@@ -174,6 +175,20 @@ public:
 	}
 	void set_car_speed(u16 csp)
 	{
+		if (csp<20)
+		{
+			lane_step = 0.005f;
+		}
+		else
+		if (csp>=20&& csp<90)
+		{
+
+			lane_step = 0.01;
+		}
+		else
+		{
+			lane_step = 0.02;
+		}
 		lane_speed=csp*speed_unit;
 		lane_circle=lane_circle_mileage/lane_speed;
 		lane_time_delta=lane_circle/24;
@@ -214,7 +229,7 @@ void register_car_cmd_handl()
 	assert(imtl!=g_material_list.end());
 	s_lane_mg.set_mtl(imtl->second);
 	s_lane_mg.init_time();
-	s_lane_mg. set_car_speed(200);
+	s_lane_mg. set_car_speed(80);
 	g_msg_host.attach_monitor("car speed",[&](u8*pbuff,int len){
 		/*struct _car_speed
 		{
@@ -360,9 +375,7 @@ void register_car_cmd_handl()
 		default:
 			break;
 		}
-		
-			
-		
+
 	});	
 	g_msg_host.attach_monitor("rotate speed",[&](u8*pbuff,int len){
 		u16* protate_speed=(u16*)pbuff;

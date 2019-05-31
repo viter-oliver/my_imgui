@@ -342,8 +342,9 @@ bool set_mp_text_uf(const char* mtl_nm, const char* txt_uf_nm, const char* txt_n
 		if (isduf != mp_sduf.end())
 		{
 			auto& txt_sduf = *isduf->second;
-			auto data_hd = txt_sduf.get_data_head();
+			auto data_hd =(char*) txt_sduf.get_data_head();
 			memcpy(data_hd, txt_nm, strlen(txt_nm));
+			data_hd[strlen(txt_nm)] = '\0';
 			txt_sduf.link();
 			return true;
 		}

@@ -8,6 +8,7 @@ extern msg_host_n g_msg_host;
 #define MAX_CONTENT_LEN 0x100
 static char str_show[MAX_CONTENT_LEN] = { 0 };
 static bool bvalue = false;
+MSC_PACK_HEAD
 void register_navi_cmd_handl()
 {
 	 g_msg_host.attach_monitor("navi state",[&](u8*pbuff,int len){
@@ -26,9 +27,15 @@ void register_navi_cmd_handl()
 		};
 		simple_info_of_navi_guidance* psg=(simple_info_of_navi_guidance*)pbuff;
 		pbuff += sizeof(simple_info_of_navi_guidance);
-		//printf("road_name_length=%d\n",psg->road_name_length);
+		static int  idx = 0;
+		printf("road_name_length=%d idx=%d\n",psg->road_name_length,idx++);
+		if (psg->road_name_length>MAX_CONTENT_LEN-1)
+		{
+			psg->road_name_length =MAX_CONTENT_LEN - 1;
+		}
 		memcpy(str_show, pbuff, psg->road_name_length);
 		str_show[psg->road_name_length] = '\0';
+
 		set_property_aliase_value("next_road_name", str_show);
 
 	});
@@ -68,21 +75,21 @@ void register_navi_cmd_handl()
 			int valid_lane_type_txt_id;
 		};
 		static const lane_control lcontrol[en_lane_type_num] = {
-			{en_navi_straight1_png,en_navi_straight_png},
-			{ en_navi_turn_left1_png, en_navi_turn_left_png },
-			{ en_navi_turn_left_straight1_png, en_navi_turn_left_straight_png },
-			{ en_navi_turn_right1_png, en_navi_turn_right_png },
-			{ en_navi_turn_right1_png, en_navi_turn_right_png },
-			{ en_navi_straight1_png, en_navi_straight_png },
-			{ en_navi_turn_left1_png, en_navi_turn_left_png },
-			{ en_navi_turn_left_straight1_png, en_navi_turn_left_straight_png },
-			{ en_navi_turn_right1_png, en_navi_turn_right_png },
-			{ en_navi_turn_right1_png, en_navi_turn_right_png },
-			{ en_navi_straight1_png, en_navi_straight_png },
-			{ en_navi_turn_left1_png, en_navi_turn_left_png },
-			{ en_navi_turn_left_straight1_png, en_navi_turn_left_straight_png },
-			{ en_navi_turn_right1_png, en_navi_turn_right_png },
-			{ en_navi_turn_right1_png, en_navi_turn_right_png },
+			{en_navi_straight1_png,en_navi_straight_png},//en_lane_straight
+			{ en_navi_turn_left1_png, en_navi_turn_left_png },//en_lane_left
+			{ en_navi_turn_left_straight1_png, en_navi_turn_left_straight_png },//en_lane_left_or_straight
+			{ en_navi_turn_right1_png, en_navi_turn_right_png },//en_lane_right
+			{ en_navi_turn_right_straight1_png, en_navi_turn_right_straight_png },//en_lane_right_or_straight
+			{ en_navi_left_around1_png, en_navi_left_around_png},//en_lane_left_turnround
+			{ en_navi_left_right1_png, en_navi_left_right_png},//en_lane_left_or_right
+			{ en_navi_straight_left_right1_png, en_navi_straight_left_right_png},//en_lane_left_or_right_or_straight
+			{ en_navi_turn_right_around1_png, en_navi_turn_right_around_png },//en_lane_right_turnround
+			{ en_navi_straight_left_around1_png, en_navi_straight_left_around_png },//en_lane_straight_or_left_turnround
+			{ en_navi_turn_right_straight_around1_png, en_navi_turn_right_straight_around_png },//en_lane_straight_or_right_turnround
+			{ en_navi_turn_left_or_around1_png, en_navi_turn_left_or_around_png},//en_lane_left_or_left_turnround
+			{ en_navi_turn_right_or_around1_png, en_navi_turn_right_or_around_png },//en_lane_right_or_right_turnround
+			{ en_navi_undefine_png, en_navi_undefine_png},//en_lane_undefined
+			{ en_navi_prohibition_png, en_navi_prohibition_png},//en_lane_non_optional
 
 		};
 		struct lane_info

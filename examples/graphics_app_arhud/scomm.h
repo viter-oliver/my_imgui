@@ -156,8 +156,8 @@ public:
 		DWORD dwBytesRead;
 		
 		
-#define		MCU_SYNC1			0xFA
-#define		MCU_SYNC2			0xAF
+#define		MCU_SYNC1			0xc2
+#define		MCU_SYNC2			0x3d
 #define MAX_BYTE_SIZE 0x400
 #define MAX_CACH_SIZE MAX_BYTE_SIZE*4
 
@@ -215,15 +215,17 @@ public:
 			//continue;
 			for (; irear != ifront; ++irear, irear %= MAX_CACH_SIZE)
 			{
-				static uint8_t prebyte = 0;
+				static uint8_t prebyte = 0, check_sum = 0;
 				static bool be_picking_data = false;
 				static int pick_index = 0;
-				static uint8_t frame_len;
-				assert(pick_index < MAX_BYTE_SIZE&&irear < MAX_CACH_SIZE&&"something  is wrong!");
+				static uint16_t frame_len;
 				enum
 				{
-					en_pos_frame_length,
-					en_pos_num_index,
+					en_pos_signal,
+					en_pos_index,
+					en_pos_length_h,
+					en_pos_length_l,
+					en_pos_cmd_head,
 				};
 				if (!be_picking_data)
 				{
@@ -232,59 +234,51 @@ public:
 						be_picking_data = true;
 						pick_index = 0;
 						prebyte = 0;
+						check_sum = MCU_SYNC1^MCU_SYNC2;
 					}
 					prebyte = data_cache[irear];
 				}
 				else
 				{
+					//printf("pick_index=%d frame_len=%d\n", pick_index, frame_len);
 					data_cmd[pick_index] = data_cache[irear];
-					if (pick_index == en_pos_frame_length)
+					bool finish_frame = false;
+					if (pick_index == en_pos_length_l)
 					{
-						frame_len = data_cmd[pick_index];
-						//if (frame_len<4)
-						//{
-						//	be_picking_data = false;
-						//}
-						//printf("will get a command frame_len==%d\n", frame_len);
+						uint16_t* plen = (uint16_t*)& data_cmd[en_pos_length_h];
+						
+						frame_len = *plen;// g_data_cmd[en_pos_length_h]*0x100+g_data_cmd[en_pos_length_l];
+						if (frame_len>MAX_BYTE_SIZE - en_pos_length_l)
+						{
+							printf("invalid command length:%d\n", frame_len);
+							be_picking_data = false;
+							finish_frame = true;
+						}
 					}
 					else
-					if (pick_index == frame_len)
+					if (pick_index == (frame_len + en_pos_length_l))
 					{
-						//printf("get a command\n");
 						uint8_t fchk_sum = data_cmd[pick_index];
-						uint8_t cal_chk_sum = calc_check_sum(data_cmd, frame_len);
-						if (fchk_sum == cal_chk_sum)
+						if (fchk_sum == check_sum)
 						{
-							if (_msg_handl)
-							{
-								//printf("a cmd :");
-								//for (int ix = 3; ix < frame_len - 3;ix++)
-								//{
-								//	printf("%0x ", data_cmd[ix]);
-								//}
-								//printf("\n");
-								_msg_handl(data_cmd + 3, frame_len - 3);
-
-							}
-							else
-							{
-								printf("lack cmd handle!\n");
-							}
+							//RmtAdpter::GetInstance()->interpretCommand(g_data_cmd + 3);
+							//printf("get a frame data\n");
+							//g_msg_host.pick_valid_data(&data_cmd[en_pos_cmd_head], frame_len - 1);
+							_msg_handl(&data_cmd[en_pos_cmd_head], frame_len - 1);
 						}
 						else
 						{
-							printf("fail to checksum cmd:");
-					
-							for (int ix = 0; ix <= frame_len; ix++)
-							{
-								printf("%0x ", data_cmd[ix]);
-							}
-							printf("\n");
-							printf("chksum==0x%x,cal_chksum=0x%x", fchk_sum, cal_chk_sum);
+							printf("fail to checksum1\n");
 						}
 						be_picking_data = false;
+						finish_frame = true;
 					}
-					pick_index++;
+					if (!finish_frame)
+					{
+						check_sum ^= data_cmd[pick_index];
+						pick_index++;
+					}
+					
 				}
 			}
 		}

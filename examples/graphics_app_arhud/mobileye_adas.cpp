@@ -12,35 +12,37 @@ const char* mtl_name = "mt_sp";
 const char* ldw_left_txt = "ldw_left.png";
 const char* ldw_right_txt = "ldw_righr.png";
 const char* road_txt = "road.png";
+MSC_PACK_HEAD
+//bool set_mp_text_uf(const char* mtl_nm, const char* txt_uf_nm, const char* txt_nm)
+//{
+//	const auto& imtl = g_material_list.find(mtl_nm);
+//	if (imtl != g_material_list.end())
+//	{
+//		auto& mtl = *imtl->second;
+//		auto& mp_sduf = mtl.get_mp_sd_uf();
+//		const auto& isduf = mp_sduf.find(txt_uf_nm);
+//		if (isduf != mp_sduf.end())
+//		{
+//			auto& txt_sduf = *isduf->second;
+//			char* data_hd = (char*)txt_sduf.get_data_head();
+//			memcpy(data_hd, txt_nm, strlen(txt_nm));
+//			data_hd[strlen(txt_nm)] = '\0';
+//			txt_sduf.link();
+//			return true;
+//		}
+//	}
+//	return false;
+//}
 
-bool set_mp_text_uf(const char* mtl_nm, const char* txt_uf_nm, const char* txt_nm)
-{
-	const auto& imtl = g_material_list.find(mtl_nm);
-	if (imtl != g_material_list.end())
-	{
-		auto& mtl = *imtl->second;
-		auto& mp_sduf = mtl.get_mp_sd_uf();
-		const auto& isduf = mp_sduf.find(txt_uf_nm);
-		if (isduf != mp_sduf.end())
-		{
-			auto& txt_sduf = *isduf->second;
-			auto data_hd = txt_sduf.get_data_head();
-			memcpy(data_hd, txt_nm, strlen(txt_nm));
-			txt_sduf.link();
-			return true;
-		}
-	}
-	return false;
-}
 
-
-static ps_primrive_object ps_prm_road;
+//ps_primrive_object ps_prm_road;
+/*
 const int numb_of_vertex = 126;
 const int len_of_verterx = 8;
 static float base_road_vertexs[numb_of_vertex][len_of_verterx];
 static float road_vertexs[numb_of_vertex][len_of_verterx];
 static bool road_veters_left[numb_of_vertex];
-static float base_y=100.;
+static float base_y=0.;
 
 void init_raod_vertex()
 {
@@ -48,7 +50,7 @@ void init_raod_vertex()
 	{
 		auto& vertex_u = base_road_vertexs[ix];
 		road_veters_left[ix] = vertex_u[3] < 0;
-		if (vertex_u[4]<base_y)
+		if (vertex_u[4]>base_y)
 		{
 			base_y = vertex_u[4];
 		}
@@ -56,7 +58,7 @@ void init_raod_vertex()
 }
 void calcu_offset_x(float curvature, float lane_heading,int ix)
 {
-	float yvalue = base_road_vertexs[ix][4] - base_y;
+	float yvalue = base_y-base_road_vertexs[ix][4];
 	road_vertexs[ix][3] = curvature*yvalue*yvalue + lane_heading*yvalue + base_road_vertexs[ix][3];
 }
 void calcu_vertex(float curvature_left, float lane_heading_left, float curvature_right, float lane_heading_right)
@@ -73,7 +75,32 @@ void calcu_vertex(float curvature_left, float lane_heading_left, float curvature
 		}
 	}
 }
+*/
+//static const char* mtl_name = "mt_sp";
+void print_buff(u8* pbuff, int len)
+{
+	static char num_tb[0x10] =
+	{
+		'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+	};
+	struct buff_data
+	{
+		u8 data_l : 4;
+		u8 data_h : 4;
+	};
+	string pt_buff;
+	while (len > 0)
+	{
+		buff_data* pdata = (buff_data*)pbuff++;
+		len--;
+		pt_buff += " x";
+		pt_buff += num_tb[pdata->data_h];
+		pt_buff += num_tb[pdata->data_l];
+	}
+	printf("%s\n", pt_buff.c_str());
+}
 
+ps_mtl mtl_lane;
 enum lane_type
 {
 	en_lane_dashed,
@@ -86,7 +113,6 @@ enum lane_type
 };
 bool prohibit_lane_swith(u8 lane_type)
 {
-
 	bool ret= lane_type==en_lane_solid||lane_type==en_lane_road_edge||lane_type==en_lane_double_lane_mark||lane_type==en_lane_invalid;
 	return ret;
 }
@@ -94,110 +120,158 @@ u8 left_lane_type=0,right_lane_type=0;
 static u16 left_curvature_stm = 0, left_lane_heading_stm = 0;
 static u16 right_curvature_stm = 0, right_lane_heading_stm = 0;
 static s16 left_position=0,right_position=0;
-
+float uf_value = 0.f;
 void calcu_left_right_lanes()
 {
+	//return;
 	if (left_curvature_stm != 0 && left_lane_heading_stm != 0 && right_curvature_stm != 0 && right_lane_heading_stm!=0)
 	{
-		float cuv_lt = (left_curvature_stm - 0x7fff) / 1024000;
-		float lh_lt = (left_lane_heading_stm - 0x7fff) / 1024;
-		float cuv_rt = (right_curvature_stm - 0x7fff) / 1024000;
-		float lh_rt = (right_lane_heading_stm - 0x7fff) / 1024;
-		calcu_vertex(cuv_lt, lh_lt, cuv_rt, lh_rt);
-		glBindBuffer(GL_ARRAY_BUFFER, ps_prm_road->_vbo);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*ps_prm_road->_vertex_buf_len, road_vertexs, GL_DYNAMIC_DRAW);
+		float cuv_lt = (left_curvature_stm - 0x7fff) / 1024000.0;
+		float lh_lt = (left_lane_heading_stm - 0x7fff) / 1024.0;
+		float cuv_rt = (right_curvature_stm - 0x7fff) / 1024000.0;
+		float lh_rt = (right_lane_heading_stm - 0x7fff) / 1024.f;
+		//calcu_vertex(cuv_lt, lh_lt, cuv_rt, lh_rt);
+		//printf("left_curvature_stm=0x%x,left_lane_heading_stm=0x%x,right_curvature_stm=0x%x,right_lane_heading_stm=0x%x\n", left_curvature_stm, left_lane_heading_stm, right_curvature_stm, right_lane_heading_stm);
+		//printf("cuv_lt=%f,lh_lt=%f,cuv_rt=%f,lh_rt=%f\n", cuv_lt, lh_lt, cuv_rt, lh_rt);
+		//glBindBuffer(GL_ARRAY_BUFFER, ps_prm_road->_vbo);
+		//glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*ps_prm_road->_vertex_buf_len, road_vertexs, GL_DYNAMIC_DRAW);
+		//update_prm_vbo(road_primitice, road_vertexs[0], numb_of_vertex * len_of_verterx);
+		mtl_lane->set_value("curv_l", &cuv_lt, 1);
+		mtl_lane->set_value("head_l", &lh_lt, 1);
+		mtl_lane->set_value("curv_r", &cuv_rt, 1);
+		mtl_lane->set_value("head_r", &lh_rt, 1);
 
 		left_curvature_stm = left_lane_heading_stm = right_curvature_stm = right_lane_heading_stm = 0;
 	}
 }
 void register_adas_cmd_handl()
 {
-	const auto& iprm = g_primitive_list.find(road_primitice);
-	if (iprm!=g_primitive_list.end())
+	//const auto& iprm = g_primitive_list.find(road_primitice);
+	//if (iprm!=g_primitive_list.end())
+	//{
+	//	ps_prm_road = iprm->second;
+	//	auto& ps_file = ps_prm_road->_ps_file;
+	//	char* phead = (char*)ps_file->_pbin;
+	//	GLuint* phead_buff_len = (GLuint*)phead;
+	//	phead += 4;
+	//	assert(*phead_buff_len == numb_of_vertex * len_of_verterx * sizeof(float));
+	//	memcpy(&road_vertexs[0][0], phead, *phead_buff_len);
+	//	memcpy(&base_road_vertexs[0][0], phead, *phead_buff_len);
+	//	init_raod_vertex();
+	//}
+	/*if (get_prm_data(road_primitice, &road_vertexs[0][0], numb_of_vertex * len_of_verterx))
 	{
-		ps_prm_road = iprm->second;
-		auto& ps_file = ps_prm_road->_ps_file;
-		char* phead = (char*)ps_file->_pbin;
-		GLuint* phead_buff_len = (GLuint*)phead;
-		phead += 4;
-		assert(*phead_buff_len == numb_of_vertex * len_of_verterx * sizeof(float));
-		memcpy(&road_vertexs[0][0], phead, *phead_buff_len);
-		memcpy(&base_road_vertexs[0][0], phead, *phead_buff_len);
-
-	}
-	g_msg_host.attach_monitor("can message",[&](u8* pbuff,int len){
-		pbuff+=2;
+	memcpy(&base_road_vertexs[0][0], road_vertexs, numb_of_vertex * len_of_verterx * sizeof(float));
+	init_raod_vertex();
+	}*/
+	const auto& imtl = g_material_list.find("mt_sp");
+	assert(imtl != g_material_list.end());
+	mtl_lane=imtl->second;
+	uf_value = 350.f;
+	mtl_lane->set_value("base_y", &uf_value, 1);
+	g_msg_host.attach_monitor("can message", [&](u8* pbuff, int len){
+		printf("can message:\n");
+		print_buff(pbuff, len);
+		pbuff += 2;
 		struct GNU_DEF can_msg
 		{
-			u8 b0_undocumented:3;
-			u8 b0_time_indicator:2;
-			u8 b0_sound_type:3;
-			
-			u8 b1_reserved:2;
-			u8 b1_zero_spped:1;
-			u8 b1_reserved_n:4;
-			u8 b1_0:1;
-			
-			u8 b2_headway_measurement:7;
-			u8 b2_headway_valid:1;
+			u8 b0_undocumented : 3;
+			u8 b0_time_indicator : 2;
+			u8 b0_sound_type : 3;
 
-			u8 b3_error_code:7;
-			u8 b3_error:1;
-			
-			u8 b4_failsafe:1;
-			u8 b4_maintenance:1;
-			u8 b4_undocumented:2;
-			u8 b4_fcw_on:1;
-			u8 b4_right_ldw_on:1;
-			u8 b4_left_ldw_on:1;
-			u8 b4_ldw_off:1;
-			
-			u8 b5_tsr_enabled:1;
-			u8 b5_reseved:1;
-			u8 b5_tamper_alert:1;
-			u8 b5_reserved2:2;
-			u8 b5_peds_in_dz:1;
-			u8 b5_peds_fcw:1;
-			u8 b5_zero:1;
-			
-		       u8 b6_reserved:5;
-			u8 b6_tsr_warning_level:3;
-			
-			u8 b7_reserved:5;
-			u8 b7_hw_repeatable_enabled:1;
-			u8 b7_headway_warning_level:2;
+			u8 b1_reserved : 2;
+			u8 b1_zero_spped : 1;
+			u8 b1_reserved_n : 4;
+			u8 b1_0 : 1;
+
+			u8 b2_headway_measurement : 7;
+			u8 b2_headway_valid : 1;
+
+			u8 b3_error_code : 7;
+			u8 b3_error : 1;
+
+			u8 b4_failsafe : 1;
+			u8 b4_maintenance : 1;
+			u8 b4_undocumented : 2;
+			u8 b4_fcw_on : 1;
+			u8 b4_right_ldw_on : 1;
+			u8 b4_left_ldw_on : 1;
+			u8 b4_ldw_off : 1;
+
+			u8 b5_tsr_enabled : 1;
+			u8 b5_reseved : 1;
+			u8 b5_tamper_alert : 1;
+			u8 b5_reserved2 : 2;
+			u8 b5_peds_in_dz : 1;
+			u8 b5_peds_fcw : 1;
+			u8 b5_zero : 1;
+
+			u8 b6_reserved : 5;
+			u8 b6_tsr_warning_level : 3;
+
+			u8 b7_reserved : 5;
+			u8 b7_hw_repeatable_enabled : 1;
+			u8 b7_headway_warning_level : 2;
 		};
-		can_msg* pcan_msg=(can_msg*)pbuff;
+		can_msg* pcan_msg = (can_msg*)pbuff;
 		bool be_show;
 		if (pcan_msg->b2_headway_valid)
 		{
 			int dist_id = 0;
 			static u8 segs[] = { 99 - 16, 99 - 2 * 16, 99 - 3 * 16, 99 - 3 * 16, 99 - 4 * 16, 99 - 5 * 16 };
 			u8 head_way_mm = pcan_msg->b2_headway_measurement;
-			for (; dist_id < sizeof(segs);dist_id++)
+			for (; dist_id < sizeof(segs); dist_id++)
 			{
-				if (head_way_mm>segs[dist_id])
+				if (head_way_mm > segs[dist_id])
 				{
 					break;
 				}
 			}
+			if (dist_id>5)
+			{
+				dist_id = 5;
+			}
 			be_show = true;
 			char seg_name[50] = "";
-			sprintf(seg_name, "distance%d", dist_id);
+			sprintf(seg_name, "show_distance%d", dist_id);
 			set_property_aliase_value(seg_name, &be_show);
 		}
-		if (pcan_msg->b4_right_ldw_on)
-			set_mp_text_uf("mt_sp", "text", "ldw_righr.png");
-		else
+		if (pcan_msg->b4_ldw_off)
+		{
 			set_mp_text_uf("mt_sp", "text", "road.png");
-		if (pcan_msg->b4_left_ldw_on)
-			set_mp_text_uf("mt_sp", "text", "ldw_left.png");
+		}
 		else
-			set_mp_text_uf("mt_sp", "text", "road.png");
+		{
+			if ((pcan_msg->b0_sound_type==1||pcan_msg->b4_left_ldw_on)&&pcan_msg->b4_right_ldw_on==0)
+			{
+				set_mp_text_uf("mt_sp", "text", "ldw_left.png");
+			}
+			else
+			if ((pcan_msg->b0_sound_type==2||pcan_msg->b4_right_ldw_on)&&pcan_msg->b4_left_ldw_on==0)
+			{
+				set_mp_text_uf("mt_sp", "text", "ldw_righr.png");
+			}
+		}
+		
 		be_show = pcan_msg->b5_peds_in_dz;
-		set_property_aliase_value("peds_war1", &be_show);
-		be_show = pcan_msg->b5_peds_fcw;
-		set_property_aliase_value("peds_war2", &be_show);
+		if (pcan_msg->b5_peds_in_dz)
+		{
+			be_show = true;
+			if (pcan_msg->b5_peds_fcw)
+			{
+				set_property_aliase_value("peds_war2", &be_show);
+			}
+			else
+			{
+				set_property_aliase_value("peds_war1", &be_show);
+			}
+		}
+		else
+		{
+			be_show = false;
+			set_property_aliase_value("peds_war1", &be_show);
+			set_property_aliase_value("peds_war2", &be_show);
+		}
 		//set_property_aliase_value("")
 	});
        g_msg_host.attach_monitor("car info",[&](u8* pbuff,int len){
@@ -334,7 +408,7 @@ void register_adas_cmd_handl()
 		lka_left_lane_a* pdetails_lane = (lka_left_lane_a*)pbuff;
 		s16* plpos=(s16*)(pbuff+1);
 		left_position= *plpos;
-		left_curvature_stm = pdetails_lane->b3_curvature_c2_byte0 * 0x100 + pdetails_lane->b4_curvature_c2_byte1;
+		left_curvature_stm = pdetails_lane->b3_curvature_c2_byte0  + pdetails_lane->b4_curvature_c2_byte1* 0x100;
 		calcu_left_right_lanes();
 	});
 
@@ -384,7 +458,7 @@ void register_adas_cmd_handl()
 		lka_right_lane_a* pdetails_lane = (lka_right_lane_a*)pbuff;
 		s16* plpos=(s16*)(pbuff+1);
 		right_position= *plpos;
-		right_curvature_stm = pdetails_lane->b3_curvature_c2_byte0 * 0x100 + pdetails_lane->b4_curvature_c2_byte1;
+		right_curvature_stm = pdetails_lane->b3_curvature_c2_byte0  + pdetails_lane->b4_curvature_c2_byte1* 0x100;
 		calcu_left_right_lanes();
 	});
 

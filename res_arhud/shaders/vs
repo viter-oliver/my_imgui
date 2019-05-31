@@ -6,10 +6,23 @@ uniform mat4 proj;
 uniform mat4 view;
 uniform mat4 model;
 uniform float dy;
+uniform float base_y;
+uniform float curv_l,head_l,curv_r,head_r;
 void main()
 {
+    vec3 bpos=aposition;
+    bool is_left=bpos.x>0.f;
+    float yv=base_y-bpos.y;
+    if(is_left)
+    {
+         bpos.x=curv_l*yv*yv+head_l*yv+bpos.x;
+    }
+    else
+    {
+         bpos.x=curv_r*yv*yv+head_r*yv+bpos.x;
+    }
     float nml=anormal.z;
-    gl_Position = proj * view * model * vec4(aposition, 1.0);
+    gl_Position = proj * view * model * vec4(bpos,1.0);
     
     float fdy=dy+1.0-nml;
     Textcoord = vec2(btextcoord.x,btextcoord.y-fdy);
