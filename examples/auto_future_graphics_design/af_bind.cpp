@@ -70,3 +70,14 @@ bool set_property_aliase_value(string prp_aliase_name, void* pvalue)
 	auto& prop_pos =*ialiase->second;
 	return prop_pos._pobj->set_prop_fd_value(prop_pos._page_index, prop_pos._field_index, pvalue);
 }
+base_ui_component* get_aliase_ui_control(string prp_aliase_name)
+{
+	auto& ialiase = g_aliase_dic.find(prp_aliase_name);
+	if (ialiase == g_aliase_dic.end())
+	{
+		printf("unknown alias name:%s\n", prp_aliase_name.c_str());
+		return nullptr;
+	}
+	auto& prop_pos = *ialiase->second;
+	return prop_pos._pobj;
+}

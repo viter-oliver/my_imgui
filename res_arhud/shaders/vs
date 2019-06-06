@@ -11,7 +11,7 @@ uniform float curv_l,head_l,curv_r,head_r;
 void main()
 {
     vec3 bpos=aposition;
-    bool is_left=bpos.x>0.f;
+    bool is_left=bpos.x>0.0;
     float yv=base_y-bpos.y;
     if(is_left)
     {

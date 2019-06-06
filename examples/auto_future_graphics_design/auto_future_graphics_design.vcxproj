@@ -98,7 +98,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;$(SolutionDir)\..\Python_2.7.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;$(SolutionDir)\..\Python_2.7.2;$(SolutionDir)\..\boost_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp.lib;freetype_d.lib;python27_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
@@ -125,7 +125,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\Assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\af_include;$(SolutionDir)\..\misc\freetype;$(SolutionDir)\..\Python_2.7.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\Assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\af_include;$(SolutionDir)\..\misc\freetype;$(SolutionDir)\..\Python_2.7.2\include;$(SolutionDir)\..\from_csdn_cly;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -133,7 +133,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;$(SolutionDir)\..\Python_2.7.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;$(SolutionDir)\..\Python_2.7.2;$(SolutionDir)\..\boost_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>opengl32.lib;glfw3.lib;assimp.lib;freetype.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>
@@ -164,6 +164,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\from_csdn_cly\HttpBase.cpp" />
+    <ClCompile Include="..\..\from_csdn_cly\HttpBoost.cpp" />
     <ClCompile Include="..\..\iguidock.cpp" />
     <ClCompile Include="..\..\imgui.cpp" />
     <ClCompile Include="..\..\imgui_demo.cpp" />
@@ -286,6 +288,9 @@
     <ClInclude Include="..\..\af_include\ft_trajectory_box_3d.h" />
     <ClInclude Include="..\..\af_include\property_utilities.h" />
     <ClInclude Include="..\..\af_include\shader_uf.h" />
+    <ClInclude Include="..\..\from_csdn_cly\HttpBase.h" />
+    <ClInclude Include="..\..\from_csdn_cly\HttpBoost.h" />
+    <ClInclude Include="..\..\from_csdn_cly\http_mark.h" />
     <ClInclude Include="..\..\imconfig.h" />
     <ClInclude Include="..\..\imgui.h" />
     <ClInclude Include="..\..\imguidock.h" />

@@ -28,7 +28,7 @@ namespace auto_future
 	*/
 	using namespace ImGui;
 
-	void font_face_manager::draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest)
+	void font_face_manager::draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest, bool be_new)
 	{
 		//if (fontSize != _font_rp._font_size)//!texture will be rebuilt
 		//{
@@ -76,6 +76,7 @@ namespace auto_future
 		GLuint& txt_id = pfrp->_txt_id;
 		dic_glyph_txt& txt_cd_container = pfrp->_dic_txt_cd;
 		bool will_omit_test = false;
+		
 		for (auto& wstr_item:str_content)
 		{
 			auto& glyph_txt_it = txt_cd_container.find(wstr_item);
@@ -131,6 +132,7 @@ namespace auto_future
 				ImVec2 uv2{ x1, y1 };
 				ImVec2 uv3{ x1, y0 };
 				ImVec4 dcol{ txt_col.x, txt_col.y, txt_col.z, 1.f };
+				if (!be_new)
 				ImageQuad((ImTextureID)txt_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, dcol);
 				float shift_dis = (advance >> 6)*scale;// Bitshift by 6 to get value in pixels (2^6 = 64)
 				end_pos.x += shift_dis;

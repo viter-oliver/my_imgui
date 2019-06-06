@@ -27,7 +27,7 @@ my_application::my_application(int argc, char **argv)
 	:application(argc,argv)
 {
 	_screen_width = 800;
-	_screen_height = 267;
+	_screen_height = 534;
 }
 void reg_cmd_handle()
 {

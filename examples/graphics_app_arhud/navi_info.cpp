@@ -8,6 +8,7 @@ extern msg_host_n g_msg_host;
 #define MAX_CONTENT_LEN 0x100
 static char str_show[MAX_CONTENT_LEN] = { 0 };
 static bool bvalue = false;
+extern void print_buff(u8* pbuff, int len);
 MSC_PACK_HEAD
 void register_navi_cmd_handl()
 {
@@ -28,7 +29,7 @@ void register_navi_cmd_handl()
 		simple_info_of_navi_guidance* psg=(simple_info_of_navi_guidance*)pbuff;
 		pbuff += sizeof(simple_info_of_navi_guidance);
 		static int  idx = 0;
-		printf("road_name_length=%d idx=%d\n",psg->road_name_length,idx++);
+		//printf("road_name_length=%d idx=%d\n",psg->road_name_length,idx++);
 		if (psg->road_name_length>MAX_CONTENT_LEN-1)
 		{
 			psg->road_name_length =MAX_CONTENT_LEN - 1;
@@ -49,6 +50,7 @@ void register_navi_cmd_handl()
 		assitant_info_of_navi_guidance* passitant_info_of_navi_guidance=(assitant_info_of_navi_guidance*)pbuff;
 	});
 	 g_msg_host.attach_monitor("lane info from navi",[&](u8*pbuff,int len){
+		 print_buff(pbuff, len);
 		u8 lane_num=*pbuff++;
 		enum en_lane_type
 		{
@@ -101,9 +103,10 @@ void register_navi_cmd_handl()
 		{
 			lane_num = 8;
 		}
+		printf("number  of_lanes:%d\n", lane_num);
 		float flane_num = lane_num;
 		set_property_aliase_value("number_of_lanes", &flane_num);
-		
+		printf("number_of_lanes:%f\n", flane_num);
 		for (int ix = 0; ix < lane_num;ix++)
 		{
 			lane_info* plinfo = (lane_info*)pbuff++;

@@ -246,9 +246,6 @@
     <ClInclude Include="main.h">
       <Filter>sources</Filter>
     </ClInclude>
-    <ClInclude Include="application.h">
-      <Filter>sources</Filter>
-    </ClInclude>
     <ClInclude Include="platform_def.h">
       <Filter>sources</Filter>
     </ClInclude>

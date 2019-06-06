@@ -55,3 +55,4 @@ using ps_prp_ele_pos = shared_ptr<prop_ele_position>;
 using aliase_map = map<string, ps_prp_ele_pos>;
 extern aliase_map g_aliase_dic;
 extern bool AFG_EXPORT set_property_aliase_value(string prp_aliase_name, void* pvalue);
+extern AFG_EXPORT base_ui_component*  get_aliase_ui_control(string prp_aliase_name);

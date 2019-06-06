@@ -90,6 +90,11 @@ scu signal5[en_signal5_cnt] = {
 };
 void set_signal_status(scu* pgrp, int grp_cnt, int sid, bool bon, const char* ctl_name, const char* v_name)
 {
+	if (sid >= grp_cnt)
+	{
+		printf("invalid sid=%d grp_cnt=%d\n", sid, grp_cnt);
+		return;
+	}
 	assert(sid < grp_cnt);
 	if (bon)
 	{
@@ -288,7 +293,7 @@ void register_car_cmd_handl()
 		s16* engine_water_temp=(s16*)pbuff;
 		pbuff+=2;
 		u8 water_temp_status=*pbuff;
-		if (water_temp_status!=0)
+		if (water_temp_status==0)
 		{
 			bvalue = *engine_water_temp > 120;
 			LIGHT3_SET(en_hot_water, &bvalue);
@@ -325,7 +330,7 @@ void register_car_cmd_handl()
 		{
 			case en_turn_both_off:
 			{
-				LIGHT2_SET(en_turn_right, false);
+				LIGHT2_SET(en_right_turn, false);
 				LIGHT3_SET(en_left_turn, false);
 				bvalue=false;
 				set_property_aliase_value("prohibit_left_lane_change", &bvalue);
@@ -346,7 +351,7 @@ void register_car_cmd_handl()
 			break;
 		case en_turn_right:
 			{
-				LIGHT2_SET(en_turn_right, true);
+				LIGHT2_SET(en_right_turn, true);
 				bvalue=false;
 				set_property_aliase_value("prohibit_left_lane_change", &bvalue);	
 				if(prohibit_lane_swith(right_lane_type))
@@ -358,7 +363,7 @@ void register_car_cmd_handl()
 			break;
 		case en_turn_both_on:
 			{
-				LIGHT2_SET(en_turn_right, true);
+				LIGHT2_SET(en_right_turn, true);
 				LIGHT3_SET(en_left_turn, true);
 				bvalue=true;
 				if(prohibit_lane_swith(left_lane_type))
@@ -379,7 +384,9 @@ void register_car_cmd_handl()
 	});	
 	g_msg_host.attach_monitor("rotate speed",[&](u8*pbuff,int len){
 		u16* protate_speed=(u16*)pbuff;
+		*protate_speed += 100;
 		sprintf_s(str_show, MAX_CONTENT_LEN, "%d", *protate_speed);
+		printf("rotating speed:%d\n",*protate_speed);
 		set_property_aliase_value("value_rotate_speed", str_show);
 	});
 	g_msg_host.attach_monitor("high beam",[&](u8*pbuff,int len){

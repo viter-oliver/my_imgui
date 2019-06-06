@@ -20,6 +20,7 @@ namespace auto_future
 			(int, _font_size, { 16 }),
 			(float, _font_scale, { 1.f }))
 		ImRect _txt_area;
+		wstring _str_bk;
 		//shared_ptr<af_font_res_set> _pfont_res_set;
 	public:
 		ft_textblock();// : _txt_pt(), _txt_area(0.f, 0.f, 0.f, 0.f){}

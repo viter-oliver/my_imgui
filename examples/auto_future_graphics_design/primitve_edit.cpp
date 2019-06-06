@@ -11,10 +11,10 @@
 void primitve_edit::draw_primitive_list()
 {
 
-	if (ImGui::Button("New primitive object..."))
-	{
-
-	}
+	//if (ImGui::Button("New primitive object..."))
+	//{
+	
+	//}
 	ImGuiTreeNodeFlags node_flag = ImGuiTreeNodeFlags_DefaultOpen;
 	string icon_str = icn_primitive;
 	if (IconTreeNode(icon_str,"primitive objects",node_flag))

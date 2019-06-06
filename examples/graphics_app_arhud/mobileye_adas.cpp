@@ -5,6 +5,7 @@
 #include "af_primitive_object.h"
 #include "af_material.h"
 #include "enum_txt_name0.h"
+#include "afg.h"
 using namespace auto_future_utilities;
 extern msg_host_n g_msg_host;
 const char* road_primitice = "road.FBX0";
@@ -12,6 +13,8 @@ const char* mtl_name = "mt_sp";
 const char* ldw_left_txt = "ldw_left.png";
 const char* ldw_right_txt = "ldw_righr.png";
 const char* road_txt = "road.png";
+base_ui_component* obstacles_group=nullptr;
+static int obstacles_cnt = 0;
 MSC_PACK_HEAD
 //bool set_mp_text_uf(const char* mtl_nm, const char* txt_uf_nm, const char* txt_nm)
 //{
@@ -120,6 +123,7 @@ u8 left_lane_type=0,right_lane_type=0;
 static u16 left_curvature_stm = 0, left_lane_heading_stm = 0;
 static u16 right_curvature_stm = 0, right_lane_heading_stm = 0;
 static s16 left_position=0,right_position=0;
+
 float uf_value = 0.f;
 void calcu_left_right_lanes()
 {
@@ -169,56 +173,57 @@ void register_adas_cmd_handl()
 	mtl_lane=imtl->second;
 	uf_value = 350.f;
 	mtl_lane->set_value("base_y", &uf_value, 1);
+	obstacles_group = get_aliase_ui_control("show_obstacles");
 	g_msg_host.attach_monitor("can message", [&](u8* pbuff, int len){
-		printf("can message:\n");
-		print_buff(pbuff, len);
+		//printf("can message:\n");
+		//print_buff(pbuff, len);
 		pbuff += 2;
 		struct GNU_DEF can_msg
 		{
-			u8 b0_undocumented : 3;
-			u8 b0_time_indicator : 2;
 			u8 b0_sound_type : 3;
+			u8 b0_time_indicator : 2;
+			u8 b0_undocumented : 3;
 
-			u8 b1_reserved : 2;
-			u8 b1_zero_spped : 1;
-			u8 b1_reserved_n : 4;
 			u8 b1_0 : 1;
+			u8 b1_reserved_n : 4;
+			u8 b1_zero_spped : 1;
+			u8 b1_reserved : 2;
 
-			u8 b2_headway_measurement : 7;
 			u8 b2_headway_valid : 1;
+			u8 b2_headway_measurement : 7;
 
-			u8 b3_error_code : 7;
 			u8 b3_error : 1;
+			u8 b3_error_code : 7;
 
-			u8 b4_failsafe : 1;
-			u8 b4_maintenance : 1;
-			u8 b4_undocumented : 2;
-			u8 b4_fcw_on : 1;
-			u8 b4_right_ldw_on : 1;
-			u8 b4_left_ldw_on : 1;
 			u8 b4_ldw_off : 1;
+			u8 b4_left_ldw_on : 1;
+			u8 b4_right_ldw_on : 1;
+			u8 b4_fcw_on : 1;
+			u8 b4_undocumented : 2;
+			u8 b4_maintenance : 1;
+			u8 b4_failsafe : 1;
 
-			u8 b5_tsr_enabled : 1;
-			u8 b5_reseved : 1;
-			u8 b5_tamper_alert : 1;
-			u8 b5_reserved2 : 2;
-			u8 b5_peds_in_dz : 1;
-			u8 b5_peds_fcw : 1;
 			u8 b5_zero : 1;
+			u8 b5_peds_fcw : 1;
+			u8 b5_peds_in_dz : 1;
+			u8 b5_reserved2 : 2;
+			u8 b5_tamper_alert : 1;
+			u8 b5_reseved : 1;
+			u8 b5_tsr_enabled : 1;
 
-			u8 b6_reserved : 5;
 			u8 b6_tsr_warning_level : 3;
+			u8 b6_reserved : 5;
 
-			u8 b7_reserved : 5;
-			u8 b7_hw_repeatable_enabled : 1;
 			u8 b7_headway_warning_level : 2;
+			u8 b7_hw_repeatable_enabled : 1;
+			u8 b7_reserved : 5;
 		};
 		can_msg* pcan_msg = (can_msg*)pbuff;
 		bool be_show;
 		if (pcan_msg->b2_headway_valid)
 		{
 			int dist_id = 0;
-			static u8 segs[] = { 99 - 16, 99 - 2 * 16, 99 - 3 * 16, 99 - 3 * 16, 99 - 4 * 16, 99 - 5 * 16 };
+			static u8 segs[] = { 24, 20, 16, 12, 8, 4 };
 			u8 head_way_mm = pcan_msg->b2_headway_measurement;
 			for (; dist_id < sizeof(segs); dist_id++)
 			{
@@ -227,14 +232,28 @@ void register_adas_cmd_handl()
 					break;
 				}
 			}
-			if (dist_id>5)
+			dist_id--;
+			if (dist_id>0)
 			{
-				dist_id = 5;
+				for (int ix = 0; ix < 6;ix++)
+				{
+					be_show = ix==dist_id;
+					char seg_name[50] = "";
+					sprintf(seg_name, "show_distance%d", ix);
+					set_property_aliase_value(seg_name, &be_show);
+				}
+
 			}
-			be_show = true;
-			char seg_name[50] = "";
-			sprintf(seg_name, "show_distance%d", dist_id);
-			set_property_aliase_value(seg_name, &be_show);
+		}
+		else
+		{
+			for (int ix = 0; ix < 6; ix++)
+			{
+				be_show =false;
+				char seg_name[50] = "";
+				sprintf(seg_name, "show_distance%d", ix);
+				set_property_aliase_value(seg_name, &be_show);
+			}
 		}
 		if (pcan_msg->b4_ldw_off)
 		{
@@ -257,20 +276,20 @@ void register_adas_cmd_handl()
 		if (pcan_msg->b5_peds_in_dz)
 		{
 			be_show = true;
-			if (pcan_msg->b5_peds_fcw)
+			/*if (pcan_msg->b5_peds_fcw)
 			{
 				set_property_aliase_value("peds_war2", &be_show);
 			}
 			else
 			{
 				set_property_aliase_value("peds_war1", &be_show);
-			}
+			}*/
 		}
 		else
 		{
 			be_show = false;
-			set_property_aliase_value("peds_war1", &be_show);
-			set_property_aliase_value("peds_war2", &be_show);
+			/*set_property_aliase_value("peds_war1", &be_show);
+			set_property_aliase_value("peds_war2", &be_show);*/
 		}
 		//set_property_aliase_value("")
 	});
@@ -278,21 +297,21 @@ void register_adas_cmd_handl()
 		pbuff+=2;
 		struct GNU_DEF car_info
 		{
-			u8 b0_reserved:1;
-			u8 b0_resvered1:1;
-			u8 b0_high_beam:1;
-			u8 b0_low_beam:1;
-			u8 b0_wipers:1;
-			u8 b0_right_signal:1;
-			u8 b0_left_signal:1;
 			u8 b0_brakes:1;
+			u8 b0_left_signal:1;
+			u8 b0_right_signal:1;
+			u8 b0_wipers:1;
+			u8 b0_low_beam:1;
+			u8 b0_high_beam:1;
+			u8 b0_resvered1 : 1;
+			u8 b0_reserved:1;
 			
-			u8 b1_speed_available:1;
-			u8 b1_reserved:1;
-			u8 b1_high_beam_available:1;
-			u8 b1_low_beam_available:1;
-			u8 b1_wipers_available:1;
 			u8 b1_reserved2:3;
+			u8 b1_wipers_available:1;
+			u8 b1_low_beam_available:1;
+			u8 b1_high_beam_available:1;
+			u8 b1_reserved : 1;
+			u8 b1_speed_available:1;
 
 			u8 b2_speed;
 			u8 b3_reserved;
@@ -303,19 +322,19 @@ void register_adas_cmd_handl()
 		};
 		car_info* pcar_info=(car_info*)pbuff;
 
-		bool be_show;
-		int txt_idx = 0;
-		if (pcar_info->b0_high_beam||pcar_info->b0_low_beam)
-		{
-			be_show = true;
-			txt_idx = pcar_info->b0_high_beam ? en_vinfo_fullbeam_headlight_png : en_vinfo_dipped_headlight_png;
-			set_property_aliase_value("show_beam_low_high", &be_show);
-			set_property_aliase_value("control_beam_low_high", &txt_idx);
-		}
-		else{
-			be_show = false;
-			set_property_aliase_value("show_beam_low_high", &be_show);
-		}
+		//bool be_show;
+		//int txt_idx = 0;
+		//if (pcar_info->b0_high_beam||pcar_info->b0_low_beam)
+		//{
+		//	be_show = true;
+		//	txt_idx = pcar_info->b0_high_beam ? en_vinfo_fullbeam_headlight_png : en_vinfo_dipped_headlight_png;
+		//	set_property_aliase_value("show_beam_low_high", &be_show);
+		//	set_property_aliase_value("control_beam_low_high", &txt_idx);
+		//}
+		//else{
+		//	be_show = false;
+		//	set_property_aliase_value("show_beam_low_high", &be_show);
+		//}
 
 		//if(pcar_info)
 	});	
@@ -327,10 +346,10 @@ void register_adas_cmd_handl()
 			u8 b0_vision_only_sign_type;
 			u8 b1_vision_only_supplementary_sign_type;
 			u8 b2_sign_position_x;
-			u8 b3_na:1;
 			u8 b3_sign_position_y:7;
-			u8 b4_na:2;
+			u8 b3_na:1;
 			u8 b4_position_z:6;
+			u8 b4_na:2;
 			u8 b5_filter_type;
 			u8 b6_na;
 			u8 b7_na;
@@ -357,26 +376,26 @@ void register_adas_cmd_handl()
 		pbuff+=2;
 		struct GNU_DEF details_of_lane
 		{
-			u8 b0_lane_type_left:4;
-			u8 b0_undocumented:1;
-			u8 b0_ldw_available_left:1;
 			u8 b0_lane_confidence_left:2;
+			u8 b0_ldw_available_left:1;
+			u8 b0_undocumented : 1;
+			u8 b0_lane_type_left:4;
 			
+			u8 b1_reserved : 4;
 			u8 b1_distance_to_left_lane_lsb:4;
-			u8 b1_reserved:4;
 			
 			u8 b2_distance_to_left_lane_msb;
 			
 			u8 b3_resreved;
 			u8 b4_reserved;
 			
-			u8 b5_lane_type_right:4;
-			u8 b5_undocumented:1;
-			u8 b5_ldw_available_right:1;
 			u8 b5_lane_confidence_right:2;
+			u8 b5_ldw_available_right:1;
+			u8 b5_undocumented:1;
+			u8 b5_lane_type_right:4;
 			
+			u8 b6_reserved : 4;
 			u8 b6_distance_to_right_lane_lsb:4;
-			u8 b6_reserved:4;
 			
 			u8 b7_distance_to_right_lane_msb;
 			
@@ -422,8 +441,8 @@ void register_adas_cmd_handl()
 
 			u8 b2_view_range_lsb;
 
+			u8 b3_view_range_msb : 7;
 			u8 b3_view_range_availability:1;
-			u8 b3_view_range_msb:7;
 
 			u8 b4_reserve;
 			u8 b5_reserve;
@@ -472,8 +491,8 @@ void register_adas_cmd_handl()
 
 			u8 b2_view_range_lsb;
 
-			u8 b3_view_range_availability : 1;
 			u8 b3_view_range_msb : 7;
+			u8 b3_view_range_availability : 1;
 
 			u8 b4_reserve;
 			u8 b5_reserve;
@@ -495,11 +514,11 @@ void register_adas_cmd_handl()
 
 			u8 b2_lane_heading_lsb;
 
-			u8 b3_na : 1;
-			u8 b3_left_ldw_availability : 1;
-			u8 b3_right_ldw_availability : 1;
-			u8 b3_ca : 1;
 			u8 b3_lane_heading_msb : 4;
+			u8 b3_ca : 1;
+			u8 b3_right_ldw_availability : 1;
+			u8 b3_left_ldw_availability : 1;
+			u8 b3_na : 1;
 
 			u8 b4_yaw_agle_lsb;
 			u8 b5_yaw_agle_msb;
@@ -521,10 +540,10 @@ void register_adas_cmd_handl()
 			
 			u8 b2_appliaction_vesion;
 			
-			u8 b3_go:4;
-			u8 b3_right_close_range_cut_in:1;
-			u8 b3_left_close_range_cut_in:1;
 			u8 b3_avtive_version_number_section:2;
+			u8 b3_left_close_range_cut_in:1;
+			u8 b3_right_close_range_cut_in : 1;
+			u8 b3_go:4;
 			
 			u8 b4_protocol_version;
 			
@@ -532,10 +551,22 @@ void register_adas_cmd_handl()
 			u8 b5_failsafe:4;
 			u8 b5_close_car:1;			
 		};
-		details_obstacle_status* pdetails_obstacle_status=(details_obstacle_status*)pbuff;
+		details_obstacle_status* pdata=(details_obstacle_status*)pbuff;
+		obstacles_cnt = pdata->b0_num_obstacles;
+		if (obstacles_cnt>15)
+		{
+			obstacles_cnt = 15;
+		}
+		for (int ix = obstacles_cnt; ix < 15;ix++)
+		{
+			base_ui_component* pobj = obstacles_group->get_child(ix);
+			pobj->set_visible(false);
+		}
 		
 	});
        g_msg_host.attach_monitor("details - obstacle data a",[&](u8* pbuff,int len){
+		u16* pmessg = (u16*)pbuff;
+		int obstacle_id = (*pmessg - 0x739) / 3;
 		pbuff+=2;
 		struct GNU_DEF details_obstacle_data_a
 		{
@@ -543,28 +574,96 @@ void register_adas_cmd_handl()
 			
 			u8 b1_obstacle_pos_x_lsb;
 			
-			u8 b2_null:3;
-			u8 b2_obstacle_pos_x_msb:5;
+			u8 b2_obstacle_pos_x_msb:4;
+			u8 b2_null:4;
 			
 			u8 b3_obstacle_pos_y_lsb;
 			
-			u8 b4_cut_in_and_out:3;
+			u8 b4_obstacle_pos_y_msb:1;
+			u8 b4_obstacle_pos_y_sg : 1;
 			u8 b4_blinker_info:3;
-			u8 b4_obstacle_pos_y_msb:2;
+			u8 b4_cut_in_and_out : 3;
 			
 			u8 b5_obstacle_rel_vel_x_lsb;
 			
-			u8 b6_reserved:1;
-			u8 b6_obstacle_type:3;
 			u8 b6_obstacle_rel_vel_x_msb;
+			u8 b6_obstacle_type : 3;
+			u8 b6_reserved:1;
 			
+			u8 b7_obstacle_status:3;
+			u8 b7_obstacle_brake_lights:1;
 			u8 b7_obstacle_valid:2;
 			u8 b7_reserved:2;
-			u8 b7_obstacle_brake_lights:1;
-			u8 b7_obstacle_status:3;
 		
 		};
-		details_obstacle_data_a* pdetails_obstacle_data=(details_obstacle_data_a*)pbuff;
+		details_obstacle_data_a* pdata=(details_obstacle_data_a*)pbuff;
+		/*pbuff += 3;
+		printf("3rd byte=0x%x", *pbuff);
+		pbuff++;
+		printf(" 4th byte=0x%x\n", *pbuff);*/
+		ft_image* pimg_obj = (ft_image*)obstacles_group->get_child(obstacle_id);
+		if (obstacle_id < obstacles_cnt)
+		{
+			pimg_obj->set_visible(true);
+		}
+		else
+		{
+			pimg_obj->set_visible(false);
+			return;
+		}
+
+		u16 posx = pdata->b2_obstacle_pos_x_msb * 0x100 + pdata->b1_obstacle_pos_x_lsb;
+		printf("obstacle_id=0x%x posx=0x%x\n", pdata->b0_obstacle_id, posx);
+		if (posx==0xfff)
+		{
+			printf("abandoned invalid xvalue\n");
+			return;
+		}
+		if (posx>0xfa0)
+		{
+			posx = 0xfa0;
+		}
+		if (posx>0x200)
+		{
+			pimg_obj->set_texture_id(en_people_war0_png);
+		}
+		else
+		if (posx>0x100)
+		{
+			pimg_obj->set_texture_id(en_people_war1_png);
+		}
+		else
+		{
+			pimg_obj->set_texture_id(en_people_war2_png);
+		}
+
+		//const ImVec2 max_sz(69, 69),min_sz(9,9);
+		const float remotest_pos = 250, nearest_pos = 0.f;
+		float vscale=posx / 2500.0f;
+		float vposx =-remotest_pos*vscale;
+		float szu = 69-vscale * 60 ;
+		u16 uposy = pdata->b4_obstacle_pos_y_msb * 0x100 + pdata->b3_obstacle_pos_y_lsb;
+		//printf("uposy=0x%x\n", uposy);
+
+		s16 sposy = uposy;
+		if (sposy >= 512)
+		{
+			printf("abandoned invalid yvalue\n");
+			return;
+		}
+		if (pdata->b4_obstacle_pos_y_sg)
+		{
+			sposy = -sposy;
+		}
+		printf("sposy=%d\n", sposy);
+		//sposy /= 64;
+
+		float hscale = sposy / 512.0;
+		float hpos = hscale*350.0*(1-vscale*2);
+		hpos = -hpos;
+		hpos -= 110;
+		pimg_obj->set_base_pos(hpos, vposx);
+		pimg_obj->set_size(ImVec2(szu, szu));
 	});
        g_msg_host.attach_monitor("details - obstacle data b",[&](u8* pbuff,int len){
 		pbuff+=2;
@@ -576,21 +675,21 @@ void register_adas_cmd_handl()
 			
 			u8 b2_obstacle_age;
 			
-			u8 b3_rader_pos_x_lsb:4;
-			u8 b3_reserved:1;
-			u8 b3_cipv_flag:1;
 			u8 b3_obstacle_lane:2;
+			u8 b3_cipv_flag:1;
+			u8 b3_reserved : 1;
+			u8 b3_rader_pos_x_lsb:4;
 			
 			u8 b4_rader_pos_x_msb;
 			
 			u8 b5_radar_vel_x_lsb;
 			
-			u8 b6_reserved:1;
-			u8 b6_radar_match_confidence:3;
 			u8 b6_radar_vel_x_msb:4;
+			u8 b6_radar_match_confidence : 3;
+			u8 b6_reserved:1;
 			
-			u8 b7_reserved:1;
 			u8 b7_matched_radar_id;
+			u8 b7_reserved:1;
 		
 		};
 		details_obstacle_data_b* pdetails_obstacle_data=(details_obstacle_data_b*)pbuff;
@@ -609,10 +708,10 @@ void register_adas_cmd_handl()
 						
 			u8 b4_object_accel_x;
 			
-			u8 b5_reserved:3;
-			u8 b5_obstacle_replaced:1;
-			u8 b5_null:2;
 			u8 b5_object_accel_x:2;
+			u8 b5_null:2;
+			u8 b5_obstacle_replaced : 1;
+			u8 b5_reserved:3;
 						
 			u8 b6_obstacle_angle_lsb;
 			

@@ -279,7 +279,7 @@ namespace auto_future
 		}
 
 	
-		void draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest);
+		void draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest,bool be_new);
 	};
 
 	extern shared_ptr<font_face_manager> g_pfont_face_manager;

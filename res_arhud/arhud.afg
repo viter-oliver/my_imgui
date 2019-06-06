@@ -5,7 +5,7 @@
 	"_name" : "screen",
 	"_posx" : 0.0,
 	"_posy" : 0.0,
-	"_sizeh" : 267.0,
+	"_sizeh" : 534.0,
 	"_sizew" : 800.0,
 	"_visible" : true,
 	"aliase" : 
@@ -37,11 +37,9 @@
 		"navi_direction" : [ 6, 0, 6, 4 ],
 		"next_road_name" : [ 4, 1, 3, 4 ],
 		"number_of_lanes" : [ 2, 0, 6, 4 ],
-		"peds_war1" : [ 6, 0, 15, 2 ],
-		"peds_war2" : [ 6, 0, 17, 2 ],
 		"pop_warning_dlg" : [ 6, 0, 7 ],
-		"prohibit_left_lane_change" : [ 6, 0, 16, 2 ],
-		"prohibit_right_lane_change" : [ 6, 0, 18, 2 ],
+		"prohibit_left_lane_change" : [ 6, 0, 15, 2 ],
+		"prohibit_right_lane_change" : [ 6, 0, 16, 2 ],
 		"rotate_speed_prog" : [ 7, 1, 2, 2 ],
 		"select_left_turn_low_fuel_hot_water" : [ 3, 1, 3, 3 ],
 		"select_right_turn_doors_open" : [ 3, 1, 4, 3 ],
@@ -57,6 +55,7 @@
 		"show_media_info" : [ 6, 0, 0, 5 ],
 		"show_north_direction" : [ 6, 0, 4, 4 ],
 		"show_nseatbelt_abtire_fdring" : [ 6, 0, 5, 3 ],
+		"show_obstacles" : [ 6, 0, 17, 2 ],
 		"show_right_turn_doors_open" : [ 6, 0, 4, 3 ],
 		"show_third_call" : [ 6, 0, 0, 0, 5 ],
 		"speed_limited" : [ 4, 1, 0, 2, 4 ],
@@ -73,6 +72,114 @@
 	{
 		"dic" : 
 		[
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 0, 0, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 2, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 4, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>1\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>0\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 0, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 6, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
+					"param_list" : 
+					[
+						[ 2, 0, 6, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 7, 6, 4 ]
+			},
 			
 			{
 				"bind_unit" : 
@@ -101,18 +208,6 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 12, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 11, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
 					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
 					"param_list" : 
 					[
@@ -125,124 +220,17 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 2, 0, 6, 4 ]
+						[ 6, 0, 12, 2 ]
 					]
 				},
-				"key" : [ 0, 0, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>0\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 0, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>1\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 2, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 4, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>5\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 5, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 6, 6, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
-					"param_list" : 
-					[
-						[ 2, 0, 6, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 7, 6, 4 ]
+				"key" : [ 6, 0, 11, 2 ]
 			}
 		],
 		"ref_dic" : 
 		[
-			
-			{
-				"key" : [ 6, 0, 12, 2 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 11, 2 ],
-					[ 6, 0, 9, 2 ],
-					[ 0, 0, 10, 2 ],
-					[ 1, 0, 13, 2 ]
-				]
-			},
 			
 			{
 				"key" : [ 2, 0, 6, 4 ],
@@ -257,6 +245,17 @@
 					[ 6, 0, 6, 6, 4 ],
 					[ 6, 0, 7, 6, 4 ],
 					[ 0, 0, 6, 4 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 12, 2 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 11, 2 ],
+					[ 6, 0, 9, 2 ],
+					[ 0, 0, 10, 2 ],
+					[ 1, 0, 13, 2 ]
 				]
 			}
 		]
@@ -286,7 +285,7 @@
 			"_posx" : 0.0,
 			"_posy" : 0.0,
 			"_round_utn" : 0.0,
-			"_sizeh" : 267.0,
+			"_sizeh" : 534.0,
 			"_sizew" : 800.0,
 			"_visible" : true,
 			"_with_border" : false,
@@ -315,7 +314,7 @@
 			"_aj_model" : 0,
 			"_name" : "vehicle_adas",
 			"_posx" : 0.0,
-			"_posy" : 147.0,
+			"_posy" : 280.50,
 			"_sizeh" : 116.0,
 			"_sizew" : 854.0,
 			"_visible" : true,
@@ -711,11 +710,11 @@
 					"_font_size" : 30,
 					"_name" : "endurance_value",
 					"_omit_rest" : false,
-					"_posx" : 660.0,
+					"_posx" : 708.0,
 					"_posy" : 69.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
+					"_txt_alignh_nml" : 1.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
 					{
@@ -738,7 +737,7 @@
 							"_font_size" : 16,
 							"_name" : "endurance_unit",
 							"_omit_rest" : false,
-							"_posx" : 30.0,
+							"_posx" : -22.0,
 							"_posy" : 19.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
@@ -764,8 +763,8 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "fuel",
-							"_posx" : -24.0,
-							"_posy" : 0.0,
+							"_posx" : -75.0,
+							"_posy" : -5.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_texture_index_txt" : 13,
@@ -779,17 +778,17 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_content" : "25",
+					"_content" : "2500",
 					"_font_id" : 1,
 					"_font_scale" : 1.0,
 					"_font_size" : 30,
 					"_name" : "revolving_speed",
 					"_omit_rest" : false,
-					"_posx" : 668.0,
+					"_posx" : 710.0,
 					"_posy" : 29.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
+					"_txt_alignh_nml" : 1.0,
 					"_txt_alignv_nml" : 0.0,
 					"_txt_clr" : 
 					{
@@ -812,7 +811,7 @@
 							"_font_size" : 12,
 							"_name" : "unit",
 							"_omit_rest" : false,
-							"_posx" : 30.0,
+							"_posx" : 0.0,
 							"_posy" : 20.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
@@ -977,23 +976,6 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "people_war1",
-					"_posx" : 215.0,
-					"_posy" : -126.0,
-					"_sizeh" : 41.0,
-					"_sizew" : 43.0,
-					"_texture_index_txt" : 58,
-					"_visible" : false,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
 					"_imge_pos" : 
 					[
 						
@@ -1022,26 +1004,9 @@
 					"_posy" : -155.0,
 					"_sizeh" : 232.0490112304688,
 					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 60,
+					"_texture_index_txt" : 61,
 					"_visible" : false,
 					"type" : "ft_quad_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "people_war2",
-					"_posx" : 297.0,
-					"_posy" : -132.0,
-					"_sizeh" : 69.0,
-					"_sizew" : 69.0,
-					"_texture_index_txt" : 59,
-					"_visible" : false,
-					"type" : "ft_image"
 				},
 				
 				{
@@ -1075,9 +1040,279 @@
 					"_posy" : -155.0,
 					"_sizeh" : 232.0490112304688,
 					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 60,
+					"_texture_index_txt" : 61,
 					"_visible" : false,
 					"type" : "ft_quad_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "obstacle_group",
+					"_posx" : 367.0,
+					"_posy" : -60.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle0",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle1",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle2",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle3",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle4",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle5",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle6",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle7",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle8",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle9",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle10",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle11",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle12",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle13",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 4,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "obstacle14",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 69.0,
+							"_sizew" : 69.0,
+							"_texture_index_txt" : 58,
+							"_visible" : false,
+							"type" : "ft_image"
+						}
+					],
+					"type" : "ft_base"
 				}
 			],
 			"type" : "ft_base"
@@ -1088,7 +1323,7 @@
 			"_aj_model" : 0,
 			"_name" : "vehicle_info",
 			"_posx" : 0.0,
-			"_posy" : 0.0,
+			"_posy" : 133.50,
 			"_sizeh" : 20.0,
 			"_sizew" : 20.0,
 			"_visible" : true,
@@ -1107,7 +1342,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 76,
+					"_texture_index_txt" : 77,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -1154,7 +1389,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 71,
+					"_texture_index_txt" : 72,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1171,7 +1406,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 77,
+					"_texture_index_txt" : 78,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1188,7 +1423,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 82,
+					"_texture_index_txt" : 83,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1205,7 +1440,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 85,
+					"_texture_index_txt" : 86,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1222,7 +1457,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 84,
+					"_texture_index_txt" : 85,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -1235,7 +1470,7 @@
 			"_aj_model" : 0,
 			"_name" : "navi_info",
 			"_posx" : 0.0,
-			"_posy" : 0.0,
+			"_posy" : 133.50,
 			"_sizeh" : 20.0,
 			"_sizew" : 20.0,
 			"_visible" : true,
@@ -1543,7 +1778,7 @@
 			"_aj_model" : 0,
 			"_name" : "media_info",
 			"_posx" : 0.0,
-			"_posy" : 0.0,
+			"_posy" : 133.50,
 			"_sizeh" : 20.0,
 			"_sizew" : 20.0,
 			"_visible" : true,
@@ -1622,7 +1857,7 @@
 			"_aj_model" : 0,
 			"_name" : "rearview_info",
 			"_posx" : 0.0,
-			"_posy" : 0.0,
+			"_posy" : 133.50,
 			"_sizeh" : 20.0,
 			"_sizew" : 20.0,
 			"_visible" : false,
@@ -1641,7 +1876,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 63,
+					"_texture_index_txt" : 64,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1658,7 +1893,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 64,
+					"_texture_index_txt" : 65,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1675,7 +1910,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 65,
+					"_texture_index_txt" : 66,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1692,7 +1927,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 66,
+					"_texture_index_txt" : 67,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1709,7 +1944,7 @@
 					"_posy" : 76.0,
 					"_sizeh" : 114.0,
 					"_sizew" : 56.0,
-					"_texture_index_txt" : 62,
+					"_texture_index_txt" : 63,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1726,7 +1961,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 67,
+					"_texture_index_txt" : 68,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1743,7 +1978,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 68,
+					"_texture_index_txt" : 69,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1760,7 +1995,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 69,
+					"_texture_index_txt" : 70,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1777,7 +2012,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 70,
+					"_texture_index_txt" : 71,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1794,7 +2029,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1811,7 +2046,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1828,7 +2063,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1845,7 +2080,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1862,7 +2097,7 @@
 					"_posy" : 55.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1879,7 +2114,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1896,7 +2131,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1913,7 +2148,7 @@
 					"_posy" : 56.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 61,
+					"_texture_index_txt" : 62,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -1926,7 +2161,7 @@
 			"_aj_model" : 0,
 			"_name" : "pop_dlg",
 			"_posx" : 0.0,
-			"_posy" : 0.0,
+			"_posy" : 133.50,
 			"_sizeh" : 20.0,
 			"_sizew" : 20.0,
 			"_visible" : false,
