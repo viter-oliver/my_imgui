@@ -6,9 +6,12 @@
 #include <chrono>
 using namespace auto_future_utilities;
 extern msg_host_n g_msg_host;
+bool be_turn_left = false;
+bool be_turn_right = false;
 #define MAX_CONTENT_LEN 0x100
 static char str_show[MAX_CONTENT_LEN] = { 0 };
 static bool bvalue = false;
+
 MSC_PACK_HEAD
 struct signal_light_control 
 {
@@ -335,6 +338,8 @@ void register_car_cmd_handl()
 				bvalue=false;
 				set_property_aliase_value("prohibit_left_lane_change", &bvalue);
 				set_property_aliase_value("prohibit_right_lane_change", &bvalue);	
+				be_turn_left = false;
+				be_turn_right = false;
 			}
 			break;
 		case en_turn_left:
@@ -342,6 +347,7 @@ void register_car_cmd_handl()
 				LIGHT3_SET(en_left_turn, true);
 				bvalue=false;
 				set_property_aliase_value("prohibit_right_lane_change", &bvalue);	
+				be_turn_left = true;
 				if(prohibit_lane_swith(left_lane_type))
 				{
 					bvalue=true;
@@ -354,6 +360,7 @@ void register_car_cmd_handl()
 				LIGHT2_SET(en_right_turn, true);
 				bvalue=false;
 				set_property_aliase_value("prohibit_left_lane_change", &bvalue);	
+				be_turn_right = true;
 				if(prohibit_lane_swith(right_lane_type))
 				{
 					bvalue=true;
@@ -366,6 +373,8 @@ void register_car_cmd_handl()
 				LIGHT2_SET(en_right_turn, true);
 				LIGHT3_SET(en_left_turn, true);
 				bvalue=true;
+				be_turn_left = true;
+				be_turn_right = true;
 				if(prohibit_lane_swith(left_lane_type))
 				{
 					set_property_aliase_value("prohibit_left_lane_change", &bvalue);
@@ -393,6 +402,13 @@ void register_car_cmd_handl()
 		u8 high_beam=*pbuff;
 		LIGHT1_SET(en_full_beam, high_beam != 0);
 	});
+	g_msg_host.attach_monitor("compass", [&](u8*pbuff, int len){
+		u8 degree = *pbuff;
+		const float a_degree = 0.0175f;
+		float value_degree = degree * 2.f * a_degree;
+		set_property_aliase_value("compass_angle", &value_degree);
+	});
+
 	g_msg_host.attach_monitor("steering keys",[&](u8*pbuff,int len){
 		u8 key_value=*pbuff++;
 		u8 key_status=*pbuff;

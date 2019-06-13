@@ -130,13 +130,28 @@ void register_navi_cmd_handl()
 			u8 assistant_type;
 			u16 remain_distance;
 		};
-		special_section* pspecial_section=(special_section*)pbuff;
-		static const char* road_type_name[0x30]={
+		special_section* psection=(special_section*)pbuff;
+		enum en_section_type
+		{
+			en_interflow,en_tunnel,en_bridge,en_railway,en_turn_around,en_stone_fall,en_accident_prone_area,
+			en_undefined,en_traffic_light_camera,en_illegal_camera,en_undefined1,en_watch_for_children,
+			en_rough_road,en_road_narrows,en_village,en_undefined2,en_no_overtaking,en_sound_horn,en_retrograde_ban,
+			en_no_occupation_of_bus_lanes,en_sharpe_turn_left,en_sharpe_turn_right,en_reverse_curve,en_winding_road,
+			en_note_dangerous, en_up_steep_slope, en_dn_steep_slope,en_steep_mountain_road,en_beware_of_crosswind,
+			en_slippery_road, en_embankment_road,en_unguarded_railway,en_guarded_railway,en_hump_road,en_long_decent,
+			en_ferry,en_no_illegal_parking,en_no_illegal_lane_change,en_a_monitor,en_school,en_raiway_crossing,
+			en_section_num
+		};
+		u8 atype = psection->assistant_type;
+		u16 rdis = psection->remain_distance;
+		bvalue = (atype == en_traffic_light_camera || atype == en_illegal_camera) && rdis > 0;
+		set_property_aliase_value("camera1", &bvalue);
+		/*static const char* road_type_name[0x30]={
 			"合流","隧道","桥梁","铁道","转弯","陡坡","落石","事故多发区","未定义","交通信号灯摄像头",
 			"违章摄像头","未定义","注意儿童","路面不平","道路变窄","前面村庄","未定义","禁止超车","请鸣喇叭","禁止逆行",
 			"禁止占用公交车道","向左急转弯","向右急转弯","反向弯路","连续弯路","注意危险","上陡坡","下陡坡","傍山险路","注意横风",
 			"易滑路段","堤坝路","无人看守铁路","有人看守铁路","驼峰路","连续下坡","渡口","禁止违章停车","禁止违章换道","有监控",
-			"学校","前方铁道路口，请小心驾驶",};
+			"学校","前方铁道路口，请小心驾驶",};*/
 	});
 	 
 	 g_msg_host.attach_monitor("limited speed",[&](u8*pbuff,int len){
