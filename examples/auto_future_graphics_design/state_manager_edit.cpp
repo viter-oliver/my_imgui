@@ -209,7 +209,11 @@ void state_manager_edit::view_state_manager_item_property()
 			auto ppcnt = pplist.size();//属性个数
 			for (auto& pvale:pp_value_list)//每个状态都应该有属性个数的数据块
 			{
-				pvale.resize(ppcnt);
+				auto blk_cnt = pvale.size();
+				if (ppcnt!=blk_cnt)
+				{
+					pvale.resize(ppcnt);
+				}
 			}
 			auto& cur_pp_value = *ipv;
 			int iidx = 0;
@@ -223,6 +227,7 @@ void state_manager_edit::view_state_manager_item_property()
 				int tp_sz = fel._tpsz;
 				pp_block.resize(tp_sz);
 				memcpy(&pp_block[0], ppt_addr, tp_sz);
+				iidx++;
 			}
 		}
 

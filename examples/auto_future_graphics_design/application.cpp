@@ -140,12 +140,15 @@ namespace auto_future
 			// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
 			glfwPollEvents();
 			ImGui_ImplGlfwGL3_NewFrame();
-			ImGui::SetNextWindowSize(ImVec2(1920, 720), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowSize(ImVec2(_win_width, _win_height), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowPos(ImVec2(_wposx, _wposy));
 			ImGui::SetNextWindowBgAlpha(1.f);
 			static bool show_app = true;
 			ImGuiStyle& style = ImGui::GetStyle();
 			style.Alpha = 1.f;
 			style.WindowRounding = 0.f;
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.f);
 			ImGui::Begin("edit window", &show_app, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
 			//
 			if (_proot)
@@ -155,6 +158,8 @@ namespace auto_future
 				_proot->draw();
 			}
 			ImGui::End();
+			ImGui::PopStyleVar();
+			ImGui::PopStyleVar();
 			// Rendering
 			int display_w, display_h;
 			glfwGetFramebufferSize(_window, &display_w, &display_h);

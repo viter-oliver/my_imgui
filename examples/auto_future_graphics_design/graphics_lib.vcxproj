@@ -177,6 +177,7 @@
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
     <ClCompile Include="af_state_manager.cpp" />
+    <ClCompile Include="af_timer.cpp" />
     <ClCompile Include="application.cpp" />
     <ClCompile Include="easing.cpp" />
     <ClCompile Include="ft_block.cpp" />

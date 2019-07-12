@@ -113,7 +113,7 @@ namespace auto_future
 		{
 			newFrep._border = { 0, 0 };
 			newFrep._font_size = fontSize;
-			newFrep._txt_size = { fontSize * 32, fontSize * 32 };
+			newFrep._txt_size = { fontSize * 64, fontSize * 64 };
 			glGenTextures(1, &newFrep._txt_id);
 			glBindTexture(GL_TEXTURE_2D, newFrep._txt_id);
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 0);

@@ -13,6 +13,11 @@
 
 struct GLFWwindow;
 
+#include "platform_def.h "
+IMGUI_API void AFG_EXPORT set_rotate_angle(float angle);
+
+IMGUI_API void AFG_EXPORT set_rotate_axis_pos(float px, float py);
+
 IMGUI_API bool        ImGui_ImplGlfwGL3_Init(GLFWwindow* window, bool install_callbacks, const char* glsl_version = NULL);
 IMGUI_API void        ImGui_ImplGlfwGL3_Shutdown();
 IMGUI_API void        ImGui_ImplGlfwGL3_NewFrame();

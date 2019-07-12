@@ -335,7 +335,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			_root.init_property_from_json(jroot);//
 			auto jarry_2_prp_pos = [this](Value& jarry, prop_ele_position&prp_epos){
 				int jsize = jarry.size();
-				assert(jsize > 2);
+				assert(jsize > 1);
 				int con_id_max = jsize - 1;
 				base_ui_component* pcontrol = &_root;
 				int ii = con_id_max;

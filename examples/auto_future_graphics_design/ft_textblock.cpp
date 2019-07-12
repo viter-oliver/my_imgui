@@ -71,8 +71,18 @@ namespace auto_future
 		if (str_sz > 0)
 		{
 			//const GLuint max_pixel_size = 512 * 512;
-			
-			g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, be_new);
+			if (be_new)
+			{
+				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
+				//real_size = end_pos - draw_pos;
+				_txt_area.Min = dpos;
+				_txt_area.Max = { end_pos.x, end_pos.y };
+				/*const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
+				dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
+				dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
+				draw_pos = { dpos.x, dpos.y };*/
+			}
+			g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
 		}
 		af_vec2 real_size = end_pos - draw_pos;
 		_txt_area.Min = dpos;

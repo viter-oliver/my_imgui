@@ -2,6 +2,18 @@
 #include<functional>
 #include <thread>
 using namespace auto_future;
+#define		MCU_SYNC1			0xc2
+#define		MCU_SYNC2			0x3d
+#define MAX_BYTE_SIZE 0x400
+#define MAX_CACH_SIZE MAX_BYTE_SIZE*4
+enum
+{
+	en_pos_signal,
+	en_pos_index,
+	en_pos_length_h,
+	en_pos_length_l,
+	en_pos_cmd_head,
+};
 DWORD WINAPI ThreadLoadApps(LPVOID lpParameter);
 
 class scomm
@@ -44,7 +56,14 @@ public:
 		_nmb = nmb;
 		_baudrate = baudrate;
 		char comm_str[50] = { 0 };
-		sprintf(comm_str, "COM%d", _nmb);
+		if (nmb<10)
+		{
+			sprintf(comm_str, "COM%d", _nmb);
+		}
+		else
+		{
+			sprintf(comm_str, "\\\\.\\COM%d", _nmb);
+		}
 		_hcomm = CreateFile(comm_str, GENERIC_READ | GENERIC_WRITE, 0, NULL,OPEN_EXISTING,
 #ifdef _OVER_LAP_OP
 			FILE_FLAG_OVERLAPPED, 
@@ -124,6 +143,19 @@ public:
 	{
 		swap(_msg_handl, msg_hand);
 	}
+	void send_data(u8* pbuf, DWORD dataLen)
+	{
+		DWORD dwBytesWrite;
+		COMSTAT ComStat;
+		DWORD dwErrorFlags;
+		BOOL bWriteStat;
+		ClearCommError(_hcomm, &dwErrorFlags, &ComStat);
+		bWriteStat = WriteFile(_hcomm, pbuf, dataLen, &dwBytesWrite, NULL);
+		if (!bWriteStat)
+		{
+			printf("fail to write data to com\n");
+		}
+	}
 	DWORD ReadData(LPVOID lpBuf, DWORD dwToRead)
 	{
 		//TRACE("RRRRRRRRRRRR 00\n"); 
@@ -150,16 +182,14 @@ public:
 		return dwRead;
 #endif
 	}
+
+
 	void thd_process()// operator()()
 	{
 		_running = true;
 		DWORD dwBytesRead;
 		
 		
-#define		MCU_SYNC1			0xc2
-#define		MCU_SYNC2			0x3d
-#define MAX_BYTE_SIZE 0x400
-#define MAX_CACH_SIZE MAX_BYTE_SIZE*4
 
 		uint8_t *pdata = new uint8_t[MAX_BYTE_SIZE];
 		uint8_t *data_cache = new uint8_t[MAX_CACH_SIZE];
@@ -219,14 +249,7 @@ public:
 				static bool be_picking_data = false;
 				static int pick_index = 0;
 				static uint16_t frame_len;
-				enum
-				{
-					en_pos_signal,
-					en_pos_index,
-					en_pos_length_h,
-					en_pos_length_l,
-					en_pos_cmd_head,
-				};
+		
 				if (!be_picking_data)
 				{
 					if (prebyte == MCU_SYNC1&&data_cache[irear] == MCU_SYNC2)

@@ -70,6 +70,21 @@ static char         g_GlslVersion[32] = "#version 150";
 /*static*/ GLuint       g_FontTexture = 0;
 static int          g_ShaderHandle = 0, g_VertHandle = 0, g_FragHandle = 0;
 static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
+#ifdef BUILD_DLL
+#include <math.h>
+static int g_AttribLocationcustomMtx = 0, g_AttribLocationcustomDelta = 0;
+float g_cs_a = 1.f, g_sn_a = 0.f, g_ox = -400, g_oy = -267;
+void set_rotate_angle(float angle)
+{
+	g_cs_a = cos(angle);
+	g_sn_a = sin(angle);
+}
+void set_rotate_axis_pos(float px, float py)
+{
+	g_ox = -px;
+	g_oy = -py;
+}
+#endif
 static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
 static unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
 
@@ -132,6 +147,21 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
     glUseProgram(g_ShaderHandle);
     glUniform1i(g_AttribLocationTex, 0);
     glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
+#ifdef BUILD_DLL
+
+	float custom_matrix[2][2] =
+	{
+		{ g_cs_a, g_sn_a },
+		{ -g_sn_a, g_cs_a },
+	};
+	glUniformMatrix2fv(g_AttribLocationcustomMtx, 1, GL_FALSE, &custom_matrix[0][0]);
+	float vdelta[2] =
+	{
+		g_ox*(1 - g_cs_a) - g_oy*g_sn_a,
+		g_ox*g_sn_a + g_oy*(1 - g_cs_a),
+	};
+	glUniform2fv(g_AttribLocationcustomDelta, 1, vdelta);
+#endif // BUILD_DLL
 
     glBindVertexArray(g_VaoHandle);
     glBindSampler(0, 0); // Rely on combined texture/sampler state.
@@ -350,21 +380,40 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
     glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
     glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
 
-    const GLchar *vertex_shader =
-        "#version 150\n"
-        "uniform mat4 ProjMtx;\n"
-		"//uniform mat4 customMtx;\n"
-        "in vec2 Position;\n"
-        "in vec2 UV;\n"
-        "in vec4 Color;\n"
-        "out vec2 Frag_UV;\n"
-        "out vec4 Frag_Color;\n"
-        "void main()\n"
-        "{\n"
-        "	Frag_UV = UV;\n"
-        "	Frag_Color = Color;\n"
-        "	gl_Position =  ProjMtx * vec4(Position.xy,0,1);\n"
+	const GLchar *vertex_shader =
+#ifdef BUILD_DLL
+		"#version 150\n"
+		"uniform mat4 ProjMtx;\n"
+		"uniform mat2 customMtx;\n"
+		"uniform vec2 customDelta;\n"
+		"in vec2 Position;\n"
+		"in vec2 UV;\n"
+		"in vec4 Color;\n"
+		"out vec2 Frag_UV;\n"
+		"out vec4 Frag_Color;\n"
+		"void main()\n"
+		"{\n"
+		"	Frag_UV = UV;\n"
+		"	Frag_Color = Color;\n"
+		"   vec2 tmpv=customMtx*Position.xy+customDelta;\n"
+        "	gl_Position =  ProjMtx * vec4(tmpv.xy,0,1);\n"
         "}\n";
+#else
+		"#version 150\n"
+		"uniform mat4 ProjMtx;\n"
+		"in vec2 Position;\n"
+		"in vec2 UV;\n"
+		"in vec4 Color;\n"
+		"out vec2 Frag_UV;\n"
+		"out vec4 Frag_Color;\n"
+		"void main()\n"
+		"{\n"
+		"	Frag_UV = UV;\n"
+		"	Frag_Color = Color;\n"
+		"	gl_Position =  ProjMtx * vec4(Position.xy,0,1);\n"
+		"}\n";
+#endif
+		
 
     const GLchar* fragment_shader =
         "#version 150\n"
@@ -390,7 +439,10 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
 
     g_AttribLocationTex = glGetUniformLocation(g_ShaderHandle, "Texture");
     g_AttribLocationProjMtx = glGetUniformLocation(g_ShaderHandle, "ProjMtx");
-	//g_AttribLocationcustomMtx = glGetUniformLocation(g_ShaderHandle, "customMtx");
+#ifdef BUILD_DLL
+	g_AttribLocationcustomMtx = glGetUniformLocation(g_ShaderHandle, "customMtx");
+	g_AttribLocationcustomDelta = glGetUniformLocation(g_ShaderHandle, "customDelta");
+#endif // BUILD_DLL
 
     g_AttribLocationPosition = glGetAttribLocation(g_ShaderHandle, "Position");
     g_AttribLocationUV = glGetAttribLocation(g_ShaderHandle, "UV");

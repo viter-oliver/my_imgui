@@ -1,6 +1,7 @@
 #include "msg_host_n.h"
 #include <fstream>
 #include <cstring>
+//#include <stdio.h>
 //#include "RmtBusReceiver.h"
 namespace auto_future_utilities
 { 
@@ -176,13 +177,16 @@ void msg_host_n::pick_valid_data(u8* pbuff, int len)
 		memcpy(cur_cmd._static_buff, pbuff, len);
 	}
 	cur_cmd._data_len = len;
-
-	_front_id++;
-	_front_id = _front_id%queque_len;
-	while (_front_id == _rear_id)
+	unsigned int front_next_id = _front_id + 1;
+	front_next_id %= queque_len;
+	
+	while (front_next_id == _rear_id)
 	{
-		this_thread::sleep_for(chrono::milliseconds(50));
+		printf("too fast.slow down please!!!!\n");
+	    this_thread::sleep_for(chrono::milliseconds(50));
 	}
+	_front_id = front_next_id;
+	
 	
 }
 static char num_tb[0x10] =
@@ -233,7 +237,7 @@ void msg_host_n::execute_data_handle_cmd()
 		}
 		else
 		{
-			//printf("unkown command:%s datalen=%d\n",kid, bunt._data_len);
+			printf("unkown command:%s datalen=%d\n",kid, bunt._data_len);
 		}
 		if (bunt._pdynamic_buff)
 		{
@@ -246,14 +250,19 @@ void msg_host_n::send_data(const char* object_name,u8* pbuff, int len)
 {
    if (_send_cmd)
    {
-	   const auto& ivdata = _protocol_send_data_map.find(object_name);
-	   if (ivdata!=_protocol_send_data_map.end())
+	   const auto& icmd_id = _sd_id_name.find(object_name);
+	   if (icmd_id != _sd_id_name.end())
 	   {
-		   int dlen = ivdata->second.size() + len;
+
+		   auto& str_cmd_id = icmd_id->second;
+		   string wcmd_id = "0x" + str_cmd_id;
+		   u16 cmd_id;
+		   sscanf_s(wcmd_id.c_str(), "%x", &cmd_id);
+		   int dlen = 2 + len;
 		   u8* psdata = new u8[dlen];
-		   memcpy(psdata, &*ivdata->second.begin(), ivdata->second.size());
-		   memcpy(psdata + ivdata->second.size(), pbuff, len);
-		   _send_cmd(psdata, dlen);
+		   memcpy(psdata, &cmd_id, 2);
+		   memcpy(psdata + 2, pbuff, len);
+		   _send_cmd(psdata, dlen + 2);
 		   delete psdata;
 	   }
    }

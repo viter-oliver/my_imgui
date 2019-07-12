@@ -186,6 +186,7 @@
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
     <ClCompile Include="af_state_manager.cpp" />
+    <ClCompile Include="af_timer.cpp" />
     <ClCompile Include="aliase_edit.cpp" />
     <ClCompile Include="base_ui_component.cpp" />
     <ClCompile Include="bind_edit.cpp" />
@@ -254,6 +255,7 @@
     <ClInclude Include="..\..\af_include\af_primitive_object.h" />
     <ClInclude Include="..\..\af_include\af_shader.h" />
     <ClInclude Include="..\..\af_include\af_state_manager.h" />
+    <ClInclude Include="..\..\af_include\af_timer.h" />
     <ClInclude Include="..\..\af_include\af_type.h" />
     <ClInclude Include="..\..\af_include\application.h" />
     <ClInclude Include="..\..\af_include\control_common_def.h" />

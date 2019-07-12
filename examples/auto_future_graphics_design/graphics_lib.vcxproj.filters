@@ -175,6 +175,9 @@
     <ClCompile Include="ft_quad_image.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="af_timer.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">

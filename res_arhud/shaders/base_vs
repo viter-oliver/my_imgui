@@ -1,0 +1,15 @@
+
+attribute vec3 aposition;
+attribute vec2 btextcoord;
+attribute vec3 anormal;
+varying vec2 Textcoord;
+uniform float dy;
+uniform mat4 proj;
+void main()
+{
+    gl_Position = proj* vec4(aposition, 1.0);
+    float nml=anormal.z;
+
+    float fdy=dy+1.0-nml;
+    Textcoord = vec2(btextcoord.x,btextcoord.y-fdy);
+}

@@ -290,7 +290,7 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_uint32(shd_uf.second->usize());
 			pk.pack_uint32(shd_uf.second->elsize());
 			pk.pack_uint32(shd_uf.second->get_type());
-			auto wsize = shd_uf.second->usize()*shd_uf.second->elsize();
+			auto wsize = shd_uf.second->data_len();// shd_uf.second->usize()*shd_uf.second->elsize();
 			pk.pack_bin(wsize);
 			pk.pack_bin_body(reinterpret_cast<char const*>(shd_uf.second->get_data_head()), wsize);
 		}

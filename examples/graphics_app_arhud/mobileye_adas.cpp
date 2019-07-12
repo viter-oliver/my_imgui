@@ -6,14 +6,35 @@
 #include "af_material.h"
 #include "enum_txt_name0.h"
 #include "afg.h"
+//#include "coordinate_change.h"
 using namespace auto_future_utilities;
+using namespace auto_future;
+
+extern u8 navi_direct_state;
 extern msg_host_n g_msg_host;
 extern bool be_turn_left;
 extern bool be_turn_right;
 const char* road_primitice = "road.FBX0";
 const char* mtl_name = "mt_sp";
+//DefStructCoordinateChange g_from_xie;
+//eye_2_mobile_eyex=0.36m
+//eye_2_mobile_eyey=0.0658m
+//eye_2_mobile_eyez=-0.538m
+enum en_lane_state
+{
+	en_lane_normal,
+	en_lane_ldw_left,
+	en_lane_ldw_right,
+	en_lane_num,
+};
+u8 navi_state = 0;
+const char* lane_state_txt_name[2][en_lane_num]=
+{
+	{"road.png","ldw_left.png","ldw_right.png"},
+	{"road_navi.png", "ldw_left_navi.png", "ldw_right_navi.png" },
+};
 const char* ldw_left_txt = "ldw_left.png";
-const char* ldw_right_txt = "ldw_righr.png";
+const char* ldw_right_txt = "ldw_right.png";
 const char* road_txt = "road.png";
 base_ui_component* obstacles_group=nullptr;
 static int obstacles_cnt = 0;
@@ -124,7 +145,7 @@ bool prohibit_lane_swith(u8 lane_type)
 u8 left_lane_type=0,right_lane_type=0;
 static u16 left_curvature_stm = 0, left_lane_heading_stm = 0;
 static u16 right_curvature_stm = 0, right_lane_heading_stm = 0;
-static s16 left_position=0,right_position=0;
+static float left_position=-180,right_position=180;
 
 float uf_value = 0.f;
 void calcu_left_right_lanes()
@@ -136,24 +157,38 @@ void calcu_left_right_lanes()
 		float lh_lt = (left_lane_heading_stm - 0x7fff) / 1024.0;
 		float cuv_rt = (right_curvature_stm - 0x7fff) / 1024000.0;
 		float lh_rt = (right_lane_heading_stm - 0x7fff) / 1024.f;
-		if (cuv_lt >0.0 && cuv_rt>0.0 || cuv_lt<0 && cuv_rt<0)
+		float left_base=-left_position*100.f;
+		float right_base=-right_position*100.f;
+		float of_eye=30.f;
+		bool be_cross=cuv_lt>0&&cuv_rt<0;
+		bool be_departure=cuv_lt<0&&cuv_rt>0;
+		//if (1)//(cuv_lt > 0.0 && cuv_rt > 0.0 || cuv_lt < 0 && cuv_rt < 0)
 		{
-			//printf("cuv_lt=%f,lh_lt=%f,cuv_rt=%f,lh_rt=%f\n", cuv_lt, lh_lt, cuv_rt, lh_rt);
+			printf("cuv_lt=%f,lh_lt=%f,ofs_l=%f,cuv_rt=%f,lh_rt=%f,ofs_r=%f\n", cuv_lt, lh_lt,left_position, cuv_rt, lh_rt,right_position);
+			
 			mtl_lane->set_value("curv_l", &cuv_lt, 1);
 			mtl_lane->set_value("head_l", &lh_lt, 1);
 			mtl_lane->set_value("curv_r", &cuv_rt, 1);
 			mtl_lane->set_value("head_r", &lh_rt, 1);
-		}
-		
-		//calcu_vertex(cuv_lt, lh_lt, cuv_rt, lh_rt);
-		//printf("left_curvature_stm=0x%x,left_lane_heading_stm=0x%x,right_curvature_stm=0x%x,right_lane_heading_stm=0x%x\n", left_curvature_stm, left_lane_heading_stm, right_curvature_stm, right_lane_heading_stm);
-		//printf("cuv_lt=%f,lh_lt=%f,cuv_rt=%f,lh_rt=%f\n", cuv_lt, lh_lt, cuv_rt, lh_rt);
-		//glBindBuffer(GL_ARRAY_BUFFER, ps_prm_road->_vbo);
-		//glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*ps_prm_road->_vertex_buf_len, road_vertexs, GL_DYNAMIC_DRAW);
-		//update_prm_vbo(road_primitice, road_vertexs[0], numb_of_vertex * len_of_verterx);
-		
+			mtl_lane->set_value("left_base", &left_base, 1);
+			mtl_lane->set_value("right_base", &right_base, 1);
+			mtl_lane->set_value("of_eye", &of_eye, 1);
+			//bool right_switch = cuv_lt > 0.00055f;
+			//set_property_aliase_value("show_right_bend", &right_switch);
+			//bool left_switch = cuv_lt < -0.00055f;
+			//set_property_aliase_value("show_left_bend", &left_switch);
 
-		left_curvature_stm = left_lane_heading_stm = right_curvature_stm = right_lane_heading_stm = 0;
+
+			//calcu_vertex(cuv_lt, lh_lt, cuv_rt, lh_rt);
+			//printf("left_curvature_stm=0x%x,left_lane_heading_stm=0x%x,right_curvature_stm=0x%x,right_lane_heading_stm=0x%x\n", left_curvature_stm, left_lane_heading_stm, right_curvature_stm, right_lane_heading_stm);
+			//printf("cuv_lt=%f,lh_lt=%f,cuv_rt=%f,lh_rt=%f\n", cuv_lt, lh_lt, cuv_rt, lh_rt);
+			//glBindBuffer(GL_ARRAY_BUFFER, ps_prm_road->_vbo);
+			//glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*ps_prm_road->_vertex_buf_len, road_vertexs, GL_DYNAMIC_DRAW);
+			//update_prm_vbo(road_primitice, road_vertexs[0], numb_of_vertex * len_of_verterx);
+
+
+			left_curvature_stm = left_lane_heading_stm = right_curvature_stm = right_lane_heading_stm = 0;
+		}
 	}
 }
 void register_adas_cmd_handl()
@@ -176,11 +211,12 @@ void register_adas_cmd_handl()
 	memcpy(&base_road_vertexs[0][0], road_vertexs, numb_of_vertex * len_of_verterx * sizeof(float));
 	init_raod_vertex();
 	}*/
+	//Coordinate_Change_Init(&g_from_xie);
 	const auto& imtl = g_material_list.find("mt_sp");
 	assert(imtl != g_material_list.end());
-	mtl_lane=imtl->second;
-	uf_value = 350.f;
-	mtl_lane->set_value("base_y", &uf_value, 1);
+	mtl_lane = imtl->second;
+	/*uf_value = 350.f;
+	mtl_lane->set_value("base_y", &uf_value, 1);*/
 	obstacles_group = get_aliase_ui_control("show_obstacles");
 	g_msg_host.attach_monitor("can message", [&](u8* pbuff, int len){
 		//printf("can message:\n");
@@ -241,11 +277,11 @@ void register_adas_cmd_handl()
 				}
 			}
 			dist_id--;
-			if (dist_id>0)
+			if (dist_id > 0)
 			{
-				for (int ix = 0; ix < 6;ix++)
+				for (int ix = 0; ix < 6; ix++)
 				{
-					be_show = ix==dist_id;
+					be_show = ix == dist_id;
 					char seg_name[50] = "";
 					sprintf(seg_name, "show_distance%d", ix);
 					set_property_aliase_value(seg_name, &be_show);
@@ -257,42 +293,46 @@ void register_adas_cmd_handl()
 		{
 			for (int ix = 0; ix < 6; ix++)
 			{
-				be_show =false;
+				be_show = false;
 				char seg_name[50] = "";
 				sprintf(seg_name, "show_distance%d", ix);
 				set_property_aliase_value(seg_name, &be_show);
 			}
 		}
-		if (pcan_msg->b4_ldw_off)
+		if (navi_direct_state == 0)
 		{
-			set_mp_text_uf("mt_sp", "text", "road.png");
-		}
-		else
-		{
-			if ((pcan_msg->b0_sound_type == 1 || pcan_msg->b4_left_ldw_on)
-				&& pcan_msg->b4_right_ldw_on == 0 && !be_turn_left)
+			if (pcan_msg->b4_ldw_off)
 			{
-				set_mp_text_uf("mt_sp", "text", "ldw_left.png");
+				set_mp_text_uf("mt_sp", "text", lane_state_txt_name[navi_state][en_lane_normal]);
 			}
 			else
-			if ((pcan_msg->b0_sound_type==2||pcan_msg->b4_right_ldw_on)
-				&& pcan_msg->b4_left_ldw_on == 0 && !be_turn_right)
 			{
-				set_mp_text_uf("mt_sp", "text", "ldw_righr.png");
+				if ((pcan_msg->b0_sound_type == 1 || pcan_msg->b4_left_ldw_on)
+					&& pcan_msg->b4_right_ldw_on == 0 && !be_turn_left)
+				{
+					set_mp_text_uf("mt_sp", "text", lane_state_txt_name[navi_state][en_lane_ldw_left]);
+				}
+				else
+					if ((pcan_msg->b0_sound_type == 2 || pcan_msg->b4_right_ldw_on)
+						&& pcan_msg->b4_left_ldw_on == 0 && !be_turn_right)
+					{
+						set_mp_text_uf("mt_sp", "text", lane_state_txt_name[navi_state][en_lane_ldw_right]);
+					}
 			}
 		}
-		
+
+
 		be_show = pcan_msg->b5_peds_in_dz;
 		if (pcan_msg->b5_peds_in_dz)
 		{
 			be_show = true;
 			/*if (pcan_msg->b5_peds_fcw)
 			{
-				set_property_aliase_value("peds_war2", &be_show);
+			set_property_aliase_value("peds_war2", &be_show);
 			}
 			else
 			{
-				set_property_aliase_value("peds_war1", &be_show);
+			set_property_aliase_value("peds_war1", &be_show);
 			}*/
 		}
 		else
@@ -303,25 +343,25 @@ void register_adas_cmd_handl()
 		}
 		//set_property_aliase_value("")
 	});
-       g_msg_host.attach_monitor("car info",[&](u8* pbuff,int len){
-		pbuff+=2;
+	g_msg_host.attach_monitor("car info", [&](u8* pbuff, int len){
+		pbuff += 2;
 		struct GNU_DEF car_info
 		{
-			u8 b0_brakes:1;
-			u8 b0_left_signal:1;
-			u8 b0_right_signal:1;
-			u8 b0_wipers:1;
-			u8 b0_low_beam:1;
-			u8 b0_high_beam:1;
+			u8 b0_brakes : 1;
+			u8 b0_left_signal : 1;
+			u8 b0_right_signal : 1;
+			u8 b0_wipers : 1;
+			u8 b0_low_beam : 1;
+			u8 b0_high_beam : 1;
 			u8 b0_resvered1 : 1;
-			u8 b0_reserved:1;
-			
-			u8 b1_reserved2:3;
-			u8 b1_wipers_available:1;
-			u8 b1_low_beam_available:1;
-			u8 b1_high_beam_available:1;
+			u8 b0_reserved : 1;
+
+			u8 b1_reserved2 : 3;
+			u8 b1_wipers_available : 1;
+			u8 b1_low_beam_available : 1;
+			u8 b1_high_beam_available : 1;
 			u8 b1_reserved : 1;
-			u8 b1_speed_available:1;
+			u8 b1_speed_available : 1;
 
 			u8 b2_speed;
 			u8 b3_reserved;
@@ -330,7 +370,7 @@ void register_adas_cmd_handl()
 			u8 b6_reserved;
 			u8 b7_reserved;
 		};
-		car_info* pcar_info=(car_info*)pbuff;
+		car_info* pcar_info = (car_info*)pbuff;
 
 		//bool be_show;
 		//int txt_idx = 0;
@@ -347,27 +387,27 @@ void register_adas_cmd_handl()
 		//}
 
 		//if(pcar_info)
-	});	
-    g_msg_host.attach_monitor("tsr message",[&](u8* pbuff,int len){
-	   	u16* ptsr_id=(u16*)pbuff;
-		pbuff+=2;
+	});
+	g_msg_host.attach_monitor("tsr message", [&](u8* pbuff, int len){
+		u16* ptsr_id = (u16*)pbuff;
+		pbuff += 2;
 		struct GNU_DEF tsr_message
 		{
 			u8 b0_vision_only_sign_type;
 			u8 b1_vision_only_supplementary_sign_type;
 			u8 b2_sign_position_x;
-			u8 b3_sign_position_y:7;
-			u8 b3_na:1;
-			u8 b4_position_z:6;
-			u8 b4_na:2;
+			u8 b3_sign_position_y : 7;
+			u8 b3_na : 1;
+			u8 b4_position_z : 6;
+			u8 b4_na : 2;
 			u8 b5_filter_type;
 			u8 b6_na;
 			u8 b7_na;
 		};
-		tsr_message* ptsr_message=(tsr_message*)pbuff;
-	});	
-    g_msg_host.attach_monitor("tsr display",[&](u8* pbuff,int len){
-		pbuff+=2;
+		tsr_message* ptsr_message = (tsr_message*)pbuff;
+	});
+	g_msg_host.attach_monitor("tsr display", [&](u8* pbuff, int len){
+		pbuff += 2;
 		struct GNU_DEF tsr_display
 		{
 			u8 b0_vision_only_sign_type_display1;
@@ -378,41 +418,41 @@ void register_adas_cmd_handl()
 			u8 b5_vision_only_supplementary_sign_type_display3;
 			u8 b6_vision_only_sign_type_display4;
 			u8 b7_vision_only_supplementary_sign_type_display4;
-			
+
 		};
-		tsr_display* ptsr_display=(tsr_display*)pbuff;
+		tsr_display* ptsr_display = (tsr_display*)pbuff;
 	});
-    g_msg_host.attach_monitor("details of lane",[&](u8* pbuff,int len){
-		pbuff+=2;
+	g_msg_host.attach_monitor("details of lane", [&](u8* pbuff, int len){
+		pbuff += 2;
 		struct GNU_DEF details_of_lane
 		{
-			u8 b0_lane_confidence_left:2;
-			u8 b0_ldw_available_left:1;
+			u8 b0_lane_confidence_left : 2;
+			u8 b0_ldw_available_left : 1;
 			u8 b0_undocumented : 1;
-			u8 b0_lane_type_left:4;
-			
+			u8 b0_lane_type_left : 4;
+
 			u8 b1_reserved : 4;
-			u8 b1_distance_to_left_lane_lsb:4;
-			
-			u8 b2_distance_to_left_lane_msb:7;
+			u8 b1_distance_to_left_lane_lsb : 4;
+
+			u8 b2_distance_to_left_lane_msb : 7;
 			u8 b2_distance_to_left_lane_sg : 1;
-			
+
 			u8 b3_resreved;
 			u8 b4_reserved;
-			
-			u8 b5_lane_confidence_right:2;
-			u8 b5_ldw_available_right:1;
-			u8 b5_undocumented:1;
-			u8 b5_lane_type_right:4;
-			
+
+			u8 b5_lane_confidence_right : 2;
+			u8 b5_ldw_available_right : 1;
+			u8 b5_undocumented : 1;
+			u8 b5_lane_type_right : 4;
+
 			u8 b6_reserved : 4;
-			u8 b6_distance_to_right_lane_lsb:4;
-			
-			u8 b7_distance_to_right_lane_msb:7;
+			u8 b6_distance_to_right_lane_lsb : 4;
+
+			u8 b7_distance_to_right_lane_msb : 7;
 			u8 b7_distance_to_right_lane_sg : 1;
-			
+
 		};
-		details_of_lane* pdata=(details_of_lane*)pbuff;
+		details_of_lane* pdata = (details_of_lane*)pbuff;
 		left_lane_type = pdata->b0_lane_type_left;
 		right_lane_type = pdata->b5_lane_type_right;
 		s16 sleft_lane_dis = pdata->b2_distance_to_left_lane_msb * 16 + pdata->b1_distance_to_left_lane_lsb;
@@ -428,18 +468,18 @@ void register_adas_cmd_handl()
 		//printf("sleft_lane_dis=%d,sright_lane_dis=%d\n", sleft_lane_dis, sright_lane_dis);
 
 	});
-    g_msg_host.attach_monitor("lka left lane a",[&](u8* pbuff,int len){
-		pbuff+=2;
+	g_msg_host.attach_monitor("lka left lane a", [&](u8* pbuff, int len){
+		pbuff += 2;
 		struct GNU_DEF lka_left_lane_a
 		{
 			u8 b0_lane_type : 4;
-			u8 b0_model_degree:2;
-			u8 b0_quality:2;
+			u8 b0_quality : 2;
+			u8 b0_model_degree : 2;
 
 			u8 b1_position_c0_byte0;
 
 			u8 b2_position_c0_byte1;
-			
+
 			u8 b3_curvature_c2_byte0;
 
 			u8 b4_curvature_c2_byte1;
@@ -448,18 +488,18 @@ void register_adas_cmd_handl()
 
 			u8 b6_derivative_c3_byte1;
 
-			u8 b7_width_left_marking;			
+			u8 b7_width_left_marking;
 		};
 		lka_left_lane_a* pdetails_lane = (lka_left_lane_a*)pbuff;
-		if (pdetails_lane->b0_lane_type == en_lane_invalid)
+		//printf("left lane curve quality=%d lane_type=%d\n",pdetails_lane->b0_quality,pdetails_lane->b0_lane_type);
+		if (pdetails_lane->b0_quality < 2 || pdetails_lane->b0_lane_type == en_lane_invalid)
 		{
 			return;
 		}
-		s16* plpos=(s16*)(pbuff+1);
-		left_position= *plpos;
-
-		left_curvature_stm = pdetails_lane->b3_curvature_c2_byte0  + pdetails_lane->b4_curvature_c2_byte1* 0x100;
-		//printf("left_curvature_stm=%x\n", left_curvature_stm);
+		s16* plpos = (s16*)(pbuff + 1);
+		left_position = *plpos / 256.f;
+		//printf("lane leftpos=%f\n",left_position);
+		left_curvature_stm = pdetails_lane->b3_curvature_c2_byte0 + pdetails_lane->b4_curvature_c2_byte1 * 0x100;
 		calcu_left_right_lanes();
 	});
 
@@ -474,17 +514,16 @@ void register_adas_cmd_handl()
 			u8 b2_view_range_lsb;
 
 			u8 b3_view_range_msb : 7;
-			u8 b3_view_range_availability:1;
+			u8 b3_view_range_availability : 1;
 
 			u8 b4_reserve;
 			u8 b5_reserve;
 			u8 b6_reserve;
-			u8 b7_reserve;			
+			u8 b7_reserve;
 		};
 		lka_left_lane_b* pdetails_lane = (lka_left_lane_b*)pbuff;
 		u16* pheading = (u16*)pbuff;
 		left_lane_heading_stm = *pheading;
-		//printf("left_lane_heading_stm=%x\n", left_lane_heading_stm);
 		calcu_left_right_lanes();
 	});
 	g_msg_host.attach_monitor("lka right lane a", [&](u8* pbuff, int len){
@@ -492,8 +531,8 @@ void register_adas_cmd_handl()
 		struct GNU_DEF lka_right_lane_a
 		{
 			u8 b0_lane_type : 4;
-			u8 b0_model_degree : 2;
 			u8 b0_quality : 2;
+			u8 b0_model_degree : 2;
 
 			u8 b1_position_c0_byte0;
 
@@ -510,14 +549,14 @@ void register_adas_cmd_handl()
 			u8 b7_width_left_marking;
 		};
 		lka_right_lane_a* pdetails_lane = (lka_right_lane_a*)pbuff;
-		if (pdetails_lane->b0_lane_type == en_lane_invalid)
+		if (pdetails_lane->b0_quality < 2 || pdetails_lane->b0_lane_type == en_lane_invalid)
 		{
 			return;
 		}
-		s16* plpos=(s16*)(pbuff+1);
-		right_position= *plpos;
-		right_curvature_stm = pdetails_lane->b3_curvature_c2_byte0  + pdetails_lane->b4_curvature_c2_byte1* 0x100;
-		//printf("right_curvature_stm=%x\n", right_curvature_stm);
+		s16* plpos = (s16*)(pbuff + 1);
+		right_position = *plpos / 256.f;
+		//printf("lane rightpos=%f\n",right_position);
+		right_curvature_stm = pdetails_lane->b3_curvature_c2_byte0 + pdetails_lane->b4_curvature_c2_byte1 * 0x100;
 		calcu_left_right_lanes();
 	});
 
@@ -552,7 +591,7 @@ void register_adas_cmd_handl()
 		{
 			u8 b0_lane_cuevature_lsb;
 			u8 b1_lane_cuevature_msb : 7;
-			u8 b1_lane_cuevature_msb_sg£º1;
+			u8 b1_lane_cuevature_msb_sg : 1;
 
 			u8 b2_lane_heading_lsb;
 
@@ -572,39 +611,39 @@ void register_adas_cmd_handl()
 		};
 		details_lane* pdetails_lane = (details_lane*)pbuff;
 	});
-    g_msg_host.attach_monitor("details - obstacle status",[&](u8* pbuff,int len){
-		pbuff+=2;
+	g_msg_host.attach_monitor("details - obstacle status", [&](u8* pbuff, int len){
+		pbuff += 2;
 		struct GNU_DEF details_obstacle_status
 		{
 			u8 b0_num_obstacles;
-			
+
 			u8 b1_timestamp;
-			
+
 			u8 b2_appliaction_vesion;
-			
-			u8 b3_avtive_version_number_section:2;
-			u8 b3_left_close_range_cut_in:1;
+
+			u8 b3_avtive_version_number_section : 2;
+			u8 b3_left_close_range_cut_in : 1;
 			u8 b3_right_close_range_cut_in : 1;
-			u8 b3_go:4;
-			
+			u8 b3_go : 4;
+
 			u8 b4_protocol_version;
-			
-			u8 b5_reserved:3;
-			u8 b5_failsafe:4;
-			u8 b5_close_car:1;			
+
+			u8 b5_reserved : 3;
+			u8 b5_failsafe : 4;
+			u8 b5_close_car : 1;
 		};
-		details_obstacle_status* pdata=(details_obstacle_status*)pbuff;
+		details_obstacle_status* pdata = (details_obstacle_status*)pbuff;
 		obstacles_cnt = pdata->b0_num_obstacles;
-		if (obstacles_cnt>15)
+		if (obstacles_cnt > 15)
 		{
 			obstacles_cnt = 15;
 		}
-		for (int ix = obstacles_cnt; ix < 15;ix++)
+		for (int ix = obstacles_cnt; ix < 15; ix++)
 		{
 			base_ui_component* pobj = obstacles_group->get_child(ix);
 			pobj->set_visible(false);
 		}
-		if (obstacles_cnt==0)
+		if (obstacles_cnt == 0)
 		{
 			bool be_show = false;
 			for (int ix = 0; ix < 6; ix++)
@@ -620,40 +659,40 @@ void register_adas_cmd_handl()
 			}
 		}
 	});
-       g_msg_host.attach_monitor("details - obstacle data a",[&](u8* pbuff,int len){
+
+	g_msg_host.attach_monitor("details - obstacle data a", [&](u8* pbuff, int len){
 		u16* pmessg = (u16*)pbuff;
 		int obstacle_id = (*pmessg - 0x739) / 3;
-		pbuff+=2;
+		pbuff += 2;
 		struct GNU_DEF details_obstacle_data_a
 		{
 			u8 b0_obstacle_id;
-			
-			u8 b1_obstacle_pos_x_lsb;
-			
-			u8 b2_obstacle_pos_x_msb:4;
-			u8 b2_null:4;
-			
+
+			u16 b1_obstacle_pos_x : 12;
+
+			u16 b2_null : 4;
+
 			//u8 b3_obstacle_pos_y_lsb;
-			
+
 			//u8 b4_obstacle_pos_y_msb : 2;// 1;
 			//u8 b4_obstacle_pos_y_sg : 1;
 			s16 b34_obstacle_pos_y : 10;
-			u8 b4_blinker_info:3;
+			u8 b4_blinker_info : 3;
 			u8 b4_cut_in_and_out : 3;
-			
+
 			u8 b5_obstacle_rel_vel_x_lsb;
-			
+
 			u8 b6_obstacle_rel_vel_x_msb;
 			u8 b6_obstacle_type : 3;
-			u8 b6_reserved:1;
-			
-			u8 b7_obstacle_status:3;
-			u8 b7_obstacle_brake_lights:1;
-			u8 b7_obstacle_valid:2;
-			u8 b7_reserved:2;
-		
+			u8 b6_reserved : 1;
+
+			u8 b7_obstacle_status : 3;
+			u8 b7_obstacle_brake_lights : 1;
+			u8 b7_obstacle_valid : 2;
+			u8 b7_reserved : 2;
+
 		};
-		details_obstacle_data_a* pdata=(details_obstacle_data_a*)pbuff;
+		details_obstacle_data_a* pdata = (details_obstacle_data_a*)pbuff;
 		/*pbuff += 3;
 		printf("3rd byte=0x%x", *pbuff);
 		pbuff++;
@@ -669,23 +708,23 @@ void register_adas_cmd_handl()
 			return;
 		}
 
-		u16 posx = pdata->b2_obstacle_pos_x_msb * 0x100 + pdata->b1_obstacle_pos_x_lsb;
+		u16 posx = pdata->b1_obstacle_pos_x;
 		//printf("obstacle_id=0x%x posx=0x%x\n", pdata->b0_obstacle_id, posx);
-		if (posx==0xfff)
+		if (posx == 0xfff)
 		{
 			printf("abandoned invalid xvalue\n");
 			return;
 		}
-		if (posx>0xfa0)
+		if (posx > 0xfa0)
 		{
 			posx = 0xfa0;
 		}
-		if (posx>0x200)
+		if (posx > 0x200)
 		{
 			pimg_obj->set_texture_id(en_people_war0_png);
 		}
 		else
-		if (posx>0x100)
+		if (posx > 0x100)
 		{
 			pimg_obj->set_texture_id(en_people_war1_png);
 		}
@@ -695,12 +734,12 @@ void register_adas_cmd_handl()
 		}
 
 		//const ImVec2 max_sz(69, 69),min_sz(9,9);
-		const float remotest_pos = 250, nearest_pos = 0.f;
-		float vscale=posx / 2500.0f;
-		float vposx =-remotest_pos*vscale;
-		float szu = 69-vscale * 60 ;
+		//const float remotest_pos = 250, nearest_pos = 0.f;
+		//float vscale=posx / 2500.0f;
+		float vposx = -0.15*posx;
+		float szu = 69 - posx * 0.05;
 		//s16 uposy = pdata->b34_obstacle_pos_y; // (((u16)pdata->b4_obstacle_pos_y_msb )<<8 | pdata->b3_obstacle_pos_y_lsb)<<6;
-	    
+
 		//printf("uposy=0x%x\n", uposy);
 
 		s16 sposy = pdata->b34_obstacle_pos_y;// / 64;
@@ -709,74 +748,88 @@ void register_adas_cmd_handl()
 			printf("abandoned invalid yvalue\n");
 			return;
 		}
-		
+		float mz = posx*0.0625f;
+		float mx = pdata->b34_obstacle_pos_y*0.0625;
+		float my = 1.f;
+#if 0
+		g_from_xie.obj_input.x=mz;
+		g_from_xie.obj_input.y=mx;
+		g_from_xie.obj_input.z= -g_from_xie.ADAS_to_ground;
+		if(Coordinate_Change(&g_from_xie) == OKAY)
+		{
+			pimg_obj->set_base_pos(g_from_xie.hud_obj_pixel_x,	g_from_xie.hud_obj_pixel_y);
+			printf("output x=%f,y=%f\n",g_from_xie.hud_obj_pixel_x,g_from_xie.hud_obj_pixel_y);
+			return;
+		}
+		return;
+#endif
+
 		//printf("sposy=%d\n", sposy);
 		//sposy /= 64;
 
-		float hscale = sposy * 0.0625;
-		float hpos = hscale*10;
-		hpos = -hpos;
+		float hpos = -sposy;
 		//hpos -= 110;
-		printf("obstacle_id=%d,hscale=%f,hpos=%f,vposx=%f\n", obstacle_id, hscale, hpos, vposx);
+		//printf("obstacle_id=%d,hscale=%f,hpos=%f,vposx=%f\n", obstacle_id, hscale, hpos, vposx);
 		pimg_obj->set_base_pos(hpos, vposx);
 		pimg_obj->set_size(ImVec2(szu, szu));
 	});
-       g_msg_host.attach_monitor("details - obstacle data b",[&](u8* pbuff,int len){
-		pbuff+=2;
+
+	g_msg_host.attach_monitor("details - obstacle data b", [&](u8* pbuff, int len){
+		pbuff += 2;
 		struct GNU_DEF details_obstacle_data_b
 		{
 			u8 b0_obstacle_length;
-			
+
 			u8 b1_obstacle_width;
-			
+
 			u8 b2_obstacle_age;
-			
-			u8 b3_obstacle_lane:2;
-			u8 b3_cipv_flag:1;
+
+			u8 b3_obstacle_lane : 2;
+			u8 b3_cipv_flag : 1;
 			u8 b3_reserved : 1;
-			u8 b3_rader_pos_x_lsb:4;
-			
+			u8 b3_rader_pos_x_lsb : 4;
+
 			u8 b4_rader_pos_x_msb;
-			
+
 			u8 b5_radar_vel_x_lsb;
-			
-			u8 b6_radar_vel_x_msb:4;
+
+			u8 b6_radar_vel_x_msb : 4;
 			u8 b6_radar_match_confidence : 3;
-			u8 b6_reserved:1;
-			
+			u8 b6_reserved : 1;
+
 			u8 b7_matched_radar_id;
-			u8 b7_reserved:1;
-		
+			u8 b7_reserved : 1;
+
 		};
-		details_obstacle_data_b* pdetails_obstacle_data=(details_obstacle_data_b*)pbuff;
+		details_obstacle_data_b* pdetails_obstacle_data = (details_obstacle_data_b*)pbuff;
 	});
-       g_msg_host.attach_monitor("details - obstacle data c",[&](u8* pbuff,int len){
-		pbuff+=2;
+	g_msg_host.attach_monitor("details - obstacle data c", [&](u8* pbuff, int len){
+		pbuff += 2;
 		struct GNU_DEF details_obstacle_data_c
 		{
 			u8 b0_obstacle_angle_rate_lsb;
-			
+
 			u8 b1_obstacle_angle_rate_msb;
-						
+
 			u8 b2_obstacle_scale_change_lsb;
-			
+
 			u8 b3_obstacle_scale_change_msb;
-						
+
 			u8 b4_object_accel_x;
-			
-			u8 b5_object_accel_x:2;
-			u8 b5_null:2;
+
+			u8 b5_object_accel_x : 2;
+			u8 b5_null : 2;
 			u8 b5_obstacle_replaced : 1;
-			u8 b5_reserved:3;
-						
+			u8 b5_reserved : 3;
+
 			u8 b6_obstacle_angle_lsb;
-			
+
 			u8 b7_obstacle_angle_msb;
-		
+
 		};
-		details_obstacle_data_c* pdetails_obstacle_data=(details_obstacle_data_c*)pbuff;
+		details_obstacle_data_c* pdetails_obstacle_data = (details_obstacle_data_c*)pbuff;
 	});
-	   
-	
-	   
+
 }
+	   
+

@@ -49,7 +49,7 @@ class AFG_EXPORT msg_host_n
 	atomic<unsigned int > _rear_id{ 0 }, _front_id{ 0 };
 	buff_unit _cmd_queue[queque_len];
 	//data_unit _root_protocol_receive_data_map;
-	map<string, vector<u8>> _protocol_send_data_map;
+	//map<string, vector<u8>> _protocol_send_data_map;
 
 	//base_filter_n* _task_entry;
 	msg_handle _send_cmd;

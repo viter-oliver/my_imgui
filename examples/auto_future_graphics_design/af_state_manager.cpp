@@ -43,6 +43,10 @@ void state_trans_player::keep_state_trans_on()
 				_psel->_mstate = en_state_pause;
 				value_scale = 1.0;
 				_psel->_state_idx = _cur_trans_play_key._to;
+				if (_psel->_trans_finish)
+				{
+					_psel->_trans_finish(_cur_trans_play_key._from, _cur_trans_play_key._to);
+				}
 			}
 			auto& prop_list = _psel->_prop_list;
 			auto& pp_vl_lst_from = _psel->_prop_value_list[_cur_trans_play_key._from];
@@ -82,3 +86,24 @@ void state_trans_player::keep_state_trans_on()
 	}
 }
 state_trans_player g_state_trans_player;
+bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle)
+{
+	const auto& itrans = g_mstate_manager.find(trans_name);
+	if (itrans==g_mstate_manager.end())
+	{
+		return false;
+	}
+	auto& trans = *itrans->second;
+	trans._trans_finish = trans_handle;
+	return true;
+}
+bool play_trans(string trans_name, int from, int to)
+{
+	const auto& itrans = g_mstate_manager.find(trans_name);
+	if (itrans == g_mstate_manager.end())
+	{
+		return false;
+	}
+	g_state_trans_player.play_state_trans(itrans->second, from, to);
+	return true;
+}

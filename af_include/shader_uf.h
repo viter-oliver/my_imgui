@@ -38,6 +38,7 @@ public:
 	virtual ~shader_uf(){}
 	virtual GLuint usize(){ return _usize; }
 	virtual GLuint elsize(){ return _el_size; }
+	virtual GLuint data_len(){ return _usize*_el_size; }
 	virtual void link(){}
 	virtual void set_to_loaction(GLuint location)=0;
 
@@ -75,6 +76,7 @@ public:
 	{
 		_pfvalue = new float[_usize*_el_size]; memset(_pfvalue, 0, _usize*_el_size*sizeof(float));
 	}
+	GLuint data_len(){ return _usize*_el_size*sizeof(float); }
 	void* get_data_head()
 	{
 		return _pfvalue;
@@ -160,6 +162,8 @@ public:
 	{
 		_pivalue = new int[_usize*_el_size]; memset(_pivalue, 0, _usize*_el_size*sizeof(int));
 	}
+	GLuint data_len(){ return _usize*_el_size*sizeof(int); }
+
 	void* get_data_head()
 	{
 		return _pivalue;
@@ -212,6 +216,8 @@ public:
 	{
 		_puivalue = new unsigned int[_usize*_el_size]; memset(_puivalue, 0, _usize*_el_size*sizeof(unsigned int));
 	}
+	GLuint data_len(){ return _usize*_el_size*sizeof(unsigned int); }
+
 	void* get_data_head()
 	{
 		return _puivalue;
@@ -262,6 +268,8 @@ public:
 	{
 		_pdvalue = new double[_usize*_el_size]; memset(_pdvalue, 0, _usize*_el_size*sizeof(double));
 	}
+	GLuint data_len(){ return _usize*_el_size*sizeof(double); }
+
 	void* get_data_head()
 	{
 		return _pdvalue;
@@ -370,6 +378,10 @@ public:
 			break;
 		}*/
 	}
+	GLuint data_len(){ 
+		return strlen(_txt_name); 
+	}
+
 	void* get_data_head()
 	{
 		return &_txt_name[0];

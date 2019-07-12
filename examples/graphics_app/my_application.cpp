@@ -317,6 +317,7 @@ void my_application::resLoaded()
 
 #ifdef _SCOMMM
 	s_scm.set_msg_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
+	g_msg_host.set
 	DWORD m_dwThreadId;
 	CreateThread(NULL, 0, ThreadLoadApps, &s_scm, 0, &m_dwThreadId);
 	currentTime = std::chrono::high_resolution_clock::now();

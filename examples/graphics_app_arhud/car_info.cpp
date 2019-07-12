@@ -2,10 +2,13 @@
 #include "af_bind.h"
 #include "car_info.h"
 #include "msg_host_n.h"
+#include "af_timer.h"
 #include "enum_txt_name0.h"
 #include <chrono>
 using namespace auto_future_utilities;
+using namespace auto_future;
 extern msg_host_n g_msg_host;
+extern af_timer g_timer;
 bool be_turn_left = false;
 bool be_turn_right = false;
 #define MAX_CONTENT_LEN 0x100
@@ -40,7 +43,7 @@ enum
 };
 scu signal1[en_signal1_cnt] = {
 	{ false, false, en_vinfo_dipped_headlight_png },
-	{ false, false, en_vinfo_abnormal_tire_pressure_png },
+	{ false, false, en_vinfo_fullbeam_headlight_png },
 };
 
 enum 
@@ -65,7 +68,7 @@ scu signal3[en_signal3_cnt] = {
 	{ false, false, en_vinfo_low_fuel_png },
 	{ false, false, en_vinfo_hot_water_png },
 };
-enum
+enum//缺少数据
 {
 	en_aeb0,
 	en_aeb1,
@@ -75,7 +78,7 @@ scu signal4[en_signal4_cnt] = {
 	{ false, false, en_vinfo_AEB_fault_png },
 	{ false, false, en_vinfo_AEB_fault1_png },
 };
-enum
+enum//缺少数据
 {
 	en_acc_off,
 	en_acc_control,
@@ -134,6 +137,13 @@ void set_signal_status(scu* pgrp, int grp_cnt, int sid, bool bon, const char* ct
 					return;
 				}
 			}
+			for (int ix = 0; ix < grp_cnt;ix++)
+			{
+				if (pgrp[ix]._visible)
+				{
+					return;
+				}
+			}
 			set_property_aliase_value(ctl_name, &pgrp[sid].txt_id);
 			set_property_aliase_value(v_name, &pgrp[sid]._visible);
 		}
@@ -168,7 +178,7 @@ class lane_ani_mg
 	ps_mtl mtl_lane;
 	float lane_step={0.005f};
 	float lane_delta={0.00f};
-	float lane_delta_max={0.12f};
+	float lane_delta_max={0.175f};
 	float speed_unit={10.f/36.f};//m/s
 	float lane_circle_mileage={0.9f};//m
 	float lane_circle={2.f};//s
@@ -227,17 +237,51 @@ public:
 	}
 };
 static lane_ani_mg s_lane_mg;
+
 void lane_moving_animation()
 {
 	s_lane_mg.loop();
+	
+	
 }
+//rotate speed
+static int rs_timer_id=-1;
+static float rs_cur = 0.f;
+static float rs_tar = 0.f;
+static float rs_unit = 0.f;
+//car speed
+static int cs_timer_id=-1;
+static int cs_cur = 0;
+int cs_tar = 0;
+static int cs_unit = 0;
+
 void register_car_cmd_handl()
 {
 	const auto& imtl=g_material_list.find(mtl_name);
 	assert(imtl!=g_material_list.end());
 	s_lane_mg.set_mtl(imtl->second);
 	s_lane_mg.init_time();
-	s_lane_mg. set_car_speed(80);
+	//s_lane_mg.set_car_speed(80);
+	cs_timer_id = g_timer.register_timer([&](int tick){
+		cs_cur += cs_unit;
+
+		s_lane_mg.set_car_speed(cs_cur);
+		sprintf_s(str_show, MAX_CONTENT_LEN, "%d", cs_cur);
+		set_property_aliase_value("value_car_speed", str_show);
+		float fprg = (float)(cs_cur) / 240.f;
+		set_property_aliase_value("car_speed_prog", &fprg);
+		
+		if (tick==0)
+		{
+			s_lane_mg.set_car_speed(cs_tar);
+			sprintf_s(str_show, MAX_CONTENT_LEN, "%d", cs_tar);
+			set_property_aliase_value("value_car_speed", str_show);
+			float fprg = (float)(cs_tar) / 240.f;
+			set_property_aliase_value("car_speed_prog", &fprg);
+			g_timer.deactive_time(cs_timer_id);
+		}
+	});
+
 	g_msg_host.attach_monitor("car speed",[&](u8*pbuff,int len){
 		/*struct _car_speed
 		{
@@ -245,9 +289,30 @@ void register_car_cmd_handl()
 		u16 char_speed:
 		};*/
 		u16* pcar_speed=(u16*)pbuff;
-		s_lane_mg. set_car_speed(*pcar_speed);
-		sprintf_s(str_show, MAX_CONTENT_LEN,"%d", *pcar_speed);
+		cs_tar = *pcar_speed;
+		if (cs_tar>240.f)
+		{
+			cs_tar = 240.f;
+		}
+		int cs_delta = cs_tar - cs_cur;
+		if (cs_delta<25&&cs_delta>-25)
+		{
+			cs_cur = cs_tar;
+			s_lane_mg.set_car_speed(cs_cur);
+			sprintf_s(str_show, MAX_CONTENT_LEN, "%d", cs_cur);
+			set_property_aliase_value("value_car_speed", str_show);
+			float fprg = (float)(cs_cur) / 220.f;
+			set_property_aliase_value("car_speed_prog", &fprg);
+			return;
+		}
+		cs_unit = cs_delta / 24;
+		cs_cur += cs_unit;
+		s_lane_mg.set_car_speed(cs_cur);
+		sprintf_s(str_show, MAX_CONTENT_LEN, "%d", cs_cur);
 		set_property_aliase_value("value_car_speed", str_show);
+		float fprg = (float)(cs_cur) / 240.f;
+		set_property_aliase_value("car_speed_prog", &fprg);
+		g_timer.active_timer(cs_timer_id, 24, 1);
 		/*pbuff+=2;
 		u8 speed_unit=*pbuff;
 		if (speed_unit>4)
@@ -344,6 +409,7 @@ void register_car_cmd_handl()
 			break;
 		case en_turn_left:
 			{
+				LIGHT2_SET(en_right_turn, false);
 				LIGHT3_SET(en_left_turn, true);
 				bvalue=false;
 				set_property_aliase_value("prohibit_right_lane_change", &bvalue);	
@@ -357,6 +423,7 @@ void register_car_cmd_handl()
 			break;
 		case en_turn_right:
 			{
+				LIGHT3_SET(en_left_turn, false);
 				LIGHT2_SET(en_right_turn, true);
 				bvalue=false;
 				set_property_aliase_value("prohibit_left_lane_change", &bvalue);	
@@ -391,16 +458,52 @@ void register_car_cmd_handl()
 		}
 
 	});	
+	rs_timer_id=g_timer.register_timer([&](int tick){
+		rs_cur += rs_unit;
+		float frt_sp = rs_cur / 1000.f;
+		sprintf_s(str_show, MAX_CONTENT_LEN, "%.1f", frt_sp);
+		//printf("rotating speed:%d\n",*protate_speed);
+		set_property_aliase_value("value_rotate_speed", str_show);
+		float fpg = rs_cur / 8000;
+		set_property_aliase_value("rotate_speed_prog", &fpg);
+		if (tick==0)
+		{
+			float frt_sp = rs_tar / 1000.f;
+			sprintf_s(str_show, MAX_CONTENT_LEN, "%.1f", frt_sp);
+			//printf("rotating speed:%d\n",*protate_speed);
+			set_property_aliase_value("value_rotate_speed", str_show);
+			float fpg = rs_tar / 8000;
+			set_property_aliase_value("rotate_speed_prog", &fpg);
+			g_timer.deactive_time(rs_timer_id);
+		}
+	});
 	g_msg_host.attach_monitor("rotate speed",[&](u8*pbuff,int len){
 		u16* protate_speed=(u16*)pbuff;
-		*protate_speed += 100;
-		sprintf_s(str_show, MAX_CONTENT_LEN, "%d", *protate_speed);
-		printf("rotating speed:%d\n",*protate_speed);
+		//*protate_speed += 100;
+		rs_tar = (float)(*protate_speed);
+		if (rs_tar>8000.0f)
+		{
+			rs_tar = 8000.f;
+		}
+		rs_unit = (rs_tar - rs_cur)/12.f;
+		rs_cur += rs_unit;
+		float frt_sp = rs_cur / 1000.f;
+		sprintf_s(str_show, MAX_CONTENT_LEN, "%.1f", frt_sp);
 		set_property_aliase_value("value_rotate_speed", str_show);
+		float fpg = rs_cur / 8000;
+		set_property_aliase_value("rotate_speed_prog", &fpg);
+		g_timer.active_timer(rs_timer_id, 24, 2);
 	});
 	g_msg_host.attach_monitor("high beam",[&](u8*pbuff,int len){
-		u8 high_beam=*pbuff;
-		LIGHT1_SET(en_full_beam, high_beam != 0);
+		struct GNU_DEF st_beam
+		{
+			u8 full_beam : 1;
+			u8 low_beam : 1;
+			u8 reserved : 6;
+		};
+		st_beam* high_beam = (st_beam*)pbuff;
+		LIGHT1_SET(en_low_beam, high_beam->low_beam);
+		LIGHT1_SET(en_full_beam, high_beam->full_beam);
 	});
 	g_msg_host.attach_monitor("compass", [&](u8*pbuff, int len){
 		u8 degree = *pbuff;
@@ -409,11 +512,8 @@ void register_car_cmd_handl()
 		set_property_aliase_value("compass_angle", &value_degree);
 	});
 
-	g_msg_host.attach_monitor("steering keys",[&](u8*pbuff,int len){
-		u8 key_value=*pbuff++;
-		u8 key_status=*pbuff;
 
-	});
+	
 	g_msg_host.attach_monitor("height adjustment",[&](u8*pbuff,int len){
 		u8 height_value=*pbuff++;
 	});

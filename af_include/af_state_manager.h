@@ -44,12 +44,14 @@ enum moving_state
 	en_state_moving,
 	en_state_out
 };
+typedef	function<void(int from, int to)> trans_finish_handle;
 struct af_state_manager
 {
-	vprop_pos _prop_list;
-	vvprop_block _prop_value_list;
+	vprop_pos _prop_list;//属性列表——该状态机包含的所有属性
+	vvprop_block _prop_value_list;//属性值列表——
 	state_transition _any_to_any;
-	mp_trans _mtrans;
+	trans_finish_handle _trans_finish;
+	mp_trans _mtrans;//状态切换
 	unsigned char _state_idx{ 0 };
 	moving_state _mstate{ en_state_pause };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
@@ -59,6 +61,8 @@ struct af_state_manager
 using ps_state_manager = shared_ptr<af_state_manager>;
 using mp_state_manager = map<string, ps_state_manager>;
 extern mp_state_manager g_mstate_manager;
+AFG_EXPORT bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle);
+AFG_EXPORT bool play_trans(string trans_name, int from, int to);
 class state_trans_player
 {
 	bool _be_playing{ false };

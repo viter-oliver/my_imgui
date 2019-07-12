@@ -283,6 +283,9 @@
     <ClCompile Include="..\..\from_csdn_cly\HttpBoost.cpp">
       <Filter>from_csdn_cly</Filter>
     </ClCompile>
+    <ClCompile Include="af_timer.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -591,6 +594,7 @@
     <ClInclude Include="..\..\from_csdn_cly\HttpBoost.h">
       <Filter>from_csdn_cly</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\af_include\af_timer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

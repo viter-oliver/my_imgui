@@ -8,6 +8,8 @@ uniform mat4 model;
 uniform float dy;
 uniform float base_y;
 uniform float curv_l,head_l,curv_r,head_r;
+uniform float left_base,right_base;
+uniform float of_eye;
 void main()
 {
     vec3 bpos=aposition;
@@ -15,11 +17,11 @@ void main()
     float yv=base_y-bpos.y;
     if(is_left)
     {
-         bpos.x=curv_l*yv*yv+head_l*yv+bpos.x;
+         bpos.x=curv_l*yv*yv+head_l*yv+left_base+of_eye;
     }
     else
     {
-         bpos.x=curv_r*yv*yv+head_r*yv+bpos.x;
+         bpos.x=curv_r*yv*yv+head_r*yv+right_base+of_eye;
     }
     float nml=anormal.z;
     gl_Position = proj * view * model * vec4(bpos,1.0);
