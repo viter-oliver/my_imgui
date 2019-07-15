@@ -1,9 +1,74 @@
 #include "ft_base.h"
 #include <typeinfo>
+#include "af_bind.h"
 namespace auto_future
 {
+	ft_base::ft_base()
+		: base_ui_component()
+	{
+		//cout << "size of base_prop:" << sizeof(base_prop) << endl;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_property_handle(&_in_p, 2, [this](void*){
+			if (ImGui::Checkbox("Keep scale", &_keep_scale)&&_keep_scale)
+			{
+				if (_in_p._sizeh>0)
+				{
+					_w2h = _in_p._sizew / _in_p._sizeh;
+				}
+			}
+			if (ImGui::SliderFloat("width", &_in_p._sizew, 1.0, base_ui_component::screenw) && _keep_scale&&_w2h>0.001)
+			{
+				_in_p._sizeh = _in_p._sizew / _w2h;
+			}
+		});
+		reg_property_handle(&_in_p, 3, [this](void*){
+			if (ImGui::SliderFloat("height", &_in_p._sizeh, 1.0, base_ui_component::screenh) && _keep_scale)
+			{
+				_in_p._sizew = _in_p._sizeh*_w2h;
+			}
+
+		});
+		reg_property_handle(&_in_p, 5, [this](void*){
+			ImGui::Combo("adjacent to parent:", &_in_p._aj_model, "fixed\0horisontal\0vertical\0\0");
+		});
+
+#endif
+	}
 	void ft_base::draw()
 	{
+		auto pbase = get_parent();
+		const auto& ajm=_in_p._aj_model;
+		if (pbase&&_in_p._aj_model!=en_fixed)
+		{
+			auto bs_ps = base_pos();
+			bool be_intersected;
+			const auto& adj_value = _in_p._adjacent_to_p;
+			if (ajm == en_horisontal)
+			{
+				float hitpos;
+				bs_ps.x -= adj_value;
+				be_intersected = pbase->get_border_hit_point(bs_ps.x,true, hitpos);
+				if (be_intersected)
+				{
+					hitpos += adj_value;
+					set_base_posx(hitpos);
+				}
+			}
+			else
+			{
+				float hitpos;
+				bs_ps.y -= adj_value;
+				be_intersected = pbase->get_border_hit_point(bs_ps.y, false, hitpos);
+				if (be_intersected)
+				{
+					hitpos += adj_value;
+					set_base_posy(hitpos);
+				}
+			}
+
+		}
+		
+
 		if (!is_visible())
 		{
 			return;
@@ -16,178 +81,65 @@ namespace auto_future
 			}
 		}
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_base::draw_peroperty_page(int property_part)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)	
+	base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
 	{
-		if (ImGui::InputText("object name", _in_p._name, name_len))
+		for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
 		{
-			auto pparent = get_parent();
-			if (pparent)
+			if ((*it)->is_visible())
 			{
-				string nname = pparent->try_create_a_child_name(_in_p._name, this);
-				set_name(nname);
+				base_ui_component* hit_object = (*it)->get_hit_ui_object(posx, posy);
+				if (hit_object)
+				{
+					return hit_object;
+				}
 			}
-		}
-		ImGui::Text("base pos:");
-		//ImGui::InputFloat("x", &_pos.x, 1.0f, base_ui_component::screenw);
-		//ImGui::SameLine();
-		if (ImGui::SliderFloat("x", &_in_p._pos.x, -screenw, screenw))
-		{
-			printf("current posx:%f\n", _in_p._pos.x);
-		}
-		/*if (ImGui::IsMouseReleased(1))
-		{
-			printf("mouse 1 is released!\n");
-		}*/
-		ImGui::SliderFloat("y", &_in_p._pos.y, -screenh, screenh);
-		if (ImGui::Checkbox("visibility", &_in_p._visible))
-		{
-			g_ui_edit_command_mg.create_command\
-				(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p_bk._visible))));
-			_in_p_bk._visible = _in_p._visible;
-		}
-		ImGuiContext& g = *GImGui;
-		if (ImGui::IsMouseReleased(0)||g.IO.InputContentChanged)
-		{
-			bool pt_modified = false;
-			if (_in_p._pos.x != _in_p_bk._pos.x)
-			{
-				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p_bk._pos.x))));
-				_in_p_bk._pos.x = _in_p._pos.x;
-				pt_modified = true;
-			}
-			if (_in_p._pos.y != _in_p_bk._pos.y)
-			{
-				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p_bk._pos.y))));
-				_in_p_bk._pos.y = _in_p._pos.y;
-				pt_modified = true;
-			}
-			if (strcmp(_in_p._name, _in_p_bk._name) != 0)
-			{
-				g_ui_edit_command_mg.create_command\
-					(edit_commd<base_ui_component>(this, command_elemment(string("ft_base"), en_pt_name, command_value(_in_p_bk._name))));
-				strcpy(_in_p_bk._name, _in_p._name);
-				_in_p_bk._name[strlen(_in_p._name)] = '\0';
-				pt_modified = true;
 
-				g.IO.InputContentChanged = false;
-			}
-			if (pt_modified)
-			{
-				g.IO.InputContentChanged = false;
-			}
-		} 
-	}
-
-	void ft_base::execute_command(command_elemment& ele_cmd)
-	{
-		if (ele_cmd._cmd_type == "ft_base")
-		{
-			switch (ele_cmd._cmd_id)
-			{
-			case en_pt_name:
-				set_name(ele_cmd._cmd_value._value._svalue);
-				strcpy(_in_p_bk._name, _in_p._name);
-				_in_p_bk._name[strlen(_in_p._name)] = '\0';
-				break;
-			case en_pt_pos_x:
-				_in_p._pos.x = ele_cmd._cmd_value._value._fvalue;
-				_in_p_bk._pos.x = _in_p._pos.x;
-				break;
-			case en_pt_pos_y:
-				_in_p._pos.y = ele_cmd._cmd_value._value._fvalue;
-				_in_p_bk._pos.y = _in_p._pos.y;
-				break;
-			case en_pt_visible:
-				_in_p._visible = ele_cmd._cmd_value._value._bvalue;
-				_in_p_bk._visible = _in_p._visible;
-				break;
-			default:
-				break;
-			}
+			//hit_object = (*it).get_hit_ui_object(posx, posy);
 		}
-	}	
-	command_elemment ft_base::clone_cmd_ele(command_elemment&ele_cmd)
-	{
-		if (ele_cmd._cmd_type=="ft_base")
+		if (contains(posx,posy))
 		{
-			switch (ele_cmd._cmd_id)
-			{
-			case en_pt_name:
-				
-				return command_elemment(string("ft_base"), en_pt_name, command_value(_in_p._name));
-			case en_pt_pos_x:
-				return command_elemment(string("ft_base"), en_pt_pos_x, command_value(_in_p._pos.x));
-			case en_pt_pos_y:
-				return command_elemment(string("ft_base"), en_pt_pos_y, command_value(_in_p._pos.y));
-				
-			case en_pt_visible:
-				return command_elemment(string("ft_base"), en_pt_visible, command_value(_in_p._visible));
-			default:
-				break;
-			}
+			return this;
 		}
-		return command_elemment();
-
-	}
-	/*
-	fields: name,type,childs
-	*/
-	bool ft_base::init_from_json(Value& jvalue)
-	{
-		strcpy(_in_p._name, jvalue["name"].asCString());
-		Value& jscreen_pos = jvalue["screen_pos"];
-		_in_p._pos.x = jscreen_pos["x"].asDouble();
-		_in_p._pos.y = jscreen_pos["y"].asDouble();
-		_in_p._visible = jvalue["visible"].asBool();
-		_in_p_bk = _in_p;
-		Value& childs = jvalue["childs"];
-		if (childs.isNull())
+		else
 		{
-			return true;
+			return nullptr;
 		}
-		int isize = childs.size();
-		for (int ix = 0; ix < isize; ++ix)
-		{
-			Value& child = childs[ix];
-			auto& cname = child["type"].asString();
-			base_ui_component* pcontrol_instance = factory::get().produce(cname);
-			add_child(pcontrol_instance);
-			pcontrol_instance->init_from_json(child);
-		}
-		return true;
-	}
-
-	bool ft_base::init_json_unit(Value& junit)
-	{
-		junit["name"] = _in_p._name;
-		string cname = typeid(*this).name();
-		cname = cname.substr(sizeof("class autofuture::"));
-		junit["type"] = cname;
-		Value jscreen_pos(objectValue);
-		jscreen_pos["x"] = _in_p._pos.x;
-		jscreen_pos["y"] = _in_p._pos.y;
-		junit["screen_pos"] = jscreen_pos;
-		junit["visible"] = _in_p._visible;
-		Value jchilds(arrayValue);
-		size_t chcnt = child_count();
-		for (size_t ix = 0; ix < chcnt; ix++)
-		{
-			base_ui_component* pch_uc = get_child(ix);
-			Value jchuc(objectValue);
-			pch_uc->init_json_unit(jchuc);
-			jchilds.append(jchuc);
-		}
-		if (chcnt > 0)
-		{
-			junit["childs"] = jchilds;
-		}
-		return true;
 	}
 #endif
-
+	bool ft_base::contains(float posx, float posy)
+	{
+		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
+		ImVec2 pos1(pos0.x + _in_p._sizew, pos0.y + _in_p._sizeh);
+		ImRect cover_area(pos0, pos1);
+		ImVec2 mouse_pos(posx, posy);
+		bool be_contain= cover_area.Contains(mouse_pos);
+		return be_contain;
+	}
+	bool ft_base::relative_contain(af_vec2& point)
+	{
+		ImVec2 pos0{ 0.f, 0.f };
+		ImVec2 pos1{ _in_p._sizew, _in_p._sizeh };
+		ImRect cover_area(pos0, pos1);
+		ImVec2 tar{ point.x, point.y };
+		bool be_contained = cover_area.Contains(tar);
+		return be_contained;
+	}
+	bool ft_base::relative_contain(float pos, bool be_h)
+	{
+		bool be_contain = pos >= 0;
+		if (be_h)
+		{
+			be_contain = be_contain && pos <= _in_p._sizew;
+		}
+		else
+		{
+			be_contain = be_contain && pos <= _in_p._sizeh;
+		}
+		return be_contain;
+	}
 	bool ft_base::handle_mouse()
 	{
 		if (!is_visible())
@@ -199,6 +151,33 @@ namespace auto_future
 			if (!it->handle_mouse())
 				return false;
 		}
+		return true;
+	}
+	bool ft_base::set_prop_fd_value(int pg_id, int fd_id, void* pvalue)
+	{
+		assert(pvalue);
+		auto pg_sz = _vprop_eles.size();
+		if (pg_id>=pg_sz)
+		{
+			return false;
+		}
+		auto& pg_ele = _vprop_eles[pg_id];
+		auto& vfd_ele = pg_ele->_pro_page;
+		auto vfd_ele_sz = vfd_ele.size();
+		if (fd_id>=vfd_ele_sz)
+		{
+			return false;
+		}
+		auto& fd_ele = *vfd_ele[fd_id];
+		char* pdest = fd_ele._address;
+		int count = fd_ele._count;
+		if (count==0)
+		{
+			count = 1;
+		}
+		memcpy(pdest, pvalue, fd_ele._count + fd_ele._tpsz);
+		prop_ele_position cur_prp_ele_pos = { this, pg_id, fd_id};
+		calcu_bind_node(cur_prp_ele_pos);
 		return true;
 	}
 	base_ui_component* ft_base::get_copy_of_object()
@@ -237,7 +216,8 @@ namespace auto_future
 	}
 	float base_ui_component::screenw = 1920.f;
 	float base_ui_component::screenh =720.f;
-
+	prop_ele base_ui_component::null_prop_ele = { nullptr, 0 };
+	field_ele base_ui_component::null_field_ele = {"", "",0,0 };
 	void property_copy(vproperty_list& vdest, vproperty_list& vsource)
 	{
 		for (size_t i = 0; i < vdest.size(); i++)
@@ -263,5 +243,24 @@ namespace auto_future
 			prtn->add_child(pchd_cpy);
 		}
 		return prtn;
+	}
+	void get_uic_path(base_ui_component* pobj, string& path_rtn)
+	{
+		assert(pobj);
+		vector<string> name_list;
+		base_ui_component* ppt = nullptr;
+		base_ui_component* pcur = pobj;
+		name_list.push_back(pcur->get_name());
+		while (ppt = pcur->get_parent())
+		{
+			name_list.push_back(ppt->get_name());
+			pcur = ppt;
+		}
+		auto name_list_sz = name_list.size();
+		for (int ix = name_list_sz - 1; ix >= 0; ix--)
+		{
+			path_rtn += '/';
+			path_rtn += name_list[ix];
+		}
 	}
 }

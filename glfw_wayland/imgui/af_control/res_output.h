@@ -2,8 +2,10 @@
 #include <GLFW/glfw3.h>
 #include <vector>
 #include <string>
-//纹理资源
+#include <atomic>
+#include <thread>
 using namespace std;
+#define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
 struct res_texture_coordinate
 {
 	string _file_name;
@@ -15,15 +17,81 @@ struct res_texture_coordinate
 typedef vector<res_texture_coordinate> vres_txt_cd;
 struct res_texture_list
 {
+	GLuint txt_id{0};
 	int texture_width;
 	int texture_height;
-	unsigned int texture_id;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	string texture_pack_file;
 	string texture_data_file;
-	//string file_name_sets;
+#else
+	atomic<bool> _loaded{ false };
+	string txt_buff;
+#endif
+	bool _is_separated{ false };	//string file_name_sets;
 	vres_txt_cd vtexture_coordinates;
-	res_texture_list()
+	unsigned int texture_id()
 	{
+#ifdef IMGUI_DISABLE_DEMO_WINDOWS
+            if(!_is_separated)
+            {
+                return txt_id;
+            }
+		while (!_loaded)
+		{
+			this_thread::yield();
+		}
+		if (txt_buff.size()>0)
+		{
+			glBindTexture(GL_TEXTURE_2D, txt_id);
+			int pix_sz = texture_width*texture_height * 4;
+			if (txt_buff.size()<pix_sz)// texture is compressed
+			{
+				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, texture_width, texture_height, 0, txt_buff.size(), &txt_buff[0]);
+			}
+			else
+			{
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texture_width, texture_height,
+					0, GL_RGBA, GL_UNSIGNED_BYTE, &txt_buff[0]);
+
+			}
+			glBindTexture(GL_TEXTURE_2D, 0);
+			txt_buff.clear();
+			txt_buff.shrink_to_fit();
+		}
+#endif
+		return txt_id;
+	}
+	res_texture_list()
+		:txt_id(0)
+	{
+	}
+
+	res_texture_list(res_texture_list& target)
+	{
+		if (target.txt_id==0)
+		{
+			txt_id = 0;
+		}
+		else
+		{
+			txt_id = texture_id();
+		}
+	}
+     res_texture_list(res_texture_list&& target)
+	{
+		if (target.txt_id==0)
+		{
+			txt_id = 0;
+		}
+		else
+		{
+			txt_id = texture_id();
+		}
+	}
+	res_texture_list& operator =(res_texture_list& tar)
+	{
+		txt_id = tar.texture_id();
+		return *this;
 	}
 	~res_texture_list()
 	{
@@ -32,10 +100,62 @@ struct res_texture_list
 typedef vector<res_texture_list> vres_txt_list;
 extern vres_txt_list g_vres_texture_list;
 extern int g_cur_texture_id_index;
+//enum res_output_model
+//{
+//	en_integrated,
+//	en_discrete,
+//};
 extern bool get_texture_item(void* data, int idx, const char** out_str);
 struct af_texture
 {
-	GLuint _txt_id{ 0 }, _width{ 0 }, _height{ 0 };
+	bool _mip_map{ false };
+	GLuint _atxt_id{ 0 };
+	GLuint _width{ 0 }, _height{ 0 };
+#ifdef IMGUI_DISABLE_DEMO_WINDOWS
+	atomic<bool> _loaded{ false };
+	string txt_buff;
+#endif
+	GLuint _txt_id()
+	{
+#ifdef IMGUI_DISABLE_DEMO_WINDOWS
+		if(!_is_separated)
+		{
+			return _atxt_id;
+		}
+		while (!_loaded)
+		{
+			this_thread::yield();
+		}
+		if (txt_buff.size() > 0)
+		{
+			glBindTexture(GL_TEXTURE_2D, _atxt_id);
+			int pix_sz = _width*_height * 4;
+			if (_mip_map)
+			{
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+			}
+			if (txt_buff.size() < pix_sz)// texture is compressed
+			{
+				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, _width, _height, 0, txt_buff.size(), &txt_buff[0]);
+			}
+			else
+			{
+				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height,
+					0, GL_RGBA, GL_UNSIGNED_BYTE, &txt_buff[0]);
+
+			}
+			if (_mip_map)
+			{
+				glGenerateMipmap(GL_TEXTURE_2D);
+			}
+			glBindTexture(GL_TEXTURE_2D, 0);
+			txt_buff.clear();
+			txt_buff.shrink_to_fit();
+		}
+#endif
+		return _atxt_id;
+	}
+	bool _is_separated{ false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif
@@ -48,16 +168,22 @@ struct af_file
 	bool _sel{ false };
 #endif
 	af_file(GLuint fsize);
+	//af_file(){}
+	void re_alloc(GLuint fsize);
 	~af_file();
 };
 #include<map>
 #include <memory>
-typedef map<string, shared_ptr<af_texture>> mtexture_list;
-typedef map<string, shared_ptr<af_file>>mfile_list;
+using ps_af_texture = shared_ptr<af_texture>;
+using ps_af_file = shared_ptr<af_file>;
+typedef map<string, ps_af_texture> mtexture_list;
+typedef map<string, ps_af_file>mfile_list;
 extern mtexture_list g_mtexture_list;
 extern mfile_list g_mfiles_list;
+void save_ojfile_to_file(string& key_name);
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-extern bool add_image_to_mtexure_list(string& imgPath);
+extern bool add_image_to_mtexure_list(string& imgPath,bool is_mipmap);
 extern void add_file_to_mfiles_list(string& file_path);
 #endif
 enum texture_format
@@ -76,10 +202,11 @@ enum program_format
 	en_shader_bin_general,
 	en_shader_bin_vivante,
 };
+
 struct output_bin_format
 {
 	texture_format _txt_fmt;
 	program_format _pgm_fmt;
-	output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
+	//output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
 };
 extern output_bin_format g_output_bin_format;

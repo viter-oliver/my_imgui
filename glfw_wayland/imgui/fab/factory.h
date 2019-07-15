@@ -137,7 +137,9 @@ void Factory<Base, Key>::Register(
 	std::function<Return (Args ... args)> const& delegate)
 {
 	FAB_ASSERT_RETURN_TYPE(Return)
-	_map[key] = value_type(new Function<Base, Args...>(delegate));
+       auto itf=_map.find(key);
+      if(itf==_map.end())
+	    _map[key] = value_type(new Function<Base, Args...>(delegate));
 }
 
 template<typename Base, typename Key>
@@ -147,6 +149,8 @@ void Factory<Base, Key>::Register(
 	std::function<Return (Args ... args)>&& delegate)
 {
 	FAB_ASSERT_RETURN_TYPE(Return)
+       auto itf=_map.find(key);
+      if(itf==_map.end())
 	_map[key] = value_type(new Function<Base, Args...>(std::move(delegate)));
 }
 
@@ -159,6 +163,8 @@ void Factory<Base, Key>::Register(
 	FAB_ASSERT_RETURN_TYPE(Return)
 		//decltype(Base) nnn;
 //	printf("type:%s\n", typeid(Base).name());
+     auto itf=_map.find(key);
+      if(itf==_map.end())
 	_map[key] = value_type (new Function<Base, Args...> (delegate));
 }
 

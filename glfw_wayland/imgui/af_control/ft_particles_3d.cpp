@@ -4,7 +4,10 @@
 #include "texture.h"
 #include <GLFW/glfw3.h>
 #include <chrono>
-
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+#include "af_shader_source_code.h"
 namespace auto_future
 {
 	struct Particle{
@@ -62,30 +65,56 @@ namespace auto_future
 
 	ft_particles_3d::ft_particles_3d()
 	{
+		_pt._pos0_shd = { 0.f, 7.f, -20.f };
+		_pt._v0_shd = { 0.f, -7.f, 0.f };
+		_pt._a0_shd = { 0.f, 9.81f, 0.f };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_value_range(&_pt, 3, 0.f, 20.f);
+		reg_property_handle(&_pt, 3, [this](void* member_address){
+		if (_texture)
+		{
+			ImGui::Text("Particle texture:%s", _pt._txt_particle_name);
+			ImGui::SameLine();
+			if (ImGui::Button("Delink##txt_particle"))
+			{
+				_texture = nullptr;
+			}
+		}
+		else
+		{
+			ImGui::InputText("Particle texture:", _pt._txt_particle_name, FILE_NAME_LEN);
+			if (ImGui::Button("Link##particle_txt"))
+			{
+				auto itxt = g_mtexture_list.find(_pt._txt_particle_name);
+				if (itxt!=g_mtexture_list.end())
+				{
+					_texture = itxt->second;
+				}
+			}
+		}
+		});
+#endif
+		_ps_sd_particle = make_shared<af_shader>(particles1_vs, particles1_fs);
 		glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
-		auto mut = g_material_list.find("particles");
-		_particle_material = mut->second;
-
+			
 		// Same as the billboards tutorial
 		float cmr_wp[] = { 0.999137f, -0.000177f, 0.041540f };
-		_particle_material->set_value("CameraRight_worldspace", cmr_wp, 3);
+		_ps_sd_particle->uniform("CameraRight_worldspace", cmr_wp);
 
 		//glUniform3f(CameraRight_worldspace_ID, ViewMatrix[0][0], ViewMatrix[1][0], ViewMatrix[2][0]);
 		float cmu_wp[] = { -0.009298f, 0.973666f, 0.227788f };
-		_particle_material->set_value("CameraUp_worldspace", cmu_wp, 3);
-
+		_ps_sd_particle->uniform("CameraUp_worldspace", cmu_wp);
 		//glUniform3f(CameraUp_worldspace_ID, ViewMatrix[0][1], ViewMatrix[1][1], ViewMatrix[2][1]);
 		float vwpj[] = { 1.809097f, -0.022448f, 0.040568f, 0.040486f,
 			-0.000320f, 2.350639f, 0.228434f, 0.227978f,
 			0.075215f, 0.549929f, -0.974772f, -0.972824f,
 			-0.376075f, -2.749644f, 4.673659f, 4.864121f };
-		_particle_material->set_value("VP", vwpj, 16);
-
-		auto mtx = g_mtexture_list.find("fire.png");
+		_ps_sd_particle->uniform("VP", vwpj);
+		const auto& mtx = g_mtexture_list.find("fire.png");
 		_texture = mtx->second;
 
-
+		
 		glGenBuffers(1, &_vbo_uv);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo_uv);
 		glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
@@ -109,8 +138,20 @@ namespace auto_future
 	}
 
 #define _calcu_color
+	void ft_particles_3d::link()
+	{
+		auto itxt = g_mtexture_list.find(_pt._txt_particle_name);
+		if (itxt != g_mtexture_list.end())
+		{
+			_texture = itxt->second;
+		}
+	}
 	void ft_particles_3d::draw()
 	{
+		if (!_texture)
+		{
+			return;
+		}
 		double currentTime = glfwGetTime();
 		double delta = currentTime - lastTime;
 		lastTime = currentTime;
@@ -121,10 +162,10 @@ namespace auto_future
 		for (int i = 0; i < newparticles; i++){
 			int particleIndex = FindUnusedParticle();
 			ParticlesContainer[particleIndex].life = _pt._life; // This particle will live 5 seconds.
-			ParticlesContainer[particleIndex].pos = glm::vec3(_pt._pos0.x, _pt._pos0.y, _pt._pos0.z);
+			ParticlesContainer[particleIndex].pos = glm::vec3(_pt._pos0_shd.x, _pt._pos0_shd.y, _pt._pos0_shd.z);
 
 			float spread = 1.5f;
-			glm::vec3 maindir = glm::vec3(_pt._v0.x, _pt._v0.y, _pt._v0.z);
+			glm::vec3 maindir = glm::vec3(_pt._v0_shd.x, _pt._v0_shd.y, _pt._v0_shd.z);
 			glm::vec3 randomdir = glm::vec3(
 				(rand() % 2000 - 1000.0f) / 1000.0f,
 				(rand() % 2000 - 1000.0f) / 1000.0f,
@@ -183,7 +224,7 @@ namespace auto_future
 					}
 					break;
 					case en_gravity:
-						p.speed += glm::vec3(_pt._a0.x, _pt._a0.y, _pt._a0.z) * (float)delta * 0.5f;
+						p.speed += glm::vec3(_pt._a0_shd.x, _pt._a0_shd.y, _pt._a0_shd.z) * (float)delta * 0.5f;
 						p.pos += p.speed * (float)delta;
 						break;
 					case en_fire:
@@ -194,7 +235,7 @@ namespace auto_future
 						break;
 					}
 
-					p.cameradistance = glm::length2(p.pos - CameraPosition);
+					//p.cameradistance = glm::length2(p.pos - CameraPosition);
 					//ParticlesContainer[i].pos += glm::vec3(0.0f,10.0f, 0.0f) * (float)delta;
 
 					// Fill the GPU buffer
@@ -225,7 +266,7 @@ namespace auto_future
 		SortParticles();
 		printf("particles count:%d\n", ParticlesCount);
 		// Use our shader
-		_particle_material->use();
+		_ps_sd_particle->use();
 		glBindVertexArray(_vao);
 		glBindBuffer(GL_ARRAY_BUFFER, _vbo_pos);
 		glBufferData(GL_ARRAY_BUFFER, ParticlesCount * 4 * sizeof(GLfloat), g_particule_position_size_data, GL_STREAM_DRAW); // Buffer orphaning, a common way to improve streaming perf. See above link for details.
@@ -244,10 +285,10 @@ namespace auto_future
 
 		// Bind our texture in Texture Unit 0
 		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id);
+		glBindTexture(GL_TEXTURE_2D, _texture->_txt_id());
 		// Set our "myTextureSampler" sampler to use Texture Unit 0
-		glUniform1i(_texture->_txt_id, 0);
-
+		glUniform1i(_texture->_txt_id(), 0);
+		
 
 
 		//glUniformMatrix4fv(ViewProjMatrixID, 1, GL_FALSE, &ViewProjectionMatrix[0][0]);
@@ -296,7 +337,7 @@ namespace auto_future
 		// Draw the particules !
 		// This draws many times a small triangle_strip (which looks like a quad).
 		// This is equivalent to :
-		// for(i in ParticlesCount) : glDrawArrays(GL_TRIANGLE_STRIP, 0, 4),
+		// for(i in ParticlesCount) : glDrawArrays(GL_TRIANGLE_STRIP, 0, 4), 
 		// but faster.
 		glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, ParticlesCount);
 		//glDrawArraysInstanced(GL_TRIANGLES, 0, 6, ParticlesCount);
@@ -305,31 +346,6 @@ namespace auto_future
 		glDisableVertexAttribArray(2);
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void ft_particles_3d::draw_peroperty_page(int property_part)
-	{
-		ImGui::Text("Emitting position:");
-		ImGui::SliderFloat("px", &_pt._pos0.x, -100.f, 100.f);
-		ImGui::SliderFloat("py", &_pt._pos0.y, -100.f, 100.f);
-		ImGui::SliderFloat("pz", &_pt._pos0.z, -100.f, 100.f);
-		ImGui::Text("Emitting velocity:");
-		ImGui::SliderFloat("vx", &_pt._v0.x, -100.f, 100.f);
-		ImGui::SliderFloat("vy", &_pt._v0.y, -100.f, 100.f);
-		ImGui::SliderFloat("vz", &_pt._v0.z, -100.f, 100.f);
-		ImGui::Text("Accelerated velocity:");
-		ImGui::SliderFloat("ax", &_pt._a0.x, -100.f, 100.f);
-		ImGui::SliderFloat("ay", &_pt._a0.y, -100.f, 100.f);
-		ImGui::SliderFloat("az", &_pt._a0.z, -100.f, 100.f);
-		ImGui::Text("Life(seconds):");
-		ImGui::SliderFloat("life", &_pt._life, 0.f, 20.f);
 
-	}
-	bool ft_particles_3d::init_from_json(Value& jvalue)
-	{
-		return true;
-	}
-	bool ft_particles_3d::init_json_unit(Value& junit)
-	{
-		return true;
-	}
 #endif
 }

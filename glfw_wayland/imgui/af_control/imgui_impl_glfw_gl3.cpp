@@ -39,7 +39,7 @@
 #include <stdio.h>
 #include "imgui.h"
 #include "imgui_impl_glfw_gl3.h"
-
+#include <math.h>
 // GL3W/GLFW
 //#include <GL/gl3w.h>
 // This example is using gl3w to access OpenGL functions (because it is small). You may use glew/glad/glLoadGen/etc. whatever already works for you.
@@ -62,12 +62,27 @@ static char         g_GlslVersion[32] = "#version 150";
 /*static*/ GLuint       g_FontTexture = 0;
 static int          g_ShaderHandle = 0, g_VertHandle = 0, g_FragHandle = 0;
 static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
+#ifdef _LEVEL_CAL
+static int g_AttribLocationcustomMtx = 0, g_AttribLocationcustomDelta = 0;
+#endif
+float g_cs_a = 1.f, g_sn_a = 0.f, g_ox = -400, g_oy = -267;
+
 static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
 static unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
 
 // OpenGL3 Render function.
 // (this used to be set in io.RenderDrawListsFn and called by ImGui::Render(), but you can now call this directly from your main loop)
 // Note that this implementation is little overcomplicated because we are saving/setting up/restoring every OpenGL state explicitly, in order to be able to run within any OpenGL engine that doesn't do so.
+void set_rotate_angle(float angle)
+{
+	g_cs_a=cos(angle);
+	g_sn_a=sin(angle);
+}
+void set_rotate_axis_pos(float px,float py)
+{
+	g_ox=-px;
+	g_oy=-py;
+}
 void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
 {
 #if	0
@@ -206,7 +221,20 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
     glUseProgram(g_ShaderHandle);
     glUniform1i(g_AttribLocationTex, 0);
     glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
-
+#ifdef _LEVEL_CAL
+	float custom_matrix[2][2] =
+	{
+		{ g_cs_a, g_sn_a },
+		{ -g_sn_a, g_cs_a },
+	};
+	glUniformMatrix2fv(g_AttribLocationcustomMtx, 1, GL_FALSE, &custom_matrix[0][0]);
+	float vdelta[2] =
+	{
+		g_ox*(1 - g_cs_a) - g_oy*g_sn_a,
+		g_ox*g_sn_a + g_oy*(1 - g_cs_a),
+	};
+	glUniform2fv(g_AttribLocationcustomDelta, 1, vdelta);
+#endif
     // Render command lists
     glBindBuffer(GL_ARRAY_BUFFER, g_VboHandle);
     glEnableVertexAttribArray(g_AttribLocationPosition);
@@ -365,7 +393,25 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
         "	Out_Color = Frag_Color * texture( Texture, Frag_UV.st);\n"
         "}\n";
 #else
+#ifdef _LEVEL_CAL
     const GLchar *vertex_shader =
+        "uniform mat4 ProjMtx;\n"
+        "uniform mat2 customMtx;\n"
+	 "uniform vec2 customDelta;\n"
+        "attribute vec2 Position;\n"
+        "attribute vec2 UV;\n"
+        "attribute vec4 Color;\n"
+        "varying vec2 Frag_UV;\n"
+        "varying vec4 Frag_Color;\n"
+        "void main()\n"
+        "{\n"
+        "	Frag_UV = UV;\n"
+        "	Frag_Color = Color;\n"
+        "     vec2 tmpv=customMtx*Position.xy+customDelta;\n"
+        "	gl_Position =  ProjMtx * vec4(tmpv.xy,0,1);\n"
+        "}\n";
+#else
+ const GLchar *vertex_shader =
         "uniform mat4 ProjMtx;\n"
         "attribute vec2 Position;\n"
         "attribute vec2 UV;\n"
@@ -376,9 +422,9 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
         "{\n"
         "	Frag_UV = UV;\n"
         "	Frag_Color = Color;\n"
-        "	gl_Position = ProjMtx * vec4(Position.xy,0,1);\n"
+        "	gl_Position =  ProjMtx * vec4(Position.xy,0,1);\n"
         "}\n";
-
+#endif
     const GLchar* fragment_shader =
 #ifdef __EMSCRIPTEN__
         // WebGL requires precision specifiers but OpenGL 2.1 disallows
@@ -406,7 +452,10 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
 
     g_AttribLocationTex = glGetUniformLocation(g_ShaderHandle, "Texture");
     g_AttribLocationProjMtx = glGetUniformLocation(g_ShaderHandle, "ProjMtx");
-	//g_AttribLocationcustomMtx = glGetUniformLocation(g_ShaderHandle, "customMtx");
+#ifdef _LEVEL_CAL
+    g_AttribLocationcustomMtx = glGetUniformLocation(g_ShaderHandle, "customMtx");
+    g_AttribLocationcustomDelta = glGetUniformLocation(g_ShaderHandle, "customDelta");
+#endif
 
     g_AttribLocationPosition = glGetAttribLocation(g_ShaderHandle, "Position");
     g_AttribLocationUV = glGetAttribLocation(g_ShaderHandle, "UV");

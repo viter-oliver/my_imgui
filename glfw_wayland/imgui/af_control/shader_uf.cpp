@@ -1,13 +1,12 @@
-#include <imgui.h>
-#include <stdio.h>
 #include "shader_uf.h"
 #include<string>
 #include<sstream>
 using namespace std;
-//#include "user_control_imgui.h"
-
+GLuint shader_uf_txt::_sample_index = 0;
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#include "user_control_imgui.h"
+
 void shader_uf::output_2_json(Value& jvalue)
 {
 	jvalue["usize"] = _usize;
@@ -59,7 +58,7 @@ void shader_uf_float::edit()
 			default:
 				return;
 			}
-		}
+		}	
 	}
 	/*int n = (_usize + 15) / 16;
 	switch (_usize % 16) {
@@ -80,7 +79,7 @@ void shader_uf_float::edit()
 			           case 2:          *to++ = *from++;
 			           case 1:          *to++ = *from++;
 		} while (--n >    0);
-
+			
 	}*/
 }
 void shader_uf_float::output_2_json(Value& jvalue)
@@ -290,5 +289,88 @@ void shader_uf_double::init_from_json(Value& jvalue)
 		_pdvalue[ix] = value_list[ix].asDouble();
 	}
 }
-#endif
 
+void shader_uf_txt::edit()
+{
+	if (_pdtxt)
+	{
+		ImGui::Text("Texture name:%s", _txt_name);
+		ImGui::SameLine();
+		if (ImGui::Button("Delink##txtname"))
+		{
+			_pdtxt = nullptr;
+			_txt_name[0] = '\0';
+		}
+		else
+		{
+			ImGui::Text("Size:%u,%u", _pdtxt->_width, _pdtxt->_height);
+			float imw = _pdtxt->_width, imh = _pdtxt->_height;
+			if (imw > 400.f)
+			{
+				imh = 400 * imh / imw;
+				imw = 400;
+			}
+			ImGui::Image((ImTextureID)_pdtxt->_txt_id(), ImVec2(imw, imh), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
+		}
+		
+
+	}
+	else
+	{
+		ImGui::InputText("Texture name", _txt_name, FILE_NAME_LEN);
+		if (ImGui::Button("Link##txtobj"))
+		{
+			auto& itxt = g_mtexture_list.find(_txt_name);
+			if (itxt!=g_mtexture_list.end())
+			{
+				_pdtxt = itxt->second;
+			}
+			else
+			{
+				_txt_name[0] = '\0';
+			}
+		}
+	}
+}
+void shader_uf_txt::output_2_json(Value& jvalue)
+{
+	shader_uf::output_2_json(jvalue);
+	jvalue["type"] = "shader_uf_txt";
+	jvalue["txt_name"] = _txt_name;
+}
+void shader_uf_txt::init_from_json(Value& jvalue)
+{
+	shader_uf::init_from_json(jvalue);
+	strcpy(_txt_name,jvalue["txt_name"].asCString());
+	auto& itxt = g_mtexture_list.find(_txt_name);
+	if (itxt!=g_mtexture_list.end())
+	{
+		_pdtxt = itxt->second;
+	}
+}
+#endif
+void shader_uf_txt::link(){
+      //auto isz=g_mtexture_list.size();
+	//printf("mtext size=% d\n",isz); 
+	/*char* ptn=_txt_name;
+	while(*ptn)
+	{
+		ptn++;
+	}
+	*ptn='\0';*/
+	printf("txt=%s",_txt_name);
+	const auto& itxt = g_mtexture_list.find(_txt_name);
+	if (itxt != g_mtexture_list.end())
+	{
+		_pdtxt = itxt->second;
+		//printf("matched a texture\n");
+	}
+	else
+	{
+		//printf("failto find %s  \n",_txt_name);
+		for(auto& imt:g_mtexture_list)
+		{
+			printf("txtname:%s\n",imt.first.c_str());	
+		}
+	}
+}

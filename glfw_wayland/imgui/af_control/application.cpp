@@ -3,7 +3,6 @@
 #include "imgui.h"
 #include "imgui_impl_glfw_gl3.h"
 #include <stdio.h>
-#if defined(IMGUI_WAYLAND)
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/mman.h>
@@ -11,20 +10,18 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <linux/fb.h>
-#endif
 //#include <GL/gl3w.h>
 
 #include <GLFW/glfw3.h>
 #include "SOIL.h"
 //#include "texture.h"
 #include "res_output.h"
-#include "ft_image.h"
 #include <functional>
 
 //#include "Resource.h"
 #include "afb_load.h"
-#include "primitive_object.h"
-#include <chrono>
+#include "af_state_manager.h"
+#include "af_primitive_object.h"
 //extern void instantiating_internal_shader();
 static void error_callback(int error, const char* description)
 {
@@ -50,49 +47,42 @@ namespace auto_future
 	{
 	}
 
+int get_resolution(int* width,int* height)
+{
+	struct fb_var_screeninfo sc_info;
+	int fd=open("/dev/fb0",O_RDWR);
+	ioctl(fd,FBIOGET_VSCREENINFO,&sc_info);
+	printf("%d*%d\n",sc_info.xres,sc_info.yres);
+	*width=sc_info.xres;
+	*height=sc_info.yres;
+	close(fd);
+	return 0;
+}
 	bool application::prepare()
 	{
 		glfwSetErrorCallback(error_callback);
 		if (!glfwInit())
 			return false;
-
-              glfwWindowHint(GLFW_CLIENT_API,GLFW_OPENGL_ES_API);
-		#if QNX_VERSION<=660
-		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 2);
-              #else
+        glfwWindowHint(GLFW_CLIENT_API,GLFW_OPENGL_ES_API);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-		#endif
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,GL_TRUE);
-		 
-              #if defined(_GLFW_SCREEN)
-		for(auto& arg:_arg_list)
-		{
-			if(strncmp(arg.c_str(), "-zorder=", strlen("-zorder=")) == 0)
-			{
-				string str_zorder=arg.substr(sizeof("-zorder="));
-				int zorder=atoi(str_zorder.c_str());
-				glfwWindowHint(GLFW_SCREEN_WINDOW_ZORDER,zorder);
-			}
-			else
-			if(strncmp(arg.c_str(), "-display=", strlen("-display=")) == 0){
-				string str_display=arg.substr(sizeof("-display="));
-				glfwWindowHintString(GLFW_SCREEN_DISPLAY_NAME,str_display.c_str());
-			}
-		}
-	       #endif
+#if __APPLE__
+		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+#endif
 		if (!_screen_width || !_screen_height)
 		{
-			GLFWmonitor*  pmornitor = glfwGetPrimaryMonitor();
-			const GLFWvidmode * mode = glfwGetVideoMode(pmornitor);
-			_screen_width = mode->width;
-			_screen_height = mode->height;
+			//GLFWmonitor*  pmornitor = glfwGetPrimaryMonitor();
+			//const GLFWvidmode * mode = glfwGetVideoMode(pmornitor);
+			//_screen_width = mode->width;
+			//_screen_height = mode->height;
+                      get_resolution(&_screen_width,&_screen_height);
 		}
 		//instantiating_internal_shader();
-		
+
 		//ImVec2 edit_window_size = ImVec2()
-		
+
 
 		return true;
 	}
@@ -100,10 +90,13 @@ namespace auto_future
 	bool application::create_run()
 	{
 		GLFWwindow* _window = { NULL };
+#if !defined(IMGUI_WAYLAND)
 		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", NULL, NULL);
-
+#else
+		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", glfwGetPrimaryMonitor(), NULL);
+#endif
+              glfwSetWindowPos(_window,100,100);
 		glfwMakeContextCurrent(_window);
-
 		glfwSwapInterval(1); // Enable vsync
 		//gl3wInit();
 
@@ -113,26 +106,26 @@ namespace auto_future
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
 
-                ImGui_ImplGlfwGL3_Init(_window, true);
-
+        ImGui_ImplGlfwGL3_Init(_window, true);
 		//ImGui::StyleColorsClassic();
-		ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 1.00f); //ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
+		ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 1.00f);
+
 		//base_ui_component* _proot = NULL;
 		if (!_cureent_project_file_path.empty())
 		{
 			//_proot = new ft_base;
-			auto currentTime = std::chrono::high_resolution_clock::now();
 			afb_load afl(_proot);
 			afl.load_afb(_cureent_project_file_path.c_str());
-			auto afterLoadTime = std::chrono::high_resolution_clock::now();
-			auto tmspan = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(afterLoadTime-currentTime).count();
-			printf("afb load consume %d milli seconds\n", tmspan);
 			resLoaded();
 		}
-                init_internal_primitive_list();
+		int max_tex_size=0;
+		glGetIntegerv(GL_MAX_TEXTURE_SIZE,&max_tex_size);
+		printf("max texture size=%d\n",max_tex_size);
+		//init_internal_primitive_list();
 	// Setup style
 		//ImGui::StyleColorsLight();
-		ImGui::StyleColorsDark();
+		ImGui::StyleColorsClassic();
+
 		while (!glfwWindowShouldClose(_window))
 		{
 			// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
@@ -141,20 +134,26 @@ namespace auto_future
 			// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
 			glfwPollEvents();
 			ImGui_ImplGlfwGL3_NewFrame();
-			ImGui::SetNextWindowSize(ImVec2(1920, 720), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowSize(ImVec2(_win_width, _win_height), ImGuiCond_FirstUseEver);
+			ImGui::SetNextWindowPos(ImVec2(_wposx, _wposy));
 			ImGui::SetNextWindowBgAlpha(1.f);
 			static bool show_app = true;
-			ImGuiStyle& style = ImGui::GetStyle();
-			style.Alpha = 1.f;
-			style.WindowRounding = 0.f;
-			ImGui::Begin("edit window", &show_app, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoSavedSettings);
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+			ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.f);
+			ImGui::Begin("edit window", &show_app, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+				ImGuiWindowFlags_NoScrollbar |ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove 
+				| ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoCollapse);
 			//
-			onUpdate();
 			if (_proot)
 			{
+				onUpdate();
+				g_state_trans_player.keep_state_trans_on();
 				_proot->draw();
+				
 			}
 			ImGui::End();
+			ImGui::PopStyleVar();
+			ImGui::PopStyleVar();
 			// Rendering
 			int display_w, display_h;
 			glfwGetFramebufferSize(_window, &display_w, &display_h);
@@ -164,6 +163,7 @@ namespace auto_future
 			ImGui::Render();
 			ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
 			glfwSwapBuffers(_window);
+			
 		}
 		return true;
 	}

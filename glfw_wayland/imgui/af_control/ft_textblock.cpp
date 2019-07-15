@@ -1,36 +1,102 @@
 #include "ft_textblock.h"
+#include "common_functions.h"
 namespace auto_future
 {
+	static bool get_font_item(void* data, int idx, const char** out_str)
+	{
+		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+		*out_str = ft_nm_list[idx].c_str();
+		return true;
+	}
+	ft_textblock::ft_textblock()
+		: _txt_area(0.f, 0.f, 0.f, 0.f)
+	{
+		//_pfont_res_set = make_shared<af_font_res_set>(*g_pfont_face_manager);
+		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
+		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_property_handle(&_txt_pt, 7, [this](void*){
+			vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+			if (_txt_pt._font_id >= ft_nm_list.size())
+			{
+				_txt_pt._font_id = 0;
+			}
+			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size());
+		});
+		reg_property_handle(&_txt_pt,8, [this](void*){
+			ImGui::SliderInt("Font size", &_txt_pt._font_size, 8, 60); 
+		});
+		reg_property_handle(&_txt_pt,9, [this](void*){
+			ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
+			
+		});
+#endif
+	}
 	void ft_textblock::draw()
 	{
-		ft_base::draw();
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
-		//ImVec2 winpos = ImGui::GetWindowPos();
-		//ImGui::SetCursorPosY(abpos.y);
-		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-		ImFont* font = atlas->Fonts[_txt_pt._font_id];
-		float font_scale = font->Scale;
-		font->Scale = _txt_pt._font_scale;
-		ImGui::PushFont(font);
-		const ImVec2 ctnt_size = ImGui::CalcTextSize(_txt_pt._content);
-		abpos.x = abpos.x - ctnt_size.x*_txt_pt._txt_align.x;
-		abpos.y = abpos.y - ctnt_size.y*_txt_pt._txt_align.y;
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 dpos = abpos + winpos;
+		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+		auto font_cnt = ft_nm_list.size();
+		if (font_cnt==0)
+		{
+			return;
+		}
+		
+		if (_txt_pt._font_id>=font_cnt)
+		{
+			_txt_pt._font_id = 0;
+		}
+		string font_name = ft_nm_list[_txt_pt._font_id];
+		float font_scale = _txt_pt._font_scale;
 
-		ImGui::SetCursorPos(abpos);
+		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
+		dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
+		dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
+		af_vec2 draw_pos{ dpos.x, dpos.y };
+		af_vec2 end_pos;
+		wstring draw_content = utf8ToWstring(_txt_pt._content);
+		bool be_new = false;
+		if (draw_content != _str_bk)
+		{
+			be_new = true;
+			_str_bk = draw_content;
+		}
+		auto str_sz = draw_content.size();
+		float width = screenw*2;
+		if (_txt_pt._width_limit)
+		{
+			width = _txt_pt._width;
+		}
+		if (str_sz > 0)
+		{
+			//const GLuint max_pixel_size = 512 * 512;
+			if (be_new)
+			{
+				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
+				//real_size = end_pos - draw_pos;
+				_txt_area.Min = dpos;
+				_txt_area.Max = { end_pos.x, end_pos.y };
+				/*const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
+				dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
+				dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
+				draw_pos = { dpos.x, dpos.y };*/
+			}
+			g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
+		}
+		af_vec2 real_size = end_pos - draw_pos;
+		_txt_area.Min = dpos;
+		_txt_area.Max = {end_pos.x,end_pos.y};
+		ft_base::draw();
 
-		if (_txt_pt._wrapped) ImGui::PushTextWrapPos(ImGui::GetCursorPos().x + _txt_pt._width);
-		ImGui::TextColored(_txt_pt._txt_color, _txt_pt._content);
-		if (_txt_pt._wrapped) ImGui::PopTextWrapPos();
-		font->Scale = font_scale;
-		ImGui::PopFont();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())
 		{
-			ImVec2 winpos = ImGui::GetWindowPos();
-			ImVec2 pos1 = { abpos.x + winpos.x, abpos.y + winpos.y };
-			ImVec2 pos2 = { pos1.x, pos1.y + ctnt_size.y };
-			ImVec2 pos3 = { pos1.x + ctnt_size.x, pos1.y + ctnt_size.y };
-			ImVec2 pos4 = { pos1.x + ctnt_size.x, pos1.y };
+			ImVec2 pos1 = dpos;
+			ImVec2 pos2 = { pos1.x, pos1.y + real_size.y };
+			ImVec2 pos3 = { pos1.x + real_size.x, pos1.y + real_size.y };
+			ImVec2 pos4 = { pos1.x + real_size.x, pos1.y };
 
 			ImU32 col = ImGui::GetColorU32(ImGuiCol_HeaderActive);
 			ImVec2 editunit(edit_unit_len, edit_unit_len);
@@ -50,78 +116,42 @@ namespace auto_future
 		}
 #endif
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	static bool get_font_item(void* data, int idx, const char** out_str)
+	bool ft_textblock::contains(float posx, float posy)
 	{
-		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-		*out_str = atlas->ConfigData[idx].Name;
-		return true;
+		ImVec2 mouse_pos(posx, posy);
+		bool be_contain = _txt_area.Contains(mouse_pos);
+		return be_contain;
 	}
-	void ft_textblock::draw_peroperty_page(int property_part)
+	bool ft_textblock::relative_contain(af_vec2& point)
 	{
-		ft_base::draw_peroperty_page();
-		ImGui::InputText("content:", _txt_pt._content, MAX_CONTENT_LEN);
-		ImGui::Spacing();
-		ImGui::Spacing();
-		ImGui::Text("#size:");
-		ImGui::SliderFloat("w", &_txt_pt._width, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("align h", &_txt_pt._txt_align.x, 0.f, 1.f);
-		ImGui::SliderFloat("align v", &_txt_pt._txt_align.y, 0.f, 1.f);
-
-		//ImGui::SliderFloat("h", &_txt_pt._size.y, 0.f, base_ui_component::screenh);
-		ImGui::Checkbox("wrapped", &_txt_pt._wrapped);
-		ImGui::ColorEdit3("text color:", (float*)&_txt_pt._txt_color, ImGuiColorEditFlags_RGB);
-		ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
-
-		ImFontAtlas* atlas = ImGui::GetIO().Fonts;
-
-		ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, atlas->Fonts.size());
+		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		ImVec2 winpos = ImGui::GetWindowPos();
+		ImVec2 base_pt = abpos + winpos;
+		ImVec2 tar{ point.x, point.y };
+		ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
+		ImVec2 origin_pt = _txt_area.Min - base_pt;
+		ImVec2 omax = origin_pt + ctnt_size;
+		ImRect rl_cover_area(origin_pt, omax);
+		bool be_contain = rl_cover_area.Contains(tar);
+		return be_contain;
 	}
-	/*
-	fields:
-	txt_color,
-	width
-	content
-	wrapped
-	*/
-	bool ft_textblock::init_from_json(Value& jvalue)
+	bool ft_textblock::relative_contain(float pos, bool be_h)
 	{
-		ft_base::init_from_json(jvalue);
-		Value& txt_color = jvalue["txt_color"];
-		_txt_pt._txt_color.x = txt_color["x"].asDouble();
-		_txt_pt._txt_color.y = txt_color["y"].asDouble();
-		_txt_pt._txt_color.z = txt_color["z"].asDouble();
-		_txt_pt._txt_color.w = txt_color["w"].asDouble();
-		_txt_pt._width = jvalue["width"].asDouble();
-		Value& txt_align = jvalue["align"];
-		_txt_pt._txt_align.x = txt_align["h"].asDouble();
-		_txt_pt._txt_align.y = txt_align["v"].asDouble();
-		Value& content = jvalue["content"];
-		strcpy(_txt_pt._content, content.asCString());
-		_txt_pt._wrapped = jvalue["wrapped"].asBool();
-		_txt_pt._font_id = jvalue["font_id"].asDouble();
-		_txt_pt._font_scale = jvalue["font_scale"].asDouble();
-		return true;
+		ImVec2 bs_pos = base_pos();
+		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
+		bool be_contain;
+		if (be_h)
+		{
+			float orgx=- ctnt_size.x*_txt_pt._txt_alignh_nml;
+			float bdx = orgx + ctnt_size.x;
+			be_contain = pos >= orgx&&pos <= bdx;
+		}
+		else
+		{
+			float orgy=- ctnt_size.y*_txt_pt._txt_alignv_nml;
+			float bdy = orgy + ctnt_size.y;
+			be_contain = pos >= orgy&&pos <= bdy;
+		}
+		return be_contain;
 	}
-	bool ft_textblock::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		Value txt_color(objectValue);
-		txt_color["x"] = _txt_pt._txt_color.x;
-		txt_color["y"] = _txt_pt._txt_color.y;
-		txt_color["z"] = _txt_pt._txt_color.z;
-		txt_color["w"] = _txt_pt._txt_color.w;
-		junit["txt_color"] = txt_color;
-		Value txt_align(objectValue);
-		txt_align["h"] = _txt_pt._txt_align.x;
-		txt_align["v"] = _txt_pt._txt_align.y;
-		junit["align"] = txt_align;
-		junit["width"] = _txt_pt._width;
-		junit["content"] = _txt_pt._content;
-		junit["wrapped"] = _txt_pt._wrapped;
-		junit["font_id"] = _txt_pt._font_id;
-		junit["font_scale"] = _txt_pt._font_scale;
-		return true;
-	}
-#endif
 }

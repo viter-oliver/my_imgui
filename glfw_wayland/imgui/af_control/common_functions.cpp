@@ -2,7 +2,63 @@
 #include <math.h>
 #include "SOIL.h"
 #include "texture.h"
-#include "json.h"
+#include "json/json.h"
+std::wstring utf8ToWstring(const std::string& s)
+{
+    std::wstring ws;
+    wchar_t wc;
+    for( int i = 0;i < s.length(); )
+    {
+        char c = s[i];
+        if ( (c & 0x80) == 0 )
+        {
+            wc = c;
+            ++i;
+        }
+        else if ( (c & 0xE0) == 0xC0 )
+        {
+            wc = (s[i] & 0x1F) << 6;
+            wc |= (s[i+1] & 0x3F);
+            i += 2;
+        }
+        else if ( (c & 0xF0) == 0xE0 )
+        {
+            wc = (s[i] & 0xF) << 12;
+            wc |= (s[i+1] & 0x3F) << 6;
+            wc |= (s[i+2] & 0x3F);
+            i += 3;
+        }
+        else if ( (c & 0xF8) == 0xF0 )
+        {
+            wc = (s[i] & 0x7) << 18;
+            wc |= (s[i+1] & 0x3F) << 12;
+            wc |= (s[i+2] & 0x3F) << 6;
+            wc |= (s[i+3] & 0x3F);
+            i += 4;
+        }
+        else if ( (c & 0xFC) == 0xF8 )
+        {
+            wc = (s[i] & 0x3) << 24;
+            wc |= (s[i] & 0x3F) << 18;
+            wc |= (s[i] & 0x3F) << 12;
+            wc |= (s[i] & 0x3F) << 6;
+            wc |= (s[i] & 0x3F);
+            i += 5;
+        }
+        else if ( (c & 0xFE) == 0xFC )
+        {
+            wc = (s[i] & 0x1) << 30;
+            wc |= (s[i] & 0x3F) << 24;
+            wc |= (s[i] & 0x3F) << 18;
+            wc |= (s[i] & 0x3F) << 12;
+            wc |= (s[i] & 0x3F) << 6;
+            wc |= (s[i] & 0x3F);
+            i += 6;
+        }
+        ws += wc;
+    }
+    return ws;
+}
 /*
 x'=(x-a)cos¦Á+(y-b)sin¦Á+a
 y'=-(x-a)sin¦Á+(y-b)cos¦Á+b
@@ -180,7 +236,6 @@ bool prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fboId,
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	return true;
 }
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 bool af_prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fboId, GLuint frame_width, GLuint frame_height)
 {
 	glGenFramebuffers(1, &fboId);
@@ -255,100 +310,22 @@ bool prepareFBO2(GLuint& textId, GLuint& fboId, GLuint frame_width, GLuint frame
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 	return true;
 }
-
-#include <io.h>
-#include<direct.h>
-
-bool fileExist(const char* fileName)
+unsigned int conver_track_buff_to_pair(char* pbuff,unsigned int buff_len, vector<ImVec2>& vtrack0, vector<ImVec2>& vtrack1)
 {
-	WIN32_FIND_DATA wfd;
-	HANDLE hHandle = ::FindFirstFile(fileName, &wfd);
-	if (hHandle == INVALID_HANDLE_VALUE)
-		return false;
-	else
-		return (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0;
-
+	int* parray_len = (int*)pbuff;
+	int array_len = *parray_len;
+	int wtrack_sz = sizeof(ImVec2)*array_len ;
+	int bf_track_sz = buff_len - sizeof(int);
+	if (wtrack_sz* 2!=bf_track_sz)
+	{
+		printf("invalid slider track buff\n");
+		return 0;
+	}
+	char* phead0 = pbuff + sizeof(int);
+	vtrack0.resize(array_len);
+	memcpy(&vtrack0[0], phead0, wtrack_sz);
+	char* phead1 = phead0 + wtrack_sz;
+	vtrack1.resize(array_len);
+	memcpy(&vtrack1[0], phead1, wtrack_sz);
+	return array_len;
 }
-
-bool directoryExist(const char* dir)
-{
-	WIN32_FIND_DATA wfd;
-	HANDLE hHandle = ::FindFirstFile(dir, &wfd);
-	if (hHandle == INVALID_HANDLE_VALUE)
-		return access(dir, 0) == 0; // if dir is a drive disk path like c:\,we thought is a directory too.
-	else
-		return (wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
-}
-
-
-bool createDirectory(const char* pathName)
-{
-	char path[MAX_PATH] = { 0 };
-	const char* pos = pathName;
-	while ((pos = strchr(pos, '\\')) != NULL)
-	{
-		memcpy(path, pathName, pos - pathName + 1);
-		pos++;
-		if (directoryExist(path))
-		{
-			continue;
-		}
-		else
-		{
-			int ret = _mkdir(path);
-			if (ret == -1)
-			{
-				return false;
-			}
-		}
-	}
-	pos = pathName + strlen(pathName) - 1;
-	if (*pos != '\\')
-	{
-		return _mkdir(pathName) == 0;
-	}
-	return true;
-}
-
-
-
-bool createFileWithDirectory(const char* pathName)
-{
-	if (fileExist(pathName))
-		return true;
-	int len = strlen(pathName);
-	if (len <= 0)
-		return false;
-
-	char strTmpPath[MAX_PATH] = { 0 };
-	strcpy(strTmpPath, pathName);
-	char* q = strTmpPath + len - 1;
-	for (int i = 0; i < len - 1; i++, q--)
-	{
-		if (*q == '\\')
-		{
-			*q = '\0';
-			q++;
-			break;
-		}
-	}
-	if (strlen(strTmpPath) > 0 && strlen(q) > 0)
-	{
-		createDirectory(strTmpPath);
-		FILE* hFile = fopen(pathName, "w");
-		if (hFile)
-		{
-			fclose(hFile);
-			return true;
-		}
-		else
-			return false;
-
-	}
-	else
-	{
-		return false;
-	}
-
-}
-#endif

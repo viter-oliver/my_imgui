@@ -1,7 +1,74 @@
 #include "ft_plot_lines.h"
+#include "easing.h"
 namespace auto_future
 {
-
+	ft_plot_lines::ft_plot_lines()
+		:ft_base()
+		,_values{}
+	{ 
+		_in_p._sizew = 400;
+		_in_p._sizeh = 200;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_property_handle(&_pt, [this](void*){
+			ImGui::SliderInt("count of value:", &_pt._v_count, 3, MAX_VALUE_COUNT, "%.0f");
+			ImGui::SliderFloat("min", &_pt._min, -100.f, 0);
+			ImGui::SliderFloat("max", &_pt._max, 0,100.f);
+			static const char* const func_name[EaseFuncsCount] =
+			{
+				"EaseLinear",
+				"EaseInSine",
+				"EaseOutSine",
+				"EaseInOutSine",
+				"EaseInQuad",
+				"EaseOutQuad",
+				"EaseInOutQuad",
+				"EaseInCubic",
+				"EaseOutCubic",
+				"EaseInOutCubic",
+				"EaseInQuart",
+				"EaseOutQuart",
+				"EaseInOutQuart",
+				"EaseInQuint",
+				"EaseOutQuint",
+				"EaseInOutQuint",
+				"EaseInExpo",
+				"EaseOutExpo",
+				"EaseInOutExpo",
+				"EaseInCirc",
+				"EaseOutCirc",
+				"EaseInOutCirc",
+				"EaseInBack",
+				"EaseOutBack",
+				"EaseInOutBack",
+				"EaseInElastic",
+				"EaseOutElastic",
+				"EaseInOutElastic",
+				"EaseInBounce",
+				"EaseOutBounce",
+				"EaseInOutBounce",
+			};
+			if (ImGui::Combo("algebra:", &_algebra, func_name, EaseFuncsCount))
+			{
+				if (_algebra == 0)
+				{
+					ImGui::SliderFloatN("values:", _values, _pt._v_count, _pt._min, _pt._max, "%.3f", 1.0f);
+				}
+				else
+				{
+					float deltax = _pt._max - _pt._min;
+					float unitx = deltax / _pt._v_count;
+					float xx = _pt._min;
+					for (int ix = 0; ix < _pt._v_count;++ix)
+					{
+						_values[ix] = easingFun[_algebra](xx);
+						xx += unitx;
+					}
+				}
+			}
+			
+		});
+#endif
+	}
 	void ft_plot_lines::draw()
 	{
 		ft_base::draw();
@@ -9,37 +76,7 @@ namespace auto_future
 		//ImVec2 winpos = ImGui::GetWindowPos();
 		ImGui::SetCursorPosX(abpos.x);
 		ImGui::SetCursorPosY(abpos.y);
-		ImGui::PlotLines("Lines", _values, _pt._v_count, 0, "avg 0.0", -1.0f, 1.0f, _pt._size);
+		ImGui::PlotLines("Lines", _values, _pt._v_count, 0, "avg 0.0", -1.0f, 1.0f, ImVec2(_in_p._sizew, _in_p._sizeh));
 
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	
-	void ft_plot_lines::draw_peroperty_page(int)
-	{
-		ft_base::draw_peroperty_page();
-		ImGui::SliderFloat("sw", &_pt._size.x, 0.f, base_ui_component::screenw);
-		ImGui::SliderFloat("sh", &_pt._size.y, 0.f, base_ui_component::screenh);
-		ImGui::SliderInt("count of value:", &_pt._v_count, 3, MAX_VALUE_COUNT,"%.0f");
-		ImGui::SliderFloatN("values:", _values, _pt._v_count, -1, 1, "%.3f", 1.0f);
-	}
-	bool ft_plot_lines::init_from_json(Value& jvalue)
-	{
-		ft_base::init_from_json(jvalue);
-		Value& jsize = jvalue["size"];
-		_pt._size.x = jsize["w"].asDouble();
-		_pt._size.y = jsize["h"].asDouble();
-		_pt._v_count= jvalue["value_count"].asInt();
-		return true;
-	}
-	bool ft_plot_lines::init_json_unit(Value& junit)
-	{
-		ft_base::init_json_unit(junit);
-		Value jsize(objectValue);
-		jsize["w"] = _pt._size.x;
-		jsize["h"] = _pt._size.y;
-		junit["size"] = jsize;
-		junit["value_count"] = _pt._v_count;
-		return true;
-	}
-#endif
 }

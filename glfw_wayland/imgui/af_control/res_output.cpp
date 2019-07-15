@@ -1,7 +1,6 @@
 #pragma once
 #include "res_output.h"
-#include <stdlib.h>
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#if !defined(IMGUI_WAYLAND)
 #include "dir_output.h"
 const char* mesh_fold = "mesh_res\\";
 const char* font_fold = "fonts\\";
@@ -14,11 +13,8 @@ const char* afb_fold = "afb\\";
 vres_txt_list  g_vres_texture_list;
 int g_cur_texture_id_index=0;
 mtexture_list g_mtexture_list;
-bool get_texture_item(void* data, int idx, const char** out_str)
-{
-	*out_str = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[idx]._file_name.c_str();
-	return true;
-}
+
+
 
 af_file::af_file(GLuint fsize)
 	:_fsize(fsize)
@@ -36,9 +32,15 @@ mfile_list g_mfiles_list;
 #include "dir_output.h"
 extern string g_cureent_directory;
 
-bool add_image_to_mtexure_list(string& imgPath)
+bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 {
 	string img_file_name = imgPath.substr(imgPath.find_last_of('\\') + 1);
+	auto itimg = g_mtexture_list.find(img_file_name);
+	if (itimg!=g_mtexture_list.end())
+	{
+		printf("%s has already exist in the texture list!\n", img_file_name.c_str());
+		return false;
+	}
 	string img_file_path = imgPath.substr(0, imgPath.find_last_of('\\') + 1);
 
 	GLubyte* imgdata = NULL;
@@ -73,17 +75,24 @@ bool add_image_to_mtexure_list(string& imgPath)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 	// Step3 设定filter参数
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-		GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
-	// Step4 加载纹理
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,
-		0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
-	glGenerateMipmap(GL_TEXTURE_2D);
+	// Step4 加载纹理
+	if (is_mipmap)
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height,0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);	
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+	else
+	{
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata);
+	}
 	// Step5 释放纹理图片资源
 	SOIL_free_image_data(imgdata);
 	auto pimge = make_shared<af_texture>();
-	pimge->_txt_id = textureId;
+	pimge->_atxt_id = textureId;
+	pimge->_mip_map = is_mipmap;
 	pimge->_width = width;
 	pimge->_height = height;
 	g_mtexture_list[img_file_name] = pimge;

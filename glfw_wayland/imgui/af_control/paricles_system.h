@@ -48,7 +48,7 @@ namespace auto_future
 	class GExtForce : public Gravity
 	{
 	public:
-		GExtForce(glm::vec3 force) :Gravity(force){}
+		GExtForce(glm::vec3& force) :Gravity(force){}
 		virtual ~GExtForce(){}
 		void ApplyForce(GParticle& pgp)
 		{
@@ -63,7 +63,7 @@ namespace auto_future
 	{
 		float _Kd; //Õ³ÖÍ³£Êý
 	public:
-		GViscosity(const float kd = 1.0) :_Kd(kd){}
+		GViscosity(const float &kd = 1.0) :_Kd(kd){}
 		virtual ~GViscosity(){}
 
 		void ApplyForce(GParticle& pgp);
@@ -184,7 +184,7 @@ namespace auto_future
 		{
 			return _pColor_data;
 		}
-#endif
+#endif;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		void draw_property()
 		{
