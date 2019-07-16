@@ -69,6 +69,7 @@
 		"show_phone_call" : [ 6, 0, 0, 5 ],
 		"show_right_bend" : [ 6, 0, 20, 2 ],
 		"show_right_turn_doors_open" : [ 6, 0, 4, 3 ],
+		"show_scene_base" : [ 6, 0, 0, 2 ],
 		"show_third_call" : [ 6, 0, 0, 0, 5 ],
 		"speed_limited" : [ 4, 1, 0, 2, 4 ],
 		"value_car_speed" : [ 4, 1, 14, 2 ],
@@ -100,85 +101,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 2, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
 						[ 6, 0, 13, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>0\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 0, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>1\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 1, 0, 14, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 10, 2 ]
+				"key" : [ 6, 0, 12, 2 ]
 			},
 			
 			{
@@ -196,13 +125,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"expression" : "def bind_fun(v0):\n  return v0\n",
 					"param_list" : 
 					[
 						[ 6, 0, 13, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 12, 2 ]
+				"key" : [ 6, 0, 10, 2 ]
 			},
 			
 			{
@@ -232,6 +161,78 @@
 			{
 				"bind_unit" : 
 				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 2 ]
+					]
+				},
+				"key" : [ 1, 0, 14, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>1\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 7, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>0\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 0, 7, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 2, 7, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 7, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
 					"expression" : "def bind_fun(v0):\n  if v0:\n     return -23\n  else:\n     return -70\n",
 					"param_list" : 
 					[
@@ -247,22 +248,22 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 13, 2 ]
+						[ 6, 0, 0, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 3, 2 ]
+				"key" : [ 6, 0, 1, 2 ]
 			},
 			
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 4 ]
+						[ 6, 0, 13, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 7, 4 ]
+				"key" : [ 6, 0, 3, 2 ]
 			},
 			
 			{
@@ -287,6 +288,18 @@
 					]
 				},
 				"key" : [ 6, 0, 4, 7, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 7, 4 ]
 			},
 			
 			{
@@ -333,6 +346,14 @@
 					[ 1, 1, 11, 2 ],
 					[ 0, 0, 1, 11, 2 ],
 					[ 6, 0, 21, 2 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 0, 2 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 1, 2 ]
 				]
 			}
 		]
@@ -410,10 +431,10 @@
 					},
 					"_name" : "ft_scene_base",
 					"_posx" : 0.0,
-					"_posy" : -147.0,
+					"_posy" : -270.0,
 					"_sizeh" : 534.0,
 					"_sizew" : 800.0,
-					"_visible" : false,
+					"_visible" : true,
 					"childs" : 
 					[
 						
@@ -450,7 +471,7 @@
 					"_posy" : -270.0,
 					"_sizeh" : 431.7660217285156,
 					"_sizew" : 702.6610107421875,
-					"_visible" : true,
+					"_visible" : false,
 					"childs" : 
 					[
 						
@@ -1780,17 +1801,17 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
-							"_content" : "100",
+							"_content" : "60",
 							"_font_id" : 0,
 							"_font_scale" : 0.8999999761581421,
 							"_font_size" : 16,
 							"_name" : "speed_limit_value",
 							"_omit_rest" : false,
-							"_posx" : 2.0,
+							"_posx" : 15.0,
 							"_posy" : 9.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_txt_alignh_nml" : 0.0,
+							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
 							{
@@ -3116,7 +3137,7 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : false,
+		"show_aliase_edit" : true,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
 		"show_fonts_manager" : false,

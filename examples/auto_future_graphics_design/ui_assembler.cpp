@@ -6,7 +6,6 @@
 #include "af_font_res_set.h"
 #include "SOIL.h"
 #include "dir_output.h"
-#include "af_primitive_object.h"
 #include "af_model.h"
 #include "af_bind.h"
 #include "af_state_manager.h"
@@ -258,7 +257,13 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				//GL_UNSIGNED_INT_8_8_8_8_REV
 				GLuint vbo_len = jpm["vbo_len"].asUInt();
 				ebo_len = jpm["ebo_len"].asUInt();
-				load_primitive_from_file(kname, ele_format, vbo_len, ebo_len);
+				ps_primrive_object ppobj= load_primitive_from_file(kname, ele_format, vbo_len, ebo_len);
+				if (ppobj)
+				{
+					ppobj->_model_name = jpm["model"].asString();
+					ppobj->_mesh_id = jpm["mesh_id"].asUInt();
+					g_primitive_list[kname] = ppobj;
+				}
 			}
 			 g_cur_texture_id_index=jroot["texture_id_index"].asInt();
 			 Value& models = jroot["models"];
@@ -328,6 +333,17 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 							 {
 								 mesh_unit._ps_text_ambient_list.emplace_back(iamb->second);
 							 }
+						 }
+						 Value& bdbox = jmesh_unit["bounding_box"];
+						 if (!bdbox.isNull())
+						 {
+							 mesh_unit._box._xmin = bdbox["xmin"].asDouble();
+							 mesh_unit._box._xmax = bdbox["xmax"].asDouble();
+							 mesh_unit._box._ymin = bdbox["ymin"].asDouble();
+							 mesh_unit._box._ymax = bdbox["ymax"].asDouble();
+							 mesh_unit._box._zmin = bdbox["zmin"].asDouble();
+							 mesh_unit._box._zmax = bdbox["zmax"].asDouble();
+
 						 }
 					 }
 				 }
@@ -593,6 +609,8 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		jpm["format"] = jformat;
 		jpm["vbo_len"] = pmu->_vertex_buf_len;
 		jpm["ebo_len"] = pmu->_ele_buf_len;
+		jpm["model"] = pmu->_model_name;
+		jpm["mesh_id"] = pmu->_mesh_id;
 		jprimitive_list.append(jpm);
 	}
 	jroot["primitive_list"] = jprimitive_list;
@@ -632,7 +650,14 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 				ambient_list.append(ambient);
 			}
 			jmesh_unit["ambient_list"] = ambient_list;
-
+			Value jbdbox(objectValue);
+			jbdbox["xmin"] = mesh_unit._box._xmin;
+			jbdbox["xmax"] = mesh_unit._box._xmax;
+			jbdbox["ymin"] = mesh_unit._box._ymin;
+			jbdbox["ymax"] = mesh_unit._box._ymax;
+			jbdbox["zmin"] = mesh_unit._box._zmin;
+			jbdbox["zmax"] = mesh_unit._box._zmax;
+			jmesh_unit["bounding_box"] = jbdbox;
 			jmesh_list.append(jmesh_unit);
 		}
 		jmodels[model_unit.first] = jmesh_list;
@@ -845,7 +870,7 @@ bool ui_assembler::update_texture_res()
 	return true;
 }
 
-void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len)
+ps_primrive_object ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len)
 {
 	GLfloat* pvbo = 0;
 	GLuint* pebo = 0;
@@ -864,9 +889,15 @@ void ui_assembler::load_primitive_from_file(string &kname, vector<GLubyte> ele_f
 		}
 
 	}
-	g_primitive_list[kname] = make_shared<primitive_object>();
-	g_primitive_list[kname]->set_ele_format(ele_format);
-	g_primitive_list[kname]->load_vertex_data(pvbo, vbo_len, pebo, ebo_len);
-	g_primitive_list[kname]->_ps_file = ifile->second;
+	else
+	{
+		return nullptr;
+	}
+	
+	ps_primrive_object ppbj = make_shared<primitive_object>();
+	ppbj->set_ele_format(ele_format);
+	ppbj->load_vertex_data(pvbo, vbo_len, pebo, ebo_len);
+	ppbj->_ps_file = ifile->second;
+	return ppbj;
 	
 }

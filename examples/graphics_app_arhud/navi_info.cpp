@@ -50,6 +50,9 @@ void register_navi_cmd_handl()
 		 {
 			 memcpy(str_show, str_navi_close, sizeof(str_navi_close));
 			 set_mp_text_uf("mt_sp", "text", "road.png");
+			 str_show[0] = '\0';
+			 set_property_aliase_value("value_remain_mileage", str_show);
+			 set_property_aliase_value("value_remain_time", str_show);
 		 }
 		 set_property_aliase_value("navi_start_info", str_show);
 		 navi_start = bvalue;

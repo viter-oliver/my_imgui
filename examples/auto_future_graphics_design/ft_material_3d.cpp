@@ -1,5 +1,5 @@
 #include "ft_material_3d.h"
-
+#include "af_model.h"
 namespace auto_future
 {
 	ft_material_3d::ft_material_3d()
@@ -45,7 +45,26 @@ namespace auto_future
 					auto& iprm = g_primitive_list.find(_pt._primitive_name);
 					if (iprm!=g_primitive_list.end())
 					{
+						//sscanf()
+
 						_ps_prm = iprm->second;
+						const auto& imdl = g_mmodel_list.find(_ps_prm->_model_name);
+						if (imdl!=g_mmodel_list.end())
+						{
+							auto& mdl = *imdl->second;
+							auto mesh_size = mdl.size();
+							if (_ps_prm->_mesh_id<mesh_size)
+							{
+								auto& mesh_tar = mdl[_ps_prm->_mesh_id];
+								auto& tbox = mesh_tar._box;
+								af_vec3 pt_core = { (tbox._xmax - tbox._xmin)*0.5, \
+									(tbox._ymax - tbox._ymin)*0.5, (tbox._zmax - tbox._zmin)*0.5 };
+								_pt._cam._position = pt_core;
+								_pt._cam._position.z = 5 * pt_core.z;
+								_pt._cam._direction = _pt._cam._position - pt_core;
+								_pt._cam._up = { 0.f, 1.f, 0.f };
+							}
+						}
 					}
 					else
 					{

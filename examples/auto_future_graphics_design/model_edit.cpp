@@ -93,6 +93,34 @@ void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, a
 		pvertexs[i]._pos[0] = mesh->mVertices[i].x;
 		pvertexs[i]._pos[1] = mesh->mVertices[i].y;
 		pvertexs[i]._pos[2] = mesh->mVertices[i].z;
+		if (mesh->mVertices[i].x<mesh_unit._box._xmin)
+		{
+			mesh_unit._box._xmin = mesh->mVertices[i].x;
+		}
+		else if (mesh->mVertices[i].x>mesh_unit._box._xmax)
+		{
+			mesh_unit._box._xmax = mesh->mVertices[i].x;
+		}
+
+		if (mesh->mVertices[i].y<mesh_unit._box._ymin)
+		{
+			mesh_unit._box._ymin = mesh->mVertices[i].y;
+		}
+		else if (mesh->mVertices[i].y>mesh_unit._box._ymax)
+		{
+			mesh_unit._box._ymax = mesh->mVertices[i].y;
+		}
+
+		if (mesh->mVertices[i].z<mesh_unit._box._zmin)
+		{
+			mesh_unit._box._zmin = mesh->mVertices[i].z;
+		}
+		else if (mesh->mVertices[i].z>mesh_unit._box._zmax)
+		{
+			mesh_unit._box._zmax = mesh->mVertices[i].z;
+		}
+
+
 		// texture coordinates
 		if (mesh->mTextureCoords[0]) // does the mesh contain texture coordinates?
 		{
@@ -206,7 +234,10 @@ void processNode(aiNode *node, const aiScene *scene, af_model& md, string& mesh_
 		auto& cmesh = md[id];
 		cmesh._prm_id = mesh_kname;
 		cmesh._ps_prm_id = pmtv;
+		pmtv->_model_name = mesh_base_name;
+		pmtv->_mesh_id = i;
 		processMesh(mesh, scene, *pmtv, cmesh);
+
 
 	}
 	// after we've processed all of the meshes (if any) we then recursively process each of the children nodes

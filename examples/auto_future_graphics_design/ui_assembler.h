@@ -1,5 +1,7 @@
 #pragma once
 #include "control_common_def.h"
+#include "af_primitive_object.h"
+
 #ifdef IMGUI_WAYLAND
 #include "../../deps/glad/glad.h"
 #else
@@ -36,6 +38,6 @@ public:
 	bool update_texture_res();
 private:
 
-	void load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len);
+	ps_primrive_object load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len);
 };
 

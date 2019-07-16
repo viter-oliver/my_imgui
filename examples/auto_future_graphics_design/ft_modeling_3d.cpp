@@ -52,6 +52,46 @@ namespace auto_future
 					if (imodel != g_mmodel_list.end())
 					{
 						_pmodel = imodel->second;
+						bounding_box mbox;
+						auto& mdlist = *_pmodel;
+						for (auto& amesh:mdlist)
+						{
+							auto& box = amesh._box;
+							if (box._xmin<mbox._xmin)
+							{
+								mbox._xmin = box._xmin;
+							}
+							if (box._xmax>mbox._xmax)
+							{
+								mbox._xmax = box._xmax;
+							}
+							if (box._ymin < mbox._ymin)
+							{
+								mbox._ymin = box._ymin;
+							}
+							if (box._ymax > mbox._ymax)
+							{
+								mbox._ymax = box._ymax;
+							}
+							if (box._zmin < mbox._zmin)
+							{
+								mbox._zmin = box._zmin;
+							}
+							if (box._zmax > mbox._zmax)
+							{
+								mbox._zmax = box._zmax;
+							}
+						}
+						af_vec3 pt_core = { (mbox._xmax - mbox._xmin)*0.5f, \
+							(mbox._ymax - mbox._ymin)*0.5, (mbox._zmax - mbox._zmin)*0.5f };
+						_pty_page._cam._position = pt_core;
+						_pty_page._cam._position.z = 5 * pt_core.z;
+						_pty_page._cam._direction = _pty_page._cam._position - pt_core;
+						_pty_page._cam._up = { 0.f, 1.f, 0.f };
+						_pty_page._light_position_shd = _pty_page._cam._position;
+						_pty_page._light_position_shd.x = 3 * pt_core.x;
+
+
 					}
 				}
 			}

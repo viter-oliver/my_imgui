@@ -52,7 +52,6 @@ float lane_camera_z = 134.0;
 float lane_camera_u = 0.5f;
 void my_application::resLoaded()
 {
-	return;
 	lastTime = steady_clock::now();
 	if (_arg_list.size() > 0)
 	{
