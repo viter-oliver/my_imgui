@@ -252,7 +252,7 @@ static float rs_unit = 0.f;
 //car speed
 static int cs_timer_id=-1;
 static int cs_cur = 0;
-int cs_tar = 0;
+int cs_tar = 96;
 static int cs_unit = 0;
 
 void register_car_cmd_handl()

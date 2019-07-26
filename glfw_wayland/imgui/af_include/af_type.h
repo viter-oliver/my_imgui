@@ -67,6 +67,13 @@ namespace auto_future
 			this->z -= tar.z;
 			return *this;
 		}
+		af_vt3& operator *(T scl)
+		{
+			this->x *= scl;
+			this->y *= scl;
+			this->z *= scl;
+			return *this;
+		}
 		af_vt3 operator+ (af_vt3& tar)
 		{
 			af_vt3 av{ this->x + tar.x, this->y + tar.y, this->z + tar.z};
@@ -99,6 +106,14 @@ namespace auto_future
 			this->y -= tar.y;
 			this->w -= tar.w;
 			this->z -= tar.z;
+			return *this;
+		}
+		af_vt4& operator *(T scl)
+		{
+			this->x *= scl;
+			this->y *= scl;
+			this->z *= scl;
+			this->w *= scl;
 			return *this;
 		}
 		af_vt4 operator+ (af_vt4& tar)

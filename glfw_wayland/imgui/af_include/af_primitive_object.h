@@ -20,8 +20,10 @@ struct primitive_object
 	GLuint _vertex_buf_len;
 	GLuint _ele_buf_len;
 	string _file_name;
-	bool _read_only{ true };
+	string _model_name;
+	GLuint _mesh_id;
 	ps_af_file _ps_file;
+	bool _read_only{ true };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif // !Im

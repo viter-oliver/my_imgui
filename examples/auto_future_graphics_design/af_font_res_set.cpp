@@ -41,27 +41,35 @@ namespace auto_future
 
 		txt_font_repository* pfrp = nullptr;
 		GLint max_beary = 0;
-		auto& ifont = _dic_fonts.find(fontFace);
-		if (ifont!=_dic_fonts.end())
+		//auto& ifont = _dic_fonts.find(fontFace);
+		ps_font_unit pf_u = nullptr;
+		for (auto& ft_item : _dic_fonts)
 		{
-			auto& f_u = *ifont->second;
-			auto& irep= f_u._ft_rep.find(fontSize);
-			if (irep!=f_u._ft_rep.end())
+			if (ft_item->_name == fontFace)
 			{
-				pfrp = &irep->second;
-			}
-			else
-			{
-				init_txt_font_repository(fontSize, f_u._ft_rep[fontSize]);
-				pfrp = &f_u._ft_rep[fontSize];
-			}
-			if (!pfrp->_be_full)
-			{
-				load_chars(f_u._ft_face, *pfrp, str_content, max_beary);
+				auto& f_u = *ft_item;
+				auto& irep = f_u._ft_rep.find(fontSize);
+				if (irep != f_u._ft_rep.end())
+				{
+					pfrp = &irep->second;
+				}
+				else
+				{
+					f_u._ft_rep[fontSize]._txt_size = { f_u._char_count_r*fontSize, f_u._char_count_c*fontSize };
+					init_txt_font_repository(fontSize, f_u._ft_rep[fontSize]);
+					pfrp = &f_u._ft_rep[fontSize];
+				}
+				if (!pfrp->_be_full)
+				{
+					load_chars(f_u._ft_face, *pfrp, str_content, max_beary);
+				}
+				pf_u = ft_item;
+				break;
 			}
 		}
-		else
+		if (!pf_u)
 		{
+
 			printf("unknown fontface:%s\n", fontFace.c_str());
 			return;
 		}
@@ -97,7 +105,7 @@ namespace auto_future
 					if (omit_rest)
 					{
 						wstring omit_sign = L"…";
-						load_chars(ifont->second->_ft_face, *pfrp, omit_sign, max_beary);
+						load_chars(pf_u->_ft_face, *pfrp, omit_sign, max_beary);
 						auto& glyph_omit = txt_cd_container.find(omit_sign[0]);
 						auto& glyph_omit_txt_cd = glyph_omit->second;
 						bearing = glyph_omit_txt_cd._bearing;

@@ -6,6 +6,12 @@
 #include "res_output.h"
 #include "af_primitive_object.h"
 using namespace std;
+struct bounding_box
+{
+	float _xmin{ 0.f }, _xmax{ 0.f };
+	float _ymin{ 0.f }, _ymax{ 0.f };
+	float _zmin{ 0.f }, _zmax{ 0.f };
+};
 struct af_mesh
 {
 	vector<string> _text_diffuse_list;
@@ -18,6 +24,7 @@ struct af_mesh
 	vector<ps_af_texture> _ps_text_height_list;
 	vector<ps_af_texture> _ps_text_ambient_list;
 	ps_primrive_object _ps_prm_id;
+	bounding_box _box;
 };
 extern const char* assimp_support_format;
 using af_model = vector<af_mesh>;

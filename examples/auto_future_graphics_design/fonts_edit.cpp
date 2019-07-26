@@ -1,8 +1,8 @@
 #include "fonts_edit.h"
-#include <string>
-#include <imgui.h>
-#define IMGUI_DEFINE_MATH_OPERATORS
-#include "imgui_internal.h"
+#include "dir_output.h"
+#include "af_font_res_set.h"
+using namespace std;
+#include "user_control_imgui.h"
 #include <windows.h>
 #include <locale.h>  
 #include <ShlObj.h>
@@ -15,10 +15,11 @@
 #include "SOIL.h"
 #include <stdio.h>
 #include <iostream>  
-#include "dir_output.h"
-#include "af_font_res_set.h"
-using namespace std;
+#include "res_internal.h"
+
+//
 using namespace auto_future;
+ps_font_unit _font_unit;
 fonts_edit::fonts_edit()
 {
 }
@@ -59,7 +60,8 @@ void fonts_edit::draw_fonts_list()
 			{
 				string ttf_file = strFileName;
 				string ttf_file_name = ttf_file.substr(ttf_file.find_last_of('\\') + 1);
-				if (!g_pfont_face_manager->load_font(ttf_file_name, ttf_file))
+				auto ft_u = g_pfont_face_manager->load_font(ttf_file_name, ttf_file);
+				if (!ft_u)
 				{
 					string err_msg = "fail to load file:";
 					err_msg += ttf_file;
@@ -67,7 +69,17 @@ void fonts_edit::draw_fonts_list()
 					MessageBox(GetForegroundWindow(), err_msg.c_str(), "Error info", MB_OK);
 					throw "fail to load ttf file!";
 				}
-
+				ft_u->_char_count_c = sqrt(ft_u->_ft_face->num_glyphs);
+				auto ch_rows = ft_u->_char_count_c;
+				for (;;ch_rows++)
+				{
+					auto txt_num = ch_rows*ft_u->_char_count_c;
+					if (txt_num>=ft_u->_ft_face->num_glyphs)
+					{
+						break;
+					}
+				}
+				ft_u->_char_count_r = ch_rows;
 				string ttf_file_path = ttf_file.substr(0, ttf_file.find_last_of('\\') + 1);
 			
 				extern string g_cureent_directory;
@@ -87,18 +99,50 @@ void fonts_edit::draw_fonts_list()
 	{
 		cout << e.what() << endl;
 	}
-	vfont_face_name& font_name_list = g_pfont_face_manager->get_font_name_list();
+	//vfont_face_name& font_name_list = g_pfont_face_manager->get_font_name_list();
+	auto& dic_fonts = g_pfont_face_manager->get_dic_fonts();
+	bool fonts_opened = ImGui::TreeNode("Fonts", "Fonts (%d)", dic_fonts.size());
 	
-	bool fonts_opened = ImGui::TreeNode("Fonts", "Fonts (%d)", font_name_list.size());
 	if (fonts_opened)
 	{
-		int ix = 0;
+		string icon_str = icn_font;
+		for (auto& f_item:dic_fonts)
+		{
+			auto& keynm = f_item->_name;
+			auto& font_u = f_item;
+			ImGuiTreeNodeFlags node_flags = ImGuiTreeNodeFlags_Leaf;
+			if (font_u->_sel)
+			{
+				node_flags |= ImGuiTreeNodeFlags_Selected;
+			}
+			IconTreeNode(icon_str, keynm.c_str(), node_flags);
+			if (ImGui::IsItemClicked())
+			{
+				if (_font_unit)
+				{
+					_font_unit->_sel = false;
+				}
+				_font_unit = font_u;
+				_font_unit->_sel = true;
+			}
+			ImGui::TreePop();
+		}
+		/*int ix = 0;
 		for (auto& font_face_item:font_name_list)
 		{
-			ImGui::TreeNodeEx((void*)(intptr_t)ix, ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, font_face_item.c_str());
-			ix++;
-		}
+		ImGui::TreeNodeEx((void*)(intptr_t)ix, ImGuiTreeNodeFlags_Leaf | ImGuiTreeNodeFlags_NoTreePushOnOpen, font_face_item.c_str());
+		ix++;
+		}*/
 		ImGui::TreePop();
+	}
+}
+void fonts_edit::draw_font_item_pty()
+{
+	if (_font_unit)
+	{
+		ImGui::Text("number of glyphs:%d", _font_unit->_ft_face->num_glyphs);
+		ImGui::InputInt("cols of texture dic", &_font_unit->_char_count_c);
+		ImGui::InputInt("rows of texture dic", &_font_unit->_char_count_r);
 	}
 }
 

@@ -81,16 +81,21 @@ void afb_output::output_afb(const char* afb_file)
 	pk.pack_array(en_afb_res_cnt);
 	pk.pack_float(base_ui_component::screenw);//en_screen_w
 	pk.pack_float(base_ui_component::screenh);//en_screen_h
-	vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+	//vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+	auto& dic_ft = g_pfont_face_manager->get_dic_fonts();
 	string font_fold_path = g_cureent_directory + font_fold;
-	pk.pack_array(ft_nm_list.size());//en_font_faces
-	for (auto& face_name_item : ft_nm_list)
+	pk.pack_array(dic_ft.size());//en_font_faces
+	for (auto& ft_item : dic_ft)
 	{
 		//auto& cfg_data = atlas->ConfigData[ii];
-		pk.pack_array(2);
-
+		pk.pack_array(4);
+		auto&face_name_item = ft_item->_name;
 		pk.pack_str(face_name_item.size());
 		pk.pack_str_body(face_name_item.c_str(), face_name_item.size());
+		auto fcols = ft_item->_char_count_c;
+		auto frows = ft_item->_char_count_r;
+		pk.pack_int(fcols);
+		pk.pack_int(frows);
 		string font_name_path = font_fold_path + face_name_item;
 		handle_file_data(font_name_path, [&](char* file_buff, unsigned int data_len){
 			pk.pack_bin(data_len);

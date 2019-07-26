@@ -944,7 +944,10 @@ int main(int argc, char* argv[])
 		if (show_fonts_manager)
 		{
 			ImGui::Begin("Fonts Manager", &show_fonts_manager);
+			ImGui::Columns(2);
 			pfonts_edit->draw_fonts_list();
+			ImGui::NextColumn();
+			pfonts_edit->draw_font_item_pty();
 			ImGui::End();
 		}
 		if (show_file_manager)

@@ -1,7 +1,10 @@
 #pragma once
 #include "platform_def.h"
 #include <functional>
+#include <chrono>
+
 using namespace std;
+using namespace chrono;
 namespace auto_future
 {
 	const int max_timer_num = 0x100;
@@ -14,7 +17,15 @@ namespace auto_future
 			int _rcnt{ 1 };
 			function<void(int)> _handle{ nullptr };
 		};
+		struct timer_unit_ex 
+		{
+			function<void(int)> _handle{ nullptr };
+			steady_clock::time_point  _tp;
+			int _tvalue;//milliseconds
+		};
 		timer_unit _timer_list[max_timer_num];
+		timer_unit_ex _timer_list_ex[max_timer_num];
+
 	public:
 		af_timer();
 		~af_timer();
@@ -33,6 +44,17 @@ namespace auto_future
 			}
 			return -1;
 		}
+
+
+		/**
+		*@brief active a timer
+		*@param timer_id a id which is returned by method register_timer
+		*@param num_cr the number of ticking of the timer
+		*@param fc how often the handle will be called
+		*@return result
+		*  --true success
+		*  --false failure
+		*/
 		bool active_timer(int timer_id, int num_cr, int fc)
 		{
 			if (timer_id<max_timer_num&&_timer_list[timer_id]._handle)
@@ -54,7 +76,7 @@ namespace auto_future
 				return true;
 			}
 			return false;
-		}
+		}	
 		bool unregister_timer(int timer_id)
 		{
 			if (timer_id < max_timer_num)
@@ -67,6 +89,40 @@ namespace auto_future
 			}
 			return false;
 		}
+
+		int register_timer_ex(function<void(int)> hdl)
+		{
+			for (int ix = 0; ix < max_timer_num; ix++)
+			{
+				if (!_timer_list_ex[ix]._handle)
+				{
+					swap(_timer_list_ex[ix]._handle, hdl);
+					return ix;
+				}
+			}
+			return -1;
+		}
+		bool active_timer_ex(int timer_id,int tvalue)
+		{
+			if (timer_id < max_timer_num&&_timer_list_ex[timer_id]._handle)
+			{
+				_timer_list_ex[timer_id]._tp = steady_clock::now();
+				_timer_list_ex[timer_id]._tvalue = tvalue;
+				return true;
+			}
+			return false;
+		}
+
+		bool deactive_time_ex(int timer_id)
+		{
+			if (timer_id < max_timer_num&&_timer_list_ex[timer_id]._handle)
+			{
+				_timer_list_ex[timer_id]._tvalue = 0;
+				return true;
+			}
+			return false;
+		}		
+
 		void execute();
 	};
 

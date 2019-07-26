@@ -2,7 +2,7 @@
 
 {
 	"filename": "Camera.png",
-	"frame": {"x":859,"y":2,"w":32,"h":32},
+	"frame": {"x":1091,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -26,7 +26,7 @@
 },
 {
 	"filename": "EaseInCirc.png",
-	"frame": {"x":1631,"y":2,"w":88,"h":45},
+	"frame": {"x":1665,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -34,7 +34,7 @@
 },
 {
 	"filename": "EaseInCubic.png",
-	"frame": {"x":1811,"y":2,"w":88,"h":45},
+	"frame": {"x":1845,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -82,7 +82,7 @@
 },
 {
 	"filename": "EaseInOutCubic.png",
-	"frame": {"x":1721,"y":2,"w":88,"h":45},
+	"frame": {"x":1575,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -98,7 +98,7 @@
 },
 {
 	"filename": "EaseInOutExpo.png",
-	"frame": {"x":1541,"y":2,"w":88,"h":45},
+	"frame": {"x":1215,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -106,7 +106,7 @@
 },
 {
 	"filename": "EaseInOutQuad.png",
-	"frame": {"x":1091,"y":2,"w":88,"h":45},
+	"frame": {"x":1125,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -114,7 +114,7 @@
 },
 {
 	"filename": "EaseInOutQuart.png",
-	"frame": {"x":1271,"y":2,"w":88,"h":45},
+	"frame": {"x":1305,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -130,7 +130,7 @@
 },
 {
 	"filename": "EaseInOutSin.png",
-	"frame": {"x":1361,"y":2,"w":88,"h":45},
+	"frame": {"x":1395,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -138,7 +138,7 @@
 },
 {
 	"filename": "EaseInQuad.png",
-	"frame": {"x":1181,"y":2,"w":88,"h":45},
+	"frame": {"x":1755,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -250,7 +250,7 @@
 },
 {
 	"filename": "EaseOutSin.png",
-	"frame": {"x":1451,"y":2,"w":88,"h":45},
+	"frame": {"x":1485,"y":2,"w":88,"h":45},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":0,"y":18,"w":88,"h":45},
@@ -266,10 +266,18 @@
 },
 {
 	"filename": "file.png",
-	"frame": {"x":262,"y":2,"w":32,"h":32},
+	"frame": {"x":859,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
+	"filename": "font.png",
+	"frame": {"x":196,"y":2,"w":32,"h":30},
+	"rotated": false,
+	"trimmed": true,
+	"spriteSourceSize": {"x":0,"y":1,"w":32,"h":30},
 	"sourceSize": {"w":32,"h":32}
 },
 {
@@ -322,7 +330,7 @@
 },
 {
 	"filename": "ft_image_play.png",
-	"frame": {"x":859,"y":2,"w":32,"h":32},
+	"frame": {"x":1091,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -346,7 +354,7 @@
 },
 {
 	"filename": "ft_model_3d.png",
-	"frame": {"x":228,"y":2,"w":32,"h":32},
+	"frame": {"x":262,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
@@ -354,7 +362,7 @@
 },
 {
 	"filename": "ft_modeling_3d.png",
-	"frame": {"x":196,"y":2,"w":30,"h":30},
+	"frame": {"x":230,"y":2,"w":30,"h":30},
 	"rotated": false,
 	"trimmed": true,
 	"spriteSourceSize": {"x":1,"y":1,"w":30,"h":30},
@@ -551,6 +559,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1982,"h":112},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:fde5bdd7659b15a900f76a0b3e1ffad4$"
+	"smartupdate": "$TexturePacker:SmartUpdate:886191342566240d9a137c1eb727e024$"
 }
 }

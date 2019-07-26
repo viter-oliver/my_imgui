@@ -217,6 +217,9 @@ void register_adas_cmd_handl()
 	mtl_lane = imtl->second;
 	/*uf_value = 350.f;
 	mtl_lane->set_value("base_y", &uf_value, 1);*/
+	bool bevalue = false;
+	set_property_aliase_value("show_scene_base", &bevalue);
+
 	obstacles_group = get_aliase_ui_control("show_obstacles");
 	g_msg_host.attach_monitor("can message", [&](u8* pbuff, int len){
 		//printf("can message:\n");
@@ -313,11 +316,11 @@ void register_adas_cmd_handl()
 					set_mp_text_uf("mt_sp", "text", lane_state_txt_name[navi_state][en_lane_ldw_left]);
 				}
 				else
-					if ((pcan_msg->b0_sound_type == 2 || pcan_msg->b4_right_ldw_on)
-						&& pcan_msg->b4_left_ldw_on == 0 && !be_turn_right)
-					{
-						set_mp_text_uf("mt_sp", "text", lane_state_txt_name[navi_state][en_lane_ldw_right]);
-					}
+				if ((pcan_msg->b0_sound_type == 2 || pcan_msg->b4_right_ldw_on)
+					&& pcan_msg->b4_left_ldw_on == 0 && !be_turn_right)
+				{
+					set_mp_text_uf("mt_sp", "text", lane_state_txt_name[navi_state][en_lane_ldw_right]);
+				}
 			}
 		}
 

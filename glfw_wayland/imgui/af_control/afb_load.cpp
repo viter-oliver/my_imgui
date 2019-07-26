@@ -118,11 +118,15 @@ void afb_load::load_afb(const char* afb_file)
 		string str_font_name;
 		str_font_name.resize(fnm_sz);
 		memcpy(&str_font_name[0], font_name.via.str.ptr, fnm_sz);
-		auto font_data = font_unit.via.array.ptr[1];
+		auto fcols = font_unit.via.array.ptr[1].as<int>();
+		auto frows= font_unit.via.array.ptr[2].as<int>();
+		auto font_data = font_unit.via.array.ptr[3];
 		auto data_sz = font_data.via.bin.size;
 		uint8_t* font_data_buff = new uint8_t[data_sz];
 		memcpy(font_data_buff, font_data.via.bin.ptr, data_sz);
-		g_pfont_face_manager->load_font(str_font_name, font_data_buff, data_sz);
+		auto ft_unit= g_pfont_face_manager->load_font(str_font_name, font_data_buff, data_sz);
+		ft_unit->_char_count_c = fcols;
+		ft_unit->_char_count_r = frows;
 	}
 	TIME_CHECK(Font faces)
 	auto obj_format = obj_w.via.array.ptr[en_output_bin_format];
@@ -137,12 +141,15 @@ void afb_load::load_afb(const char* afb_file)
 			GLuint txt_id;
 			glGenTextures(1, &txt_id);
 			glBindTexture(GL_TEXTURE_2D, txt_id);
-			//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 			// Step3 设定filter参数
+			/*GLfloat largest_supported_anisotropy; 
+			glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &largest_supported_anisotropy); 
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, largest_supported_anisotropy);*/
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			if (mipv)
 			{
@@ -168,7 +175,7 @@ void afb_load::load_afb(const char* afb_file)
 			glGenTextures(1, &txt_id);
 			printf("gen txtid:%u\n", txt_id);
 			glBindTexture(GL_TEXTURE_2D, txt_id);
-			//glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

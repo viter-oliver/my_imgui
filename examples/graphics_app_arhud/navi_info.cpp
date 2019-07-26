@@ -26,6 +26,7 @@ extern void print_buff(u8* pbuff, int len);
 static bool show_turn_right = false;
 static bool show_turn_left = false;
 static int activate_navi_tmid = -1;
+//static int activate_navi_turn = -1;
 MSC_PACK_HEAD
 void register_navi_cmd_handl()
 {
@@ -38,6 +39,15 @@ void register_navi_cmd_handl()
 		}
 
 	});
+	//activate_navi_turn = g_timer.register_timer_ex([&](int tick){
+	//	if (tick==0)
+	//	{
+	//		bvalue = false;
+	//		set_property_aliase_value("show_right_bend", &bvalue);
+	//		set_property_aliase_value("show_left_bend", &bvalue);
+
+	//	}
+	//});
 	 g_msg_host.attach_monitor("navi state",[&](u8*pbuff,int len){
 		 bvalue = *pbuff == 0;
 		 navi_state = bvalue;
@@ -53,6 +63,14 @@ void register_navi_cmd_handl()
 			 str_show[0] = '\0';
 			 set_property_aliase_value("value_remain_mileage", str_show);
 			 set_property_aliase_value("value_remain_time", str_show);
+			 bvalue = false;
+			 set_property_aliase_value("show_right_bend", &bvalue);
+			 set_property_aliase_value("show_navi_lt2rt", &bvalue);
+			 set_property_aliase_value("show_left_bend", &bvalue);
+			 set_property_aliase_value("show_navi_rt2lt", &bvalue);
+			 set_property_aliase_value("active_navigation", &bvalue);
+			 set_property_aliase_value("show_navi_info", &bvalue);
+
 		 }
 		 set_property_aliase_value("navi_start_info", str_show);
 		 navi_start = bvalue;
@@ -93,13 +111,13 @@ void register_navi_cmd_handl()
 	 reg_trans_handle("navi_lt2rt", [&](int from, int to){
 		 bvalue = false;
 		 set_property_aliase_value("show_navi_lt2rt", &bvalue);
-		 set_property_aliase_value("show_right_bend", &bvalue);
+		 //set_property_aliase_value("show_right_bend", &bvalue);
 		 show_turn_right = false;
 	 });
 	 reg_trans_handle("navi_rt2lt", [&](int from, int to){
 		 bvalue = false;
 		 set_property_aliase_value("show_navi_rt2lt", &bvalue);
-		 set_property_aliase_value("show_left_bend", &bvalue);
+		 //set_property_aliase_value("show_left_bend", &bvalue);
 		 show_turn_left = false;
 	 });
 
@@ -156,41 +174,57 @@ void register_navi_cmd_handl()
 		float car_speed_s = (float)cs_tar*0.277;
 		int remain_s = psg->remain_distance / car_speed_s;
 		printf("cs_tar=%d km/h,car_speed=%f m/s remain_dis=%dm remain_s=%ds\n", cs_tar, car_speed_s,psg->remain_distance,remain_s);
+		navi_direct_state = en_navi_no_direction;
 		if (psg->guidance_type == en_na_turn_right)
 		{
-			if (remain_s<10&&!show_turn_right)
+			navi_direct_state = en_navi_direct_right;
+			if (remain_s<5)
+			{
+				bvalue = true;
+				set_property_aliase_value("show_right_bend", &bvalue);
+				bvalue = false;
+				set_property_aliase_value("show_navi_lt2rt", &bvalue);
+				//g_timer.active_timer_ex(activate_navi_turn, 5000);
+			}
+			else if (remain_s<10&&!show_turn_right)
 		    {
 				show_turn_right = true;
 				bvalue = true;
-				set_property_aliase_value("show_right_bend", &bvalue);
-				navi_direct_state = en_navi_direct_right;
 				set_property_aliase_value("show_navi_lt2rt", &bvalue);
 				play_trans("navi_lt2rt", 0, 1);
 		    }
-			
 		}
 		else
+		{
+			bvalue = false;
+			set_property_aliase_value("show_right_bend", &bvalue);
+			set_property_aliase_value("show_navi_lt2rt", &bvalue);
+		}
 	    if (psg->guidance_type == en_na_turn_left)
 		{
+			navi_direct_state = en_navi_direct_left;
+			if (remain_s < 5)
+			{
+				bvalue = true;
+				set_property_aliase_value("show_left_bend", &bvalue);
+				bvalue = false;
+				set_property_aliase_value("show_navi_rt2lt", &bvalue);
+			}
+			else
 			if (remain_s < 10 && !show_turn_left)
 			{
 				show_turn_left = true;
 				bvalue = true;
-				set_property_aliase_value("show_left_bend", &bvalue);
-				navi_direct_state = en_navi_direct_left;
+				//set_property_aliase_value("show_left_bend", &bvalue);
 				set_property_aliase_value("show_navi_rt2lt", &bvalue);
 				play_trans("navi_rt2lt", 0, 1);
 			}
 		}
 		else
 		{
-			navi_direct_state = en_navi_no_direction;
 			bvalue=false;
-			set_property_aliase_value("show_right_bend", &bvalue);
 			set_property_aliase_value("show_left_bend", &bvalue);
 			set_property_aliase_value("show_navi_rt2lt", &bvalue);
-			set_property_aliase_value("show_navi_lt2rt", &bvalue);
-
 		}
 		navi_state = 1;
 		pbuff += sizeof(simple_info_of_navi_guidance);

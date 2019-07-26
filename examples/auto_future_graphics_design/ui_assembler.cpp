@@ -28,14 +28,14 @@ void init_controls_res_constrained()
 	factory::get().register_res_constrained("ft_slider_thumb", vres_texture_constrain);
 	factory::get().register_res_constrained("ft_modeling_3d", [&](){return g_mmodel_list.size() > 0; });
 	factory::get().register_res_constrained("ft_textblock", [&](){
-		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
 		return ft_nm_list.size() > 0; });
 	factory::get().register_res_constrained("ft_image_play", [&](){return g_mtexture_list.size() > 0 && g_mfiles_list.size()>0; });
 
 }
 void clear_pre_proj_resource()
 {
-	vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+	auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
 	ft_nm_list.clear();
 	g_output_bin_format = { en_uncompressed_txt, en_shader_code };
 	g_vres_texture_list.clear();
@@ -105,9 +105,12 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				for (int ix = 0; ix < isz;ix++)
 				{
 					Value& jfont = fonts[ix];
-					string font_name = jfont.asString();
+					string font_name = jfont["name"].asString();
 					string font_full_name= str_font_path + font_name;
-					g_pfont_face_manager->load_font(font_name, font_full_name);
+					auto ft_u=g_pfont_face_manager->load_font(font_name, font_full_name);
+					ft_u->_name = font_name;
+					ft_u->_char_count_c = jfont["cols"].asInt();
+					ft_u->_char_count_r = jfont["rows"].asInt();
 				}
 
 			}
@@ -511,10 +514,15 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 
 	jroot["window_show"] = window_show;
 	Value fonts(arrayValue);
-	vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
-	for (auto& face_name_item:ft_nm_list)
+	//vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+	auto& dic_fonts= g_pfont_face_manager->get_dic_fonts();
+	for (auto& font_item : dic_fonts)
 	{
-		fonts.append(face_name_item);
+		Value jfont(objectValue);
+		jfont["name"] = font_item->_name;
+		jfont["cols"] = font_item->_char_count_c;
+		jfont["rows"]=font_item->_char_count_r;
+		fonts.append(jfont);
 	}
 	jroot["fonts"] = fonts;
 	Value output_bin_fmt(objectValue);

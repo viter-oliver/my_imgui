@@ -4,8 +4,8 @@ namespace auto_future
 {
 	static bool get_font_item(void* data, int idx, const char** out_str)
 	{
-		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
-		*out_str = ft_nm_list[idx].c_str();
+		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
+		*out_str = ft_nm_list[idx]->_name.c_str();
 		return true;
 	}
 	ft_textblock::ft_textblock()
@@ -16,7 +16,7 @@ namespace auto_future
 		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_txt_pt, 7, [this](void*){
-			vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+			auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
 			if (_txt_pt._font_id >= ft_nm_list.size())
 			{
 				_txt_pt._font_id = 0;
@@ -37,18 +37,17 @@ namespace auto_future
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 dpos = abpos + winpos;
-		vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
 		auto font_cnt = ft_nm_list.size();
 		if (font_cnt==0)
 		{
 			return;
 		}
-		
 		if (_txt_pt._font_id>=font_cnt)
 		{
 			_txt_pt._font_id = 0;
 		}
-		string font_name = ft_nm_list[_txt_pt._font_id];
+		string font_name = ft_nm_list[_txt_pt._font_id]->_name;
 		float font_scale = _txt_pt._font_scale;
 
 		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;

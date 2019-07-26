@@ -383,7 +383,9 @@ public:
 			break;
 		}*/
 	}
-	GLuint data_len(){ return strlen(_txt_name); }
+	GLuint data_len(){ 
+		return strlen(_txt_name); 
+	}
 
 	void* get_data_head()
 	{

@@ -69,7 +69,12 @@ namespace auto_future
 
 	struct font_unit
 	{
+		string _name;
 		FT_Face _ft_face{nullptr};
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		bool _sel{ false };
+#endif
+		int _char_count_r = { 64 }, _char_count_c = {64};
 		dic_font_rep _ft_rep;
 		~font_unit()
 		{
@@ -80,7 +85,7 @@ namespace auto_future
 		}
 	};
 	using ps_font_unit = shared_ptr<font_unit>;
-	using dic_fonts = map<string, ps_font_unit>;
+	using dic_fonts = vector<ps_font_unit>;
 	static void convert_r_to_rgba(uint8_t* pred, uint32_t*prgba, uint32_t data_len)
 	{
 		for (size_t i = 0; i < data_len; i++)
@@ -98,7 +103,7 @@ namespace auto_future
 	{
 		FT_Library _ft;
 		dic_fonts _dic_fonts;
-		vfont_face_name _font_face_names;
+		//vfont_face_name _font_face_names;
 		GLuint _fmbf_id {0};
 		void clear_texture(GLuint& txt_id)
 		{
@@ -113,7 +118,7 @@ namespace auto_future
 		{
 			newFrep._border = { 0, 0 };
 			newFrep._font_size = fontSize;
-			newFrep._txt_size = { fontSize * 64, fontSize * 64 };
+			//newFrep._txt_size = { fontSize * 64, fontSize * 64 };
 			glGenTextures(1, &newFrep._txt_id);
 			glBindTexture(GL_TEXTURE_2D, newFrep._txt_id);
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 0);
@@ -225,57 +230,69 @@ namespace auto_future
 			glDeleteFramebuffers(1, &_fmbf_id);
 		}
 		
-		vfont_face_name& get_font_name_list()
+		/*vfont_face_name& get_font_name_list()
 		{
-			return _font_face_names;
+		return _font_face_names;
+		}*/
+		dic_fonts& get_dic_fonts()
+		{
+			return _dic_fonts; 
 		}
-		bool load_font(string& fontFaceName, uint8_t* pfont_buff, unsigned long file_size)
+		ps_font_unit load_font(string& fontFaceName, uint8_t* pfont_buff, unsigned long file_size)
 		{
-			auto& fitem = _dic_fonts.find(fontFaceName);
-			if (fitem != _dic_fonts.end())
+			for (auto& ft_item : _dic_fonts)
 			{
-				printf("font %s have been loaded!\n", fontFaceName.c_str());
-				return false;
+				if (ft_item->_name == fontFaceName)
+				{
+					printf("font %s have been loaded!\n", fontFaceName.c_str());
+					return nullptr;
+				}
 			}
+			
 			FT_Face face;
 			FT_Error err = FT_New_Memory_Face(_ft, pfont_buff, file_size, 0, &face);
 			if (err)
 			{
 				printf("fail to load font from:%s!\n", fontFaceName.c_str());
-				return false;
+				return nullptr;
 			}
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 			auto ft_u = make_shared<font_unit>();
 			ft_u->_ft_face = face;
-			_dic_fonts[fontFaceName] = ft_u;
+			ft_u->_name = fontFaceName;
+			_dic_fonts.emplace_back(ft_u);
 			
-			_font_face_names.emplace_back(fontFaceName);
-			return true;
+			return ft_u;
 		}
-		bool load_font(string& fontFaceName, string& fontPath)
+		ps_font_unit load_font(string& fontFaceName, string& fontPath)
 		{
 			//auto lastTime = std::chrono::high_resolution_clock::now();
-			auto& fitem = _dic_fonts.find(fontFaceName);
-			if (fitem != _dic_fonts.end())
+			for (auto& ft_item : _dic_fonts)
 			{
-				printf("font %s have been loaded!\n", fontFaceName.c_str());
-				return false;
+				if (ft_item->_name == fontFaceName)
+				{
+					printf("font %s have been loaded!\n", fontFaceName.c_str());
+					return nullptr;
+				}
 			}
 			FT_Face face;
 			if (FT_New_Face(_ft, fontPath.c_str(), 0, &face))
 			{
 				printf("fail to load font from:%s!\n", fontPath.c_str());
-				return false;
+				return nullptr;
 			}
+			printf("%s:num_glyph is %d  num_fix_size is %d\n", \
+				fontFaceName.c_str(), face->num_glyphs, face->num_fixed_sizes);
+
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 			auto ft_u = make_shared<font_unit>();
 			ft_u->_ft_face = face;
-			_dic_fonts[fontFaceName] = ft_u;
-			_font_face_names.emplace_back(fontFaceName);
+			_dic_fonts.emplace_back(ft_u);
+			//
 			//auto currentTime = std::chrono::high_resolution_clock::now();
 			//int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
 			//printf("load_font:%s consume %d milli secs\n", fontFaceName.c_str(), delta);
-			return true;
+			return ft_u;
 		}
 
 	
