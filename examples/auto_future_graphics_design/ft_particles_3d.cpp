@@ -20,7 +20,7 @@ namespace auto_future
 		}
 	};
 
-	const int MaxParticles = 100000;
+	const int MaxParticles = 50000;
 	Particle ParticlesContainer[MaxParticles];
 	GLfloat g_particule_position_size_data[MaxParticles * 4];
 	GLfloat g_particule_color_data[MaxParticles * 4];
@@ -108,8 +108,8 @@ namespace auto_future
 			0.075215f, 0.549929f, -0.974772f, -0.972824f,
 			-0.376075f, -2.749644f, 4.673659f, 4.864121f };
 		_ps_sd_particle->uniform("VP", vwpj);
-		auto& mtx = g_mtexture_list.find("fire.png");
-		_texture = mtx->second;
+		//auto& mtx = g_mtexture_list.find("fire.png");
+		//_texture = mtx->second;
 
 		
 		glGenBuffers(1, &_vbo_uv);
@@ -152,10 +152,10 @@ namespace auto_future
 		double currentTime = glfwGetTime();
 		double delta = currentTime - lastTime;
 		lastTime = currentTime;
-		int newparticles = (int)(delta*10000.0);
-		if (newparticles > (int)(0.016f*10000.0))
-			newparticles = (int)(0.016f*10000.0);
-
+		int newparticles = (int)(delta*5000.0);
+		if (newparticles > (int)(0.016f*5000.0))
+			newparticles = (int)(0.016f*5000.0);
+		/**
 		for (int i = 0; i < newparticles; i++){
 			int particleIndex = FindUnusedParticle();
 			ParticlesContainer[particleIndex].life = _pt._life; // This particle will live 5 seconds.
@@ -179,9 +179,9 @@ namespace auto_future
 			ParticlesContainer[particleIndex].a = (rand() % 256) / 3;
 
 			ParticlesContainer[particleIndex].size = (rand() % 1000) / 2000.0f + 0.1f;
-
+			
 		}
-
+		*/
 		glm::vec3 CameraPosition(0.f, 0.f, 5.f);
 
 		// Simulate all particles
@@ -189,7 +189,35 @@ namespace auto_future
 		for (int i = 0; i < MaxParticles; i++){
 
 			Particle& p = ParticlesContainer[i]; // shortcut
+			if (newparticles>0&&p.life<0)
+			{
+				ParticlesContainer[i].life = _pt._life; // This particle will live 5 seconds.
+				ParticlesContainer[i].pos = glm::vec3(_pt._pos0_shd.x, _pt._pos0_shd.y, _pt._pos0_shd.z);
 
+				float spread = 1.5f;
+				glm::vec3 maindir = glm::vec3(_pt._v0_shd.x, _pt._v0_shd.y, _pt._v0_shd.z);
+				auto rd_value = rand();
+				auto rd_v = (rd_value % 2000 - 1000.0f) / 1000.0f;
+				auto rd_h = rd_value % 256;
+				glm::vec3 randomdir(rd_v);
+				/*glm::vec3 randomdir = glm::vec3(
+					(rd_value % 2000 - 1000.0f) / 1000.0f,
+					(rand() % 2000 - 1000.0f) / 1000.0f,
+					(rand() % 2000 - 1000.0f) / 1000.0f
+					);*/
+
+				ParticlesContainer[i].speed = maindir + randomdir*spread;
+
+
+				// Very bad way to generate a random color
+				ParticlesContainer[i].r = rd_h;// rand() % 256;
+				ParticlesContainer[i].g = rd_h;// rand() % 256;
+				ParticlesContainer[i].b = rd_h;// rand() % 256;
+				ParticlesContainer[i].a = rd_h/3;//(rand() % 256) / 3;
+
+				ParticlesContainer[i].size = (rd_value % 1000) / 2000.0f + 0.1f;
+				newparticles--;
+			}
 			if (p.life > 0.0f){
 
 				// Decrease life
@@ -258,6 +286,7 @@ namespace auto_future
 				ParticlesCount++;
 
 			}
+			
 		}
 
 		SortParticles();

@@ -64,6 +64,10 @@ namespace auto_future
 		GLuint _font_size{ 0 };
 		bool _be_full{ false };
 		dic_glyph_txt _dic_txt_cd;
+		~txt_font_repository()
+		{
+			glDeleteTextures(1, &_txt_id);
+		}
 	};
 	using dic_font_rep = map<int, txt_font_repository>;
 
@@ -219,7 +223,7 @@ namespace auto_future
 		{
 			//auto lastTime = std::chrono::high_resolution_clock::now();
 			assert(!FT_Init_FreeType(&_ft) && "fail to init freetype library!");
-			glGenFramebuffers(1, &_fmbf_id);
+			//glGenFramebuffers(1, &_fmbf_id);
 			//auto currentTime = std::chrono::high_resolution_clock::now();
 			//int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
 			//printf("FT_Init_FreeType consume %d milli secs\n", delta);
@@ -227,7 +231,7 @@ namespace auto_future
 		}
 		~font_face_manager()
 		{
-			glDeleteFramebuffers(1, &_fmbf_id);
+			//glDeleteFramebuffers(1, &_fmbf_id);
 		}
 		
 		/*vfont_face_name& get_font_name_list()
@@ -287,6 +291,7 @@ namespace auto_future
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 			auto ft_u = make_shared<font_unit>();
 			ft_u->_ft_face = face;
+			ft_u->_name = fontFaceName;
 			_dic_fonts.emplace_back(ft_u);
 			//
 			//auto currentTime = std::chrono::high_resolution_clock::now();

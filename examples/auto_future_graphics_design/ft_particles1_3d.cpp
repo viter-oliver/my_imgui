@@ -179,8 +179,8 @@ namespace auto_future
 		_ps_sd_particle->uniform("VP", vwpj);
 		_ps_sd_particle->uniform("uvcol[0]", uvs);
 
-		auto& mtx = g_mtexture_list.find("flame_fire.png");
-		_texture = mtx->second;
+		//auto& mtx = g_mtexture_list.find("flame_fire.png");
+		//_texture = mtx->second;
 		
 
 		glGenBuffers(1, &_vbo_uv);
@@ -224,6 +224,10 @@ namespace auto_future
 	}
 	void ft_particles1_3d::draw()
 	{
+		if (!_texture)
+		{
+			return;
+		}
 		double currentTime = glfwGetTime();
 		double delta = currentTime - lastTime;
 		lastTime = currentTime;

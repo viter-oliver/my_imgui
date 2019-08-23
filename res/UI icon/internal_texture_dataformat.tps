@@ -168,7 +168,7 @@
             <filename>ft_button.png</filename>
             <filename>ft_cube_3d.png</filename>
             <filename>ft_modeling_3d.png</filename>
-            <filename>a.png</filename>
+            <filename>aliase.png</filename>
             <filename>ft_undo.png</filename>
             <filename>ft_redo.png</filename>
             <filename>ft_circle.png</filename>
@@ -212,6 +212,9 @@
             <filename>EaseInOutQuad.png</filename>
             <filename>EaseInOutQuart.png</filename>
             <filename>Camera.png</filename>
+            <filename>ft_material_2d.png</filename>
+            <filename>primitive.png</filename>
+            <filename>font.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

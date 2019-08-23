@@ -14,6 +14,7 @@ void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, 
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*_ele_buf_len, pele_buff, mem_usage);
 	}	
 	GLuint idx = 0;
+
 	GLubyte stride = get_stride();
 	int pointer = 0;
 	for (auto& el : _ele_format)

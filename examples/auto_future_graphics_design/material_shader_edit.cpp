@@ -215,23 +215,27 @@ void material_shader_edit::draw_shader_item_property()
 			string vs_code, fs_code;
 			ifstream ifs;
 			ifs.open(vs_file);
-			filebuf* pbuf = ifs.rdbuf();
-			size_t sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
-			pbuf->pubseekpos(0, ifs.in);
-			vs_code.reserve(sz_code);
-			vs_code.resize(sz_code);
-			pbuf->sgetn(&vs_code[0], sz_code);
-			ifs.close();
-			ifs.open(fs_file);
-			pbuf = ifs.rdbuf();
-			sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
-			pbuf->pubseekpos(0, ifs.in);
-			fs_code.reserve(sz_code);
-			fs_code.resize(sz_code);
-			pbuf->sgetn(&fs_code[0], sz_code);
-			ifs.close();
-			pshd_sel->refresh_sourcecode(vs_code, fs_code);
-			refresh_material(pshd_sel);
+			if (ifs.is_open())
+			{
+				filebuf* pbuf = ifs.rdbuf();
+				size_t sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
+				pbuf->pubseekpos(0, ifs.in);
+				vs_code.reserve(sz_code);
+				vs_code.resize(sz_code);
+				pbuf->sgetn(&vs_code[0], sz_code);
+				ifs.close();
+				ifs.open(fs_file);
+				pbuf = ifs.rdbuf();
+				sz_code = pbuf->pubseekoff(0, ifs.end, ifs.in);
+				pbuf->pubseekpos(0, ifs.in);
+				fs_code.reserve(sz_code);
+				fs_code.resize(sz_code);
+				pbuf->sgetn(&fs_code[0], sz_code);
+				ifs.close();
+				pshd_sel->refresh_sourcecode(vs_code, fs_code);
+				refresh_material(pshd_sel);
+			}
+			
 		}
 		if (pshd_sel->_read_only)
 		{

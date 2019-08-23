@@ -179,6 +179,7 @@
     <ClCompile Include="..\..\soil\SOIL.c" />
     <ClCompile Include="..\..\soil\stb_image_aug.c" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
+    <ClCompile Include="aes.cpp" />
     <ClCompile Include="afb_output.cpp" />
     <ClCompile Include="af_bind.cpp" />
     <ClCompile Include="af_font_res_set.cpp" />
@@ -220,6 +221,8 @@
     <ClCompile Include="ft_scene.cpp" />
     <ClCompile Include="ft_textblock.cpp" />
     <ClCompile Include="ft_trajectory_box_3d.cpp" />
+    <ClCompile Include="ft_video.cpp" />
+    <ClCompile Include="get_web_time.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="af_material.cpp" />
@@ -288,6 +291,7 @@
     <ClInclude Include="..\..\af_include\ft_textblock.h" />
     <ClInclude Include="..\..\af_include\ft_textblock_bk.h" />
     <ClInclude Include="..\..\af_include\ft_trajectory_box_3d.h" />
+    <ClInclude Include="..\..\af_include\ft_video.h" />
     <ClInclude Include="..\..\af_include\property_utilities.h" />
     <ClInclude Include="..\..\af_include\shader_uf.h" />
     <ClInclude Include="..\..\from_csdn_cly\HttpBase.h" />
@@ -315,6 +319,7 @@
     <ClInclude Include="..\..\texture.h" />
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
+    <ClInclude Include="aes.h" />
     <ClInclude Include="afb_output.h" />
     <ClInclude Include="afb_res_index.h" />
     <ClInclude Include="af_shader_source_code.h" />
@@ -328,6 +333,7 @@
     <ClInclude Include="file_res_edit.h" />
     <ClInclude Include="fonts_edit.h" />
     <ClInclude Include="common_functions.h" />
+    <ClInclude Include="get_web_time.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
     <ClInclude Include="material_shader_edit.h" />
     <ClInclude Include="miniz.h" />

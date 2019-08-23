@@ -51,6 +51,8 @@
 #include "dir_output.h"
 #include "command_element_delta.h"
 #include "unreferenced_items.h"
+#include "get_web_time.h"
+#include "aes.h"
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -74,7 +76,6 @@ base_ui_component* _proot = NULL;
 shared_ptr<project_edit> prj_edit;
 HCURSOR g_hcursor_wait;
 //string g_current_run_path;
-#include <windows.h>
 enum en_short_cut_item
 {
 	en_ctrl_n,
@@ -92,50 +93,22 @@ show_output_format=false,show_model_list=false,show_world_space=false,\
 show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false,\
 show_slider_path_picker=false,show_prm_edit=false;
 
-void register_app_and_icon(string& app_path)
+string reg_path = "afg_ide";
+string ikey = "max&maj20190815x";
+unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
+DWORD get_time_span(vector<BYTE> plainText)
 {
-	string app_name = app_path.substr(app_path.find_last_of('\\') + 1);
-	string app_key = app_name.substr(0, app_name.find_last_of('.'));
-	LPCTSTR lpRun = ".afg";
-	//auto result = RegQueryValueEx(HKEY_CLASSES_ROOT, lpRun, NULL, NULL, NULL, NULL);
-	HKEY hKey;
-	DWORD state;
-	auto result = RegOpenKeyEx(HKEY_CLASSES_ROOT, lpRun, NULL, KEY_WRITE,&hKey);
-	if (result == ERROR_SUCCESS)
+	if (plainText.size() != 32)
 	{
-		printf("open the afg key\n");
+		return 0;
 	}
-	else if (result == ERROR_FILE_NOT_FOUND)
-	{
-		result = RegCreateKeyEx(HKEY_CLASSES_ROOT, lpRun, 0, NULL, 0, KEY_WRITE, NULL, &hKey, &state);
-	}
-	result = RegSetValueEx(hKey, NULL, 0, REG_SZ, (BYTE*)app_key.c_str(), app_key.size());
-	RegCloseKey(hKey);
-	string shellCmd = app_key + "\\shell\\open\\command";
-	string shellCmdValue = app_path + " %1";
-	result = RegOpenKeyEx(HKEY_CLASSES_ROOT, shellCmd.c_str(), NULL, KEY_WRITE, &hKey);
-	if (result==ERROR_FILE_NOT_FOUND)
-	{
-		result = RegCreateKeyEx(HKEY_CLASSES_ROOT, shellCmd.c_str(),0, NULL, 0,KEY_WRITE,NULL, &hKey,&state);
-	}
-	result = RegSetValueEx(hKey, NULL, 0, REG_SZ, (BYTE*)shellCmdValue.c_str(), shellCmdValue.size());
-	RegCloseKey(hKey);
-	string strIcon = app_key + "\\DefaultIcon";
-	result = RegOpenKeyEx(HKEY_CLASSES_ROOT, strIcon.c_str(), NULL, KEY_WRITE, &hKey);
-	if (result == ERROR_FILE_NOT_FOUND)
-	{
-		result = RegCreateKeyEx(HKEY_CLASSES_ROOT, strIcon.c_str(), 0, NULL,0, KEY_WRITE,NULL, &hKey, &state);
-	}
-	HRSRC hricon = FindResource(NULL, MAKEINTRESOURCE(IDI_ICON1), "Icon");
-	DWORD dwSz = SizeofResource(NULL, hricon);
-	HGLOBAL hiconGb = LoadResource(NULL, hricon);
-	LPVOID piconBuff = LockResource(hiconGb);
-	result = RegSetValueEx(hKey, NULL, 0, REG_BINARY, (BYTE*)piconBuff, dwSz);
-	RegCloseKey(hKey);
-
-	SHChangeNotify(SHCNE_ASSOCCHANGED, SHCNF_IDLIST, NULL, NULL);
-
+	DWORD *prelease_time = (DWORD*)&plainText[0];
+	DWORD *prelease_numb = (DWORD*)&plainText[4];
+	DWORD *time_span = (DWORD*)&plainText[8];
+	DWORD valid_time_point = *prelease_time + *time_span;
+	return valid_time_point;
 }
+
 void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 {
 	int last_id = cnt - 1;
@@ -149,10 +122,10 @@ void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 			return;
 		}
 		else
-			if (result == IDYES)
-			{
-				fun_shortct(en_ctrl_s);
-			}
+		if (result == IDYES)
+		{
+			fun_shortct(en_ctrl_s);
+		}
 	}
 	prj_edit->clear_sel_item();
 	delete _proot;
@@ -177,9 +150,44 @@ int main(int argc, char* argv[])
 	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));*/
 	g_app_path = argv[0];
 	//register_app_and_icon(g_app_path);
-	printf("%s__%d\n", __FILE__, __LINE__);
-	cout<<"ssss"<<endl;
+	printf("%s__%d\n", __FILE__, s_user_count);
+	auto sec_consume = GetTimeFromServer(NULL);
+	if (!sec_consume)
+	{
+		MessageBox(GetForegroundWindow(), "fail to connect to network!", "warning", MB_OK);
+		exit(0);
+	}
+	AESModeOfOperation moo;
+	moo.set_key((unsigned char*)ikey.c_str());
+	moo.set_mode(MODE_CBC);
+	moo.set_iv(iv);
+	HKEY hKey;
+#define  MAX_LC_LEN 0x100
+	BYTE license[MAX_LC_LEN] = { 0 };
+	DWORD lc_len = MAX_LC_LEN;
+	bool be_get_license = false;
+	vector<unsigned char> plainText;
+	auto lRet = RegOpenKeyEx(HKEY_CURRENT_USER, reg_path.c_str(), 0, KEY_READ, &hKey);
+	if (lRet == ERROR_SUCCESS)
+	{
 
+		//读取键值
+		if (RegQueryValueEx(hKey, "license", 0, 0, license, &lc_len) == ERROR_SUCCESS)
+		{
+			be_get_license = true;
+			plainText.resize(lc_len);
+			moo.Decrypt(license, lc_len, &plainText[0]);
+			DWORD valid_time_point = get_time_span(plainText);
+			if (valid_time_point < sec_consume)
+			{
+				be_get_license = false;
+			}
+		}
+
+		//关闭键
+		RegCloseKey(hKey);
+	}
+	
     // Setup window
 	if (argc>1)
 	{
@@ -562,7 +570,62 @@ int main(int argc, char* argv[])
         }
 #elif defined(_MY_IMGUI__)
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
+		if (!be_get_license)
+		{
+			ImGui::OpenPopup("get license");
+		}
+		if (ImGui::BeginPopupModal("get license"))
+		{
+#define LICENSE_LEN 0x100
+			static char str_license_num[LICENSE_LEN] = "";
+			static char str_state[LICENSE_LEN] = "";
+			ImGui::InputText("enter license number here.", str_license_num, LICENSE_LEN);
+			ImGui::Text(str_state);
+			if (ImGui::Button("Ok"))
+			{
+				string slicense = str_license_num;
+				if (slicense.size() != 64)
+				{
+					auto state = "invalid license number!";
+					strcpy(str_state, state);
+				}
+				else
+				{
+					vector<unsigned char> hexLicense;
+					//vector<unsigned char> plainText;
+					char_to_hex(slicense, hexLicense);
+					plainText.resize(hexLicense.size());
+					moo.Decrypt(&hexLicense[0], hexLicense.size(), &plainText[0]);
+					DWORD valid_time_point = get_time_span(plainText);
+					if (valid_time_point < sec_consume)
+					{
+						auto state = "he license number has expired, please apply for another license number!";
+						strcpy(str_state, state);
+					}
+					else
+					{
+						DWORD state;
+						lRet = RegCreateKeyEx(HKEY_CURRENT_USER, reg_path.c_str(), 0, NULL, 0, KEY_WRITE, NULL, &hKey, &state);
+						if (lRet == ERROR_SUCCESS)
+						{
+							RegSetValueEx(hKey, "license", 0, REG_BINARY, &hexLicense[0], 32);
+							RegCloseKey(hKey);
+						}
+						be_get_license = true;
+						ImGui::CloseCurrentPopup();
 
+					}
+				}
+				
+			}
+			if (ImGui::Button("Cancel"))
+			{
+				ImGui::CloseCurrentPopup();
+				exit(0);
+			}
+			ImGui::EndPopup();
+			goto Rendering;
+		}
 		if (ImGui::GetIO().KeyCtrl)
 		{
 			if (ImGui::GetIO().KeysDown[GLFW_KEY_S])
@@ -817,7 +880,7 @@ int main(int argc, char* argv[])
 			
 			if (cur_window == front_window&&ImGui::IsMouseClicked(0) && wrect.Contains(ImGui::GetIO().MousePos))
 			{
-				printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+				//printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
 				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
 				if (psel_ui)
 				{
@@ -970,6 +1033,7 @@ int main(int argc, char* argv[])
 		}
 #endif
         // Rendering
+Rendering:
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
         glViewport(0, 0, display_w, display_h);

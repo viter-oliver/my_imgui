@@ -6,7 +6,7 @@
 	"_posx" : 0.0,
 	"_posy" : 0.0,
 	"_sizeh" : 267.0,
-	"_sizew" : 810.0,
+	"_sizew" : 800.0,
 	"_visible" : true,
 	"aliase" : 
 	{
@@ -58,6 +58,7 @@
 		"show_left_bend" : [ 6, 0, 19, 2 ],
 		"show_left_turn_low_fuel_hot_water" : [ 6, 0, 3, 3 ],
 		"show_limited_speed" : [ 6, 0, 2, 4 ],
+		"show_location" : [ 6, 0, 0, 22, 2 ],
 		"show_media" : [ 6, 0, 1, 5 ],
 		"show_navi_guide" : [ 6, 0, 0, 4 ],
 		"show_navi_info" : [ 6, 0, 4 ],
@@ -114,49 +115,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0>0\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 0, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>1\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
 						[ 6, 0, 13, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 21, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 10, 2 ]
+				"key" : [ 6, 0, 12, 2 ]
 			},
 			
 			{
@@ -186,37 +151,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
+					"expression" : "def bind_fun(v0):\n  return v0\n",
 					"param_list" : 
 					[
 						[ 6, 0, 13, 2 ]
 					]
 				},
-				"key" : [ 1, 0, 14, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 12, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 0, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 2 ]
+				"key" : [ 6, 0, 10, 2 ]
 			},
 			
 			{
@@ -237,10 +178,70 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
+						[ 6, 0, 0, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
 						[ 6, 0, 13, 2 ]
 					]
 				},
 				"key" : [ 6, 0, 3, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 21, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 2 ]
+					]
+				},
+				"key" : [ 1, 0, 14, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 7, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>1\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 7, 4 ]
 			},
 			
 			{
@@ -258,13 +259,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
+					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
 					"param_list" : 
 					[
 						[ 2, 0, 7, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 4, 7, 4 ]
+				"key" : [ 6, 0, 2, 7, 4 ]
 			},
 			
 			{
@@ -282,6 +283,18 @@
 			{
 				"bind_unit" : 
 				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 4 ]
+					]
+				},
+				"key" : [ 6, 0, 4, 7, 4 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
 					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
 					"param_list" : 
 					[
@@ -294,25 +307,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
+					"expression" : "def bind_fun(v0):\n  return v0>0\n",
 					"param_list" : 
 					[
 						[ 2, 0, 7, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 2, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 6, 7, 4 ]
+				"key" : [ 6, 0, 0, 7, 4 ]
 			}
 		],
 		"ref_dic" : 
@@ -368,9 +369,9 @@
 			"_bdclr" : 
 			{
 				"w" : 1.0,
-				"x" : 0.07121367007493973,
-				"y" : 0.8438818454742432,
-				"z" : 0.1690196543931961
+				"x" : 0.02903739362955093,
+				"y" : 0.9831223487854004,
+				"z" : 0.1490122824907303
 			},
 			"_bkclr" : 
 			{
@@ -432,7 +433,7 @@
 					},
 					"_name" : "ft_scene_base",
 					"_posx" : 0.0,
-					"_posy" : -270.0,
+					"_posy" : -280.0,
 					"_sizeh" : 534.0,
 					"_sizew" : 800.0,
 					"_visible" : true,
@@ -447,10 +448,10 @@
 							"_name" : "ft_material_2d",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
-							"_primitive_name" : "road4.FBX0",
+							"_primitive_name" : "road6.FBX0",
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_visible" : false,
+							"_visible" : true,
 							"type" : "ft_material_2d"
 						}
 					],
@@ -1140,7 +1141,7 @@
 					"_posy" : -155.0,
 					"_sizeh" : 232.0490112304688,
 					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 116,
+					"_texture_index_txt" : 117,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -1176,7 +1177,7 @@
 					"_posy" : -155.0,
 					"_sizeh" : 232.0490112304688,
 					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 116,
+					"_texture_index_txt" : 117,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -1185,8 +1186,8 @@
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
 					"_name" : "obstacle_group",
-					"_posx" : 367.0,
-					"_posy" : -60.0,
+					"_posx" : 400.0,
+					"_posy" : -14.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_visible" : true,
@@ -1201,11 +1202,11 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "obstacle0",
-							"_posx" : 0.0,
-							"_posy" : 0.0,
+							"_posx" : -34.0,
+							"_posy" : -34.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1222,7 +1223,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1239,7 +1240,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1256,7 +1257,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1273,7 +1274,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1290,7 +1291,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1307,7 +1308,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1324,7 +1325,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1341,7 +1342,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1358,7 +1359,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1375,7 +1376,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1392,7 +1393,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1409,7 +1410,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1426,7 +1427,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1443,7 +1444,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 113,
+							"_texture_index_txt" : 114,
 							"_visible" : false,
 							"type" : "ft_image"
 						}
@@ -1584,6 +1585,38 @@
 					"_width" : 180.0,
 					"_width_limit" : true,
 					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "ft_test",
+					"_posx" : 400.0,
+					"_posy" : -14.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "location",
+							"_posx" : -16.0,
+							"_posy" : -16.0,
+							"_sizeh" : 32.0,
+							"_sizew" : 32.0,
+							"_texture_index_txt" : 27,
+							"_visible" : false,
+							"type" : "ft_image"
+						}
+					],
+					"type" : "ft_base"
 				}
 			],
 			"type" : "ft_base"
@@ -1613,7 +1646,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 132,
+					"_texture_index_txt" : 133,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -1660,7 +1693,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 127,
+					"_texture_index_txt" : 128,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1677,7 +1710,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 133,
+					"_texture_index_txt" : 134,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1694,7 +1727,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 138,
+					"_texture_index_txt" : 139,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1711,7 +1744,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 141,
+					"_texture_index_txt" : 142,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1728,7 +1761,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 140,
+					"_texture_index_txt" : 141,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -1760,7 +1793,7 @@
 					"_posy" : 148.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 38,
+					"_texture_index_txt" : 39,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1777,7 +1810,7 @@
 					"_posy" : 151.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
-					"_texture_index_txt" : 84,
+					"_texture_index_txt" : 85,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1895,7 +1928,7 @@
 					"_posy" : 146.0,
 					"_sizeh" : 121.0,
 					"_sizew" : 121.0,
-					"_texture_index_txt" : 48,
+					"_texture_index_txt" : 49,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -1912,7 +1945,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 121.0,
 							"_sizew" : 121.0,
-							"_texture_index_txt" : 47,
+							"_texture_index_txt" : 48,
 							"_visible" : true,
 							"type" : "ft_image"
 						}
@@ -1961,7 +1994,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 54,
+							"_texture_index_txt" : 55,
 							"_visible" : true,
 							"type" : "ft_image"
 						},
@@ -1978,7 +2011,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 54,
+							"_texture_index_txt" : 55,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -1995,7 +2028,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 54,
+							"_texture_index_txt" : 55,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2012,7 +2045,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 66,
+							"_texture_index_txt" : 67,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2029,7 +2062,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 66,
+							"_texture_index_txt" : 67,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2046,7 +2079,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 66,
+							"_texture_index_txt" : 67,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2063,7 +2096,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 66,
+							"_texture_index_txt" : 67,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2080,7 +2113,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 66,
+							"_texture_index_txt" : 67,
 							"_visible" : false,
 							"type" : "ft_image"
 						}
@@ -2247,7 +2280,7 @@
 					"_posy" : 141.0,
 					"_sizeh" : 52.0,
 					"_sizew" : 52.0,
-					"_texture_index_txt" : 31,
+					"_texture_index_txt" : 32,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2264,7 +2297,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 16.0,
 							"_sizew" : 17.0,
-							"_texture_index_txt" : 32,
+							"_texture_index_txt" : 33,
 							"_visible" : true,
 							"type" : "ft_image"
 						},
@@ -2311,7 +2344,7 @@
 					"_posy" : 141.0,
 					"_sizeh" : 52.0,
 					"_sizew" : 52.0,
-					"_texture_index_txt" : 30,
+					"_texture_index_txt" : 31,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2373,7 +2406,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 119,
+					"_texture_index_txt" : 120,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2390,7 +2423,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 120,
+					"_texture_index_txt" : 121,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2407,7 +2440,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 122,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2424,7 +2457,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 122,
+					"_texture_index_txt" : 123,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2441,7 +2474,7 @@
 					"_posy" : 76.0,
 					"_sizeh" : 114.0,
 					"_sizew" : 56.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 119,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2458,7 +2491,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 123,
+					"_texture_index_txt" : 124,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2475,7 +2508,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 124,
+					"_texture_index_txt" : 125,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2492,7 +2525,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 125,
+					"_texture_index_txt" : 126,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2509,7 +2542,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 126,
+					"_texture_index_txt" : 127,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2526,7 +2559,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2543,7 +2576,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2560,7 +2593,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2577,7 +2610,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2594,7 +2627,7 @@
 					"_posy" : 55.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2611,7 +2644,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2628,7 +2661,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2645,7 +2678,7 @@
 					"_posy" : 56.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 117,
+					"_texture_index_txt" : 118,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -2720,7 +2753,8 @@
 		"img_ring_left_full.trk",
 		"img_ring_right_full.trk",
 		"road-0625.FBX0",
-		"road4.FBX0"
+		"road4.FBX0",
+		"road6.FBX0"
 	],
 	"fonts" : 
 	[
@@ -2962,29 +2996,7 @@
 			}
 		}
 	],
-	"models" : 
-	{
-		"road4.FBX" : 
-		[
-			
-			{
-				"ambient_list" : [],
-				"bounding_box" : 
-				{
-					"xmax" : 150.0,
-					"xmin" : -150.0,
-					"ymax" : 350.0,
-					"ymin" : -350.0,
-					"zmax" : 0.0,
-					"zmin" : 0.0
-				},
-				"diffuse_list" : [],
-				"height_list" : [],
-				"prim_id" : "road4.FBX0",
-				"specular_list" : []
-			}
-		]
-	},
+	"models" : {},
 	"output_bin_fmt" : 
 	{
 		"pgm_fmt" : 0,
@@ -3006,8 +3018,8 @@
 			"ebo_len" : 378,
 			"format" : [ 3, 3, 2 ],
 			"mesh_id" : 0,
-			"model" : "road4.FBX",
-			"name" : "road4.FBX0",
+			"model" : "road6.FBX",
+			"name" : "road6.FBX0",
 			"vbo_len" : 3024
 		}
 	],
@@ -3155,13 +3167,13 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : true,
+		"show_aliase_edit" : false,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
-		"show_fonts_manager" : true,
+		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : true,
+		"show_resource_manager" : false,
 		"show_slider_path_picker" : false,
 		"show_state_manager_edit" : false
 	}

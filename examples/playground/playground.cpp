@@ -2,6 +2,8 @@
 //
 
 #include "stdafx.h"
+#include <windows.h>
+#include "aes.h"
 #include "fab/fab.h"
 #include <stdio.h>
 #include <iostream>  
@@ -17,6 +19,9 @@
 #include <boost/preprocessor/seq/for_each.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
+#include <chrono>
+#include <sstream>
+extern BOOL GetMacByCmd(char *lpszMac);
 using namespace std;
 struct stt
 {
@@ -29,6 +34,8 @@ int sss[2][4][4] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
 1010, 1011, 1012, 1013, 1014, 1015, 1016 };
 class MyClass
 {
+	BYTE et = 1;
+	BYTE test_byts[2];
 public:
 	MyClass(){}
 	MyClass(int){}
@@ -39,9 +46,8 @@ public:
 		printf("mycl\n");
 	}
 
-private:
-
 };
+//BYTE MyClass::test_byts[2] = { 0, 1 };
 using namespace fab;
 Factory<MyClass> ft;
 template<typename T>
@@ -145,7 +151,14 @@ class dashboard_controller
 	dlg1 _dlg1;
 	dlg2 _dlg2;
 };
-
+struct test_pods 
+{
+	int x1, x2;
+};
+void test_input_pod(test_pods&& tpd)
+{
+	tpd.x1 = 1;
+}
 
 //class testc1 :public testc0
 //{
@@ -221,8 +234,68 @@ class dashboard_controller
 		}
 
 	};
+	int test_ct_value = 10;
+	const int test_const()
+	{
+		test_ct_value = 5;
+		return 1;
+	}
+	static const int test_cnt_triger = test_const();
+
+	const char hex_enc_table[] = "abcdefghijklmnop";
+	void convert_binary_to_string(char* pbin, int len, string& out_str)
+	{
+		out_str.resize(len * 2);
+		int ix = 0;
+		for (; ix < len; ix++)
+		{
+			auto bin_value = *(unsigned char*)pbin;
+			out_str[ix * 2] = hex_enc_table[bin_value >> 4];
+			out_str[ix * 2 + 1] = hex_enc_table[bin_value & 0x0f];
+			pbin++;
+		}
+	}
+
+	void convert_string_to_binary(string& in_str, string& out_bin)
+	{
+		auto out_size = in_str.size() / 21;
+		out_bin.resize(out_size);
+		int ix = 0;
+		for (; ix < out_size; ix++)
+		{
+			unsigned char high = in_str[ix * 2] - 'a';
+			unsigned char low = in_str[ix * 2 + 1] - 'a';
+			out_bin[ix] = high << 4 | low;
+		}
+	}
+#include <codecvt>
+	std::wstring utf8ToWstring(const std::string& str)
+	{
+		std::wstring_convert< std::codecvt_utf8<wchar_t> > strCnv;
+		return strCnv.from_bytes(str);
+	}
+
+	void print(unsigned char* state, int len)
+	{
+		int i;
+		for (i = 0; i < len; i++)
+		{
+			if (i % 16 == 0) printf("\n");
+			//		printf("%s%X ",state[i]>15 ? "" : "0", state[i]);
+			printf("%d  ", (int)(state[i] & 0xff));
+		}
+		printf("\n");
+	}
 int _tmain(int argc, _TCHAR* argv[])
 {
+	string emptystr;
+	wstring empth = utf8ToWstring(emptystr);
+	char test_bin[] = { 0xab,0x01, 0x02, 0x0a, 0x1a, 0x1b };
+	string test_bin_out;
+	convert_binary_to_string(test_bin, sizeof(test_bin), test_bin_out);
+	test_pods ffff;
+	test_input_pod({ 1, 2 });
+	test_input_pod(std::move(ffff));
 	vector<stt> vstt;
 	stt st0{ 1, 2, 3 };
 	stt st1{ 4, 5, 6 };
@@ -298,7 +371,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	glm::vec4 ret = trans*glm::vec4(1000.0f, 100.0f, 1.0f, 1.0f);
 	printf("%f,%f,%f\n", ret.x, ret.y, ret.z);
 	std::cout << "glm::vec4 is_trivially_copyable:" << std::is_trivially_copyable<glm::vec4>::value << std::endl;
+	glm::mat4 model;
+	model = glm::translate(model, glm::vec3(1.f, 1.f, 1.f));
+	model = glm::scale(model, glm::vec3(1.f, 1.f, 1.f));
 
+	glm::mat4 proj = glm::perspective(glm::radians(60.0f), 800.0f / 600.0f, 1.0f, 10.0f);
+	model = proj*model;
 
 	testalias mya;
 	mya.jj = 1111;
@@ -613,23 +691,35 @@ int _tmain(int argc, _TCHAR* argv[])
 
 #pragma pack(1)  
 	struct s_test_offset{
-		int i{0};
-		char c;
-		char a[20];
-		double d;
+		int i[2];//8
+		char c[2];//10
+		double d;//10
+		int e;//18
+		char a[2];//24
+		char tt_2_1[2];//26
+		int ia[2];//34
+
+		s_test_offset()
+			:ia{ }
+		{
+		}
 	};
 	printf("size double=%d\n", sizeof(double));
 	printf("size float=%d\n", sizeof(float));
 
-	printf("offsets: i=%d; c=%d; d=%d a=%d\n",
-		offsetof(s_test_offset, i),
-		offsetof(s_test_offset, c),
+	printf("offsets: i=%d; c=%d; d=%d;e=%d; a=%d;tt_2_1=%d;ia=%d\n",
+		offsetof(s_test_offset, i[2]),
+		offsetof(s_test_offset, c[2]),
 		offsetof(s_test_offset, d),
-		offsetof(s_test_offset, a[20]));
+		offsetof(s_test_offset, e),
+		offsetof(s_test_offset, a[2]),
+		offsetof(s_test_offset, tt_2_1[2]),
+		offsetof(s_test_offset, ia[2])
+		);
 	int d_offset = offsetof(s_test_offset, d);
 	s_test_offset _s_test_offset;
-	_s_test_offset.i = 1;
-	_s_test_offset.c = 'a';
+	_s_test_offset.i[0] = 1;
+	_s_test_offset.c[0] = 'a';
 	_s_test_offset.d = 10.0;
 	_s_test_offset.a[0] = 'a';
 	_s_test_offset.a[1] = 'b';
@@ -644,10 +734,115 @@ int _tmain(int argc, _TCHAR* argv[])
 	cout << "size str_a=" << sizeof(str_a) << endl;
 	cout << "size str_a=" << sizeof(str_a[20]) << endl;
 	cout << "size char=" << sizeof(char) << endl;
+	cout << "size bool=" << sizeof(bool) << endl;
+
 	auto pos6 = test_a_str.find('6');
 	string test_sbstr = test_a_str.substr(0, pos6);
 	cout << "test_sbstr:" << test_sbstr << endl;
 	int aaa;
+	cout << "test_ct_value=" << test_ct_value << endl;
+	unsigned char tst_char[] = { 0x7, 0x80, 0x2, 0xd0, };
+	unsigned int iwth =(tst_char[0]*0x100) + tst_char[1];
+	unsigned int ihth = (tst_char[2]*0x100)+ tst_char[3];
+	cout << "iwth:" << iwth << endl;
+	cout << "ihth:" << ihth << endl;
+	printf("iwth=0x%x\n", iwth);
+	printf("ihth=0x%x\n", ihth);
+	unsigned int* piwh = &iwth;
+	unsigned short test_short = 0;
+	printf("test_short=%d\n", test_short);
+	wstring test_omit;
+	test_omit= L"¡­";
+	test_omit;
+	short testid = -1;
+	printf("testid=%d\n", testid);
+	short* ptestid = &testid;
+	using u8 = unsigned char;
+	using u16 = unsigned short;
+	using u32 = unsigned int;
+	struct test_bit
+	{
+		u8 hi_bit : 1;
+		u8 hi_bit2 : 2;
+		u8 hi_bit3 : 3;
+		u8 hi_bit4 : 2;
+	}tbit = {1,2,3,0};
+	void* ptbit = &tbit;
+	int test_multi_array[3][5] = {{ 0,1, 2,3,4}, { 5, 6, 7,8,9}, { 10,11,12,13,14 }};
+	char sp_test[10] = { '0', '1', '2', '3', '4', '5', '6', '7', '8' };
+	int ii = 255;
+	struct buff_data
+	{
+		u8 data_h : 4;
+		u8 data_l : 4;
+	};
+	u8 bdd = 0xc2;
+	buff_data* pbuff = (buff_data*)&bdd;
+	struct buff_data_ex
+	{
+		u8 data_h ;
+		u8 data_l;
+		u8 data_h1;
+		u8 data_l2;
+
+	};
+	buff_data_ex bddd = { 0, 1, 0x1d, 0xce };
+	u32* pbdd = (u32*)&bddd;
+	printf("ddd=0x%x\n", *pbdd);
+	printf("sizeof u32 is %d",sizeof *pbdd);
+	/*const int buff_len = 256;
+	char cbuff[buff_len] = { 0 };
+	while (true)
+	{
+	int len = read(stdin, cbuff, buff_len);
+	}*/
+	sprintf_s(sp_test,10, "%d", ii);
+	/*const char* str_st = "road.fbx 0x701";
+	char str_buff[50] = { 0 };
+	unsigned short test_sh;
+	sscanf(str_st, "%s %x",str_buff, &test_sh);
+	*/
+	unsigned short test_shd = 0x701;
+	unsigned char test_over = 0xff;
+	test_over++;
+	unsigned char* pshd = (unsigned char*)&test_shd;
+	unsigned char shd1 = *pshd++;
+	unsigned char shd2 = *pshd;
+	string ikey("max&maj20190815x");
+	string crp_text = "2019081520190815";
+	unsigned char input[] = { 84, 103, 107, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 33, 84, 104, 105, 115, 32, 105, 115, 32, 97, 32, 116, 101, 115, 116, 33, 84, 104 // , 105, 115, 32, 105, 115, 32, 97, 46, 122
+};
+	BYTE testinputs[] = { 0xe1, 0x04, 0xe5, 0x5b, 0x00, 0x00, 0x00, 0x01, 0x00, 0x02, 0xa3, 0x00, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,  };
+	unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
+	unsigned char key[] = { 143, 194, 34, 208, 145, 203, 230, 143, 177, 246, 97, 206, 145, 92, 255, 84 };
+	unsigned char output[100] = { 0 };
+	unsigned char temp[100] = { 0 };
+	BYTE plainText[100] = { 0 };
+	//	unsigned char 
+	AESModeOfOperation moo;
+	//moo.set_key((unsigned char*)ikey.c_str());
+	moo.set_key((BYTE*)ikey.c_str());
+	moo.set_mode(MODE_CBC);
+	moo.set_iv(iv);
+	int olen = sizeof input;
+
+	memcpy(temp, input, sizeof input);
+	int len = moo.Encrypt(temp, olen, output);
+	printf("len = %d\n", len);
+	printf("output");
+	print(output, len);
+	printf("\n\nDecrypt----------\n");
+	len = moo.Decrypt(output, len, plainText);
+	printf("len = %d\n", len);
+	printf("input");
+	print(plainText, len);
+	unsigned char ixxx = 0x2 << 4 | 0xa;
+	char lpszMac[128];
+	memset(lpszMac, 0x00, sizeof(lpszMac));
+
+	//»ñÈ¡MAC
+	/**/GetMacByCmd(lpszMac);
+	printf("mac:%s\n", lpszMac);
 	return 0;
 }
 

@@ -286,6 +286,15 @@
     <ClCompile Include="af_timer.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="ft_video.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="get_web_time.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="aes.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -595,6 +604,15 @@
       <Filter>from_csdn_cly</Filter>
     </ClInclude>
     <ClInclude Include="..\..\af_include\af_timer.h" />
+    <ClInclude Include="..\..\af_include\ft_video.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="get_web_time.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="aes.h">
+      <Filter>sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
