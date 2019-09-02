@@ -28,7 +28,7 @@ namespace auto_future
 	*/
 	using namespace ImGui;
 
-	void font_face_manager::draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest, bool be_new)
+	int font_face_manager::draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest, bool be_new)
 	{
 		//if (fontSize != _font_rp._font_size)//!texture will be rebuilt
 		//{
@@ -71,7 +71,7 @@ namespace auto_future
 		{
 
 			printf("unknown fontface:%s\n", fontFace.c_str());
-			return;
+			return 0;
 		}
 
 		bool be_break = str_content[0] == L'O'&&str_content[1] == L'S';
@@ -84,7 +84,7 @@ namespace auto_future
 		GLuint& txt_id = pfrp->_txt_id;
 		dic_glyph_txt& txt_cd_container = pfrp->_dic_txt_cd;
 		bool will_omit_test = false;
-		
+		int cnt_char_perline = 0, cnt_char = 0;
 		for (auto& wstr_item:str_content)
 		{
 			auto& glyph_txt_it = txt_cd_container.find(wstr_item);
@@ -100,8 +100,13 @@ namespace auto_future
 				auto advance = glyph_txt_cd._advance;
 				float char_left_edge = end_pos.x + bearing.x*scale;
 				float char_right_edge = char_left_edge + tsize.x*scale;
+				cnt_char++;
 				if (char_right_edge>str_most_right_edge)
 				{
+					if (cnt_char_perline==0)
+					{
+						cnt_char_perline = cnt_char-1;
+					}
 					if (omit_rest)
 					{
 						wstring omit_sign = L"…";
@@ -156,6 +161,11 @@ namespace auto_future
 		}
 		end_pos.x = str_real_right_edg;
 		end_pos.y = maxy;
+		if (cnt_char_perline==0)
+		{
+			cnt_char_perline = cnt_char;
+		}
+		return cnt_char_perline;
 	}
 
 }

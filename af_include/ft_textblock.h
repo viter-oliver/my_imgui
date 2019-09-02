@@ -16,6 +16,8 @@ namespace auto_future
 			(char, _content[MAX_CONTENT_LEN]),
 			(bool, _width_limit, {false}),
 			(bool, _omit_rest, { false }),
+			(bool, _playing, { false }),
+			(float, _play_circle, { 1.0f }),
 			(int, _font_id, {0}),
 			(int, _font_size, { 16 }),
 			(float, _font_scale, { 1.f }))

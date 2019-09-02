@@ -10,77 +10,86 @@
 	"_visible" : true,
 	"aliase" : 
 	{
-		"acc_control" : [ 3, 1, 0, 3 ],
-		"acc_show" : [ 6, 0, 0, 3 ],
-		"acc_speed" : [ 4, 1, 0, 0, 3 ],
-		"acc_speed_color" : [ 0, 1, 0, 0, 3 ],
-		"active_navigation" : [ 6, 0, 13, 2 ],
-		"aeb_control" : [ 3, 1, 1, 3 ],
-		"aeb_show" : [ 6, 0, 1, 3 ],
-		"car_speed_prog" : [ 7, 1, 2, 2 ],
-		"car_speed_unit" : [ 4, 1, 0, 14, 2 ],
-		"control_beam_low_high" : [ 3, 1, 2, 3 ],
-		"control_lane0" : [ 3, 1, 0, 7, 4 ],
-		"control_lane1" : [ 3, 1, 1, 7, 4 ],
-		"control_lane2" : [ 3, 1, 2, 7, 4 ],
-		"control_lane3" : [ 3, 1, 3, 7, 4 ],
-		"control_lane4" : [ 3, 1, 4, 7, 4 ],
-		"control_lane5" : [ 3, 1, 5, 7, 4 ],
-		"control_lane6" : [ 3, 1, 6, 7, 4 ],
-		"control_lane7" : [ 3, 1, 7, 7, 4 ],
+		"acc_control" : [ 3, 1, 0, 2 ],
+		"acc_show" : [ 6, 0, 0, 2 ],
+		"acc_speed" : [ 4, 1, 0, 0, 2 ],
+		"acc_speed_color" : [ 0, 1, 0, 0, 2 ],
+		"active_navigation" : [ 6, 0, 13, 1 ],
+		"aeb_control" : [ 3, 1, 1, 2 ],
+		"aeb_show" : [ 6, 0, 1, 2 ],
+		"car_speed_prog" : [ 7, 1, 2, 1 ],
+		"car_speed_unit" : [ 4, 1, 0, 14, 1 ],
+		"control_beam_low_high" : [ 3, 1, 2, 2 ],
+		"control_lane0" : [ 3, 1, 0, 7, 3 ],
+		"control_lane1" : [ 3, 1, 1, 7, 3 ],
+		"control_lane2" : [ 3, 1, 2, 7, 3 ],
+		"control_lane3" : [ 3, 1, 3, 7, 3 ],
+		"control_lane4" : [ 3, 1, 4, 7, 3 ],
+		"control_lane5" : [ 3, 1, 5, 7, 3 ],
+		"control_lane6" : [ 3, 1, 6, 7, 3 ],
+		"control_lane7" : [ 3, 1, 7, 7, 3 ],
+		"control_left_ob" : [ 3, 1, 20, 1 ],
+		"control_mask" : [ 3, 1, 4 ],
 		"control_media_type" : [ 3, 1, 1, 5 ],
-		"control_navi_guide" : [ 3, 1, 0, 4 ],
-		"control_navi_note" : [ 3, 1, 1, 4 ],
-		"control_nseatbelt_abtire_fdring" : [ 3, 1, 5, 3 ],
-		"cur_lane" : [ 6, 0, 0, 1, 2 ],
+		"control_navi_guide" : [ 3, 1, 0, 3 ],
+		"control_navi_note" : [ 3, 1, 1, 3 ],
+		"control_nseatbelt_abtire_fdring" : [ 3, 1, 5, 2 ],
+		"control_right_ob" : [ 3, 1, 21, 1 ],
+		"cur_lane" : [ 6, 0, 0, 1, 1 ],
 		"media_content" : [ 4, 1, 0, 1, 5 ],
-		"navi_compass" : [ 4, 1, 0, 5, 4 ],
-		"navi_direction" : [ 6, 0, 7, 4 ],
-		"navi_start_info" : [ 4, 1, 21, 2 ],
-		"next_road_name" : [ 4, 1, 4, 4 ],
-		"number_of_lanes" : [ 2, 0, 7, 4 ],
+		"navi_compass" : [ 4, 1, 0, 5, 3 ],
+		"navi_direction" : [ 6, 0, 7, 3 ],
+		"navi_start_info" : [ 4, 1, 19, 1 ],
+		"next_road_name" : [ 4, 1, 4, 3 ],
+		"number_of_lanes" : [ 2, 0, 7, 3 ],
 		"pop_warning_dlg" : [ 6, 0, 7 ],
-		"prohibit_left_lane_change" : [ 6, 0, 16, 2 ],
-		"prohibit_right_lane_change" : [ 6, 0, 17, 2 ],
-		"road_distance" : [ 4, 1, 3, 4 ],
-		"rotate_speed_prog" : [ 7, 1, 3, 2 ],
-		"select_left_turn_low_fuel_hot_water" : [ 3, 1, 3, 3 ],
-		"select_right_turn_doors_open" : [ 3, 1, 4, 3 ],
-		"show_beam_low_high" : [ 6, 0, 2, 3 ],
+		"pos_hp" : [ 0, 0, 1, 7 ],
+		"road_distance" : [ 4, 1, 3, 3 ],
+		"rotate_speed_prog" : [ 7, 1, 3, 1 ],
+		"select_left_turn_low_fuel_hot_water" : [ 3, 1, 3, 2 ],
+		"select_right_turn_doors_open" : [ 3, 1, 4, 2 ],
+		"show_beam_low_high" : [ 6, 0, 2, 2 ],
 		"show_bg_border" : [ 1, 1, 0 ],
-		"show_distance0" : [ 6, 0, 4, 2 ],
-		"show_distance1" : [ 6, 0, 5, 2 ],
-		"show_distance2" : [ 6, 0, 6, 2 ],
-		"show_distance3" : [ 6, 0, 7, 2 ],
-		"show_distance4" : [ 6, 0, 8, 2 ],
-		"show_distance5" : [ 6, 0, 9, 2 ],
-		"show_lane" : [ 6, 0, 0, 0, 2 ],
-		"show_left_bend" : [ 6, 0, 19, 2 ],
-		"show_left_turn_low_fuel_hot_water" : [ 6, 0, 3, 3 ],
-		"show_limited_speed" : [ 6, 0, 2, 4 ],
-		"show_location" : [ 6, 0, 0, 22, 2 ],
+		"show_distance0" : [ 6, 0, 4, 1 ],
+		"show_distance1" : [ 6, 0, 5, 1 ],
+		"show_distance2" : [ 6, 0, 6, 1 ],
+		"show_distance3" : [ 6, 0, 7, 1 ],
+		"show_distance4" : [ 6, 0, 8, 1 ],
+		"show_distance5" : [ 6, 0, 9, 1 ],
+		"show_hp" : [ 6, 0, 1, 7 ],
+		"show_lane" : [ 6, 0, 0, 0, 1 ],
+		"show_left_bend" : [ 6, 0, 17, 1 ],
+		"show_left_ob" : [ 6, 0, 20, 1 ],
+		"show_left_turn_low_fuel_hot_water" : [ 6, 0, 3, 2 ],
+		"show_limited_speed" : [ 6, 0, 2, 3 ],
+		"show_location" : [ 6, 0, 0, 22, 1 ],
+		"show_mask" : [ 6, 0, 4 ],
 		"show_media" : [ 6, 0, 1, 5 ],
-		"show_navi_guide" : [ 6, 0, 0, 4 ],
-		"show_navi_info" : [ 6, 0, 4 ],
-		"show_navi_lt2rt" : [ 6, 0, 8, 4 ],
-		"show_navi_note" : [ 6, 0, 1, 4 ],
-		"show_navi_rt2lt" : [ 6, 0, 9, 4 ],
-		"show_north_direction" : [ 6, 0, 5, 4 ],
-		"show_nseatbelt_abtire_fdring" : [ 6, 0, 5, 3 ],
-		"show_obstacles" : [ 6, 0, 18, 2 ],
+		"show_navi_guide" : [ 6, 0, 0, 3 ],
+		"show_navi_info" : [ 6, 0, 3 ],
+		"show_navi_lt2rt" : [ 6, 0, 8, 3 ],
+		"show_navi_note" : [ 6, 0, 1, 3 ],
+		"show_navi_rt2lt" : [ 6, 0, 9, 3 ],
+		"show_north_direction" : [ 6, 0, 5, 3 ],
+		"show_nseatbelt_abtire_fdring" : [ 6, 0, 5, 2 ],
+		"show_obstacles" : [ 6, 0, 16, 1 ],
 		"show_phone_call" : [ 6, 0, 0, 5 ],
-		"show_right_bend" : [ 6, 0, 20, 2 ],
-		"show_right_turn_doors_open" : [ 6, 0, 4, 3 ],
-		"show_scene_base" : [ 6, 0, 0, 2 ],
+		"show_popdlg" : [ 6, 0, 0, 7 ],
+		"show_right_bend" : [ 6, 0, 18, 1 ],
+		"show_right_ob" : [ 6, 0, 21, 1 ],
+		"show_right_turn_doors_open" : [ 6, 0, 4, 2 ],
+		"show_rq_update" : [ 6, 0, 8 ],
+		"show_scene_base" : [ 6, 0, 0, 1 ],
 		"show_third_call" : [ 6, 0, 0, 0, 5 ],
-		"speed_limited" : [ 4, 1, 0, 2, 4 ],
-		"value_car_speed" : [ 4, 1, 14, 2 ],
-		"value_endurance" : [ 4, 1, 11, 2 ],
-		"value_gear" : [ 4, 1, 15, 2 ],
-		"value_north_direction" : [ 4, 1, 5, 4 ],
-		"value_remain_mileage" : [ 4, 1, 13, 2 ],
-		"value_remain_time" : [ 4, 1, 10, 2 ],
-		"value_rotate_speed" : [ 4, 1, 12, 2 ],
+		"speed_limited" : [ 4, 1, 0, 2, 3 ],
+		"update_counter" : [ 4, 1, 5, 8 ],
+		"value_car_speed" : [ 4, 1, 14, 1 ],
+		"value_endurance" : [ 4, 1, 11, 1 ],
+		"value_gear" : [ 4, 1, 15, 1 ],
+		"value_north_direction" : [ 4, 1, 5, 3 ],
+		"value_remain_mileage" : [ 4, 1, 13, 1 ],
+		"value_remain_time" : [ 4, 1, 10, 1 ],
+		"value_rotate_speed" : [ 4, 1, 12, 1 ],
 		"warning_content" : [ 4, 1, 0, 0, 7 ]
 	},
 	"binds" : 
@@ -94,10 +103,10 @@
 					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 4 ]
+						[ 2, 0, 7, 3 ]
 					]
 				},
-				"key" : [ 0, 0, 7, 4 ]
+				"key" : [ 0, 0, 7, 3 ]
 			},
 			
 			{
@@ -106,46 +115,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 13, 2 ]
+						[ 1, 1, 0 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 12, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n      return 120\n  else:\n      return 660\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 0, 0, 11, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n      return 0.0\n  else:\n      return 1.0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 1, 1, 11, 2 ]
+				"key" : [ 6, 0, 0, 0 ]
 			},
 			
 			{
@@ -154,82 +127,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 13, 2 ]
+						[ 1, 1, 0 ]
 					]
 				},
-				"key" : [ 6, 0, 10, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n     return -23\n  else:\n     return -70\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 0, 0, 1, 11, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 0, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 21, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 2 ]
-					]
-				},
-				"key" : [ 1, 0, 14, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 6, 7, 4 ]
+				"key" : [ 6, 0, 1, 0 ]
 			},
 			
 			{
@@ -238,22 +139,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0>1\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 4 ]
+						[ 2, 0, 7, 3 ]
 					]
 				},
-				"key" : [ 6, 0, 1, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 7, 4 ]
+				"key" : [ 6, 0, 1, 7, 3 ]
 			},
 			
 			{
@@ -262,46 +151,22 @@
 					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 4 ]
+						[ 2, 0, 7, 3 ]
 					]
 				},
-				"key" : [ 6, 0, 2, 7, 4 ]
+				"key" : [ 6, 0, 2, 7, 3 ]
 			},
 			
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"expression" : "def bind_fun(v0):\n  return v0\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 4 ]
+						[ 6, 0, 13, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 4, 7, 4 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 4 ]
-					]
-				},
-				"key" : [ 6, 0, 7, 7, 4 ]
+				"key" : [ 6, 0, 5, 3 ]
 			},
 			
 			{
@@ -310,52 +175,229 @@
 					"expression" : "def bind_fun(v0):\n  return v0>0\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 4 ]
+						[ 2, 0, 7, 3 ]
 					]
 				},
-				"key" : [ 6, 0, 0, 7, 4 ]
+				"key" : [ 6, 0, 0, 7, 3 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 0, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n     return -23\n  else:\n     return -70\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 0, 0, 1, 11, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 1, 0, 14, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 10, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 12, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n      return 120\n  else:\n      return 660\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 0, 0, 11, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n      return 0.0\n  else:\n      return 1.0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 1, 1, 11, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 19, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 3 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 7, 3 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 3 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 7, 3 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 3 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 7, 3 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 3 ]
+					]
+				},
+				"key" : [ 6, 0, 4, 7, 3 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 3 ]
+					]
+				},
+				"key" : [ 6, 0, 7, 7, 3 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 2, 0, 7, 4 ],
+				"key" : [ 2, 0, 7, 3 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 0, 7, 4 ],
-					[ 6, 0, 1, 7, 4 ],
-					[ 6, 0, 2, 7, 4 ],
-					[ 6, 0, 3, 7, 4 ],
-					[ 6, 0, 4, 7, 4 ],
-					[ 6, 0, 5, 7, 4 ],
-					[ 6, 0, 6, 7, 4 ],
-					[ 6, 0, 7, 7, 4 ],
-					[ 0, 0, 7, 4 ]
+					[ 6, 0, 0, 7, 3 ],
+					[ 6, 0, 1, 7, 3 ],
+					[ 6, 0, 2, 7, 3 ],
+					[ 6, 0, 3, 7, 3 ],
+					[ 6, 0, 4, 7, 3 ],
+					[ 6, 0, 5, 7, 3 ],
+					[ 6, 0, 6, 7, 3 ],
+					[ 6, 0, 7, 7, 3 ],
+					[ 0, 0, 7, 3 ]
 				]
 			},
 			
 			{
-				"key" : [ 6, 0, 13, 2 ],
+				"key" : [ 1, 1, 0 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 12, 2 ],
-					[ 6, 0, 10, 2 ],
-					[ 0, 0, 11, 2 ],
-					[ 1, 0, 14, 2 ],
-					[ 6, 0, 5, 4 ],
-					[ 6, 0, 3, 2 ],
-					[ 1, 1, 11, 2 ],
-					[ 0, 0, 1, 11, 2 ],
-					[ 6, 0, 21, 2 ]
+					[ 6, 0, 0, 0 ],
+					[ 6, 0, 1, 0 ]
 				]
 			},
 			
 			{
-				"key" : [ 6, 0, 0, 2 ],
+				"key" : [ 6, 0, 0, 1 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 1, 2 ]
+					[ 6, 0, 1, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 13, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 12, 1 ],
+					[ 6, 0, 10, 1 ],
+					[ 0, 0, 11, 1 ],
+					[ 1, 0, 14, 1 ],
+					[ 6, 0, 5, 3 ],
+					[ 6, 0, 3, 1 ],
+					[ 1, 1, 11, 1 ],
+					[ 0, 0, 1, 11, 1 ],
+					[ 6, 0, 19, 1 ]
 				]
 			}
 		]
@@ -387,26 +429,70 @@
 			"_round_utn" : 0.0,
 			"_sizeh" : 267.0,
 			"_sizew" : 800.0,
-			"_visible" : true,
-			"_with_border" : false,
-			"type" : "ft_block"
-		},
-		
-		{
-			"_adjacent_to_p" : 0.0,
-			"_aj_model" : 0,
-			"_anchor_type" : 0,
-			"_angle_srd" : 0.0,
-			"_aposx" : 0.0,
-			"_aposy" : 0.0,
-			"_name" : "ft_image",
-			"_posx" : 0.0,
-			"_posy" : 0.0,
-			"_sizeh" : 267.0,
-			"_sizew" : 800.0,
-			"_texture_index_txt" : 5,
 			"_visible" : false,
-			"type" : "ft_image"
+			"_with_border" : false,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 1.0,
+						"z" : 0.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h",
+					"_posx" : 0.0,
+					"_posy" : 132.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 4.0,
+					"_sizew" : 800.0,
+					"_visible" : false,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 1.0,
+						"z" : 0.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_v",
+					"_posx" : 398.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 267.0,
+					"_sizew" : 4.0,
+					"_visible" : false,
+					"_with_border" : false,
+					"type" : "ft_block"
+				}
+			],
+			"type" : "ft_block"
 		},
 		
 		{
@@ -448,10 +534,10 @@
 							"_name" : "ft_material_2d",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
-							"_primitive_name" : "road6.FBX0",
+							"_primitive_name" : "road7.FBX0",
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_visible" : true,
+							"_visible" : false,
 							"type" : "ft_material_2d"
 						}
 					],
@@ -525,9 +611,9 @@
 					"_tb_offset" : -1.0,
 					"_tb_txth" : 20.0,
 					"_tb_txtw" : 20.0,
-					"_texture_bg_index_txt" : 19,
-					"_texture_head_index_txt" : 21,
-					"_texture_thumb_index_txt" : 12,
+					"_texture_bg_index_txt" : 21,
+					"_texture_head_index_txt" : 23,
+					"_texture_thumb_index_txt" : 14,
 					"_thumb_visible" : true,
 					"_visible" : true,
 					"type" : "ft_slider"
@@ -557,9 +643,9 @@
 					"_tb_offset" : -1.0,
 					"_tb_txth" : 20.0,
 					"_tb_txtw" : 20.0,
-					"_texture_bg_index_txt" : 23,
-					"_texture_head_index_txt" : 25,
-					"_texture_thumb_index_txt" : 12,
+					"_texture_bg_index_txt" : 25,
+					"_texture_head_index_txt" : 27,
+					"_texture_thumb_index_txt" : 14,
 					"_thumb_visible" : true,
 					"_visible" : true,
 					"type" : "ft_slider"
@@ -596,7 +682,7 @@
 					"_posy" : -148.0,
 					"_sizeh" : 226.7330169677734,
 					"_sizew" : 337.3640136718750,
-					"_texture_index_txt" : 6,
+					"_texture_index_txt" : 8,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -632,7 +718,7 @@
 					"_posy" : -135.0,
 					"_sizeh" : 259.5169982910156,
 					"_sizew" : 337.3640136718750,
-					"_texture_index_txt" : 7,
+					"_texture_index_txt" : 9,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -668,7 +754,7 @@
 					"_posy" : -117.0,
 					"_sizeh" : 259.5169982910156,
 					"_sizew" : 337.3640136718750,
-					"_texture_index_txt" : 9,
+					"_texture_index_txt" : 11,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -704,7 +790,7 @@
 					"_posy" : -85.0,
 					"_sizeh" : 282.1370239257813,
 					"_sizew" : 535.7330322265625,
-					"_texture_index_txt" : 9,
+					"_texture_index_txt" : 11,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -740,7 +826,7 @@
 					"_posy" : -49.0,
 					"_sizeh" : 282.1370239257813,
 					"_sizew" : 535.7330322265625,
-					"_texture_index_txt" : 10,
+					"_texture_index_txt" : 12,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -776,7 +862,7 @@
 					"_posy" : -4.0,
 					"_sizeh" : 282.1370239257813,
 					"_sizew" : 535.7330322265625,
-					"_texture_index_txt" : 11,
+					"_texture_index_txt" : 13,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -790,6 +876,8 @@
 					"_font_size" : 30,
 					"_name" : "remain_time",
 					"_omit_rest" : false,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 630.0,
 					"_posy" : 69.0,
 					"_sizeh" : 20.0,
@@ -817,6 +905,8 @@
 							"_font_size" : 16,
 							"_name" : "unit",
 							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 0.0,
 							"_posy" : 19.0,
 							"_sizeh" : 20.0,
@@ -847,6 +937,8 @@
 					"_font_size" : 30,
 					"_name" : "endurance_value",
 					"_omit_rest" : false,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 660.0,
 					"_posy" : 73.0,
 					"_sizeh" : 20.0,
@@ -874,6 +966,8 @@
 							"_font_size" : 16,
 							"_name" : "endurance_unit",
 							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : -17.0,
 							"_posy" : 19.0,
 							"_sizeh" : 20.0,
@@ -904,7 +998,7 @@
 							"_posy" : -5.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_texture_index_txt" : 15,
+							"_texture_index_txt" : 17,
 							"_visible" : true,
 							"type" : "ft_image"
 						}
@@ -921,6 +1015,8 @@
 					"_font_size" : 30,
 					"_name" : "revolving_speed",
 					"_omit_rest" : false,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 660.0,
 					"_posy" : 29.0,
 					"_sizeh" : 20.0,
@@ -948,6 +1044,8 @@
 							"_font_size" : 12,
 							"_name" : "unit",
 							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 0.0,
 							"_posy" : 20.0,
 							"_sizeh" : 20.0,
@@ -978,6 +1076,8 @@
 					"_font_size" : 30,
 					"_name" : "remain_mileage",
 					"_omit_rest" : false,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 630.0,
 					"_posy" : 29.0,
 					"_sizeh" : 20.0,
@@ -1005,6 +1105,8 @@
 							"_font_size" : 16,
 							"_name" : "unit",
 							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 0.0,
 							"_posy" : 20.0,
 							"_sizeh" : 20.0,
@@ -1035,6 +1137,8 @@
 					"_font_size" : 60,
 					"_name" : "speed_value",
 					"_omit_rest" : false,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 97.0,
 					"_posy" : 49.0,
 					"_sizeh" : 20.0,
@@ -1062,6 +1166,8 @@
 							"_font_size" : 16,
 							"_name" : "speed_unit",
 							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 5.0,
 							"_posy" : 30.0,
 							"_sizeh" : 20.0,
@@ -1092,6 +1198,8 @@
 					"_font_size" : 60,
 					"_name" : "gear",
 					"_omit_rest" : false,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 382.0,
 					"_posy" : 68.0,
 					"_sizeh" : 20.0,
@@ -1107,79 +1215,68 @@
 					"_visible" : true,
 					"_width" : 42.09100341796875,
 					"_width_limit" : false,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_content" : " ",
+							"_font_id" : 0,
+							"_font_scale" : 1.0,
+							"_font_size" : 16,
+							"_name" : "ft_left_debug",
+							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
+							"_posx" : -211.4540100097656,
+							"_posy" : -84.58100128173828,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_txt_alignh_nml" : 0.0,
+							"_txt_alignv_nml" : 0.0,
+							"_txt_clr" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"_visible" : false,
+							"_width" : 200.0,
+							"_width_limit" : false,
+							"type" : "ft_textblock"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_content" : "",
+							"_font_id" : 0,
+							"_font_scale" : 1.0,
+							"_font_size" : 16,
+							"_name" : "ft_right_debug",
+							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
+							"_posx" : -211.4540100097656,
+							"_posy" : -33.83300018310547,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_txt_alignh_nml" : 0.0,
+							"_txt_alignv_nml" : 0.0,
+							"_txt_clr" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"_visible" : false,
+							"_width" : 200.0,
+							"_width_limit" : false,
+							"type" : "ft_textblock"
+						}
+					],
 					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_imge_pos" : 
-					[
-						
-						{
-							"x" : 6.0,
-							"y" : 197.0
-						},
-						
-						{
-							"x" : 262.0,
-							"y" : 45.0
-						},
-						
-						{
-							"x" : 262.0,
-							"y" : 19.0
-						},
-						
-						{
-							"x" : 6.0,
-							"y" : 19.0
-						}
-					],
-					"_name" : "left_rail",
-					"_posx" : 3.0,
-					"_posy" : -155.0,
-					"_sizeh" : 232.0490112304688,
-					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 117,
-					"_visible" : false,
-					"type" : "ft_quad_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_imge_pos" : 
-					[
-						
-						{
-							"x" : 6.0,
-							"y" : 45.0
-						},
-						
-						{
-							"x" : 262.0,
-							"y" : 197.0
-						},
-						
-						{
-							"x" : 262.0,
-							"y" : 19.0
-						},
-						
-						{
-							"x" : 6.0,
-							"y" : 19.0
-						}
-					],
-					"_name" : "right_rail",
-					"_posx" : 533.0,
-					"_posy" : -155.0,
-					"_sizeh" : 232.0490112304688,
-					"_sizew" : 406.3620300292969,
-					"_texture_index_txt" : 117,
-					"_visible" : false,
-					"type" : "ft_quad_image"
 				},
 				
 				{
@@ -1206,8 +1303,40 @@
 							"_posy" : -34.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : " ",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1223,8 +1352,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1240,8 +1401,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1257,8 +1450,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1274,8 +1499,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1291,8 +1548,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1308,8 +1597,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1325,8 +1646,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1342,8 +1695,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1359,8 +1744,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1376,8 +1793,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1393,8 +1842,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1410,8 +1891,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1427,8 +1940,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						},
 						
@@ -1444,8 +1989,40 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 114,
+							"_texture_index_txt" : 118,
 							"_visible" : false,
+							"childs" : 
+							[
+								
+								{
+									"_adjacent_to_p" : 0.0,
+									"_aj_model" : 0,
+									"_content" : "",
+									"_font_id" : 0,
+									"_font_scale" : 1.0,
+									"_font_size" : 16,
+									"_name" : "ft_textblock",
+									"_omit_rest" : false,
+									"_play_circle" : 0.0,
+									"_playing" : false,
+									"_posx" : 10.0,
+									"_posy" : 65.0,
+									"_sizeh" : 20.0,
+									"_sizew" : 20.0,
+									"_txt_alignh_nml" : 0.0,
+									"_txt_alignv_nml" : 0.0,
+									"_txt_clr" : 
+									{
+										"x" : 1.0,
+										"y" : 1.0,
+										"z" : 1.0
+									},
+									"_visible" : false,
+									"_width" : 200.0,
+									"_width_limit" : false,
+									"type" : "ft_textblock"
+								}
+							],
 							"type" : "ft_image"
 						}
 					],
@@ -1569,6 +2146,8 @@
 					"_font_size" : 22,
 					"_name" : "navi_start_info",
 					"_omit_rest" : true,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 400.0,
 					"_posy" : 8.458000183105469,
 					"_sizeh" : 20.0,
@@ -1585,6 +2164,40 @@
 					"_width" : 180.0,
 					"_width_limit" : true,
 					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "left_obstacle",
+					"_posx" : 256.0,
+					"_posy" : 1.0,
+					"_sizeh" : 60.0,
+					"_sizew" : 60.0,
+					"_texture_index_txt" : 116,
+					"_visible" : false,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "right_obstacle",
+					"_posx" : 476.0,
+					"_posy" : 1.0,
+					"_sizeh" : 60.0,
+					"_sizew" : 60.0,
+					"_texture_index_txt" : 116,
+					"_visible" : false,
+					"type" : "ft_image"
 				},
 				
 				{
@@ -1611,7 +2224,7 @@
 							"_posy" : -16.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 27,
+							"_texture_index_txt" : 29,
 							"_visible" : false,
 							"type" : "ft_image"
 						}
@@ -1646,7 +2259,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 133,
+					"_texture_index_txt" : 136,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -1660,6 +2273,8 @@
 							"_font_size" : 20,
 							"_name" : "a_spped",
 							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 33.0,
 							"_posy" : 19.0,
 							"_sizeh" : 20.0,
@@ -1693,7 +2308,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 128,
+					"_texture_index_txt" : 131,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1710,7 +2325,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 134,
+					"_texture_index_txt" : 137,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1727,7 +2342,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 139,
+					"_texture_index_txt" : 142,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1744,7 +2359,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 142,
+					"_texture_index_txt" : 145,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1761,7 +2376,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 141,
+					"_texture_index_txt" : 144,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -1793,7 +2408,7 @@
 					"_posy" : 148.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 39,
+					"_texture_index_txt" : 41,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1810,7 +2425,7 @@
 					"_posy" : 151.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
-					"_texture_index_txt" : 85,
+					"_texture_index_txt" : 87,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1827,7 +2442,7 @@
 					"_posy" : 151.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
-					"_texture_index_txt" : 18,
+					"_texture_index_txt" : 20,
 					"_visible" : true,
 					"childs" : 
 					[
@@ -1841,6 +2456,8 @@
 							"_font_size" : 16,
 							"_name" : "speed_limit_value",
 							"_omit_rest" : false,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 15.0,
 							"_posy" : 9.0,
 							"_sizeh" : 20.0,
@@ -1871,6 +2488,8 @@
 					"_font_size" : 22,
 					"_name" : "road_distance",
 					"_omit_rest" : true,
+					"_play_circle" : 0.0,
+					"_playing" : false,
 					"_posx" : 384.0,
 					"_posy" : 157.0,
 					"_sizeh" : 20.0,
@@ -1892,12 +2511,14 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_content" : " ",
+					"_content" : "",
 					"_font_id" : 0,
 					"_font_scale" : 1.0,
 					"_font_size" : 22,
 					"_name" : "poi_name",
 					"_omit_rest" : true,
+					"_play_circle" : 0.6999999880790710,
+					"_playing" : true,
 					"_posx" : 400.0,
 					"_posy" : 190.0,
 					"_sizeh" : 20.0,
@@ -1928,7 +2549,7 @@
 					"_posy" : 146.0,
 					"_sizeh" : 121.0,
 					"_sizew" : 121.0,
-					"_texture_index_txt" : 49,
+					"_texture_index_txt" : 51,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -1945,7 +2566,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 121.0,
 							"_sizew" : 121.0,
-							"_texture_index_txt" : 48,
+							"_texture_index_txt" : 50,
 							"_visible" : true,
 							"type" : "ft_image"
 						}
@@ -1965,7 +2586,7 @@
 					"_posy" : 189.0,
 					"_sizeh" : 48.0,
 					"_sizew" : 48.0,
-					"_texture_index_txt" : 13,
+					"_texture_index_txt" : 15,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -1994,7 +2615,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 55,
+							"_texture_index_txt" : 57,
 							"_visible" : true,
 							"type" : "ft_image"
 						},
@@ -2011,7 +2632,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 55,
+							"_texture_index_txt" : 57,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2028,7 +2649,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 55,
+							"_texture_index_txt" : 57,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2045,7 +2666,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 67,
+							"_texture_index_txt" : 69,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2062,7 +2683,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 67,
+							"_texture_index_txt" : 69,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2079,7 +2700,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 67,
+							"_texture_index_txt" : 69,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2096,7 +2717,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 67,
+							"_texture_index_txt" : 69,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2113,7 +2734,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 67,
+							"_texture_index_txt" : 69,
 							"_visible" : false,
 							"type" : "ft_image"
 						}
@@ -2259,6 +2880,23 @@
 		{
 			"_adjacent_to_p" : 0.0,
 			"_aj_model" : 0,
+			"_anchor_type" : 0,
+			"_angle_srd" : 0.0,
+			"_aposx" : 0.0,
+			"_aposy" : 0.0,
+			"_name" : "ft_image",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 267.0,
+			"_sizew" : 800.0,
+			"_texture_index_txt" : 5,
+			"_visible" : false,
+			"type" : "ft_image"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_name" : "media_info",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
@@ -2280,7 +2918,7 @@
 					"_posy" : 141.0,
 					"_sizeh" : 52.0,
 					"_sizew" : 52.0,
-					"_texture_index_txt" : 32,
+					"_texture_index_txt" : 34,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2297,7 +2935,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 16.0,
 							"_sizew" : 17.0,
-							"_texture_index_txt" : 33,
+							"_texture_index_txt" : 35,
 							"_visible" : true,
 							"type" : "ft_image"
 						},
@@ -2311,6 +2949,8 @@
 							"_font_size" : 18,
 							"_name" : "phone_number",
 							"_omit_rest" : true,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 45.0,
 							"_posy" : 16.0,
 							"_sizeh" : 20.0,
@@ -2344,7 +2984,7 @@
 					"_posy" : 141.0,
 					"_sizeh" : 52.0,
 					"_sizew" : 52.0,
-					"_texture_index_txt" : 31,
+					"_texture_index_txt" : 33,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2358,6 +2998,8 @@
 							"_font_size" : 18,
 							"_name" : "content",
 							"_omit_rest" : true,
+							"_play_circle" : 0.0,
+							"_playing" : false,
 							"_posx" : 45.0,
 							"_posy" : 16.0,
 							"_sizeh" : 20.0,
@@ -2406,7 +3048,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 120,
+					"_texture_index_txt" : 123,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2423,7 +3065,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 124,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2440,7 +3082,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 122,
+					"_texture_index_txt" : 125,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2457,7 +3099,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 123,
+					"_texture_index_txt" : 126,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2474,7 +3116,7 @@
 					"_posy" : 76.0,
 					"_sizeh" : 114.0,
 					"_sizew" : 56.0,
-					"_texture_index_txt" : 119,
+					"_texture_index_txt" : 122,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2491,7 +3133,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 124,
+					"_texture_index_txt" : 127,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2508,7 +3150,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 125,
+					"_texture_index_txt" : 128,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2525,7 +3167,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 126,
+					"_texture_index_txt" : 129,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2542,7 +3184,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 127,
+					"_texture_index_txt" : 130,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2559,7 +3201,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2576,7 +3218,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2593,7 +3235,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2610,7 +3252,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2627,7 +3269,7 @@
 					"_posy" : 55.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2644,7 +3286,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2661,7 +3303,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2678,7 +3320,7 @@
 					"_posy" : 56.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 118,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -2694,7 +3336,7 @@
 			"_posy" : 0.0,
 			"_sizeh" : 20.0,
 			"_sizew" : 20.0,
-			"_visible" : false,
+			"_visible" : true,
 			"childs" : 
 			[
 				
@@ -2706,26 +3348,28 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "pop_bg",
-					"_posx" : 313.0,
+					"_posx" : 100.0,
 					"_posy" : 62.0,
-					"_sizeh" : 54.0,
-					"_sizew" : 186.0,
-					"_texture_index_txt" : 0,
-					"_visible" : true,
+					"_sizeh" : 100.0,
+					"_sizew" : 600.0,
+					"_texture_index_txt" : 5,
+					"_visible" : false,
 					"childs" : 
 					[
 						
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
-							"_content" : "请保持车距",
+							"_content" : "System version:",
 							"_font_id" : 0,
 							"_font_scale" : 1.0,
 							"_font_size" : 30,
 							"_name" : "pop_content",
 							"_omit_rest" : false,
-							"_posx" : 92.0,
-							"_posy" : 27.0,
+							"_play_circle" : 0.0,
+							"_playing" : false,
+							"_posx" : 312.9510192871094,
+							"_posy" : 42.29100036621094,
 							"_sizeh" : 54.0,
 							"_sizew" : 186.0,
 							"_txt_alignh_nml" : 0.50,
@@ -2736,13 +3380,231 @@
 								"y" : 1.0,
 								"z" : 1.0
 							},
-							"_visible" : true,
+							"_visible" : false,
 							"_width" : 200.0,
 							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
 					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 1.0,
+						"z" : 0.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_block",
+					"_posx" : 403.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 267.0,
+					"_sizew" : 7.0,
+					"_visible" : false,
+					"_with_border" : true,
+					"type" : "ft_block"
+				}
+			],
+			"type" : "ft_base"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_name" : "request_update",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 20.0,
+			"_sizew" : 20.0,
+			"_visible" : false,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 1.0,
+						"z" : 0.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"_border_width_uhd" : 2.0,
+					"_name" : "ft_block",
+					"_posx" : 100.0,
+					"_posy" : 50.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 200.0,
+					"_sizew" : 600.0,
+					"_visible" : true,
+					"_with_border" : true,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "提示",
+					"_font_id" : 0,
+					"_font_scale" : 1.0,
+					"_font_size" : 18,
+					"_name" : "ft_titile",
+					"_omit_rest" : false,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 363.7000122070313,
+					"_posy" : 76.12300109863281,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "发现升级文件，15秒后将自动进入升级模式。",
+					"_font_id" : 0,
+					"_font_scale" : 1.0,
+					"_font_size" : 18,
+					"_name" : "warning0",
+					"_omit_rest" : false,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 202.9960021972656,
+					"_posy" : 109.9560089111328,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "请靠边停车，升级过程中请勿断电",
+					"_font_id" : 0,
+					"_font_scale" : 1.0,
+					"_font_size" : 18,
+					"_name" : "warning1",
+					"_omit_rest" : false,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 253.7450103759766,
+					"_posy" : 135.3310089111328,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "若取消升级请断开设备连接",
+					"_font_id" : 0,
+					"_font_scale" : 1.0,
+					"_font_size" : 18,
+					"_name" : "warning3",
+					"_omit_rest" : false,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 279.1190185546875,
+					"_posy" : 160.7050018310547,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "15S",
+					"_font_id" : 0,
+					"_font_scale" : 1.0,
+					"_font_size" : 18,
+					"_name" : "timer",
+					"_omit_rest" : false,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 363.7000122070313,
+					"_posy" : 202.9960021972656,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
 				}
 			],
 			"type" : "ft_base"
@@ -2753,8 +3615,7 @@
 		"img_ring_left_full.trk",
 		"img_ring_right_full.trk",
 		"road-0625.FBX0",
-		"road4.FBX0",
-		"road6.FBX0"
+		"road7.FBX0"
 	],
 	"fonts" : 
 	[
@@ -2766,15 +3627,15 @@
 		},
 		
 		{
-			"cols" : 21,
+			"cols" : 28,
 			"name" : "AutoFutureSokon_v1.1.0.ttf",
-			"rows" : 3
+			"rows" : 13
 		},
 		
 		{
-			"cols" : 21,
+			"cols" : 28,
 			"name" : "AutoFutureSokon-Light_v1.1.0.ttf",
-			"rows" : 3
+			"rows" : 13
 		}
 	],
 	"material_list" : 
@@ -2801,12 +3662,12 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						0.001249999972060323,
+						0.002499999944120646,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						-0.001872500055469573,
+						-0.003745000110939145,
 						0.0,
 						0.0,
 						0.0,
@@ -3018,8 +3879,8 @@
 			"ebo_len" : 378,
 			"format" : [ 3, 3, 2 ],
 			"mesh_id" : 0,
-			"model" : "road6.FBX",
-			"name" : "road6.FBX0",
+			"model" : "road7.FBX",
+			"name" : "road7.FBX0",
 			"vbo_len" : 3024
 		}
 	],
@@ -3031,12 +3892,14 @@
 		{
 			"fs_name" : "base_fs",
 			"name" : "sd_base",
+			"read_only" : false,
 			"vs_name" : "base_vs"
 		},
 		
 		{
 			"fs_name" : "fs",
 			"name" : "sd_simple",
+			"read_only" : false,
 			"vs_name" : "vs"
 		}
 	],
@@ -3064,9 +3927,9 @@
 			],
 			"prop_list" : 
 			[
-				[ 0, 0, 1, 8, 4 ],
-				[ 0, 0, 0, 8, 4 ],
-				[ 0, 0, 2, 8, 4 ]
+				[ 0, 0, 1, 8, 3 ],
+				[ 0, 0, 0, 8, 3 ],
+				[ 0, 0, 2, 8, 3 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3097,9 +3960,9 @@
 			],
 			"prop_list" : 
 			[
-				[ 0, 0, 0, 9, 4 ],
-				[ 0, 0, 1, 9, 4 ],
-				[ 0, 0, 2, 9, 4 ]
+				[ 0, 0, 0, 9, 3 ],
+				[ 0, 0, 1, 9, 3 ],
+				[ 0, 0, 2, 9, 3 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3167,10 +4030,10 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : false,
+		"show_aliase_edit" : true,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
-		"show_fonts_manager" : false,
+		"show_fonts_manager" : true,
 		"show_project_window" : true,
 		"show_property_window" : true,
 		"show_resource_manager" : false,

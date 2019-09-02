@@ -1,7 +1,10 @@
 #include "ft_textblock.h"
 #include "common_functions.h"
+#include <chrono>
 namespace auto_future
 {
+	using namespace chrono;
+
 	static bool get_font_item(void* data, int idx, const char** out_str)
 	{
 		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
@@ -15,7 +18,7 @@ namespace auto_future
 		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
 		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		reg_property_handle(&_txt_pt, 7, [this](void*){
+		reg_property_handle(&_txt_pt, 9, [this](void*){
 			auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
 			if (_txt_pt._font_id >= ft_nm_list.size())
 			{
@@ -23,10 +26,10 @@ namespace auto_future
 			}
 			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size());
 		});
-		reg_property_handle(&_txt_pt,8, [this](void*){
+		reg_property_handle(&_txt_pt,10, [this](void*){
 			ImGui::SliderInt("Font size", &_txt_pt._font_size, 8, 60); 
 		});
-		reg_property_handle(&_txt_pt,9, [this](void*){
+		reg_property_handle(&_txt_pt,11, [this](void*){
 			ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
 			
 		});
@@ -71,18 +74,42 @@ namespace auto_future
 		if (str_sz > 0)
 		{
 			//const GLuint max_pixel_size = 512 * 512;
+			static int cnt_char_pline = 0;
+			static int start_id = 0;
+			static steady_clock::time_point  lastTime;
 			if (be_new)
 			{
-				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
+				cnt_char_pline=g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
 				//real_size = end_pos - draw_pos;
 				_txt_area.Min = dpos;
 				_txt_area.Max = { end_pos.x, end_pos.y };
+				start_id = 0;
+				lastTime = steady_clock::now();
 				/*const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
 				dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
 				dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
 				draw_pos = { dpos.x, dpos.y };*/
 			}
-			g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
+			int cnt_dif = draw_content.size() - cnt_char_pline;
+			if (_txt_pt._playing&&cnt_dif>0)
+			{
+				wstring sub_content = draw_content.substr(start_id, cnt_char_pline);
+				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, sub_content, _txt_pt._txt_clr, screenw, false, false);
+				auto currentTime = steady_clock::now();
+				int delta = chrono::duration_cast<chrono::duration<int, std::milli>>(currentTime - lastTime).count();
+				auto circle_time = delta * 0.001f;
+				if (circle_time>_txt_pt._play_circle)
+				{
+					start_id++;
+					if (start_id > cnt_dif)
+						start_id = 0;
+					lastTime = currentTime;
+				}
+			}
+			else
+			{
+				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
+			}
 		}
 		af_vec2 real_size = end_pos - draw_pos;
 		_txt_area.Min = dpos;

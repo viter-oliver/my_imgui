@@ -142,7 +142,8 @@ void project_edit::popup_context_menu()
 			if (pparent)
 			{
 				bool find_ref = false;
-				auto find_ref_in_mstate_manager = [&](base_ui_component* pobj){
+				string obj_name;
+				auto find_ref_in_mstate_manager = [&](base_ui_component* pobj,string& obj_name){
 					for (auto& istm : g_mstate_manager)
 					{
 						auto& stm = *istm.second;
@@ -152,28 +153,31 @@ void project_edit::popup_context_menu()
 							auto& prp_pos = stm._prop_list[ix];
 							if (prp_pos._pobj == pobj)
 							{
+								obj_name = istm.first;
 								return true;
 							}
 						}
 					}
 					return false;
 				};
-				auto find_ref_in_alias = [&](base_ui_component* pobj){
+				auto find_ref_in_alias = [&](base_ui_component* pobj, string& obj_name){
 					for (auto& ialias:g_aliase_dic)
 					{
 						auto& ele_pos = *ialias.second;
 						if (ele_pos._pobj==pobj)
 						{
+							obj_name = ialias.first;
 							return true;
 						}
 					}
 					return false;
 				};
-				auto find_ref_in_binds = [&](base_ui_component* pobj){
+				auto find_ref_in_binds = [&](base_ui_component* pobj, string& obj_name){
 					for (auto& ibind : g_bind_dic)
 					{
 						if (ibind.first._pobj == pobj)
 						{
+							obj_name = ibind.first._pobj->get_name();
 							return true;
 						}
 					}
@@ -181,29 +185,37 @@ void project_edit::popup_context_menu()
 					{
 						if (ibindrec.first._pobj == pobj)
 						{
+							obj_name = ibindrec.first._pobj->get_name();
 							return true;
 						}
 					}
 					return false;
 				};
-				find_ref = find_ref_in_mstate_manager(_pcurrent_object);
+				find_ref = find_ref_in_mstate_manager(_pcurrent_object, obj_name);
+			
 				if (find_ref)
 				{
-					MessageBox(GetForegroundWindow(), "you can't delete the node, because the node is reference by state manager", "Warning", MB_OK);
+					string dlg_content = "you can't delete the node, because the node is referenced by state manager:";
+					dlg_content += obj_name;
+					MessageBox(GetForegroundWindow(), dlg_content.c_str(), "Warning", MB_OK);
 					ImGui::EndPopup();
 					return;
 				}
-				find_ref = find_ref_in_alias(_pcurrent_object);
+				find_ref = find_ref_in_alias(_pcurrent_object, obj_name);
 				if (find_ref)
 				{
-					MessageBox(GetForegroundWindow(), "you can't delete the node, because the node is reference by alias list", "Warning", MB_OK);
+					string dlg_content = "you can't delete the node, because the node is referenced by alias:";
+					dlg_content += obj_name;
+					MessageBox(GetForegroundWindow(), dlg_content.c_str(), "Warning", MB_OK);
 					ImGui::EndPopup();
 					return;
 				}
-				find_ref = find_ref_in_binds(_pcurrent_object);
+				find_ref = find_ref_in_binds(_pcurrent_object, obj_name);
 				if (find_ref)
 				{
-					MessageBox(GetForegroundWindow(), "you can't delete the node, because the node is reference by binds manager", "Warning", MB_OK);
+					string dlg_content = "you can't delete the node, because the node is referenced by binds:";
+					dlg_content += obj_name;
+					MessageBox(GetForegroundWindow(), dlg_content.c_str(), "Warning", MB_OK);
 					ImGui::EndPopup();
 					return;
 				}

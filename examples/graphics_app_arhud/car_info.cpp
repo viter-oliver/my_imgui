@@ -358,15 +358,29 @@ void register_car_cmd_handl()
 		u8 speed_unit=*pbuff;
 	});
 	g_msg_host.attach_monitor("engine coolant temp",[&](u8*pbuff,int len){
-		s16* engine_water_temp=(s16*)pbuff;
-		pbuff+=2;
-		u8 water_temp_status=*pbuff;
-		if (water_temp_status==0)
+		struct st_ct
 		{
-			bvalue = *engine_water_temp > 120;
-			LIGHT3_SET(en_hot_water, &bvalue);
-		}
+			u8 value : 7;
+			u8 signal : 1;
+		};
+		printf("b0=0x%x b1=0x%x\n", pbuff[0], pbuff[1]);
+		u8 low_byte = *pbuff;
+		pbuff++;
+		st_ct* psc = (st_ct*)pbuff;
 
+		s16 engine_water_temp = psc->value * 0x100 + low_byte;
+		if (psc->signal)
+			engine_water_temp = -engine_water_temp;
+		printf("engine coolant temp :%d\n", engine_water_temp);
+		//s16* engine_water_temp=(s16*)pbuff;
+		pbuff++;
+		u8 water_temp_status = *pbuff;
+		if (water_temp_status == 0)
+		{
+			bvalue = engine_water_temp > 120;
+			printf("bvalue=%d\n", bvalue);
+			LIGHT3_SET(en_hot_water, bvalue);
+		}
 	});
 	g_msg_host.attach_monitor("fuel level low",[&](u8*pbuff,int len){
 		u8 fuel_level_low=*pbuff;
@@ -400,9 +414,6 @@ void register_car_cmd_handl()
 			{
 				LIGHT2_SET(en_right_turn, false);
 				LIGHT3_SET(en_left_turn, false);
-				bvalue=false;
-				set_property_aliase_value("prohibit_left_lane_change", &bvalue);
-				set_property_aliase_value("prohibit_right_lane_change", &bvalue);	
 				be_turn_left = false;
 				be_turn_right = false;
 			}
@@ -411,46 +422,23 @@ void register_car_cmd_handl()
 			{
 				LIGHT2_SET(en_right_turn, false);
 				LIGHT3_SET(en_left_turn, true);
-				bvalue=false;
-				set_property_aliase_value("prohibit_right_lane_change", &bvalue);	
 				be_turn_left = true;
-				if(prohibit_lane_swith(left_lane_type))
-				{
-					bvalue=true;
-					set_property_aliase_value("prohibit_left_lane_change", &bvalue);
-				}
+			
 			}
 			break;
 		case en_turn_right:
 			{
 				LIGHT3_SET(en_left_turn, false);
 				LIGHT2_SET(en_right_turn, true);
-				bvalue=false;
-				set_property_aliase_value("prohibit_left_lane_change", &bvalue);	
 				be_turn_right = true;
-				if(prohibit_lane_swith(right_lane_type))
-				{
-					bvalue=true;
-					set_property_aliase_value("prohibit_right_lane_change", &bvalue);
-				}				
 			}
 			break;
 		case en_turn_both_on:
 			{
 				LIGHT2_SET(en_right_turn, true);
 				LIGHT3_SET(en_left_turn, true);
-				bvalue=true;
 				be_turn_left = true;
 				be_turn_right = true;
-				if(prohibit_lane_swith(left_lane_type))
-				{
-					set_property_aliase_value("prohibit_left_lane_change", &bvalue);
-				}
-				if(prohibit_lane_swith(right_lane_type))
-				{
-					set_property_aliase_value("prohibit_right_lane_change", &bvalue);
-				}		
-
 			}
 			break;
 		default:
@@ -517,8 +505,31 @@ void register_car_cmd_handl()
 	g_msg_host.attach_monitor("height adjustment",[&](u8*pbuff,int len){
 		u8 height_value=*pbuff++;
 	});
-	g_msg_host.attach_monitor("brightness adjustment",[&](u8*pbuff,int len){
-		u8 brightness_value=*pbuff++;
+	g_msg_host.attach_monitor("height value", [&](u8*pbuff, int len){
+		s8 ht_i = *pbuff++;
+		u8 ht_d = *pbuff;
+		float ht_value_f;
+		if (ht_i >= 0)
+			ht_value_f = ht_i + ht_d*0.01;
+		else
+			ht_value_f = ht_i - ht_d*0.01;
+		//printf("ht_value_f=%f\n",ht_value_f);
+
+	});
+	g_msg_host.attach_monitor("brightness adjustment", [&](u8*pbuff, int len){
+		u8 brightness_value = *pbuff++;
+	});
+	g_msg_host.attach_monitor("mpu version", [&](u8*pbuff, int len){
+		string mpu_version;
+		/*if (get_system_version(mpu_version))
+		{
+			snprintf(str_show, MAX_CONTENT_LEN, "Mpu system version:%s", mpu_version.c_str());
+			set_property_aliase_value("warning_content", str_show);
+			bool beshow = true;
+			set_property_aliase_value("show_popdlg", &beshow);
+
+			g_timer.active_timer(cs_tm_sversion_id, 148, 148);
+		}*/
 	});
 	 
 }
