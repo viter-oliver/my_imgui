@@ -102,7 +102,13 @@ namespace auto_future
 
 		}
 	}
-
+	enum omit_type
+	{
+		en_no_omit,
+		en_omit_rest,
+		en_omit_rest_with_ellipsis,
+		en_omit_type_number
+	};
 	class font_face_manager
 	{
 		FT_Library _ft;
@@ -301,7 +307,7 @@ namespace auto_future
 		}
 
 	
-		int draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, bool omit_rest,bool be_new);
+		int draw_wstring(ps_font_unit& pf_u, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, int omit_rest, bool be_new);
 	};
 
 	extern shared_ptr<font_face_manager> g_pfont_face_manager;

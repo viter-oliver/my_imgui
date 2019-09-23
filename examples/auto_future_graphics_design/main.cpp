@@ -767,6 +767,8 @@ int main(int argc, char* argv[])
 			}
 			if (ImGui::BeginMenu("Window"))
 			{
+				ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / ImGui::GetIO().Framerate, ImGui::GetIO().Framerate);
+
 				ImGui::MenuItem("Close Active Window", NULL, false, false);
 				ImGui::Separator();
 

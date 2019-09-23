@@ -10,87 +10,91 @@
 	"_visible" : true,
 	"aliase" : 
 	{
-		"acc_control" : [ 3, 1, 0, 2 ],
-		"acc_show" : [ 6, 0, 0, 2 ],
-		"acc_speed" : [ 4, 1, 0, 0, 2 ],
-		"acc_speed_color" : [ 0, 1, 0, 0, 2 ],
-		"active_navigation" : [ 6, 0, 13, 1 ],
-		"aeb_control" : [ 3, 1, 1, 2 ],
-		"aeb_show" : [ 6, 0, 1, 2 ],
-		"car_speed_prog" : [ 7, 1, 2, 1 ],
-		"car_speed_unit" : [ 4, 1, 0, 14, 1 ],
-		"control_beam_low_high" : [ 3, 1, 2, 2 ],
-		"control_lane0" : [ 3, 1, 0, 7, 3 ],
-		"control_lane1" : [ 3, 1, 1, 7, 3 ],
-		"control_lane2" : [ 3, 1, 2, 7, 3 ],
-		"control_lane3" : [ 3, 1, 3, 7, 3 ],
-		"control_lane4" : [ 3, 1, 4, 7, 3 ],
-		"control_lane5" : [ 3, 1, 5, 7, 3 ],
-		"control_lane6" : [ 3, 1, 6, 7, 3 ],
-		"control_lane7" : [ 3, 1, 7, 7, 3 ],
-		"control_left_ob" : [ 3, 1, 20, 1 ],
-		"control_mask" : [ 3, 1, 4 ],
-		"control_media_type" : [ 3, 1, 1, 5 ],
-		"control_navi_guide" : [ 3, 1, 0, 3 ],
-		"control_navi_note" : [ 3, 1, 1, 3 ],
-		"control_nseatbelt_abtire_fdring" : [ 3, 1, 5, 2 ],
-		"control_right_ob" : [ 3, 1, 21, 1 ],
-		"cur_lane" : [ 6, 0, 0, 1, 1 ],
-		"media_content" : [ 4, 1, 0, 1, 5 ],
-		"navi_compass" : [ 4, 1, 0, 5, 3 ],
-		"navi_direction" : [ 6, 0, 7, 3 ],
-		"navi_start_info" : [ 4, 1, 19, 1 ],
-		"next_road_name" : [ 4, 1, 4, 3 ],
-		"number_of_lanes" : [ 2, 0, 7, 3 ],
-		"pop_warning_dlg" : [ 6, 0, 7 ],
-		"pos_hp" : [ 0, 0, 1, 7 ],
-		"road_distance" : [ 4, 1, 3, 3 ],
-		"rotate_speed_prog" : [ 7, 1, 3, 1 ],
-		"select_left_turn_low_fuel_hot_water" : [ 3, 1, 3, 2 ],
-		"select_right_turn_doors_open" : [ 3, 1, 4, 2 ],
-		"show_beam_low_high" : [ 6, 0, 2, 2 ],
-		"show_bg_border" : [ 1, 1, 0 ],
-		"show_distance0" : [ 6, 0, 4, 1 ],
-		"show_distance1" : [ 6, 0, 5, 1 ],
-		"show_distance2" : [ 6, 0, 6, 1 ],
-		"show_distance3" : [ 6, 0, 7, 1 ],
-		"show_distance4" : [ 6, 0, 8, 1 ],
-		"show_distance5" : [ 6, 0, 9, 1 ],
-		"show_hp" : [ 6, 0, 1, 7 ],
-		"show_lane" : [ 6, 0, 0, 0, 1 ],
-		"show_left_bend" : [ 6, 0, 17, 1 ],
-		"show_left_ob" : [ 6, 0, 20, 1 ],
-		"show_left_turn_low_fuel_hot_water" : [ 6, 0, 3, 2 ],
-		"show_limited_speed" : [ 6, 0, 2, 3 ],
-		"show_location" : [ 6, 0, 0, 22, 1 ],
-		"show_mask" : [ 6, 0, 4 ],
-		"show_media" : [ 6, 0, 1, 5 ],
-		"show_navi_guide" : [ 6, 0, 0, 3 ],
-		"show_navi_info" : [ 6, 0, 3 ],
-		"show_navi_lt2rt" : [ 6, 0, 8, 3 ],
-		"show_navi_note" : [ 6, 0, 1, 3 ],
-		"show_navi_rt2lt" : [ 6, 0, 9, 3 ],
-		"show_north_direction" : [ 6, 0, 5, 3 ],
-		"show_nseatbelt_abtire_fdring" : [ 6, 0, 5, 2 ],
-		"show_obstacles" : [ 6, 0, 16, 1 ],
-		"show_phone_call" : [ 6, 0, 0, 5 ],
-		"show_popdlg" : [ 6, 0, 0, 7 ],
-		"show_right_bend" : [ 6, 0, 18, 1 ],
-		"show_right_ob" : [ 6, 0, 21, 1 ],
-		"show_right_turn_doors_open" : [ 6, 0, 4, 2 ],
-		"show_rq_update" : [ 6, 0, 8 ],
-		"show_scene_base" : [ 6, 0, 0, 1 ],
-		"show_third_call" : [ 6, 0, 0, 0, 5 ],
-		"speed_limited" : [ 4, 1, 0, 2, 3 ],
-		"update_counter" : [ 4, 1, 5, 8 ],
-		"value_car_speed" : [ 4, 1, 14, 1 ],
-		"value_endurance" : [ 4, 1, 11, 1 ],
-		"value_gear" : [ 4, 1, 15, 1 ],
-		"value_north_direction" : [ 4, 1, 5, 3 ],
-		"value_remain_mileage" : [ 4, 1, 13, 1 ],
-		"value_remain_time" : [ 4, 1, 10, 1 ],
-		"value_rotate_speed" : [ 4, 1, 12, 1 ],
-		"warning_content" : [ 4, 1, 0, 0, 7 ]
+		"acc_control" : [ 3, 1, 0, 1 ],
+		"acc_show" : [ 6, 0, 0, 1 ],
+		"acc_speed" : [ 4, 1, 0, 0, 1 ],
+		"acc_speed_color" : [ 0, 1, 0, 0, 1 ],
+		"active_navigation" : [ 6, 0, 13, 0 ],
+		"aeb_control" : [ 3, 1, 1, 1 ],
+		"aeb_show" : [ 6, 0, 1, 1 ],
+		"brightness_pg" : [ 3, 0, 1, 9 ],
+		"brightness_value" : [ 4, 1, 0, 2, 9 ],
+		"car_speed_prog" : [ 7, 1, 2, 0 ],
+		"car_speed_unit" : [ 4, 1, 0, 14, 0 ],
+		"control_beam_low_high" : [ 3, 1, 2, 1 ],
+		"control_lane0" : [ 3, 1, 0, 7, 2 ],
+		"control_lane1" : [ 3, 1, 1, 7, 2 ],
+		"control_lane2" : [ 3, 1, 2, 7, 2 ],
+		"control_lane3" : [ 3, 1, 3, 7, 2 ],
+		"control_lane4" : [ 3, 1, 4, 7, 2 ],
+		"control_lane5" : [ 3, 1, 5, 7, 2 ],
+		"control_lane6" : [ 3, 1, 6, 7, 2 ],
+		"control_lane7" : [ 3, 1, 7, 7, 2 ],
+		"control_left_ob" : [ 3, 1, 20, 0 ],
+		"control_media_type" : [ 3, 1, 1, 3 ],
+		"control_navi_guide" : [ 3, 1, 0, 2 ],
+		"control_navi_note" : [ 3, 1, 1, 2 ],
+		"control_nseatbelt_abtire_fdring" : [ 3, 1, 5, 1 ],
+		"control_right_ob" : [ 3, 1, 21, 0 ],
+		"cur_lane" : [ 6, 0, 0, 1, 0 ],
+		"height_pg" : [ 3, 0, 1, 8 ],
+		"height_value" : [ 4, 1, 0, 2, 8 ],
+		"horizon_pg" : [ 3, 0, 1, 10 ],
+		"horizon_value" : [ 4, 1, 0, 2, 10 ],
+		"media_content" : [ 4, 1, 0, 1, 3 ],
+		"navi_compass" : [ 4, 1, 0, 5, 2 ],
+		"navi_direction" : [ 6, 0, 7, 2 ],
+		"navi_start_info" : [ 4, 1, 19, 0 ],
+		"next_road_name" : [ 4, 1, 4, 2 ],
+		"number_of_lanes" : [ 2, 0, 7, 2 ],
+		"pop_warning_dlg" : [ 6, 0, 5 ],
+		"road_distance" : [ 4, 1, 3, 2 ],
+		"rotate_speed_prog" : [ 7, 1, 3, 0 ],
+		"select_left_turn_low_fuel_hot_water" : [ 3, 1, 3, 1 ],
+		"select_right_turn_doors_open" : [ 3, 1, 4, 1 ],
+		"show_beam_low_high" : [ 6, 0, 2, 1 ],
+		"show_bg_border" : [ 6, 0, 8 ],
+		"show_brightness" : [ 6, 0, 9 ],
+		"show_distance0" : [ 6, 0, 4, 0 ],
+		"show_distance1" : [ 6, 0, 5, 0 ],
+		"show_distance2" : [ 6, 0, 6, 0 ],
+		"show_distance3" : [ 6, 0, 7, 0 ],
+		"show_distance4" : [ 6, 0, 8, 0 ],
+		"show_distance5" : [ 6, 0, 9, 0 ],
+		"show_horizon" : [ 6, 0, 10 ],
+		"show_lane" : [ 6, 0, 0, 0, 0 ],
+		"show_left_bend" : [ 6, 0, 17, 0 ],
+		"show_left_ob" : [ 6, 0, 20, 0 ],
+		"show_left_turn_low_fuel_hot_water" : [ 6, 0, 3, 1 ],
+		"show_limited_speed" : [ 6, 0, 2, 2 ],
+		"show_location" : [ 6, 0, 0, 22, 0 ],
+		"show_media" : [ 6, 0, 1, 3 ],
+		"show_navi_guide" : [ 6, 0, 0, 2 ],
+		"show_navi_info" : [ 6, 0, 2 ],
+		"show_navi_lt2rt" : [ 6, 0, 8, 2 ],
+		"show_navi_note" : [ 6, 0, 1, 2 ],
+		"show_navi_rt2lt" : [ 6, 0, 9, 2 ],
+		"show_north_direction" : [ 6, 0, 5, 2 ],
+		"show_nseatbelt_abtire_fdring" : [ 6, 0, 5, 1 ],
+		"show_obstacles" : [ 6, 0, 16, 0 ],
+		"show_phone_call" : [ 6, 0, 0, 3 ],
+		"show_popdlg" : [ 6, 0, 0, 5 ],
+		"show_right_bend" : [ 6, 0, 18, 0 ],
+		"show_right_ob" : [ 6, 0, 21, 0 ],
+		"show_right_turn_doors_open" : [ 6, 0, 4, 1 ],
+		"show_rq_update" : [ 6, 0, 6 ],
+		"show_scene_base" : [ 6, 0, 0, 0 ],
+		"show_third_call" : [ 6, 0, 0, 0, 3 ],
+		"speed_limited" : [ 4, 1, 0, 2, 2 ],
+		"update_counter" : [ 4, 1, 5, 6 ],
+		"value_car_speed" : [ 4, 1, 14, 0 ],
+		"value_endurance" : [ 4, 1, 11, 0 ],
+		"value_gear" : [ 4, 1, 15, 0 ],
+		"value_north_direction" : [ 4, 1, 5, 2 ],
+		"value_remain_mileage" : [ 4, 1, 13, 0 ],
+		"value_remain_time" : [ 4, 1, 10, 0 ],
+		"value_rotate_speed" : [ 4, 1, 12, 0 ],
+		"warning_content" : [ 4, 1, 0, 0, 5 ]
 	},
 	"binds" : 
 	{
@@ -100,73 +104,25 @@
 			{
 				"bind_unit" : 
 				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
 					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 3 ]
+						[ 2, 0, 7, 2 ]
 					]
 				},
-				"key" : [ 0, 0, 7, 3 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 1, 1, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 0, 0 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 1, 1, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 0 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>1\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 3 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 7, 3 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 3 ]
-					]
-				},
-				"key" : [ 6, 0, 2, 7, 3 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 5, 3 ]
+				"key" : [ 0, 0, 7, 2 ]
 			},
 			
 			{
@@ -175,118 +131,34 @@
 					"expression" : "def bind_fun(v0):\n  return v0>0\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 3 ]
+						[ 2, 0, 7, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 0, 7, 3 ]
+				"key" : [ 6, 0, 0, 7, 2 ]
 			},
 			
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"expression" : "def bind_fun(v0):\n  return v0>1\n",
 					"param_list" : 
 					[
-						[ 6, 0, 0, 1 ]
+						[ 2, 0, 7, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 1, 1 ]
+				"key" : [ 6, 0, 1, 7, 2 ]
 			},
 			
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n     return -23\n  else:\n     return -70\n",
+					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
 					"param_list" : 
 					[
-						[ 6, 0, 13, 1 ]
+						[ 2, 0, 7, 2 ]
 					]
 				},
-				"key" : [ 0, 0, 1, 11, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 1, 0, 14, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 10, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 12, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n      return 120\n  else:\n      return 660\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 0, 0, 11, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n      return 0.0\n  else:\n      return 1.0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 1, 1, 11, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 19, 1 ]
+				"key" : [ 6, 0, 2, 7, 2 ]
 			},
 			
 			{
@@ -295,34 +167,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 3 ]
+						[ 2, 0, 7, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 3, 7, 3 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 3 ]
-					]
-				},
-				"key" : [ 6, 0, 6, 7, 3 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>5\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 3 ]
-					]
-				},
-				"key" : [ 6, 0, 5, 7, 3 ]
+				"key" : [ 6, 0, 3, 7, 2 ]
 			},
 			
 			{
@@ -331,10 +179,34 @@
 					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 3 ]
+						[ 2, 0, 7, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 4, 7, 3 ]
+				"key" : [ 6, 0, 4, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 7, 2 ]
 			},
 			
 			{
@@ -343,157 +215,186 @@
 					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
 					"param_list" : 
 					[
-						[ 2, 0, 7, 3 ]
+						[ 2, 0, 7, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 7, 7, 3 ]
+				"key" : [ 6, 0, 7, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 0, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 10, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n      return 120\n  else:\n      return 660\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 0, 0, 11, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n      return 0.0\n  else:\n      return 1.0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 1, 1, 11, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 12, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n     return -23\n  else:\n     return -70\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 0, 0, 1, 11, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 1, 0, 14, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 19, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 1, 1, 8 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 8 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 2, 0, 7, 3 ],
+				"key" : [ 2, 0, 7, 2 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 0, 7, 3 ],
-					[ 6, 0, 1, 7, 3 ],
-					[ 6, 0, 2, 7, 3 ],
-					[ 6, 0, 3, 7, 3 ],
-					[ 6, 0, 4, 7, 3 ],
-					[ 6, 0, 5, 7, 3 ],
-					[ 6, 0, 6, 7, 3 ],
-					[ 6, 0, 7, 7, 3 ],
-					[ 0, 0, 7, 3 ]
+					[ 6, 0, 0, 7, 2 ],
+					[ 6, 0, 1, 7, 2 ],
+					[ 6, 0, 2, 7, 2 ],
+					[ 6, 0, 3, 7, 2 ],
+					[ 6, 0, 4, 7, 2 ],
+					[ 6, 0, 5, 7, 2 ],
+					[ 6, 0, 6, 7, 2 ],
+					[ 6, 0, 7, 7, 2 ],
+					[ 0, 0, 7, 2 ]
 				]
 			},
 			
 			{
-				"key" : [ 1, 1, 0 ],
+				"key" : [ 6, 0, 0, 0 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 0, 0 ],
 					[ 6, 0, 1, 0 ]
 				]
 			},
 			
 			{
-				"key" : [ 6, 0, 0, 1 ],
+				"key" : [ 6, 0, 13, 0 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 1, 1 ]
+					[ 6, 0, 12, 0 ],
+					[ 6, 0, 10, 0 ],
+					[ 0, 0, 11, 0 ],
+					[ 1, 0, 14, 0 ],
+					[ 6, 0, 5, 2 ],
+					[ 6, 0, 3, 0 ],
+					[ 1, 1, 11, 0 ],
+					[ 0, 0, 1, 11, 0 ],
+					[ 6, 0, 19, 0 ]
 				]
 			},
 			
 			{
-				"key" : [ 6, 0, 13, 1 ],
+				"key" : [ 1, 1, 8 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 12, 1 ],
-					[ 6, 0, 10, 1 ],
-					[ 0, 0, 11, 1 ],
-					[ 1, 0, 14, 1 ],
-					[ 6, 0, 5, 3 ],
-					[ 6, 0, 3, 1 ],
-					[ 1, 1, 11, 1 ],
-					[ 0, 0, 1, 11, 1 ],
-					[ 6, 0, 19, 1 ]
+					[ 6, 0, 6, 8 ]
 				]
 			}
 		]
 	},
 	"childs" : 
 	[
-		
-		{
-			"_adjacent_to_p" : 0.0,
-			"_aj_model" : 0,
-			"_bdclr" : 
-			{
-				"w" : 1.0,
-				"x" : 0.02903739362955093,
-				"y" : 0.9831223487854004,
-				"z" : 0.1490122824907303
-			},
-			"_bkclr" : 
-			{
-				"w" : 1.0,
-				"x" : 0.0,
-				"y" : 0.0,
-				"z" : 0.0
-			},
-			"_border_width_uhd" : 3.0,
-			"_name" : "back",
-			"_posx" : 0.0,
-			"_posy" : 0.0,
-			"_round_utn" : 0.0,
-			"_sizeh" : 267.0,
-			"_sizew" : 800.0,
-			"_visible" : false,
-			"_with_border" : false,
-			"childs" : 
-			[
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_bdclr" : 
-					{
-						"w" : 1.0,
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_bkclr" : 
-					{
-						"w" : 1.0,
-						"x" : 0.0,
-						"y" : 1.0,
-						"z" : 0.0
-					},
-					"_border_width_uhd" : 1.0,
-					"_name" : "ft_h",
-					"_posx" : 0.0,
-					"_posy" : 132.0,
-					"_round_utn" : 0.0,
-					"_sizeh" : 4.0,
-					"_sizew" : 800.0,
-					"_visible" : false,
-					"_with_border" : false,
-					"type" : "ft_block"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_bdclr" : 
-					{
-						"w" : 1.0,
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_bkclr" : 
-					{
-						"w" : 1.0,
-						"x" : 0.0,
-						"y" : 1.0,
-						"z" : 0.0
-					},
-					"_border_width_uhd" : 1.0,
-					"_name" : "ft_v",
-					"_posx" : 398.0,
-					"_posy" : 0.0,
-					"_round_utn" : 0.0,
-					"_sizeh" : 267.0,
-					"_sizew" : 4.0,
-					"_visible" : false,
-					"_with_border" : false,
-					"type" : "ft_block"
-				}
-			],
-			"type" : "ft_block"
-		},
 		
 		{
 			"_adjacent_to_p" : 0.0,
@@ -604,16 +505,16 @@
 					"_name" : "left_pointer",
 					"_posx" : 48.0,
 					"_posy" : 0.0,
-					"_progress_nml" : 0.009999999776482582,
+					"_progress_nml" : 0.01300000026822090,
 					"_sizeh" : 116.0,
 					"_sizew" : 76.0,
 					"_tb_height" : 10.0,
 					"_tb_offset" : -1.0,
 					"_tb_txth" : 20.0,
 					"_tb_txtw" : 20.0,
-					"_texture_bg_index_txt" : 21,
-					"_texture_head_index_txt" : 23,
-					"_texture_thumb_index_txt" : 14,
+					"_texture_bg_index_txt" : 25,
+					"_texture_head_index_txt" : 27,
+					"_texture_thumb_index_txt" : 15,
 					"_thumb_visible" : true,
 					"_visible" : true,
 					"type" : "ft_slider"
@@ -636,16 +537,16 @@
 					"_name" : "right_pointer",
 					"_posx" : 676.0,
 					"_posy" : 0.0,
-					"_progress_nml" : 0.0,
+					"_progress_nml" : 0.02200000174343586,
 					"_sizeh" : 116.0,
 					"_sizew" : 76.0,
 					"_tb_height" : 8.0,
 					"_tb_offset" : -1.0,
 					"_tb_txth" : 20.0,
 					"_tb_txtw" : 20.0,
-					"_texture_bg_index_txt" : 25,
-					"_texture_head_index_txt" : 27,
-					"_texture_thumb_index_txt" : 14,
+					"_texture_bg_index_txt" : 29,
+					"_texture_head_index_txt" : 31,
+					"_texture_thumb_index_txt" : 15,
 					"_thumb_visible" : true,
 					"_visible" : true,
 					"type" : "ft_slider"
@@ -682,7 +583,7 @@
 					"_posy" : -148.0,
 					"_sizeh" : 226.7330169677734,
 					"_sizew" : 337.3640136718750,
-					"_texture_index_txt" : 8,
+					"_texture_index_txt" : 9,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -718,7 +619,7 @@
 					"_posy" : -135.0,
 					"_sizeh" : 259.5169982910156,
 					"_sizew" : 337.3640136718750,
-					"_texture_index_txt" : 9,
+					"_texture_index_txt" : 10,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -754,7 +655,7 @@
 					"_posy" : -117.0,
 					"_sizeh" : 259.5169982910156,
 					"_sizew" : 337.3640136718750,
-					"_texture_index_txt" : 11,
+					"_texture_index_txt" : 12,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -790,7 +691,7 @@
 					"_posy" : -85.0,
 					"_sizeh" : 282.1370239257813,
 					"_sizew" : 535.7330322265625,
-					"_texture_index_txt" : 11,
+					"_texture_index_txt" : 12,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -826,7 +727,7 @@
 					"_posy" : -49.0,
 					"_sizeh" : 282.1370239257813,
 					"_sizew" : 535.7330322265625,
-					"_texture_index_txt" : 12,
+					"_texture_index_txt" : 13,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -862,7 +763,7 @@
 					"_posy" : -4.0,
 					"_sizeh" : 282.1370239257813,
 					"_sizew" : 535.7330322265625,
-					"_texture_index_txt" : 13,
+					"_texture_index_txt" : 14,
 					"_visible" : false,
 					"type" : "ft_quad_image"
 				},
@@ -875,7 +776,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 30,
 					"_name" : "remain_time",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 630.0,
@@ -904,7 +805,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 16,
 							"_name" : "unit",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 0.0,
@@ -936,7 +837,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 30,
 					"_name" : "endurance_value",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 660.0,
@@ -965,7 +866,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 16,
 							"_name" : "endurance_unit",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : -17.0,
@@ -998,7 +899,7 @@
 							"_posy" : -5.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_texture_index_txt" : 17,
+							"_texture_index_txt" : 19,
 							"_visible" : true,
 							"type" : "ft_image"
 						}
@@ -1014,7 +915,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 30,
 					"_name" : "revolving_speed",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 660.0,
@@ -1043,7 +944,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 12,
 							"_name" : "unit",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 0.0,
@@ -1075,7 +976,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 30,
 					"_name" : "remain_mileage",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 630.0,
@@ -1104,7 +1005,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 16,
 							"_name" : "unit",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 0.0,
@@ -1136,7 +1037,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 60,
 					"_name" : "speed_value",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 97.0,
@@ -1165,7 +1066,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 16,
 							"_name" : "speed_unit",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 5.0,
@@ -1197,7 +1098,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 60,
 					"_name" : "gear",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 382.0,
@@ -1226,7 +1127,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 16,
 							"_name" : "ft_left_debug",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : -211.4540100097656,
@@ -1255,7 +1156,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 16,
 							"_name" : "ft_right_debug",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : -211.4540100097656,
@@ -1303,7 +1204,7 @@
 							"_posy" : -34.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1316,7 +1217,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1352,7 +1253,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1365,7 +1266,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1401,7 +1302,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1414,7 +1315,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1450,7 +1351,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1463,7 +1364,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1499,7 +1400,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1512,7 +1413,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1548,7 +1449,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1561,7 +1462,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1597,7 +1498,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1610,7 +1511,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1646,7 +1547,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1659,7 +1560,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1695,7 +1596,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1708,7 +1609,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1744,7 +1645,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1757,7 +1658,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1793,7 +1694,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1806,7 +1707,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1842,7 +1743,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1855,7 +1756,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1891,7 +1792,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1904,7 +1805,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1940,7 +1841,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -1953,7 +1854,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -1989,7 +1890,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 69.0,
 							"_sizew" : 69.0,
-							"_texture_index_txt" : 118,
+							"_texture_index_txt" : 122,
 							"_visible" : false,
 							"childs" : 
 							[
@@ -2002,7 +1903,7 @@
 									"_font_scale" : 1.0,
 									"_font_size" : 16,
 									"_name" : "ft_textblock",
-									"_omit_rest" : false,
+									"_omit_rest" : 0,
 									"_play_circle" : 0.0,
 									"_playing" : false,
 									"_posx" : 10.0,
@@ -2145,7 +2046,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 22,
 					"_name" : "navi_start_info",
-					"_omit_rest" : true,
+					"_omit_rest" : 1,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 400.0,
@@ -2174,11 +2075,11 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "left_obstacle",
-					"_posx" : 256.0,
-					"_posy" : 1.0,
+					"_posx" : 250.0,
+					"_posy" : 25.0,
 					"_sizeh" : 60.0,
 					"_sizew" : 60.0,
-					"_texture_index_txt" : 116,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2191,11 +2092,11 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "right_obstacle",
-					"_posx" : 476.0,
-					"_posy" : 1.0,
+					"_posx" : 490.0,
+					"_posy" : 25.0,
 					"_sizeh" : 60.0,
 					"_sizew" : 60.0,
-					"_texture_index_txt" : 116,
+					"_texture_index_txt" : 121,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2224,7 +2125,7 @@
 							"_posy" : -16.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 29,
+							"_texture_index_txt" : 33,
 							"_visible" : false,
 							"type" : "ft_image"
 						}
@@ -2259,7 +2160,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 136,
+					"_texture_index_txt" : 140,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2272,7 +2173,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 20,
 							"_name" : "a_spped",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 33.0,
@@ -2308,7 +2209,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 131,
+					"_texture_index_txt" : 135,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2325,7 +2226,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 137,
+					"_texture_index_txt" : 141,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2342,7 +2243,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 142,
+					"_texture_index_txt" : 146,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2359,7 +2260,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 145,
+					"_texture_index_txt" : 149,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2376,7 +2277,7 @@
 					"_posy" : 212.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 144,
+					"_texture_index_txt" : 148,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -2408,7 +2309,7 @@
 					"_posy" : 148.0,
 					"_sizeh" : 32.0,
 					"_sizew" : 32.0,
-					"_texture_index_txt" : 41,
+					"_texture_index_txt" : 45,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2425,7 +2326,7 @@
 					"_posy" : 151.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
-					"_texture_index_txt" : 87,
+					"_texture_index_txt" : 91,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -2442,7 +2343,7 @@
 					"_posy" : 151.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 34.0,
-					"_texture_index_txt" : 20,
+					"_texture_index_txt" : 24,
 					"_visible" : true,
 					"childs" : 
 					[
@@ -2455,7 +2356,7 @@
 							"_font_scale" : 0.8999999761581421,
 							"_font_size" : 16,
 							"_name" : "speed_limit_value",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 15.0,
@@ -2487,7 +2388,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 22,
 					"_name" : "road_distance",
-					"_omit_rest" : true,
+					"_omit_rest" : 1,
 					"_play_circle" : 0.0,
 					"_playing" : false,
 					"_posx" : 384.0,
@@ -2516,7 +2417,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 22,
 					"_name" : "poi_name",
-					"_omit_rest" : true,
+					"_omit_rest" : 1,
 					"_play_circle" : 0.6999999880790710,
 					"_playing" : true,
 					"_posx" : 400.0,
@@ -2549,7 +2450,7 @@
 					"_posy" : 146.0,
 					"_sizeh" : 121.0,
 					"_sizew" : 121.0,
-					"_texture_index_txt" : 51,
+					"_texture_index_txt" : 55,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2566,7 +2467,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 121.0,
 							"_sizew" : 121.0,
-							"_texture_index_txt" : 50,
+							"_texture_index_txt" : 54,
 							"_visible" : true,
 							"type" : "ft_image"
 						}
@@ -2586,7 +2487,7 @@
 					"_posy" : 189.0,
 					"_sizeh" : 48.0,
 					"_sizew" : 48.0,
-					"_texture_index_txt" : 15,
+					"_texture_index_txt" : 16,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -2599,7 +2500,7 @@
 					"_posy" : 0.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 1.0,
-					"_visible" : true,
+					"_visible" : false,
 					"childs" : 
 					[
 						
@@ -2615,7 +2516,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 57,
+							"_texture_index_txt" : 61,
 							"_visible" : true,
 							"type" : "ft_image"
 						},
@@ -2632,7 +2533,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 57,
+							"_texture_index_txt" : 61,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2649,7 +2550,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 57,
+							"_texture_index_txt" : 61,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2666,7 +2567,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 69,
+							"_texture_index_txt" : 73,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2683,7 +2584,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 69,
+							"_texture_index_txt" : 73,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2700,7 +2601,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 69,
+							"_texture_index_txt" : 73,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2717,7 +2618,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 69,
+							"_texture_index_txt" : 73,
 							"_visible" : false,
 							"type" : "ft_image"
 						},
@@ -2734,7 +2635,7 @@
 							"_posy" : 4.0,
 							"_sizeh" : 32.0,
 							"_sizew" : 32.0,
-							"_texture_index_txt" : 69,
+							"_texture_index_txt" : 73,
 							"_visible" : false,
 							"type" : "ft_image"
 						}
@@ -2880,23 +2781,6 @@
 		{
 			"_adjacent_to_p" : 0.0,
 			"_aj_model" : 0,
-			"_anchor_type" : 0,
-			"_angle_srd" : 0.0,
-			"_aposx" : 0.0,
-			"_aposy" : 0.0,
-			"_name" : "ft_image",
-			"_posx" : 0.0,
-			"_posy" : 0.0,
-			"_sizeh" : 267.0,
-			"_sizew" : 800.0,
-			"_texture_index_txt" : 5,
-			"_visible" : false,
-			"type" : "ft_image"
-		},
-		
-		{
-			"_adjacent_to_p" : 0.0,
-			"_aj_model" : 0,
 			"_name" : "media_info",
 			"_posx" : 0.0,
 			"_posy" : 0.0,
@@ -2918,7 +2802,7 @@
 					"_posy" : 141.0,
 					"_sizeh" : 52.0,
 					"_sizew" : 52.0,
-					"_texture_index_txt" : 34,
+					"_texture_index_txt" : 38,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2935,7 +2819,7 @@
 							"_posy" : 0.0,
 							"_sizeh" : 16.0,
 							"_sizew" : 17.0,
-							"_texture_index_txt" : 35,
+							"_texture_index_txt" : 39,
 							"_visible" : true,
 							"type" : "ft_image"
 						},
@@ -2948,7 +2832,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 18,
 							"_name" : "phone_number",
-							"_omit_rest" : true,
+							"_omit_rest" : 1,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 45.0,
@@ -2984,7 +2868,7 @@
 					"_posy" : 141.0,
 					"_sizeh" : 52.0,
 					"_sizew" : 52.0,
-					"_texture_index_txt" : 33,
+					"_texture_index_txt" : 37,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -2997,7 +2881,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 18,
 							"_name" : "content",
-							"_omit_rest" : true,
+							"_omit_rest" : 1,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 45.0,
@@ -3048,7 +2932,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 123,
+					"_texture_index_txt" : 127,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3065,7 +2949,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 124,
+					"_texture_index_txt" : 128,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3082,7 +2966,7 @@
 					"_posy" : 18.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 125,
+					"_texture_index_txt" : 129,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3099,7 +2983,7 @@
 					"_posy" : 49.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 126,
+					"_texture_index_txt" : 130,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3116,7 +3000,7 @@
 					"_posy" : 76.0,
 					"_sizeh" : 114.0,
 					"_sizew" : 56.0,
-					"_texture_index_txt" : 122,
+					"_texture_index_txt" : 126,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3133,7 +3017,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 127,
+					"_texture_index_txt" : 131,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3150,7 +3034,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 128,
+					"_texture_index_txt" : 132,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3167,7 +3051,7 @@
 					"_posy" : 195.0,
 					"_sizeh" : 54.0,
 					"_sizew" : 39.0,
-					"_texture_index_txt" : 129,
+					"_texture_index_txt" : 133,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3184,7 +3068,7 @@
 					"_posy" : 181.0,
 					"_sizeh" : 36.0,
 					"_sizew" : 35.0,
-					"_texture_index_txt" : 130,
+					"_texture_index_txt" : 134,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -3201,7 +3085,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -3218,7 +3102,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -3235,7 +3119,7 @@
 					"_posy" : 205.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -3252,7 +3136,7 @@
 					"_posy" : 192.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -3269,7 +3153,7 @@
 					"_posy" : 55.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -3286,7 +3170,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -3303,7 +3187,7 @@
 					"_posy" : 42.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -3320,7 +3204,7 @@
 					"_posy" : 56.0,
 					"_sizeh" : 22.0,
 					"_sizew" : 22.0,
-					"_texture_index_txt" : 121,
+					"_texture_index_txt" : 125,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -3365,7 +3249,7 @@
 							"_font_scale" : 1.0,
 							"_font_size" : 30,
 							"_name" : "pop_content",
-							"_omit_rest" : false,
+							"_omit_rest" : 0,
 							"_play_circle" : 0.0,
 							"_playing" : false,
 							"_posx" : 312.9510192871094,
@@ -3380,42 +3264,13 @@
 								"y" : 1.0,
 								"z" : 1.0
 							},
-							"_visible" : false,
-							"_width" : 200.0,
+							"_visible" : true,
+							"_width" : 700.0,
 							"_width_limit" : false,
 							"type" : "ft_textblock"
 						}
 					],
 					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_bdclr" : 
-					{
-						"w" : 1.0,
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_bkclr" : 
-					{
-						"w" : 1.0,
-						"x" : 0.0,
-						"y" : 1.0,
-						"z" : 0.0
-					},
-					"_border_width_uhd" : 1.0,
-					"_name" : "ft_block",
-					"_posx" : 403.0,
-					"_posy" : 0.0,
-					"_round_utn" : 0.0,
-					"_sizeh" : 267.0,
-					"_sizew" : 7.0,
-					"_visible" : false,
-					"_with_border" : true,
-					"type" : "ft_block"
 				}
 			],
 			"type" : "ft_base"
@@ -3470,7 +3325,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 18,
 					"_name" : "ft_titile",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 363.7000122070313,
@@ -3499,7 +3354,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 18,
 					"_name" : "warning0",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 202.9960021972656,
@@ -3528,7 +3383,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 18,
 					"_name" : "warning1",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 253.7450103759766,
@@ -3557,7 +3412,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 18,
 					"_name" : "warning3",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 279.1190185546875,
@@ -3586,7 +3441,7 @@
 					"_font_scale" : 1.0,
 					"_font_size" : 18,
 					"_name" : "timer",
-					"_omit_rest" : false,
+					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 363.7000122070313,
@@ -3605,6 +3460,892 @@
 					"_width" : 200.0,
 					"_width_limit" : false,
 					"type" : "ft_textblock"
+				}
+			],
+			"type" : "ft_base"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_anchor_type" : 0,
+			"_angle_srd" : 0.0,
+			"_aposx" : 0.0,
+			"_aposy" : 0.0,
+			"_name" : "ft_image",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 267.0,
+			"_sizew" : 800.0,
+			"_texture_index_txt" : 6,
+			"_visible" : false,
+			"type" : "ft_image"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_bdclr" : 
+			{
+				"w" : 1.0,
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"_bkclr" : 
+			{
+				"w" : 1.0,
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"_border_width_uhd" : 4.0,
+			"_name" : "back",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_round_utn" : 0.0,
+			"_sizeh" : 267.0,
+			"_sizew" : 4.0,
+			"_visible" : false,
+			"_with_border" : false,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 0.9725490212440491,
+						"z" : 0.2078431397676468
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "pg_bg",
+					"_posx" : 673.0,
+					"_posy" : 50.74900054931641,
+					"_round_utn" : 0.0,
+					"_sizeh" : 173.6230010986328,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.1960784345865250,
+						"y" : 0.1960784345865250,
+						"z" : 0.1960784345865250
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "pg_ft",
+					"_posx" : 673.0,
+					"_posy" : 52.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 82.0,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "frame",
+					"_posx" : 547.0,
+					"_posy" : 0.0,
+					"_sizeh" : 267.0,
+					"_sizew" : 253.0,
+					"_texture_index_txt" : 8,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_content" : "0",
+							"_font_id" : 0,
+							"_font_scale" : 1.0,
+							"_font_size" : 20,
+							"_name" : "value",
+							"_omit_rest" : 0,
+							"_play_circle" : 1.0,
+							"_playing" : false,
+							"_posx" : 175.0,
+							"_posy" : 126.8720016479492,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_txt_alignh_nml" : 0.50,
+							"_txt_alignv_nml" : 0.0,
+							"_txt_clr" : 
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"_visible" : true,
+							"_width" : 200.0,
+							"_width_limit" : false,
+							"type" : "ft_textblock"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "icon",
+							"_posx" : 59.0,
+							"_posy" : 118.0,
+							"_sizeh" : 34.0,
+							"_sizew" : 34.0,
+							"_texture_index_txt" : 21,
+							"_visible" : true,
+							"type" : "ft_image"
+						}
+					],
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h",
+					"_posx" : 245.0,
+					"_posy" : 129.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 2.0,
+					"_sizew" : 310.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h1",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 4.0,
+					"_sizew" : 800.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h2",
+					"_posx" : 0.0,
+					"_posy" : 263.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 4.0,
+					"_sizew" : 800.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_v",
+					"_posx" : 398.0,
+					"_posy" : 60.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 140.0,
+					"_sizew" : 4.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_v1",
+					"_posx" : 796.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 267.0,
+					"_sizew" : 4.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h1_",
+					"_posx" : 392.0,
+					"_posy" : 60.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 2.0,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h1__",
+					"_posx" : 392.0,
+					"_posy" : 198.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 2.0,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				}
+			],
+			"type" : "ft_block"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_name" : "brightness_group",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 20.0,
+			"_sizew" : 20.0,
+			"_visible" : false,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 0.9725490212440491,
+						"z" : 0.2078431397676468
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "pg_bg",
+					"_posx" : 673.0,
+					"_posy" : 50.74900054931641,
+					"_round_utn" : 0.0,
+					"_sizeh" : 173.6230010986328,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.1960784345865250,
+						"y" : 0.1960784345865250,
+						"z" : 0.1960784345865250
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "pg_ft",
+					"_posx" : 673.0,
+					"_posy" : 52.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 82.0,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "frame",
+					"_posx" : 547.0,
+					"_posy" : 0.0,
+					"_sizeh" : 267.0,
+					"_sizew" : 253.0,
+					"_texture_index_txt" : 8,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_content" : "5",
+							"_font_id" : 0,
+							"_font_scale" : 1.0,
+							"_font_size" : 20,
+							"_name" : "value",
+							"_omit_rest" : 0,
+							"_play_circle" : 1.0,
+							"_playing" : false,
+							"_posx" : 175.0,
+							"_posy" : 126.8720092773438,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_txt_alignh_nml" : 0.50,
+							"_txt_alignv_nml" : 0.0,
+							"_txt_clr" : 
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"_visible" : true,
+							"_width" : 200.0,
+							"_width_limit" : false,
+							"type" : "ft_textblock"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "icon",
+							"_posx" : 59.0,
+							"_posy" : 118.0,
+							"_sizeh" : 34.0,
+							"_sizew" : 34.0,
+							"_texture_index_txt" : 18,
+							"_visible" : true,
+							"type" : "ft_image"
+						}
+					],
+					"type" : "ft_image"
+				}
+			],
+			"type" : "ft_base"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_name" : "horizon_group",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 20.0,
+			"_sizew" : 20.0,
+			"_visible" : false,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.0,
+						"y" : 0.9725490212440491,
+						"z" : 0.2078431397676468
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "pg_bg",
+					"_posx" : 523.0,
+					"_posy" : 50.74900054931641,
+					"_round_utn" : 0.0,
+					"_sizeh" : 173.6230010986328,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.1960784345865250,
+						"y" : 0.1960784345865250,
+						"z" : 0.1960784345865250
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "pg_ft",
+					"_posx" : 523.0,
+					"_posy" : 52.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 82.0,
+					"_sizew" : 15.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "frame",
+					"_posx" : 397.0,
+					"_posy" : 0.0,
+					"_sizeh" : 267.0,
+					"_sizew" : 253.0,
+					"_texture_index_txt" : 8,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_content" : "30",
+							"_font_id" : 0,
+							"_font_scale" : 1.0,
+							"_font_size" : 20,
+							"_name" : "value",
+							"_omit_rest" : 0,
+							"_play_circle" : 1.0,
+							"_playing" : false,
+							"_posx" : 175.0,
+							"_posy" : 126.8720016479492,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_txt_alignh_nml" : 0.50,
+							"_txt_alignv_nml" : 0.0,
+							"_txt_clr" : 
+							{
+								"x" : 0.0,
+								"y" : 0.0,
+								"z" : 0.0
+							},
+							"_visible" : true,
+							"_width" : 200.0,
+							"_width_limit" : false,
+							"type" : "ft_textblock"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "icon",
+							"_posx" : 59.0,
+							"_posy" : 118.0,
+							"_sizeh" : 34.0,
+							"_sizew" : 34.0,
+							"_texture_index_txt" : 22,
+							"_visible" : true,
+							"type" : "ft_image"
+						}
+					],
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h1",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 4.0,
+					"_sizew" : 310.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h2",
+					"_posx" : 490.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 4.0,
+					"_sizew" : 310.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h3",
+					"_posx" : 0.0,
+					"_posy" : 263.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 4.0,
+					"_sizew" : 310.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_h4",
+					"_posx" : 490.0,
+					"_posy" : 263.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 4.0,
+					"_sizew" : 310.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_v1",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 4.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_v2",
+					"_posx" : 796.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 4.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_v3",
+					"_posx" : 0.0,
+					"_posy" : 187.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 4.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_name" : "ft_v4",
+					"_posx" : 796.0,
+					"_posy" : 187.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 4.0,
+					"_visible" : true,
+					"_with_border" : false,
+					"type" : "ft_block"
 				}
 			],
 			"type" : "ft_base"
@@ -3683,7 +4424,7 @@
 				"text" : 
 				{
 					"el_size" : 1,
-					"txt_name" : "road_navi.png",
+					"txt_name" : "road.png",
 					"type" : "shader_uf_txt",
 					"usize" : 1,
 					"utype" : 35678
@@ -3927,9 +4668,9 @@
 			],
 			"prop_list" : 
 			[
-				[ 0, 0, 1, 8, 3 ],
-				[ 0, 0, 0, 8, 3 ],
-				[ 0, 0, 2, 8, 3 ]
+				[ 0, 0, 1, 8, 2 ],
+				[ 0, 0, 0, 8, 2 ],
+				[ 0, 0, 2, 8, 2 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3960,9 +4701,9 @@
 			],
 			"prop_list" : 
 			[
-				[ 0, 0, 0, 9, 3 ],
-				[ 0, 0, 1, 9, 3 ],
-				[ 0, 0, 2, 9, 3 ]
+				[ 0, 0, 0, 9, 2 ],
+				[ 0, 0, 1, 9, 2 ],
+				[ 0, 0, 2, 9, 2 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3977,44 +4718,44 @@
 	[
 		
 		{
-			"mipmap" : true,
+			"mipmap" : false,
 			"name" : "ldw_left.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : true,
+			"mipmap" : false,
 			"name" : "ldw_left_navi.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : true,
+			"mipmap" : false,
 			"name" : "ldw_right.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : true,
+			"mipmap" : false,
 			"name" : "ldw_right_navi.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : true,
+			"mipmap" : false,
 			"name" : "road.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : true,
+			"mipmap" : false,
 			"name" : "road_navi.png",
 			"separated" : false
 		},
 		
 		{
-			"mipmap" : true,
-			"name" : "road_navi_direction.png",
+			"mipmap" : false,
+			"name" : "road_navi_s.png",
 			"separated" : false
 		}
 	],
@@ -4033,7 +4774,7 @@
 		"show_aliase_edit" : true,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
-		"show_fonts_manager" : true,
+		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
 		"show_resource_manager" : false,

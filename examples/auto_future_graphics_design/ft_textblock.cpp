@@ -9,8 +9,15 @@ namespace auto_future
 	{
 		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
 		*out_str = ft_nm_list[idx]->_name.c_str();
+
 		return true;
 	}
+	static const char* omit_show[en_omit_type_number] =
+	{
+		"no omit",
+		"omit rest",
+		"omit rest with ellipsis",
+	};
 	ft_textblock::ft_textblock()
 		: _txt_area(0.f, 0.f, 0.f, 0.f)
 	{
@@ -18,13 +25,16 @@ namespace auto_future
 		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
 		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		reg_property_handle(&_txt_pt, 6, [this](void*){
+			ImGui::Combo("omit:", &_txt_pt._omit_rest, omit_show, en_omit_type_number);
+		});
 		reg_property_handle(&_txt_pt, 9, [this](void*){
 			auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
-			if (_txt_pt._font_id >= ft_nm_list.size())
+			
+			if (ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size()))
 			{
-				_txt_pt._font_id = 0;
+				_pfont_unit = ft_nm_list[_txt_pt._font_id];
 			}
-			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size());
 		});
 		reg_property_handle(&_txt_pt,10, [this](void*){
 			ImGui::SliderInt("Font size", &_txt_pt._font_size, 8, 60); 
@@ -35,8 +45,21 @@ namespace auto_future
 		});
 #endif
 	}
+	void ft_textblock::link()
+	{
+		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
+		if (_txt_pt._font_id>=ft_nm_list.size())
+		{
+			_txt_pt._font_id = 0;
+		}
+		_pfont_unit = ft_nm_list[_txt_pt._font_id];
+	}
 	void ft_textblock::draw()
 	{
+		if (!_pfont_unit)
+		{
+			return;
+		}
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 dpos = abpos + winpos;
@@ -74,12 +97,11 @@ namespace auto_future
 		if (str_sz > 0)
 		{
 			//const GLuint max_pixel_size = 512 * 512;
-			static int cnt_char_pline = 0;
 			static int start_id = 0;
 			static steady_clock::time_point  lastTime;
 			if (be_new)
 			{
-				cnt_char_pline=g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
+				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
 				//real_size = end_pos - draw_pos;
 				_txt_area.Min = dpos;
 				_txt_area.Max = { end_pos.x, end_pos.y };
@@ -90,25 +112,25 @@ namespace auto_future
 				dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
 				draw_pos = { dpos.x, dpos.y };*/
 			}
-			int cnt_dif = draw_content.size() - cnt_char_pline;
-			if (_txt_pt._playing&&cnt_dif>0)
+			if (_txt_pt._playing)
 			{
-				wstring sub_content = draw_content.substr(start_id, cnt_char_pline);
-				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, sub_content, _txt_pt._txt_clr, screenw, false, false);
+				wstring sub_content = draw_content.substr(start_id);
+				auto cnt_content= sub_content.size();
+				auto cnt_draw_char = g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, sub_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
 				auto currentTime = steady_clock::now();
 				int delta = chrono::duration_cast<chrono::duration<int, std::milli>>(currentTime - lastTime).count();
 				auto circle_time = delta * 0.001f;
 				if (circle_time>_txt_pt._play_circle)
 				{
 					start_id++;
-					if (start_id > cnt_dif)
+					if (cnt_content == cnt_draw_char)
 						start_id = 0;
 					lastTime = currentTime;
 				}
 			}
 			else
 			{
-				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
+				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
 			}
 		}
 		af_vec2 real_size = end_pos - draw_pos;

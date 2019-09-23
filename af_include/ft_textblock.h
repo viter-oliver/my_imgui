@@ -15,19 +15,20 @@ namespace auto_future
 			(float, _width, { 200.0f }),
 			(char, _content[MAX_CONTENT_LEN]),
 			(bool, _width_limit, {false}),
-			(bool, _omit_rest, { false }),
+			(int, _omit_rest, { 0 }),
 			(bool, _playing, { false }),
 			(float, _play_circle, { 1.0f }),
 			(int, _font_id, {0}),
 			(int, _font_size, { 16 }),
 			(float, _font_scale, { 1.f }))
 		ImRect _txt_area;
+		ps_font_unit _pfont_unit;
 		wstring _str_bk;
 		//shared_ptr<af_font_res_set> _pfont_res_set;
 	public:
 		ft_textblock();// : _txt_pt(), _txt_area(0.f, 0.f, 0.f, 0.f){}
 		~ft_textblock(){}
-		
+		void link();
 		void draw();
 		void set_content(const char* strct)
 		{

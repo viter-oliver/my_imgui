@@ -51,13 +51,13 @@ void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_
 	cobj = pobj;
 	cpgidx = page_idx;
 	cfdidx = off_idx;
-	if (_edit_new_obj)
+	/*if (_edit_new_obj)
 	{
 		if (_pnew_bind_unit)
 		{
-			delete _pnew_bind_unit;
+		//	delete _pnew_bind_unit;
 		}
-	}
+	}*/
 	_edit_new_obj = true;
 	_be_unsavable = true;
 	//_pnew_bind_unit._param_list.clear();
