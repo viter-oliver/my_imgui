@@ -93,7 +93,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\af_include;$(SolutionDir)\..\freetype;$(SolutionDir)\..\misc\freetype;$(SolutionDir)\..\Python_2.7.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32_LEAN_AND_MEAN;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
     <Link>
@@ -245,6 +245,7 @@
     <ClCompile Include="ui_assembler.cpp" />
     <ClCompile Include="unreferenced_items.cpp" />
     <ClCompile Include="user_control_imgui.cpp" />
+    <ClCompile Include="video_capture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\af_include\afb_load.h" />
@@ -353,6 +354,7 @@
     <ClInclude Include="ui_assembler.h" />
     <ClInclude Include="unreferenced_items.h" />
     <ClInclude Include="user_control_imgui.h" />
+    <ClInclude Include="video_capture.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\json\json_internalarray.inl" />

@@ -35,6 +35,7 @@ UINT CALLBACK ofnHookProc(HWND hDlg, UINT uMsg, UINT wParam, LONG lParam)
 	return FALSE;
 }
 shared_ptr<af_texture> _ptexture{ nullptr };
+string _key_name;
 void texture_edit::draw_texture_list()
 {
 	if (ImGui::Button("Load new image..."))
@@ -88,10 +89,22 @@ void texture_edit::draw_texture_list()
 				}
 				ttl->_sel = true;
 				_ptexture = ttl;
+				_key_name = keyname;
 			}
 			ImGui::TreePop();
 		}
 		ImGui::TreePop();
+	}
+	if (_ptexture&&ImGui::BeginPopupContextWindow())
+	{
+		if (ImGui::MenuItem("delete",NULL,false,_ptexture.use_count()==1))
+		{
+			auto& item_del = g_mtexture_list.find(_key_name);
+			g_mtexture_list.erase(item_del);
+			_ptexture = nullptr;
+			_key_name = "";
+		}
+		ImGui::EndPopup();
 	}
 }
 void texture_edit::draw_texture_item_property()

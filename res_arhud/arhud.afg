@@ -61,6 +61,7 @@
 		"show_distance3" : [ 6, 0, 7, 0 ],
 		"show_distance4" : [ 6, 0, 8, 0 ],
 		"show_distance5" : [ 6, 0, 9, 0 ],
+		"show_failsafe" : [ 6, 0, 11 ],
 		"show_horizon" : [ 6, 0, 10 ],
 		"show_lane" : [ 6, 0, 0, 0, 0 ],
 		"show_left_bend" : [ 6, 0, 17, 0 ],
@@ -104,18 +105,6 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 5, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
 					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
 					"param_list" : 
 					[
@@ -140,6 +129,18 @@
 			{
 				"bind_unit" : 
 				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
 					"expression" : "def bind_fun(v0):\n  return v0>1\n",
 					"param_list" : 
 					[
@@ -147,78 +148,6 @@
 					]
 				},
 				"key" : [ 6, 0, 1, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 2, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 4, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>5\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 5, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 6, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 7, 7, 2 ]
 			},
 			
 			{
@@ -236,13 +165,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"expression" : "def bind_fun(v0):\n  if v0:\n     return -23\n  else:\n     return -70\n",
 					"param_list" : 
 					[
 						[ 6, 0, 13, 0 ]
 					]
 				},
-				"key" : [ 6, 0, 3, 0 ]
+				"key" : [ 0, 0, 1, 11, 0 ]
 			},
 			
 			{
@@ -284,30 +213,6 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 12, 0 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  if v0:\n     return -23\n  else:\n     return -70\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 0 ]
-					]
-				},
-				"key" : [ 0, 0, 1, 11, 0 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
 					"expression" : "def bind_fun(v0):\n  if v0:\n    return 23\n  else:\n    return 49\n",
 					"param_list" : 
 					[
@@ -326,7 +231,103 @@
 						[ 6, 0, 13, 0 ]
 					]
 				},
+				"key" : [ 6, 0, 3, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 12, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
 				"key" : [ 6, 0, 19, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 2, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 4, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 7, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 7, 2 ]
 			},
 			
 			{
@@ -361,6 +362,14 @@
 			},
 			
 			{
+				"key" : [ 1, 1, 8 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 6, 8 ]
+				]
+			},
+			
+			{
 				"key" : [ 6, 0, 0, 0 ],
 				"ref_list" : 
 				[
@@ -381,14 +390,6 @@
 					[ 1, 1, 11, 0 ],
 					[ 0, 0, 1, 11, 0 ],
 					[ 6, 0, 19, 0 ]
-				]
-			},
-			
-			{
-				"key" : [ 1, 1, 8 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 6, 8 ]
 				]
 			}
 		]
@@ -435,10 +436,10 @@
 							"_name" : "ft_material_2d",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
-							"_primitive_name" : "road7.FBX0",
+							"_primitive_name" : "roadb.FBX0",
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_visible" : false,
+							"_visible" : true,
 							"type" : "ft_material_2d"
 						}
 					],
@@ -456,10 +457,10 @@
 						"z" : 9.999999974752427e-007
 					},
 					"_name" : "ft_scene",
-					"_posx" : 94.0,
+					"_posx" : 0.0,
 					"_posy" : -270.0,
-					"_sizeh" : 431.7660217285156,
-					"_sizew" : 702.6610107421875,
+					"_sizeh" : 534.0,
+					"_sizew" : 800.0,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -477,7 +478,7 @@
 							"_primitive_name" : "road-0625.FBX0",
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_trans" : "dddddddpaaaaiadpaaaaiadpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaamnmnmn",
+							"_trans" : "aaaaiadpaaaaiadpaaaaiadpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaamnmnmn",
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -832,7 +833,7 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_content" : "0",
+					"_content" : "---",
 					"_font_id" : 1,
 					"_font_scale" : 1.0,
 					"_font_size" : 30,
@@ -1955,8 +1956,8 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "icon1",
-							"_posx" : -52.0,
-							"_posy" : -18.0,
+							"_posx" : -85.0,
+							"_posy" : -20.0,
 							"_sizeh" : 68.0,
 							"_sizew" : 36.0,
 							"_texture_index_txt" : 1,
@@ -1972,7 +1973,7 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "icon2",
-							"_posx" : -98.0,
+							"_posx" : -158.0,
 							"_posy" : -32.0,
 							"_sizeh" : 46.0,
 							"_sizew" : 26.0,
@@ -2009,8 +2010,8 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "icon1",
-							"_posx" : 66.0,
-							"_posy" : -18.0,
+							"_posx" : 100.0,
+							"_posy" : -20.0,
 							"_sizeh" : 68.0,
 							"_sizew" : 36.0,
 							"_texture_index_txt" : 3,
@@ -2026,7 +2027,7 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "icon2",
-							"_posx" : 122.0,
+							"_posx" : 190.2060089111328,
 							"_posy" : -32.0,
 							"_sizeh" : 46.0,
 							"_sizew" : 26.0,
@@ -2663,7 +2664,7 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "right0",
-							"_posx" : 468.0,
+							"_posx" : 500.0,
 							"_posy" : 95.0,
 							"_sizeh" : 44.0,
 							"_sizew" : 68.0,
@@ -2680,7 +2681,7 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "right1",
-							"_posx" : 453.0,
+							"_posx" : 467.0,
 							"_posy" : 48.0,
 							"_sizeh" : 26.39999961853027,
 							"_sizew" : 40.79999923706055,
@@ -2729,7 +2730,7 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "left0",
-							"_posx" : 260.0,
+							"_posx" : 235.0,
 							"_posy" : 95.0,
 							"_sizeh" : 44.0,
 							"_sizew" : 68.0,
@@ -2746,7 +2747,7 @@
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
 							"_name" : "left1",
-							"_posx" : 300.0,
+							"_posx" : 294.0,
 							"_posy" : 48.0,
 							"_sizeh" : 26.39999961853027,
 							"_sizew" : 40.79999923706055,
@@ -4349,6 +4350,35 @@
 				}
 			],
 			"type" : "ft_base"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_content" : "驾驶辅助系统不可用",
+			"_font_id" : 0,
+			"_font_scale" : 1.0,
+			"_font_size" : 24,
+			"_name" : "failsafe",
+			"_omit_rest" : 0,
+			"_play_circle" : 1.0,
+			"_playing" : false,
+			"_posx" : 290.0,
+			"_posy" : 100.0,
+			"_sizeh" : 20.0,
+			"_sizew" : 20.0,
+			"_txt_alignh_nml" : 0.0,
+			"_txt_alignv_nml" : 0.0,
+			"_txt_clr" : 
+			{
+				"x" : 1.0,
+				"y" : 0.5686274766921997,
+				"z" : 0.0
+			},
+			"_visible" : false,
+			"_width" : 200.0,
+			"_width_limit" : false,
+			"type" : "ft_textblock"
 		}
 	],
 	"file_list" : 
@@ -4356,7 +4386,7 @@
 		"img_ring_left_full.trk",
 		"img_ring_right_full.trk",
 		"road-0625.FBX0",
-		"road7.FBX0"
+		"roadb.FBX0"
 	],
 	"fonts" : 
 	[
@@ -4424,7 +4454,7 @@
 				"text" : 
 				{
 					"el_size" : 1,
-					"txt_name" : "road.png",
+					"txt_name" : "trans.png",
 					"type" : "shader_uf_txt",
 					"usize" : 1,
 					"utype" : 35678
@@ -4501,7 +4531,7 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						0.6999999880790710,
+						1.0,
 						0.0,
 						0.0,
 						0.0,
@@ -4535,7 +4565,7 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						0.5156038403511047,
+						0.5600990056991577,
 						0.0,
 						0.0,
 						0.0,
@@ -4617,12 +4647,12 @@
 		},
 		
 		{
-			"ebo_len" : 378,
+			"ebo_len" : 1008,
 			"format" : [ 3, 3, 2 ],
 			"mesh_id" : 0,
-			"model" : "road7.FBX",
-			"name" : "road7.FBX0",
-			"vbo_len" : 3024
+			"model" : "roadb.FBX",
+			"name" : "roadb.FBX0",
+			"vbo_len" : 8064
 		}
 	],
 	"screenh" : 720.0,
@@ -4659,7 +4689,7 @@
 			[
 				
 				{
-					"duration" : 1000,
+					"duration" : 700,
 					"easing_fun" : 2,
 					"key_from" : 0,
 					"key_to" : 1,
@@ -4674,8 +4704,8 @@
 			],
 			"prop_value_list" : 
 			[
-				[ "aaaajged", "aaaaiced", "aaaakfed" ],
-				[ "aaiaoced", "aaaaoked", "aaianned" ]
+				[ "aaaajded", "aaaagled", "aaaakfed" ],
+				[ "aaiaojed", "aaaapked", "aaianned" ]
 			],
 			"state_idx" : 0
 		},
@@ -4692,7 +4722,7 @@
 			[
 				
 				{
-					"duration" : 1000,
+					"duration" : 700,
 					"easing_fun" : 2,
 					"key_from" : 0,
 					"key_to" : 1,
@@ -4707,8 +4737,8 @@
 			],
 			"prop_value_list" : 
 			[
-				[ "aaaaoked", "aaiaoced", "aaianned" ],
-				[ "aaaaiced", "aaaajged", "aaaakfed" ]
+				[ "aaaapked", "aaiaojed", "aaianned" ],
+				[ "aaaagled", "aaaajded", "aaaakfed" ]
 			],
 			"state_idx" : 0
 		}
@@ -4757,6 +4787,12 @@
 			"mipmap" : false,
 			"name" : "road_navi_s.png",
 			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "trans.png",
+			"separated" : false
 		}
 	],
 	"texture_res_list" : 
@@ -4777,7 +4813,7 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : false,
+		"show_resource_manager" : true,
 		"show_slider_path_picker" : false,
 		"show_state_manager_edit" : false
 	}

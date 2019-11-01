@@ -15,14 +15,17 @@ namespace auto_future
 			(float, _aposy, { 0.f }),			
 			(float, _angle_nml, {0.f}))
 		GLuint _txt_id;
+		GLuint _pboIds[2];
 		void init_txt_obj();
+		void init_pbo();
 	public:
 		ft_video();
-		~ft_video(){}
+		~ft_video();
 		void link();
 		void draw();
-		void rotate(float angle){ _img_pt._angle_nml = angle; }
-		GLuint get_txt_id(){ return _txt_id; }
+		void update_pixels(GLubyte* dst, int sz);
+		//GLuint get_txt_id(){ return _txt_id; }
+
 	};
 
 	REGISTER_CONTROL(ft_video)

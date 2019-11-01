@@ -26,6 +26,8 @@ void init_controls_res_constrained()
 	factory::get().register_res_constrained("ft_polygon_image", vres_texture_constrain);
 	factory::get().register_res_constrained("ft_slider", vres_texture_constrain);
 	factory::get().register_res_constrained("ft_slider_thumb", vres_texture_constrain);
+	factory::get().register_res_constrained("ft_quad_image", vres_texture_constrain);
+
 	factory::get().register_res_constrained("ft_modeling_3d", [&](){return g_mmodel_list.size() > 0; });
 	factory::get().register_res_constrained("ft_textblock", [&](){
 		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();

@@ -3,7 +3,9 @@
 class primitve_edit
 {
 	shared_ptr<primitive_object> _pmobj;
+	string _key_name;
 	vector<float> _vertex_buff;
+	float* _pvertex;
 	float canvas_w{ 800.0 };
 	float canvas_h{ 800.0 };
 public:

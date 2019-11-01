@@ -295,6 +295,9 @@
     <ClCompile Include="aes.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="video_capture.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -612,6 +615,9 @@
     </ClInclude>
     <ClInclude Include="aes.h">
       <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="video_capture.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

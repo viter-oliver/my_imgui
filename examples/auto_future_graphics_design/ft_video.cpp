@@ -17,10 +17,20 @@ namespace auto_future
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 		// Step3 设定filter参数
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _img_pt._txt_width, _img_pt._txt_height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+			0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+	}
+	void ft_video::init_pbo()
+	{
+		auto data_size = _img_pt._txt_width*_img_pt._txt_height * 3;
+		glGenBuffers(2, _pboIds);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[0]);
+		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[1]);
+		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
 	}
 	ft_video::ft_video()
 		:ft_base()
@@ -43,6 +53,10 @@ namespace auto_future
 			}
 		}); 
 #endif
+	}
+	ft_video::~ft_video()
+	{
+		glDeleteBuffers(2, _pboIds);
 	}
 	void ft_video::draw()
 	{
@@ -104,6 +118,27 @@ namespace auto_future
 
 	void ft_video::link()
 	{
-		
+		init_pbo();
+	}
+
+	void ft_video::update_pixels(GLubyte* dst, int sz)
+	{
+		static bool index = false;
+		auto data_size = _img_pt._txt_width*_img_pt._txt_height * 3;
+		assert(sz == data_size);
+		bool nindex = !index;
+		glBindTexture(GL_TEXTURE_2D, _txt_id);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[index]);
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, _img_pt._txt_width, _img_pt._txt_height, GL_RGB, GL_UNSIGNED_BYTE, 0);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[nindex]);
+		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
+		GLubyte* ptr = (GLubyte*)glMapBuffer(GL_PIXEL_UNPACK_BUFFER, GL_WRITE_ONLY);
+		if (ptr)
+		{
+			memcpy(ptr, dst, data_size);
+			glUnmapBuffer(GL_PIXEL_UNPACK_BUFFER);
+		}
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
+		index = nindex;
 	}
 }

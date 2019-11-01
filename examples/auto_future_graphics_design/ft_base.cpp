@@ -244,6 +244,7 @@ namespace auto_future
 		prtn->collect_property_range(vrtn);
 		byobject->collect_property_range(vobj);
 		property_copy(vrtn, vobj);
+		prtn->link();
 		auto icnt = byobject->get_child_count();
 		for (int ii = 0; ii < icnt; ii++)
 		{

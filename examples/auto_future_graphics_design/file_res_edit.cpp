@@ -10,6 +10,7 @@
 #include <fstream>
 #include "res_internal.h"
 shared_ptr<af_file> _pfile{ nullptr };
+string _file_key_name;
 void file_res_edit::draw_file_res_list()
 {
 	if (ImGui::Button("Load new file..."))
@@ -51,10 +52,22 @@ void file_res_edit::draw_file_res_list()
 				}
 				ttl->_sel = true;
 				_pfile = ttl;
+				_file_key_name = keyname;
 			}
 			ImGui::TreePop();
 		}
 		ImGui::TreePop();
+	}
+	if (_pfile&&ImGui::BeginPopupContextWindow())
+	{
+		if (ImGui::MenuItem("delete", NULL, false,_pfile.use_count() == 1))
+		{
+			auto& item_del = g_mfiles_list.find(_file_key_name);
+			g_mfiles_list.erase(item_del);
+			_pfile = nullptr;
+			_file_key_name = "";
+		}
+		ImGui::EndPopup();
 	}
 }
 

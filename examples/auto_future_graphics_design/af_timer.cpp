@@ -13,18 +13,23 @@ namespace auto_future
 
 	void af_timer::execute()
 	{
-		for (int ix = 0; ix < max_timer_num; ix++)
+		for (auto& ictm : _active_tm_list)
 		{
-			if (_timer_list[ix]._num_cr&&_timer_list[ix]._handle)
+			auto& ix = ictm.first;
+	
+			_timer_list[ix]._num_cr--;
+			_timer_list[ix]._rcnt--;
+			if (_timer_list[ix]._rcnt == 0)
 			{
-				_timer_list[ix]._num_cr--;
-				_timer_list[ix]._rcnt--;
-				if (_timer_list[ix]._rcnt == 0)
+				if (_timer_list[ix]._handle)
 				{
 					_timer_list[ix]._handle(_timer_list[ix]._num_cr);
-					_timer_list[ix]._rcnt = _timer_list[ix]._freq_render;
 				}
+				_timer_list[ix]._rcnt = _timer_list[ix]._freq_render;
 			}
+			
+
+			/**
 			if (_timer_list_ex[ix]._handle&&_timer_list_ex[ix]._tvalue)
 			{
 				auto currentTime = steady_clock::now();
@@ -34,7 +39,7 @@ namespace auto_future
 					_timer_list_ex[ix]._handle(delta);
 					_timer_list_ex[ix]._tvalue = 0;
 				}
-			}
+			}*/
 		}
 	}
 }

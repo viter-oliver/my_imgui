@@ -13,6 +13,7 @@ static char vs_code[TXT_BUFF_SZ];
 static char fs_code[TXT_BUFF_SZ];
 shared_ptr<af_shader> pshd_sel = nullptr;
 shared_ptr<material> pmateral_sel = nullptr;
+string sd_key_name,mt_key_name;
 
 void material_shader_edit::draw_shader()
 {
@@ -23,6 +24,7 @@ void material_shader_edit::draw_shader()
 		for (auto& shd_ut : g_af_shader_list)
 		{
             icon_str = icn_nm_shader_source;
+			auto& key_name= shd_ut.first;
 			auto& shd_ss = shd_ut.second;
 			if (IconTreeNode(icon_str, shd_ss->get_name().c_str(), node_flags_root))
 			{
@@ -81,6 +83,7 @@ void material_shader_edit::draw_shader()
 						pshd_sel->reset_sel();
 					}
 					pshd_sel = shd_ss;
+					sd_key_name = key_name;
 					if (!pshd_sel->_read_only)
 					{
 						strcpy(vs_code, shd_ss->get_vs_code().c_str());
@@ -94,9 +97,10 @@ void material_shader_edit::draw_shader()
 		}
 		ImGui::TreePop();
 	}
-	if (ImGui::BeginPopupContextWindow())
+	if (pshd_sel&&ImGui::BeginPopupContextWindow())
 	{
-		if (pshd_sel&&ImGui::MenuItem("create material", NULL, false))
+
+		if (ImGui::MenuItem("create material", NULL, false))
 		{
 			ImGui::OpenPopup("create material");
 			if (ImGui::BeginPopupModal("create material"))
@@ -113,6 +117,13 @@ void material_shader_edit::draw_shader()
 				}
 				ImGui::EndPopup();
 			}
+		}
+		if (ImGui::MenuItem("delete", NULL, false, pshd_sel.use_count() == 1))
+		{
+			auto& it_del = g_af_shader_list.find(sd_key_name);
+			g_af_shader_list.erase(it_del);
+			pshd_sel = nullptr;
+			sd_key_name = "";
 		}
 		ImGui::EndPopup();
 	}
@@ -358,7 +369,17 @@ void material_shader_edit::draw_material()
 		}
 		ImGui::TreePop();
 	}
-
+	if (pmateral_sel&&ImGui::BeginPopupContextWindow())
+	{
+		if (ImGui::MenuItem("delete", NULL, false, pmateral_sel.use_count() == 1))
+		{
+			auto& item_del = g_material_list.find(mt_key_name);
+			g_material_list.erase(item_del);
+			pmateral_sel = nullptr;
+			mt_key_name = "";
+		}
+		ImGui::EndPopup();
+	}
 }
 
 void material_shader_edit::draw_material_item_property()

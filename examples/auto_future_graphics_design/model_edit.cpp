@@ -38,11 +38,23 @@ void model_edit::draw_model_list()
 			if (ImGui::IsItemClicked())
 			{
 				_pmodel = mdid.second;
+				_key_name = mdid.first;
 			}
 			ImGui::TreePop();
 			ix++;
 		}
 		ImGui::TreePop();
+	}
+	if (_pmodel&&ImGui::BeginPopupContextWindow())
+	{
+		if (ImGui::MenuItem("delete", NULL, false, _pmodel.use_count() == 1))
+		{
+			auto& item_del = g_mmodel_list.find(_key_name);
+			g_mmodel_list.erase(item_del);
+			_pmodel = nullptr;
+			_key_name = "";
+		}
+		ImGui::EndPopup();
 	}
 }
 

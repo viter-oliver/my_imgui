@@ -4,6 +4,7 @@ using namespace std;
 class model_edit
 {
 	shared_ptr<af_model> _pmodel;
+	string _key_name;
 public:
 	model_edit();
 	~model_edit();

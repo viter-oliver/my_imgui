@@ -2,7 +2,7 @@
 #include "platform_def.h"
 #include <functional>
 #include <chrono>
-
+#include <map>
 using namespace std;
 using namespace chrono;
 namespace auto_future
@@ -25,7 +25,7 @@ namespace auto_future
 		};
 		timer_unit _timer_list[max_timer_num];
 		timer_unit_ex _timer_list_ex[max_timer_num];
-
+		map<int, int> _active_tm_list;
 	public:
 		af_timer();
 		~af_timer();
@@ -62,9 +62,15 @@ namespace auto_future
 				_timer_list[timer_id]._num_cr = num_cr;
 				_timer_list[timer_id]._freq_render = fc;
 				_timer_list[timer_id]._rcnt = fc;
+				_active_tm_list[timer_id] = 0;
 				return true;
 			}
 			return false;
+		}
+		bool is_actived_timer(int timer_id)
+		{
+			auto ict = _active_tm_list.find(timer_id);
+			return ict != _active_tm_list.end();
 		}
 		bool deactive_time(int timer_id)
 		{
@@ -73,6 +79,11 @@ namespace auto_future
 				_timer_list[timer_id]._num_cr = 0;
 				_timer_list[timer_id]._freq_render = 0;
 				_timer_list[timer_id]._rcnt = 0;
+				const auto& actm = _active_tm_list.find(timer_id);
+				if (actm != _active_tm_list.end())
+				{
+					_active_tm_list.erase(actm);
+				}
 				return true;
 			}
 			return false;

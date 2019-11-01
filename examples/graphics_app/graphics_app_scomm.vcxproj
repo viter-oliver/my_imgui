@@ -92,8 +92,8 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;$(SolutionDir)\..\af_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;_SCOMMM;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;$(SolutionDir)\..\boost_1_65_1;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msg_host;$(SolutionDir)\..\json;$(SolutionDir)\..\msg_filters_n;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\auto_future_graphics_design;$(SolutionDir)\..\res_imx8\afb;$(SolutionDir)\..\af_include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_WIN32;;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

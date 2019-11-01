@@ -267,6 +267,7 @@ void afb_load::load_afb(const char* afb_file)
 		auto res_bin = bin_res_unit.via.array.ptr[3];
 		if (res_bin.type == msgpack::type::POSITIVE_INTEGER)
 		{
+			res_unit._is_separated = true;
 			res_unit.txt_id = f_gen_txt(0, res_unit.texture_width, res_unit.texture_height, 0,false);
 			string res_file = cur_dir + txt_kname;
 			res_file += ".safb";
@@ -334,7 +335,7 @@ void afb_load::load_afb(const char* afb_file)
 		if (txt_bin.type == msgpack::type::POSITIVE_INTEGER)
 		{
 			a_txt->_atxt_id = f_gen_txt(0, a_txt->_width, a_txt->_height, 0, mipv);
-
+			a_txt->_is_separated = true;
 			string res_file = cur_dir + txt_kname;
 			res_file += ".safb";
 			thread th_lod_res([&](string fnm){

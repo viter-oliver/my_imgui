@@ -36,18 +36,35 @@ void primitve_edit::draw_primitive_list()
 					_pmobj->_sel = false;
 				}
 				_pmobj = prm;
+				_key_name = key_name;
 				_pmobj->_sel = true;
 				auto& ps_file = _pmobj->_ps_file;
 				char* phead = (char*)ps_file->_pbin;
-				GLuint* phead_buff_len = (GLuint*)phead;
+				//GLuint* phead_buff_len = (GLuint*)phead;
 				phead += 4;
-				_vertex_buff.resize(_pmobj->_vertex_buf_len);
-				memcpy(&_vertex_buff[0], phead, *phead_buff_len);
+				_pvertex = (float*)phead;
+				//_vertex_buff.resize(_pmobj->_vertex_buf_len);
+				//memcpy(&_vertex_buff[0], phead, *phead_buff_len);
+
 			}
+			
 			ImGui::TreePop();
 		}
 		ImGui::TreePop();
 	}
+
+	if (_pmobj&&ImGui::BeginPopupContextWindow())
+	{
+		if (ImGui::MenuItem("delete", NULL, false,_pmobj.use_count() == 1))
+		{
+			auto& item_del = g_primitive_list.find(_key_name);
+			g_primitive_list.erase(item_del);
+			_pmobj = nullptr;
+			_key_name = "";
+		}
+		ImGui::EndPopup();
+	}
+	
 }
 
 void primitve_edit::draw_primitive_item_property()
@@ -67,6 +84,10 @@ void primitve_edit::draw_primitive_item_property()
 			}
 			str_fmt.back() = '\0';
 			ImGui::Text("Element format:%s", str_fmt.c_str());
+			if (ImGui::Button("Vertex Edit..."))
+			{
+				ImGui::OpenPopup("vertex_edit");
+			}
 		}
 		else
 		{
@@ -207,7 +228,50 @@ void primitve_edit::draw_primitive_item_property()
 			ImGui::PopStyleColor();
 			ImGui::PopStyleVar();
 		}
-		
-		
+		if (ImGui::BeginPopupModal("vertex_edit"))
+		{
+			auto& vlen=_pmobj->_vertex_buf_len;
+			GLubyte stride = _pmobj->get_stride();
+			GLuint vcnt = vlen / stride;
+			float* pvt = _pvertex;
+			stringstream stm_it;
+			ImGui::Text("vertex buffer:");
+			for (int ix = 0; ix < vcnt;ix++)
+			{
+				stm_it.str(string());
+				stm_it.clear();
+				stm_it << "Vertex" << ix;
+				string citstr = stm_it.str();
+				ImGui::InputFloatN(citstr.c_str(), pvt, stride,-1,0);
+				pvt += stride;
+			}
+			/*
+			ImGui::InputFloat("##0", pvt);
+			pvt++;
+			ImGui::SameLine();
+			for (GLuint ix = 1; ix < vlen;ix++)
+			{
+				stm_it.str(string());
+				stm_it.clear();
+				stm_it << "##" << ix;
+				string citstr = stm_it.str();
+				ImGui::InputFloat(citstr.c_str(), pvt);
+				pvt++;
+				auto mvalue = ix%stride;
+				if (mvalue)
+					ImGui::SameLine();
+			}*/
+			if (ImGui::Button("Save"))
+			{
+				glBindBuffer(GL_ARRAY_BUFFER, _pmobj->_vbo);
+				glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_pmobj->_vertex_buf_len, _pvertex, GL_DYNAMIC_DRAW);
+				ImGui::CloseCurrentPopup();
+			}
+			if (ImGui::Button(("Cancel")))
+			{
+				ImGui::CloseCurrentPopup();
+			}
+			ImGui::EndPopup();
+		}
 	}
 }

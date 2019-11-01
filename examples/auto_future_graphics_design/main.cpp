@@ -53,6 +53,7 @@
 #include "unreferenced_items.h"
 #include "get_web_time.h"
 #include "aes.h"
+#include "video_capture.h"
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -151,6 +152,7 @@ int main(int argc, char* argv[])
 	g_app_path = argv[0];
 	//register_app_and_icon(g_app_path);
 	printf("%s__%d\n", __FILE__, s_user_count);
+#ifndef _DEBUG
 	auto sec_consume = GetTimeFromServer(NULL);
 	if (!sec_consume)
 	{
@@ -187,6 +189,7 @@ int main(int argc, char* argv[])
 		//关闭键
 		RegCloseKey(hKey);
 	}
+#endif
 	
     // Setup window
 	if (argc>1)
@@ -457,6 +460,7 @@ int main(int argc, char* argv[])
 		}
 	};
 	glfwSetDropCallback(window, drag_dop_callback);
+	glfwUsbDevicStateCallback(usb_device_state);
 #endif
 	//glShaderBinary GL_NUM_SHADER_BINARY_FORMATS GL_SHADER_BINARY_FORMATS
 	//GL_NUM_PROGRAM_BINARY_FORMATS,GL_PROGRAM_BINARY_FORMATS GL_PROGRAM_BINARY_LENGTH
@@ -570,6 +574,7 @@ int main(int argc, char* argv[])
         }
 #elif defined(_MY_IMGUI__)
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
+#ifndef _DEBUG
 		if (!be_get_license)
 		{
 			ImGui::OpenPopup("get license");
@@ -626,6 +631,7 @@ int main(int argc, char* argv[])
 			ImGui::EndPopup();
 			goto Rendering;
 		}
+#endif
 		if (ImGui::GetIO().KeyCtrl)
 		{
 			if (ImGui::GetIO().KeysDown[GLFW_KEY_S])
