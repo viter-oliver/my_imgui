@@ -4,10 +4,9 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 #include "common_functions.h"
-/*
-x'=(x-a)cosα+(y-b)sinα+a
-y'=-(x-a)sinα+(y-b)cosα+b
-*/
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#include "video_capture.h"
+#endif
 namespace auto_future
 {
 	void ft_video::init_txt_obj()
@@ -19,12 +18,12 @@ namespace auto_future
 		// Step3 设定filter参数
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, _img_pt._txt_width, _img_pt._txt_height,
-			0, GL_RGB, GL_UNSIGNED_BYTE, 0);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _txt_width, _txt_height,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 	}
 	void ft_video::init_pbo()
 	{
-		auto data_size = _img_pt._txt_width*_img_pt._txt_height * 3;
+		auto data_size = _txt_width*_txt_height * 4;
 		glGenBuffers(2, _pboIds);
 		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[0]);
 		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
@@ -32,37 +31,70 @@ namespace auto_future
 		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
 		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
 	}
+	void ft_video::release_res()
+	{
+		if (_txt_id!=0)
+		{
+			glDeleteTextures(1, &_txt_id);
+			_txt_id = 0;
+		}
+		if (_pboIds[0]!=0)
+		{
+			glDeleteBuffers(2, _pboIds);
+			_pboIds[0] = 0;
+			_pboIds[1] = 0;
+		}
+	}
 	ft_video::ft_video()
 		:ft_base()
 	{
-		init_txt_obj();
+		//init_txt_obj();
+		_pboIds[0] = _pboIds[1] = 0;
+		memset(_video_dev_name, 0, name_len);
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		reg_property_handle(&_img_pt, 0, [this](void*){
-			if (ImGui::InputInt("width of texture", &_img_pt._txt_width))
+
+		reg_property_handle(&_img_pt, 2, [this](void*){
+			ImGui::SliderFloat("rotate angle:", &_img_pt._angle_nml,0.f,1.f);
+			if (_linked)
 			{
-				glDeleteTextures(1, &_txt_id);
-				init_txt_obj();
+				ImGui::Text("height of texture:%d", _txt_height);
+				ImGui::Text("width of texture:%d", _txt_width);
+				ImGui::Text("video device:%s", _video_dev_name);
+				if (ImGui::Button("Delink"))
+				{
+					_linked = false;
+					release_res();
+				}
 			}
-		});
-		reg_property_handle(&_img_pt, 1, [this](void*){
-			if (ImGui::InputInt("height of texture", &_img_pt._txt_height))
+			else
 			{
-				glDeleteTextures(1, &_txt_id);
-				init_txt_obj();
+				ImGui::InputText("video device:", _video_dev_name, name_len);
+				if (ImGui::Button("Link video device"))
+				{
+					if (video_link(this,_txt_width,_txt_height,_video_dev_name))
+					{
+						init_txt_obj();
+						init_pbo();
+						_linked = true;
+					}
+				}
 			}
 		}); 
 #endif
 	}
 	ft_video::~ft_video()
 	{
-		glDeleteBuffers(2, _pboIds);
+		release_res();
 	}
 	void ft_video::draw()
 	{
 		
 		ft_base::draw();
-		
+		if (!_linked)
+		{
+			return;
+		}
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
@@ -116,20 +148,21 @@ namespace auto_future
 
 	}
 
-	void ft_video::link()
-	{
-		init_pbo();
-	}
-
 	void ft_video::update_pixels(GLubyte* dst, int sz)
 	{
 		static bool index = false;
-		auto data_size = _img_pt._txt_width*_img_pt._txt_height * 3;
+		auto data_size = _txt_width*_txt_height * 4;
 		assert(sz == data_size);
+#if 0
+		glBindTexture(GL_TEXTURE_2D, _txt_id);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _txt_width, _txt_height,
+			0, GL_RGBA, GL_UNSIGNED_BYTE, dst);
+		return;
+#endif
 		bool nindex = !index;
 		glBindTexture(GL_TEXTURE_2D, _txt_id);
 		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[index]);
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, _img_pt._txt_width, _img_pt._txt_height, GL_RGB, GL_UNSIGNED_BYTE, 0);
+		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, _txt_width, _txt_height, GL_RGBA, GL_UNSIGNED_BYTE, 0);
 		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[nindex]);
 		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
 		GLubyte* ptr = (GLubyte*)glMapBuffer(GL_PIXEL_UNPACK_BUFFER, GL_WRITE_ONLY);

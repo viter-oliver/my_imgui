@@ -88,11 +88,11 @@ enum en_short_cut_item
 };
 function<void(en_short_cut_item)> fun_shortct;
 bool show_project_window = true, show_edit_window = true, \
-show_property_window = true, show_resource_manager = true,\
-show_fonts_manager=true,show_file_manager=true,\
-show_output_format=false,show_model_list=false,show_world_space=false,\
-show_bind_edit=false,show_state_manager_edit=false,show_aliase_edit=false,\
-show_slider_path_picker=false,show_prm_edit=false;
+show_property_window = true, show_resource_manager = true, \
+show_fonts_manager = true, show_file_manager = true, \
+show_output_format = false, show_model_list = false, show_world_space = false, \
+show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
+show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false;
 
 string reg_path = "afg_ide";
 string ikey = "max&maj20190815x";
@@ -812,6 +812,10 @@ int main(int argc, char* argv[])
 				{
 					show_prm_edit = !show_prm_edit;
 				}
+				if (ImGui::MenuItem("Video device manager", NULL, show_video_dev_mg))
+				{
+					show_video_dev_mg = !show_video_dev_mg;
+				}
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Setup"))
@@ -869,6 +873,8 @@ int main(int argc, char* argv[])
 			}
 			ImGui::End();
 		}
+		video_capture_excute();
+
 		if (show_edit_window)
 		{
 			ImGui::SetNextWindowSize(ImVec2(base_ui_component::screenw, base_ui_component::screenh), ImGuiCond_FirstUseEver);
@@ -915,7 +921,6 @@ int main(int argc, char* argv[])
 			g_bind_edit.bind_source_view();
 			ImGui::End();
 		}
-		
 		if (g_state_trans_player.be_playing())
 		{
 			g_state_trans_player.keep_state_trans_on();
@@ -1037,6 +1042,15 @@ int main(int argc, char* argv[])
 			pmodel_edit->draw_model_list();
 			ImGui::NextColumn();
 			pmodel_edit->draw_model_item_property();
+			ImGui::End();
+		}
+		if (show_video_dev_mg)
+		{
+			ImGui::Begin("Video device Manager", &show_video_dev_mg);
+			ImGui::Columns(2);
+			video_dev_view();
+			ImGui::NextColumn();
+			video_item_edit();
 			ImGui::End();
 		}
 #endif
