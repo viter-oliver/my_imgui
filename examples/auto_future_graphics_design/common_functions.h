@@ -8,6 +8,7 @@
 #else
 #include"../../deps/glad/glad.h"
 #endif
+
 extern std::string wstringToUtf8(const std::wstring& str);
 extern bool handle_file_data(const std::string& file_name, std::function<void(char*, unsigned int)>buff_handle);
 extern std::wstring utf8ToWstring(const std::string& str);
@@ -32,6 +33,7 @@ extern bool smooth_algorithm_5_points_3_times(vector<ImVec2>& point_list, bool x
 extern bool smooth_algoritm_3_points_average(vector<ImVec2>& point_list, bool x_direction = true);
 //直线5点平均平滑法
 extern bool smooth_algorithm_5_points_average(vector<ImVec2>& point_list, bool x_direction = true);
+extern void FromYUY2ToRGB32(LPVOID lpDest, LPVOID lpSource, LONG lWidth, LONG lHeight);
 
 template<class T> string find_a_key_from_mp(T& mp, string& ref_key)
 {

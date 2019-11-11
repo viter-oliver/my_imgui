@@ -461,6 +461,7 @@ int main(int argc, char* argv[])
 	};
 	glfwSetDropCallback(window, drag_dop_callback);
 	glfwUsbDevicStateCallback(usb_device_state);
+	usb_device_state(1,NULL);
 #endif
 	//glShaderBinary GL_NUM_SHADER_BINARY_FORMATS GL_SHADER_BINARY_FORMATS
 	//GL_NUM_PROGRAM_BINARY_FORMATS,GL_PROGRAM_BINARY_FORMATS GL_PROGRAM_BINARY_LENGTH

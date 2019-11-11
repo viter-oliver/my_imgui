@@ -178,6 +178,9 @@
     <ClCompile Include="af_timer.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="screen_image_distortion.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -262,6 +265,7 @@
     <ClInclude Include="easing.h">
       <Filter>common</Filter>
     </ClInclude>
+    <ClInclude Include="screen_image_distortion.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

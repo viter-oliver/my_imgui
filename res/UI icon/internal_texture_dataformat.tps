@@ -215,6 +215,7 @@
             <filename>ft_material_2d.png</filename>
             <filename>primitive.png</filename>
             <filename>font.png</filename>
+            <filename>ft_video.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

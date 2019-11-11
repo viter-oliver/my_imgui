@@ -212,6 +212,7 @@
     <ClCompile Include="paricles_system.cpp" />
     <ClCompile Include="python_interpreter.cpp" />
     <ClCompile Include="res_output.cpp" />
+    <ClCompile Include="screen_image_distortion.cpp" />
     <ClCompile Include="shader_uf.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +244,7 @@
     <ClInclude Include="python_interpreter.h" />
     <ClInclude Include="renderTransform.h" />
     <ClInclude Include="res_output.h" />
+    <ClInclude Include="screen_image_distortion.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\json\json_internalarray.inl" />

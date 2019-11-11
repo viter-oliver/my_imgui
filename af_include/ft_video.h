@@ -25,6 +25,7 @@ namespace auto_future
 	public:
 		ft_video();
 		~ft_video();
+		void delink();
 		void draw();
 		void update_pixels(GLubyte* dst, int sz);
 		//GLuint get_txt_id(){ return _txt_id; }

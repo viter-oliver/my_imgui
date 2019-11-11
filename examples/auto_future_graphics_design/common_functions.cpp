@@ -576,3 +576,56 @@ bool smooth_algorithm_5_points_average(vector<ImVec2>& point_list, bool x_direct
 	return true;
 	return true;
 }
+
+
+static BYTE Clip(int clr)
+{
+	return (BYTE)(clr < 0 ? 0 : (clr > 255 ? 255 : clr));
+}
+
+static RGBQUAD ConvertYCrCbToRGB(int y, int cr, int cb)
+{
+	RGBQUAD rgbq = { 0 };
+
+	int c = y - 16;
+	int d = cb - 128;
+	int e = cr - 128;
+
+	rgbq.rgbRed = Clip((298 * c + 409 * e + 128) >> 8);
+	rgbq.rgbGreen = Clip((298 * c - 100 * d - 208 * e + 128) >> 8);
+	rgbq.rgbBlue = Clip((298 * c + 516 * d + 128) >> 8);
+	/*rgbq.rgbRed =y+1.402f*(cr-128);
+	rgbq.rgbGreen =y-0.34414f*(cb-128)-0.71414f*(cr-128);
+	rgbq.rgbBlue = y+1.772f*(cb-128);*/
+
+	//rgbq.rgbRed = 0xff - rgbq.rgbRed;
+	//rgbq.rgbGreen = 0xff - rgbq.rgbGreen;
+	rgbq.rgbReserved = 0xff;
+	return rgbq;
+}
+
+void FromYUY2ToRGB32(LPVOID lpDest, LPVOID lpSource, LONG lWidth, LONG lHeight)
+{
+	RGBQUAD *pDestPel = (RGBQUAD*)lpDest;
+	WORD *pSrcPel = (WORD*)lpSource;
+
+	for (int y = 0; y < lHeight; y++)
+	{
+		for (int x = 0; x < lWidth; x += 2)
+		{
+			//
+			// Byte order is U0 Y0 V0 Y1
+			//
+			int y0 = (int)LOBYTE(pSrcPel[x]);
+			int u0 = (int)HIBYTE(pSrcPel[x]);
+			int y1 = (int)LOBYTE(pSrcPel[x + 1]);
+			int v0 = (int)HIBYTE(pSrcPel[x + 1]);
+
+			pDestPel[x] = ConvertYCrCbToRGB(y0, v0, u0);
+			pDestPel[x + 1] = ConvertYCrCbToRGB(y1, v0, u0);
+		}
+
+		pSrcPel += lWidth;
+		pDestPel += lWidth;
+	}
+}

@@ -135,7 +135,7 @@ struct dev_unit
 			//processing frame
 			for (auto& ictl:_video_ctl_list)
 			{
-				ictl.first->update_pixels(pVideoframe, dwCurrentLenth);
+				ictl.first->update_pixels(pVideoframe, dwCurrentLenth*2);
 			}
 			_frame_valid = false;
 			_cond.notify_one();
@@ -149,7 +149,7 @@ struct dev_unit
 			IMFAttributes *pAttributes = NULL;
 			IMFSourceReader *pReader;
 			IMFMediaType *pConfigureType = NULL;
-
+			pVideoframe = new BYTE[_width*_height * 4];
 			do
 			{
 				hr = MFCreateAttributes(&pAttributes, 1);
@@ -187,7 +187,7 @@ struct dev_unit
 					}
 
 				}
-#if 1
+#if 0
 				//configure decoder
 				hr = MFCreateMediaType(&pConfigureType);
 				if (FAILED(hr))
@@ -249,21 +249,23 @@ struct dev_unit
 							hr = pSample->ConvertToContiguousBuffer(&pMediaBuffer);
 							
 							//hr = pMediaBuffer->GetCurrentLength(&dwBufferSize);
-							pVideoframe=NULL;
-							hr=pMediaBuffer->Lock(&pVideoframe, &dwMaxlenth, &dwCurrentLenth);
-							BYTE* paph = pVideoframe + 3;
+							BYTE* pData = NULL;
+							hr = pMediaBuffer->Lock(&pData, &dwMaxlenth, &dwCurrentLenth);
+							/*BYTE* paph = pVideoframe + 3;
 							auto pxcnt = dwCurrentLenth / 4;
 							for (int ix = 0; ix < pxcnt;ix++)
 							{
 								*paph = 0xff;
 								paph += 4;
 							}
+							*/
+							FromYUY2ToRGB32(pVideoframe, pData, _width, _height);
 							
+							pMediaBuffer->Unlock();
+							pMediaBuffer->Release();
 							unique_lock<mutex> lck(_mutex);
 							_frame_valid = true;
 							_cond.wait(lck);
-							pMediaBuffer->Unlock();
-							pMediaBuffer->Release();
 						}
 				    }
 					if (flags & MF_SOURCE_READERF_NATIVEMEDIATYPECHANGED)
@@ -284,7 +286,7 @@ struct dev_unit
 
 			} while (false);
 
-
+			delete pVideoframe;
 			SafeRelease(&pConfigureType);
 			SafeRelease(&pAttributes);
 			SafeRelease(&pReader);
@@ -305,12 +307,18 @@ void check_dev_lost(wchar_t* systemlink)
 	for (auto& it = g_map_dev_units.begin(); it !=g_map_dev_units.end();)
 	{
 		wchar_t* psystem_link = NULL;
-		auto& pdev = it->second->_pActivate;
+		auto& dv_unit = *it->second;
+		auto& pdev = dv_unit._pActivate;
 		hr = pdev->GetAllocatedString(MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK, \
 			&psystem_link, \
 			NULL);
 		if (_wcsicmp(psystem_link,systemlink)==0)
 		{
+			auto& dic_video_ctl_list = dv_unit._video_ctl_list;
+			for (auto&ictlv:dic_video_ctl_list)
+			{
+				ictlv.first->delink();
+			}
 			it = g_map_dev_units.erase(it);
 		}
 		else

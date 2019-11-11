@@ -63,8 +63,7 @@ namespace auto_future
 				ImGui::Text("video device:%s", _video_dev_name);
 				if (ImGui::Button("Delink"))
 				{
-					_linked = false;
-					release_res();
+					delink();
 				}
 			}
 			else
@@ -85,6 +84,11 @@ namespace auto_future
 	}
 	ft_video::~ft_video()
 	{
+		release_res();
+	}
+	void ft_video::delink()
+	{
+		_linked = false;
 		release_res();
 	}
 	void ft_video::draw()
