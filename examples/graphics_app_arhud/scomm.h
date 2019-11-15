@@ -51,6 +51,10 @@ public:
 			CloseHandle(_hcomm);
 		}
 	}
+	bool is_open()
+	{
+		return _hcomm != INVALID_HANDLE_VALUE;
+	}
 	bool open(int nmb, int baudrate)
 	{
 		_nmb = nmb;

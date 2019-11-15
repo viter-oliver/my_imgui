@@ -201,18 +201,30 @@ void msg_host_n::execute_data_handle_cmd()
 	{
 		auto& bunt = _cmd_queue[_rear_id];
 		u8* pdata = bunt._data_len > static_buff_len ? bunt._pdynamic_buff : bunt._static_buff;
-		struct cmd_data
+
+		//static char kid[5]={'0','0','0','0','\0'};
+		static string kid("0000");
+		u8 cmd_len = 2;
+
+		if (_get_cmd)
 		{
-			u8 data0:4;
-			u8 data1:4;
-			u8 data2:4;
-			u8 data3:4;		
-		};
-		cmd_data* pcmd=(cmd_data*)pdata;
-		static char kid[5]={'0','0','0','0','\0'};
-		kid[0] = num_tb[pcmd->data3]; kid[1] = num_tb[pcmd->data2];
-		kid[2] = num_tb[pcmd->data1]; kid[3] = num_tb[pcmd->data0];
-		pdata += 2;
+			cmd_len = _get_cmd(pdata,kid);
+		}
+		else
+		{
+			struct cmd_data
+			{
+				u8 data0 : 4;
+				u8 data1 : 4;
+				u8 data2 : 4;
+				u8 data3 : 4;
+			};
+			cmd_data* pcmd = (cmd_data*)pdata;		
+			kid[0] = num_tb[pcmd->data3]; kid[1] = num_tb[pcmd->data2];
+			kid[2] = num_tb[pcmd->data1]; kid[3] = num_tb[pcmd->data0];
+		}
+		
+		pdata += cmd_len;
 		//kid[4] = '\0';
 		//printf("command 0x%s\n",kid);
 		const auto& idata_u = _recieve_protocol.find(kid);

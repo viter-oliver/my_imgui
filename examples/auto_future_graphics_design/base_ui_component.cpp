@@ -128,6 +128,9 @@ static	string aliase_btn_cp = "  ##";
 	void base_ui_component::draw_peropertys()
 	{
 		int pgidx = 0;
+		string type_name = typeid(*this).name();
+		string type_show = type_name.substr(sizeof("class autofuture::"));
+		ImGui::Text("Type name:%s", type_show.c_str());
 		for (auto& prop_ele:_vprop_eles)
 		{
 			auto& address_handl = _mcustom_var_property_handles_container.find(prop_ele->_pro_address);

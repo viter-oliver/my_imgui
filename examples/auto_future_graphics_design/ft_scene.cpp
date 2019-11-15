@@ -21,7 +21,10 @@ namespace auto_future
 
 	void ft_scene::draw()
 	{
-		GLint last_viewport[4]; glGetIntegerv(GL_VIEWPORT, last_viewport);
+		GLint last_viewport[4];
+		glGetIntegerv(GL_VIEWPORT, last_viewport);
+		GLint last_fmid;
+		glGetIntegerv(GL_FRAMEBUFFER_BINDING, &last_fmid);
 		glBindFramebuffer(GL_FRAMEBUFFER, _fboId);
 		glViewport(0, 0, _in_p._sizew, _in_p._sizeh);
 		glEnable(GL_BLEND);
@@ -35,7 +38,7 @@ namespace auto_future
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		ft_base::draw();
-		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glBindFramebuffer(GL_FRAMEBUFFER, last_fmid);
 		glViewport(last_viewport[0], last_viewport[1], (GLsizei)last_viewport[2], (GLsizei)last_viewport[3]);
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();

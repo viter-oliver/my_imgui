@@ -168,42 +168,46 @@ void my_application::resLoaded()
 #endif
 
 #ifdef _SCOMMM
-	s_scm.set_msg_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
-	DWORD m_dwThreadId;
-	CreateThread(NULL, 0, ThreadLoadApps, &s_scm, 0, &m_dwThreadId);
-	g_msg_host.set_send_cmd([&](u8* pbuff, int len){
-		u8* plink = new u8[len + 7];
-		plink[0] = MCU_SYNC2;
-		plink[1] = MCU_SYNC1;
-		struct GNU_DEF signal_def
-		{
-			u8 reserve : 5;
-			u8 need_ac : 1;
-			u8 frame_tp : 1;
-			u8 frame_dir : 1;
-		};
-		signal_def* psg = (signal_def*)(plink + 2);
-		psg->reserve = 0;
-		psg->need_ac = 1;
-		psg->frame_tp = 1;
-		psg->frame_dir = 0;
-		static u8 frame_idx = 0;
-		plink[2 + en_pos_index] = frame_idx;
-		frame_idx++;
-		u16 frame_len = len + 1;
-		u8* pfm_ln = (u8*)&frame_len;
-		plink[2 + en_pos_length_h] = *pfm_ln++;
-		plink[2 + en_pos_length_l] = *pfm_ln;
-		u8 chk_sm = plink[0] ^ plink[1] ^ plink[2] ^ plink[3] ^ plink[4] ^ plink[5];
-		for (int ix = 0; ix < len; ix++)
-		{
-			plink[2 + en_pos_cmd_head + ix] = pbuff[ix];
-			chk_sm = chk_sm^pbuff[ix];
-		}
-		plink[2 + en_pos_cmd_head + len] = chk_sm;
-		s_scm.send_data(plink, len + 7);
-		delete[] plink;
-	});
+	if (s_scm.is_open())
+	{
+		s_scm.set_msg_handle(std::bind(&msg_host_n::pick_valid_data, &g_msg_host, std::placeholders::_1, std::placeholders::_2));
+		DWORD m_dwThreadId;
+		CreateThread(NULL, 0, ThreadLoadApps, &s_scm, 0, &m_dwThreadId);
+		g_msg_host.set_send_cmd([&](u8* pbuff, int len){
+			u8* plink = new u8[len + 7];
+			plink[0] = MCU_SYNC2;
+			plink[1] = MCU_SYNC1;
+			struct GNU_DEF signal_def
+			{
+				u8 reserve : 5;
+				u8 need_ac : 1;
+				u8 frame_tp : 1;
+				u8 frame_dir : 1;
+			};
+			signal_def* psg = (signal_def*)(plink + 2);
+			psg->reserve = 0;
+			psg->need_ac = 1;
+			psg->frame_tp = 1;
+			psg->frame_dir = 0;
+			static u8 frame_idx = 0;
+			plink[2 + en_pos_index] = frame_idx;
+			frame_idx++;
+			u16 frame_len = len + 1;
+			u8* pfm_ln = (u8*)&frame_len;
+			plink[2 + en_pos_length_h] = *pfm_ln++;
+			plink[2 + en_pos_length_l] = *pfm_ln;
+			u8 chk_sm = plink[0] ^ plink[1] ^ plink[2] ^ plink[3] ^ plink[4] ^ plink[5];
+			for (int ix = 0; ix < len; ix++)
+			{
+				plink[2 + en_pos_cmd_head + ix] = pbuff[ix];
+				chk_sm = chk_sm^pbuff[ix];
+			}
+			plink[2 + en_pos_cmd_head + len] = chk_sm;
+			s_scm.send_data(plink, len + 7);
+			delete[] plink;
+		});
+	}
+
 	currentTime = std::chrono::high_resolution_clock::now();
 	delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
 	printf("comm consume %d milli seconds\n", delta);
@@ -277,7 +281,8 @@ bool my_application::create_run()
 	   baudrate=atoi(_arg_list[2].c_str());
 	if (!s_scm.open(comm_id, baudrate))
 	{
-		return false;
+		printf("fail to open comm:%d\n", comm_id);
+		//return false;
 	}
 	
 	return application::create_run();

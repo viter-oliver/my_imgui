@@ -120,6 +120,7 @@ void project_edit::popup_context_menu()
 					string chd_name = _pcurrent_object->try_create_a_child_name(cname);
 					pchild->set_name(chd_name);
 					_pcurrent_object->add_child(pchild);
+					pchild->link();
 				}
 				
 			});
