@@ -25,7 +25,7 @@ namespace auto_future
 		};
 		timer_unit _timer_list[max_timer_num];
 		timer_unit_ex _timer_list_ex[max_timer_num];
-		map<int, int> _active_tm_list;
+		map<int, int> _active_tm_list,_active_tm_ex_list;
 	public:
 		af_timer();
 		~af_timer();
@@ -119,16 +119,26 @@ namespace auto_future
 			{
 				_timer_list_ex[timer_id]._tp = steady_clock::now();
 				_timer_list_ex[timer_id]._tvalue = tvalue;
+				_active_tm_ex_list[timer_id]=0;
 				return true;
 			}
 			return false;
 		}
-
+		bool is_actived_timer_ex(int timer_id)
+		{
+			auto ict = _active_tm_ex_list.find(timer_id);
+			return ict != _active_tm_ex_list.end();
+		}
 		bool deactive_time_ex(int timer_id)
 		{
 			if (timer_id < max_timer_num&&_timer_list_ex[timer_id]._handle)
 			{
 				_timer_list_ex[timer_id]._tvalue = 0;
+				const auto& actm = _active_tm_ex_list.find(timer_id);
+				if (actm != _active_tm_ex_list.end())
+				{
+					_active_tm_ex_list.erase(actm);
+				}
 				return true;
 			}
 			return false;

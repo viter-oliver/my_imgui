@@ -12,12 +12,14 @@ namespace auto_future
 		DEF_STRUCT_WITH_INIT(intl_pt,_sn_pt,
 			(af_vec4, _bk_clr))
 		//frame buffer
-		unsigned int _fboId;
+		unsigned int _fboId={0};
 		unsigned int _colorTextId;
 		unsigned int _depthStencilTextId;
+		void release_resource();
 	public:
 		ft_scene();
 		~ft_scene();
+		void link();
 		void draw();
 		bool handle_mouse();
 	};

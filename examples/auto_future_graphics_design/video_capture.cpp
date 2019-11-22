@@ -124,7 +124,7 @@ struct dev_unit
 		SafeRelease(&_pActivate);
 		if (_pSource)
 		{
-			_pSource->Shutdown();
+			//_pSource->Shutdown();
 		}
 		SafeRelease(&_pSource);
 	}

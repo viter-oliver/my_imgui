@@ -87,7 +87,13 @@ void set_rotate_axis_pos(float px, float py)
 #endif
 static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
 static unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
-
+float ortho_projection[4][4] =
+{
+	{ 0.f, 0.0f, 0.0f, 0.0f },
+	{ 0.0f, 0.f, 0.0f, 0.0f },
+	{ 0.0f, 0.0f, -1.0f, 0.0f },
+	{ -1.0f, 1.0f, 0.0f, 1.0f },
+};
 // OpenGL3 Render function.
 // (this used to be set in io.RenderDrawListsFn and called by ImGui::Render(), but you can now call this directly from your main loop)
 // Note that this implementation is little overcomplicated because we are saving/setting up/restoring every OpenGL state explicitly, in order to be able to run within any OpenGL engine that doesn't do so. 
@@ -96,6 +102,9 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
 #if	1
     // Avoid rendering when minimized, scale coordinates for retina displays (screen coordinates != framebuffer coordinates)
     ImGuiIO& io = ImGui::GetIO();
+	ortho_projection[0][0]=2.0f / io.DisplaySize.x;
+	ortho_projection[1][1] = -2.0f / io.DisplaySize.y;
+
     int fb_width = (int)(io.DisplaySize.x * io.DisplayFramebufferScale.x);
     int fb_height = (int)(io.DisplaySize.y * io.DisplayFramebufferScale.y);
     if (fb_width == 0 || fb_height == 0)
@@ -136,14 +145,14 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
 
     // Setup viewport, orthographic projection matrix
     glViewport(0, 0, (GLsizei)fb_width, (GLsizei)fb_height);
-    const float ortho_projection[4][4] =
+    /*const float ortho_projection[4][4] =
     {
         { 2.0f/io.DisplaySize.x, 0.0f,                   0.0f, 0.0f },
         { 0.0f,                  2.0f/-io.DisplaySize.y, 0.0f, 0.0f },
         { 0.0f,                  0.0f,                  -1.0f, 0.0f },
         {-1.0f,                  1.0f,                   0.0f, 1.0f },
     };
-
+	*/
     glUseProgram(g_ShaderHandle);
     glUniform1i(g_AttribLocationTex, 0);
     glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
