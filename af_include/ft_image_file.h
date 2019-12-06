@@ -2,19 +2,21 @@
 #include "ft_base.h"
 namespace auto_future
 {
-	
-	class AFG_EXPORT ft_image :
+
+	class AFG_EXPORT ft_image_file :
 		public ft_base
 	{
 	
-		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
-			(float, _aposx, {0.f}),
-			(float, _aposy, {0.f}),
-			(int, _anchor_type, {en_anchor_top_left}),
-			(int, _texture_index_txt, {0}),
-			(float, _angle_srd, {0.f}))
+          DEF_STRUCT_WITH_INIT( intl_pt, _img_pt,
+                                ( float, _aposx, { 0.f } ),
+                                ( float, _aposy, { 0.f } ),
+                                ( int, _anchor_type, { en_anchor_top_left } ),
+                                ( float, _angle_srd, { 0.f } ) )
+          unsigned int _texture_id = { 0 };
+          int _width, _height, _channels;
+
 	public:	
-		ft_image();// : ft_base(){}
+		ft_image_file();// : ft_base(){}
 		
 		void set_size(const ImVec2& im_size)
 		{
@@ -45,13 +47,10 @@ namespace auto_future
 		{
 			_img_pt._anchor_type = antp;
 		}
-		void set_texture_id(int texture_id)
+          bool load_image_file( char* image_path );
+		unsigned int get_texture_id()
 		{
-			_img_pt._texture_index_txt = texture_id;
-		}
-		int get_texture_id()
-		{
-			return _img_pt._texture_index_txt;
+               return _texture_id;
 		}
 		void draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
@@ -66,5 +65,5 @@ namespace auto_future
 		void rotate(float angle){ _img_pt._angle_srd = angle; }
 	};
 
-	REGISTER_CONTROL(ft_image)
+	REGISTER_CONTROL(ft_image_file)
 }

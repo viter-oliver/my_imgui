@@ -11,7 +11,7 @@ namespace auto_future
 		//});
 		_pt._bkclr = { 1., 1., 1., 1. };
 		_pt._bdclr = { 1., 1., 1., 1. };
-
+		
 	}
 	void ft_block::draw()
 	{

@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 using namespace std;
+extern const string python_pre_define;
 extern const string python_fun_head;
 extern const string python_fun_name;
 struct  var_unit

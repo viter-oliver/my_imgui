@@ -184,7 +184,7 @@ void afb_load::load_afb(const char* afb_file)
 	auto obj_format = obj_w.via.array.ptr[en_output_bin_format];
 	g_output_bin_format._txt_fmt = static_cast<texture_format>(obj_format.via.array.ptr[0].as<int>());
 	g_output_bin_format._pgm_fmt = static_cast<program_format>(obj_format.via.array.ptr[1].as<int>());
-
+	g_cur_texture_id_index=obj_w.via.array.ptr[en_vtextures_res_cidx].as<int>();
 	auto obj_res = obj_w.via.array.ptr[en_vtextures_res];
 	auto re_cnt = obj_res.via.array.size;
 	function<unsigned int(const char*, int, int, unsigned int,bool mipv)> f_gen_txt;
@@ -768,5 +768,36 @@ void afb_load::load_afb(const char* afb_file)
 		}
 		g_mstate_manager[mskey] = ps_stm;
 	}
+     auto obj_common_value_dic = obj_w.via.array.ptr[ en_common_value ];
+     auto cmv_sz = obj_common_value_dic.via.array.size;
+     for( size_t ix = 0; ix < cmv_sz; ix++ )
+     {
+          auto ocmv_u = obj_common_value_dic.via.array.ptr[ ix ];
+          auto ocmv_key = ocmv_u.via.array.ptr[ 0 ];
+          auto mkey_sz = ocmv_key.via.str.size;
+          string mskey,scmv_tp;
+          mskey.resize( mkey_sz );
+          memcpy( &mskey[ 0 ], ocmv_key.via.str.ptr, mkey_sz );
+          auto cmv_tp = ocmv_u.via.array.ptr[ 1 ];
+          auto tp_sz = cmv_tp.via.str.size;
+          scmv_tp.resize( tp_sz );
+          memcpy( &scmv_tp[ 0 ], cmv_tp.via.str.ptr, tp_sz );
+          auto ps_cmv = make_shared<base_prp_type>( scmv_tp );
+          auto ovalue = ocmv_u.via.array.ptr[ 2 ];
+          auto ov_sz = ovalue.via.bin.size;
+          memcpy( ps_cmv->_pbase, ovalue.via.bin.ptr, ov_sz );
+          auto& prop_list = ps_cmv->_param_list;
+          auto oprop_list=ocmv_u.via.array.ptr[ 3 ];
+          auto oprop_sz = oprop_list.via.array.size;
+          for( size_t ii = 0; ii < oprop_sz; ii++ )
+          {
+               auto oprp_id = oprop_list.via.array.ptr[ ii ];
+               prop_list.emplace_back();
+               auto& prp_ele_pos = prop_list[ ii ];
+               obj_2_prp_pos( oprp_id, prp_ele_pos );
+          }
+          g_base_prp_dic[ mskey ] = ps_cmv;
+
+     }
 	TIME_CHECK(control list res)
 }

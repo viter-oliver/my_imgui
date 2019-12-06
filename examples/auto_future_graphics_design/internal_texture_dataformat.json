@@ -329,6 +329,14 @@
 	"sourceSize": {"w":32,"h":32}
 },
 {
+	"filename": "ft_image_file.png",
+	"frame": {"x":562,"y":2,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
 	"filename": "ft_image_play.png",
 	"frame": {"x":949,"y":2,"w":32,"h":32},
 	"rotated": false,
@@ -545,6 +553,14 @@
 	"sourceSize": {"w":32,"h":32}
 },
 {
+	"filename": "shared_value.png",
+	"frame": {"x":1119,"y":2,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+{
 	"filename": "state_manager.png",
 	"frame": {"x":192,"y":2,"w":30,"h":28},
 	"rotated": false,
@@ -567,6 +583,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1982,"h":112},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:062a7de2640e496ea56c3425b5a57321$"
+	"smartupdate": "$TexturePacker:SmartUpdate:5d5544f5a8a2452620aae043855ca5e9$"
 }
 }

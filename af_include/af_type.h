@@ -84,6 +84,10 @@ namespace auto_future
 			af_vt3 av{ this->x - tar.x, this->y - tar.y, this->z - tar.z };
 			return av;
 		}
+          float norm()
+          {
+               return sqrt( x*x + y*y +z*z);
+          }
 	};
 	using af_vi3 = af_vt3<int>;
 	using af_vui3 = af_vt3<unsigned int>;
@@ -126,6 +130,10 @@ namespace auto_future
 			af_vt4 av{this->x-tar.x,this->y-tar.y,this->z-tar.z,this->w-tar.w};
 			return av;
 		}
+          float norm()
+          {
+               return sqrt( x*x + y*y+z*z+w*w);
+          }
 	};
 	using af_vi4 = af_vt4<int>;
 	using af_vui4 = af_vt4<unsigned int>;

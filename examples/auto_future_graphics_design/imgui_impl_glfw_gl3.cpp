@@ -454,7 +454,7 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
 #endif // BUILD_DLL
 
     g_AttribLocationPosition = glGetAttribLocation(g_ShaderHandle, "Position");
-    g_AttribLocationUV = glGetAttribLocation(g_ShaderHandle, "UV");
+	g_AttribLocationUV = glGetAttribLocation(g_ShaderHandle, "UV");
     g_AttribLocationColor = glGetAttribLocation(g_ShaderHandle, "Color");
 
     glGenBuffers(1, &g_VboHandle);

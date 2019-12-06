@@ -42,7 +42,22 @@ struct prop_ele_bind_unit
 	_expression.resize(1024 * 16);
 	}*/
 };
+struct base_prp_type
+{
+     string _type;
+     void* _pbase;
+     int _size;
+     vprop_pos _param_list;
+     base_prp_type( string bty );
+     ~base_prp_type()
+     {
+          free( _pbase );
+     }
+     void override_param_list();
 
+};
+using ps_bs_prp = shared_ptr<base_prp_type>;
+using bs_prp_dic = map<string, ps_bs_prp>;
 using bind_dic = map<prop_ele_position, shared_ptr<prop_ele_bind_unit>>;
 using bind_ref_dic = map<prop_ele_position, shared_ptr<vprop_pos>>;
 using prop_ele_pos_index = vector<unsigned short>;
@@ -56,3 +71,6 @@ using aliase_map = map<string, ps_prp_ele_pos>;
 extern aliase_map g_aliase_dic;
 extern bool AFG_EXPORT set_property_aliase_value(string prp_aliase_name, void* pvalue);
 extern AFG_EXPORT base_ui_component*  get_aliase_ui_control(string prp_aliase_name);
+extern bs_prp_dic g_base_prp_dic;
+extern bool AFG_EXPORT prp_is_catched_by_base_prp_type( prop_ele_position& prp_pos, base_prp_type& base_prp );
+extern bool AFG_EXPORT cover_common_value( string name_of_common_value );

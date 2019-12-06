@@ -110,6 +110,7 @@ void afb_output::output_afb(const char* afb_file)
 	string output_file_path = g_cureent_directory + "afb\\";
 	int idx = 0;
 	file_outputor fout_put(output_file_path);
+	pk.pack_int(g_cur_texture_id_index);//en_vtextures_res_cidx
 	pk.pack_array(g_vres_texture_list.size());//en_vtextures_res
 	function<uint8_t*(uint8_t*, int,int,int&)> ftxt_press;
 	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){
@@ -465,6 +466,31 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_int(tran._easing_func);
 		}
 	}
+     pk.pack_array(g_base_prp_dic.size());//en_common_value
+     for (auto& icmv:g_base_prp_dic)
+     {
+          pk.pack_array(4);
+          auto& ikey=icmv.first;
+          pk.pack_str(ikey.size());
+          pk.pack_str_body(ikey.c_str,ikey.size());
+          auto& cmv=*icmv.second;
+          auto& _type=cmv._type;
+          auto& _value=cmv._pbase;
+          auto& prop_list=cmv._param_list;
+          pk.pack_str(_type.size());
+          pk.pack_str_body(_type.c_str(),_type.size());
+          pk.pack_bin(cmv._size);
+          pk.pack_bin_body(reinterpret_cast<char const*>(_value),cmv._size);
+          pk.pack_array(prop_list.size());
+          for (auto& pp_unit:prop_list)
+          {
+               prop_ele_pos_index prp_id;
+               calcu_prop_ele_pos_index(pp_unit, prp_id);
+               auto bin_sz = prp_id.size()*sizeof(unsigned short);
+               pk.pack_bin( bin_sz );
+               pk.pack_bin_body( (char*)&prp_id[ 0 ], bin_sz );
+          }
+     }
 #ifndef _DX5_COMPRESS
 	uint8_t* pout_buff = new uint8_t[sbuff.size()];
 	mz_stream stream = {};

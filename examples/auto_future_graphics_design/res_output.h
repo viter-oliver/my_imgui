@@ -207,4 +207,5 @@ struct output_bin_format
 	program_format _pgm_fmt;
 	//output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
 };
+extern bool get_texture_item( void* data, int idx, const char** out_str );
 extern output_bin_format g_output_bin_format;

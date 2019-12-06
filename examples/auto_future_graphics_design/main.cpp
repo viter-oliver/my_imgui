@@ -45,6 +45,7 @@
 #include "bind_edit.h"
 #include "aliase_edit.h"
 #include "state_manager_edit.h"
+#include "base_prp_type_edit.h"
 #include "slider_path_picker.h"
 #include "primitve_edit.h"
 #include "common_functions.h"
@@ -70,6 +71,7 @@ string g_app_path;
 bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
+base_prp_type_edit g_common_value_edit;
 slider_path_picker g_slider_path_picker;
 unreferenced_items g_unreferenced_items;
 primitve_edit g_primitive_edit;
@@ -92,7 +94,8 @@ show_property_window = true, show_resource_manager = true, \
 show_fonts_manager = true, show_file_manager = true, \
 show_output_format = false, show_model_list = false, show_world_space = false, \
 show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
-show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false;
+show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false,\
+show_common_value_edit = false;;
 
 string reg_path = "afg_ide";
 string ikey = "max&maj20190815x";
@@ -801,6 +804,10 @@ int main(int argc, char* argv[])
 				{
 					show_state_manager_edit = !show_state_manager_edit;
 				}
+                    if( ImGui::MenuItem( "Common value edit", NULL, show_common_value_edit) )
+                    {
+                         show_common_value_edit = !show_common_value_edit;
+                    }
 				if (ImGui::MenuItem("Aliases edit", NULL, show_aliase_edit))
 				{
 					show_aliase_edit = !show_aliase_edit;
@@ -936,6 +943,15 @@ int main(int argc, char* argv[])
 			g_state_manager_edit.view_state_manager_item_property();
 			ImGui::End();
 		}
+          if( show_common_value_edit )
+          {
+               ImGui::Begin( "Common value edit", &show_common_value_edit, ImVec2( 500, 600 ) );
+               ImGui::Columns( 2 );
+               g_common_value_edit.view_base_prp_list();
+               ImGui::NextColumn();
+               g_common_value_edit.base_prp_item();
+               ImGui::End();
+          }
 		if (show_slider_path_picker)
 		{
 			ImGui::Begin("Slider path picker", &show_slider_path_picker, ImVec2(500, 600),0.5);

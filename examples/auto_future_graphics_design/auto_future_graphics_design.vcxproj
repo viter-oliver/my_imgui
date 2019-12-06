@@ -189,6 +189,7 @@
     <ClCompile Include="af_state_manager.cpp" />
     <ClCompile Include="af_timer.cpp" />
     <ClCompile Include="aliase_edit.cpp" />
+    <ClCompile Include="base_prp_type_edit.cpp" />
     <ClCompile Include="base_ui_component.cpp" />
     <ClCompile Include="bind_edit.cpp" />
     <ClCompile Include="command_element_delta.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="file_res_edit.cpp" />
     <ClCompile Include="fonts_edit.cpp" />
     <ClCompile Include="ft_block.cpp" />
+    <ClCompile Include="ft_image_file.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
     <ClCompile Include="ft_material_2d.cpp" />
     <ClCompile Include="ft_material_3d.cpp" />
@@ -270,6 +272,7 @@
     <ClInclude Include="..\..\af_include\ft_cube_3d.h" />
     <ClInclude Include="..\..\af_include\ft_fbx_assert_3d.h" />
     <ClInclude Include="..\..\af_include\ft_image.h" />
+    <ClInclude Include="..\..\af_include\ft_image_file.h" />
     <ClInclude Include="..\..\af_include\ft_image_play.h" />
     <ClInclude Include="..\..\af_include\ft_listbox.h" />
     <ClInclude Include="..\..\af_include\ft_logo_animation.h" />
@@ -321,11 +324,10 @@
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="aes.h" />
-    <ClInclude Include="afb_output.h" />
-    <ClInclude Include="afb_res_index.h" />
     <ClInclude Include="af_shader_source_code.h" />
     <ClInclude Include="af_type.h" />
     <ClInclude Include="aliase_edit.h" />
+    <ClInclude Include="base_prp_type_edit.h" />
     <ClInclude Include="bind_edit.h" />
     <ClInclude Include="command_element_delta.h" />
     <ClInclude Include="dir_output.h" />

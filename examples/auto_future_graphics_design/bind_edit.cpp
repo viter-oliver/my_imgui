@@ -169,13 +169,14 @@ void bind_edit::bind_source_view()
 		}
 		ix++;
 	}
+     //ImGui::Text( python_pre_define.c_str() );
 	auto edit_ht = ImGui::GetTextLineHeight() * 16;
 	auto txt_flag = ImGuiInputTextFlags_AllowTabInput;
 	ImGui::InputTextMultiline("bind source", txt_buff, TXT_BUFF_SZ, ImVec2(-1.0f, edit_ht), txt_flag);
 	_hit_bind_window = _dragging&&ImGui::IsMouseHoveringWindow();
 	if (ImGui::Button("test"))
 	{
-	    _exp_calcu = python_fun_head;
+          _exp_calcu = python_pre_define+python_fun_head;
 		_exp_calcu += param_pass;
 		_exp_calcu += "):\n";
 		string fun_content;

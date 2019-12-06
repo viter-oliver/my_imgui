@@ -51,6 +51,7 @@ void clear_pre_proj_resource()
 	g_bind_dic.clear();
 	g_bind_ref_dic.clear();
 	g_mstate_manager.clear();
+     g_base_prp_dic.clear();
 }
 extern HCURSOR g_hcursor_wait;
 bool ui_assembler::load_ui_component_from_file(const char* file_path)
@@ -271,7 +272,6 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					g_primitive_list[kname] = ppobj;
 				}
 			}
-			 g_cur_texture_id_index=jroot["texture_id_index"].asInt();
 			 Value& models = jroot["models"];
 			 if (models.isObject())
 			 {
@@ -482,6 +482,54 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				}
 				g_mstate_manager[mname] = ps_stm;
 			}
+               Value& jcommonvalue_list = jroot[ "common_value_list" ];
+               Value::Members jmemb( jcommonvalue_list.getMemberNames() );
+               for( auto item = jmemb.begin(); item != jmemb.end(); ++item )
+               {
+                    auto& mname = *item;
+                    Value& jcmv = jcommonvalue_list[ mname ];
+                    Value& jvalue = jcmv[ "value" ];
+                    Value& jprop_list = jcmv[ "prop_list" ];
+                    string vtype = jcmv[ "type" ].asString();
+                    auto pcmv = make_shared<base_prp_type>( vtype );
+                    auto& mvalue = pcmv->_pbase;
+                    auto& pmlist = pcmv->_param_list;
+                    if (vtype=="int")
+                    {
+                         *(int*)mvalue = jvalue.asInt();
+                    }
+                    else if (vtype=="float"||vtype=="double")
+                    {
+                         *(float*)mvalue = jvalue.asDouble();
+                    }
+                    else if (vtype=="af_vec2")
+                    {
+                         *(float*)mvalue = jvalue[ "x" ].asDouble();
+                         *( (float*)mvalue+1 ) = jvalue[ "y" ].asDouble();
+                    }
+                    else if (vtype=="af_vec3")
+                    {
+                         *(float*)mvalue = jvalue[ "x" ].asDouble();
+                         *( (float*)mvalue+1 ) = jvalue[ "y" ].asDouble();
+                         *( (float*)mvalue + 2 ) = jvalue[ "z" ].asDouble();
+                    }
+                    else if( vtype == "af_vec4" )
+                    {
+                         *(float*)mvalue = jvalue[ "x" ].asDouble();
+                         *( (float*)mvalue + 1 ) = jvalue[ "y" ].asDouble();
+                         *( (float*)mvalue + 2 ) = jvalue[ "z" ].asDouble();
+                         *( (float*)mvalue + 3 ) = jvalue[ "w" ].asDouble();
+                    }
+                    int jsz = jprop_list.size();
+                    for( int ii = 0; ii < jsz;ii++ )
+                    {
+                         pmlist.emplace_back();
+                         auto& prp_pos = pmlist[ ii ];
+                         Value& jprp_pos = jprop_list[ ii ];
+                         jarry_2_prp_pos( jprp_pos, prp_pos );
+                    }
+                    g_base_prp_dic[ mname ] = pcmv;
+               }
 		}
 		fin.close();
 	}
@@ -816,6 +864,69 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		state_manager[ism.first] = st_m_unit;
 	}
 	jroot["state_manager_list"] = state_manager;
+     Value common_value_list(objectValue);
+     for (auto& ivc:g_base_prp_dic)
+     {
+          Value uvalue( objectValue );
+          auto& knm = ivc.first;
+          auto& cmvalue = *ivc.second;
+          auto& mvalue = cmvalue._pbase;
+          auto& pmlist = cmvalue._param_list;
+          auto& vtype = cmvalue._type;
+          uvalue[ "type" ] = vtype;
+          Value jprop_list( arrayValue );
+          for( auto& pp_unit : pmlist )
+          {
+               prop_ele_pos_index prp_id;
+               calcu_prop_ele_pos_index( pp_unit, prp_id );
+               Value jprp_id( arrayValue );
+               for( auto keyid : prp_id )
+               {
+                    jprp_id.append( keyid );
+               }
+               jprop_list.append( jprp_id );
+          }
+          uvalue[ "prop_list" ] = jprop_list;
+          if (vtype=="int")
+          {
+               int* pvi = (int*)mvalue;
+               uvalue[ "value" ] = *pvi;
+          }
+          else if( vtype == "float" || vtype=="double")
+          {
+               uvalue[ "value" ] = *(float*)mvalue;
+          }
+          else if( vtype == "bool" )
+          {
+               uvalue[ "value" ] = *(bool*)mvalue;
+          }
+          else if (vtype=="af_vec2")
+          {
+               Value jv2( objectValue );
+               jv2["x"] = *(float*)mvalue;
+               jv2[ "y" ] = *((float*)mvalue+1);
+               uvalue[ "value" ] = jv2;
+          }
+          else if( vtype == "af_vec3" )
+          {
+               Value jv3( objectValue );
+               jv3["x"]=*(float*)mvalue;
+               jv3["y"]=*((float*)mvalue+1);
+               jv3["z"]=*((float*)mvalue+2);
+               uvalue[ "value" ] = jv3;
+          }
+          else if (vtype=="af_vec4")
+          {
+               Value jv4( objectValue );
+               jv4[ "x" ] = *(float*)mvalue;
+               jv4[ "y" ] = *( (float*)mvalue + 1 );
+               jv4[ "z" ] = *( (float*)mvalue + 2 );
+               jv4[ "w" ] = *( (float*)mvalue + 3 );
+               uvalue[ "value" ] = jv4;
+          }
+          common_value_list[ knm ] = uvalue;
+     }
+     jroot[ "common_value_list" ] = common_value_list;
 	fout << jroot << endl;
 	fout.close();
 	//save_fbx_file();

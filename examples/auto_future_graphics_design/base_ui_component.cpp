@@ -5,10 +5,12 @@
 #include "bind_edit.h"
 #include "state_manager_edit.h"
 #include "aliase_edit.h"
+#include "base_prp_type_edit.h"
 #include "common_functions.h"
 extern bind_edit g_bind_edit;
 extern state_manager_edit g_state_manager_edit;
 extern aliase_edit g_aliase_edit;
+extern base_prp_type_edit g_common_value_edit;
 extern bool show_bind_edit;
 extern bool show_aliase_edit;
 #define INT_VALUE 45
@@ -188,7 +190,7 @@ static	string aliase_btn_cp = "  ##";
 					memcpy(&before_op_memb_value[0], memb_address, mtpsz);
 
 					auto& imemb_tp_handl = _mcustom_type_property_handles_container.find(mtype);
-					bool be_base_type = mtype == "int" || mtype == "float" || mtype == "double" || mtype == "bool";
+					//bool be_base_type = mtype == "int" || mtype == "float" || mtype == "double" || mtype == "bool";
 					if (imemb_tp_handl != _mcustom_type_property_handles_container.end())
 					{
 						imemb_tp_handl->second(memb_address);
@@ -384,7 +386,7 @@ static	string aliase_btn_cp = "  ##";
 						show_aliase_edit = true;
 						g_aliase_edit.sel_aliase(this, pgidx, idx);
 					}
-					if (be_base_type)
+					//if (be_base_type)
 					{
 						btn_cap = bind_btn_cp + idstr;
 						ImGui::SameLine();
@@ -403,6 +405,7 @@ static	string aliase_btn_cp = "  ##";
 							draw_list->PopClipRect();
 							g_bind_edit.set_dragging(true, this, pgidx, idx);
 							g_state_manager_edit.set_dragging(true, this, pgidx, idx);
+                                   g_common_value_edit.set_dragging( true, this, pgidx, idx );
 							//ImGui::Button("Drag Me");
 						}
 					}
@@ -410,6 +413,7 @@ static	string aliase_btn_cp = "  ##";
 					{
 						g_bind_edit.set_dragging(false,this);
 						g_state_manager_edit.set_dragging(false, this);
+                              g_common_value_edit.set_dragging( false, this );
 					}
 					idx++;
 				}

@@ -58,6 +58,58 @@ void calcu_prop_ele_pos_index(const prop_ele_position& pep, prop_ele_pos_index& 
 		pcur = ppt;
 	}
 }
+base_prp_type::base_prp_type( string bty )
+{
+     _type = bty;
+     if( _type == "int" )
+     {
+          _pbase = new int;
+          _size = sizeof( int );
+     }
+     else if( _type == "float" )
+     {
+          _pbase = new float;
+          _size = sizeof( float );
+     }
+     else if( _type == "double" )
+     {
+          _pbase = new double;
+          _size = sizeof( double );
+     }
+     else if( _type == "bool" )
+     {
+          _pbase = new bool;
+          _size = sizeof( bool );
+     }
+     else if( _type == "af_vec2" )
+     {
+          _pbase = new af_vec2;
+          _size = sizeof( af_vec2 );
+     }
+     else if( _type == "af_vec3" )
+     {
+          _pbase = new af_vec3;
+          _size = sizeof( af_vec3 );
+     }
+     else if( _type == "af_vec4" )
+     {
+          _pbase = new af_vec4;
+          _size = sizeof( af_vec4 );
+     }
+     memset( _pbase, 0, _size );
+}
+
+void base_prp_type::override_param_list()
+{
+     for (auto& itm_pm:_param_list)
+     {
+          auto& pgidx = itm_pm._page_index;
+          auto& fdidx = itm_pm._field_index;
+          auto& pobj = itm_pm._pobj;
+          pobj->set_prop_fd_value( pgidx, fdidx, _pbase );
+
+     }
+}
 aliase_map g_aliase_dic;
 bool set_property_aliase_value(string prp_aliase_name, void* pvalue)
 {
@@ -80,4 +132,28 @@ base_ui_component* get_aliase_ui_control(string prp_aliase_name)
 	}
 	auto& prop_pos = *ialiase->second;
 	return prop_pos._pobj;
+}
+bs_prp_dic g_base_prp_dic;
+bool prp_is_catched_by_base_prp_type( prop_ele_position& prp_pos, base_prp_type& base_prp )
+{
+     auto& plist = base_prp._param_list;
+     for( auto& iprp:plist )
+     {
+          if (iprp==prp_pos)
+          {
+               return true;
+          }
+     }
+     return false;
+}
+bool cover_common_value( string name_of_common_value )
+{
+     auto& icmv = g_base_prp_dic.find( name_of_common_value );
+     if (icmv!=g_base_prp_dic.end())
+     {
+          auto& btp = *icmv->second;
+          btp.override_param_list();
+          return true;
+     }
+     return false;
 }

@@ -4,8 +4,8 @@
 #include "ft_base.h"
 #include "res_internal.h"
 static char sal_name_str[FILE_NAME_LEN] = "";
-static char* new_aliase = "New aliase";
-static char* edit_aliase = "Edit aliase";
+static char* new_aliase = "New alias";
+static char* edit_aliase = "Edit alias";
 void aliase_edit::aliase_dic_view()
 {
 	string icon_str = icn_aliase;
