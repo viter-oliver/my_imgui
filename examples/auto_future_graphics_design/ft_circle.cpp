@@ -35,7 +35,7 @@ namespace auto_future
 		{
 			draw_list->AddCircle(pos0, _pt._radius, col, numb_segs, _pt._thickness_utn);
 		}
-		ft_base::draw();
+		//ft_base::draw();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())
 		{

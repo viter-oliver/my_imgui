@@ -80,7 +80,7 @@ namespace auto_future
 		{
 			return;
 		}
-		ft_base::draw();
+		//ft_base::draw();
 		vres_txt_cd& ptext_cd = _vtexture_cd;
 		if (_img_pt._frame_index >= ptext_cd.size())
 		{

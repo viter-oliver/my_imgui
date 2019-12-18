@@ -94,7 +94,7 @@ namespace auto_future
 	void ft_video::draw()
 	{
 		
-		ft_base::draw();
+		//ft_base::draw();
 		if (!_linked)
 		{
 			return;

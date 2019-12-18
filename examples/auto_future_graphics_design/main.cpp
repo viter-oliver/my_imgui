@@ -75,7 +75,7 @@ base_prp_type_edit g_common_value_edit;
 slider_path_picker g_slider_path_picker;
 unreferenced_items g_unreferenced_items;
 primitve_edit g_primitive_edit;
-base_ui_component* _proot = NULL;
+ft_base* _proot = NULL;
 shared_ptr<project_edit> prj_edit;
 HCURSOR g_hcursor_wait;
 //string g_current_run_path;
@@ -893,7 +893,7 @@ int main(int argc, char* argv[])
 			//
 			if (_proot)
 			{
-				_proot->draw();
+				_proot->draw_frames();
 			}			
 			ImGuiContext& g = *GImGui;
 			ImGuiWindow* cur_window = ImGui::GetCurrentWindow();

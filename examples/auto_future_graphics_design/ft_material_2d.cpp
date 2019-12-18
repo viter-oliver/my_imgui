@@ -148,7 +148,7 @@ namespace auto_future
 				glDrawElements(dml, primid._ele_buf_len, GL_UNSIGNED_INT, 0);
 			}
 		}
-		ft_base::draw();
+		//ft_base::draw();
 	}
 
 }

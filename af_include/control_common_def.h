@@ -40,6 +40,8 @@ namespace auto_future
 	};
 	using namespace std;
 	typedef vector<property_range> vproperty_list;
+     typedef function<void( int )> frame_fun;
+     typedef vector<frame_fun> vframe_fun;
 	const unsigned char name_len = 40;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	using namespace Json;
@@ -63,7 +65,7 @@ namespace auto_future
 	{
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	protected:
-
+          vframe_fun _vframe_fun;
 		vp_prop_ele _vprop_eles;
 		enum adjacent_model
 		{
@@ -153,6 +155,8 @@ namespace auto_future
 		{
 			_selected = beselected;
 		}
+         
+
 		vp_prop_ele& get_prop_ele(){
 			return _vprop_eles;
 		}
@@ -215,6 +219,91 @@ namespace auto_future
 		*@brief draw self on a surface
 		*/
 		virtual void draw() = 0;
+          int instance_cnt()
+          {
+               return _vframe_fun.size();
+          }
+          int reg_frame_fun( int idx, frame_fun ffun )
+          {
+               auto ifsz = _vframe_fun.size();
+               if( idx < ifsz )
+               {
+                    swap( _vframe_fun[ idx ], ffun );
+                    return idx;
+               }
+               _vframe_fun.emplace_back( ffun );
+               return ifsz;
+          }
+          void reg_frame_fun( vframe_fun&& vffuns )
+          {
+               _vframe_fun.clear();
+               for( auto& ffun : vffuns )
+               {
+                    _vframe_fun.emplace_back( ffun );
+               }
+          }
+          void clear_frame_fun()
+          {
+               _vframe_fun.clear();
+          }
+          virtual void draw_frames()
+          {
+               auto pbase = get_parent();
+               auto& ajm = _in_p._aj_model;
+               if( pbase&&_in_p._aj_model != en_fixed )
+               {
+                    auto bs_ps = base_pos();
+                    bool be_intersected;
+                    auto& adj_value = _in_p._adjacent_to_p;
+                    if( ajm == en_horisontal )
+                    {
+                         float hitpos;
+                         bs_ps.x -= adj_value;
+                         be_intersected = pbase->get_border_hit_point( bs_ps.x, true, hitpos );
+                         if( be_intersected )
+                         {
+                              hitpos += adj_value;
+                              set_base_posx( hitpos );
+                         }
+                    }
+                    else
+                    {
+                         float hitpos;
+                         bs_ps.y -= adj_value;
+                         be_intersected = pbase->get_border_hit_point( bs_ps.y, false, hitpos );
+                         if( be_intersected )
+                         {
+                              hitpos += adj_value;
+                              set_base_posy( hitpos );
+                         }
+                    }
+
+               }
+               if( !is_visible() )
+               {
+                    return;
+               }
+               auto ifsz = _vframe_fun.size();
+               if( ifsz > 0 )
+               {
+                    for( int ix = 0; ix < ifsz; ix++ )
+                    {
+                         _vframe_fun[ ix ]( ix );
+                         draw();
+                    }
+               }
+               else
+               {
+                    draw();
+               }
+               for( auto it : _vchilds )
+               {
+                    if( it->is_visible() )
+                    {
+                         it->draw_frames();
+                    }
+               }
+          }
 		virtual bool contains(float posx, float posy) = 0;
 		virtual bool relative_contain(float pos, bool be_h) = 0;
 		virtual bool set_prop_fd_value(int pg_id, int fd_id, void* pvalue) = 0;

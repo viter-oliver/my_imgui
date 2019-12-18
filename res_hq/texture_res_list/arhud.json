@@ -9,287 +9,183 @@
 	"sourceSize": {"w":48,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_AlongTheLine.png",
-	"frame": {"x":52,"y":2,"w":40,"h":40},
+	"filename": "ACC_b.png",
+	"frame": {"x":52,"y":2,"w":48,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":40},
+	"sourceSize": {"w":48,"h":40}
+},
+{
+	"filename": "NaviIcon_AlongTheLine.png",
+	"frame": {"x":102,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_End.png",
-	"frame": {"x":94,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_End.png",
+	"frame": {"x":144,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_Ferry.png",
-	"frame": {"x":136,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_Ferry.png",
+	"frame": {"x":186,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftFront.png",
-	"frame": {"x":178,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftFront.png",
+	"frame": {"x":228,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftFront_1_Back.png",
-	"frame": {"x":220,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftFront_1_Back.png",
+	"frame": {"x":270,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftFront_1_Right.png",
-	"frame": {"x":262,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftFront_1_Right.png",
+	"frame": {"x":312,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftFront_1_RightFront_2.png",
-	"frame": {"x":304,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftFront_1_RightFront_2.png",
+	"frame": {"x":354,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftFront_1_Up.png",
-	"frame": {"x":346,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftFront_1_Up.png",
+	"frame": {"x":396,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftFront_1_UpRight.png",
-	"frame": {"x":388,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftFront_1_UpRight.png",
+	"frame": {"x":438,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftTurn.png",
-	"frame": {"x":430,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftTurn.png",
+	"frame": {"x":480,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_LeftTurn_1_Up.png",
-	"frame": {"x":472,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_LeftTurn_1_Up.png",
+	"frame": {"x":522,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightFront.png",
-	"frame": {"x":514,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightFront.png",
+	"frame": {"x":564,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightFront_1_Back.png",
-	"frame": {"x":556,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightFront_1_Back.png",
+	"frame": {"x":606,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightFront_1_Left.png",
-	"frame": {"x":598,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightFront_1_Left.png",
+	"frame": {"x":648,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightFront_1_Up.png",
-	"frame": {"x":640,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightFront_1_Up.png",
+	"frame": {"x":690,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightFront_1_UpRight.png",
-	"frame": {"x":682,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightFront_1_UpRight.png",
+	"frame": {"x":732,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightFront_2.png",
-	"frame": {"x":724,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightFront_2.png",
+	"frame": {"x":774,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightRear.png",
-	"frame": {"x":766,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightRear.png",
+	"frame": {"x":816,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightTurn.png",
-	"frame": {"x":808,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightTurn.png",
+	"frame": {"x":858,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RightTurn_1_Up.png",
-	"frame": {"x":850,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_RightTurn_1_Up.png",
+	"frame": {"x":900,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_Roundabout.png",
-	"frame": {"x":892,"y":2,"w":40,"h":40},
+	"filename": "NaviIcon_Roundabout.png",
+	"frame": {"x":942,"y":2,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_RoundaboutExit.png",
-	"frame": {"x":934,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_ServiceStation.png",
-	"frame": {"x":976,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_StraightLine.png",
-	"frame": {"x":1018,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_StraightLine_1_Left.png",
-	"frame": {"x":1060,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_StraightLine_1_Right.png",
-	"frame": {"x":1102,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_StraightLine_2_Left.png",
-	"frame": {"x":1144,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_StraightLine_2_LeftRight.png",
-	"frame": {"x":1186,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_StraightLine_2_Right.png",
-	"frame": {"x":1228,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_TollGate.png",
-	"frame": {"x":1270,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_Tunnel.png",
-	"frame": {"x":1312,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_TurnAround.png",
-	"frame": {"x":1354,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_TurnAround_1.png",
-	"frame": {"x":1396,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_TurnAround_2.png",
-	"frame": {"x":1438,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_TurnAround_3.png",
-	"frame": {"x":1480,"y":2,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
-	"filename": "CL_NaviIcon_TurnAround_4.png",
+	"filename": "NaviIcon_RoundaboutExit.png",
 	"frame": {"x":2,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -297,7 +193,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_5.png",
+	"filename": "NaviIcon_ServiceStation.png",
 	"frame": {"x":44,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -305,7 +201,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_6.png",
+	"filename": "NaviIcon_StraightLine.png",
 	"frame": {"x":86,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -313,7 +209,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_7.png",
+	"filename": "NaviIcon_StraightLine_1_Left.png",
 	"frame": {"x":128,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -321,7 +217,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_8.png",
+	"filename": "NaviIcon_StraightLine_1_Right.png",
 	"frame": {"x":170,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -329,7 +225,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_9.png",
+	"filename": "NaviIcon_StraightLine_2_Left.png",
 	"frame": {"x":212,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -337,7 +233,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_LeftDown.png",
+	"filename": "NaviIcon_StraightLine_2_LeftRight.png",
 	"frame": {"x":254,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -345,7 +241,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_LeftTurn.png",
+	"filename": "NaviIcon_StraightLine_2_Right.png",
 	"frame": {"x":296,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -353,7 +249,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_LeftUp.png",
+	"filename": "NaviIcon_TollGate.png",
 	"frame": {"x":338,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -361,7 +257,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_RightDown.png",
+	"filename": "NaviIcon_Tunnel.png",
 	"frame": {"x":380,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -369,7 +265,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_RightUp.png",
+	"filename": "NaviIcon_TurnAround.png",
 	"frame": {"x":422,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -377,7 +273,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnAround_StraightLine.png",
+	"filename": "NaviIcon_TurnAround_1.png",
 	"frame": {"x":464,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -385,7 +281,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_TurnDown.png",
+	"filename": "NaviIcon_TurnAround_2.png",
 	"frame": {"x":506,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -393,7 +289,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_WayPoint.png",
+	"filename": "NaviIcon_TurnAround_3.png",
 	"frame": {"x":548,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -401,7 +297,7 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
-	"filename": "CL_NaviIcon_WayPoint_2.png",
+	"filename": "NaviIcon_TurnAround_4.png",
 	"frame": {"x":590,"y":44,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
@@ -409,40 +305,136 @@
 	"sourceSize": {"w":40,"h":40}
 },
 {
+	"filename": "NaviIcon_TurnAround_5.png",
+	"frame": {"x":632,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_6.png",
+	"frame": {"x":674,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_7.png",
+	"frame": {"x":716,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_8.png",
+	"frame": {"x":758,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_9.png",
+	"frame": {"x":800,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_LeftDown.png",
+	"frame": {"x":842,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_LeftTurn.png",
+	"frame": {"x":884,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_LeftUp.png",
+	"frame": {"x":926,"y":44,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_RightDown.png",
+	"frame": {"x":2,"y":86,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_RightUp.png",
+	"frame": {"x":44,"y":86,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnAround_StraightLine.png",
+	"frame": {"x":86,"y":86,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_TurnDown.png",
+	"frame": {"x":128,"y":86,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_WayPoint.png",
+	"frame": {"x":170,"y":86,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
+	"filename": "NaviIcon_WayPoint_2.png",
+	"frame": {"x":212,"y":86,"w":40,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
+	"sourceSize": {"w":40,"h":40}
+},
+{
 	"filename": "lt_wing.png",
-	"frame": {"x":632,"y":44,"w":292,"h":72},
+	"frame": {"x":254,"y":86,"w":292,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":292,"h":72},
 	"sourceSize": {"w":292,"h":72}
 },
 {
-	"filename": "p-AEB.png",
-	"frame": {"x":926,"y":44,"w":68,"h":60},
+	"filename": "navi_end.png",
+	"frame": {"x":548,"y":86,"w":83,"h":83},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":68,"h":60},
-	"sourceSize": {"w":68,"h":60}
+	"spriteSourceSize": {"x":0,"y":0,"w":83,"h":83},
+	"sourceSize": {"w":83,"h":83}
 },
 {
-	"filename": "p-fcw.png",
-	"frame": {"x":996,"y":44,"w":68,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":68,"h":60},
-	"sourceSize": {"w":68,"h":60}
-},
-{
-	"filename": "p-fcw2.png",
-	"frame": {"x":1066,"y":44,"w":68,"h":60},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":68,"h":60},
-	"sourceSize": {"w":68,"h":60}
-},
-{
-	"filename": "red-flag.png",
-	"frame": {"x":1136,"y":44,"w":3,"h":34},
+	"filename": "red_flag.png",
+	"frame": {"x":633,"y":86,"w":3,"h":34},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":3,"h":34},
@@ -450,23 +442,15 @@
 },
 {
 	"filename": "rt_wing.png",
-	"frame": {"x":1141,"y":44,"w":292,"h":72},
+	"frame": {"x":638,"y":86,"w":292,"h":72},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":292,"h":72},
 	"sourceSize": {"w":292,"h":72}
 },
 {
-	"filename": "t-right.png",
-	"frame": {"x":1435,"y":44,"w":40,"h":40},
-	"rotated": false,
-	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
-	"sourceSize": {"w":40,"h":40}
-},
-{
 	"filename": "tsr.png",
-	"frame": {"x":1477,"y":44,"w":41,"h":41},
+	"frame": {"x":932,"y":86,"w":41,"h":41},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":41},
@@ -477,8 +461,8 @@
 	"version": "1.0",
 	"image": "arhud.png",
 	"format": "RGBA8888",
-	"size": {"w":1522,"h":118},
+	"size": {"w":984,"h":171},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:ed2234038db6702632f853316486fb0e$"
+	"smartupdate": "$TexturePacker:SmartUpdate:f90a900ad5cb75cb6517055ac106c3d6$"
 }
 }

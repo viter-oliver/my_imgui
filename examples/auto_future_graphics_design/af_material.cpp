@@ -243,7 +243,7 @@ void material::edit_ufs()
 		ImGui::Text(unf_name.c_str());
 		auto& pshd_fu = *shd_uf_value.second;
 		pshd_fu._unf_name = shd_uf_value.first;
-		pshd_fu.edit();
+          pshd_fu.edit( shd_uf_value.first );
 		//for (int ix = 0;ix)
 	}
 }

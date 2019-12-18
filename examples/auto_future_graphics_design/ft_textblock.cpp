@@ -136,7 +136,7 @@ namespace auto_future
 		af_vec2 real_size = end_pos - draw_pos;
 		_txt_area.Min = dpos;
 		_txt_area.Max = {end_pos.x,end_pos.y};
-		ft_base::draw();
+		//ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())

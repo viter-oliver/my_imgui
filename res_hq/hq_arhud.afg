@@ -1,671 +1,806 @@
-
 {
-	"_adjacent_to_p" : 0.0,
-	"_aj_model" : 0,
-	"_name" : "screen",
-	"_posx" : 0.0,
-	"_posy" : 0.0,
-	"_sizeh" : 20.0,
-	"_sizew" : 20.0,
-	"_visible" : true,
-	"aliase" : 
-	{
-		"driving_model" : [ 4, 1, 7, 1 ],
-		"gear" : [ 4, 1, 6, 1 ],
-		"show_image" : [ 6, 0, 3, 0 ],
-		"speed" : [ 4, 1, 5, 1 ]
-	},
-	"binds" : 
-	{
-		"dic" : [],
-		"ref_dic" : []
-	},
-	"childs" : 
-	[
-		
-		{
-			"_adjacent_to_p" : 0.0,
-			"_aj_model" : 0,
-			"_name" : "far_scenario",
-			"_posx" : 0.0,
-			"_posy" : 0.0,
-			"_sizeh" : 20.0,
-			"_sizew" : 20.0,
-			"_visible" : true,
-			"childs" : 
-			[
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_bk_clr" : 
-					{
-						"w" : 0.0,
-						"x" : 0.3921568691730499,
-						"y" : 0.0,
-						"z" : 0.0
-					},
-					"_name" : "ft_scene",
-					"_posx" : 0.0,
-					"_posy" : 0.0,
-					"_sizeh" : 480.0,
-					"_sizew" : 640.0,
-					"_visible" : false,
-					"childs" : 
-					[
-						
-						{
-							"_adjacent_to_p" : 0.0,
-							"_aj_model" : 0,
-							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
-							"_draw_mode" : 4,
-							"_material_name" : "obs0",
-							"_name" : "ft_material_3d",
-							"_pj" : "aaaakaebmnmmkbebaaeajmeg",
-							"_posx" : 0.0,
-							"_posy" : 0.0,
-							"_primitive_name" : "usq.FBX0",
-							"_sizeh" : 20.0,
-							"_sizew" : 20.0,
-							"_trans" : "aaaaammdaaaafcedaaaaiadpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajgecaamaaaefaapkfoih",
-							"_uf_model_name" : "model",
-							"_uf_proj_name" : "proj",
-							"_uf_view_name" : "view",
-							"_visible" : true,
-							"type" : "ft_material_3d"
-						}
-					],
-					"type" : "ft_scene"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_bdclr" : 
-					{
-						"w" : 1.0,
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_bkclr" : 
-					{
-						"w" : 1.0,
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_border_width_uhd" : 1.0,
-					"_name" : "ft_block",
-					"_posx" : 319.0,
-					"_posy" : 0.0,
-					"_round_utn" : 0.0,
-					"_sizeh" : 480.0,
-					"_sizew" : 3.0,
-					"_visible" : false,
-					"_with_border" : false,
-					"type" : "ft_block"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_bdclr" : 
-					{
-						"w" : 1.0,
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_bkclr" : 
-					{
-						"w" : 1.0,
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_border_width_uhd" : 1.0,
-					"_name" : "ft_block_",
-					"_posx" : 0.0,
-					"_posy" : 239.0,
-					"_round_utn" : 0.0,
-					"_sizeh" : 3.0,
-					"_sizew" : 640.0,
-					"_visible" : false,
-					"_with_border" : false,
-					"type" : "ft_block"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "ft_image_file",
-					"_posx" : 0.0,
-					"_posy" : 0.0,
-					"_sizeh" : 512.0,
-					"_sizew" : 512.0,
-					"_visible" : true,
-					"type" : "ft_image_file"
-				}
-			],
-			"type" : "ft_base"
-		},
-		
-		{
-			"_adjacent_to_p" : 0.0,
-			"_aj_model" : 0,
-			"_name" : "near_scenario",
-			"_posx" : 0.0,
-			"_posy" : 0.0,
-			"_sizeh" : 20.0,
-			"_sizew" : 20.0,
-			"_visible" : true,
-			"childs" : 
-			[
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "left_wing",
-					"_posx" : 12.0,
-					"_posy" : 224.0,
-					"_sizeh" : 72.0,
-					"_sizew" : 292.0,
-					"_texture_index_txt" : 51,
-					"_visible" : true,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "right_wing",
-					"_posx" : 494.0,
-					"_posy" : 224.0,
-					"_sizeh" : 72.0,
-					"_sizew" : 292.0,
-					"_texture_index_txt" : 56,
-					"_visible" : true,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "acc",
-					"_posx" : 43.0,
-					"_posy" : 280.0,
-					"_sizeh" : 40.0,
-					"_sizew" : 48.0,
-					"_texture_index_txt" : 0,
-					"_visible" : true,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "navi_turn",
-					"_posx" : 720.0,
-					"_posy" : 280.0,
-					"_sizeh" : 40.0,
-					"_sizew" : 40.0,
-					"_texture_index_txt" : 57,
-					"_visible" : true,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "flag",
-					"_posx" : 399.0,
-					"_posy" : 263.0,
-					"_sizeh" : 34.0,
-					"_sizew" : 3.0,
-					"_texture_index_txt" : 55,
-					"_visible" : true,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "189",
-					"_font_id" : 0,
-					"_font_scale" : 1.0,
-					"_font_size" : 50,
-					"_name" : "speed",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 400.0,
-					"_posy" : 222.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.50,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 1.0,
-						"y" : 0.0,
-						"z" : 1.0
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"childs" : 
-					[
-						
-						{
-							"_adjacent_to_p" : 0.0,
-							"_aj_model" : 0,
-							"_content" : "km/h",
-							"_font_id" : 1,
-							"_font_scale" : 1.0,
-							"_font_size" : 16,
-							"_name" : "unit",
-							"_omit_rest" : 0,
-							"_play_circle" : 1.0,
-							"_playing" : false,
-							"_posx" : -17.92300033569336,
-							"_posy" : 27.69900131225586,
-							"_sizeh" : 25.03900146484375,
-							"_sizew" : 38.42800140380859,
-							"_txt_alignh_nml" : 0.0,
-							"_txt_alignv_nml" : 0.0,
-							"_txt_clr" : 
-							{
-								"x" : 1.0,
-								"y" : 0.0,
-								"z" : 1.0
-							},
-							"_visible" : true,
-							"_width" : 200.0,
-							"_width_limit" : false,
-							"type" : "ft_textblock"
-						}
-					],
-					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "D",
-					"_font_id" : 1,
-					"_font_scale" : 1.0,
-					"_font_size" : 36,
-					"_name" : "gear",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 188.0,
-					"_posy" : 280.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 0.3921568691730499,
-						"y" : 1.0,
-						"z" : 0.6274510025978088
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "自定义",
-					"_font_id" : 1,
-					"_font_scale" : 1.0,
-					"_font_size" : 30,
-					"_name" : "riding_model",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 520.0,
-					"_posy" : 280.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 0.3921568691730499,
-						"y" : 1.0,
-						"z" : 0.6274510025978088
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "200m",
-					"_font_id" : 1,
-					"_font_scale" : 1.0,
-					"_font_size" : 30,
-					"_name" : "remain_dis",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 615.0,
-					"_posy" : 282.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 1.0,
-						"y" : 0.0,
-						"z" : 1.0
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"type" : "ft_textblock"
-				}
-			],
-			"type" : "ft_base"
-		},
-		
-		{
-			"_adjacent_to_p" : 0.0,
-			"_aj_model" : 0,
-			"_name" : "media_info",
-			"_posx" : 30.95700073242188,
-			"_posy" : 0.0,
-			"_sizeh" : 20.0,
-			"_sizew" : 20.0,
-			"_visible" : true,
-			"type" : "ft_base"
-		}
-	],
-	"common_value_list" : 
-	{
-		"font1_clr" : 
-		{
-			"prop_list" : 
-			[
-				[ 0, 1, 5, 1 ],
-				[ 0, 1, 0, 5, 1 ],
-				[ 0, 1, 8, 1 ]
-			],
-			"type" : "af_vec3",
-			"value" : 
-			{
-				"x" : 1.0,
-				"y" : 0.0,
-				"z" : 1.0
-			}
-		},
-		"font2_clr" : 
-		{
-			"prop_list" : 
-			[
-				[ 0, 1, 6, 1 ],
-				[ 0, 1, 5, 1 ],
-				[ 0, 1, 0, 5, 1 ],
-				[ 0, 1, 8, 1 ],
-				[ 0, 1, 7, 1 ]
-			],
-			"type" : "af_vec3",
-			"value" : 
-			{
-				"x" : 0.3921568691730499,
-				"y" : 1.0,
-				"z" : 0.6274510025978088
-			}
-		},
-		"font3_clr" : 
-		{
-			"prop_list" : 
-			[
-				[ 0, 1, 6, 1 ],
-				[ 0, 1, 5, 1 ],
-				[ 0, 1, 7, 1 ],
-				[ 0, 1, 8, 1 ]
-			],
-			"type" : "af_vec3",
-			"value" : 
-			{
-				"x" : 1.0,
-				"y" : 1.0,
-				"z" : 1.0
-			}
-		}
-	},
-	"file_list" : [ "usq.FBX0" ],
-	"fonts" : 
-	[
-		
-		{
-			"cols" : 20,
-			"name" : "AutoFutureSokon_v1.1.0.ttf",
-			"rows" : 20
-		},
-		
-		{
-			"cols" : 90,
-			"name" : "FZLanTingHeiS-R-GB.TTF",
-			"rows" : 100
-		}
-	],
-	"material_list" : 
-	[
-		
-		{
-			"name" : "obs0",
-			"shader" : "unit3d",
-			"uniform_list" : 
-			{
-				"model" : 
-				{
-					"el_size" : 16,
-					"type" : "shader_uf_float",
-					"usize" : 1,
-					"utype" : 35676,
-					"value_list" : 
-					[
-						-140.0,
-						0.0,
-						0.0,
-						0.0,
-						0.0,
-						210.0,
-						0.0,
-						0.0,
-						0.0,
-						0.0,
-						1.0,
-						0.0,
-						0.0,
-						75.0,
-						2060.0,
-						1.0
-					]
-				},
-				"proj" : 
-				{
-					"el_size" : 16,
-					"type" : "shader_uf_float",
-					"usize" : 1,
-					"utype" : 35676,
-					"value_list" : 
-					[
-						4.253461360931397,
-						0.0,
-						0.0,
-						0.0,
-						0.0,
-						5.671281814575195,
-						0.0,
-						0.0,
-						0.0,
-						0.0,
-						-1.002024531364441,
-						-1.0,
-						0.0,
-						0.0,
-						-40.49094390869141,
-						0.0
-					]
-				},
-				"text" : 
-				{
-					"el_size" : 1,
-					"txt_name" : "usq.png",
-					"type" : "shader_uf_txt",
-					"usize" : 1,
-					"utype" : 35678
-				},
-				"view" : 
-				{
-					"el_size" : 16,
-					"type" : "shader_uf_float",
-					"usize" : 1,
-					"utype" : 35676,
-					"value_list" : 
-					[
-						-1.0,
-						0.0,
-						-0.0,
-						0.0,
-						0.0,
-						1.0,
-						-0.0,
-						0.0,
-						0.0,
-						-0.0,
-						-1.0,
-						0.0,
-						-400.0,
-						-390.0,
-						2.980232238769531e-006,
-						1.0
-					]
-				}
-			}
-		}
-	],
-	"models" : 
-	{
-		"usq.FBX" : 
-		[
-			
-			{
-				"ambient_list" : [],
-				"bounding_box" : 
-				{
-					"xmax" : 1.0,
-					"xmin" : 0.0,
-					"ymax" : 1.0,
-					"ymin" : -4.973799150320701e-014,
-					"zmax" : 0.0,
-					"zmin" : -1.192092895507813e-006
-				},
-				"diffuse_list" : [],
-				"height_list" : [],
-				"prim_id" : "usq.FBX0",
-				"specular_list" : []
-			}
-		]
-	},
-	"output_bin_fmt" : 
-	{
-		"pgm_fmt" : 0,
-		"txt_fmt" : 0
-	},
-	"primitive_list" : 
-	[
-		
-		{
-			"ebo_len" : 6,
-			"format" : [ 3, 3, 2 ],
-			"mesh_id" : 0,
-			"model" : "usq.FBX",
-			"name" : "usq.FBX0",
-			"vbo_len" : 48
-		}
-	],
-	"screenh" : 480.0,
-	"screenw" : 640.0,
-	"shader_list" : 
-	[
-		
-		{
-			"fs_name" : "unit3d.fs",
-			"name" : "unit3d",
-			"read_only" : false,
-			"vs_name" : "unit3d.vs"
-		}
-	],
-	"state_manager_list" : {},
-	"texture_id_index" : 0,
-	"texture_list" : 
-	[
-		
-		{
-			"mipmap" : false,
-			"name" : "usq.png",
-			"separated" : false
-		}
-	],
-	"texture_res_list" : 
-	[
-		
-		{
-			"separated" : false,
-			"texture_data_file" : "arhud.json",
-			"texture_pack_file" : "arhud.png"
-		}
-	],
-	"type" : "ft_base",
-	"window_show" : 
-	{
-		"show_aliase_edit" : true,
-		"show_edit_window" : true,
-		"show_file_manager" : false,
-		"show_fonts_manager" : false,
-		"show_project_window" : true,
-		"show_property_window" : true,
-		"show_resource_manager" : false,
-		"show_slider_path_picker" : false,
-		"show_state_manager_edit" : false
-	}
+   "_adjacent_to_p" : 0.0,
+   "_aj_model" : 0,
+   "_name" : "screen",
+   "_posx" : 0.0,
+   "_posy" : 0.0,
+   "_sizeh" : 20.0,
+   "_sizew" : 20.0,
+   "_visible" : true,
+   "aliase" : {
+      "driving_model" : [ 4, 1, 9, 1 ],
+      "gear" : [ 4, 1, 8, 1 ],
+      "show_image" : [ 6, 0, 2 ],
+      "speed" : [ 4, 1, 7, 1 ]
+   },
+   "binds" : {
+      "dic" : [],
+      "ref_dic" : []
+   },
+   "childs" : [
+      {
+         "_adjacent_to_p" : 0.0,
+         "_aj_model" : 0,
+         "_name" : "far_scenario",
+         "_posx" : 0.0,
+         "_posy" : 0.0,
+         "_sizeh" : 20.0,
+         "_sizew" : 20.0,
+         "_visible" : true,
+         "childs" : [
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_bk_clr" : {
+                  "w" : 0.19607843458652499,
+                  "x" : 0.39215686917304993,
+                  "y" : 0.19607843458652499,
+                  "z" : 0.0
+               },
+               "_name" : "ft_scene",
+               "_posx" : 0.0,
+               "_posy" : 0.0,
+               "_sizeh" : 300.0,
+               "_sizew" : 800.0,
+               "_visible" : true,
+               "childs" : [
+                  {
+                     "_adjacent_to_p" : 0.0,
+                     "_aj_model" : 0,
+                     "_cam" : "aaaamimdaaaamdedaaaaaaaaaaaamimdaaaamdedponekidpaaaaaaaaddddlddpaaaaaaaa",
+                     "_draw_mode" : 4,
+                     "_material_name" : "road",
+                     "_name" : "road",
+                     "_pj" : "aaaakaebmnmmkbebaafaedei",
+                     "_posx" : 0.0,
+                     "_posy" : 0.0,
+                     "_primitive_name" : "road.FBX0",
+                     "_sizeh" : 20.0,
+                     "_sizew" : 20.0,
+                     "_trans" : "aaaaiadpaaaaiadpaaaaiadpaaaaleecaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaeabmegaapkfoih",
+                     "_uf_model_name" : "model",
+                     "_uf_proj_name" : "proj",
+                     "_uf_view_name" : "view",
+                     "_visible" : true,
+                     "type" : "ft_material_3d"
+                  },
+                  {
+                     "_adjacent_to_p" : 0.0,
+                     "_aj_model" : 0,
+                     "_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
+                     "_draw_mode" : 4,
+                     "_material_name" : "obs0",
+                     "_name" : "obstacle",
+                     "_pj" : "aaaakaebmnmmkbebaaeajmeg",
+                     "_posx" : 0.0,
+                     "_posy" : 0.0,
+                     "_primitive_name" : "usq.FBX0",
+                     "_sizeh" : 20.0,
+                     "_sizew" : 20.0,
+                     "_trans" : "aaaaammdaaaafcedaaaaiadpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaajgecaamaaaefaapkfoih",
+                     "_uf_model_name" : "model",
+                     "_uf_proj_name" : "proj",
+                     "_uf_view_name" : "view",
+                     "_visible" : true,
+                     "type" : "ft_material_3d"
+                  }
+               ],
+               "type" : "ft_scene"
+            }
+         ],
+         "type" : "ft_base"
+      },
+      {
+         "_adjacent_to_p" : 0.0,
+         "_aj_model" : 0,
+         "_name" : "near_scenario",
+         "_posx" : 0.0,
+         "_posy" : 0.0,
+         "_sizeh" : 20.0,
+         "_sizew" : 20.0,
+         "_visible" : true,
+         "childs" : [
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_anchor_type" : 0,
+               "_angle_srd" : 0.0,
+               "_aposx" : 0.0,
+               "_aposy" : 0.0,
+               "_name" : "left_wing",
+               "_posx" : 12.0,
+               "_posy" : 204.0,
+               "_sizeh" : 72.0,
+               "_sizew" : 292.0,
+               "_texture_index_txt" : 52,
+               "_visible" : true,
+               "type" : "ft_image"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_anchor_type" : 0,
+               "_angle_srd" : 0.0,
+               "_aposx" : 0.0,
+               "_aposy" : 0.0,
+               "_name" : "right_wing",
+               "_posx" : 494.0,
+               "_posy" : 204.0,
+               "_sizeh" : 72.0,
+               "_sizew" : 292.0,
+               "_texture_index_txt" : 55,
+               "_visible" : true,
+               "type" : "ft_image"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_anchor_type" : 0,
+               "_angle_srd" : 0.0,
+               "_aposx" : 0.0,
+               "_aposy" : 0.0,
+               "_name" : "acc",
+               "_posx" : 43.0,
+               "_posy" : 260.0,
+               "_sizeh" : 40.0,
+               "_sizew" : 48.0,
+               "_texture_index_txt" : 0,
+               "_visible" : true,
+               "type" : "ft_image"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_anchor_type" : 0,
+               "_angle_srd" : 0.0,
+               "_aposx" : 0.0,
+               "_aposy" : 0.0,
+               "_name" : "tsr",
+               "_posx" : 220.0,
+               "_posy" : 260.0,
+               "_sizeh" : 41.0,
+               "_sizew" : 41.0,
+               "_texture_index_txt" : 56,
+               "_visible" : true,
+               "childs" : [
+                  {
+                     "_adjacent_to_p" : 0.0,
+                     "_aj_model" : 0,
+                     "_content" : "90",
+                     "_font_id" : 0,
+                     "_font_scale" : 1.0,
+                     "_font_size" : 25,
+                     "_name" : "speed_limit",
+                     "_omit_rest" : 0,
+                     "_play_circle" : 1.0,
+                     "_playing" : false,
+                     "_posx" : 20.0,
+                     "_posy" : 14.7760009765625,
+                     "_sizeh" : 20.0,
+                     "_sizew" : 20.0,
+                     "_txt_alignh_nml" : 0.5,
+                     "_txt_alignv_nml" : 0.0,
+                     "_txt_clr" : {
+                        "x" : 1.0,
+                        "y" : 1.0,
+                        "z" : 1.0
+                     },
+                     "_visible" : true,
+                     "_width" : 200.0,
+                     "_width_limit" : false,
+                     "type" : "ft_textblock"
+                  }
+               ],
+               "type" : "ft_image"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_anchor_type" : 0,
+               "_angle_srd" : 0.0,
+               "_aposx" : 0.0,
+               "_aposy" : 0.0,
+               "_name" : "navi_turn",
+               "_posx" : 720.0,
+               "_posy" : 260.0,
+               "_sizeh" : 40.0,
+               "_sizew" : 40.0,
+               "_texture_index_txt" : 2,
+               "_visible" : true,
+               "type" : "ft_image"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_anchor_type" : 0,
+               "_angle_srd" : 0.0,
+               "_aposx" : 0.0,
+               "_aposy" : 0.0,
+               "_name" : "flag",
+               "_posx" : 399.0,
+               "_posy" : 243.0,
+               "_sizeh" : 34.0,
+               "_sizew" : 3.0,
+               "_texture_index_txt" : 54,
+               "_visible" : true,
+               "type" : "ft_image"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_content" : "120",
+               "_font_id" : 1,
+               "_font_scale" : 1.0,
+               "_font_size" : 30,
+               "_name" : "acc_speed",
+               "_omit_rest" : 0,
+               "_play_circle" : 1.0,
+               "_playing" : false,
+               "_posx" : 93.770004272460938,
+               "_posy" : 272.23300170898438,
+               "_sizeh" : 20.0,
+               "_sizew" : 20.0,
+               "_txt_alignh_nml" : 0.0,
+               "_txt_alignv_nml" : 0.0,
+               "_txt_clr" : {
+                  "x" : 1.0,
+                  "y" : 1.0,
+                  "z" : 1.0
+               },
+               "_visible" : true,
+               "_width" : 200.0,
+               "_width_limit" : false,
+               "type" : "ft_textblock"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_content" : "189",
+               "_font_id" : 0,
+               "_font_scale" : 1.0,
+               "_font_size" : 60,
+               "_name" : "speed",
+               "_omit_rest" : 0,
+               "_play_circle" : 1.0,
+               "_playing" : false,
+               "_posx" : 400.0,
+               "_posy" : 202.0,
+               "_sizeh" : 20.0,
+               "_sizew" : 20.0,
+               "_txt_alignh_nml" : 0.5,
+               "_txt_alignv_nml" : 0.0,
+               "_txt_clr" : {
+                  "x" : 1.0,
+                  "y" : 1.0,
+                  "z" : 1.0
+               },
+               "_visible" : true,
+               "_width" : 200.0,
+               "_width_limit" : false,
+               "childs" : [
+                  {
+                     "_adjacent_to_p" : 0.0,
+                     "_aj_model" : 0,
+                     "_content" : "km/h",
+                     "_font_id" : 1,
+                     "_font_scale" : 1.0,
+                     "_font_size" : 16,
+                     "_name" : "unit",
+                     "_omit_rest" : 0,
+                     "_play_circle" : 1.0,
+                     "_playing" : false,
+                     "_posx" : -17.923000335693359,
+                     "_posy" : 27.699001312255859,
+                     "_sizeh" : 25.03900146484375,
+                     "_sizew" : 38.428001403808587,
+                     "_txt_alignh_nml" : 0.0,
+                     "_txt_alignv_nml" : 0.0,
+                     "_txt_clr" : {
+                        "x" : 1.0,
+                        "y" : 1.0,
+                        "z" : 1.0
+                     },
+                     "_visible" : true,
+                     "_width" : 200.0,
+                     "_width_limit" : false,
+                     "type" : "ft_textblock"
+                  }
+               ],
+               "type" : "ft_textblock"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_content" : "D",
+               "_font_id" : 1,
+               "_font_scale" : 1.0,
+               "_font_size" : 36,
+               "_name" : "gear",
+               "_omit_rest" : 0,
+               "_play_circle" : 1.0,
+               "_playing" : false,
+               "_posx" : 188.0,
+               "_posy" : 268.0,
+               "_sizeh" : 20.0,
+               "_sizew" : 20.0,
+               "_txt_alignh_nml" : 0.0,
+               "_txt_alignv_nml" : 0.0,
+               "_txt_clr" : {
+                  "x" : 1.0,
+                  "y" : 1.0,
+                  "z" : 1.0
+               },
+               "_visible" : true,
+               "_width" : 200.0,
+               "_width_limit" : false,
+               "type" : "ft_textblock"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_content" : "自定义",
+               "_font_id" : 1,
+               "_font_scale" : 1.0,
+               "_font_size" : 30,
+               "_name" : "riding_model",
+               "_omit_rest" : 0,
+               "_play_circle" : 1.0,
+               "_playing" : false,
+               "_posx" : 520.0,
+               "_posy" : 268.0,
+               "_sizeh" : 20.0,
+               "_sizew" : 20.0,
+               "_txt_alignh_nml" : 0.0,
+               "_txt_alignv_nml" : 0.0,
+               "_txt_clr" : {
+                  "x" : 1.0,
+                  "y" : 1.0,
+                  "z" : 1.0
+               },
+               "_visible" : true,
+               "_width" : 200.0,
+               "_width_limit" : false,
+               "type" : "ft_textblock"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_content" : "200m",
+               "_font_id" : 1,
+               "_font_scale" : 1.0,
+               "_font_size" : 30,
+               "_name" : "remain_dis",
+               "_omit_rest" : 0,
+               "_play_circle" : 1.0,
+               "_playing" : false,
+               "_posx" : 630.0,
+               "_posy" : 268.0,
+               "_sizeh" : 20.0,
+               "_sizew" : 20.0,
+               "_txt_alignh_nml" : 0.0,
+               "_txt_alignv_nml" : 0.0,
+               "_txt_clr" : {
+                  "x" : 1.0,
+                  "y" : 1.0,
+                  "z" : 1.0
+               },
+               "_visible" : true,
+               "_width" : 200.0,
+               "_width_limit" : false,
+               "type" : "ft_textblock"
+            },
+            {
+               "_adjacent_to_p" : 0.0,
+               "_aj_model" : 0,
+               "_anchor_type" : 0,
+               "_angle_srd" : 0.0,
+               "_aposx" : 0.0,
+               "_aposy" : 0.0,
+               "_name" : "flag_",
+               "_posx" : 363.0,
+               "_posy" : 110.0,
+               "_sizeh" : 83.0,
+               "_sizew" : 83.0,
+               "_texture_index_txt" : 53,
+               "_visible" : false,
+               "type" : "ft_image"
+            }
+         ],
+         "type" : "ft_base"
+      },
+      {
+         "_adjacent_to_p" : 0.0,
+         "_aj_model" : 0,
+         "_anchor_type" : 0,
+         "_angle_srd" : 0.0,
+         "_aposx" : 0.0,
+         "_aposy" : 0.0,
+         "_name" : "ft_image_file",
+         "_posx" : 0.0,
+         "_posy" : 0.0,
+         "_sizeh" : 512.0,
+         "_sizew" : 512.0,
+         "_visible" : false,
+         "type" : "ft_image_file"
+      }
+   ],
+   "common_value_list" : {
+      "font1_clr" : {
+         "prop_list" : [
+            [ 0, 1, 7, 1 ],
+            [ 0, 1, 0, 7, 1 ],
+            [ 0, 1, 10, 1 ],
+            [ 0, 1, 8, 1 ],
+            [ 0, 1, 9, 1 ],
+            [ 0, 1, 6, 1 ],
+            [ 0, 1, 0, 3, 1 ]
+         ],
+         "type" : "af_vec3",
+         "value" : {
+            "x" : 1.0,
+            "y" : 1.0,
+            "z" : 1.0
+         }
+      },
+      "font2_clr" : {
+         "prop_list" : [
+            [ 0, 1, 8, 1 ],
+            [ 0, 1, 7, 1 ],
+            [ 0, 1, 0, 7, 1 ],
+            [ 0, 1, 10, 1 ],
+            [ 0, 1, 9, 1 ],
+            [ 0, 1, 0, 3, 1 ],
+            [ 0, 1, 6, 1 ]
+         ],
+         "type" : "af_vec3",
+         "value" : {
+            "x" : 0.80000001192092896,
+            "y" : 0.80000001192092896,
+            "z" : 0.80000001192092896
+         }
+      },
+      "font3_clr" : {
+         "prop_list" : [
+            [ 0, 1, 8, 1 ],
+            [ 0, 1, 7, 1 ],
+            [ 0, 1, 9, 1 ],
+            [ 0, 1, 10, 1 ],
+            [ 0, 1, 6, 1 ],
+            [ 0, 1, 0, 3, 1 ],
+            [ 0, 1, 0, 7, 1 ]
+         ],
+         "type" : "af_vec3",
+         "value" : {
+            "x" : 0.12549020349979401,
+            "y" : 0.93333333730697632,
+            "z" : 0.12549020349979401
+         }
+      }
+   },
+   "file_list" : [ "road.FBX0", "usq.FBX0" ],
+   "fonts" : [
+      {
+         "cols" : 20,
+         "name" : "AutoFutureSokon_v1.1.0.ttf",
+         "rows" : 20
+      },
+      {
+         "cols" : 90,
+         "name" : "FZLanTingHeiS-R-GB.TTF",
+         "rows" : 100
+      }
+   ],
+   "material_list" : [
+      {
+         "name" : "obs0",
+         "shader" : "unit3d",
+         "uniform_list" : {
+            "model" : {
+               "el_size" : 16,
+               "type" : "shader_uf_float",
+               "usize" : 1,
+               "utype" : 35676,
+               "value_list" : [
+                  -140.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  210.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  0.0,
+                  0.0,
+                  75.0,
+                  2060.0,
+                  1.0
+               ]
+            },
+            "proj" : {
+               "el_size" : 16,
+               "type" : "shader_uf_float",
+               "usize" : 1,
+               "utype" : 35676,
+               "value_list" : [
+                  2.1267306804656978,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  5.6712818145751953,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  -1.0020245313644409,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  -40.490943908691413,
+                  0.0
+               ]
+            },
+            "text" : {
+               "el_size" : 1,
+               "txt_name" : "usq.png",
+               "type" : "shader_uf_txt",
+               "usize" : 1,
+               "utype" : 35678
+            },
+            "view" : {
+               "el_size" : 16,
+               "type" : "shader_uf_float",
+               "usize" : 1,
+               "utype" : 35676,
+               "value_list" : [
+                  -1.0,
+                  0.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  -0.0,
+                  -1.0,
+                  0.0,
+                  -400.0,
+                  -390.0,
+                  2.9802322387695308e-06,
+                  1.0
+               ]
+            }
+         }
+      },
+      {
+         "name" : "road",
+         "shader" : "road",
+         "uniform_list" : {
+            "llane" : {
+               "el_size" : 1,
+               "txt_name" : "lane_change_day.png",
+               "type" : "shader_uf_txt",
+               "usize" : 1,
+               "utype" : 35678
+            },
+            "model" : {
+               "el_size" : 16,
+               "type" : "shader_uf_float",
+               "usize" : 1,
+               "utype" : 35676,
+               "value_list" : [
+                  0.99999994039535522,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  -4.3711388286737929e-08,
+                  1.0,
+                  0.0,
+                  0.0,
+                  -1.0,
+                  -4.3711388286737929e-08,
+                  0.0,
+                  0.0,
+                  0.0,
+                  10000.0,
+                  1.0
+               ]
+            },
+            "proj" : {
+               "el_size" : 16,
+               "type" : "shader_uf_float",
+               "usize" : 1,
+               "utype" : 35676,
+               "value_list" : [
+                  2.1267306804656978,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  5.6712818145751953,
+                  0.0,
+                  0.0,
+                  0.0,
+                  0.0,
+                  -1.0002021789550779,
+                  -1.0,
+                  0.0,
+                  0.0,
+                  -40.454090118408203,
+                  0.0
+               ]
+            },
+            "rlane" : {
+               "el_size" : 1,
+               "txt_name" : "lane_n_day.png",
+               "type" : "shader_uf_txt",
+               "usize" : 1,
+               "utype" : 35678
+            },
+            "road" : {
+               "el_size" : 1,
+               "txt_name" : "ground_day.png",
+               "type" : "shader_uf_txt",
+               "usize" : 1,
+               "utype" : 35678
+            },
+            "view" : {
+               "el_size" : 16,
+               "type" : "shader_uf_float",
+               "usize" : 1,
+               "utype" : 35676,
+               "value_list" : [
+                  -1.0,
+                  0.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  1.0,
+                  -0.0,
+                  0.0,
+                  0.0,
+                  -0.0,
+                  -1.0,
+                  0.0,
+                  -400.0,
+                  -390.0,
+                  0.0,
+                  1.0
+               ]
+            }
+         }
+      }
+   ],
+   "models" : {
+      "road.FBX" : [
+         {
+            "ambient_list" : [],
+            "bounding_box" : {
+               "xmax" : 1500.0,
+               "xmin" : -1500.0,
+               "ymax" : 4500.0,
+               "ymin" : -4500.0,
+               "zmax" : 0.0,
+               "zmin" : 0.0
+            },
+            "diffuse_list" : [],
+            "height_list" : [],
+            "prim_id" : "road.FBX0",
+            "specular_list" : []
+         }
+      ],
+      "usq.FBX" : [
+         {
+            "ambient_list" : [],
+            "bounding_box" : {
+               "xmax" : 1.0,
+               "xmin" : 0.0,
+               "ymax" : 1.0,
+               "ymin" : -4.9737991503207013e-14,
+               "zmax" : 0.0,
+               "zmin" : -1.1920928955078129e-06
+            },
+            "diffuse_list" : [],
+            "height_list" : [],
+            "prim_id" : "usq.FBX0",
+            "specular_list" : []
+         }
+      ]
+   },
+   "output_bin_fmt" : {
+      "pgm_fmt" : 0,
+      "txt_fmt" : 0
+   },
+   "primitive_list" : [
+      {
+         "ebo_len" : 360,
+         "format" : [ 3, 3, 2 ],
+         "mesh_id" : 0,
+         "model" : "road.FBX",
+         "name" : "road.FBX0",
+         "vbo_len" : 2880
+      },
+      {
+         "ebo_len" : 6,
+         "format" : [ 3, 3, 2 ],
+         "mesh_id" : 0,
+         "model" : "usq.FBX",
+         "name" : "usq.FBX0",
+         "vbo_len" : 48
+      }
+   ],
+   "screenh" : 450.0,
+   "screenw" : 800.0,
+   "shader_list" : [
+      {
+         "fs_name" : "road.fs",
+         "name" : "road",
+         "read_only" : false,
+         "vs_name" : "road.vs"
+      },
+      {
+         "fs_name" : "unit3d.fs",
+         "name" : "unit3d",
+         "read_only" : false,
+         "vs_name" : "unit3d.vs"
+      }
+   ],
+   "state_manager_list" : {},
+   "texture_id_index" : 0,
+   "texture_list" : [
+      {
+         "mipmap" : false,
+         "name" : "ground_day.png",
+         "separated" : false
+      },
+      {
+         "mipmap" : false,
+         "name" : "lane_LDW_day.png",
+         "separated" : false
+      },
+      {
+         "mipmap" : false,
+         "name" : "lane_change_day.png",
+         "separated" : false
+      },
+      {
+         "mipmap" : false,
+         "name" : "lane_d.png",
+         "separated" : false
+      },
+      {
+         "mipmap" : false,
+         "name" : "lane_n_day.png",
+         "separated" : false
+      },
+      {
+         "mipmap" : false,
+         "name" : "usq.png",
+         "separated" : false
+      }
+   ],
+   "texture_res_list" : [
+      {
+         "separated" : false,
+         "texture_data_file" : "arhud.json",
+         "texture_pack_file" : "arhud.png"
+      }
+   ],
+   "type" : "ft_base",
+   "window_show" : {
+      "show_aliase_edit" : true,
+      "show_edit_window" : true,
+      "show_file_manager" : true,
+      "show_fonts_manager" : false,
+      "show_project_window" : true,
+      "show_property_window" : true,
+      "show_resource_manager" : true,
+      "show_slider_path_picker" : false,
+      "show_state_manager_edit" : false
+   }
 }
-

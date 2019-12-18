@@ -53,7 +53,7 @@ namespace auto_future
 
 	}
 
-	void ft_scene::draw()
+     void ft_scene::draw_frames()
 	{
 		if (!_fboId)
 		{
@@ -68,14 +68,21 @@ namespace auto_future
 		glEnable(GL_BLEND);
 		glBlendEquation(GL_FUNC_ADD);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		glEnable(GL_DEPTH_TEST);
-		glDepthFunc(GL_LESS);
-		//glEnable(GL_CULL_FACE);
+		//glEnable(GL_DEPTH_TEST);
+		//glDepthFunc(GL_LESS);
+          //glDisable( GL_CULL_FACE );
+          glDisable( GL_DEPTH_TEST );
 		//glDisable(GL_SCISSOR_TEST);
 		glClearColor(_sn_pt._bk_clr.x, _sn_pt._bk_clr.y, _sn_pt._bk_clr.z, _sn_pt._bk_clr.w);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		ft_base::draw();
+          for( auto it : _vchilds )
+          {
+               if( it->is_visible() )
+               {
+                    it->draw_frames();
+               }
+          }
 		glBindFramebuffer(GL_FRAMEBUFFER, last_fmid);
 		glViewport(last_viewport[0], last_viewport[1], (GLsizei)last_viewport[2], (GLsizei)last_viewport[3]);
 		ImVec2 abpos = absolute_coordinate_of_base_pos();

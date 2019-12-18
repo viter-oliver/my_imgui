@@ -27,7 +27,7 @@ protected:
 public:
 	string _unf_name;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	virtual void edit() = 0;
+	virtual void edit(string obj_name) = 0;
 	virtual void output_2_json(Value& jvalue);
 	virtual void init_from_json(Value& jvalue);
 #endif
@@ -142,7 +142,7 @@ public:
 		memcpy(_pfvalue, pfvalue, rlen*sizeof(float));
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void edit();
+     void edit( string obj_name );
 	void output_2_json(Value& jvalue);
 	void init_from_json(Value& jvalue);
 #endif
@@ -195,7 +195,7 @@ public:
 		memcpy(_pivalue, pivalue, rlen*sizeof(int));
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void edit();
+     void edit( string obj_name );
 	void output_2_json(Value& jvalue);
 	void init_from_json(Value& jvalue);
 #endif
@@ -249,7 +249,7 @@ public:
 		memcpy(_puivalue, puivalue, rlen*sizeof(unsigned int));
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void edit();
+     void edit( string obj_name );
 	void output_2_json(Value& jvalue);
 	void init_from_json(Value& jvalue);
 #endif
@@ -325,7 +325,7 @@ public:
 		memcpy(_pdvalue, pdvalue, rlen*sizeof(double));
 	}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void edit();
+     void edit( string obj_name );
 	void output_2_json(Value& jvalue);
 	void init_from_json(Value& jvalue);
 #endif
@@ -390,7 +390,7 @@ public:
 	GLuint elsize(){ return strlen(_txt_name); }
 	void link();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-	void edit();
+     void edit( string obj_name );
 	void output_2_json(Value& jvalue);
 	void init_from_json(Value& jvalue);
 #endif

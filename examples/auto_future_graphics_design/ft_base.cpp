@@ -35,9 +35,10 @@ namespace auto_future
 
 #endif
 	}
+     
 	void ft_base::draw()
 	{
-
+          /**
 		auto pbase = get_parent();
 		auto& ajm=_in_p._aj_model;
 		if (pbase&&_in_p._aj_model!=en_fixed)
@@ -81,15 +82,9 @@ namespace auto_future
 				it->draw();
 			}
 		}
-		/*for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
-		{
-
-			if ((*it)->is_visible())
-			{
-				(*it)->draw();
-			}
-		}*/
+		*/
 	}
+     
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)	
 	base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
 	{

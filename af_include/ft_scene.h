@@ -20,7 +20,7 @@ namespace auto_future
 		ft_scene();
 		~ft_scene();
 		void link();
-		void draw();
+          void draw_frames();
 		bool handle_mouse();
 	};
 

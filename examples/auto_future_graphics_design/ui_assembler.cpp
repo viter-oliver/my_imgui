@@ -610,7 +610,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		Value jfile(kname);
 		file_list.append(jfile);
 		string file_full_path = str_files_path + kname;
-		if (!fileExist(file_full_path.c_str()))
+		//if (!fileExist(file_full_path.c_str()))
 		{
 			auto& fobj = *fileu.second;
 			ofstream fout;// (file_full_path);

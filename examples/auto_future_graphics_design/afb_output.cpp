@@ -472,7 +472,7 @@ void afb_output::output_afb(const char* afb_file)
           pk.pack_array(4);
           auto& ikey=icmv.first;
           pk.pack_str(ikey.size());
-          pk.pack_str_body(ikey.c_str,ikey.size());
+          pk.pack_str_body(ikey.c_str(),ikey.size());
           auto& cmv=*icmv.second;
           auto& _type=cmv._type;
           auto& _value=cmv._pbase;

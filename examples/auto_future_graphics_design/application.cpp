@@ -155,7 +155,7 @@ namespace auto_future
 			{
 				onUpdate();
 				g_state_trans_player.keep_state_trans_on();
-				_proot->draw();
+                    _proot->draw_frames();
 			}
 			ImGui::End();
 			ImGui::PopStyleVar();
