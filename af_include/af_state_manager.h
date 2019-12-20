@@ -36,6 +36,7 @@ struct state_transition
 	//easing_functions _easing_out_func{ EaseLinear };
 };
 using sp_st_trans = shared_ptr< state_transition>;
+using vtrans_key = vector<trans_key>;
 using mp_trans = map<trans_key, sp_st_trans>;
 //using  vstrans= vector<state_transition>;
 enum moving_state
@@ -61,6 +62,7 @@ struct af_state_manager
 using ps_state_manager = shared_ptr<af_state_manager>;
 using mp_state_manager = map<string, ps_state_manager>;
 extern mp_state_manager g_mstate_manager;
+AFG_EXPORT bool save_trans_value( string trans_name, int sid );
 AFG_EXPORT bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle);
 AFG_EXPORT bool play_trans(string trans_name, int from, int to);
 class state_trans_player

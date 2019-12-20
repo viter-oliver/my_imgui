@@ -86,6 +86,37 @@ void state_trans_player::keep_state_trans_on()
 	}
 }
 state_trans_player g_state_trans_player;
+bool save_trans_value( string trans_name, int sid )
+{
+     const auto& itrans = g_mstate_manager.find( trans_name );
+     if (itrans==g_mstate_manager.end())
+     {
+          return false;
+     }
+     auto& trans = *itrans->second;
+     auto& pp_value_list = trans._prop_value_list;
+     if (sid>=pp_value_list.size())
+     {
+          return false;
+     }
+     auto& cur_pp_value = pp_value_list[ sid ];
+     
+     auto& pplist = trans._prop_list;
+     int iidx = 0;
+     for( auto&p_pos : pplist )
+     {
+          auto& pgidx = p_pos._page_index;
+          auto& fidx = p_pos._field_index;
+          field_ele &fel = p_pos._pobj->get_filed_ele( pgidx, fidx );
+          auto& pp_block = cur_pp_value[ iidx ];
+          char* ppt_addr = fel._address;
+          int tp_sz = fel._tpsz;
+          pp_block.resize( tp_sz );
+          memcpy( &pp_block[ 0 ], ppt_addr, tp_sz );
+          iidx++;
+     }
+
+}
 bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle)
 {
 	const auto& itrans = g_mstate_manager.find(trans_name);

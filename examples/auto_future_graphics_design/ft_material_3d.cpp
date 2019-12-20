@@ -2,6 +2,7 @@
 #include "af_model.h"
 namespace auto_future
 {
+
 	ft_material_3d::ft_material_3d()
 	{
 		strcpy(_pt._uf_model_name, "model");
@@ -107,6 +108,32 @@ namespace auto_future
 			}
 			
 		});
+          static char* str_trans_order[ en_trans_order_cnt ] =
+          {
+               "translate_scale_rotate",
+               "translate_rotate_scale",
+               "scale_translate_rotate",
+               "scale_rotate_translate",
+               "rotate_translate_scale",
+               "rotate_scale_translate",
+          };
+          reg_property_handle( &_pt, 8, [this]( void* memb_adress )
+          {
+               ImGui::Combo( "trans order:", &_pt._trans_order, str_trans_order, en_trans_order_cnt );
+          } );
+          static char* str_rotate_oder[ en_rotate_order_cnt ] =
+          {
+               "x_y_z",
+               "x_z_y",
+               "y_x_z",
+               "y_z_x",
+               "z_x_y",
+               "z_y_x",
+          };
+          reg_property_handle( &_pt, 15, [this]( void* memb_adress )
+          {
+               ImGui::Combo( "rotate order:", &_pt._rotate_order, str_rotate_oder, en_rotate_order_cnt );
+          } );
 
 #endif
 	}
@@ -159,16 +186,90 @@ namespace auto_future
 				GL_TRIANGLE_FAN,
 			};			
 			glm::mat4 model;
-			auto& aftr = _pt._trans._translation;
-			auto& afsc = _pt._trans._scale;
-			auto& afrt = _pt._trans._rotation;
-			glm::vec3 gtranslate(aftr.x, aftr.y, aftr.z);
-			glm::vec3 gscale(afsc.x, afsc.y, afsc.z);
-			model = glm::translate(model, gtranslate);
-			model = glm::scale(model, gscale);
-			model = glm::rotate(model, afrt.x*glm::radians(1.f), glm::vec3(1.0f, 0.0f, 0.0f));
-			model = glm::rotate(model, afrt.y*glm::radians(1.f), glm::vec3(0.0f, 1.0f, 0.0f));
-			model = glm::rotate(model, afrt.z*glm::radians(1.f), glm::vec3(0.0f, 0.0f, 1.0f));
+			//auto& aftr = _pt._trans._translation;
+			//auto& afsc = _pt._trans._scale;
+			//auto& afrt = _pt._trans._rotation;
+               glm::vec3 gtranslate( _pt._trans_translation_x, _pt._trans_translation_y, _pt._trans_translation_z );
+               glm::vec3 gscale( _pt._trans_scale_x, _pt._trans_scale_y, _pt._trans_scale_z );
+               function<void()> f_rotate[ en_rotate_order_cnt ]=
+               {
+                    [&]( )
+                    {
+                         model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    },
+                    [&]()
+                    {
+                         model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    },
+                    [&]()
+                    {
+                         model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    },
+                    [&]()
+                    {
+                         model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    },
+                    [&]()
+                    {
+                         model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    },
+                    [&]()
+                    {
+                         model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                         model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    },               
+               };
+               function<void()> f_trans[ en_trans_order_cnt ] =
+               {
+                    [&]()
+                    {
+                         f_rotate[ _pt._rotate_order ]();
+			          model = glm::scale(model, gscale);
+                         model = glm::translate(model, gtranslate);
+                    },
+                    [&]()
+                    {
+                         model = glm::scale( model, gscale );
+                         f_rotate[ _pt._rotate_order ]();
+                         model = glm::translate( model, gtranslate );
+                    }, 
+                    [&]()
+                    {
+                         f_rotate[ _pt._rotate_order ]();
+                         model = glm::translate( model, gtranslate );
+                         model = glm::scale( model, gscale );
+                    },
+                    [&]()
+                    {
+                         model = glm::translate( model, gtranslate );
+                         f_rotate[ _pt._rotate_order ]();
+                         model = glm::scale( model, gscale );
+                    },
+                    [&]()
+                    {
+                         model = glm::scale( model, gscale );
+                         model = glm::translate( model, gtranslate );
+                         f_rotate[ _pt._rotate_order ]();
+                    },
+                    [&]()
+                    {
+                         model = glm::translate( model, gtranslate );
+                         model = glm::scale( model, gscale );
+                         f_rotate[ _pt._rotate_order ]();
+                    },
+               };
+               f_trans[ _pt._trans_order ]();
 			glm::mat4 view;
 			auto& cam_pos = _pt._cam._position;
 			auto& cam_dir = _pt._cam._direction;
