@@ -9,15 +9,109 @@ void state_trans_player::play_state_trans(ps_state_manager pstate, int from, int
 	_cur_trans_play_start = steady_clock::now();
 	_be_playing = true;
 }
-template< class T> void step_value(void* pfrom,void* pto,char* value_address,double scale)
+
+template< class T> void step_value( void* pfrom, void* pto, char* value_address, double scale )
 {
-	T* ptfrom = (T*)pfrom;
-	T* ptto = (T*)pto;
-	T* ptprop = (T*)value_address;
-	T tvalue_span = *ptto - *ptfrom;
-	T tdelta_value = tvalue_span*scale;
-	*ptprop = *ptfrom + tdelta_value;
+     T* ptfrom = (T*)pfrom;
+     T* ptto = (T*)pto;
+     T* ptprop = (T*)value_address;
+     T tvalue_span = *ptto - *ptfrom;
+     T tdelta_value = tvalue_span*scale;
+     *ptprop = *ptfrom + tdelta_value;
 }
+
+void keep_state_trans_on()
+{
+     for( auto& istm : g_mstate_manager )
+     {
+          auto& stm = *istm.second;
+          if( stm._play_state )
+          {
+               auto& cur_pid = stm._cur_play_trans_id;
+               auto& playlist = stm._playlist;
+               assert( cur_pid < playlist.size()&&"invalid play id?");
+               auto cur_clk = steady_clock::now();
+               auto& play_clk = stm._trans_start;
+               auto dur_mills = duration_cast<milliseconds>( cur_clk - play_clk );
+               auto& cur_trankey = playlist[ cur_pid ];
+               auto& itrans = stm._mtrans.find( cur_trankey );
+               assert( itrans != stm._mtrans.end() && "invalid trans key?" );
+               auto& cur_trans = *itrans->second;
+               auto delta_tm = dur_mills.count() - cur_trans._start_time;
+               if (delta_tm>0)
+               {
+                    double tm_pt_mill = (double)delta_tm / cur_trans._duration;
+                    auto& easing_fun = easingFun[ cur_trans._easing_func ];
+                    double value_scale = easing_fun( tm_pt_mill );
+                    if( delta_tm < cur_trans._duration )
+                    {
+                         stm._mstate = en_state_moving;
+                    }
+                    else
+                    {
+                         value_scale = 1.0;
+                         auto last_id = playlist.size() - 1;
+                         if( cur_pid == last_id )
+                         {
+                              stm._play_state = en_play_stop;
+                              cur_pid = 0;
+                              stm._mstate = en_state_pause;
+                              stm._state_idx = cur_trankey._to;
+                              if( stm._trans_finish )
+                              {
+                                   stm._trans_finish( cur_trankey._from, cur_trankey._to );
+                              }
+                              //stm._playlist.clear();
+                         }
+                         else
+                         {
+                              cur_pid++;
+                              stm._mstate = en_state_moving;
+                              stm._trans_start = steady_clock::now();
+                              //auto& next_transkey = playlist[ cur_pid ];
+
+                         }
+
+                    }
+                    auto& prop_list = stm._prop_list;
+                    auto& pp_vl_lst_from = stm._prop_value_list[ cur_trankey._from ];
+                    auto& pp_vl_lst_to = stm._prop_value_list[ cur_trankey._to ];
+                    int idx = 0;
+                    for( auto& prop : prop_list )
+                    {
+                         auto& pgidx = prop._page_index;
+                         auto& fdidx = prop._field_index;
+                         auto& pobj = prop._pobj;
+                         auto& fel = pobj->get_filed_ele( pgidx, fdidx );
+                         char* ppt_addr = fel._address;
+                         auto& ppt_blk_from = pp_vl_lst_from[ idx ];
+                         auto& ppt_blk_to = pp_vl_lst_to[ idx ];
+                         if( fel._type == "int" )
+                         {
+                              step_value<int>( &ppt_blk_from[ 0 ], &ppt_blk_to[ 0 ], ppt_addr, value_scale );
+                         }
+                         else
+                         if( fel._type == "float" )
+                         {
+                              step_value<float>( &ppt_blk_from[ 0 ], &ppt_blk_to[ 0 ], ppt_addr, value_scale );
+                         }
+                         else
+                         if( fel._type == "double" )
+                         {
+                              step_value<double>( &ppt_blk_from[ 0 ], &ppt_blk_to[ 0 ], ppt_addr, value_scale );
+                         }
+                         else
+                         if( fel._type == "bool"&& value_scale == 1.0 )
+                         {
+                              ppt_addr[ 0 ] = ppt_blk_to[ 0 ];
+                         }
+                         idx++;
+                    }
+               }
+          }
+     }
+}
+
 void state_trans_player::keep_state_trans_on()
 {
 	if (_be_playing)

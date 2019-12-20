@@ -45,6 +45,12 @@ enum moving_state
 	en_state_moving,
 	en_state_out
 };
+enum trans_play_state
+{
+     en_play_stop,
+     en_play_tran,
+     en_play_tran_playlist,
+};
 typedef	function<void(int from, int to)> trans_finish_handle;
 struct af_state_manager
 {
@@ -52,9 +58,14 @@ struct af_state_manager
 	vvprop_block _prop_value_list;//属性值列表——
 	state_transition _any_to_any;
 	trans_finish_handle _trans_finish;
+     sp_st_trans _pcur_tran { nullptr };
 	mp_trans _mtrans;//状态切换
 	unsigned char _state_idx{ 0 };
 	moving_state _mstate{ en_state_pause };
+     trans_play_state _play_state {en_play_stop};
+     steady_clock::time_point _trans_start;
+     int _cur_play_trans_id { 0 };
+     vtrans_key _playlist;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif
@@ -65,6 +76,7 @@ extern mp_state_manager g_mstate_manager;
 AFG_EXPORT bool save_trans_value( string trans_name, int sid );
 AFG_EXPORT bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle);
 AFG_EXPORT bool play_trans(string trans_name, int from, int to);
+AFG_EXPORT void keep_state_trans_on();
 class state_trans_player
 {
 	bool _be_playing{ false };
