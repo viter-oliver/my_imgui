@@ -37,6 +37,7 @@ struct state_transition
 };
 using sp_st_trans = shared_ptr< state_transition>;
 using vtrans_key = vector<trans_key>;
+using vvtrans_key = vector<vtrans_key>;
 using mp_trans = map<trans_key, sp_st_trans>;
 //using  vstrans= vector<state_transition>;
 enum moving_state
@@ -50,6 +51,7 @@ enum trans_play_state
      en_play_stop,
      en_play_tran,
      en_play_tran_playlist,
+	 en_play_state_cnt
 };
 typedef	function<void(int from, int to)> trans_finish_handle;
 struct af_state_manager
@@ -64,8 +66,9 @@ struct af_state_manager
 	moving_state _mstate{ en_state_pause };
      trans_play_state _play_state {en_play_stop};
      steady_clock::time_point _trans_start;
-     int _cur_play_trans_id { 0 };
-     vtrans_key _playlist;
+	 int _cur_from{ 0 }, _cur_to{ 0 };
+	 int _cur_play_trans_id{ 0 }, _cur_playlist_id{0};
+	 vvtrans_key _playlist_list;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif
@@ -76,6 +79,9 @@ extern mp_state_manager g_mstate_manager;
 AFG_EXPORT bool save_trans_value( string trans_name, int sid );
 AFG_EXPORT bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle);
 AFG_EXPORT bool play_trans(string trans_name, int from, int to);
+AFG_EXPORT bool play_tran(string stm_name, int from, int to);
+AFG_EXPORT bool play_tran_playlist(string stm_name, int playlist_id);
+
 AFG_EXPORT void keep_state_trans_on();
 class state_trans_player
 {

@@ -9,6 +9,7 @@ class state_manager_edit
 		en_trans_existed,
 		en_trans_new,
 	};
+	string _stm_key_name;
 	ps_state_manager _psel{nullptr};
 	bool _be_draging{ false }, _hit_sm_window{ false };
 	int _pgidx{ 0 }, _fdidx{0};

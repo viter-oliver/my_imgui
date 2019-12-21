@@ -99,6 +99,7 @@ void state_manager_edit::view_state_managers()
 				}
 				pst_mg->_sel = true;
 				_psel = pst_mg;
+				_stm_key_name = keyname;
 			}
 			ImGui::TreePop();
 		}
@@ -258,6 +259,8 @@ void state_manager_edit::view_state_manager_item_property()
 			_trans_tar = en_trans_any;
 			_trans_edit = _psel->_any_to_any;
 		}
+		auto& playlist_list = _psel->_playlist_list;
+		auto& cur_playlist_id = _psel->_cur_playlist_id;
 		for (auto itrans = mtrans.begin(); itrans != mtrans.end();)
 		{
 			stm_sel.str(string());
@@ -275,7 +278,6 @@ void state_manager_edit::view_state_manager_item_property()
 			string str_play = ">>##" + str_sel;
 			if (ImGui::Button(str_play.c_str()))//play the trans
 			{
-
 				g_state_trans_player.play_state_trans(_psel, itrans->first._from,itrans->first._to);
 			}
 
@@ -299,7 +301,53 @@ void state_manager_edit::view_state_manager_item_property()
 			_trans_edit = {0,250,EaseLinear};
 			_cur_trans_edit_key = { 0, 0 };
 		}
+		if (ImGui::Button("Add new play list"))
+		{
+			playlist_list.emplace_back();
+		}
+		idx = 0;
+		for (auto& playlist:playlist_list)
+		{
+			stm_sel.str(string());
+			stm_sel.clear();
+			stm_sel << "playlist" << idx;
+			str_sel = stm_sel.str();
+			if (ImGui::Selectable(str_sel.c_str(), cur_playlist_id==idx,0,ImVec2(100,0)))
+			{
+				cur_playlist_id = idx;
+			}
+			str_sel = ">>##" + stm_sel.str();
+			if (ImGui::Button(str_sel.c_str()))
+			{
+				play_tran_playlist(_stm_key_name, idx);
+			}
+
+			auto plsz = playlist.size();
+			for (int ixx = 0; ixx<plsz;ixx++)
+			{
+				ImGui::Text("%d<->%d", playlist[ixx]._from, playlist[ixx]._to);
+				stm_sel.str(string());
+				stm_sel.clear();
+				stm_sel << "trans" << idx<<"+"<<ixx;
+				str_sel = "<-##"+stm_sel.str();
+				if (ixx>0 && ImGui::Button(str_sel.c_str()))
+				{
+					auto tmptrans = playlist[ixx];
+					playlist[ixx] = playlist[ixx - 1];
+					playlist[ixx - 1] = tmptrans;
+				}
+				str_sel = "->##" + stm_sel.str();
+				if (ixx<plsz-1&&ImGui::Button(str_sel.c_str()))
+				{
+					auto tmptrans = playlist[ixx];
+					playlist[ixx] = playlist[ixx + 1];
+					playlist[ixx + 1] = tmptrans;
+				}
+				ImGui::SameLine();
+			}
+		}
 	}
+	
 	if (ImGui::BeginPopupModal("trans_edit"))
 	{
 		ImGui::Text("------------------------------------------------------------------------------------");
