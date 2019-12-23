@@ -123,7 +123,7 @@
 							"_draw_mode" : 4,
 							"_material_name" : "obs0",
 							"_name" : "obstacle",
-							"_pj" : "aaaakaebmnmmkbebaaeajmeg",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
 							"_primitive_name" : "usq.FBX0",
@@ -131,15 +131,15 @@
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_trans_order" : 5,
-							"_trans_rotation_x" : 0.0,
+							"_trans_rotation_x" : 75.0,
 							"_trans_rotation_y" : 0.0,
-							"_trans_rotation_z" : 90.0,
-							"_trans_scale_x" : 320.4130249023438,
-							"_trans_scale_y" : 800.0,
+							"_trans_rotation_z" : 0.0,
+							"_trans_scale_x" : 400.0,
+							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : -900.0,
+							"_trans_translation_x" : -398.9660339355469,
 							"_trans_translation_y" : 0.0,
-							"_trans_translation_z" : 20000.0,
+							"_trans_translation_z" : 6000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -607,21 +607,21 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						-1.400569817633368e-005,
-						800.0,
-						0.0,
-						0.0,
-						-320.4130249023438,
-						-3.496911085676402e-005,
+						400.0,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						0.9999999403953552,
+						129.4095306396484,
+						0.9659258127212524,
 						0.0,
-						-900.0,
 						0.0,
-						20000.0,
+						-482.9629211425781,
+						0.2588190734386444,
+						0.0,
+						-398.9660339355469,
+						0.0,
+						6000.0,
 						1.0
 					]
 				},
@@ -643,11 +643,11 @@
 						0.0,
 						0.0,
 						0.0,
-						-1.002024531364441,
+						-1.001349210739136,
 						-1.0,
 						0.0,
 						0.0,
-						-40.49094390869141,
+						-40.47728729248047,
 						0.0
 					]
 				},
@@ -1015,12 +1015,49 @@
 			[
 				
 				{
-					"duration" : 1000,
-					"easing_fun" : 16,
+					"duration" : 323,
+					"easing_fun" : 2,
 					"key_from" : 0,
 					"key_to" : 1,
 					"start_time" : 0
+				},
+				
+				{
+					"duration" : 619,
+					"easing_fun" : 0,
+					"key_from" : 1,
+					"key_to" : 2,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 2,
+					"key_to" : 3,
+					"start_time" : 0
 				}
+			],
+			"playlist_list" : 
+			[
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 1
+					},
+					
+					{
+						"key_from" : 1,
+						"key_to" : 2
+					},
+					
+					{
+						"key_from" : 2,
+						"key_to" : 3
+					}
+				]
 			],
 			"prop_list" : 
 			[
@@ -1032,10 +1069,12 @@
 			],
 			"prop_value_list" : 
 			[
-				[ "khhlmhmd", "aaiallef", "aaaajgec", "aaaaaaaa", "aaaabgee" ],
-				[ "aaaagbme", "aaeajmeg", "aaaaaaaa", "aaaaleec", "nodekaed" ]
+				[ "khhlmhmd", "aaiallef", "aaaajgec", "aaaaaaaa", "aaaamied" ],
+				[ "aaaagbme", "aaeajmeg", "aaaaaaaa", "aaaajgec", "nodekaed" ],
+				[ "aaaapkme", "aapakaeg", "aaaaaaaa", "aaaaleec", "nodekaed" ],
+				[ "aaeadfmf", "aapakaeg", "aaaaaaaa", "aaaaleec", "nodekaed" ]
 			],
-			"state_idx" : 1
+			"state_idx" : 0
 		},
 		"tsr_rg" : 
 		{
@@ -1057,6 +1096,7 @@
 					"start_time" : 0
 				}
 			],
+			"playlist_list" : [],
 			"prop_list" : 
 			[
 				[ 11, 1, 0, 3, 1 ],
@@ -1156,7 +1196,7 @@
 		"show_property_window" : true,
 		"show_resource_manager" : false,
 		"show_slider_path_picker" : false,
-		"show_state_manager_edit" : false
+		"show_state_manager_edit" : true
 	}
 }
 

@@ -21,6 +21,16 @@ struct trans_key
 			return _to < ttrans._to;
 		}
 	}
+     bool operator ==( const trans_key& ttrans ) const
+     {
+          return _from == ttrans._from&& _to == ttrans._to;
+     }
+     /*trans_key& operator =( trans_key& ttrans )
+     {
+          _from = ttrans._from;
+          _to = ttrans._to;
+          return *this;
+     }*/
 	bool valid()
 	{
 		return _from != _to;

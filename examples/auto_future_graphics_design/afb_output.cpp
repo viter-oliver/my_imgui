@@ -421,7 +421,7 @@ void afb_output::output_afb(const char* afb_file)
 	pk.pack_array(g_mstate_manager.size());//en_state_manager
 	for (auto& ims:g_mstate_manager)
 	{
-		pk.pack_array(6);
+		pk.pack_array(7);
 		auto& ikey=ims.first;
 		pk.pack_str(ikey.size());
 		pk.pack_str_body(ikey.c_str(),ikey.size());
@@ -465,6 +465,18 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_int(tran._duration);
 			pk.pack_int(tran._easing_func);
 		}
+          auto& playlist_list = stm_unit._playlist_list;
+          pk.pack_array( playlist_list.size() );
+          for (auto& iplaylist:playlist_list)
+          {
+               pk.pack_array( iplaylist.size() );
+               for (auto& itran:iplaylist)
+               {
+                    pk.pack_array( 2 );
+                    pk.pack_int( itran._from );
+                    pk.pack_int( itran._to );
+               }
+          }
 	}
      pk.pack_array(g_base_prp_dic.size());//en_common_value
      for (auto& icmv:g_base_prp_dic)

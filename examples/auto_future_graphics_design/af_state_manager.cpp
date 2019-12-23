@@ -97,7 +97,7 @@ void keep_state_trans_on()
 			auto& play_clk = stm._trans_start;
 			auto dur_mills = duration_cast<milliseconds>(cur_clk - play_clk);
 			auto& cur_trans = *stm._pcur_tran;
-			auto delta_tm = dur_mills.count() - cur_trans._start_time;//note：start_time并不是时间点，而是多少毫秒后开始
+			auto delta_tm = dur_mills.count() - cur_trans._start_time;//note￡ostart_time2￠2?ê?ê±??μ?￡???ê??àéùoá??oó?aê?
 			if (delta_tm>0)
 			{
 				double tm_pt_mill = (double)delta_tm / cur_trans._duration;

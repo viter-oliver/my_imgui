@@ -480,6 +480,24 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 						convert_string_to_binary(str_value, prp_blcok);
 					}
 				}
+                    auto& playlist_list = stm._playlist_list;
+                    Value& jplaylist_list = jstm[ "playlist_list" ];
+                    jsz = jplaylist_list.size();
+                    for( int ii = 0; ii < jsz;ii++ )
+                    {
+                         playlist_list.emplace_back();
+                         auto& playlist = playlist_list[ ii ];
+                         Value& jplaylist = jplaylist_list[ ii ];
+                         int jjsz = jplaylist.size();
+                         for( int ix = 0; ix < jjsz;ix++ )
+                         {
+                              playlist.emplace_back();
+                              auto& tran_unit = playlist[ ix ];
+                              Value& jtran = jplaylist[ ix ];
+                              tran_unit._from = jtran[ "key_from" ].asInt();
+                              tran_unit._to = jtran[ "key_to" ].asInt();
+                         }
+                    }
 				g_mstate_manager[mname] = ps_stm;
 			}
                Value& jcommonvalue_list = jroot[ "common_value_list" ];
@@ -861,6 +879,21 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		st_m_unit["state_idx"] = state_idx;
 		auto& mstate = stm_unit._mstate;
 		st_m_unit["mstate"] = mstate;
+          auto& playlist_list = stm_unit._playlist_list;
+          Value jplaylist_list( arrayValue );
+          for (auto& iplaylist:playlist_list)
+          {
+               Value jplaylist( arrayValue );
+               for (auto& itran:iplaylist)
+               {
+                    Value jtran( objectValue );
+                    jtran[ "key_from" ] = itran._from;
+                    jtran[ "key_to" ] = itran._to;
+                    jplaylist.append( jtran );
+               }
+               jplaylist_list.append( jplaylist );
+          }
+          st_m_unit[ "playlist_list" ] = jplaylist_list;
 		state_manager[ism.first] = st_m_unit;
 	}
 	jroot["state_manager_list"] = state_manager;

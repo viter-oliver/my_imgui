@@ -261,6 +261,7 @@ void state_manager_edit::view_state_manager_item_property()
 		}
 		auto& playlist_list = _psel->_playlist_list;
 		auto& cur_playlist_id = _psel->_cur_playlist_id;
+          auto pl_sz = playlist_list.size();
 		for (auto itrans = mtrans.begin(); itrans != mtrans.end();)
 		{
 			stm_sel.str(string());
@@ -278,9 +279,32 @@ void state_manager_edit::view_state_manager_item_property()
 			string str_play = ">>##" + str_sel;
 			if (ImGui::Button(str_play.c_str()))//play the trans
 			{
-				g_state_trans_player.play_state_trans(_psel, itrans->first._from,itrans->first._to);
+				//g_state_trans_player.play_state_trans(_psel, itrans->first._from,itrans->first._to);
+                    play_tran( _stm_key_name, itrans->first._from, itrans->first._to );
 			}
-
+               if (pl_sz>0)
+               {
+                    assert( cur_playlist_id < pl_sz );
+                    auto& itrans_key = itrans->first;
+                    auto& cur_pl = playlist_list[ cur_playlist_id ];
+                    bool finded = false;
+                    for (auto& itran:cur_pl)
+                    {
+                         if (itran==itrans_key)
+                         {
+                              finded = true;
+                              break;
+                         }
+                    }
+                    if (!finded)
+                    {
+                         string str_add = "add to playlist..." + str_sel;
+                         if (ImGui::Button(str_add.c_str()))
+                         {
+                              cur_pl.emplace_back( itrans_key );
+                         }
+                    }
+               }
 			str_sel = "X##" + str_sel;
 			ImGui::SameLine();
 			if (ImGui::Button(str_sel.c_str()))
@@ -308,6 +332,7 @@ void state_manager_edit::view_state_manager_item_property()
 		idx = 0;
 		for (auto& playlist:playlist_list)
 		{
+               auto plsz = playlist.size();
 			stm_sel.str(string());
 			stm_sel.clear();
 			stm_sel << "playlist" << idx;
@@ -316,35 +341,54 @@ void state_manager_edit::view_state_manager_item_property()
 			{
 				cur_playlist_id = idx;
 			}
-			str_sel = ">>##" + stm_sel.str();
-			if (ImGui::Button(str_sel.c_str()))
-			{
-				play_tran_playlist(_stm_key_name, idx);
-			}
+			
+               if (plsz>0)
+               {
+                    str_sel = ">>##" + stm_sel.str();
+                    if( ImGui::Button( str_sel.c_str() ))
+                    {
+                         play_tran_playlist( _stm_key_name, idx );
+                    }
+                    str_sel = "##" + stm_sel.str();
+                    ImGui::BeginChild( str_sel.c_str(), ImVec2( 0, 300 ), true );
+                    ImGui::Columns( plsz );
+                    int ixx = 0;
+                    for( auto ipl = playlist.begin(); ipl != playlist.end(); )
+			     {
 
-			auto plsz = playlist.size();
-			for (int ixx = 0; ixx<plsz;ixx++)
-			{
-				ImGui::Text("%d<->%d", playlist[ixx]._from, playlist[ixx]._to);
-				stm_sel.str(string());
-				stm_sel.clear();
-				stm_sel << "trans" << idx<<"+"<<ixx;
-				str_sel = "<-##"+stm_sel.str();
-				if (ixx>0 && ImGui::Button(str_sel.c_str()))
-				{
-					auto tmptrans = playlist[ixx];
-					playlist[ixx] = playlist[ixx - 1];
-					playlist[ixx - 1] = tmptrans;
-				}
-				str_sel = "->##" + stm_sel.str();
-				if (ixx<plsz-1&&ImGui::Button(str_sel.c_str()))
-				{
-					auto tmptrans = playlist[ixx];
-					playlist[ixx] = playlist[ixx + 1];
-					playlist[ixx + 1] = tmptrans;
-				}
-				ImGui::SameLine();
-			}
+                         ImGui::Text( "%d<->%d", ipl->_from, ipl->_to );
+				     stm_sel.str(string());
+				     stm_sel.clear();
+				     stm_sel << "trans" << idx<<"+"<<ixx;
+				     str_sel = "<-##"+stm_sel.str();
+				     if (ixx>0 && ImGui::Button(str_sel.c_str()))
+				     {
+                              swap( playlist[ ixx ], playlist[ ixx - 1 ] );
+				     }
+				     str_sel = "->##" + stm_sel.str();
+				     if (ixx<plsz-1&&ImGui::Button(str_sel.c_str()))
+				     {
+                              swap( playlist[ ixx ], playlist[ ixx + 1 ] );
+				     }
+                         str_sel = "X##X" + stm_sel.str();
+                         if (ImGui::Button(str_sel.c_str()))
+                         {
+                              ipl = playlist.erase( ipl );
+                              plsz = playlist.size();
+                         }
+                         else
+                         {
+                              ixx++;
+                              ipl++;
+                         }
+                         if( ixx<plsz )
+                         {
+                              ImGui::NextColumn();
+                         }
+			     }
+                    ImGui::EndChild();
+               }
+               
 		}
 	}
 	

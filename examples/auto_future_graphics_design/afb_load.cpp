@@ -766,6 +766,24 @@ void afb_load::load_afb(const char* afb_file)
 			ps_trans->_easing_func = oseasing_fun.as<int>();
 			mtrans[tkey] = ps_trans;
 		}
+          auto oplaylist_list = omstm.via.array.ptr[ 6 ];
+          auto& playlist_list = stm._playlist_list;
+          auto oplstlst_sz = oplaylist_list.via.array.size;
+          for( size_t jj = 0; jj < oplstlst_sz; jj++ )
+          {
+               auto oplaylist = oplaylist_list.via.array.ptr[ jj ];
+               playlist_list.emplace_back();
+               auto& playlist = playlist_list[ jj ];
+               auto plsz = oplaylist.via.array.size;
+               for( size_t ix = 0; ix < plsz;ix++ )
+               {
+                    auto otran = oplaylist.via.array.ptr[ ix ];
+                    playlist.emplace_back();
+                    auto& plu = playlist[ ix ];
+                    plu._from = otran.via.array.ptr[ 0 ].as<int>();
+                    plu._to=otran.via.array.ptr[ 1 ].as<int>();
+               }
+          }
 		g_mstate_manager[mskey] = ps_stm;
 	}
      auto obj_common_value_dic = obj_w.via.array.ptr[ en_common_value ];

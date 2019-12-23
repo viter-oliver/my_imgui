@@ -929,9 +929,22 @@ int main(int argc, char* argv[])
 			g_bind_edit.bind_source_view();
 			ImGui::End();
 		}
-		if (g_state_trans_player.be_playing())
+          auto be_trans_playing = [&]()->bool
+          {
+               for (auto& istm:g_mstate_manager)
+               {
+                    auto& stm = istm.second;
+                    if( stm->_play_state != en_play_stop )
+                    {
+                         return true;
+                    }
+               }
+               return false;
+          };
+          if( be_trans_playing())
 		{
-			g_state_trans_player.keep_state_trans_on();
+			//g_state_trans_player.keep_state_trans_on();
+               keep_state_trans_on();
 		}
 		else
 		if (show_state_manager_edit)
