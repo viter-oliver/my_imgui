@@ -5,6 +5,7 @@ attribute vec3 anormal;
 varying vec2 Textcoord;
 varying vec2 posx;
 uniform float base_y;
+uniform float lane_w;
 uniform float vbdw;
 uniform float lc2,lc1,lc0,rc2,rc1,rc0;
 uniform mat4 proj;
@@ -26,7 +27,7 @@ void main()
         }
         else
         {
-            bpos.x=lc2*z*z+lc1*z+lc0+100.0;
+            bpos.x=lc2*z*z+lc1*z+lc0+lane_w;
         }
     }
    else
@@ -38,7 +39,7 @@ void main()
         }
         else
         {
-			bpos.x=rc2*z*z+rc1*z+rc0-100.0;
+			bpos.x=rc2*z*z+rc1*z+rc0-lane_w;
         }
    }
     

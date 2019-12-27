@@ -4,7 +4,7 @@ varying vec2 posx;
 uniform float bdw;
 uniform sampler2D llane;
 uniform sampler2D rlane;
-uniform sampler2D road;
+//uniform sampler2D road;
 
 void main()
 {
@@ -19,6 +19,6 @@ void main()
     }
     else
 	{
-		 gl_FragColor = texture2D(road, Textcoord);
+		discard;// gl_FragColor = vec4(0,0,0,0);//texture2D(road, Textcoord);
 	}
 }
