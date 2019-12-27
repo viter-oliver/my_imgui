@@ -22,6 +22,7 @@
 #include <chrono>
 #include <sstream>
 extern BOOL GetMacByCmd(char *lpszMac);
+__pragma( pack( push, 2 ) )
 using namespace std;
 struct stt
 {
@@ -160,6 +161,54 @@ void test_input_pod(test_pods&& tpd)
 	tpd.x1 = 1;
 }
 
+#define		MCU_SYNC1			0xc2
+#define		MCU_SYNC2			0x3d
+#define MAX_BYTE_SIZE 0x400
+#define MAX_CACH_SIZE MAX_BYTE_SIZE*4
+enum
+{
+	en_pos_signal,
+	en_pos_index,
+	en_pos_length_h,
+	en_pos_length_l,
+	en_pos_cmd_head,
+};
+using u8 = unsigned char;
+using u16 = unsigned short;
+void send_cmd_2_uart(u8* pbuff, int len)
+{
+	u8* plink = new u8[len + 7];
+	plink[0] = MCU_SYNC1;
+	plink[1] = MCU_SYNC2;
+	struct signal_def
+	{
+		u8 reserve : 5;
+		u8 need_ac : 1;
+		u8 frame_tp : 1;
+		u8 frame_dir : 1;
+	};
+	signal_def* psg = (signal_def*)(plink + 2);
+	psg->reserve = 0;
+	psg->need_ac = 1;
+	psg->frame_tp = 1;
+	psg->frame_dir = 0;
+	static u8 frame_idx = 0;
+	plink[2 + en_pos_index] = frame_idx;
+	frame_idx++;
+	u16 frame_len = len + 1;
+	u8* pfm_ln = (u8*)&frame_len;
+	plink[2 + en_pos_length_h] = *pfm_ln++;
+	plink[2 + en_pos_length_l] = *pfm_ln;
+	u8 chk_sm = plink[0] ^ plink[1] ^ plink[2] ^ plink[3] ^ plink[4] ^ plink[5];
+	for (int ix = 0; ix < len; ix++)
+	{
+		plink[2 + en_pos_cmd_head + ix] = pbuff[ix];
+		chk_sm = chk_sm^pbuff[ix];
+	}
+	plink[2 + en_pos_cmd_head + len] = chk_sm;
+
+	delete[] plink;
+}
 //class testc1 :public testc0
 //{
 //public:
@@ -286,8 +335,114 @@ void test_input_pod(test_pods&& tpd)
 		}
 		printf("\n");
 	}
+     void test_vector( vector<u8>&& vu8 )
+     {
+          int isz = vu8.size();
+          for( int ix = 0; ix < isz;ix++ )
+          {
+               printf( "vu8[%d]=%d\n", ix, vu8[ ix ] );
+          }
+
+     }
+     using frame_fun = function<void( int )>;
+     using vframe_fun = vector<frame_fun>;
+     void test_vf( vframe_fun&& vff )
+     {
+          int isz = vff.size();
+          for( int ix = 0; ix < isz; ix++ )
+          {
+               vff[ ix ]( ix );
+          }
+     }
+     struct test_opertor 
+     {
+          int _i;
+          float _f;
+          double _d;
+          bool _b;
+          test_opertor(int i,float f,double d,bool b)
+               :_i(i), _f(f), _d(d), _b(b)
+          {}
+          operator double()
+          {
+               return _d;
+          }
+          operator int()
+          {
+               return _i;
+          }
+          operator float()
+          {
+               return _f;
+          }
+          operator bool()
+          {
+               return _b;
+          }
+     };
 int _tmain(int argc, _TCHAR* argv[])
 {
+
+     unsigned int tuint = 0x442;
+     char* pdd = (char*)&tuint;
+     printf( "0x%x\n", *pdd );
+     pdd++;
+     printf( "0x%x\n", *pdd );
+
+     test_opertor tper( 10, 10.2f, 100.2, true );
+     int i = tper.operator int();
+     auto f = 2+tper.operator float();
+
+     __pragma( pack( push,1 ) )
+     struct  test_byte
+     {
+          unsigned char _m0 : 2;
+          unsigned char _m1 : 7;
+          unsigned char _m2 : 7;
+     };
+     test_vector( { 3, 4, 5 } );
+     test_vf( {
+          []( int ix )
+          {
+               printf( "ix=%d\n", ix );
+          },
+           []( int ix )
+          {
+               printf( " second ix=%d\n", ix );
+          }
+     } );
+     test_byte tbyte = {2,7,2};
+     string tstr;
+     unsigned int ivalue = 0x12abcd;
+     tstr.resize( 6 );
+     static char num_tb[ 0x10 ] =
+     {
+          '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'
+     };
+     struct cmd_data
+     {
+          u8 data0 : 4;
+          u8 data1 : 4;
+     };
+     unsigned char* pchar = (unsigned char*)&ivalue;
+     cmd_data* pcmd = (cmd_data*)pchar;
+     tstr[ 0 ] = num_tb[ pcmd->data0 ];
+     tstr[ 1 ] = num_tb[ pcmd->data1 ];
+     pcmd++;
+     tstr[ 2 ] = num_tb[ pcmd->data0 ];
+     tstr[ 3] = num_tb[ pcmd->data1 ];
+     pcmd++;
+     tstr[ 4] = num_tb[ pcmd->data0 ];
+     tstr[ 5] = num_tb[ pcmd->data1 ];
+     unsigned short sbtest = 10;
+
+      __pragma( pack( pop ) )    
+      printf( "sizeof test byte=%d\n", sizeof test_byte );
+	wstring omit_sign = L"¡­";
+	u8 cmd_rq_update[4] = { 0, 0x09, 0x02, 0 };
+	send_cmd_2_uart(cmd_rq_update, 4);
+	u8 cmd_rq_update2[4] = { 0, 0x09, 00, 3 };
+	send_cmd_2_uart(cmd_rq_update2, 4);
 	string emptystr;
 	wstring empth = utf8ToWstring(emptystr);
 	char test_bin[] = { 0xab,0x01, 0x02, 0x0a, 0x1a, 0x1b };
@@ -395,7 +550,20 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("%s\n", typeid(mya).name());
 	printf("trans %s\n", typeid(trans).name());
 	printf("ret %s\n", typeid(ret).name());
+	__int64 lgint;
 
+	class test_sizeof
+	{
+		struct test_inal 
+		{
+
+		};
+		
+		char ctecp[sizeof(test_inal)];
+	};
+	test_sizeof tettt;
+	bool btest[8];
+	cout<<"sz:"<<sizeof(btest)<<endl;
 	//testc cn;
 	//printf("name:%s\n", cn.get_cname());
 	//testc0 cn0;
@@ -596,6 +764,21 @@ int _tmain(int argc, _TCHAR* argv[])
 	};
 	test_this2 ts2;
 	ts2.printf_this();
+	int ttst = 1 << 28;
+	cout << ttst << endl;
+	double dttst = (double)250 / (double)ttst;
+	printf("dttst=%lf\n", dttst);
+	float fttst = (float)250 / (float)ttst;
+	printf("fttst=%f\n", fttst);// endl;
+	for (float dd = 900; dd >=134; dd--)
+	{
+		printf("dd=%f\n", dd);
+		double dttst = (double)dd / (double)ttst;
+		printf("dttst=%lf\n", dttst);
+		float fttst = (float)dd / (float)ttst;
+		printf("fttst=%f\n", fttst);// endl;
+	}
+	
 
 	int iij{ 0 };
 	cout << __cplusplus << endl;
@@ -839,7 +1022,10 @@ int _tmain(int argc, _TCHAR* argv[])
 	unsigned char ixxx = 0x2 << 4 | 0xa;
 	char lpszMac[128];
 	memset(lpszMac, 0x00, sizeof(lpszMac));
-
+	string str_find = "ro.build.fub.version=V0.1_20190830040812_R";
+	const char* fd_key = "ro.build.fub.version=";
+	auto ifind = str_find.find(fd_key);
+	string verstr = str_find.substr(ifind + strlen(fd_key));
 	//»ñÈ¡MAC
 	/**/GetMacByCmd(lpszMac);
 	printf("mac:%s\n", lpszMac);

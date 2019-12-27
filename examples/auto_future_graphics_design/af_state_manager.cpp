@@ -1,14 +1,14 @@
 #include "af_state_manager.h"
 
 mp_state_manager g_mstate_manager;
-
+/**
 void state_trans_player::play_state_trans(ps_state_manager pstate, int from, int to)
 {
 	_psel = pstate;
 	_cur_trans_play_key = {from,to};
 	_cur_trans_play_start = steady_clock::now();
 	_be_playing = true;
-}
+}*/
 static char* str_play_state[en_play_state_cnt] =
 {
 	"stopped",
@@ -228,7 +228,7 @@ void keep_state_trans_on()
 		}
      }
 }
-
+/**
 void state_trans_player::keep_state_trans_on()
 {
 	if (_be_playing)
@@ -296,7 +296,7 @@ void state_trans_player::keep_state_trans_on()
 		}
 	}
 }
-state_trans_player g_state_trans_player;
+state_trans_player g_state_trans_player;*/
 bool save_trans_value( string trans_name, int sid )
 {
      const auto& itrans = g_mstate_manager.find( trans_name );
@@ -339,6 +339,7 @@ bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle)
 	trans._trans_finish = trans_handle;
 	return true;
 }
+/**
 bool play_trans(string trans_name, int from, int to)
 {
 	const auto& itrans = g_mstate_manager.find(trans_name);
@@ -348,4 +349,4 @@ bool play_trans(string trans_name, int from, int to)
 	}
 	g_state_trans_player.play_state_trans(itrans->second, from, to);
 	return true;
-}
+}*/

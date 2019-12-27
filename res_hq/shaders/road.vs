@@ -17,7 +17,7 @@ void main()
     posx=anormal.xy;
    vec3 bpos=aposition;
      float ln=anormal.x;
-    if(bpos.x<0)//left
+    if(bpos.x<0.00001)//left
     {
     	float dx=ln;
         if(dx<=0.1)
@@ -26,7 +26,7 @@ void main()
         }
         else
         {
-            bpos.x=lc2*z*z+lc1*z+lc0+100.f;
+            bpos.x=lc2*z*z+lc1*z+lc0+100.0;
         }
     }
    else
@@ -38,7 +38,7 @@ void main()
         }
         else
         {
-			bpos.x=rc2*z*z+rc1*z+rc0-100.f;
+			bpos.x=rc2*z*z+rc1*z+rc0-100.0;
         }
    }
     

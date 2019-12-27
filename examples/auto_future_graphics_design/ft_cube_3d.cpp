@@ -5,9 +5,9 @@ namespace auto_future
 	ft_cube_3d::ft_cube_3d()
 		:ft_base()
 	{
-		auto& mut = g_material_list.find("mtl_color");
+		const auto& mut = g_material_list.find("mtl_color");
 		_pmaterial = mut->second;
-		auto& pmut = g_primitive_list.find("cube");
+		const auto& pmut = g_primitive_list.find("cube");
 		_pcube_prim = pmut->second;
 		glm::mat4 view = glm::lookAt(
 			glm::vec3(-1.5f, 0.0f, -1.5f),//e

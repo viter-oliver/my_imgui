@@ -93,6 +93,7 @@ AFG_EXPORT bool play_tran(string stm_name, int from, int to);
 AFG_EXPORT bool play_tran_playlist(string stm_name, int playlist_id);
 
 AFG_EXPORT void keep_state_trans_on();
+/*
 class state_trans_player
 {
 	bool _be_playing{ false };
@@ -116,3 +117,4 @@ public:
 	bool be_playing(){ return _be_playing; }
 };
 extern state_trans_player g_state_trans_player;
+*/

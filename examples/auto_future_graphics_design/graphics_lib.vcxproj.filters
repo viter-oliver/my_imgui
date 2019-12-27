@@ -32,6 +32,9 @@
     <Filter Include="afb_manager">
       <UniqueIdentifier>{1eed8a52-3174-4df9-b74a-a6938f17dde9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="soil">
+      <UniqueIdentifier>{501149f1-a182-45d2-8b85-41da07de2e53}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\imgui.cpp">
@@ -181,6 +184,21 @@
     <ClCompile Include="screen_image_distortion.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="ft_image_file.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\image_DXT.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\image_helper.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\SOIL.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\stb_image_aug.c">
+      <Filter>soil</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -266,6 +284,24 @@
       <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="screen_image_distortion.h" />
+    <ClInclude Include="..\..\soil\image_DXT.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\image_helper.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\SOIL.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stb_image_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stbi_DDS_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h">
+      <Filter>soil</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

@@ -154,7 +154,7 @@ namespace auto_future
 			if (_proot)
 			{
 				onUpdate();
-				g_state_trans_player.keep_state_trans_on();
+				keep_state_trans_on();
                     _proot->draw_frames();
 			}
 			ImGui::End();

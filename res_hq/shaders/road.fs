@@ -9,11 +9,11 @@ uniform sampler2D road;
 void main()
 {
    float x=posx.x;
-   if(x<=1.f)
+   if(x<=1.0)
    {
 		gl_FragColor = texture2D(llane, Textcoord);
    }
-   else if(x>=2.f)
+   else if(x>=2.0)
    {
          gl_FragColor = texture2D(rlane, Textcoord);
     }

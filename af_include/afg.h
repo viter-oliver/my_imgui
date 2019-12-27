@@ -5,6 +5,7 @@
 #include "ft_circle.h"
 #include "ft_cube_3d.h"
 #include "ft_image.h"
+#include "ft_image_file.h"
 #include "ft_image_play.h"
 #include "ft_listbox.h"
 #include "ft_material_2d.h"

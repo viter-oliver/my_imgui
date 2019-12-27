@@ -167,6 +167,10 @@
   <ItemGroup>
     <ClCompile Include="..\..\imgui.cpp" />
     <ClCompile Include="..\..\imgui_draw.cpp" />
+    <ClCompile Include="..\..\soil\image_DXT.c" />
+    <ClCompile Include="..\..\soil\image_helper.c" />
+    <ClCompile Include="..\..\soil\SOIL.c" />
+    <ClCompile Include="..\..\soil\stb_image_aug.c" />
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
     <ClCompile Include="afb_load.cpp" />
     <ClCompile Include="af_bind.cpp" />
@@ -183,6 +187,7 @@
     <ClCompile Include="ft_block.cpp" />
     <ClCompile Include="ft_circle.cpp" />
     <ClCompile Include="ft_cube_3d.cpp" />
+    <ClCompile Include="ft_image_file.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
     <ClCompile Include="ft_material_2d.cpp" />
     <ClCompile Include="ft_material_3d.cpp" />
@@ -228,6 +233,12 @@
     <ClInclude Include="..\..\json\reader.h" />
     <ClInclude Include="..\..\json\value.h" />
     <ClInclude Include="..\..\json\writer.h" />
+    <ClInclude Include="..\..\soil\image_DXT.h" />
+    <ClInclude Include="..\..\soil\image_helper.h" />
+    <ClInclude Include="..\..\soil\SOIL.h" />
+    <ClInclude Include="..\..\soil\stbi_DDS_aug.h" />
+    <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h" />
+    <ClInclude Include="..\..\soil\stb_image_aug.h" />
     <ClInclude Include="..\..\texture.h" />
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />

@@ -388,7 +388,7 @@ void state_manager_edit::view_state_manager_item_property()
 			     }
                     ImGui::EndChild();
                }
-               
+               idx++;
 		}
 	}
 	

@@ -105,162 +105,6 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 5, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 0, 0, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>0\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 0, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>1\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 2, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 4, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0>5\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 5, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 6, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
-					"param_list" : 
-					[
-						[ 2, 0, 7, 2 ]
-					]
-				},
-				"key" : [ 6, 0, 7, 7, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 0, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 1, 0 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 3, 0 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 13, 0 ]
-					]
-				},
-				"key" : [ 6, 0, 10, 0 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
 					"expression" : "def bind_fun(v0):\n  if v0:\n      return 120\n  else:\n      return 660\n",
 					"param_list" : 
 					[
@@ -285,6 +129,18 @@
 			{
 				"bind_unit" : 
 				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 10, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
@@ -292,6 +148,54 @@
 					]
 				},
 				"key" : [ 6, 0, 12, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0\n",
+					"param_list" : 
+					[
+						[ 1, 1, 8 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 8 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 13, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 0 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return 384-22*(v0-1)\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 0, 0, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 0, 0 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 0 ]
 			},
 			
 			{
@@ -333,17 +237,121 @@
 			{
 				"bind_unit" : 
 				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 4\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 4, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>0\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 0, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >3\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 3, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
 					"expression" : "def bind_fun(v0):\n  return v0\n",
 					"param_list" : 
 					[
-						[ 1, 1, 8 ]
+						[ 6, 0, 13, 0 ]
 					]
 				},
-				"key" : [ 6, 0, 6, 8 ]
+				"key" : [ 6, 0, 5, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>5\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 5, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >7\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 7, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 >2\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 2, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0 > 6\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 6, 7, 2 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0>1\n",
+					"param_list" : 
+					[
+						[ 2, 0, 7, 2 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 7, 2 ]
 			}
 		],
 		"ref_dic" : 
 		[
+			
+			{
+				"key" : [ 1, 1, 8 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 6, 8 ]
+				]
+			},
 			
 			{
 				"key" : [ 2, 0, 7, 2 ],
@@ -382,14 +390,6 @@
 					[ 1, 1, 11, 0 ],
 					[ 0, 0, 1, 11, 0 ],
 					[ 6, 0, 19, 0 ]
-				]
-			},
-			
-			{
-				"key" : [ 1, 1, 8 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 6, 8 ]
 				]
 			}
 		]
@@ -466,7 +466,7 @@
 					[
 						
 						{
-							"_adjacent_to_p" : 0.0,
+							"_adjacent_to_p" : -369.645019531250,
 							"_aj_model" : 0,
 							"_cam" : "aaaaaaaaeealicedaaaaagedaaaaaaaaaaaaiimbghggggdoaaaaaaaaaaaaiadpaaaaaaaa",
 							"_draw_mode" : 4,
@@ -478,7 +478,7 @@
 							"_primitive_name" : "road-0625.FBX0",
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_trans" : "aaaaiadpaaaaiadpaaaaiadpaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaamnmnmn",
+							"_trans" : "aaaaiadpaaaaiadpaaaaiadpaaaaaimdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaamnmnmn",
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -4381,6 +4381,7 @@
 			"type" : "ft_textblock"
 		}
 	],
+	"common_value_list" : {},
 	"file_list" : 
 	[
 		"img_ring_left_full.trk",
@@ -4433,12 +4434,12 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						0.002499999944120646,
+						-0.002499999944120646,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						-0.003745000110939145,
+						0.003745000110939145,
 						0.0,
 						0.0,
 						0.0,
@@ -4454,7 +4455,7 @@
 				"text" : 
 				{
 					"el_size" : 1,
-					"txt_name" : "trans.png",
+					"txt_name" : "road.png",
 					"type" : "shader_uf_txt",
 					"usize" : 1,
 					"utype" : 35678
@@ -4536,12 +4537,12 @@
 						0.0,
 						0.0,
 						0.0,
-						1.0,
+						-0.7193397283554077,
+						-0.6946584582328796,
 						0.0,
 						0.0,
-						0.0,
-						0.0,
-						1.0,
+						0.6946584582328796,
+						-0.7193397283554077,
 						0.0,
 						0.0,
 						0.0,

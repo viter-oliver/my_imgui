@@ -557,7 +557,7 @@ void afb_load::load_afb(const char* afb_file)
 			auto prim_id_sz = obj_prmid.via.str.size;
 			prim_id.resize(prim_id_sz);
 			memcpy(&prim_id[0], obj_prmid.via.str.ptr, prim_id_sz);
-			auto& iprim = g_primitive_list.find(prim_id);
+			const auto& iprim = g_primitive_list.find(prim_id);
 			assert(iprim != g_primitive_list.end() && "prim id is missed?");
 			mesh_unit._ps_prm_id = iprim->second;
 			auto obj_diffs_sz = obj_diffs.via.array.size;
@@ -569,7 +569,7 @@ void afb_load::load_afb(const char* afb_file)
 				diff.resize(obj_diff_sz);
 				memcpy(&diff[0], obj_diff.via.str.ptr, obj_diff_sz);
 				mesh_unit._text_diffuse_list.emplace_back(diff);
-				auto& idiff = g_mtexture_list.find(diff);
+				const auto& idiff = g_mtexture_list.find(diff);
 				if (idiff!=g_mtexture_list.end())
 				{
 					mesh_unit._ps_text_diffuse_list.emplace_back(idiff->second);
@@ -584,7 +584,7 @@ void afb_load::load_afb(const char* afb_file)
 				specular.resize(obj_specular_sz);
 				memcpy(&specular[0], obj_specular.via.str.ptr, obj_specular_sz);
 				mesh_unit._text_specular_list.emplace_back(specular);
-				auto& ispec = g_mtexture_list.find(specular);
+				const auto& ispec = g_mtexture_list.find(specular);
 				if (ispec!=g_mtexture_list.end())
 				{
 					mesh_unit._ps_text_specular_list.emplace_back(ispec->second);
@@ -599,7 +599,7 @@ void afb_load::load_afb(const char* afb_file)
 				height.resize(obj_height_sz);
 				memcpy(&height[0], obj_height.via.str.ptr, obj_height_sz);
 				mesh_unit._text_height_list.emplace_back(height);
-				auto& iheight = g_mtexture_list.find(height);
+				const auto& iheight = g_mtexture_list.find(height);
 				if (iheight!=g_mtexture_list.end())
 				{
 					mesh_unit._ps_text_height_list.emplace_back(iheight->second);
@@ -614,7 +614,7 @@ void afb_load::load_afb(const char* afb_file)
 				ambient.resize(obj_ambient_sz);
 				memcpy(&ambient[0], obj_ambient.via.str.ptr, obj_ambient_sz);
 				mesh_unit._text_ambient_list.emplace_back(ambient);
-				auto& iamb = g_mtexture_list.find(ambient);
+				const auto& iamb = g_mtexture_list.find(ambient);
 				if (iamb!=g_mtexture_list.end())
 				{
 					mesh_unit._ps_text_ambient_list.emplace_back(iamb->second);
@@ -624,6 +624,7 @@ void afb_load::load_afb(const char* afb_file)
 	}
 	auto obj_ui = obj_w.via.array.ptr[en_control_res];
 	init_ui_component_by_mgo(_pj, obj_ui);
+	TIME_CHECK(control list res)
 	auto obj_2_prp_pos = [this](msgpack::v2::object& okey,prop_ele_position&prp_epos){
 		auto obin_sz = okey.via.bin.size;
 		auto rsz = obin_sz / sizeof(unsigned short);
@@ -655,6 +656,7 @@ void afb_load::load_afb(const char* afb_file)
 		obj_2_prp_pos(obj_pep_pos, *ps_pep_pos);
 		g_aliase_dic[aliase_key] = ps_pep_pos;
 	}
+	TIME_CHECK(aliase list res)
 	auto obj_bind_dic = obj_w.via.array.ptr[en_bind_dic];
 	auto obj_bind_dic_sz = obj_bind_dic.via.array.size;
 	for (size_t ix = 0; ix < obj_bind_dic_sz;ix++)
@@ -701,6 +703,7 @@ void afb_load::load_afb(const char* afb_file)
 		}
 		g_bind_ref_dic[prp_ele_pos] = ps_ref_list;
 	}
+	TIME_CHECK(bind list res)
 	auto obj_state_manger = obj_w.via.array.ptr[en_state_manager];
 	auto stm_sz = obj_state_manger.via.array.size;
 	for (size_t ix = 0; ix < stm_sz;ix++)
@@ -786,6 +789,7 @@ void afb_load::load_afb(const char* afb_file)
           }
 		g_mstate_manager[mskey] = ps_stm;
 	}
+     TIME_CHECK(staterans list res)
      auto obj_common_value_dic = obj_w.via.array.ptr[ en_common_value ];
      auto cmv_sz = obj_common_value_dic.via.array.size;
      for( size_t ix = 0; ix < cmv_sz; ix++ )
@@ -817,5 +821,5 @@ void afb_load::load_afb(const char* afb_file)
           g_base_prp_dic[ mskey ] = ps_cmv;
 
      }
-	TIME_CHECK(control list res)
+	TIME_CHECK(commonvalue list res)
 }
