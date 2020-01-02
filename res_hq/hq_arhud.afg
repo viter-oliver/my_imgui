@@ -10,17 +10,89 @@
 	"_visible" : true,
 	"aliase" : 
 	{
-		"driving_model" : [ 4, 1, 9, 1 ],
-		"gear" : [ 4, 1, 8, 1 ],
+		"driving_model" : [ 4, 1, 12, 1 ],
+		"gear" : [ 4, 1, 11, 1 ],
 		"show_arrow" : [ 6, 0, 2, 0, 0 ],
+		"show_fcw" : [ 6, 0, 3, 0, 0 ],
+		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
 		"show_image" : [ 6, 0, 2 ],
+		"show_left_wing" : [ 6, 0, 0, 1 ],
+		"show_phone_ring" : [ 6, 0, 8, 1 ],
+		"show_right_wing" : [ 6, 0, 2, 1 ],
 		"show_road" : [ 6, 0, 1, 0, 0 ],
-		"speed" : [ 4, 1, 7, 1 ]
+		"show_tsr" : [ 6, 0, 5, 1 ],
+		"show_turn_left" : [ 6, 0, 1, 1 ],
+		"show_turn_right" : [ 6, 0, 3, 1 ],
+		"speed" : [ 4, 1, 10, 1 ]
 	},
 	"binds" : 
 	{
-		"dic" : [],
-		"ref_dic" : []
+		"dic" : 
+		[
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 3, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 2, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 1, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 0, 1 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 8, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 7, 1 ]
+			}
+		],
+		"ref_dic" : 
+		[
+			
+			{
+				"key" : [ 6, 0, 8, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 7, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 1, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 0, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 3, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 2, 1 ]
+				]
+			}
+		]
 	},
 	"childs" : 
 	[
@@ -140,12 +212,74 @@
 							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
 							"_trans_translation_x" : -398.9660339355469,
-							"_trans_translation_y" : 0.0,
+							"_trans_translation_y" : 500.0,
 							"_trans_translation_z" : 6000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : true,
+							"type" : "ft_material_3d"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "fcw",
+							"_name" : "fcw",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "usq.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : 0.0,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 0.0,
+							"_trans_scale_x" : 680.0,
+							"_trans_scale_y" : 600.0,
+							"_trans_scale_z" : 1.0,
+							"_trans_translation_x" : 0.0,
+							"_trans_translation_y" : 0.0,
+							"_trans_translation_z" : 10000.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : false,
+							"type" : "ft_material_3d"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "fcw_v",
+							"_name" : "fcw_v",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "usq.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : 0.0,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 0.0,
+							"_trans_scale_x" : 1370.0,
+							"_trans_scale_y" : 310.0,
+							"_trans_scale_z" : 1.0,
+							"_trans_translation_x" : 739.6230468750,
+							"_trans_translation_y" : 0.0,
+							"_trans_translation_z" : 10000.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : false,
 							"type" : "ft_material_3d"
 						}
 					],
@@ -180,8 +314,26 @@
 					"_sizeh" : 72.0,
 					"_sizew" : 292.0,
 					"_texture_index_txt" : 52,
-					"_visible" : true,
+					"_visible" : false,
 					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_angle_nml" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_frame_index" : 21,
+					"_name" : "turn_left",
+					"_posx" : 15.0,
+					"_posy" : 198.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 286.0,
+					"_texture_fmt_name" : "left_wing.json",
+					"_texture_name" : "left_wing.png",
+					"_visible" : true,
+					"type" : "ft_image_play"
 				},
 				
 				{
@@ -197,8 +349,26 @@
 					"_sizeh" : 72.0,
 					"_sizew" : 292.0,
 					"_texture_index_txt" : 55,
-					"_visible" : true,
+					"_visible" : false,
 					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_angle_nml" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_frame_index" : 21,
+					"_name" : "turn_right",
+					"_posx" : 493.0,
+					"_posy" : 198.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 286.0,
+					"_texture_fmt_name" : "right_wing.json",
+					"_texture_name" : "right_wing.png",
+					"_visible" : true,
+					"type" : "ft_image_play"
 				},
 				
 				{
@@ -226,28 +396,28 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "tsr",
-					"_posx" : 225.8580169677734,
-					"_posy" : 258.0,
-					"_sizeh" : 41.0,
-					"_sizew" : 41.0,
+					"_posx" : 226.8660125732422,
+					"_posy" : 254.0,
+					"_sizeh" : 45.0,
+					"_sizew" : 45.0,
 					"_texture_index_txt" : 56,
-					"_visible" : true,
+					"_visible" : false,
 					"childs" : 
 					[
 						
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
-							"_content" : "90",
+							"_content" : "51",
 							"_font_id" : 1,
 							"_font_scale" : 1.0,
-							"_font_size" : 25,
+							"_font_size" : 30,
 							"_name" : "speed_limit",
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : 6.333000183105469,
-							"_posy" : 10.0,
+							"_posx" : 7.0,
+							"_posy" : 11.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_txt_alignh_nml" : 0.0,
@@ -299,6 +469,24 @@
 					"_texture_index_txt" : 54,
 					"_visible" : true,
 					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_angle_nml" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_frame_index" : 14,
+					"_name" : "phone_ring",
+					"_posx" : 380.0,
+					"_posy" : 243.0,
+					"_sizeh" : 35.0,
+					"_sizew" : 43.0,
+					"_texture_fmt_name" : "e115.json",
+					"_texture_name" : "e115.png",
+					"_visible" : false,
+					"type" : "ft_image_play"
 				},
 				
 				{
@@ -520,13 +708,13 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 7, 1 ],
-				[ 0, 1, 0, 7, 1 ],
 				[ 0, 1, 10, 1 ],
-				[ 0, 1, 8, 1 ],
+				[ 0, 1, 0, 10, 1 ],
+				[ 0, 1, 13, 1 ],
+				[ 0, 1, 11, 1 ],
+				[ 0, 1, 12, 1 ],
 				[ 0, 1, 9, 1 ],
-				[ 0, 1, 6, 1 ],
-				[ 0, 1, 0, 3, 1 ]
+				[ 0, 1, 0, 5, 1 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -540,13 +728,13 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 8, 1 ],
-				[ 0, 1, 7, 1 ],
-				[ 0, 1, 0, 7, 1 ],
+				[ 0, 1, 11, 1 ],
 				[ 0, 1, 10, 1 ],
-				[ 0, 1, 9, 1 ],
-				[ 0, 1, 0, 3, 1 ],
-				[ 0, 1, 6, 1 ]
+				[ 0, 1, 0, 10, 1 ],
+				[ 0, 1, 13, 1 ],
+				[ 0, 1, 12, 1 ],
+				[ 0, 1, 0, 5, 1 ],
+				[ 0, 1, 9, 1 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -560,13 +748,13 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 8, 1 ],
-				[ 0, 1, 7, 1 ],
-				[ 0, 1, 9, 1 ],
+				[ 0, 1, 11, 1 ],
 				[ 0, 1, 10, 1 ],
-				[ 0, 1, 6, 1 ],
-				[ 0, 1, 0, 3, 1 ],
-				[ 0, 1, 0, 7, 1 ]
+				[ 0, 1, 12, 1 ],
+				[ 0, 1, 13, 1 ],
+				[ 0, 1, 9, 1 ],
+				[ 0, 1, 0, 5, 1 ],
+				[ 0, 1, 0, 10, 1 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -577,7 +765,16 @@
 			}
 		}
 	},
-	"file_list" : [ "road.FBX0", "roada.FBX0", "roadd.FBX0", "usq.FBX0" ],
+	"file_list" : 
+	[
+		"e115.json",
+		"left_wing.json",
+		"right_wing.json",
+		"road.FBX0",
+		"roada.FBX0",
+		"roadd.FBX0",
+		"usq.FBX0"
+	],
 	"fonts" : 
 	[
 		
@@ -595,6 +792,194 @@
 	],
 	"material_list" : 
 	[
+		
+		{
+			"name" : "fcw",
+			"shader" : "unit3d",
+			"uniform_list" : 
+			{
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						680.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						600.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						10000.0,
+						1.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						2.126730680465698,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						5.671281814575195,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.001349210739136,
+						-1.0,
+						0.0,
+						0.0,
+						-40.47728729248047,
+						0.0
+					]
+				},
+				"text" : 
+				{
+					"el_size" : 1,
+					"txt_name" : "mark_fcw_level1_p.png",
+					"type" : "shader_uf_txt",
+					"usize" : 1,
+					"utype" : 35678
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-1.0,
+						0.0,
+						-0.0,
+						0.0,
+						0.0,
+						1.0,
+						-0.0,
+						0.0,
+						0.0,
+						-0.0,
+						-1.0,
+						0.0,
+						-400.0,
+						-390.0,
+						2.980232238769531e-006,
+						1.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "fcw_v",
+			"shader" : "unit3d",
+			"uniform_list" : 
+			{
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						1370.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						310.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						739.6230468750,
+						0.0,
+						10000.0,
+						1.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						2.126730680465698,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						5.671281814575195,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.001349210739136,
+						-1.0,
+						0.0,
+						0.0,
+						-40.47728729248047,
+						0.0
+					]
+				},
+				"text" : 
+				{
+					"el_size" : 1,
+					"txt_name" : "mark_fcw_level1_v.png",
+					"type" : "shader_uf_txt",
+					"usize" : 1,
+					"utype" : 35678
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-1.0,
+						0.0,
+						-0.0,
+						0.0,
+						0.0,
+						1.0,
+						-0.0,
+						0.0,
+						0.0,
+						-0.0,
+						-1.0,
+						0.0,
+						-400.0,
+						-390.0,
+						2.980232238769531e-006,
+						1.0
+					]
+				}
+			}
+		},
 		
 		{
 			"name" : "obs0",
@@ -622,7 +1007,7 @@
 						0.2588190734386444,
 						0.0,
 						-398.9660339355469,
-						0.0,
+						500.0,
 						6000.0,
 						1.0
 					]
@@ -801,7 +1186,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ 1500.0 ]
+					"value_list" : [ 2000.0 ]
 				},
 				"rc1" : 
 				{
@@ -822,7 +1207,7 @@
 				"rlane" : 
 				{
 					"el_size" : 1,
-					"txt_name" : "lane_mark.png",
+					"txt_name" : "lane_n_day.png",
 					"type" : "shader_uf_txt",
 					"usize" : 1,
 					"utype" : 35678
@@ -1038,14 +1423,79 @@
 				[ 11, 1, 2, 0, 0 ],
 				[ 16, 1, 2, 0, 0 ],
 				[ 18, 1, 2, 0, 0 ],
-				[ 12, 1, 2, 0, 0 ]
+				[ 12, 1, 2, 0, 0 ],
+				[ 10, 1, 2, 0, 0 ]
 			],
 			"prop_value_list" : 
 			[
-				[ "khhlmhmd", "aaiallef", "aaaajgec", "aaaaaaaa", "aaaamied" ],
-				[ "aaaagbme", "aaeajmeg", "aaaaaaaa", "aaaajgec", "nodekaed" ],
-				[ "aaaapkme", "aapakaeg", "aaaaaaaa", "aaaaleec", "nodekaed" ],
-				[ "aaeadfmf", "aapakaeg", "aaaaaaaa", "aaaaleec", "nodekaed" ]
+				
+				[
+					"khhlmhmd",
+					"aaiallef",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaamied",
+					"aaaapked"
+				],
+				
+				[
+					"aaaagbme",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaajgec",
+					"nodekaed",
+					"aaaapkee"
+				],
+				
+				[
+					"aaaapkme",
+					"aapakaeg",
+					"aaaaaaaa",
+					"aaaaleec",
+					"nodekaed",
+					"aaaacpef"
+				],
+				
+				[
+					"aamahdmf",
+					"aapakaeg",
+					"aaaaaaaa",
+					"aaaaleec",
+					"nodekaed",
+					"aaaacpef"
+				]
+			],
+			"state_idx" : 0
+		},
+		"phone_ring" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 2000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 8, 1 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "aoaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -1072,32 +1522,97 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 2, 0, 3, 1 ],
-				[ 3, 0, 3, 1 ],
-				[ 0, 0, 3, 1 ],
-				[ 1, 0, 3, 1 ],
-				[ 1, 0, 0, 3, 1 ]
+				[ 2, 0, 5, 1 ],
+				[ 3, 0, 5, 1 ],
+				[ 0, 0, 5, 1 ],
+				[ 1, 0, 5, 1 ],
+				[ 1, 0, 0, 5, 1 ],
+				[ 11, 1, 0, 5, 1 ]
 			],
 			"prop_value_list" : 
 			[
 				
 				[
-					"aaaamadp",
+					"aaaahaec",
 					"aaaahaec",
 					"aaaahaec",
 					"codcmcec",
-					"iemaljec",
-					"aaaamieb"
+					"aaaalaeb",
+					"jkjjjjdp"
 				],
 				
 				[
-					"aaaaiadp",
-					"aaaaceec",
-					"aaaaceec",
-					"khnlgbed",
-					"aaaaibed",
-					"aaaacaeb"
+					"aaaadeec",
+					"aaaadeec",
+					"ldnngced",
+					"aaaahoed",
+					"aaaadaeb",
+					"aaaaiadp"
 				]
+			],
+			"state_idx" : 0
+		},
+		"turn_left" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 1 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "bfaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"turn_right" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 3, 1 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "bfaaaaaa" ]
 			],
 			"state_idx" : 0
 		}
@@ -1150,6 +1665,12 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "e115.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "lane_LDW_day.png",
 			"separated" : false
 		},
@@ -1175,6 +1696,12 @@
 		{
 			"mipmap" : false,
 			"name" : "lane_n_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_wing.png",
 			"separated" : false
 		},
 		
@@ -1222,6 +1749,12 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "right_wing.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "usq.png",
 			"separated" : false
 		}
@@ -1244,9 +1777,9 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : true,
+		"show_resource_manager" : false,
 		"show_slider_path_picker" : false,
-		"show_state_manager_edit" : false
+		"show_state_manager_edit" : true
 	}
 }
 

@@ -176,7 +176,7 @@ void bind_edit::bind_source_view()
 	_hit_bind_window = _dragging&&ImGui::IsMouseHoveringWindow();
 	if (ImGui::Button("test"))
 	{
-          _exp_calcu = python_pre_define+python_fun_head;
+          _exp_calcu = /*python_pre_define+*/python_fun_head;
 		_exp_calcu += param_pass;
 		_exp_calcu += "):\n";
 		string fun_content;

@@ -17,6 +17,9 @@ using namespace std;
 using namespace Json;
 typedef vector<u8> vdata_list;
 typedef function<u8(u8*,string& )> f_get_cmd;
+typedef function<bool( u8*, int )> f_batching_handle;
+using vbatching_handle = vector<f_batching_handle>;
+
 //typedef unsigned char u8;
 class AFG_EXPORT msg_host_n
 {
@@ -35,6 +38,7 @@ class AFG_EXPORT msg_host_n
 	using ps_du = shared_ptr<data_unit>;
 	using mprotocol = map<string, ps_du >;
 	using mpid_name = map<string, string>;
+     vbatching_handle _batching_handle_list;
 	mprotocol _recieve_protocol;
 	mpid_name _rec_id_name;
 	mprotocol _send_protocol;
@@ -68,7 +72,20 @@ public:
 	bool attach_monitor(const char* object_name, msg_handle fn_obj);
 	bool attach_monitor(const char* object_name, const char* seg_name, msg_handle fn_obj);
 	bool attach_monitor(const char* object_name, u8 seg_id, msg_handle fn_obj);
-
+     int reg_batching_cmd( int id, f_batching_handle fbat )
+     {
+          auto bat_cnt = _batching_handle_list.size();
+          if( id < bat_cnt )
+          {
+               swap( _batching_handle_list[ id ], fbat );
+               return id;
+          }
+          else
+          {
+               _batching_handle_list.emplace_back( fbat );
+               return bat_cnt;
+          }
+     }
 	//void start_data_loop();
 
 	void set_send_cmd(msg_handle cmd_send)

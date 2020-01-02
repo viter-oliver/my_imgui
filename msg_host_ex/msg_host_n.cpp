@@ -201,7 +201,19 @@ void msg_host_n::execute_data_handle_cmd()
 	{
 		auto& bunt = _cmd_queue[_rear_id];
 		u8* pdata = bunt._data_len > static_buff_len ? bunt._pdynamic_buff : bunt._static_buff;
-
+          bool batch_handled = false;
+          for (auto& batch_cmd:_batching_handle_list)
+          {
+               if( batch_cmd( pdata, bunt._data_len ))
+               {
+                    batch_handled = true;
+                    break;
+               }
+          }
+          if (batch_handled)
+          {
+               continue;
+          }
 		//static char kid[5]={'0','0','0','0','\0'};
 		static string kid("0000");
 		u8 cmd_len = 2;
@@ -233,7 +245,7 @@ void msg_host_n::execute_data_handle_cmd()
 			auto& data_u = *idata_u->second;
 			if (data_u._handle)
 			{
-				data_u._handle(pdata, bunt._data_len-2);
+                    data_u._handle( pdata, bunt._data_len - cmd_len );
 			}
 			else
 			{
