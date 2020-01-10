@@ -55,7 +55,7 @@ void primitve_edit::draw_primitive_list()
 
 	if (_pmobj&&ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::MenuItem("delete", NULL, false,_pmobj.use_count() == 1))
+		if (ImGui::MenuItem("delete", NULL, false,_pmobj.use_count() == 2))
 		{
 			auto& item_del = g_primitive_list.find(_key_name);
 			g_primitive_list.erase(item_del);
@@ -66,7 +66,11 @@ void primitve_edit::draw_primitive_list()
 	}
 	
 }
-
+void primitve_edit::clear_states()
+{
+     _pmobj = nullptr;
+     _key_name = "";
+}
 void primitve_edit::draw_primitive_item_property()
 {
 	if (_pmobj)

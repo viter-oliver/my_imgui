@@ -47,7 +47,7 @@ void model_edit::draw_model_list()
 	}
 	if (_pmodel&&ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::MenuItem("delete", NULL, false, _pmodel.use_count() == 1))
+		if (ImGui::MenuItem("delete", NULL, false, _pmodel.use_count() ==2))
 		{
 			auto& item_del = g_mmodel_list.find(_key_name);
 			g_mmodel_list.erase(item_del);
@@ -57,7 +57,11 @@ void model_edit::draw_model_list()
 		ImGui::EndPopup();
 	}
 }
-
+void model_edit::clear_states()
+{
+     _pmodel = nullptr;
+     _key_name = "";
+}
 void model_edit::draw_model_item_property()
 {
 	if (_pmodel)

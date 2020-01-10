@@ -60,7 +60,7 @@ void file_res_edit::draw_file_res_list()
 	}
 	if (_pfile&&ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::MenuItem("delete", NULL, false,_pfile.use_count() == 1))
+		if (ImGui::MenuItem("delete", NULL, false,_pfile.use_count() == 2))
 		{
 			auto& item_del = g_mfiles_list.find(_file_key_name);
 			g_mfiles_list.erase(item_del);
@@ -77,4 +77,10 @@ void file_res_edit::draw_file_res_item_property()
 	{
 		ImGui::Text("file size:%d", _pfile->_fsize);
 	}
+}
+
+void file_res_edit::clear_states()
+{
+     _pfile = nullptr;
+     _file_key_name = "";
 }

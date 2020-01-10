@@ -36,6 +36,10 @@ UINT CALLBACK ofnHookProc(HWND hDlg, UINT uMsg, UINT wParam, LONG lParam)
 }
 shared_ptr<af_texture> _ptexture{ nullptr };
 string _key_name;
+void texture_edit::clear_states()
+{
+     _ptexture = nullptr;
+}
 void texture_edit::draw_texture_list()
 {
 	if (ImGui::Button("Load new image..."))
@@ -97,7 +101,7 @@ void texture_edit::draw_texture_list()
 	}
 	if (_ptexture&&ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::MenuItem("delete",NULL,false,_ptexture.use_count()==1))
+		if (ImGui::MenuItem("delete",NULL,false,_ptexture.use_count()==2))
 		{
 			auto& item_del = g_mtexture_list.find(_key_name);
 			g_mtexture_list.erase(item_del);

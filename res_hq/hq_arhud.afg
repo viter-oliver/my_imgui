@@ -8,27 +8,44 @@
 	"_sizeh" : 20.0,
 	"_sizew" : 20.0,
 	"_visible" : true,
+	"afb_output_path" : "G:\\GitHub\\my_imgui\\my_imgui_bk\\res_hq\\afb\\",
 	"aliase" : 
 	{
+		"control_navi_dir" : [ 3, 1, 6, 1 ],
 		"driving_model" : [ 4, 1, 12, 1 ],
 		"gear" : [ 4, 1, 11, 1 ],
-		"show_arrow" : [ 6, 0, 2, 0, 0 ],
+		"show_arrow" : [ 6, 0, 1, 0, 0 ],
 		"show_fcw" : [ 6, 0, 3, 0, 0 ],
-		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
+		"show_fcw_v" : [ 6, 0, 2, 0, 0 ],
 		"show_image" : [ 6, 0, 2 ],
 		"show_left_wing" : [ 6, 0, 0, 1 ],
+		"show_navi_dir" : [ 6, 0, 6, 1 ],
 		"show_phone_ring" : [ 6, 0, 8, 1 ],
+		"show_remain_dis" : [ 6, 0, 13, 1 ],
 		"show_right_wing" : [ 6, 0, 2, 1 ],
-		"show_road" : [ 6, 0, 1, 0, 0 ],
+		"show_road" : [ 6, 0, 0, 0, 0 ],
 		"show_tsr" : [ 6, 0, 5, 1 ],
 		"show_turn_left" : [ 6, 0, 1, 1 ],
 		"show_turn_right" : [ 6, 0, 3, 1 ],
-		"speed" : [ 4, 1, 10, 1 ]
+		"speed" : [ 4, 1, 10, 1 ],
+		"text_remian_dis" : [ 4, 1, 13, 1 ]
 	},
 	"binds" : 
 	{
 		"dic" : 
 		[
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"param_list" : 
+					[
+						[ 6, 0, 8, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 7, 1 ]
+			},
 			
 			{
 				"bind_unit" : 
@@ -52,36 +69,24 @@
 					]
 				},
 				"key" : [ 6, 0, 0, 1 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 8, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 7, 1 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 6, 0, 8, 1 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 7, 1 ]
-				]
-			},
-			
-			{
 				"key" : [ 6, 0, 1, 1 ],
 				"ref_list" : 
 				[
 					[ 6, 0, 0, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 8, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 7, 1 ]
 				]
 			},
 			
@@ -127,37 +132,6 @@
 					"_visible" : true,
 					"childs" : 
 					[
-						
-						{
-							"_adjacent_to_p" : 0.0,
-							"_aj_model" : 0,
-							"_cam" : "aaaamimdaaaamdedaaaaaaaaaaaamimdaaaamdedponekidpaaaaaaaaddddlddpaaaaaaaa",
-							"_draw_mode" : 4,
-							"_material_name" : "road",
-							"_name" : "road",
-							"_pj" : "aaaakaebmnmmkbebaafaedei",
-							"_posx" : 0.0,
-							"_posy" : 0.0,
-							"_primitive_name" : "road.FBX0",
-							"_rotate_order" : 0,
-							"_sizeh" : 20.0,
-							"_sizew" : 20.0,
-							"_trans_order" : 0,
-							"_trans_rotation_x" : 90.0,
-							"_trans_rotation_y" : 0.0,
-							"_trans_rotation_z" : 0.0,
-							"_trans_scale_x" : 1.0,
-							"_trans_scale_y" : 1.0,
-							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : 0.0,
-							"_trans_translation_y" : 0.0,
-							"_trans_translation_z" : 10000.0,
-							"_uf_model_name" : "model",
-							"_uf_proj_name" : "proj",
-							"_uf_view_name" : "view",
-							"_visible" : false,
-							"type" : "ft_material_3d"
-						},
 						
 						{
 							"_adjacent_to_p" : 0.0,
@@ -226,6 +200,37 @@
 							"_aj_model" : 0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
+							"_material_name" : "fcw_v",
+							"_name" : "fcw_v",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "usq.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : 0.0,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 0.0,
+							"_trans_scale_x" : 1370.0,
+							"_trans_scale_y" : 310.0,
+							"_trans_scale_z" : 1.0,
+							"_trans_translation_x" : 0.0,
+							"_trans_translation_y" : 0.0,
+							"_trans_translation_z" : 10000.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : false,
+							"type" : "ft_material_3d"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
+							"_draw_mode" : 4,
 							"_material_name" : "fcw",
 							"_name" : "fcw",
 							"_pj" : "aaaakaebmnmmkbebaagaokeg",
@@ -257,29 +262,29 @@
 							"_aj_model" : 0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
-							"_material_name" : "fcw_v",
-							"_name" : "fcw_v",
+							"_material_name" : "sacc",
+							"_name" : "sacc",
 							"_pj" : "aaaakaebmnmmkbebaagaokeg",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
-							"_primitive_name" : "usq.FBX0",
+							"_primitive_name" : "SACC.FBX0",
 							"_rotate_order" : 0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_trans_order" : 5,
-							"_trans_rotation_x" : 0.0,
+							"_trans_rotation_x" : 80.0,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 0.0,
-							"_trans_scale_x" : 1370.0,
-							"_trans_scale_y" : 310.0,
-							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : 739.6230468750,
+							"_trans_scale_x" : 1.0,
+							"_trans_scale_y" : 1.0,
+							"_trans_scale_z" : 5.0,
+							"_trans_translation_x" : 0.0,
 							"_trans_translation_y" : 0.0,
 							"_trans_translation_z" : 10000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
-							"_visible" : false,
+							"_visible" : true,
 							"type" : "ft_material_3d"
 						}
 					],
@@ -449,8 +454,8 @@
 					"_posy" : 260.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 40.0,
-					"_texture_index_txt" : 2,
-					"_visible" : true,
+					"_texture_index_txt" : 25,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -759,14 +764,15 @@
 			"type" : "af_vec3",
 			"value" : 
 			{
-				"x" : 0.1254902034997940,
-				"y" : 0.9333333373069763,
-				"z" : 0.1254902034997940
+				"x" : 0.0,
+				"y" : 1.0,
+				"z" : 0.9411764740943909
 			}
 		}
 	},
 	"file_list" : 
 	[
+		"SACC.FBX0",
 		"e115.json",
 		"left_wing.json",
 		"right_wing.json",
@@ -912,7 +918,7 @@
 						0.0,
 						1.0,
 						0.0,
-						739.6230468750,
+						0.0,
 						0.0,
 						10000.0,
 						1.0
@@ -1120,6 +1126,14 @@
 					"utype" : 5126,
 					"value_list" : [ 9.999999974752427e-007 ]
 				},
+				"lhide" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_int",
+					"usize" : 1,
+					"utype" : 5124,
+					"value_list" : [ 0 ]
+				},
 				"llane" : 
 				{
 					"el_size" : 1,
@@ -1204,6 +1218,14 @@
 					"utype" : 5126,
 					"value_list" : [ 9.999999974752427e-007 ]
 				},
+				"rhide" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_int",
+					"usize" : 1,
+					"utype" : 5124,
+					"value_list" : [ 0 ]
+				},
 				"rlane" : 
 				{
 					"el_size" : 1,
@@ -1239,71 +1261,111 @@
 					]
 				}
 			}
+		},
+		
+		{
+			"name" : "sacc",
+			"shader" : "sacc",
+			"uniform_list" : 
+			{
+				"level" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 3.0 ]
+				},
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						0.1736482232809067,
+						4.924038887023926,
+						0.0,
+						0.0,
+						-0.9848077297210693,
+						0.8682411313056946,
+						0.0,
+						0.0,
+						0.0,
+						10000.0,
+						1.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						2.126730680465698,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						5.671281814575195,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.001349210739136,
+						-1.0,
+						0.0,
+						0.0,
+						-40.47728729248047,
+						0.0
+					]
+				},
+				"text" : 
+				{
+					"el_size" : 1,
+					"txt_name" : "acc_dis_day.png",
+					"type" : "shader_uf_txt",
+					"usize" : 1,
+					"utype" : 35678
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-1.0,
+						0.0,
+						-0.0,
+						0.0,
+						0.0,
+						1.0,
+						-0.0,
+						0.0,
+						0.0,
+						-0.0,
+						-1.0,
+						0.0,
+						-400.0,
+						-390.0,
+						2.980232238769531e-006,
+						1.0
+					]
+				}
+			}
 		}
 	],
-	"models" : 
-	{
-		"road.FBX" : 
-		[
-			
-			{
-				"ambient_list" : [],
-				"bounding_box" : 
-				{
-					"xmax" : 1500.0,
-					"xmin" : -1500.0,
-					"ymax" : 4500.0,
-					"ymin" : -4500.0,
-					"zmax" : 0.0,
-					"zmin" : 0.0
-				},
-				"diffuse_list" : [],
-				"height_list" : [],
-				"prim_id" : "road.FBX0",
-				"specular_list" : []
-			}
-		],
-		"roadd.FBX" : 
-		[
-			
-			{
-				"ambient_list" : [],
-				"bounding_box" : 
-				{
-					"xmax" : 1500.0,
-					"xmin" : -1500.0,
-					"ymax" : 95500.0,
-					"ymin" : -4500.0,
-					"zmax" : 0.0,
-					"zmin" : -0.003977735992521048
-				},
-				"diffuse_list" : [],
-				"height_list" : [],
-				"prim_id" : "roadd.FBX0",
-				"specular_list" : []
-			}
-		],
-		"usq.FBX" : 
-		[
-			
-			{
-				"ambient_list" : [],
-				"bounding_box" : 
-				{
-					"xmax" : 1.0,
-					"xmin" : 0.0,
-					"ymax" : 1.0,
-					"ymin" : -4.973799150320701e-014,
-					"zmax" : 0.0,
-					"zmin" : -1.192092895507813e-006
-				},
-				"diffuse_list" : [],
-				"height_list" : [],
-				"prim_id" : "usq.FBX0",
-				"specular_list" : []
-			}
-		]
-	},
+	"models" : {},
 	"output_bin_fmt" : 
 	{
 		"pgm_fmt" : 0,
@@ -1313,12 +1375,12 @@
 	[
 		
 		{
-			"ebo_len" : 360,
+			"ebo_len" : 24,
 			"format" : [ 3, 3, 2 ],
 			"mesh_id" : 0,
-			"model" : "road.FBX",
-			"name" : "road.FBX0",
-			"vbo_len" : 2880
+			"model" : "SACC.FBX",
+			"name" : "SACC.FBX0",
+			"vbo_len" : 192
 		},
 		
 		{
@@ -1349,6 +1411,13 @@
 			"name" : "road",
 			"read_only" : false,
 			"vs_name" : "road.vs"
+		},
+		
+		{
+			"fs_name" : "sacc.fs",
+			"name" : "sacc",
+			"read_only" : false,
+			"vs_name" : "sacc.vs"
 		},
 		
 		{
@@ -1419,12 +1488,12 @@
 			],
 			"prop_list" : 
 			[
-				[ 9, 1, 2, 0, 0 ],
-				[ 11, 1, 2, 0, 0 ],
-				[ 16, 1, 2, 0, 0 ],
-				[ 18, 1, 2, 0, 0 ],
-				[ 12, 1, 2, 0, 0 ],
-				[ 10, 1, 2, 0, 0 ]
+				[ 9, 1, 1, 0, 0 ],
+				[ 11, 1, 1, 0, 0 ],
+				[ 16, 1, 1, 0, 0 ],
+				[ 18, 1, 1, 0, 0 ],
+				[ 12, 1, 1, 0, 0 ],
+				[ 10, 1, 1, 0, 0 ]
 			],
 			"prop_value_list" : 
 			[
@@ -1623,43 +1692,37 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "acc_dis_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "acc_dis_night.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "acc_dis_snow.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "arrow.png",
 			"separated" : false
 		},
 		
 		{
 			"mipmap" : false,
-			"name" : "dis_ACC_day.png",
+			"name" : "arrow_night.png",
 			"separated" : false
 		},
 		
 		{
 			"mipmap" : false,
-			"name" : "dis_ACC_night.png",
-			"separated" : false
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "dis_ACC_snow.png",
-			"separated" : false
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "dis_ACC_thickness_day.png",
-			"separated" : false
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "dis_ACC_thickness_night.png",
-			"separated" : false
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "dis_ACC_thickness_snow.png",
+			"name" : "arrow_snow.png",
 			"separated" : false
 		},
 		
@@ -1683,6 +1746,18 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "lane_change_night.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_change_snow.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "lane_d.png",
 			"separated" : false
 		},
@@ -1696,6 +1771,18 @@
 		{
 			"mipmap" : false,
 			"name" : "lane_n_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_n_night.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_n_snow.png",
 			"separated" : false
 		},
 		
@@ -1777,9 +1864,9 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : false,
+		"show_resource_manager" : true,
 		"show_slider_path_picker" : false,
-		"show_state_manager_edit" : true
+		"show_state_manager_edit" : false
 	}
 }
 

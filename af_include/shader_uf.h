@@ -153,7 +153,63 @@ public:
 	}
 };
 REG_SHADER_UF(shader_uf_float);
+#if 0
+class shader_uf_bool :public shader_uf
+{
+     bool* _pbvalue;
+public:
+     shader_uf_int( GLuint usize, GLuint el_sz ) :shader_uf( usize, el_sz )
+     {
+          _pivalue = new int[ _usize*_el_size ]; memset( _pivalue, 0, _usize*_el_size*sizeof( int ) );
+     }
+     GLuint data_len()
+     {
+          return _usize*_el_size*sizeof( int );
+     }
 
+     void* get_data_head()
+     {
+          return _pivalue;
+     }
+     void set_to_loaction( GLuint location )
+     {
+          switch( _utype )
+          {
+               case GL_BOOL:
+                    glUniform1iv( location, _usize, _pbvalue );
+                    break;
+               case GL_BOOL_VEC2:
+                    glUniform2iv( location, _usize, _pbvalue );
+                    break;
+               case GL_BOOL_VEC2:
+                    glUniform3iv( location, _usize, _pbvalue );
+                    break;
+               case GL_BOOL_VEC4:
+                    glUniform4iv( location, _usize, _pbvalue );
+                    break;
+               default:
+                    printf( "invalid type:%d\n", _utype );
+                    break;
+          }
+     }
+     void set_bvalue( bool* pbvalue, GLuint len )
+     {
+          GLuint rlen = min( len, _usize*_el_size );
+          memcpy( _pbvalue, pbvalue, rlen*sizeof( int ) );
+     }
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+     void edit( string obj_name );
+     void output_2_json( Value& jvalue );
+     void init_from_json( Value& jvalue );
+#endif
+
+     ~shader_uf_bool()
+     {
+          delete[] _pbvalue;
+     }
+};
+REG_SHADER_UF(shader_uf_bool );
+#endif
 class shader_uf_int :public shader_uf
 {
 	int* _pivalue;

@@ -10,5 +10,6 @@ public:
 	~model_edit();
 	void draw_model_list();
 	void draw_model_item_property();
+     void clear_states();
 };
 bool import_models(const char* md_file_name);

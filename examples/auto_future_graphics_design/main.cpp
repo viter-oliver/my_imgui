@@ -24,6 +24,7 @@
 #include <functional>
 #if !defined(IMGUI_WAYLAND)
 #include <windows.h>
+#include <Shlwapi.h>
 #include <locale.h>  
 #include <ShlObj.h>
 #include <Commdlg.h>
@@ -67,6 +68,7 @@ static void error_callback(int error, const char* description)
 }
 string g_cureent_project_file_path;
 string g_cureent_directory;
+string g_afb_output_path;
 string g_app_path;
 bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
@@ -393,14 +395,14 @@ int main(int argc, char* argv[])
 					string image_path = g_cureent_directory + image_fold;
 					string shader_path = g_cureent_directory + shaders_fold;
 					string text_res_path = g_cureent_directory + text_res_fold;
-					string afb_path = g_cureent_directory + afb_fold; 
+                         g_afb_output_path = g_cureent_directory + afb_fold;
 					createDirectory(mesh_path.c_str());
 					createDirectory(font_path.c_str());
 					createDirectory(files_path.c_str());
 					createDirectory(image_path.c_str());
 					createDirectory(shader_path.c_str());
 					createDirectory(text_res_path.c_str());
-					createDirectory(afb_path.c_str());
+                         createDirectory( g_afb_output_path.c_str() );
 
 				}
 				else
@@ -417,13 +419,27 @@ int main(int argc, char* argv[])
 		{
 			if (!g_cureent_project_file_path.empty())
 			{
-				string str_proj_file_path = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
-				string str_proj_file_name = g_cureent_project_file_path.substr(g_cureent_project_file_path.find_last_of('\\') + 1);
-				str_proj_file_name = str_proj_file_name.substr(0, str_proj_file_name.find('.'));
-				string str_afb_file = str_proj_file_path + afb_fold;
-				str_afb_file += str_proj_file_name;
-				str_afb_file += ".AFB";
-				printf("afbfile:%s\n", str_afb_file.c_str());
+                    string str_afb_file;
+                    string str_proj_file_path = g_cureent_project_file_path.substr( 0, g_cureent_project_file_path.find_last_of( '\\' ) + 1 );
+                    string str_proj_file_name = g_cureent_project_file_path.substr( g_cureent_project_file_path.find_last_of( '\\' ) + 1 );
+                    str_proj_file_name = str_proj_file_name.substr( 0, str_proj_file_name.find( '.' ) );
+                    if( PathFileExists( g_afb_output_path.c_str() ) )
+                    {
+                         str_afb_file = g_afb_output_path + str_proj_file_name+".AFB";
+                    }
+                    else
+                    {
+                         str_afb_file = str_proj_file_path + afb_fold;
+                         g_afb_output_path = str_afb_file;
+                         if( !PathFileExists( g_afb_output_path.c_str() ) )
+                         {
+                              createDirectory( g_afb_output_path.c_str() );
+                         }
+                         str_afb_file += str_proj_file_name;
+                         str_afb_file += ".AFB";
+                    }
+                    printf( "afbfile:%s\n", str_afb_file.c_str() );
+				
 				afb_output afbop(*_proot);
 				afbop.output_afb(str_afb_file.c_str());
 			}
@@ -701,9 +717,9 @@ int main(int argc, char* argv[])
 				{
 					fun_shortct(en_ctrl_s);
 				}
-				if (ImGui::MenuItem("Save As..")) 
+				/*if (ImGui::MenuItem("Save As..")) 
 				{
-				}
+				}*/
 				if (ImGui::BeginMenu("Import"))
 				{
 					if (ImGui::MenuItem("Import 3D Assert", "Alt+F2"))
@@ -713,6 +729,21 @@ int main(int argc, char* argv[])
 					ImGui::EndMenu();
 				}
 				ImGui::Separator();
+                    ImGui::Text( "AFB output path:%s", g_afb_output_path.c_str() );
+                    if (ImGui::MenuItem("Set AFB output path"))
+                    {
+                         char szBuff[ MAX_PATH ];
+                         BROWSEINFO bi = { 0 };
+                         bi.hwndOwner = GetForegroundWindow();
+                         bi.lpszTitle = "Select a directory as AFB output path";
+                         bi.ulFlags = BIF_NEWDIALOGSTYLE;
+                         LPITEMIDLIST idl = SHBrowseForFolder( &bi );
+                         if( SHGetPathFromIDList(idl,szBuff))
+                         {
+                              g_afb_output_path = szBuff;
+                              g_afb_output_path += '\\';
+                         }
+                    }
 				if (ImGui::MenuItem("Export AFB", "Ctrl+B"))
 				{
 					fun_shortct(en_ctrl_b);
@@ -753,6 +784,11 @@ int main(int argc, char* argv[])
 				}
 				if (ImGui::Button("Delete unreferenced items"))
 				{
+                         _pml_shd_mg->clear_states();
+                         ptexture->clear_states();
+                         pfiles_edit->clear_states();
+                         pmodel_edit->clear_states();
+                         g_primitive_edit.clear_states();
 					ImGui::OpenPopup("Delete unreferenced Items");
 					g_unreferenced_items.search_unreferenced_items();
 				}
@@ -1047,6 +1083,12 @@ int main(int argc, char* argv[])
 			}
 			ImGui::End();
 		}
+          /**
+          else
+          {
+               _pml_shd_mg->clear_states();
+               ptexture->clear_states();
+          }*/
 		if (show_fonts_manager)
 		{
 			ImGui::Begin("Fonts Manager", &show_fonts_manager);

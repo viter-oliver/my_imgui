@@ -118,7 +118,7 @@ void material_shader_edit::draw_shader()
 				ImGui::EndPopup();
 			}
 		}
-		if (ImGui::MenuItem("delete", NULL, false, pshd_sel.use_count() == 1))
+		if (ImGui::MenuItem("delete", NULL, false, pshd_sel.use_count() == 2))
 		{
 			auto& it_del = g_af_shader_list.find(sd_key_name);
 			g_af_shader_list.erase(it_del);
@@ -371,7 +371,7 @@ void material_shader_edit::draw_material()
 	}
 	if (pmateral_sel&&ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::MenuItem("delete", NULL, false, pmateral_sel.use_count() == 1))
+		if (ImGui::MenuItem("delete", NULL, false, pmateral_sel.use_count() == 2))
 		{
 			auto& item_del = g_material_list.find(mt_key_name);
 			g_material_list.erase(item_del);
@@ -390,3 +390,8 @@ void material_shader_edit::draw_material_item_property()
 	}
 }
 
+void material_shader_edit::clear_states()
+{
+     pmateral_sel = nullptr;
+     pshd_sel = nullptr;
+}

@@ -6,7 +6,6 @@ namespace auto_future
 	class AFG_EXPORT ft_textblock :
 		public ft_base
 	{
-#define MAX_CONTENT_LEN 0x100
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_txt_pt,
 			(af_vec3, _txt_clr),

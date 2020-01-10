@@ -11,5 +11,6 @@ class primitve_edit
 public:
 	void draw_primitive_list();
 	void draw_primitive_item_property();
+     void clear_states();
 };
 

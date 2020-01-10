@@ -14,7 +14,7 @@
 #include "imgui_impl_glfw_gl3.h"
 //#include "af_model.h"
 //#include "./fbx_save_info.h"
-extern string g_cureent_directory;
+extern string g_cureent_directory, g_afb_output_path;
 extern bool show_project_window, show_edit_window, show_property_window,\
 show_resource_manager, show_fonts_manager, show_file_manager,show_state_manager_edit,\
 show_aliase_edit, show_slider_path_picker;
@@ -100,6 +100,15 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				show_slider_path_picker = window_show["show_slider_path_picker"].asBool();
 
 			}
+               Value& afb_output_path = jroot[ "afb_output_path" ];
+               if( afb_output_path.isNull() )
+               {
+                    g_afb_output_path = g_cureent_directory + afb_fold;
+               }
+               else
+               {
+                    g_afb_output_path = afb_output_path.asString();
+               }
 			Value& fonts = jroot["fonts"];
 			if (!fonts.isNull())
 			{
@@ -582,6 +591,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 	window_show["show_slider_path_picker"] = show_slider_path_picker;
 
 	jroot["window_show"] = window_show;
+     jroot[ "afb_output_path" ] = g_afb_output_path;
 	Value fonts(arrayValue);
 	//vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
 	auto& dic_fonts= g_pfont_face_manager->get_dic_fonts();

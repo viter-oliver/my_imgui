@@ -10,6 +10,8 @@ namespace auto_future
 		en_anchor_bottom_left,
 		en_anchor_center,
 	};
+#define MAX_CONTENT_LEN 0x100
+
 	class AFG_EXPORT ft_base :
 		public base_ui_component
 	{
