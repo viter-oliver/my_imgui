@@ -17,7 +17,7 @@
 		"gear" : [ 4, 1, 8, 1 ],
 		"show_acc" : [ 6, 0, 2, 1 ],
 		"show_acc_speed" : [ 6, 0, 0, 2, 1 ],
-		"show_arrow" : [ 6, 0, 1, 0, 0 ],
+		"show_arrow" : [ 6, 0, 3, 0, 0 ],
 		"show_fcw" : [ 6, 0, 5, 0, 0 ],
 		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
 		"show_image" : [ 6, 0, 2 ],
@@ -47,10 +47,10 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 6, 1 ]
+						[ 6, 0, 3, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 1 ]
+				"key" : [ 6, 0, 8, 1 ]
 			},
 			
 			{
@@ -59,28 +59,28 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 3, 1 ]
+						[ 6, 0, 6, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 8, 1 ]
+				"key" : [ 6, 0, 5, 1 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 6, 0, 6, 1 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 5, 1 ]
-				]
-			},
-			
-			{
 				"key" : [ 6, 0, 3, 1 ],
 				"ref_list" : 
 				[
 					[ 6, 0, 8, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 6, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 5, 1 ]
 				]
 			}
 		]
@@ -156,7 +156,7 @@
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "obs0",
-							"_name" : "arrow0",
+							"_name" : "arrow2",
 							"_pj" : "aaaakaebmnmmkbebaagaokeg",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
@@ -172,8 +172,8 @@
 							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
 							"_trans_translation_x" : -400.0,
-							"_trans_translation_y" : 350.0,
-							"_trans_translation_z" : 6000.0,
+							"_trans_translation_y" : 880.0,
+							"_trans_translation_z" : 9000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -199,12 +199,12 @@
 							"_trans_rotation_x" : 75.0,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 0.0,
-							"_trans_scale_x" : 400.0,
+							"_trans_scale_x" : 500.0,
 							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : -339.4460144042969,
+							"_trans_translation_x" : -400.0,
 							"_trans_translation_y" : 600.0,
-							"_trans_translation_z" : 7000.0,
+							"_trans_translation_z" : 8000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -218,7 +218,7 @@
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "obs0",
-							"_name" : "arrow2",
+							"_name" : "arrow0",
 							"_pj" : "aaaakaebmnmmkbebaagaokeg",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
@@ -230,12 +230,12 @@
 							"_trans_rotation_x" : 75.0,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 0.0,
-							"_trans_scale_x" : 350.0,
-							"_trans_scale_y" : 400.0,
+							"_trans_scale_x" : 500.0,
+							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : -284.8610229492188,
-							"_trans_translation_y" : 850.0,
-							"_trans_translation_z" : 8000.0,
+							"_trans_translation_x" : -400.0,
+							"_trans_translation_y" : 350.0,
+							"_trans_translation_z" : 6000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -1016,21 +1016,21 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						350.0,
+						500.0,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						103.5276260375977,
+						129.4095306396484,
 						0.9659258127212524,
 						0.0,
 						0.0,
-						-386.3703308105469,
+						-482.9629211425781,
 						0.2588190734386444,
 						0.0,
-						-284.8610229492188,
-						850.0,
-						8000.0,
+						-400.0,
+						350.0,
+						6000.0,
 						1.0
 					]
 				},
@@ -1604,12 +1604,12 @@
 			],
 			"prop_list" : 
 			[
-				[ 9, 1, 1, 0, 0 ],
-				[ 11, 1, 1, 0, 0 ],
-				[ 16, 1, 1, 0, 0 ],
-				[ 18, 1, 1, 0, 0 ],
-				[ 12, 1, 1, 0, 0 ],
-				[ 10, 1, 1, 0, 0 ]
+				[ 9, 1, 3, 0, 0 ],
+				[ 11, 1, 3, 0, 0 ],
+				[ 16, 1, 3, 0, 0 ],
+				[ 18, 1, 3, 0, 0 ],
+				[ 12, 1, 3, 0, 0 ],
+				[ 10, 1, 3, 0, 0 ]
 			],
 			"prop_value_list" : 
 			[
@@ -1705,12 +1705,552 @@
 				],
 				
 				[
-					"aaaajgee",
+					"aaiaijee",
 					"aaeabmeg",
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
 					"aaaamiee"
+				]
+			],
+			"state_idx" : 0
+		},
+		"navi_direct1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 200,
+					"easing_fun" : 2,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 200
+				},
+				
+				{
+					"duration" : 200,
+					"easing_fun" : 2,
+					"key_from" : 0,
+					"key_to" : 4,
+					"start_time" : 200
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 7,
+					"start_time" : 200
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 9,
+					"start_time" : 200
+				},
+				
+				{
+					"duration" : 400,
+					"easing_fun" : 0,
+					"key_from" : 1,
+					"key_to" : 2,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 300,
+					"easing_fun" : 0,
+					"key_from" : 2,
+					"key_to" : 3,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 400,
+					"easing_fun" : 0,
+					"key_from" : 4,
+					"key_to" : 5,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 300,
+					"easing_fun" : 0,
+					"key_from" : 5,
+					"key_to" : 6,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 7,
+					"key_to" : 8,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 9,
+					"key_to" : 10,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : 
+			[
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 1
+					},
+					
+					{
+						"key_from" : 1,
+						"key_to" : 2
+					},
+					
+					{
+						"key_from" : 2,
+						"key_to" : 3
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 4
+					},
+					
+					{
+						"key_from" : 4,
+						"key_to" : 5
+					},
+					
+					{
+						"key_from" : 5,
+						"key_to" : 6
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 7
+					},
+					
+					{
+						"key_from" : 7,
+						"key_to" : 8
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 9
+					},
+					
+					{
+						"key_from" : 9,
+						"key_to" : 10
+					}
+				]
+			],
+			"prop_list" : 
+			[
+				[ 9, 1, 2, 0, 0 ],
+				[ 11, 1, 2, 0, 0 ],
+				[ 16, 1, 2, 0, 0 ],
+				[ 18, 1, 2, 0, 0 ],
+				[ 12, 1, 2, 0, 0 ],
+				[ 10, 1, 2, 0, 0 ]
+			],
+			"prop_value_list" : 
+			[
+				
+				[
+					"aaaamimd",
+					"aaaapkef",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaabgee"
+				],
+				
+				[
+					"aaiakcme",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaajgec",
+					"aaaapked",
+					"aaeaadef"
+				],
+				
+				[
+					"aaeabmmf",
+					"aabakeeg",
+					"aaaaaaaa",
+					"aaaaleec",
+					"aaaapked",
+					"aakadeef"
+				],
+				
+				[
+					"aamaikmf",
+					"aabakeeg",
+					"aaaaaaaa",
+					"aaaaleec",
+					"aaaapked",
+					"aaeadfef"
+				],
+				
+				[
+					"aaiafeee",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaajgmc",
+					"aaaapked",
+					"aakacfef"
+				],
+				
+				[
+					"aaaapkee",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaalemc",
+					"aaaapked",
+					"aaaaeief"
+				],
+				
+				[
+					"aakaimef",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaalemc",
+					"aaaapked",
+					"aaaaeief"
+				],
+				
+				[
+					"aaiajnme",
+					"aanaaeeg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aaiaieee"
+				],
+				
+				[
+					"aaaamime",
+					"aabaceeg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aaaaobee"
+				],
+				
+				[
+					"aaaabgee",
+					"aakaameg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aaiaijee"
+				],
+				
+				[
+					"aaaafmee",
+					"aabaceeg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aaaaobee"
+				]
+			],
+			"state_idx" : 0
+		},
+		"navi_direct2" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 200,
+					"easing_fun" : 2,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 400
+				},
+				
+				{
+					"duration" : 200,
+					"easing_fun" : 2,
+					"key_from" : 0,
+					"key_to" : 4,
+					"start_time" : 400
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 7,
+					"start_time" : 400
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 9,
+					"start_time" : 400
+				},
+				
+				{
+					"duration" : 400,
+					"easing_fun" : 0,
+					"key_from" : 1,
+					"key_to" : 2,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 300,
+					"easing_fun" : 0,
+					"key_from" : 2,
+					"key_to" : 3,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 400,
+					"easing_fun" : 0,
+					"key_from" : 4,
+					"key_to" : 5,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 300,
+					"easing_fun" : 0,
+					"key_from" : 5,
+					"key_to" : 6,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 7,
+					"key_to" : 8,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 9,
+					"key_to" : 10,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : 
+			[
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 1
+					},
+					
+					{
+						"key_from" : 1,
+						"key_to" : 2
+					},
+					
+					{
+						"key_from" : 2,
+						"key_to" : 3
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 4
+					},
+					
+					{
+						"key_from" : 4,
+						"key_to" : 5
+					},
+					
+					{
+						"key_from" : 5,
+						"key_to" : 6
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 7
+					},
+					
+					{
+						"key_from" : 7,
+						"key_to" : 8
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 9
+					},
+					
+					{
+						"key_from" : 9,
+						"key_to" : 10
+					}
+				]
+			],
+			"prop_list" : 
+			[
+				[ 9, 1, 1, 0, 0 ],
+				[ 11, 1, 1, 0, 0 ],
+				[ 16, 1, 1, 0, 0 ],
+				[ 18, 1, 1, 0, 0 ],
+				[ 12, 1, 1, 0, 0 ],
+				[ 10, 1, 1, 0, 0 ]
+			],
+			"prop_value_list" : 
+			[
+				
+				[
+					"aaaamimd",
+					"aakaameg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaafmee"
+				],
+				
+				[
+					"aaianeme",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaajgec",
+					"aaaapked",
+					"aaiaajef"
+				],
+				
+				[
+					"aaeadfmf",
+					"aapakaeg",
+					"aaaaaaaa",
+					"aaaaleec",
+					"aaaapked",
+					"aaeadfef"
+				],
+				
+				[
+					"aaiajimf",
+					"aabakeeg",
+					"aaaaaaaa",
+					"aaaaleec",
+					"aaaapked",
+					"aaeadfef"
+				],
+				
+				[
+					"aaaakaee",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaajgmc",
+					"aaaapked",
+					"aamacief"
+				],
+				
+				[
+					"aaeabmef",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaalemc",
+					"aaaapked",
+					"aaaaeief"
+				],
+				
+				[
+					"aakajlef",
+					"aaeajmeg",
+					"aaaaaaaa",
+					"aaaalemc",
+					"aaaapked",
+					"aaaaeief"
+				],
+				
+				[
+					"aaiaijme",
+					"aapaaheg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aamajjee"
+				],
+				
+				[
+					"aaaakpme",
+					"aaoacleg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aaaapkee"
+				],
+				
+				[
+					"aaaajled",
+					"aakaameg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aaaakaee"
+				],
+				
+				[
+					"aaaabgee",
+					"aaoacleg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"dagnmied",
+					"aaiapmee"
 				]
 			],
 			"state_idx" : 0
