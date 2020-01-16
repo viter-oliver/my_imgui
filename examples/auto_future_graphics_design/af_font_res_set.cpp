@@ -57,9 +57,9 @@ namespace auto_future
 		}
 		if (!pfrp->_be_full)
 		{
-			load_chars(f_u._ft_face, *pfrp, str_content, max_beary);
+			load_chars(f_u._ft_face, *pfrp, str_content);
 		}
-
+          max_beary = pfrp->_max_bearingy;
 		bool be_break = str_content[0] == L'O'&&str_content[1] == L'S';
 		
 		end_pos = start_pos;
@@ -95,7 +95,7 @@ namespace auto_future
 						if (cnt_char < cnt_char)
 						{
 							wstring omit_sign = omit_rest == en_omit_rest ? L" " : L"…";
-							load_chars(pf_u->_ft_face, *pfrp, omit_sign, max_beary);
+							load_chars(pf_u->_ft_face, *pfrp, omit_sign);
 							auto& glyph_omit = txt_cd_container.find(omit_sign[0]);
 							auto& glyph_omit_txt_cd = glyph_omit->second;
 							bearing = glyph_omit_txt_cd._bearing;

@@ -12,6 +12,6 @@ void main()
     }
     else
     {
-       gl_FragColor = texture(text, Textcoord);
+       gl_FragColor = texture2D(text, Textcoord);
     }
 }

@@ -61,6 +61,7 @@ namespace auto_future
 		GLuint _txt_id{ 0 };
 		af_vi2 _txt_size;
 		af_vui2 _border;
+          GLint _max_bearingy;
 		GLuint _font_size{ 0 };
 		bool _be_full{ false };
 		dic_glyph_txt _dic_txt_cd;
@@ -139,9 +140,10 @@ namespace auto_future
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
-		void load_chars(FT_Face&fontFace, txt_font_repository&fp, wstring& wchar_list, GLint& max_bearingy)
+		void load_chars(FT_Face&fontFace, txt_font_repository&fp, wstring& wchar_list )
 		{
 			dic_glyph_txt& container = fp._dic_txt_cd;
+               GLint& max_bearingy = fp._max_bearingy;
 			GLuint& txtid = fp._txt_id;
 			assert(txtid&&"you must pass a valid texture id into the function load_chars!");
 			af_vui2& border = fp._border;

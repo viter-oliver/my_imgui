@@ -330,8 +330,9 @@ void state_manager_edit::view_state_manager_item_property()
 			playlist_list.emplace_back();
 		}
 		idx = 0;
-		for (auto& playlist:playlist_list)
+          for( auto ipl = playlist_list.begin(); ipl != playlist_list.end();idx++ )
 		{
+               auto&playlist = *ipl;
                auto plsz = playlist.size();
 			stm_sel.str(string());
 			stm_sel.clear();
@@ -341,7 +342,7 @@ void state_manager_edit::view_state_manager_item_property()
 			{
 				cur_playlist_id = idx;
 			}
-			
+
                if (plsz>0)
                {
                     str_sel = ">>##" + stm_sel.str();
@@ -388,7 +389,19 @@ void state_manager_edit::view_state_manager_item_property()
 			     }
                     ImGui::EndChild();
                }
-               idx++;
+               stm_sel.str( string() );
+               stm_sel.clear();
+               stm_sel << "X##" << idx;
+               str_sel = stm_sel.str();
+               if( ImGui::Button( str_sel.c_str() ) )
+               {
+                    ipl = playlist_list.erase( ipl );
+                    cur_playlist_id = 0;
+               }
+               else
+               {
+                    ipl++;
+               }
 		}
 	}
 	

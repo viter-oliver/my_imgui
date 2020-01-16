@@ -238,6 +238,17 @@ void primitve_edit::draw_primitive_item_property()
 			GLubyte stride = _pmobj->get_stride();
 			GLuint vcnt = vlen / stride;
 			float* pvt = _pvertex;
+               if( ImGui::Button( "Save" ) )
+               {
+                    glBindBuffer( GL_ARRAY_BUFFER, _pmobj->_vbo );
+                    glBufferData( GL_ARRAY_BUFFER, sizeof( GLfloat )*_pmobj->_vertex_buf_len, _pvertex, GL_DYNAMIC_DRAW );
+                    ImGui::CloseCurrentPopup();
+               }
+               ImGui::SameLine();
+               if( ImGui::Button( ( "Cancel" ) ) )
+               {
+                    ImGui::CloseCurrentPopup();
+               }
 			stringstream stm_it;
 			ImGui::Text("vertex buffer:");
 			for (int ix = 0; ix < vcnt;ix++)
@@ -265,16 +276,7 @@ void primitve_edit::draw_primitive_item_property()
 				if (mvalue)
 					ImGui::SameLine();
 			}*/
-			if (ImGui::Button("Save"))
-			{
-				glBindBuffer(GL_ARRAY_BUFFER, _pmobj->_vbo);
-				glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_pmobj->_vertex_buf_len, _pvertex, GL_DYNAMIC_DRAW);
-				ImGui::CloseCurrentPopup();
-			}
-			if (ImGui::Button(("Cancel")))
-			{
-				ImGui::CloseCurrentPopup();
-			}
+
 			ImGui::EndPopup();
 		}
 	}

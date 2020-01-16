@@ -216,6 +216,8 @@
             <filename>primitive.png</filename>
             <filename>font.png</filename>
             <filename>ft_video.png</filename>
+            <filename>ft_image_file.png</filename>
+            <filename>shared_value.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

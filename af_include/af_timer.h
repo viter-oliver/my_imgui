@@ -113,6 +113,14 @@ namespace auto_future
 			}
 			return -1;
 		}
+          int get_tvalue_ex( int timer_id )
+          {
+               if( timer_id < max_timer_num&&_timer_list_ex[ timer_id ]._handle )
+               {
+                    return _timer_list_ex[ timer_id ]._tvalue;
+               }
+               return 0;
+          }
 		bool active_timer_ex(int timer_id,int tvalue)
 		{
 			if (timer_id < max_timer_num&&_timer_list_ex[timer_id]._handle)
