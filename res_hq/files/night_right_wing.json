@@ -1,0 +1,188 @@
+{"frames": [
+
+{
+	"filename": "yuyi_right_00000.png",
+	"frame": {"x":2,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00001.png",
+	"frame": {"x":290,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00002.png",
+	"frame": {"x":578,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00003.png",
+	"frame": {"x":866,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00004.png",
+	"frame": {"x":1154,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00005.png",
+	"frame": {"x":1442,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00006.png",
+	"frame": {"x":1730,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00007.png",
+	"frame": {"x":2,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00008.png",
+	"frame": {"x":290,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00009.png",
+	"frame": {"x":1442,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00010.png",
+	"frame": {"x":1730,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00011.png",
+	"frame": {"x":2,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00012.png",
+	"frame": {"x":290,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00013.png",
+	"frame": {"x":1442,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00014.png",
+	"frame": {"x":1730,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00015.png",
+	"frame": {"x":2,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00016.png",
+	"frame": {"x":578,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00017.png",
+	"frame": {"x":866,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00018.png",
+	"frame": {"x":1154,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00019.png",
+	"frame": {"x":1442,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00020.png",
+	"frame": {"x":1730,"y":84,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+},
+{
+	"filename": "yuyi_right_00021.png",
+	"frame": {"x":2,"y":2,"w":286,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":286,"h":80},
+	"sourceSize": {"w":286,"h":80}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "night_right_wing.png",
+	"format": "RGBA8888",
+	"size": {"w":2018,"h":166},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:cd0b6e0ed39ef2832e8d1ef69f8c8460$"
+}
+}

@@ -8,7 +8,7 @@
 #else
 #include "../../deps/glad/glad.h"
 #endif
-#include <GLFW/glfw3.h>
+
 #include "SOIL.h"
 #include "texture.h"
 #include "res_output.h"
@@ -83,7 +83,7 @@ namespace auto_future
 
 	bool application::create_run()
 	{
-		GLFWwindow* _window = { NULL };
+		
 #if !defined(IMGUI_WAYLAND)
 		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", NULL, NULL);
 #else

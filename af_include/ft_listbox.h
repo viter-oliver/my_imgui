@@ -9,6 +9,7 @@ namespace auto_future
 			(bool, _vertical, { true }),
 			(float, _rangex, { 1.f }),
 			(float, _rangey, { 100.f }),
+               (float, _un_utn, {0} ),
 			(float, _scroll_value, {0}))
 		float _scroll_value = { 0.f };
 		float scroll_max();

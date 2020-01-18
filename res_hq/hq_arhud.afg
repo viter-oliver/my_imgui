@@ -18,6 +18,8 @@
 		"show_acc" : [ 6, 0, 2, 1 ],
 		"show_acc_speed" : [ 6, 0, 0, 2, 1 ],
 		"show_arrow" : [ 6, 0, 3, 0, 0 ],
+		"show_arrow1" : [ 6, 0, 2, 0, 0 ],
+		"show_arrow2" : [ 6, 0, 1, 0, 0 ],
 		"show_fcw" : [ 6, 0, 5, 0, 0 ],
 		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
 		"show_image" : [ 6, 0, 2 ],
@@ -47,10 +49,10 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 3, 1 ]
+						[ 6, 0, 6, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 8, 1 ]
+				"key" : [ 6, 0, 5, 1 ]
 			},
 			
 			{
@@ -59,10 +61,10 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 6, 1 ]
+						[ 6, 0, 3, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 1 ]
+				"key" : [ 6, 0, 8, 1 ]
 			}
 		],
 		"ref_dic" : 
@@ -2595,7 +2597,7 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : false,
+		"show_aliase_edit" : true,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
 		"show_fonts_manager" : false,

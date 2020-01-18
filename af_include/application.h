@@ -1,5 +1,6 @@
 #pragma once
 #include "afg.h"
+#include <GLFW/glfw3.h>
 #include <string>
 
 namespace auto_future
@@ -11,6 +12,7 @@ namespace auto_future
 #define  SCREEN_W 800
 #define  SCREEN_H 534
 		string _cureent_project_file_path;
+          GLFWwindow* _window = { NULL };
 		vector<string> _arg_list;
 		int _screen_width = { SCREEN_W }, _screen_height = { SCREEN_H };
 		float _win_width = { SCREEN_W }, _win_height = { SCREEN_H };
