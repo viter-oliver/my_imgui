@@ -49,10 +49,10 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 6, 1 ]
+						[ 6, 0, 3, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 1 ]
+				"key" : [ 6, 0, 8, 1 ]
 			},
 			
 			{
@@ -61,10 +61,10 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 3, 1 ]
+						[ 6, 0, 6, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 8, 1 ]
+				"key" : [ 6, 0, 5, 1 ]
 			}
 		],
 		"ref_dic" : 
@@ -157,7 +157,7 @@
 							"_aj_model" : 0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
-							"_material_name" : "obs0",
+							"_material_name" : "arrow",
 							"_name" : "arrow2",
 							"_pj" : "aaaakaebmnmmkbebaagaokeg",
 							"_posx" : 0.0,
@@ -188,7 +188,7 @@
 							"_aj_model" : 0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
-							"_material_name" : "obs0",
+							"_material_name" : "arrow",
 							"_name" : "arrow1",
 							"_pj" : "aaaakaebmnmmkbebaagaokeg",
 							"_posx" : 0.0,
@@ -219,7 +219,7 @@
 							"_aj_model" : 0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
-							"_material_name" : "obs0",
+							"_material_name" : "arrow",
 							"_name" : "arrow0",
 							"_pj" : "aaaakaebmnmmkbebaagaokeg",
 							"_posx" : 0.0,
@@ -818,10 +818,120 @@
 	[
 		
 		{
+			"name" : "arrow",
+			"shader" : "arrow",
+			"uniform_list" : 
+			{
+				"alpha" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 1.0 ]
+				},
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						500.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						129.4095306396484,
+						0.9659258127212524,
+						0.0,
+						0.0,
+						-482.9629211425781,
+						0.2588190734386444,
+						0.0,
+						-400.0,
+						350.0,
+						6000.0,
+						1.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						2.126730680465698,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						5.671281814575195,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.001349210739136,
+						-1.0,
+						0.0,
+						0.0,
+						-40.47728729248047,
+						0.0
+					]
+				},
+				"text" : 
+				{
+					"el_size" : 1,
+					"txt_name" : "arrow.png",
+					"type" : "shader_uf_txt",
+					"usize" : 1,
+					"utype" : 35678
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-1.0,
+						0.0,
+						-0.0,
+						0.0,
+						0.0,
+						1.0,
+						-0.0,
+						0.0,
+						0.0,
+						-0.0,
+						-1.0,
+						0.0,
+						-400.0,
+						-390.0,
+						2.980232238769531e-006,
+						1.0
+					]
+				}
+			}
+		},
+		
+		{
 			"name" : "fcw",
 			"shader" : "unit3d",
 			"uniform_list" : 
 			{
+				"alpha" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 1.0 ]
+				},
 				"model" : 
 				{
 					"el_size" : 16,
@@ -916,6 +1026,14 @@
 			"shader" : "unit3d",
 			"uniform_list" : 
 			{
+				"alpha" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 1.0 ]
+				},
 				"model" : 
 				{
 					"el_size" : 16,
@@ -1010,6 +1128,14 @@
 			"shader" : "unit3d",
 			"uniform_list" : 
 			{
+				"alpha" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 1.0 ]
+				},
 				"model" : 
 				{
 					"el_size" : 16,
@@ -1031,8 +1157,8 @@
 						0.2588190734386444,
 						0.0,
 						-400.0,
-						350.0,
-						6000.0,
+						880.0,
+						9000.0,
 						1.0
 					]
 				},
@@ -1425,6 +1551,13 @@
 	[
 		
 		{
+			"fs_name" : "arrow.fs",
+			"name" : "arrow",
+			"read_only" : false,
+			"vs_name" : "arrow.vs"
+		},
+		
+		{
 			"fs_name" : "road.fs",
 			"name" : "road",
 			"read_only" : false,
@@ -1436,6 +1569,13 @@
 			"name" : "sacc",
 			"read_only" : false,
 			"vs_name" : "sacc.vs"
+		},
+		
+		{
+			"fs_name" : "test.fs",
+			"name" : "test",
+			"read_only" : false,
+			"vs_name" : "test.vs"
 		},
 		
 		{
@@ -2603,7 +2743,7 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : false,
+		"show_resource_manager" : true,
 		"show_slider_path_picker" : false,
 		"show_state_manager_edit" : true
 	}

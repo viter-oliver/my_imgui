@@ -21,6 +21,7 @@ using namespace std;
 /**
 * @brief basic variable type of the shader  \n
 */
+
 struct shader_variable
 {
 	GLenum _variable_type;
@@ -43,8 +44,10 @@ typedef map<string, shader_variable> mshader_variable_list;
 */
 class af_shader
 {
-	/** all the type of attribute variables  of shader */
+	/** all the attribute variables  of shader */
 	attr_vect _att_list;
+     /** all the out variables of shader*/
+     attr_vect _out_list;
 	/** all the type of uniform variables of shader */
 	mshader_variable_list _unf_list;
 	GLuint _shader_program_id = { 0 };
@@ -54,6 +57,7 @@ class af_shader
 	/** whether shader is valid */
 	/** vertex shader source code and fragment shader source code */
 	bool _valid{ false };
+     //bool _be_feedback { false };
 public:
 	bool _vs_code_valid{ false }, _fs_code_valid{ false };
 	af_shader(GLenum binFormat, void* bin, GLsizei binLength);
@@ -72,6 +76,7 @@ public:
 	bool build_vs_code(string& vs_code);
 	bool build_fs_code(string& fs_code);
 	void link();
+     void specify_transfeedback(bool relink=false);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	string& get_vs_code(){ return _vs_code; }
 	string& get_fs_code(){ return _fs_code; }

@@ -152,8 +152,7 @@ ps_primrive_object get_prm_object(const char* prm_name)
 	auto iprm = g_primitive_list.find(prm_name);
 	if (iprm != g_primitive_list.end())
 	{
-		return iprm->second;
-		
+		return iprm->second;	
 	}
 }
 

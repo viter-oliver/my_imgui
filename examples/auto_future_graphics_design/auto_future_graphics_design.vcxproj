@@ -182,6 +182,7 @@
     <ClCompile Include="aes.cpp" />
     <ClCompile Include="afb_output.cpp" />
     <ClCompile Include="af_bind.cpp" />
+    <ClCompile Include="af_feedback.cpp" />
     <ClCompile Include="af_font_res_set.cpp" />
     <ClCompile Include="af_model.cpp" />
     <ClCompile Include="af_shader.cpp" />
@@ -255,6 +256,7 @@
     <ClInclude Include="..\..\af_include\afb_res_index.h" />
     <ClInclude Include="..\..\af_include\afg.h" />
     <ClInclude Include="..\..\af_include\af_bind.h" />
+    <ClInclude Include="..\..\af_include\af_feedback.h" />
     <ClInclude Include="..\..\af_include\af_font_res_set.h" />
     <ClInclude Include="..\..\af_include\af_material.h" />
     <ClInclude Include="..\..\af_include\af_model.h" />
