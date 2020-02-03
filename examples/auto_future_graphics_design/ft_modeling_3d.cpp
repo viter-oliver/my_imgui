@@ -23,7 +23,6 @@ namespace auto_future
 		{
 			_pshd_modeling = make_shared<af_shader>(modeling_vs, modeling_fs);
 			_pshd_modeling->set_name(str_modeling);
-			_pshd_modeling->_read_only = true;
 			_pshd_modeling->_vs_name = str_modeling + ".vs";
 			_pshd_modeling->_fs_name = str_modeling + ".fs";
 			g_af_shader_list[modeling] = _pshd_modeling;

@@ -8,13 +8,104 @@
 #include <GL/gl3w.h> 
 #endif
 #include <sstream>
+#include "af_type.h"
+#include "common_functions.h"
 void primitve_edit::draw_primitive_list()
 {
+	if (ImGui::Button("New primitive..."))
+	{
+		ImGui::OpenPopup("NewPrimitive");
+	}
+	if (ImGui::BeginPopupModal("NewPrimitive"))
+	{
+		static char prm_name_str[FILE_NAME_LEN] = "";
+		static vector<GLubyte> prm_frm = { 3 };
+		static GLint vetex_cnt = 1;
+		ImGui::InputText("enter a name for the new primitive object", prm_name_str, FILE_NAME_LEN);
+		ImGui::InputInt("enter a number for the count of vertex of new primitive object", &vetex_cnt);
+		ImGui::Text("Element format:");
+		string str_minus("-##");
+		auto& fmts = prm_frm;
+		auto fsz = fmts.size();
+		string str_plus("+##");
+		GLuint stride = 0;
+		for (int ix = 0; ix < fsz; ix++)
+		{
+			stride += fmts[ix];
+			ImGui::Text("%d", fmts[ix]);
+			if (fmts[ix] > 1)
+			{
+				ImGui::SameLine();
+				str_minus += "1";
+				if (ImGui::Button(str_minus.c_str()))
+				{
+					fmts[ix]--;
+				}
+			}
+			if (fmts[ix] < 10)
+			{
+				ImGui::SameLine();
+				str_plus += "1";
+				if (ImGui::Button(str_plus.c_str()))
+				{
+					fmts[ix]++;
+				}
+			}
+		}
 
-	//if (ImGui::Button("New primitive object..."))
-	//{
-	
-	//}
+		if (fsz < 10)
+		{
+			if (ImGui::Button("Add..."))
+			{
+				fmts.emplace_back();
+				fmts.back() = 1;
+			}
+		}
+		if (fsz > 1)
+		{
+			if (fsz < 10)
+			{
+				ImGui::SameLine();
+			}
+			if (ImGui::Button("Del..."))
+			{
+				fmts.resize(fsz - 1);
+			}
+		}
+		if (ImGui::Button("New"))
+		{
+			string prm_name(prm_name_str);
+			string prm_kname = find_a_key_from_mp(g_primitive_list, prm_name);
+			prm_kname = find_a_key_from_mp(g_mfiles_list, prm_kname);
+			auto pmtv = make_shared<primitive_object>();
+			pmtv->set_ele_format(prm_frm);
+			auto stride = pmtv->get_stride();
+			auto vlen = stride* vetex_cnt;
+			GLfloat* pvertex = new GLfloat[vlen];
+			memset(pvertex, 0, vlen*sizeof GLfloat);
+			pmtv->load_vertex_data(pvertex, vlen);
+			auto buff_len = 4 + vlen*sizeof(GLfloat);
+			ps_af_file ps_file = make_shared<af_file>(buff_len);
+			char* phead = (char*)ps_file->_pbin;
+			GLuint* phead_len = (GLuint*)phead;
+			*phead_len = buff_len - 4;
+			phead += 4;
+			memcpy(phead, pvertex, *phead_len);
+			g_mfiles_list[prm_kname] = ps_file;
+			pmtv->_ps_file = ps_file;
+			save_ojfile_to_file(prm_kname);
+			delete[] pvertex;
+			g_primitive_list[prm_kname] = pmtv;
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::SameLine();
+		if (ImGui::Button("Cancel"))
+		{
+			ImGui::CloseCurrentPopup();
+		}
+		ImGui::EndPopup();
+	}
+
 	ImGuiTreeNodeFlags node_flag = ImGuiTreeNodeFlags_DefaultOpen;
 	string icon_str = icn_primitive;
 	if (IconTreeNode(icon_str,"primitive objects",node_flag))
@@ -53,9 +144,11 @@ void primitve_edit::draw_primitive_list()
 		ImGui::TreePop();
 	}
 
-	if (_pmobj&&ImGui::BeginPopupContextWindow())
+	if (ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::MenuItem("delete", NULL, false,_pmobj.use_count() == 2))
+		
+			
+		if (_pmobj&&ImGui::MenuItem("delete", NULL, false, _pmobj.use_count() == 2))
 		{
 			auto& item_del = g_primitive_list.find(_key_name);
 			g_primitive_list.erase(item_del);
@@ -78,21 +171,20 @@ void primitve_edit::draw_primitive_item_property()
 		ImGui::Text("Vertex buffer length:%d ,element buffer length:%d", _pmobj->_vertex_buf_len, _pmobj->_ele_buf_len);
 		auto& fmts = _pmobj->_ele_format;
 		static char str_numb[0xa] = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
-		if (_pmobj->_read_only)
+		string str_fmt;
+		for (auto& fmt_u : fmts)
 		{
-			string str_fmt;
-			for (auto& fmt_u : fmts)
-			{
-				str_fmt += str_numb[fmt_u];
-				str_fmt += ':';
-			}
-			str_fmt.back() = '\0';
-			ImGui::Text("Element format:%s", str_fmt.c_str());
-			if (ImGui::Button("Vertex Edit..."))
-			{
-				ImGui::OpenPopup("vertex_edit");
-			}
+			str_fmt += str_numb[fmt_u];
+			str_fmt += ':';
 		}
+		str_fmt.back() = '\0';
+		ImGui::Text("Element format:%s", str_fmt.c_str());
+		if (ImGui::Button("Vertex Edit..."))
+		{
+			ImGui::OpenPopup("vertex_edit");
+		}
+		//if (_pmobj->_read_only)
+		/**
 		else
 		{
 			ImGui::Text("Element format:");
@@ -231,7 +323,7 @@ void primitve_edit::draw_primitive_item_property()
 			ImGui::EndChild();
 			ImGui::PopStyleColor();
 			ImGui::PopStyleVar();
-		}
+		}*/
 		if (ImGui::BeginPopupModal("vertex_edit"))
 		{
 			auto& vlen=_pmobj->_vertex_buf_len;

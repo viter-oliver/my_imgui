@@ -230,6 +230,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 					continue;
 				}
 				getline(ifs_shd, vs_code, (char)EOF);
+				
 				ifs_shd.close();
 				ifs_shd.open(fs_file);
 				if (!ifs_shd.is_open())
@@ -241,7 +242,6 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				shared_ptr<af_shader> pshd = make_shared<af_shader>(vs_code.c_str(), fs_code.c_str());
 				pshd->_vs_name = shd_unit["vs_name"].asString();
 				pshd->_fs_name = shd_unit["fs_name"].asString();
-				pshd->_read_only = shd_unit["read_only"].asBool();
 				pshd->set_name(shd_unit["name"].asString());
 				g_af_shader_list[shd_unit["name"].asString()] = pshd;
 			}
@@ -658,7 +658,6 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 		jshd_unit["name"] = sd_name;
 		jshd_unit["vs_name"] = p_sd->_vs_name;
 		jshd_unit["fs_name"] = p_sd->_fs_name;
-		jshd_unit["read_only"] = p_sd->_read_only;
 		string vs_file = str_shader_path + p_sd->_vs_name;
 		string fs_file = str_shader_path + p_sd->_fs_name;
 		string& vs_code=p_sd->get_vs_code();

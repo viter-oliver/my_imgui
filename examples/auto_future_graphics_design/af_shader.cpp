@@ -220,6 +220,18 @@ void collect_attr(string& vscode, vattr& vat)
 		}
 	}
 }
+string remove_semicolon(string& star)
+{
+	string str_rt;
+	for (auto& ch:star)
+	{
+		if (ch != ' '&&ch != ';'&&ch!='\n')
+		{
+			str_rt += ch;
+		}
+	}
+	return str_rt;
+}
 void collect_out( string& vscode, attr_vect& vat )
 {
      stringstream sexp( vscode );
@@ -244,7 +256,7 @@ void collect_out( string& vscode, attr_vect& vat )
                auto& sname = sout.suffix().str();
                vat.emplace_back();
                auto& attr = vat.back();
-               attr._name = sname;
+			   attr._name = remove_semicolon(sname);
                attr._location = 0;
                if( std::regex_match( stype, re_vec2) )
                {
@@ -311,11 +323,15 @@ void af_shader::link()
 }
 void af_shader::specify_transfeedback( bool relink )
 {
-     for (auto& uout:_out_list)
+	char** feedbackVaryings = new char*[_out_list.size()];
+	auto isz = _out_list.size();
+	for (int ix = 0; ix < isz;ix++)
      {
           //GLchar *varyings[] = { "outValue" };
-          glTransformFeedbackVaryings( _shader_program_id, uout._name.size(), (const GLchar* const*)uout._name.c_str(), GL_INTERLEAVED_ATTRIBS );
+		 feedbackVaryings[ix] = (char*)_out_list[ix]._name.c_str();
      }
+	glTransformFeedbackVaryings(_shader_program_id, isz, (const GLchar* const*)feedbackVaryings, GL_INTERLEAVED_ATTRIBS);
+	delete[] feedbackVaryings;
      if( relink )
      {
           glLinkProgram( _shader_program_id );

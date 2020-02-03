@@ -244,7 +244,7 @@ void processNode(aiNode *node, const aiScene *scene, af_model& md, string& mesh_
 		itoa(id, cc, 10);
 		string mesh_name = mesh_base_name + cc;
 		string mesh_kname = find_a_key_from_mp(g_primitive_list, mesh_name);
-		mesh_name = find_a_key_from_mp(g_mfiles_list, mesh_kname);
+		mesh_kname = find_a_key_from_mp(g_mfiles_list, mesh_kname);
 		g_primitive_list[mesh_kname] = pmtv;
 		md.emplace_back();
 		auto& cmesh = md[id];
