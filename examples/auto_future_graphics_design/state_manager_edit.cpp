@@ -351,7 +351,7 @@ void state_manager_edit::view_state_manager_item_property()
                          play_tran_playlist( _stm_key_name, idx );
                     }
                     str_sel = "##" + stm_sel.str();
-                    ImGui::BeginChild( str_sel.c_str(), ImVec2( 0, 300 ), true );
+                    ImGui::BeginChild( str_sel.c_str(), ImVec2( 0, 110 ), true );
                     ImGui::Columns( plsz );
                     int ixx = 0;
                     for( auto ipl = playlist.begin(); ipl != playlist.end(); )

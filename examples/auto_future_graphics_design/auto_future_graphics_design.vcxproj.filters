@@ -307,6 +307,9 @@
     <ClCompile Include="af_feedback.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="feedback_edit.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -630,6 +633,9 @@
     </ClInclude>
     <ClInclude Include="..\..\af_include\af_feedback.h">
       <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="feedback_edit.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

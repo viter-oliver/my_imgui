@@ -1,12 +1,12 @@
 #include "af_primitive_object.h"
 #include "common_functions.h"
-void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff, GLuint ele_cnt)
+void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff, GLuint ele_cnt,GLuint mem_usage)
 {
 	_vertex_buf_len = vetexlen;
 	_ele_buf_len = ele_cnt;
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-	GLuint mem_usage = GL_STATIC_DRAW;
+	_mem_usage = mem_usage;
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, mem_usage);
 	if (pele_buff)
 	{

@@ -13,6 +13,7 @@ extern int g_txt_height_intl;
 extern int g_txt_id_intl;
 extern mtxt_internal g_mtxt_intl;
 extern const char* icn_nm_file;
+extern const char* icn_nm_feedback;
 extern const char* icn_nm_shader;
 extern const char* icn_nm_shader_source;
 extern const char* icn_nm_material;

@@ -382,6 +382,7 @@ void material_shader_edit::draw_material()
 	}
 }
 
+
 void material_shader_edit::draw_material_item_property()
 {
 	if (pmateral_sel)

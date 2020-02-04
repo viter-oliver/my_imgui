@@ -3,6 +3,7 @@
 #include "texture_res_load.h"
 #include "af_shader.h"
 #include "af_material.h"
+#include "af_feedback.h"
 #include "af_font_res_set.h"
 #include "SOIL.h"
 #include "dir_output.h"
@@ -557,6 +558,29 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
                     }
                     g_base_prp_dic[ mname ] = pcmv;
                }
+			   Value& feedback = jroot["feedback"];
+			   auto ifbsz = feedback.size();
+			   for (int ix = 0; ix < ifbsz;ix++)
+			   {
+				   Value fbunit = feedback[ix];
+				   auto& mtl_key = fbunit["mtl_key"].asString();
+				   auto& prm_key = fbunit["prm_key"].asString();
+				   const auto& imtl = g_material_list.find(mtl_key);
+				   if (imtl==g_material_list.end())
+				   {
+					   printf("invalid material name:%s for the current feedback\n", mtl_key.c_str());
+					   continue;
+				   }
+				   const auto& iprm = g_primitive_list.find(prm_key);
+				   if (iprm==g_primitive_list.end())
+				   {
+					   printf("invalid primitive name:%s for the current feedback\n", prm_key.c_str());
+					   continue;
+				   }
+				   feedback_key fkey = { mtl_key, prm_key };
+				   g_feedback_list[fkey] = make_shared<af_feedback>(imtl->second, iprm->second);
+
+			   }
 		}
 		fin.close();
 	}
@@ -969,6 +993,17 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
           common_value_list[ knm ] = uvalue;
      }
      jroot[ "common_value_list" ] = common_value_list;
+	 Value feedback(arrayValue);
+	 for (auto& ifb:g_feedback_list)
+	 {
+		 auto& mtl_key = ifb.first._mtl_key;
+		 auto& prm_key = ifb.first._prm_key;
+		 Value fbkey(objectValue);
+		 fbkey["mtl_key"] = mtl_key;
+		 fbkey["prm_key"] = prm_key;
+		 feedback.append(fbkey);
+	 }
+	 jroot["feedback"] = feedback;
 	fout << jroot << endl;
 	fout.close();
 	//save_fbx_file();

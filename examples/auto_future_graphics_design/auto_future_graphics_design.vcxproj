@@ -41,7 +41,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>CTP_Nov2013</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
@@ -140,7 +140,7 @@
       </IgnoreSpecificDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(OutDir)$(TargetName)$(TargetExt) G:\svn\tool\</Command>
+      <Command>copy $(OutDir)$(TargetName)$(TargetExt) $(SolutionDir)..\..\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -195,6 +195,7 @@
     <ClCompile Include="bind_edit.cpp" />
     <ClCompile Include="command_element_delta.cpp" />
     <ClCompile Include="easing.cpp" />
+    <ClCompile Include="feedback_edit.cpp" />
     <ClCompile Include="file_outputor.cpp" />
     <ClCompile Include="file_res_edit.cpp" />
     <ClCompile Include="fonts_edit.cpp" />
@@ -334,6 +335,7 @@
     <ClInclude Include="command_element_delta.h" />
     <ClInclude Include="dir_output.h" />
     <ClInclude Include="easing.h" />
+    <ClInclude Include="feedback_edit.h" />
     <ClInclude Include="file_outputor.h" />
     <ClInclude Include="file_res_edit.h" />
     <ClInclude Include="fonts_edit.h" />

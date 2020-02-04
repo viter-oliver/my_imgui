@@ -49,10 +49,10 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 3, 1 ]
+						[ 6, 0, 6, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 8, 1 ]
+				"key" : [ 6, 0, 5, 1 ]
 			},
 			
 			{
@@ -61,28 +61,28 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 6, 1 ]
+						[ 6, 0, 3, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 1 ]
+				"key" : [ 6, 0, 8, 1 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 6, 0, 3, 1 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 8, 1 ]
-				]
-			},
-			
-			{
 				"key" : [ 6, 0, 6, 1 ],
 				"ref_list" : 
 				[
 					[ 6, 0, 5, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 3, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 8, 1 ]
 				]
 			}
 		]
@@ -789,6 +789,14 @@
 			}
 		}
 	},
+	"feedback" : 
+	[
+		
+		{
+			"mtl_key" : "test",
+			"prm_key" : "test_range"
+		}
+	],
 	"file_list" : 
 	[
 		"SACC.FBX0",
@@ -797,6 +805,7 @@
 		"right_wing.json",
 		"road.FBX0",
 		"roadd.FBX0",
+		"test_range",
 		"usq.FBX0"
 	],
 	"fonts" : 
@@ -1507,6 +1516,92 @@
 					]
 				}
 			}
+		},
+		
+		{
+			"name" : "test",
+			"shader" : "test",
+			"uniform_list" : 
+			{
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						680.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						600.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						10000.0,
+						1.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						2.126730918884277,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						5.671281814575195,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.001348972320557,
+						0.0,
+						0.0,
+						0.0,
+						-40.47727966308594,
+						0.0
+					]
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-1.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						1.0,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.0,
+						0.0,
+						-400.0,
+						-390.0,
+						0.0,
+						1.0
+					]
+				}
+			}
 		}
 	],
 	"models" : {},
@@ -1537,6 +1632,15 @@
 		},
 		
 		{
+			"ebo_len" : 0,
+			"format" : [ 3 ],
+			"mesh_id" : 3452816845,
+			"model" : "",
+			"name" : "test_range",
+			"vbo_len" : 12
+		},
+		
+		{
 			"ebo_len" : 6,
 			"format" : [ 3, 3, 2 ],
 			"mesh_id" : 0,
@@ -1553,35 +1657,30 @@
 		{
 			"fs_name" : "arrow.fs",
 			"name" : "arrow",
-			"read_only" : false,
 			"vs_name" : "arrow.vs"
 		},
 		
 		{
 			"fs_name" : "road.fs",
 			"name" : "road",
-			"read_only" : false,
 			"vs_name" : "road.vs"
 		},
 		
 		{
 			"fs_name" : "sacc.fs",
 			"name" : "sacc",
-			"read_only" : false,
 			"vs_name" : "sacc.vs"
 		},
 		
 		{
 			"fs_name" : "test.fs",
 			"name" : "test",
-			"read_only" : false,
 			"vs_name" : "test.vs"
 		},
 		
 		{
 			"fs_name" : "unit3d.fs",
 			"name" : "unit3d",
-			"read_only" : false,
 			"vs_name" : "unit3d.vs"
 		}
 	],
@@ -2737,7 +2836,7 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : true,
+		"show_aliase_edit" : false,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
 		"show_fonts_manager" : false,
@@ -2745,7 +2844,7 @@
 		"show_property_window" : true,
 		"show_resource_manager" : true,
 		"show_slider_path_picker" : false,
-		"show_state_manager_edit" : true
+		"show_state_manager_edit" : false
 	}
 }
 

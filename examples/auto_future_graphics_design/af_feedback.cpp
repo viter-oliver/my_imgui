@@ -8,7 +8,7 @@ af_feedback::af_feedback(ps_mtl& pmtl, ps_primrive_object& pprm)
 	//auto stride = pprm->get_stride();
 	auto buff_sz = pprm->_vertex_buf_len;// stride;
 	glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
-
+	//glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _gpuOutputBuffer);
 }
 
 af_feedback::~af_feedback()
@@ -17,19 +17,31 @@ af_feedback::~af_feedback()
 	_pprm = nullptr;
 }
 
-bool af_feedback::try_bind_outputbuff()
+bool af_feedback::get_output_vertex(vector<float>& overtex)
 {
+	overtex.resize(_pprm->_vertex_buf_len);
+	glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _pprm->_vertex_buf_len, &overtex[0]);
+	//glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, 0);
 	return true;
 }
 
 void af_feedback::draw()
 {
 	_pmtl->use();
+	GLboolean last_enable_discard = glIsEnabled(GL_RASTERIZER_DISCARD);
 	glEnable(GL_RASTERIZER_DISCARD);
 	glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _gpuOutputBuffer);
+	glBindVertexArray(_pprm->_vao);
 	_pprm->enableVertex();
 	glBeginTransformFeedback(GL_POINTS);
 	glDrawArrays(GL_POINTS, 0, _pprm->_vertex_buf_len);
 	glEndTransformFeedback();
-	glDisable(GL_RASTERIZER_DISCARD);
+	
+	if (!last_enable_discard)
+	{
+		glDisable(GL_RASTERIZER_DISCARD);
+	}
+	glFlush();
+	
 }
+mp_feed_back g_feedback_list;

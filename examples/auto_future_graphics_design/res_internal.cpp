@@ -5,6 +5,7 @@ int g_txt_height_intl;
 int g_txt_id_intl;
 mtxt_internal g_mtxt_intl;
 const char* icn_nm_file = "file";
+const char* icn_nm_feedback = "feedback";
 const char* icn_nm_shader = "shader";
 const char* icn_nm_shader_source = "shader_source";
 const char* icn_nm_material = "material";

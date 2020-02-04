@@ -27,7 +27,7 @@ struct primitive_object
 	string _model_name;
 	GLuint _mesh_id;
 	ps_af_file _ps_file;
-	bool _read_only{ true };
+	GLuint _mem_usage;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif // !Im
@@ -60,8 +60,7 @@ struct primitive_object
 	{
 		_ele_format = ele_fm;
 	}
-
-	void load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff = 0, GLuint ele_cnt = 0);
+	void load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff = 0, GLuint ele_cnt = 0, GLuint mem_usage = GL_STATIC_DRAW);
 	void enableVertex();
 };
 using ps_primrive_object = shared_ptr<primitive_object>;

@@ -1,4 +1,4 @@
-precision mediump float;
+//precision mediump float;
 attribute vec3 position;
 attribute vec2 textcoord;
 attribute vec3 normal;

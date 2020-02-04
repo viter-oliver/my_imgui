@@ -10,6 +10,6 @@ public:
 	void draw_material();
 	void draw_shader_item_property();
 	void draw_material_item_property();
-     void clear_states();
+    void clear_states();
 };
 
