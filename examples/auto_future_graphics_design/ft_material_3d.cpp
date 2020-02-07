@@ -155,6 +155,16 @@ namespace auto_future
 		}
 		_matched = imatch==2;
 	}
+	bool ft_material_3d::get_output_vertex(vector<float>& overtex)
+	{
+		if (!_pt._with_feedback)
+		{
+			return false;
+		}
+		overtex.resize(_ps_prm->_vertex_buf_len);
+		glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _ps_prm->_vertex_buf_len*sizeof(GLfloat), &overtex[0]);
+		return true;
+	}
 	void ft_material_3d::draw()
 	{
 #if 1//!defined(IMGUI_DISABLE_DEMO_WINDOWS)
@@ -174,6 +184,16 @@ namespace auto_future
 			if (!_ps_mtl->is_valid()||!_ps_prm)
 			{
 				return;
+			}
+			if (_pt._with_feedback)
+			{
+				if (_gpu_outbuff==0)
+				{
+					glGenBuffers(1, &_gpu_outbuff);
+					glBindBuffer(GL_ARRAY_BUFFER, _gpu_outbuff);
+					auto buff_sz = _ps_prm->_vertex_buf_len*sizeof(GLfloat);
+					glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
+				}
 			}
 			static GLuint draw_model[en_gl_count] =
 			{

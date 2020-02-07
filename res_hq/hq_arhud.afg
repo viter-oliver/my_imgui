@@ -24,6 +24,7 @@
 		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
 		"show_image" : [ 6, 0, 2 ],
 		"show_navi_dir" : [ 6, 0, 4, 1 ],
+		"show_obj_mask" : [ 6, 0, 3 ],
 		"show_phone_ring" : [ 6, 0, 6, 1 ],
 		"show_remain_dis" : [ 6, 0, 10, 1 ],
 		"show_road" : [ 6, 0, 0, 0, 0 ],
@@ -71,18 +72,18 @@
 		[
 			
 			{
-				"key" : [ 6, 0, 6, 1 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 5, 1 ]
-				]
-			},
-			
-			{
 				"key" : [ 6, 0, 3, 1 ],
 				"ref_list" : 
 				[
 					[ 6, 0, 8, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 6, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 5, 1 ]
 				]
 			}
 		]
@@ -724,6 +725,35 @@
 			"_sizew" : 10.0,
 			"_visible" : true,
 			"type" : "ft_image_file"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_bdclr" : 
+			{
+				"w" : 1.0,
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"_bkclr" : 
+			{
+				"w" : 1.0,
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"_border_width_uhd" : 1.0,
+			"_name" : "obj_mask",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_round_utn" : 0.0,
+			"_sizeh" : 20.0,
+			"_sizew" : 20.0,
+			"_visible" : false,
+			"_with_border" : false,
+			"type" : "ft_block"
 		}
 	],
 	"common_value_list" : 
@@ -2836,7 +2866,7 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : false,
+		"show_aliase_edit" : true,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
 		"show_fonts_manager" : false,

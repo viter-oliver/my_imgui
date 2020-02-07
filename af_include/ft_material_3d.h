@@ -47,21 +47,23 @@ namespace auto_future
 			(char, _uf_proj_name[FILE_NAME_LEN]),
 			(camera,_cam),
 			(projection,_pj),
-               ( int, _trans_order, {0} ),
-               ( float, _trans_translation_x, { 0.f } ),
-               ( float, _trans_translation_y, { 0.f } ),
-               ( float, _trans_translation_z, { 0.f } ),
-               ( float, _trans_scale_x, {1.f} ),
-               ( float, _trans_scale_y, {1.f} ),
-               ( float, _trans_scale_z, {1.f} ),
-               ( int,_rotate_order, {0} ),
-               ( float, _trans_rotation_x, {0.f} ),
-               ( float, _trans_rotation_y, {0.f} ),
-               ( float, _trans_rotation_z, {0.f} ))
+            ( int, _trans_order, {0} ),
+            ( float, _trans_translation_x, { 0.f } ),
+            ( float, _trans_translation_y, { 0.f } ),
+            ( float, _trans_translation_z, { 0.f } ),
+            ( float, _trans_scale_x, {1.f} ),
+            ( float, _trans_scale_y, {1.f} ),
+            ( float, _trans_scale_z, {1.f} ),
+            ( int,_rotate_order, {0} ),
+            ( float, _trans_rotation_x, {0.f} ),
+            ( float, _trans_rotation_y, {0.f} ),
+            ( float, _trans_rotation_z, {0.f} ),
+			(bool, _with_feedback, {false}))
 		bool _matched{ false };
           bool _same_sclae { false };
 		ps_primrive_object _ps_prm;
 		ps_mtl _ps_mtl;
+		GLuint _gpu_outbuff = { 0 };
 	public:
 		ft_material_3d();
 		~ft_material_3d(){}
@@ -157,7 +159,7 @@ namespace auto_future
 		{
 			_pt._trans_translation_z = tz;
 		}
-
+		bool get_output_vertex(vector<float>& overtex);
 
 	};
 	REGISTER_CONTROL(ft_material_3d)
