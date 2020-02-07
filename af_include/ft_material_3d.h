@@ -64,9 +64,10 @@ namespace auto_future
 		ps_primrive_object _ps_prm;
 		ps_mtl _ps_mtl;
 		GLuint _gpu_outbuff = { 0 };
+		vector<float> _output_buff;
 	public:
 		ft_material_3d();
-		~ft_material_3d(){}
+		~ft_material_3d();
 		void link();
 		void draw();
 		void set_cam_posx(float posx)

@@ -36,6 +36,11 @@ namespace auto_future
 				{
 					_ps_prm = nullptr;
 					_matched = false;
+					if (_gpu_outbuff!=0)
+					{
+						glDeleteBuffers(1, &_gpu_outbuff);
+						_gpu_outbuff = 0;
+					}
 				}
 			}
 			else
@@ -66,6 +71,13 @@ namespace auto_future
 								_pt._cam._up = { 0.f, 1.f, 0.f };
 							}
 						}
+						if (_pt._with_feedback)
+						{
+								glGenBuffers(1, &_gpu_outbuff);
+								glBindBuffer(GL_ARRAY_BUFFER, _gpu_outbuff);
+								auto buff_sz = _ps_prm->_vertex_buf_len*sizeof(GLfloat);
+								glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
+						}
 					}
 					else
 					{
@@ -75,6 +87,33 @@ namespace auto_future
 							_ps_prm = g_primitive_list[str_prm_nm];
 						}
 					}
+				}
+			}
+			if (_pt._with_feedback)
+			{
+				if (ImGui::Button("Show feedback"))
+				{
+					get_output_vertex(_output_buff);
+					ImGui::OpenPopup("ShowFeedback");
+				}
+				if (ImGui::BeginPopupModal("ShowFeedback"))
+				{
+					auto stride = 3;// _ps_prm->get_stride();
+					auto osz = _output_buff.size();
+					for (int ix = 0; ix < osz; ix++)
+					{
+						ImGui::Text("%f", _output_buff[ix]);
+						auto imd = ix%stride;
+						if (imd != (stride - 1))
+						{
+							ImGui::SameLine();
+						}
+					}
+					if (ImGui::Button("Cancel"))
+					{
+						ImGui::CloseCurrentPopup();
+					}
+					ImGui::EndPopup();
 				}
 			}
 		});
@@ -137,6 +176,17 @@ namespace auto_future
 
 #endif
 	}
+	
+
+	ft_material_3d::~ft_material_3d()
+	{
+		if (_gpu_outbuff!=0)
+		{
+			glDeleteBuffers(1, &_gpu_outbuff);
+			_gpu_outbuff = 0;
+		}
+	}
+
 	void ft_material_3d::link()
 	{
 		int imatch = 0;
@@ -151,6 +201,13 @@ namespace auto_future
 		if (iprm!=g_primitive_list.end())
 		{
 			_ps_prm = iprm->second;
+			if (_pt._with_feedback)
+			{
+				glGenBuffers(1, &_gpu_outbuff);
+				glBindBuffer(GL_ARRAY_BUFFER, _gpu_outbuff);
+				auto buff_sz = _ps_prm->_vertex_buf_len*sizeof(GLfloat);
+				glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
+			}
 			imatch++;
 		}
 		_matched = imatch==2;
@@ -185,16 +242,7 @@ namespace auto_future
 			{
 				return;
 			}
-			if (_pt._with_feedback)
-			{
-				if (_gpu_outbuff==0)
-				{
-					glGenBuffers(1, &_gpu_outbuff);
-					glBindBuffer(GL_ARRAY_BUFFER, _gpu_outbuff);
-					auto buff_sz = _ps_prm->_vertex_buf_len*sizeof(GLfloat);
-					glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
-				}
-			}
+			
 			static GLuint draw_model[en_gl_count] =
 			{
 				GL_POINTS,
@@ -311,9 +359,21 @@ namespace auto_future
 
 			_ps_mtl->use();
 			auto& primid = *_ps_prm;
+			
 			glBindVertexArray(primid._vao);
 			GLuint& dml = draw_model[_pt._draw_mode];
-
+			if (_pt._with_feedback)
+			{
+				if (_gpu_outbuff == 0)
+				{
+					glGenBuffers(1, &_gpu_outbuff);
+					glBindBuffer(GL_ARRAY_BUFFER, _gpu_outbuff);
+					auto buff_sz = _ps_prm->_vertex_buf_len*sizeof(GLfloat);
+					glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
+				}
+				glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _gpu_outbuff);
+				glBeginTransformFeedback(dml);
+			}
 			if (primid._ele_buf_len==0)
 			{
 				glDrawArrays(dml, 0, primid._vertex_buf_len);
@@ -321,6 +381,11 @@ namespace auto_future
 			else
 			{
 				glDrawElements(dml, primid._ele_buf_len, GL_UNSIGNED_INT, 0);
+			}
+			if (_pt._with_feedback)
+			{
+				glEndTransformFeedback();
+				glFlush();
 			}
 		}
 		//ft_base::draw();
