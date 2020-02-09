@@ -60,7 +60,7 @@ namespace auto_future
             ( float, _trans_rotation_z, {0.f} ),
 			(bool, _with_feedback, {false}))
 		bool _matched{ false };
-          bool _same_sclae { false };
+        bool _same_sclae { false };
 		ps_primrive_object _ps_prm;
 		ps_mtl _ps_mtl;
 		GLuint _gpu_outbuff = { 0 };

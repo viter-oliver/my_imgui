@@ -16,6 +16,7 @@
 #include "af_font_res_set.h"
 #include "af_bind.h"
 #include "af_state_manager.h"
+#include "af_feedback.h"
 #include "common_functions.h"
 extern "C"{
 #include "image_DXT.h"
@@ -503,6 +504,17 @@ void afb_output::output_afb(const char* afb_file)
                pk.pack_bin_body( (char*)&prp_id[ 0 ], bin_sz );
           }
      }
+	 pk.pack_array(g_feedback_list.size());
+	 for (auto& ifb:g_feedback_list)
+	 {
+		 pk.pack_array(2);
+		 auto& mtlkey=ifb.first._mtl_key;
+		 auto& prmkey=ifb.first._prm_key;
+		 pk.pack_str(mtlkey.size());
+		 pk.pack_str_body(mtlkey.c_str(),mtlkey.size());
+		 pk.pack_str(prmkey.size());
+		 pk.pack_str_body(prmkey.c_str(),prmkey.size());
+	 }
 #ifndef _DX5_COMPRESS
 	uint8_t* pout_buff = new uint8_t[sbuff.size()];
 	mz_stream stream = {};

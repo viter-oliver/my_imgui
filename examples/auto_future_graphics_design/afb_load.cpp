@@ -16,6 +16,7 @@
 #include "af_model.h"
 #include "af_bind.h"
 #include "af_state_manager.h"
+#include "af_feedback.h"
 #define DXT5_DECOMPRESSED
 #ifdef DXT5_DECOMPRESSED
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
@@ -821,5 +822,34 @@ void afb_load::load_afb(const char* afb_file)
           g_base_prp_dic[ mskey ] = ps_cmv;
 
      }
-	TIME_CHECK(commonvalue list res)
+	 TIME_CHECK(commonvalue list res)
+	 auto obj_feedback_list = obj_w.via.array.ptr[en_feedback_list];
+	 auto fdsz = obj_feedback_list.via.array.size;
+	 for (size_t ix = 0; ix < fdsz;ix++)
+	 {
+		 auto ofdv_u = obj_feedback_list.via.array.ptr[ix];
+		 auto omtl_key = ofdv_u.via.array.ptr[0];
+		 auto oprm_key = ofdv_u.via.array.ptr[1];
+		 string mtl_key, prm_key;
+		 auto mtl_key_sz = omtl_key.via.str.size;
+		 mtl_key.resize(mtl_key_sz);
+		 memcpy(&mtl_key[0], omtl_key.via.str.ptr, mtl_key_sz);
+		 const auto& imtl = g_material_list.find(mtl_key);
+		 if (imtl == g_material_list.end())
+		 {
+			 printf("invalid material name:%s for the current feedback\n", mtl_key.c_str());
+			 continue;
+		 }
+		 auto prm_key_sz = oprm_key.via.str.size;
+		 prm_key.resize(prm_key_sz);
+		 memcpy(&prm_key[0], oprm_key.via.str.ptr, prm_key_sz);
+		 const auto& iprm = g_primitive_list.find(prm_key);
+		 if (iprm == g_primitive_list.end())
+		 {
+			 printf("invalid primitive name:%s for the current feedback\n", prm_key.c_str());
+			 continue;
+		 }
+		 feedback_key fkey = { mtl_key, prm_key };
+		 g_feedback_list[fkey] = make_shared<af_feedback>(imtl->second, iprm->second);
+	 }
 }

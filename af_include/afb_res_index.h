@@ -18,6 +18,7 @@ enum afb_res_index
 	en_bind_dic,
 	en_bind_ref_dic,
 	en_state_manager,
-     en_common_value,
+    en_common_value,
+	en_feedback_list,
 	en_afb_res_cnt
 };

@@ -91,7 +91,7 @@
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\af_include;E:\Python_27\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\af_include;$(SolutionDir)\..\Python_2.7.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -126,7 +126,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\af_include;E:\Python_27\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\json;$(SolutionDir)\..\assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\af_include;$(SolutionDir)\..\Python_2.7.2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <PreprocessorDefinitions>IMGUI_DISABLE_DEMO_WINDOWS;BUILD_DLL;JSON_DLL;WIN32;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
