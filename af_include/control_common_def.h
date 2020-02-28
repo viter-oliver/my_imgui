@@ -246,71 +246,18 @@ namespace auto_future
           {
                _vframe_fun.clear();
           }
-          virtual void draw_frames()
-          {
-               auto pbase = get_parent();
-               auto& ajm = _in_p._aj_model;
-               if( pbase&&_in_p._aj_model != en_fixed )
-               {
-                    auto bs_ps = base_pos();
-                    bool be_intersected;
-                    auto& adj_value = _in_p._adjacent_to_p;
-                    if( ajm == en_horisontal )
-                    {
-                         float hitpos;
-                         bs_ps.x -= adj_value;
-                         be_intersected = pbase->get_border_hit_point( bs_ps.x, true, hitpos );
-                         if( be_intersected )
-                         {
-                              hitpos += adj_value;
-                              set_base_posx( hitpos );
-                         }
-                    }
-                    else
-                    {
-                         float hitpos;
-                         bs_ps.y -= adj_value;
-                         be_intersected = pbase->get_border_hit_point( bs_ps.y, false, hitpos );
-                         if( be_intersected )
-                         {
-                              hitpos += adj_value;
-                              set_base_posy( hitpos );
-                         }
-                    }
-
-               }
-               if( !is_visible() )
-               {
-                    return;
-               }
-               auto ifsz = _vframe_fun.size();
-               if( ifsz > 0 )
-               {
-                    for( int ix = 0; ix < ifsz; ix++ )
-                    {
-                         _vframe_fun[ ix ]( ix );
-                         draw();
-                    }
-               }
-               else
-               {
-                    draw();
-               }
-               for( auto it : _vchilds )
-               {
-                    if( it->is_visible() )
-                    {
-                         it->draw_frames();
-                    }
-               }
-          }
+		 virtual void draw_frames() = 0;
+		 virtual void mouse_clicked(){}
+		 virtual void mouse_down(){}
+		 virtual void mouse_relese(){}
+		 virtual void mouse_drag(float xoffset, float yoffset){}
 		virtual bool contains(float posx, float posy) = 0;
 		virtual bool relative_contain(float pos, bool be_h) = 0;
 		virtual bool set_prop_fd_value(int pg_id, int fd_id, void* pvalue) = 0;
 		bool get_border_hit_point(float pos, bool be_h, float& hitpos)
 		{
 			const unsigned int max_repeat_cnt = 1000;
-			bool from_et;
+			bool from_et=false;
 			float delta = 0;
 			for (unsigned int ix = 0; ix < max_repeat_cnt; ix++)
 			{

@@ -8,11 +8,18 @@ class project_edit
 	void view_object(base_ui_component& fb);
 public:
 	project_edit(base_ui_component& fb) 
-		:_root(fb), _pcurrent_object(NULL), _pcopy_object(NULL)
+		:_root(fb), _pcurrent_object(nullptr), _pcopy_object(nullptr)
 	{}
 	void objects_view();
 	void popup_context_menu();
-	void clear_sel_item(){ _pcopy_object = NULL; }
+	void clear_sel_item(){ 
+		if (_pcurrent_object)
+		{
+			_pcurrent_object->set_selected(false);
+		}
+		_pcurrent_object = nullptr;
+		_pcopy_object = nullptr;
+	}
 	void sel_ui_component(base_ui_component* ui_target){
 		assert(ui_target);
 		if (_pcurrent_object)

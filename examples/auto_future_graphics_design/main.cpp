@@ -100,7 +100,12 @@ show_output_format = false, show_model_list = false, show_world_space = false, \
 show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
 show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false,\
 show_common_value_edit = false,show_feedback_edit=false;
-
+enum en_editing_wd_state
+{
+	en_editing,
+	en_preview,
+};
+int editing_state = en_editing;
 string reg_path = "afg_ide";
 string ikey = "max&maj20190815x";
 unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
@@ -876,7 +881,12 @@ int main(int argc, char* argv[])
 				}
 				ImGui::EndMenu();
 			}
-			
+			ImGui::RadioButton("Editing", &editing_state, en_editing);
+			if (ImGui::RadioButton("Preview", &editing_state, en_preview))
+			{
+				prj_edit->clear_sel_item();
+			}
+
 			ImGui::EndMainMenuBar();
 		}
 
@@ -938,20 +948,48 @@ int main(int argc, char* argv[])
 			{
 				_proot->draw_frames();
 			}			
-			ImGuiContext& g = *GImGui;
-			ImGuiWindow* cur_window = ImGui::GetCurrentWindow();
-			ImGuiWindow* front_window = g.Windows.back();
-			ImRect wrect(cur_window->Pos, cur_window->Pos + cur_window->Size);
 			
-			if (cur_window == front_window&&ImGui::IsMouseClicked(0) && wrect.Contains(ImGui::GetIO().MousePos))
-			{
-				//printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
-				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
-				if (psel_ui)
+				ImGuiContext& g = *GImGui;
+				ImGuiWindow* cur_window = ImGui::GetCurrentWindow();
+				ImGuiWindow* front_window = g.Windows.back();
+				ImRect wrect(cur_window->Pos, cur_window->Pos + cur_window->Size);
+				if (cur_window == front_window && wrect.Contains(ImGui::GetIO().MousePos))
 				{
-					prj_edit->sel_ui_component(psel_ui);
-				}
+					//printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+					base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+					if (psel_ui)
+					{
+						if (editing_state == en_editing)
+						{
+							if (ImGui::IsMouseClicked(0))
+							{
+								prj_edit->sel_ui_component(psel_ui);
+							}
+						}
+						else
+						{
+							if (ImGui::IsMouseClicked(0))
+							{
+								psel_ui->mouse_clicked();
+							}
+							if (ImGui::IsMouseDown(0))
+							{
+								psel_ui->mouse_down();
+							}
+							if (ImGui::IsMouseReleased(0))
+							{
+								psel_ui->mouse_relese();
+							}
+							if (ImGui::IsMouseDragging(0))
+							{
+								auto ms_delta = ImGui::GetIO().MouseDelta;
+								psel_ui->mouse_drag(ms_delta.x, ms_delta.y);
+							}
+						}
+					}
 			}
+		
+
 			ImGui::End();
 			ImGui::PopStyleVar(2);
 		}

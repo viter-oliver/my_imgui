@@ -18,6 +18,7 @@ namespace auto_future
 	public:
 		ft_base(); 
 		void draw();
+		void draw_frames();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	private:
 		enum { en_pt_name, en_pt_pos_x, en_pt_pos_y, en_pt_visible };
