@@ -164,8 +164,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\from_csdn_cly\HttpBase.cpp" />
-    <ClCompile Include="..\..\from_csdn_cly\HttpBoost.cpp" />
     <ClCompile Include="..\..\iguidock.cpp" />
     <ClCompile Include="..\..\imgui.cpp" />
     <ClCompile Include="..\..\imgui_demo.cpp" />
@@ -301,9 +299,6 @@
     <ClInclude Include="..\..\af_include\ft_video.h" />
     <ClInclude Include="..\..\af_include\property_utilities.h" />
     <ClInclude Include="..\..\af_include\shader_uf.h" />
-    <ClInclude Include="..\..\from_csdn_cly\HttpBase.h" />
-    <ClInclude Include="..\..\from_csdn_cly\HttpBoost.h" />
-    <ClInclude Include="..\..\from_csdn_cly\http_mark.h" />
     <ClInclude Include="..\..\imconfig.h" />
     <ClInclude Include="..\..\imgui.h" />
     <ClInclude Include="..\..\imguidock.h" />
@@ -366,7 +361,6 @@
     <None Include="..\..\json\json_internalarray.inl" />
     <None Include="..\..\json\json_internalmap.inl" />
     <None Include="..\..\json\json_valueiterator.inl" />
-    <None Include="..\graphics_app_arhud\graphics_app_scomm_arhud.vcxproj" />
     <None Include="..\README.txt" />
     <None Include="ClassDiagram.cd" />
     <None Include="internal_texture_dataformat.json" />

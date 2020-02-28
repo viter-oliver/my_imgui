@@ -85,8 +85,18 @@ namespace auto_future
 				float y0 = glyph_txt_cd._y0;
 				float y1 = glyph_txt_cd._y1;
 				auto advance = glyph_txt_cd._advance;
-				float char_left_edge = end_pos.x + bearing.x*scale;
-				float char_right_edge = char_left_edge + tsize.x*scale;
+                    auto bearing_x = bearing.x*scale;
+                    auto bearing_x_n = bearing_x;
+#if 0
+                    int w = tsize.x;
+                    int ev = w % 2;
+                    if (ev==0)
+                    {
+                         bearing_x_n--;
+                    }
+#endif
+				float char_left_edge = end_pos.x + bearing_x;
+				float char_right_edge = char_left_edge + tsize.x*scale+bearing_x_n;
 				cnt_char++;
 				if (char_right_edge>str_most_right_edge)
 				{
@@ -135,6 +145,7 @@ namespace auto_future
 				if (!be_new)
 				ImageQuad((ImTextureID)txt_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, dcol);
 				float shift_dis = (advance >> 6)*scale;// Bitshift by 6 to get value in pixels (2^6 = 64)
+                    end_pos.x += bearing_x_n;
 				end_pos.x += shift_dis;
 				if (maxy<pos1.y)
 				{

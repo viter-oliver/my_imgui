@@ -47,9 +47,6 @@
     <Filter Include="af_include">
       <UniqueIdentifier>{8e637091-33e1-4975-ab02-1192d80ea1a5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="from_csdn_cly">
-      <UniqueIdentifier>{3ea77266-4d16-4888-95d2-9115f7b47905}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -276,12 +273,6 @@
     </ClCompile>
     <ClCompile Include="ft_material_3d.cpp">
       <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\from_csdn_cly\HttpBase.cpp">
-      <Filter>from_csdn_cly</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\from_csdn_cly\HttpBoost.cpp">
-      <Filter>from_csdn_cly</Filter>
     </ClCompile>
     <ClCompile Include="af_timer.cpp">
       <Filter>sources</Filter>
@@ -603,15 +594,6 @@
     <ClInclude Include="..\..\af_include\ft_material_3d.h">
       <Filter>af_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\from_csdn_cly\http_mark.h">
-      <Filter>from_csdn_cly</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\from_csdn_cly\HttpBase.h">
-      <Filter>from_csdn_cly</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\from_csdn_cly\HttpBoost.h">
-      <Filter>from_csdn_cly</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\af_include\af_timer.h" />
     <ClInclude Include="..\..\af_include\ft_video.h">
       <Filter>af_include</Filter>
@@ -653,7 +635,6 @@
       <Filter>json</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
-    <None Include="..\graphics_app_arhud\graphics_app_scomm_arhud.vcxproj" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="auto_future_graphics_design.rc">

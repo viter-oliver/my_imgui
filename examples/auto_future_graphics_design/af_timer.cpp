@@ -39,6 +39,7 @@ namespace auto_future
 				int delta = chrono::duration_cast<chrono::duration<int, std::milli>>(currentTime - _timer_list_ex[ix]._tp).count();
 				if (delta >= _timer_list_ex[ix]._tvalue)
 				{
+                         _timer_list_ex[ ix ]._tp = currentTime;
 					_timer_list_ex[ix]._handle(ivalue);
 					ivalue++;
 				}

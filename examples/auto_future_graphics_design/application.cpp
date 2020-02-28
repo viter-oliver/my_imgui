@@ -98,7 +98,7 @@ namespace auto_future
 		//ImGuiIO& io = ImGui::GetIO(); //(void)io;
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
-		ImGui_ImplGlfwGL3_Init(_window, true);
+		ImGui_ImplGlfwGL3_Init(_window, false);
 		
 		ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 1.00f); //ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 		//base_ui_component* _proot = NULL;

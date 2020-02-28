@@ -852,4 +852,5 @@ void afb_load::load_afb(const char* afb_file)
 		 feedback_key fkey = { mtl_key, prm_key };
 		 g_feedback_list[fkey] = make_shared<af_feedback>(imtl->second, iprm->second);
 	 }
+      TIME_CHECK( feedback list )
 }

@@ -23,10 +23,16 @@
 		"show_fcw" : [ 6, 0, 5, 0, 0 ],
 		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
 		"show_image" : [ 6, 0, 2 ],
+		"show_left_fcta1" : [ 6, 0, 0, 12, 1 ],
+		"show_left_fcta2" : [ 6, 0, 1, 12, 1 ],
+		"show_left_fctb" : [ 6, 0, 2, 12, 1 ],
 		"show_navi_dir" : [ 6, 0, 4, 1 ],
 		"show_obj_mask" : [ 6, 0, 3 ],
 		"show_phone_ring" : [ 6, 0, 6, 1 ],
 		"show_remain_dis" : [ 6, 0, 10, 1 ],
+		"show_right_fcta1" : [ 6, 0, 0, 13, 1 ],
+		"show_right_fcta2" : [ 6, 0, 1, 13, 1 ],
+		"show_right_fctb" : [ 6, 0, 2, 13, 1 ],
 		"show_road" : [ 6, 0, 0, 0, 0 ],
 		"show_sacc" : [ 6, 0, 6, 0, 0 ],
 		"show_tsr" : [ 6, 0, 3, 1 ],
@@ -123,13 +129,13 @@
 					[
 						
 						{
-							"_adjacent_to_p" : 0.0,
+							"_adjacent_to_p" : 73.68400573730469,
 							"_aj_model" : 0,
 							"_cam" : "aaaamimdaaaamdedjgonccdmaaaamimdaaaamdedponekidpaaaaaaaaddddlddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "road",
 							"_name" : "roadd",
-							"_pj" : "aaaahaebmnmmkbebaafamdeh",
+							"_pj" : "jgedmnebmnmmkbebaafamdeh",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
 							"_primitive_name" : "roadd.FBX0",
@@ -150,6 +156,7 @@
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : true,
+							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
 						
@@ -174,13 +181,14 @@
 							"_trans_scale_x" : 500.0,
 							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : -400.0,
+							"_trans_translation_x" : -500.0,
 							"_trans_translation_y" : 880.0,
 							"_trans_translation_z" : 9000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : true,
+							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
 						
@@ -212,6 +220,7 @@
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : true,
+							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
 						
@@ -243,6 +252,7 @@
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : true,
+							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
 						
@@ -274,6 +284,7 @@
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : false,
+							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
 						
@@ -305,6 +316,7 @@
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : false,
+							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
 						
@@ -336,6 +348,7 @@
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : false,
+							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						}
 					],
@@ -363,7 +376,7 @@
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
-					"_frame_index" : 21,
+					"_frame_index" : 42,
 					"_name" : "turn_left",
 					"_posx" : 18.0,
 					"_posy" : 198.0,
@@ -381,7 +394,7 @@
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
-					"_frame_index" : 21,
+					"_frame_index" : 39,
 					"_name" : "turn_right",
 					"_posx" : 493.0,
 					"_posy" : 198.0,
@@ -450,11 +463,11 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "tsr",
-					"_posx" : 60.0,
-					"_posy" : 97.09800720214844,
-					"_sizeh" : 60.0,
-					"_sizew" : 60.0,
-					"_texture_index_txt" : 56,
+					"_posx" : 178.0,
+					"_posy" : 250.0,
+					"_sizeh" : 58.0,
+					"_sizew" : 62.0,
+					"_texture_index_txt" : 77,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -462,19 +475,19 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
-							"_content" : "51",
+							"_content" : "100",
 							"_font_id" : 1,
-							"_font_scale" : 1.200000047683716,
+							"_font_scale" : 0.9499999880790710,
 							"_font_size" : 30,
 							"_name" : "speed_limit",
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : 9.0,
-							"_posy" : 22.0,
+							"_posx" : 28.0,
+							"_posy" : 15.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_txt_alignh_nml" : 0.0,
+							"_txt_alignh_nml" : 0.50,
 							"_txt_alignv_nml" : 0.0,
 							"_txt_clr" : 
 							{
@@ -503,7 +516,7 @@
 					"_posy" : 260.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 40.0,
-					"_texture_index_txt" : 25,
+					"_texture_index_txt" : 31,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -517,10 +530,10 @@
 					"_aposy" : 0.0,
 					"_name" : "flag",
 					"_posx" : 399.0,
-					"_posy" : 243.0,
+					"_posy" : 264.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 3.0,
-					"_texture_index_txt" : 54,
+					"_texture_index_txt" : 75,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -555,7 +568,7 @@
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 400.0,
-					"_posy" : 202.0,
+					"_posy" : 237.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_txt_alignh_nml" : 0.50,
@@ -574,7 +587,7 @@
 						
 						{
 							"_adjacent_to_p" : 0.0,
-							"_aj_model" : 0,
+							"_aj_model" : 1,
 							"_content" : "km/h",
 							"_font_id" : 1,
 							"_font_scale" : 1.0,
@@ -583,8 +596,8 @@
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : -17.92300033569336,
-							"_posy" : 27.69900131225586,
+							"_posx" : 17.91800117492676,
+							"_posy" : 12.08500099182129,
 							"_sizeh" : 25.03900146484375,
 							"_sizew" : 38.42800140380859,
 							"_txt_alignh_nml" : 0.0,
@@ -685,7 +698,7 @@
 						"y" : 1.0,
 						"z" : 1.0
 					},
-					"_visible" : false,
+					"_visible" : true,
 					"_width" : 200.0,
 					"_width_limit" : false,
 					"type" : "ft_textblock"
@@ -703,9 +716,145 @@
 					"_posy" : 110.0,
 					"_sizeh" : 83.0,
 					"_sizew" : 83.0,
-					"_texture_index_txt" : 53,
+					"_texture_index_txt" : 74,
 					"_visible" : false,
 					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "fct_left",
+					"_posx" : 0.0,
+					"_posy" : 118.4290084838867,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 3,
+							"_name" : "fcta1",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 50.0,
+							"_sizew" : 130.0,
+							"_texture_fmt_name" : "fcta1.json",
+							"_texture_name" : "fcta1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 3,
+							"_name" : "fcta2",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 50.0,
+							"_sizew" : 130.0,
+							"_texture_fmt_name" : "fcta2.json",
+							"_texture_name" : "fcta2.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "fctb",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 50.0,
+							"_sizew" : 130.0,
+							"_texture_index_txt" : 2,
+							"_visible" : false,
+							"type" : "ft_image"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "fct_right",
+					"_posx" : 678.0,
+					"_posy" : 118.4290084838867,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 3,
+							"_name" : "fcta1",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 50.0,
+							"_sizew" : 130.0,
+							"_texture_fmt_name" : "fcta1.json",
+							"_texture_name" : "fcta1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 3,
+							"_name" : "fcta2",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 50.0,
+							"_sizew" : 130.0,
+							"_texture_fmt_name" : "fcta2.json",
+							"_texture_name" : "fcta2.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_anchor_type" : 0,
+							"_angle_srd" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_name" : "fctb",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_sizeh" : 50.0,
+							"_sizew" : 130.0,
+							"_texture_index_txt" : 2,
+							"_visible" : false,
+							"type" : "ft_image"
+						}
+					],
+					"type" : "ft_base"
 				}
 			],
 			"type" : "ft_base"
@@ -831,6 +980,8 @@
 	[
 		"SACC.FBX0",
 		"e115.json",
+		"fcta1.json",
+		"fcta2.json",
 		"left_wing.json",
 		"right_wing.json",
 		"road.FBX0",
@@ -1359,12 +1510,12 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						2.848407506942749,
+						1.646710276603699,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						7.595753669738770,
+						4.391227722167969,
 						0.0,
 						0.0,
 						0.0,
@@ -1716,6 +1867,70 @@
 	],
 	"state_manager_list" : 
 	{
+		"left_fcta1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 12, 1 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "adaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"left_fcta2" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 12, 1 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "adaaaaaa" ]
+			],
+			"state_idx" : 1
+		},
 		"navi_direct" : 
 		{
 			"any_to_any" : 
@@ -1730,7 +1945,7 @@
 				
 				{
 					"duration" : 200,
-					"easing_fun" : 2,
+					"easing_fun" : 3,
 					"key_from" : 0,
 					"key_to" : 1,
 					"start_time" : 0
@@ -1758,6 +1973,38 @@
 					"key_from" : 0,
 					"key_to" : 9,
 					"start_time" : 0
+				},
+				
+				{
+					"duration" : 300,
+					"easing_fun" : 7,
+					"key_from" : 0,
+					"key_to" : 11,
+					"start_time" : 100
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 3,
+					"key_from" : 0,
+					"key_to" : 12,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 3,
+					"key_from" : 0,
+					"key_to" : 13,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 300,
+					"easing_fun" : 1,
+					"key_from" : 0,
+					"key_to" : 14,
+					"start_time" : 100
 				},
 				
 				{
@@ -1805,6 +2052,38 @@
 					"easing_fun" : 0,
 					"key_from" : 9,
 					"key_to" : 10,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 450,
+					"easing_fun" : 0,
+					"key_from" : 11,
+					"key_to" : 12,
+					"start_time" : 100
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 5,
+					"key_from" : 12,
+					"key_to" : 17,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 450,
+					"easing_fun" : 0,
+					"key_from" : 14,
+					"key_to" : 15,
+					"start_time" : 100
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 5,
+					"key_from" : 15,
+					"key_to" : 16,
 					"start_time" : 0
 				}
 			],
@@ -1871,6 +2150,42 @@
 						"key_from" : 9,
 						"key_to" : 10
 					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 11
+					},
+					
+					{
+						"key_from" : 11,
+						"key_to" : 12
+					},
+					
+					{
+						"key_from" : 12,
+						"key_to" : 17
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 14
+					},
+					
+					{
+						"key_from" : 14,
+						"key_to" : 15
+					},
+					
+					{
+						"key_from" : 15,
+						"key_to" : 16
+					}
 				]
 			],
 			"prop_list" : 
@@ -1880,7 +2195,8 @@
 				[ 16, 1, 3, 0, 0 ],
 				[ 18, 1, 3, 0, 0 ],
 				[ 12, 1, 3, 0, 0 ],
-				[ 10, 1, 3, 0, 0 ]
+				[ 10, 1, 3, 0, 0 ],
+				[ 17, 1, 3, 0, 0 ]
 			],
 			"prop_value_list" : 
 			[
@@ -1891,7 +2207,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"aaaapked",
-					"aaaakped"
+					"aaaakped",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -1900,7 +2217,8 @@
 					"aaaaaaaa",
 					"aaaajgec",
 					"aaaapked",
-					"aaaapkee"
+					"aaaapkee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -1909,7 +2227,8 @@
 					"aaaaaaaa",
 					"aaaaleec",
 					"aaaapked",
-					"aaaacpef"
+					"aaaacpef",
+					""
 				],
 				
 				[
@@ -1918,7 +2237,8 @@
 					"aaaaaaaa",
 					"aaaaleec",
 					"aaaapked",
-					"aaaacpef"
+					"aaaacpef",
+					""
 				],
 				
 				[
@@ -1927,7 +2247,8 @@
 					"aaaaaaaa",
 					"aaaajgmc",
 					"aaaapked",
-					"aaiaccef"
+					"aaiaccef",
+					""
 				],
 				
 				[
@@ -1936,7 +2257,8 @@
 					"aaaaaaaa",
 					"aaaalemc",
 					"aaaapked",
-					"aaaaeief"
+					"aaaaeief",
+					""
 				],
 				
 				[
@@ -1945,7 +2267,8 @@
 					"aaaaaaaa",
 					"aaaalemc",
 					"aaaapked",
-					"aaaaeief"
+					"aaaaeief",
+					""
 				],
 				
 				[
@@ -1954,7 +2277,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaiafeee"
+					"aaiafeee",
+					""
 				],
 				
 				[
@@ -1963,7 +2287,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaamiee"
+					"aaaamiee",
+					""
 				],
 				
 				[
@@ -1972,7 +2297,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaiafeee"
+					"aaiafeee",
+					""
 				],
 				
 				[
@@ -1981,7 +2307,78 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaamiee"
+					"aaaamiee",
+					""
+				],
+				
+				[
+					"aaaapkmd",
+					"aaiallef",
+					"aaaaimec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaakped",
+					"aaaaamec"
+				],
+				
+				[
+					"aaaabgme",
+					"aamankef",
+					"aaaadeec",
+					"aaaapaeb",
+					"aaaapked",
+					"aaiaajee",
+					"aaaaimec"
+				],
+				
+				[
+					"abaaeime",
+					"aaiallef",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaakped",
+					"aaaakamb"
+				],
+				
+				[
+					"aaaapkmd",
+					"aaiallef",
+					"aaaaimec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaakped",
+					"aaaaammc"
+				],
+				
+				[
+					"aaaaaaaa",
+					"aacamlef",
+					"aaaadeec",
+					"aaaapamb",
+					"aaaapked",
+					"aaiaajee",
+					"aaaaimmc"
+				],
+				
+				[
+					"aaaabgee",
+					"aaiallef",
+					"aaaadeec",
+					"aaaapamb",
+					"aaaapked",
+					"aaiaajee",
+					"aaaaimmc"
+				],
+				
+				[
+					"aaaamime",
+					"aaiallef",
+					"aaaadeec",
+					"aaaapaeb",
+					"aaaapked",
+					"aaiaajee",
+					"aaaaimec"
 				]
 			],
 			"state_idx" : 0
@@ -2031,6 +2428,38 @@
 				},
 				
 				{
+					"duration" : 250,
+					"easing_fun" : 7,
+					"key_from" : 0,
+					"key_to" : 11,
+					"start_time" : 50
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 3,
+					"key_from" : 0,
+					"key_to" : 13,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 3,
+					"key_from" : 0,
+					"key_to" : 14,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 15,
+					"start_time" : 50
+				},
+				
+				{
 					"duration" : 400,
 					"easing_fun" : 0,
 					"key_from" : 1,
@@ -2075,6 +2504,54 @@
 					"easing_fun" : 0,
 					"key_from" : 9,
 					"key_to" : 10,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 400,
+					"easing_fun" : 0,
+					"key_from" : 11,
+					"key_to" : 12,
+					"start_time" : 50
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 0,
+					"key_from" : 11,
+					"key_to" : 15,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 5,
+					"key_from" : 12,
+					"key_to" : 18,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 5,
+					"key_from" : 15,
+					"key_to" : 12,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 400,
+					"easing_fun" : 0,
+					"key_from" : 15,
+					"key_to" : 16,
+					"start_time" : 50
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 5,
+					"key_from" : 16,
+					"key_to" : 17,
 					"start_time" : 0
 				}
 			],
@@ -2141,6 +2618,50 @@
 						"key_from" : 9,
 						"key_to" : 10
 					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 11
+					},
+					
+					{
+						"key_from" : 11,
+						"key_to" : 12
+					},
+					
+					{
+						"key_from" : 12,
+						"key_to" : 18
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 15
+					},
+					
+					{
+						"key_from" : 15,
+						"key_to" : 16
+					},
+					
+					{
+						"key_from" : 16,
+						"key_to" : 17
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 14
+					}
 				]
 			],
 			"prop_list" : 
@@ -2150,7 +2671,8 @@
 				[ 16, 1, 2, 0, 0 ],
 				[ 18, 1, 2, 0, 0 ],
 				[ 12, 1, 2, 0, 0 ],
-				[ 10, 1, 2, 0, 0 ]
+				[ 10, 1, 2, 0, 0 ],
+				[ 17, 1, 2, 0, 0 ]
 			],
 			"prop_value_list" : 
 			[
@@ -2161,7 +2683,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"aaaapked",
-					"aaaabgee"
+					"aaaabgee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2170,7 +2693,8 @@
 					"aaaaaaaa",
 					"aaaajgec",
 					"aaaapked",
-					"aaeaadef"
+					"aaeaadef",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2179,7 +2703,8 @@
 					"aaaaaaaa",
 					"aaaaleec",
 					"aaaapked",
-					"aakadeef"
+					"aakadeef",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2188,7 +2713,8 @@
 					"aaaaaaaa",
 					"aaaaleec",
 					"aaaapked",
-					"aaeadfef"
+					"aaeadfef",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2197,7 +2723,8 @@
 					"aaaaaaaa",
 					"aaaajgmc",
 					"aaaapked",
-					"aakacfef"
+					"aakacfef",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2206,7 +2733,8 @@
 					"aaaaaaaa",
 					"aaaalemc",
 					"aaaapked",
-					"aaaaeief"
+					"aaaaeief",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2215,7 +2743,8 @@
 					"aaaaaaaa",
 					"aaaalemc",
 					"aaaapked",
-					"aaaaeief"
+					"aaaaeief",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2224,7 +2753,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaiaieee"
+					"aaiaieee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2233,7 +2763,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaaobee"
+					"aaaaobee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2242,7 +2773,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaiaijee"
+					"aaiaijee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2251,7 +2783,88 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaaobee"
+					"aaaaobee",
+					"aaaaaaaa"
+				],
+				
+				[
+					"aaaapkmd",
+					"aaaapkef",
+					"aaaaimec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaabgee",
+					"aaaaamec"
+				],
+				
+				[
+					"aamaipme",
+					"aakaameg",
+					"aaaadeec",
+					"aaaapaeb",
+					"aaaapked",
+					"aaiafeee",
+					"aaaaimec"
+				],
+				
+				[
+					"abaaeime",
+					"aaaapkef",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaabgee",
+					"aaaakamb"
+				],
+				
+				[
+					"aaaamimd",
+					"aaaapkef",
+					"aaaajgec",
+					"aaaacaec",
+					"aaaapked",
+					"aaaabgee",
+					"aaaaaaaa"
+				],
+				
+				[
+					"aaaapkmd",
+					"aaaapkef",
+					"aaaaimec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaabgee",
+					"aaaaammc"
+				],
+				
+				[
+					"aaaapaed",
+					"aanaaeeg",
+					"aaaadeec",
+					"aaaapamb",
+					"aaaapked",
+					"aaiafeee",
+					"aaaaimmc"
+				],
+				
+				[
+					"aamaipee",
+					"aaaapkef",
+					"aaaadeec",
+					"aaaapamb",
+					"aaaapked",
+					"aaiafeee",
+					"aaaaimmc"
+				],
+				
+				[
+					"aagaagmf",
+					"aaaapkef",
+					"aaaadeec",
+					"aaaapaeb",
+					"aaaapked",
+					"aaiafeee",
+					"aaaaimec"
 				]
 			],
 			"state_idx" : 0
@@ -2301,6 +2914,38 @@
 				},
 				
 				{
+					"duration" : 200,
+					"easing_fun" : 1,
+					"key_from" : 0,
+					"key_to" : 11,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 3,
+					"key_from" : 0,
+					"key_to" : 13,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 3,
+					"key_from" : 0,
+					"key_to" : 14,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 200,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 15,
+					"start_time" : 0
+				},
+				
+				{
 					"duration" : 400,
 					"easing_fun" : 0,
 					"key_from" : 1,
@@ -2345,6 +2990,38 @@
 					"easing_fun" : 0,
 					"key_from" : 9,
 					"key_to" : 10,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 350,
+					"easing_fun" : 0,
+					"key_from" : 11,
+					"key_to" : 12,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 5,
+					"key_from" : 12,
+					"key_to" : 18,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 350,
+					"easing_fun" : 0,
+					"key_from" : 15,
+					"key_to" : 16,
+					"start_time" : 0
+				},
+				
+				{
+					"duration" : 250,
+					"easing_fun" : 5,
+					"key_from" : 16,
+					"key_to" : 17,
 					"start_time" : 0
 				}
 			],
@@ -2411,6 +3088,50 @@
 						"key_from" : 9,
 						"key_to" : 10
 					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 11
+					},
+					
+					{
+						"key_from" : 11,
+						"key_to" : 12
+					},
+					
+					{
+						"key_from" : 12,
+						"key_to" : 18
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 15
+					},
+					
+					{
+						"key_from" : 15,
+						"key_to" : 16
+					},
+					
+					{
+						"key_from" : 16,
+						"key_to" : 17
+					}
+				],
+				
+				[
+					
+					{
+						"key_from" : 0,
+						"key_to" : 14
+					}
 				]
 			],
 			"prop_list" : 
@@ -2420,18 +3141,20 @@
 				[ 16, 1, 1, 0, 0 ],
 				[ 18, 1, 1, 0, 0 ],
 				[ 12, 1, 1, 0, 0 ],
-				[ 10, 1, 1, 0, 0 ]
+				[ 10, 1, 1, 0, 0 ],
+				[ 17, 1, 1, 0, 0 ]
 			],
 			"prop_value_list" : 
 			[
 				
 				[
-					"aaaamimd",
+					"aaaapkmd",
 					"aakaameg",
 					"aaaajgec",
 					"aaaaaaaa",
 					"aaaapked",
-					"aaaafmee"
+					"aaaafmee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2440,7 +3163,8 @@
 					"aaaaaaaa",
 					"aaaajgec",
 					"aaaapked",
-					"aaiaajef"
+					"aaiaajef",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2449,7 +3173,8 @@
 					"aaaaaaaa",
 					"aaaaleec",
 					"aaaapked",
-					"aaeadfef"
+					"aaeadfef",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2458,7 +3183,8 @@
 					"aaaaaaaa",
 					"aaaaleec",
 					"aaaapked",
-					"aaeadfef"
+					"aaeadfef",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2467,7 +3193,8 @@
 					"aaaaaaaa",
 					"aaaajgmc",
 					"aaaapked",
-					"aamacief"
+					"aamacief",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2476,7 +3203,8 @@
 					"aaaaaaaa",
 					"aaaalemc",
 					"aaaapked",
-					"aaaaeief"
+					"aaaaeief",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2485,7 +3213,8 @@
 					"aaaaaaaa",
 					"aaaalemc",
 					"aaaapked",
-					"aaaaeief"
+					"aaaaeief",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2494,7 +3223,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aamajjee"
+					"aamajjee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2503,7 +3233,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaapkee"
+					"aaaapkee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2512,7 +3243,8 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaakaee"
+					"aaaakaee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2521,7 +3253,88 @@
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaiapmee"
+					"aaiapmee",
+					"aaaaaaaa"
+				],
+				
+				[
+					"aaaapkmd",
+					"aakaameg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaafmee",
+					"aaaaamec"
+				],
+				
+				[
+					"aaiallme",
+					"aaeabmeg",
+					"aaaadeec",
+					"aaaapaeb",
+					"aaaapked",
+					"aaiaijee",
+					"aaaaimec"
+				],
+				
+				[
+					"abaaeime",
+					"aakaameg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaafmee",
+					"aaaakamb"
+				],
+				
+				[
+					"aaiaccme",
+					"aakaameg",
+					"aaaajgec",
+					"aaaajgec",
+					"aaaapked",
+					"aaaafmee",
+					"aaaaaaaa"
+				],
+				
+				[
+					"aaaapkmd",
+					"aakaameg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaafmee",
+					"aaaaammc"
+				],
+				
+				[
+					"aaaagbee",
+					"aahabeeg",
+					"aaaadeec",
+					"aaaapamb",
+					"aaaapked",
+					"aaiaijee",
+					"aaaaimmc"
+				],
+				
+				[
+					"aaiallee",
+					"aakaameg",
+					"aaaadeec",
+					"aaaapamb",
+					"aaaapked",
+					"aaiaijee",
+					"aaaaimmc"
+				],
+				
+				[
+					"aaeabmmf",
+					"aakaameg",
+					"aaaadeec",
+					"aaaapaeb",
+					"aaaapked",
+					"aaiaijee",
+					"aaaaimec"
 				]
 			],
 			"state_idx" : 0
@@ -2558,6 +3371,70 @@
 			],
 			"state_idx" : 0
 		},
+		"right_fcta1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 13, 1 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "adaaaaaa" ]
+			],
+			"state_idx" : 1
+		},
+		"right_fcta2" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 13, 1 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "adaaaaaa" ]
+			],
+			"state_idx" : 1
+		},
 		"tsr_rg" : 
 		{
 			"any_to_any" : 
@@ -2586,27 +3463,30 @@
 				[ 0, 0, 3, 1 ],
 				[ 1, 0, 3, 1 ],
 				[ 1, 0, 0, 3, 1 ],
-				[ 11, 1, 0, 3, 1 ]
+				[ 11, 1, 0, 3, 1 ],
+				[ 0, 0, 0, 3, 1 ]
 			],
 			"prop_value_list" : 
 			[
 				
 				[
+					"aaaaleec",
+					"aaaaleec",
 					"aaaahaec",
-					"aaaahaec",
-					"aaaahaec",
-					"codcmcec",
-					"aaaalaeb",
-					"jkjjjjdp"
+					"bnnklcec",
+					"ckfmpleb",
+					"jkjjjjdp",
+					"aaaabeec"
 				],
 				
 				[
-					"aaaadeec",
-					"aaaadeec",
-					"aaaadged",
-					"aaaaibed",
-					"aaaadaeb",
-					"aaaaiadp"
+					"aaaahiec",
+					"aaaagiec",
+					"aaaadced",
+					"aaaahked",
+					"aaaahaeb",
+					"ddddhddp",
+					"aaaaoaeb"
 				]
 			],
 			"state_idx" : 0
@@ -2624,7 +3504,7 @@
 			[
 				
 				{
-					"duration" : 1000,
+					"duration" : 2000,
 					"easing_fun" : 0,
 					"key_from" : 0,
 					"key_to" : 1,
@@ -2639,7 +3519,7 @@
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "bfaaaaaa" ]
+				[ "ckaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -2656,7 +3536,7 @@
 			[
 				
 				{
-					"duration" : 1000,
+					"duration" : 2000,
 					"easing_fun" : 0,
 					"key_from" : 0,
 					"key_to" : 1,
@@ -2671,9 +3551,9 @@
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "bfaaaaaa" ]
+				[ "chaaaaaa" ]
 			],
-			"state_idx" : 0
+			"state_idx" : 1
 		}
 	},
 	"texture_id_index" : 0,
@@ -2719,6 +3599,18 @@
 		{
 			"mipmap" : false,
 			"name" : "e115.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "fcta1.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "fcta2.png",
 			"separated" : false
 		},
 		
@@ -2872,7 +3764,7 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : true,
+		"show_resource_manager" : false,
 		"show_slider_path_picker" : false,
 		"show_state_manager_edit" : false
 	}

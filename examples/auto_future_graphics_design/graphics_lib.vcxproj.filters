@@ -199,6 +199,9 @@
     <ClCompile Include="..\..\soil\stb_image_aug.c">
       <Filter>soil</Filter>
     </ClCompile>
+    <ClCompile Include="af_feedback.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">

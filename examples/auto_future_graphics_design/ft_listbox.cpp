@@ -1,147 +1,247 @@
 #include "ft_listbox.h"
+#include "res_output.h"
+
 namespace auto_future
 {
 	ft_listbox::ft_listbox()
 		:ft_base()
+		, min_dis_index(0)
+		, spacing(0.0,0.0)
+		, cur_index(0)
+		, max_display_num(-1)
 	{
 		/*_be_window = true;*/
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		reg_property_handle(&_lt_pt, 6, [this](void*){
-			float scrmx = scroll_max();
-			ImGui::SliderFloat("scroll value", &_lt_pt._scroll_value, 0.f, scrmx);
-			set_scroll_value(_lt_pt._scroll_value);
+		reg_property_handle(&_in_p, 2, [this](void*){
+
+			if (ImGui::SliderFloat("Width", &_in_p._sizew, 0.f, base_ui_component::screenw))
+			{
+				update_draw_list_pos();
+			}
+		});
+		reg_property_handle(&_in_p, 3, [this](void*){
+
+			if (ImGui::SliderFloat("Height", &_in_p._sizeh, 0, base_ui_component::screenh))
+			{
+				update_draw_list_pos();
+			}
+		});
+
+		reg_property_handle(&_lt_pt, 0, [this](void*){
+			if (ImGui::Combo("direction", &_lt_pt._direction, "vertical\0horizontal\0\0"))
+			{
+				update_draw_list_pos();
+			}
+		});
+		reg_property_handle(&_lt_pt, 1, [this](void*){		
+			bool changed_flag = false;
+			if (_vchilds.empty())
+			{
+				changed_flag = ImGui::SliderInt("cur index", &_lt_pt._cur_index_uhd, -1, -1);
+			}
+			else
+			{
+				changed_flag = ImGui::SliderInt("cur index", &_lt_pt._cur_index_uhd, 0, _vchilds.size() - 1);
+			}	
+			if (changed_flag)
+			{
+				set_cur_index(_lt_pt._cur_index_uhd);
+			}
+		});
+		reg_property_handle(&_lt_pt, 2, [this](void*){			
+			if (ImGui::SliderInt("max display num", &_lt_pt._max_display_num_uhd, 1, 10))
+			{
+				set_max_display_num(_lt_pt._max_display_num_uhd);
+			}
 		});
 #endif
 	}
-	float ft_listbox::scroll_max()
-	{
-		size_t icnt = child_count();
-		af_vec2 frange;
-		for (size_t ix = 0; ix < icnt; ix++)
-		{
-			auto pchid = get_child(ix);
-			af_vec2 isz;
-			pchid->get_size(isz.x, isz.y);
-			frange += isz;
-		}
-		af_vec2 psize{ _in_p._sizew, _in_p._sizeh };
-		frange -= psize;
-		return _lt_pt._vertical ? frange.y : frange.x;
-	}
-	void ft_listbox::set_scroll_value(float scvalue)
-	{
-		size_t icnt = child_count();
-		af_vec2 init_pos={0.,0.};
-		if (_lt_pt._vertical)
-		{
-			for (size_t ix = 0; ix < icnt; ix++)
-			{
-				auto pchid = get_child(ix);
-				af_vec2 isz;
-				pchid->get_size(isz.x,isz.y);
-				set_base_posy(init_pos.y - scvalue);
-				init_pos.y += isz.y;//next item
-			}
-		}
-		else
-		{
-			for (size_t ix = 0; ix < icnt; ix++)
-			{
-				auto pchid = get_child(ix);
-				af_vec2 isz;
-				pchid->get_size(isz.x,isz.y);
-				set_base_posx ( init_pos.x - scvalue);
-				init_pos.x += isz.x;//next item
-			}
 
-		}
-	}
-	void ft_listbox::set_logic_scroll_value(float scvalue)
-	{
-		if (scvalue > _lt_pt._rangey)
-		{
-			scvalue = _lt_pt._rangey;
-		}
-		else
-		if (scvalue < _lt_pt._rangex)
-		{
-			scvalue = _lt_pt._rangex;
-		}
-		float rg_len = _lt_pt._rangey - _lt_pt._rangex;
-		float scmx = scroll_max();
-		float rscroll_value = scmx*scvalue / rg_len;
-		set_scroll_value(rscroll_value);
-	}
 	void ft_listbox::draw()
 	{
-		/*ImGui::SetCursorPos(base_pos());
-		ImGui::BeginChild("listbox", _lt_pt._size, true);*/
+		if (max_display_num == -1)
+		{
+			set_max_display_num(_lt_pt._max_display_num_uhd);
+		}
+
+		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
+		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+		if (ptext_cd.size() == 0)
+			return;
+		if (_lt_pt._texture_index_txt >= ptext_cd.size())
+		{
+			printf("invalid texture index:%d\n", _lt_pt._texture_index_txt);
+			_lt_pt._texture_index_txt = 0;
+
+		}
+		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
+		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+
+
 		ImVec2 apos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
+		
 		apos += winpos;
 		ImVec2 szpos = apos + ImVec2(_in_p._sizew, _in_p._sizeh);
+		int img_txt_id = _lt_pt._texture_index_txt;
+
+		int num_space = cur_index - min_dis_index;
+		ImVec2 offset = (item_size - ImVec2(ptext_cd[img_txt_id].owidth(), ptext_cd[img_txt_id].oheight())) / 2;
+		
+		ImVec2 pos0 = apos + offset + spacing*num_space;
+		ImVec2 pos1 = { pos0.x, pos0.y + ptext_cd[img_txt_id].oheight() };
+		ImVec2 pos2 = { pos0.x + ptext_cd[img_txt_id].owidth(), pos0.y + ptext_cd[img_txt_id].oheight() };
+		ImVec2 pos3 = { pos0.x + ptext_cd[img_txt_id].owidth(), pos0.y };
+		
+		ImVec2 uv0 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, ptext_cd[img_txt_id]._y0 / texture_height);
+		ImVec2 uv1 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
+		ImVec2 uv2 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
+		ImVec2 uv3 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y0) / texture_height);
+
 		ImGui::PushClipRect(apos, szpos, true);
-		//ft_base::draw();
+
+		ImGui::ImageQuad((ImTextureID)texture_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3);
+
+		for (auto item : draw_list_pos_map)
+		{
+			ImGui::PushClipRect(apos + item.second, apos + item_size + item.second, true);
+			//_vchilds[item.first]->set_base_pos(item.second.x, item.second.y);
+			_vchilds[item.first]->draw_frames();
+			ImGui::PopClipRect();
+		}
 		ImGui::PopClipRect();
-		//ImGui::EndChild();
+	}
+
+	void ft_listbox::draw_frames()
+	{
+		draw();
+	}
+
+	void ft_listbox::update_draw_list_pos()
+	{
+		if (_vchilds.empty())
+		{
+			printf("list is empty!\n");
+			return;
+		}
+		if (max_display_num < 0)
+		{
+			return;
+		}
+
+		if (_lt_pt._direction == direction_vertical)
+		{
+			spacing = ImVec2(0, _in_p._sizeh / max_display_num);
+
+			item_size = ImVec2(_in_p._sizew, _in_p._sizeh / max_display_num);
+		}
+		else
+		{
+			spacing = ImVec2(_in_p._sizew / max_display_num,0);
+
+			item_size = ImVec2(_in_p._sizew / max_display_num, _in_p._sizeh);
+		}
+
+		draw_list_pos_map.clear();
+
+		if (min_dis_index > 0)
+		{
+			draw_list_pos_map[min_dis_index - 1] = spacing*(-1);
+			_vchilds[min_dis_index - 1]->set_base_pos(draw_list_pos_map[min_dis_index - 1].x, draw_list_pos_map[min_dis_index - 1].y);
+		}
+		for (int i = 0; i < max_display_num; i++)
+		{
+			draw_list_pos_map[min_dis_index + i] = spacing*i;
+			_vchilds[min_dis_index + i]->set_base_pos(draw_list_pos_map[min_dis_index + i].x, draw_list_pos_map[min_dis_index + i].y);
+		}
+		if (min_dis_index + max_display_num < _vchilds.size())
+		{
+			int max_draw_index = min_dis_index + max_display_num;
+			draw_list_pos_map[max_draw_index] = spacing*max_display_num;
+			_vchilds[max_draw_index]->set_base_pos(draw_list_pos_map[max_draw_index].x, draw_list_pos_map[max_draw_index].y);
+		}
+	}
+
+	void ft_listbox::update_highlight_pos()
+	{
+
 	}
 
 	void ft_listbox::add_child(base_ui_component* pchild)
 	{
-		size_t icnt = child_count();
-		af_vec2 nsz;
-		pchild->get_size(nsz.x,nsz.y);
-		if (icnt > 0)
-		{
-			base_ui_component* plast = get_child(icnt - 1);
-			af_vec2 sz;
-			plast->get_size(sz.x,sz.y);
-			ImVec2 bpos = plast->base_pos();
-			if (_lt_pt._vertical)
-			{
-				set_base_pos(0.f, bpos.y + sz.y);
-			}
-			else
-			{
-				set_base_pos(bpos.x + sz.x, bpos.y);
-			}
-		}
-		else
-		{
-			set_base_pos(0, 0);
-		}
+		ft_base* _pnode = new ft_base;
+		ft_base::add_child(_pnode);
+		_pnode->add_child(pchild);
 
-		ft_base::add_child(pchild);
+		max_display_num = _lt_pt._max_display_num_uhd > _vchilds.size() ? _vchilds.size() : _lt_pt._max_display_num_uhd;
+
+		update_draw_list_pos();
 	}
+
 	void ft_listbox::remove_child(base_ui_component* pchild)
 	{
-		af_vec2 chd_sz;
-		pchild->get_size(chd_sz.x,chd_sz.y);
-		auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
-		if (it != _vchilds.end())
+		for (auto item = _vchilds.begin(); item != _vchilds.end(); item++)
 		{
-			auto itt = it + 1;
-			while (itt != _vchilds.end())
+			if ((*item)->get_child(0) == pchild)
 			{
-				ImVec2 bpos = (*itt)->base_pos();
-				if (_lt_pt._vertical)
-				{
-					bpos.y -= chd_sz.y;
-				}
-				else
-				{
-					bpos.x -= chd_sz.x;
-				}
-				(*itt)->set_base_pos(bpos.x, bpos.y);
-				itt++;
+				base_ui_component* _pchild = *item;
+				_vchilds.erase(item);
+				delete _pchild;
+				break;
 			}
-			_vchilds.erase(it);
-			delete pchild;
 		}
+
+		max_display_num = _lt_pt._max_display_num_uhd > _vchilds.size() ? _vchilds.size() : _lt_pt._max_display_num_uhd;
+
+		update_draw_list_pos();
 	}
 
-	bool ft_listbox::handle_mouse()
+
+	void ft_listbox::set_cur_index(int index)
 	{
-		return false;
+		if (index == cur_index ||index < 0 || index >= _vchilds.size())
+		{
+			return;
+		}
+
+		cur_index = index;
+
+		if (cur_index < min_dis_index)
+		{
+			min_dis_index = cur_index;
+		}
+		else if (cur_index >= min_dis_index + max_display_num)
+		{
+			min_dis_index = cur_index - max_display_num + 1;
+		}
+
+		update_draw_list_pos();
+	}
+
+	void ft_listbox::set_max_display_num(int num)
+	{
+		if (max_display_num == num || num <= 0)
+		{
+			return;
+		}
+		if (_lt_pt._max_display_num_uhd != num)
+		{
+			_lt_pt._max_display_num_uhd = num;
+		}
+
+		max_display_num = num > _vchilds.size() ? _vchilds.size():num;
+	
+
+		if (cur_index - min_dis_index >= max_display_num)
+		{
+			min_dis_index = cur_index - max_display_num + 1;
+		}
+
+		if (min_dis_index + max_display_num + 1 > _vchilds.size())
+		{
+			min_dis_index = _vchilds.size() - max_display_num;
+		}
+
+		update_draw_list_pos();
 	}
 }
