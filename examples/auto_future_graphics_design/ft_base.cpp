@@ -158,7 +158,7 @@ namespace auto_future
 			}
 		}
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)	
+
 	base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
 	{
 		for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
@@ -183,7 +183,7 @@ namespace auto_future
 			return nullptr;
 		}
 	}
-#endif
+
 	bool ft_base::contains(float posx, float posy)
 	{
 		ImVec2 abpos = absolute_coordinate_of_base_pos();

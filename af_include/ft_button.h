@@ -25,7 +25,14 @@ namespace auto_future
 		ft_button();
 		//ft_button(int tid) :base_ui_component(tid){}
 		void draw();
-	
+          void mouse_down()
+          {
+               _state = en_pressed;
+          }
+          void mouse_relese()
+          {
+               _state = en_normal;
+          }
 		void set_state(state st)
 		{
 			_state = st;

@@ -98,7 +98,7 @@ namespace auto_future
 		//ImGuiIO& io = ImGui::GetIO(); //(void)io;
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
 		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
-		ImGui_ImplGlfwGL3_Init(_window, false);
+		ImGui_ImplGlfwGL3_Init(_window, true);
 		
 		ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 1.00f); //ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 		//base_ui_component* _proot = NULL;
@@ -157,6 +157,39 @@ namespace auto_future
 				keep_state_trans_on();
                     _proot->draw_frames();
 			}
+               ImGuiContext& g = *GImGui;
+               ImGuiWindow* cur_window = ImGui::GetCurrentWindow();
+               ImGuiWindow* front_window = g.Windows.back();
+               ImRect wrect( cur_window->Pos, cur_window->Pos + cur_window->Size );
+               if( cur_window == front_window && wrect.Contains( ImGui::GetIO().MousePos ) )
+               {
+                    //printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+                    base_ui_component* psel_ui = _proot->get_hit_ui_object( ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y );
+                    if( psel_ui )
+                    {
+                         if( ImGui::IsMouseClicked( 0 ) )
+                         {
+                              psel_ui->trigger_click();
+                              psel_ui->mouse_clicked();
+                         }
+                         if( ImGui::IsMouseDown( 0 ) )
+                         {
+                              psel_ui->trigger_mouse_down();
+                              psel_ui->mouse_down();
+                         }
+                         if( ImGui::IsMouseReleased( 0 ) )
+                         {
+                              psel_ui->trigger_mouse_release();
+                              psel_ui->mouse_relese();
+                         }
+                         if( ImGui::IsMouseDragging( 0 ) )
+                         {
+                              auto ms_delta = ImGui::GetIO().MouseDelta;
+                              psel_ui->trigger_mouse_drag( ms_delta.x, ms_delta.y );
+                              psel_ui->mouse_drag( ms_delta.x, ms_delta.y );
+                         }
+                    }
+               }
 			ImGui::End();
 			ImGui::PopStyleVar();
 			ImGui::PopStyleVar();

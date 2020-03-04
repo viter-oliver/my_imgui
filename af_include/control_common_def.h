@@ -48,6 +48,8 @@ namespace auto_future
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
 #endif
+     typedef function<void( void )> mouse_fun;
+     typedef function<void( float, float )>mouse_drag_fun;
 	extern void ShowHelpMarker(const char* desc);
 	extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	/**
@@ -61,10 +63,15 @@ namespace auto_future
 	extern mp_tp_propty_handle _mcustom_type_property_handles_container;
 	void reg_property_handle(string tpname, property_handle ph);
 	void init_common_type_property_handles();
+
 	class AFG_EXPORT base_ui_component
 	{
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	protected:
+          mouse_fun _mouse_clicked;
+          mouse_fun _mouse_down;
+          mouse_fun _mouse_release;
+          mouse_drag_fun _mouse_drag;
           vframe_fun _vframe_fun;
 		vp_prop_ele _vprop_eles;
 		enum adjacent_model
@@ -141,6 +148,7 @@ namespace auto_future
 		}
 
 	public:
+          bool _be_inner_use = false;
 		/**
 		*@brief draw property on the property page for editing
 		*/
@@ -155,7 +163,7 @@ namespace auto_future
 		{
 			_selected = beselected;
 		}
-         
+          
 
 		vp_prop_ele& get_prop_ele(){
 			return _vprop_eles;
@@ -164,7 +172,6 @@ namespace auto_future
 		//{
 		//	return ImVec2();
 		//}
-		virtual base_ui_component* get_hit_ui_object(float posx, float posy) = 0;
 
 		/**
 		*@brief init some data member from a json value unit
@@ -246,11 +253,45 @@ namespace auto_future
           {
                _vframe_fun.clear();
           }
-		 virtual void draw_frames() = 0;
-		 virtual void mouse_clicked(){}
-		 virtual void mouse_down(){}
-		 virtual void mouse_relese(){}
-		 virtual void mouse_drag(float xoffset, float yoffset){}
+          virtual void draw_frames() = 0;
+          void register_mouse_click( mouse_fun mclick )
+          {
+               swap( _mouse_clicked, mclick );
+          }
+          void register_mouse_down( mouse_fun mdown )
+          {
+               swap( _mouse_down, mdown );
+          }
+          void register_mouse_release( mouse_fun mrelease )
+          {
+               swap( _mouse_release, mrelease );
+          }
+          void register_mouse_draging( mouse_drag_fun mdrag )
+          {
+               swap( _mouse_drag, mdrag );
+          }
+          void trigger_click()
+          {
+               if( _mouse_clicked ) _mouse_clicked;
+          }
+          void trigger_mouse_down()
+          {
+               if( _mouse_down ) _mouse_down;
+          }
+          void trigger_mouse_release()
+          {
+               if( _mouse_release ) _mouse_release;
+          }
+          void trigger_mouse_drag( float xof, float yof )
+          {
+               if( _mouse_drag ) _mouse_drag( xof, yof );
+          }
+          virtual void mouse_clicked(){}
+          virtual void mouse_down(){}
+          virtual void mouse_relese(){}
+          virtual void mouse_drag(float xoffset, float yoffset){}
+          virtual base_ui_component* get_hit_ui_object( float posx, float posy ) = 0;
+
 		virtual bool contains(float posx, float posy) = 0;
 		virtual bool relative_contain(float pos, bool be_h) = 0;
 		virtual bool set_prop_fd_value(int pg_id, int fd_id, void* pvalue) = 0;

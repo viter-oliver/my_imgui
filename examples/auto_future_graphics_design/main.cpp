@@ -57,6 +57,9 @@
 #include "get_web_time.h"
 #include "aes.h"
 #include "video_capture.h"
+#include "main_version.h"
+#include "svn_version.h"
+#include "HtmlHelp.h"
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -100,6 +103,7 @@ show_output_format = false, show_model_list = false, show_world_space = false, \
 show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
 show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false,\
 show_common_value_edit = false,show_feedback_edit=false;
+
 enum en_editing_wd_state
 {
 	en_editing,
@@ -881,6 +885,35 @@ int main(int argc, char* argv[])
 				}
 				ImGui::EndMenu();
 			}
+               if (ImGui::BeginMenu("Help"))
+               {
+                    if (ImGui::MenuItem("ViewHelp"))
+                    {
+                         char szFilePath[ MAX_PATH ], szPath[ MAX_PATH ];
+                         GetModuleFileName( NULL, szFilePath, MAX_PATH ); //获得当前程序目录
+                         string sfp( szFilePath );
+                         string sdp = sfp.substr( 0, sfp.find_last_of( '\\' ) + 1 );
+                         sdp += "help.chm";
+                         HtmlHelp( NULL, sdp.c_str(), HH_DISPLAY_TOPIC, NULL );
+                         
+                    }
+                    if( ImGui::Button( "About" ) )
+                    {
+                         ImGui::OpenPopup( "About" );
+                    }
+                    if( ImGui::BeginPopupModal( "About", NULL, ImGuiWindowFlags_NoTitleBar ) )
+                    {
+                         ImGui::Text( "Auto-future graphics designer" );
+                         ImGui::Text( "Copyright 2020 by viter/Auto-future company" );
+                         ImGui::Text( "Version:" MAINVERSION SOFTWARE_VERSION );
+                         if( ImGui::Button( "Ok" ) )
+                         {
+                              ImGui::CloseCurrentPopup();
+                         }
+                         ImGui::EndPopup();
+                    }
+                    ImGui::EndMenu();
+               }
 			ImGui::RadioButton("Editing", &editing_state, en_editing);
 			if (ImGui::RadioButton("Preview", &editing_state, en_preview))
 			{
@@ -889,7 +922,8 @@ int main(int argc, char* argv[])
 
 			ImGui::EndMainMenuBar();
 		}
-
+          
+    
 		if (show_output_format)
 		{
 			ImGui::Begin("output binary format", &show_output_format, ImVec2(400, 100));
@@ -949,44 +983,48 @@ int main(int argc, char* argv[])
 				_proot->draw_frames();
 			}			
 			
-				ImGuiContext& g = *GImGui;
-				ImGuiWindow* cur_window = ImGui::GetCurrentWindow();
-				ImGuiWindow* front_window = g.Windows.back();
-				ImRect wrect(cur_window->Pos, cur_window->Pos + cur_window->Size);
-				if (cur_window == front_window && wrect.Contains(ImGui::GetIO().MousePos))
+			ImGuiContext& g = *GImGui;
+			ImGuiWindow* cur_window = ImGui::GetCurrentWindow();
+			ImGuiWindow* front_window = g.Windows.back();
+			ImRect wrect(cur_window->Pos, cur_window->Pos + cur_window->Size);
+			if (cur_window == front_window && wrect.Contains(ImGui::GetIO().MousePos))
+			{
+				//printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
+				if (psel_ui)
 				{
-					//printf("mouse_click_pos(%f,%f)\n", ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
-					base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
-					if (psel_ui)
+					if (editing_state == en_editing)
 					{
-						if (editing_state == en_editing)
+						if (ImGui::IsMouseClicked(0))
 						{
-							if (ImGui::IsMouseClicked(0))
-							{
-								prj_edit->sel_ui_component(psel_ui);
-							}
-						}
-						else
-						{
-							if (ImGui::IsMouseClicked(0))
-							{
-								psel_ui->mouse_clicked();
-							}
-							if (ImGui::IsMouseDown(0))
-							{
-								psel_ui->mouse_down();
-							}
-							if (ImGui::IsMouseReleased(0))
-							{
-								psel_ui->mouse_relese();
-							}
-							if (ImGui::IsMouseDragging(0))
-							{
-								auto ms_delta = ImGui::GetIO().MouseDelta;
-								psel_ui->mouse_drag(ms_delta.x, ms_delta.y);
-							}
+							prj_edit->sel_ui_component(psel_ui);
 						}
 					}
+					else
+					{
+						if (ImGui::IsMouseClicked(0))
+						{
+                                   psel_ui->trigger_click();
+							psel_ui->mouse_clicked();
+						}
+						if (ImGui::IsMouseDown(0))
+						{
+                                   psel_ui->trigger_mouse_down();
+							psel_ui->mouse_down();
+						}
+						if (ImGui::IsMouseReleased(0))
+						{
+                                   psel_ui->trigger_mouse_release();
+							psel_ui->mouse_relese();
+						}
+						if (ImGui::IsMouseDragging(0))
+						{
+							auto ms_delta = ImGui::GetIO().MouseDelta;
+                                   psel_ui->trigger_mouse_drag( ms_delta.x, ms_delta.y );
+							psel_ui->mouse_drag(ms_delta.x, ms_delta.y);
+						}
+					}
+				}
 			}
 		
 

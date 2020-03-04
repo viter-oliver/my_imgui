@@ -170,6 +170,7 @@ namespace auto_future
 	void ft_listbox::add_child(base_ui_component* pchild)
 	{
 		ft_base* _pnode = new ft_base;
+          _pnode->_be_inner_use = true;
 		ft_base::add_child(_pnode);
 		_pnode->add_child(pchild);
 

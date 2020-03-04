@@ -56,10 +56,10 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 6, 1 ]
+						[ 6, 0, 3, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 1 ]
+				"key" : [ 6, 0, 8, 1 ]
 			},
 			
 			{
@@ -68,28 +68,28 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 3, 1 ]
+						[ 6, 0, 6, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 8, 1 ]
+				"key" : [ 6, 0, 5, 1 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 6, 0, 3, 1 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 8, 1 ]
-				]
-			},
-			
-			{
 				"key" : [ 6, 0, 6, 1 ],
 				"ref_list" : 
 				[
 					[ 6, 0, 5, 1 ]
+				]
+			},
+			
+			{
+				"key" : [ 6, 0, 3, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 8, 1 ]
 				]
 			}
 		]
@@ -376,7 +376,7 @@
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
-					"_frame_index" : 42,
+					"_frame_index" : 44,
 					"_name" : "turn_left",
 					"_posx" : 18.0,
 					"_posy" : 198.0,
@@ -394,7 +394,7 @@
 					"_angle_nml" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
-					"_frame_index" : 39,
+					"_frame_index" : 44,
 					"_name" : "turn_right",
 					"_posx" : 493.0,
 					"_posy" : 198.0,
@@ -463,11 +463,11 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "tsr",
-					"_posx" : 178.0,
-					"_posy" : 250.0,
-					"_sizeh" : 58.0,
+					"_posx" : 170.0,
+					"_posy" : 243.0,
+					"_sizeh" : 56.0,
 					"_sizew" : 62.0,
-					"_texture_index_txt" : 77,
+					"_texture_index_txt" : 75,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -512,12 +512,12 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "navi_turn",
-					"_posx" : 720.0,
+					"_posx" : 751.0,
 					"_posy" : 260.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 40.0,
 					"_texture_index_txt" : 31,
-					"_visible" : false,
+					"_visible" : true,
 					"type" : "ft_image"
 				},
 				
@@ -533,7 +533,7 @@
 					"_posy" : 264.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 3.0,
-					"_texture_index_txt" : 75,
+					"_texture_index_txt" : 74,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -568,7 +568,7 @@
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 400.0,
-					"_posy" : 237.0,
+					"_posy" : 210.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_txt_alignh_nml" : 0.50,
@@ -716,7 +716,7 @@
 					"_posy" : 110.0,
 					"_sizeh" : 83.0,
 					"_sizew" : 83.0,
-					"_texture_index_txt" : 74,
+					"_texture_index_txt" : 73,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -872,7 +872,7 @@
 			"_posy" : 0.0,
 			"_sizeh" : 10.0,
 			"_sizew" : 10.0,
-			"_visible" : true,
+			"_visible" : false,
 			"type" : "ft_image_file"
 		},
 		
@@ -1929,7 +1929,7 @@
 				[ "aaaaaaaa" ],
 				[ "adaaaaaa" ]
 			],
-			"state_idx" : 1
+			"state_idx" : 0
 		},
 		"navi_direct" : 
 		{
@@ -1964,7 +1964,7 @@
 					"easing_fun" : 0,
 					"key_from" : 0,
 					"key_to" : 7,
-					"start_time" : 0
+					"start_time" : 400
 				},
 				
 				{
@@ -1972,7 +1972,7 @@
 					"easing_fun" : 0,
 					"key_from" : 0,
 					"key_to" : 9,
-					"start_time" : 0
+					"start_time" : 400
 				},
 				
 				{
@@ -2902,7 +2902,7 @@
 					"easing_fun" : 0,
 					"key_from" : 0,
 					"key_to" : 7,
-					"start_time" : 400
+					"start_time" : 0
 				},
 				
 				{
@@ -2910,7 +2910,7 @@
 					"easing_fun" : 0,
 					"key_from" : 0,
 					"key_to" : 9,
-					"start_time" : 400
+					"start_time" : 0
 				},
 				
 				{
@@ -3401,7 +3401,7 @@
 				[ "aaaaaaaa" ],
 				[ "adaaaaaa" ]
 			],
-			"state_idx" : 1
+			"state_idx" : 0
 		},
 		"right_fcta2" : 
 		{
@@ -3433,7 +3433,7 @@
 				[ "aaaaaaaa" ],
 				[ "adaaaaaa" ]
 			],
-			"state_idx" : 1
+			"state_idx" : 0
 		},
 		"tsr_rg" : 
 		{
@@ -3481,9 +3481,9 @@
 				
 				[
 					"aaaahiec",
-					"aaaagiec",
-					"aaaadced",
-					"aaaahked",
+					"aaaagaec",
+					"aaaacked",
+					"aaaahded",
 					"aaaahaeb",
 					"ddddhddp",
 					"aaaaoaeb"
@@ -3519,7 +3519,7 @@
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "ckaaaaaa" ]
+				[ "cmaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -3551,9 +3551,9 @@
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "chaaaaaa" ]
+				[ "cmaaaaaa" ]
 			],
-			"state_idx" : 1
+			"state_idx" : 0
 		}
 	},
 	"texture_id_index" : 0,
@@ -3665,7 +3665,7 @@
 		{
 			"mipmap" : false,
 			"name" : "left_wing.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
@@ -3713,31 +3713,31 @@
 		{
 			"mipmap" : false,
 			"name" : "night_left_wing.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "night_right_wing.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "right_wing.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "snow_left_wing.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "snow_right_wing.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
@@ -3750,7 +3750,7 @@
 	[
 		
 		{
-			"separated" : false,
+			"separated" : true,
 			"texture_data_file" : "arhud.json",
 			"texture_pack_file" : "arhud.png"
 		}
@@ -3766,7 +3766,7 @@
 		"show_property_window" : true,
 		"show_resource_manager" : false,
 		"show_slider_path_picker" : false,
-		"show_state_manager_edit" : false
+		"show_state_manager_edit" : true
 	}
 }
 

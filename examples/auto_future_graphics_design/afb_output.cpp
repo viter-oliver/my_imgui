@@ -108,7 +108,9 @@ void afb_output::output_afb(const char* afb_file)
 	pk.pack_array(2);//en_output_bin_format
 	pk.pack_int(g_output_bin_format._txt_fmt);
 	pk.pack_int(g_output_bin_format._pgm_fmt);
-	string output_file_path = g_cureent_directory + "afb\\";
+     string afb_path( afb_file );
+     
+     string output_file_path = afb_path.substr( 0, afb_path.find_last_of( '\\' ) + 1 ); //g_cureent_directory + "afb\\";
 	int idx = 0;
 	file_outputor fout_put(output_file_path);
 	pk.pack_int(g_cur_texture_id_index);//en_vtextures_res_cidx
