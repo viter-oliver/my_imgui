@@ -98,7 +98,7 @@ namespace auto_future
 		of the child class of base_ui_componnet */
 		vector<base_ui_component*> _vchilds;
 		/** the parent object, this member will NULL if current object is root */
-		base_ui_component* _parent;
+		base_ui_component* _parent=nullptr;
 		//bool _be_window = { false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 

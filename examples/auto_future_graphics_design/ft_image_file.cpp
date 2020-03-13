@@ -63,6 +63,7 @@ namespace auto_future
           if (_texture_id!=0)
           {
                glDeleteTextures( 1, &_texture_id );
+               _texture_id = 0;
           }
           GLubyte* imgdata = NULL;
           imgdata = SOIL_load_image( image_path, &_width, &_height, &_channels, SOIL_LOAD_RGBA );

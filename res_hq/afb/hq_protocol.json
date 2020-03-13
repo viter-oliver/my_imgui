@@ -1,0 +1,110 @@
+{
+   "name" : "communication_protocol",
+   "id" : "00",
+   "mcu_cmd_list" : [
+      {
+         "name" : "left turn",
+         "id" : "060001"
+      },
+      {
+         "name" : "right turn",
+         "id" : "060002"
+      },
+      {
+         "name" : "speed",
+         "id" : "060101"
+      },
+      {
+         "name" : "rotate speed",
+         "id" : "060102"
+      },
+      {
+         "name" : "gear",
+         "id" : "061603"
+      },
+      {
+         "name" : "driving model",
+         "id" : "061604"
+      },
+      {
+         "name" : "navi message",
+         "id" : "061501"
+      },
+      {
+         "name" : "language",
+         "id" : "06160a"
+      },
+      {
+         "name" : "color model",
+         "id" : "06160b"
+      },
+      {
+         "name" : "turning curvature",
+         "id" : "06160c"
+      },
+      {
+         "name" : "steering info",
+         "id" : "06160d"
+      },
+      {
+         "name" : "lka",
+         "id" : "06160e"
+      },
+      {
+         "name" : "acc",
+         "id" : "06160f"
+      },
+      {
+         "name" : "had_10",
+         "id" : "061610"
+      },
+      {
+         "name" : "tsr",
+         "id" : "061611"
+      },
+      {
+         "name" : "aeb",
+         "id" : "061612"
+      },
+      {
+         "name" : "phone call",
+         "id" : "061613"
+      },
+      {
+         "name" : "navi message",
+         "id" : "061615"
+      },
+      {
+         "name" : "lca",
+         "id" : "061616"
+      },
+      {
+         "name" : "FMradar_1",
+         "id" : "06161a"
+      },
+      {
+         "name" : "LCDA",
+         "id" : "06161b"
+      },
+      {
+         "name" : "navi_on",
+         "id" : "06161c"
+      },
+      {
+         "name" : "adas_on",
+         "id" : "06161d"
+      },
+      {
+         "name" : "hud_on",
+         "id" : "06161e"
+      },
+      {
+         "name" : "show_image",
+         "id" : "061b01"
+      },
+      {
+         "name" : "factory",
+         "id" : "062001"
+      }
+   ]
+}

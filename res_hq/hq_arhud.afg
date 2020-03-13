@@ -12,35 +12,37 @@
 	"aliase" : 
 	{
 		"control_acc" : [ 3, 1, 2, 1 ],
-		"control_navi_dir" : [ 3, 1, 4, 1 ],
-		"driving_model" : [ 4, 1, 9, 1 ],
-		"gear" : [ 4, 1, 8, 1 ],
+		"control_navi_dir" : [ 3, 1, 1, 3 ],
+		"driving_model" : [ 4, 1, 3, 2 ],
+		"gear" : [ 4, 1, 2, 2 ],
 		"show_acc" : [ 6, 0, 2, 1 ],
 		"show_acc_speed" : [ 6, 0, 0, 2, 1 ],
 		"show_arrow" : [ 6, 0, 3, 0, 0 ],
 		"show_arrow1" : [ 6, 0, 2, 0, 0 ],
 		"show_arrow2" : [ 6, 0, 1, 0, 0 ],
+		"show_far_scenario" : [ 6, 0, 0 ],
 		"show_fcw" : [ 6, 0, 5, 0, 0 ],
 		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
-		"show_image" : [ 6, 0, 2 ],
-		"show_left_fcta1" : [ 6, 0, 0, 12, 1 ],
-		"show_left_fcta2" : [ 6, 0, 1, 12, 1 ],
-		"show_left_fctb" : [ 6, 0, 2, 12, 1 ],
-		"show_navi_dir" : [ 6, 0, 4, 1 ],
-		"show_obj_mask" : [ 6, 0, 3 ],
-		"show_phone_ring" : [ 6, 0, 6, 1 ],
-		"show_remain_dis" : [ 6, 0, 10, 1 ],
-		"show_right_fcta1" : [ 6, 0, 0, 13, 1 ],
-		"show_right_fcta2" : [ 6, 0, 1, 13, 1 ],
-		"show_right_fctb" : [ 6, 0, 2, 13, 1 ],
+		"show_image" : [ 6, 0, 4 ],
+		"show_left_fcta1" : [ 6, 0, 0, 4, 1 ],
+		"show_left_fcta2" : [ 6, 0, 1, 4, 1 ],
+		"show_left_fctb" : [ 6, 0, 2, 4, 1 ],
+		"show_navi" : [ 6, 0, 3 ],
+		"show_navi_des" : [ 6, 0, 2, 3 ],
+		"show_navi_dir" : [ 6, 0, 1, 3 ],
+		"show_near_scenario" : [ 6, 0, 1 ],
+		"show_phone_ring" : [ 6, 0, 4, 2 ],
+		"show_right_fcta1" : [ 6, 0, 0, 5, 1 ],
+		"show_right_fcta2" : [ 6, 0, 1, 5, 1 ],
+		"show_right_fctb" : [ 6, 0, 2, 5, 1 ],
 		"show_road" : [ 6, 0, 0, 0, 0 ],
 		"show_sacc" : [ 6, 0, 6, 0, 0 ],
 		"show_tsr" : [ 6, 0, 3, 1 ],
 		"show_turn_left" : [ 6, 0, 0, 1 ],
 		"show_turn_right" : [ 6, 0, 1, 1 ],
-		"speed" : [ 4, 1, 7, 1 ],
+		"speed" : [ 4, 1, 1, 2 ],
 		"text_acc_speed" : [ 4, 1, 0, 2, 1 ],
-		"text_remian_dis" : [ 4, 1, 10, 1 ],
+		"text_remain_dis" : [ 4, 1, 0, 3 ],
 		"text_tsr_speed" : [ 4, 1, 0, 3, 1 ],
 		"txt_left_wing" : [ 0, 1, 0, 1 ],
 		"txt_right_wing" : [ 0, 1, 1, 1 ]
@@ -59,7 +61,7 @@
 						[ 6, 0, 3, 1 ]
 					]
 				},
-				"key" : [ 6, 0, 8, 1 ]
+				"key" : [ 6, 0, 2, 2 ]
 			},
 			
 			{
@@ -68,20 +70,20 @@
 					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 6, 0, 6, 1 ]
+						[ 6, 0, 4, 2 ]
 					]
 				},
-				"key" : [ 6, 0, 5, 1 ]
+				"key" : [ 6, 0, 0, 2 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 6, 0, 6, 1 ],
+				"key" : [ 6, 0, 4, 2 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 5, 1 ]
+					[ 6, 0, 0, 2 ]
 				]
 			},
 			
@@ -89,7 +91,7 @@
 				"key" : [ 6, 0, 3, 1 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 8, 1 ]
+					[ 6, 0, 2, 2 ]
 				]
 			}
 		]
@@ -178,12 +180,12 @@
 							"_trans_rotation_x" : 75.0,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 0.0,
-							"_trans_scale_x" : 500.0,
+							"_trans_scale_x" : 400.853027343750,
 							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : -500.0,
-							"_trans_translation_y" : 880.0,
-							"_trans_translation_z" : 9000.0,
+							"_trans_translation_x" : 600.0,
+							"_trans_translation_y" : 1300.0,
+							"_trans_translation_z" : 10000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -477,7 +479,7 @@
 							"_aj_model" : 0,
 							"_content" : "100",
 							"_font_id" : 1,
-							"_font_scale" : 0.9499999880790710,
+							"_font_scale" : 0.8000000119209290,
 							"_font_size" : 30,
 							"_name" : "speed_limit",
 							"_omit_rest" : 0,
@@ -507,223 +509,6 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "navi_turn",
-					"_posx" : 751.0,
-					"_posy" : 260.0,
-					"_sizeh" : 40.0,
-					"_sizew" : 40.0,
-					"_texture_index_txt" : 31,
-					"_visible" : true,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "flag",
-					"_posx" : 399.0,
-					"_posy" : 264.0,
-					"_sizeh" : 34.0,
-					"_sizew" : 3.0,
-					"_texture_index_txt" : 74,
-					"_visible" : true,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_angle_nml" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_frame_index" : 14,
-					"_name" : "phone_ring",
-					"_posx" : 380.0,
-					"_posy" : 243.0,
-					"_sizeh" : 35.0,
-					"_sizew" : 43.0,
-					"_texture_fmt_name" : "e115.json",
-					"_texture_name" : "e115.png",
-					"_visible" : false,
-					"type" : "ft_image_play"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "0",
-					"_font_id" : 0,
-					"_font_scale" : 1.0,
-					"_font_size" : 60,
-					"_name" : "speed",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 400.0,
-					"_posy" : 210.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.50,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"childs" : 
-					[
-						
-						{
-							"_adjacent_to_p" : 0.0,
-							"_aj_model" : 1,
-							"_content" : "km/h",
-							"_font_id" : 1,
-							"_font_scale" : 1.0,
-							"_font_size" : 16,
-							"_name" : "unit",
-							"_omit_rest" : 0,
-							"_play_circle" : 1.0,
-							"_playing" : false,
-							"_posx" : 17.91800117492676,
-							"_posy" : 12.08500099182129,
-							"_sizeh" : 25.03900146484375,
-							"_sizew" : 38.42800140380859,
-							"_txt_alignh_nml" : 0.0,
-							"_txt_alignv_nml" : 0.0,
-							"_txt_clr" : 
-							{
-								"x" : 1.0,
-								"y" : 1.0,
-								"z" : 1.0
-							},
-							"_visible" : true,
-							"_width" : 200.0,
-							"_width_limit" : false,
-							"type" : "ft_textblock"
-						}
-					],
-					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "P",
-					"_font_id" : 1,
-					"_font_scale" : 1.0,
-					"_font_size" : 36,
-					"_name" : "gear",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 188.0,
-					"_posy" : 268.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "自定义",
-					"_font_id" : 1,
-					"_font_scale" : 1.0,
-					"_font_size" : 30,
-					"_name" : "riding_model",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 510.0,
-					"_posy" : 268.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_content" : "200m",
-					"_font_id" : 1,
-					"_font_scale" : 1.0,
-					"_font_size" : 30,
-					"_name" : "remain_dis",
-					"_omit_rest" : 0,
-					"_play_circle" : 1.0,
-					"_playing" : false,
-					"_posx" : 650.0,
-					"_posy" : 268.0,
-					"_sizeh" : 20.0,
-					"_sizew" : 20.0,
-					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.0,
-					"_txt_clr" : 
-					{
-						"x" : 1.0,
-						"y" : 1.0,
-						"z" : 1.0
-					},
-					"_visible" : true,
-					"_width" : 200.0,
-					"_width_limit" : false,
-					"type" : "ft_textblock"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "flag_",
-					"_posx" : 363.0,
-					"_posy" : 110.0,
-					"_sizeh" : 83.0,
-					"_sizew" : 83.0,
-					"_texture_index_txt" : 73,
-					"_visible" : false,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
 					"_name" : "fct_left",
 					"_posx" : 0.0,
 					"_posy" : 118.4290084838867,
@@ -739,7 +524,7 @@
 							"_angle_nml" : 0.0,
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
-							"_frame_index" : 3,
+							"_frame_index" : 0,
 							"_name" : "fcta1",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
@@ -863,6 +648,253 @@
 		{
 			"_adjacent_to_p" : 0.0,
 			"_aj_model" : 0,
+			"_name" : "basi_info",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 20.0,
+			"_sizew" : 20.0,
+			"_visible" : true,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "flag",
+					"_posx" : 399.0,
+					"_posy" : 264.0,
+					"_sizeh" : 34.0,
+					"_sizew" : 3.0,
+					"_texture_index_txt" : 74,
+					"_visible" : true,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "0",
+					"_font_id" : 0,
+					"_font_scale" : 1.0,
+					"_font_size" : 60,
+					"_name" : "speed",
+					"_omit_rest" : 0,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 400.0,
+					"_posy" : 210.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.50,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 1,
+							"_content" : "km/h",
+							"_font_id" : 1,
+							"_font_scale" : 1.0,
+							"_font_size" : 16,
+							"_name" : "unit",
+							"_omit_rest" : 0,
+							"_play_circle" : 1.0,
+							"_playing" : false,
+							"_posx" : 17.91800117492676,
+							"_posy" : 12.08500099182129,
+							"_sizeh" : 25.03900146484375,
+							"_sizew" : 38.42800140380859,
+							"_txt_alignh_nml" : 0.0,
+							"_txt_alignv_nml" : 0.0,
+							"_txt_clr" : 
+							{
+								"x" : 1.0,
+								"y" : 1.0,
+								"z" : 1.0
+							},
+							"_visible" : true,
+							"_width" : 200.0,
+							"_width_limit" : false,
+							"type" : "ft_textblock"
+						}
+					],
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "P",
+					"_font_id" : 1,
+					"_font_scale" : 1.0,
+					"_font_size" : 36,
+					"_name" : "gear",
+					"_omit_rest" : 0,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 188.0,
+					"_posy" : 268.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "自定义",
+					"_font_id" : 1,
+					"_font_scale" : 0.8000000119209290,
+					"_font_size" : 30,
+					"_name" : "riding_model",
+					"_omit_rest" : 0,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 520.0,
+					"_posy" : 268.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_angle_nml" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_frame_index" : 14,
+					"_name" : "phone_ring",
+					"_posx" : 380.0,
+					"_posy" : 243.0,
+					"_sizeh" : 35.0,
+					"_sizew" : 43.0,
+					"_texture_fmt_name" : "e115.json",
+					"_texture_name" : "e115.png",
+					"_visible" : false,
+					"type" : "ft_image_play"
+				}
+			],
+			"type" : "ft_base"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_name" : "navi_info",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 20.0,
+			"_sizew" : 20.0,
+			"_visible" : true,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "200m",
+					"_font_id" : 1,
+					"_font_scale" : 1.0,
+					"_font_size" : 30,
+					"_name" : "remain_dis",
+					"_omit_rest" : 0,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 650.0,
+					"_posy" : 268.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.0,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "navi_turn",
+					"_posx" : 751.0,
+					"_posy" : 260.0,
+					"_sizeh" : 40.0,
+					"_sizew" : 40.0,
+					"_texture_index_txt" : 31,
+					"_visible" : true,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "flag_",
+					"_posx" : 363.0,
+					"_posy" : 110.0,
+					"_sizeh" : 83.0,
+					"_sizew" : 83.0,
+					"_texture_index_txt" : 73,
+					"_visible" : false,
+					"type" : "ft_image"
+				}
+			],
+			"type" : "ft_base"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
 			"_anchor_type" : 0,
 			"_angle_srd" : 0.0,
 			"_aposx" : 0.0,
@@ -874,35 +906,6 @@
 			"_sizew" : 10.0,
 			"_visible" : false,
 			"type" : "ft_image_file"
-		},
-		
-		{
-			"_adjacent_to_p" : 0.0,
-			"_aj_model" : 0,
-			"_bdclr" : 
-			{
-				"w" : 1.0,
-				"x" : 1.0,
-				"y" : 1.0,
-				"z" : 1.0
-			},
-			"_bkclr" : 
-			{
-				"w" : 1.0,
-				"x" : 0.0,
-				"y" : 0.0,
-				"z" : 0.0
-			},
-			"_border_width_uhd" : 1.0,
-			"_name" : "obj_mask",
-			"_posx" : 0.0,
-			"_posy" : 0.0,
-			"_round_utn" : 0.0,
-			"_sizeh" : 20.0,
-			"_sizew" : 20.0,
-			"_visible" : false,
-			"_with_border" : false,
-			"type" : "ft_block"
 		}
 	],
 	"common_value_list" : 
@@ -911,11 +914,11 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 7, 1 ],
-				[ 0, 1, 0, 7, 1 ],
-				[ 0, 1, 10, 1 ],
-				[ 0, 1, 8, 1 ],
-				[ 0, 1, 9, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1 ],
+				[ 0, 1, 1 ],
 				[ 0, 1, 0, 3, 1 ],
 				[ 0, 1, 0, 2, 1 ]
 			],
@@ -931,11 +934,11 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 8, 1 ],
-				[ 0, 1, 7, 1 ],
-				[ 0, 1, 0, 7, 1 ],
-				[ 0, 1, 10, 1 ],
-				[ 0, 1, 9, 1 ],
+				[ 0, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1, 1 ],
 				[ 0, 1, 0, 3, 1 ],
 				[ 0, 1, 0, 2, 1 ]
 			],
@@ -951,12 +954,12 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 8, 1 ],
-				[ 0, 1, 7, 1 ],
-				[ 0, 1, 9, 1 ],
-				[ 0, 1, 10, 1 ],
+				[ 0, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1, 1 ],
+				[ 0, 1, 1 ],
 				[ 0, 1, 0, 3, 1 ],
-				[ 0, 1, 0, 7, 1 ],
+				[ 0, 1, 1 ],
 				[ 0, 1, 0, 2, 1 ]
 			],
 			"type" : "af_vec3",
@@ -1890,7 +1893,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 0, 12, 1 ]
+				[ 4, 1, 0, 4, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -1922,7 +1925,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 1, 12, 1 ]
+				[ 4, 1, 1, 4, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -2272,43 +2275,43 @@
 				],
 				
 				[
-					"aaaakpme",
-					"aaaapkef",
+					"aaealfme",
+					"aaiallef",
 					"aaaajgec",
 					"aaaaaaaa",
-					"dagnmied",
-					"aaiafeee",
-					""
+					"aaaapked",
+					"aaaakped",
+					"aaaaaaaa"
 				],
 				
 				[
-					"aaaaobme",
-					"aaeabmeg",
+					"aaeaadmf",
+					"aamambef",
 					"aaaajgec",
 					"aaaaaaaa",
-					"dagnmied",
-					"aaaamiee",
-					""
+					"aaaapked",
+					"aaaaoged",
+					"aaaaaaaa"
 				],
 				
 				[
 					"ioipcnee",
-					"aaaapkef",
+					"aaiallef",
 					"aaaajgec",
 					"aaaaaaaa",
-					"dagnmied",
-					"aaiafeee",
-					""
+					"aaaapked",
+					"aaaakped",
+					"aaaaaaaa"
 				],
 				
 				[
-					"aaiaijee",
-					"aaeabmeg",
+					"aaaahkee",
+					"aacamlef",
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaamiee",
-					""
+					"aaaabgee",
+					"aaaaaaaa"
 				],
 				
 				[
@@ -2748,42 +2751,42 @@
 				],
 				
 				[
-					"aaiajnme",
-					"aanaaeeg",
+					"aaaakpme",
+					"aaaapkef",
 					"aaaajgec",
 					"aaaaaaaa",
-					"dagnmied",
-					"aaiaieee",
+					"aaaapked",
+					"aaaabgee",
 					"aaaaaaaa"
 				],
 				
 				[
-					"aaaamime",
-					"aabaceeg",
+					"aaaapkme",
+					"aalaabeg",
 					"aaaajgec",
 					"aaaaaaaa",
-					"dagnmied",
-					"aaaaobee",
+					"aaaapked",
+					"aaaagbee",
 					"aaaaaaaa"
 				],
 				
 				[
 					"aaaabgee",
-					"aakaameg",
+					"aaaapkef",
 					"aaaajgec",
 					"aaaaaaaa",
-					"dagnmied",
-					"aaiaijee",
+					"aaaapked",
+					"aaaabgee",
 					"aaaaaaaa"
 				],
 				
 				[
-					"aaaafmee",
-					"aabaceeg",
+					"aaaaeiee",
+					"aaaapkef",
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaaaobee",
+					"aaaagbee",
 					"aaaaaaaa"
 				],
 				
@@ -3148,7 +3151,7 @@
 			[
 				
 				[
-					"aaaapkmd",
+					"aaaamimd",
 					"aakaameg",
 					"aaaajgec",
 					"aaaaaaaa",
@@ -3219,41 +3222,41 @@
 				
 				[
 					"aaiaijme",
-					"aapaaheg",
-					"aaaajgec",
-					"aaaaaaaa",
-					"dagnmied",
-					"aamajjee",
-					"aaaaaaaa"
-				],
-				
-				[
-					"aaaakpme",
-					"aaoacleg",
-					"aaaajgec",
-					"aaaaaaaa",
-					"dagnmied",
-					"aaaapkee",
-					"aaaaaaaa"
-				],
-				
-				[
-					"aaaajled",
 					"aakaameg",
 					"aaaajgec",
 					"aaaaaaaa",
-					"dagnmied",
-					"aaaakaee",
+					"aaaapked",
+					"aaaafmee",
+					"aaaaaaaa"
+				],
+				
+				[
+					"aaianeme",
+					"aaeabmeg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaiakcee",
+					"aaaaaaaa"
+				],
+				
+				[
+					"aaaafced",
+					"aakaameg",
+					"aaaajgec",
+					"aaaaaaaa",
+					"aaaapked",
+					"aaaafmee",
 					"aaaaaaaa"
 				],
 				
 				[
 					"aaaabgee",
-					"aaoacleg",
+					"aaeabmeg",
 					"aaaajgec",
 					"aaaaaaaa",
 					"dagnmied",
-					"aaiapmee",
+					"aaiakcee",
 					"aaaaaaaa"
 				],
 				
@@ -3337,7 +3340,7 @@
 					"aaaaimec"
 				]
 			],
-			"state_idx" : 0
+			"state_idx" : 10
 		},
 		"phone_ring" : 
 		{
@@ -3362,7 +3365,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 6, 1 ]
+				[ 4, 1, 4, 2 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3394,7 +3397,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 0, 13, 1 ]
+				[ 4, 1, 0, 5, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3426,7 +3429,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 1, 13, 1 ]
+				[ 4, 1, 1, 5, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3485,7 +3488,7 @@
 					"aaaacked",
 					"aaaahded",
 					"aaaahaeb",
-					"ddddhddp",
+					"mnmmemdp",
 					"aaaaoaeb"
 				]
 			],
@@ -3764,7 +3767,7 @@
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : false,
+		"show_resource_manager" : true,
 		"show_slider_path_picker" : false,
 		"show_state_manager_edit" : true
 	}

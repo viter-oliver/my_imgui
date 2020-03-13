@@ -1,0 +1,234 @@
+{
+   "name" : "communication_protocol",
+   "id" : "00",
+   "mcu_cmd_list" : [
+      {
+         "name" : "lane_line_ll_1",
+         "id" : "0410"
+      },
+      {
+         "name" : "lane_line_ll_2",
+         "id" : "0411"
+      },
+      {
+         "name" : "lane_line_ll_3",
+         "id" : "0412"
+      },
+      {
+         "name" : "lane_line_ll_4",
+         "id" : "0413"
+      },
+      {
+         "name" : "lane_line_l_1",
+         "id" : "0414"
+      },
+      {
+         "name" : "lane_line_l_2",
+         "id" : "0415"
+      },
+      {
+         "name" : "lane_line_l_3",
+         "id" : "0416"
+      },
+      {
+         "name" : "lane_line_l_4",
+         "id" : "0417"
+      },
+      {
+         "name" : "lane_line_rr_1",
+         "id" : "041c"
+      },
+      {
+         "name" : "lane_line_rr_2",
+         "id" : "041d"
+      },
+      {
+         "name" : "lane_line_rr_3",
+         "id" : "041e"
+      },
+      {
+         "name" : "lane_line_rr_4",
+         "id" : "041f"
+      },
+      {
+         "name" : "lane_line_r_1",
+         "id" : "0418"
+      },
+      {
+         "name" : "lane_line_r_2",
+         "id" : "0419"
+      },
+      {
+         "name" : "lane_line_r_3",
+         "id" : "041a"
+      },
+      {
+         "name" : "lane_line_r_4",
+         "id" : "041b"
+      },
+      {
+         "name" : "obj",
+         "id" : "0421"
+      },
+      {
+         "name" : "obj10_1",
+         "id" : "044c"
+      },
+      {
+         "name" : "obj10_2",
+         "id" : "044d"
+      },
+      {
+         "name" : "obj10_3",
+         "id" : "044e"
+      },
+      {
+         "name" : "obj10_4",
+         "id" : "044f"
+      },
+      {
+         "name" : "obj1_1",
+         "id" : "0422"
+      },
+      {
+         "name" : "obj1_2",
+         "id" : "0423"
+      },
+      {
+         "name" : "obj1_3",
+         "id" : "0424"
+      },
+      {
+         "name" : "obj1_4",
+         "id" : "0425"
+      },
+      {
+         "name" : "obj2_1",
+         "id" : "0426"
+      },
+      {
+         "name" : "obj2_2",
+         "id" : "0427"
+      },
+      {
+         "name" : "obj2_3",
+         "id" : "0428"
+      },
+      {
+         "name" : "obj2_4",
+         "id" : "0429"
+      },
+      {
+         "name" : "obj3_1",
+         "id" : "0430"
+      },
+      {
+         "name" : "obj3_2",
+         "id" : "0431"
+      },
+      {
+         "name" : "obj3_3",
+         "id" : "0432"
+      },
+      {
+         "name" : "obj3_4",
+         "id" : "0433"
+      },
+      {
+         "name" : "obj4_1",
+         "id" : "0434"
+      },
+      {
+         "name" : "obj4_2",
+         "id" : "0435"
+      },
+      {
+         "name" : "obj4_3",
+         "id" : "0436"
+      },
+      {
+         "name" : "obj4_4",
+         "id" : "0437"
+      },
+      {
+         "name" : "obj5_1",
+         "id" : "0438"
+      },
+      {
+         "name" : "obj5_2",
+         "id" : "0439"
+      },
+      {
+         "name" : "obj5_3",
+         "id" : "043a"
+      },
+      {
+         "name" : "obj5_4",
+         "id" : "043b"
+      },
+      {
+         "name" : "obj6_1",
+         "id" : "043c"
+      },
+      {
+         "name" : "obj6_2",
+         "id" : "043d"
+      },
+      {
+         "name" : "obj6_3",
+         "id" : "043e"
+      },
+      {
+         "name" : "obj6_4",
+         "id" : "043f"
+      },
+      {
+         "name" : "obj7_1",
+         "id" : "0440"
+      },
+      {
+         "name" : "obj7_2",
+         "id" : "0441"
+      },
+      {
+         "name" : "obj7_3",
+         "id" : "0442"
+      },
+      {
+         "name" : "obj7_4",
+         "id" : "0443"
+      },
+      {
+         "name" : "obj8_1",
+         "id" : "0444"
+      },
+      {
+         "name" : "obj8_2",
+         "id" : "0445"
+      },
+      {
+         "name" : "obj8_3",
+         "id" : "0446"
+      },
+      {
+         "name" : "obj8_4",
+         "id" : "0447"
+      },
+      {
+         "name" : "obj9_1",
+         "id" : "0448"
+      },
+      {
+         "name" : "obj9_2",
+         "id" : "0449"
+      },
+      {
+         "name" : "obj9_3",
+         "id" : "044a"
+      },
+      {
+         "name" : "obj9_4",
+         "id" : "044b"
+      }
+   ]
+}

@@ -85,14 +85,78 @@ struct af_state_manager
 };
 using ps_state_manager = shared_ptr<af_state_manager>;
 using mp_state_manager = map<string, ps_state_manager>;
-extern mp_state_manager g_mstate_manager;
+extern AFG_EXPORT mp_state_manager g_mstate_manager;
 AFG_EXPORT bool save_trans_value( string trans_name, int sid );
 AFG_EXPORT bool restore_trans_value( string trans_name, int sid );
 AFG_EXPORT bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle);
 AFG_EXPORT bool play_tran(string stm_name, int from, int to);
 AFG_EXPORT bool play_tran_playlist(string stm_name, int playlist_id);
 AFG_EXPORT void keep_state_trans_on();
-template<class T> bool set_trans_full_state_delta(string trans_name,
+template<class T> struct paire_value
+{
+     int idex;
+     T delta_value;
+};
+template<class T> bool set_trans_pair_state_list_delta( string trans_name,
+                                                   prop_ele_position& prp_pos,
+                                                   int target_id,//start state index
+                                                   T tar_value,
+                                                   vector<paire_value<T>>& vpvalue )
+{
+     const auto& itrans = g_mstate_manager.find( trans_name );
+     if( itrans == g_mstate_manager.end() )
+     {
+          printf( "invalid trans name:%s\n", trans_name.c_str() );
+          return false;
+     }
+     int isz = sizeof( T );
+     auto& pobj = prp_pos._pobj;
+     auto& pgidx = prp_pos._page_index;
+     auto& fidx = prp_pos._field_index;
+     field_ele& fel = pobj->get_filed_ele( pgidx, fidx );
+     if( fel._tpsz != isz )
+     {
+          printf( "value type size:%d!=original property size:%d\n", isz, fel._tpsz );
+          return false;
+     }
+     auto& trans = *itrans->second;
+     auto& prp_list = trans._prop_list;
+     int pos_id = 0;
+     for( ; pos_id < prp_list.size(); pos_id++ )
+     {
+          if( prp_list[ pos_id ] == prp_pos )
+          {
+               break;
+          }
+     }
+     if( pos_id == prp_list.size() )
+     {
+          printf( "invalid property element position\n" );
+          return false;
+     }
+     auto vpsz = vpvalue.size();
+     auto& prp_value_list = trans._prop_value_list;
+     auto sz_prp_value_list = prp_value_list.size();
+     auto delta_sz = sz_prp_value_list - target_id - 1;
+     if( vpsz != delta_sz )
+     {
+          printf( "invalid vpvalue size:%d for target id:%d\n", vpsz, target_id );
+          return false;
+     }
+     auto& pp_vl_list_target = prp_value_list[ target_id ];
+     auto& value_target = pp_vl_list_target[ pos_id ];
+     //T tar_value;
+     memcpy( &value_target[ 0 ], &tar_value, sizeof( T ) );
+     for( int ix = 0; ix < vpsz; ix++ )
+     {
+          T pvalue = tar_value + vpvalue[ ix ];
+          auto& des_value = prp_value_list[ target_id + 1 + ix ][ pos_id ];
+          memcpy( &des_value[ 0 ], &pvalue, sizeof( T ) );
+     }
+     return true;
+}
+
+template<class T> bool set_trans_sequential_state_list_delta(string trans_name,
                                    prop_ele_position& prp_pos,
                                    int target_id,//start state index
                                    T tar_value,

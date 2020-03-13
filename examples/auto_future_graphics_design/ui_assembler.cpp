@@ -598,412 +598,421 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 {
 	HCURSOR hcur_cursor = GetCursor();
 	SetCursor(g_hcursor_wait);
-	ofstream fout;
-	fout.open(file_path);
-	Value jroot(objectValue);
-	jroot["screenw"] = base_ui_component::screenw;
-	jroot["screenh"] = base_ui_component::screenh;
-	Value window_show(objectValue);
-	window_show["show_project_window"] = show_project_window;
-	window_show["show_edit_window"] = show_edit_window;
-	window_show["show_property_window"] = show_property_window;
-	window_show["show_resource_manager"] = show_resource_manager;
-	window_show["show_fonts_manager"] = show_fonts_manager;
-	window_show["show_file_manager"] = show_file_manager;
-	window_show["show_state_manager_edit"] = show_state_manager_edit;
-	window_show["show_aliase_edit"] = show_aliase_edit;
-	window_show["show_slider_path_picker"] = show_slider_path_picker;
+	
+     Value jroot( objectValue );
+     try
+     {
+          jroot[ "screenw" ] = base_ui_component::screenw;
+          jroot[ "screenh" ] = base_ui_component::screenh;
+          Value window_show( objectValue );
+          window_show[ "show_project_window" ] = show_project_window;
+          window_show[ "show_edit_window" ] = show_edit_window;
+          window_show[ "show_property_window" ] = show_property_window;
+          window_show[ "show_resource_manager" ] = show_resource_manager;
+          window_show[ "show_fonts_manager" ] = show_fonts_manager;
+          window_show[ "show_file_manager" ] = show_file_manager;
+          window_show[ "show_state_manager_edit" ] = show_state_manager_edit;
+          window_show[ "show_aliase_edit" ] = show_aliase_edit;
+          window_show[ "show_slider_path_picker" ] = show_slider_path_picker;
 
-	jroot["window_show"] = window_show;
-     jroot[ "afb_output_path" ] = g_afb_output_path;
-	Value fonts(arrayValue);
-	//vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
-	auto& dic_fonts= g_pfont_face_manager->get_dic_fonts();
-	for (auto& font_item : dic_fonts)
-	{
-		Value jfont(objectValue);
-		jfont["name"] = font_item->_name;
-		jfont["cols"] = font_item->_char_count_c;
-		jfont["rows"]=font_item->_char_count_r;
-		fonts.append(jfont);
-	}
-	jroot["fonts"] = fonts;
-	Value output_bin_fmt(objectValue);
-	output_bin_fmt["txt_fmt"] = g_output_bin_format._txt_fmt;
-	output_bin_fmt["pgm_fmt"] = g_output_bin_format._pgm_fmt;
-	jroot["output_bin_fmt"] = output_bin_fmt;
-	Value jtexture(arrayValue);
-	for (auto& reslist:g_vres_texture_list)
-	{
-		Value jtext_res_unit(objectValue);
-		jtext_res_unit["texture_pack_file"] = reslist.texture_pack_file;
-		jtext_res_unit["texture_data_file"] = reslist.texture_data_file;
-		jtext_res_unit["separated"] = reslist._is_separated;
-		jtexture.append(jtext_res_unit);
-	}
-	jroot["texture_res_list"] = jtexture;
-	Value texture_list(arrayValue);
-	for (auto& txt : g_mtexture_list)
-	{
-		auto& kname = txt.first;
-		Value txt_unit(objectValue);
-		txt_unit["name"] = kname;
-		txt_unit["separated"] = txt.second->_is_separated;
-		txt_unit["mipmap"] = txt.second->_mip_map;
-		//auto& af_txt = txt.second;
-		texture_list.append(txt_unit);
-	}
-	jroot["texture_list"] = texture_list;
-	Value file_list(arrayValue);
-	string str_files_path = g_cureent_directory + files_fold;
-	for (auto& fileu : g_mfiles_list)
-	{
-		auto& kname = fileu.first;
-		Value jfile(kname);
-		file_list.append(jfile);
-		string file_full_path = str_files_path + kname;
-		//if (!fileExist(file_full_path.c_str()))
-		{
-			auto& fobj = *fileu.second;
-			ofstream fout;// (file_full_path);
-			fout.open(file_full_path, ios::binary);
-			fout.write((char*)fobj._pbin, fobj._fsize);
-			fout.close();
-		}
-	}
-	jroot["file_list"] = file_list;
-	Value jshader(arrayValue);
-	string str_shader_path = g_cureent_directory + shaders_fold;
-	for (auto& shd_ut : g_af_shader_list)
-	{
-		Value jshd_unit(objectValue);
-		auto& sd_name = shd_ut.first;
-		auto& p_sd = shd_ut.second;
-		jshd_unit["name"] = sd_name;
-		jshd_unit["vs_name"] = p_sd->_vs_name;
-		jshd_unit["fs_name"] = p_sd->_fs_name;
-		string vs_file = str_shader_path + p_sd->_vs_name;
-		string fs_file = str_shader_path + p_sd->_fs_name;
-		string& vs_code=p_sd->get_vs_code();
-		string& fs_code = p_sd->get_fs_code();
-		ofstream ofs_shd;
-		ofs_shd.open(vs_file, ios::out);
-		ofs_shd.write(vs_code.c_str(), vs_code.size());
-		ofs_shd.close();
-		ofs_shd.open(fs_file, ios::out);
-		ofs_shd.write(fs_code.c_str(), fs_code.size());
-		ofs_shd.close();
-		jshader.append(jshd_unit);
-	}
-	jroot["shader_list"] = jshader;
-	Value jmaterial(arrayValue);
-	for (auto& mtl_ut : g_material_list)
-	{
-		Value jmtl_ut(objectValue);
-		auto& pmtl = mtl_ut.second;
-		pmtl->output_2_json(jmtl_ut);
-		jmaterial.append(jmtl_ut);
-	}
-	jroot["material_list"] = jmaterial;
-	Value jprimitive_list(arrayValue);
-	for (auto& pm:g_primitive_list)
-	{
-		Value jpm(objectValue);
-		jpm["name"] = pm.first; 
-		
-		auto& pmu = pm.second;	
-		Value jformat(arrayValue);
-		for (auto& fmu:pmu->_ele_format)
-		{
-			jformat.append(fmu);
-		}
-		jpm["format"] = jformat;
-		jpm["vbo_len"] = pmu->_vertex_buf_len;
-		jpm["ebo_len"] = pmu->_ele_buf_len;
-		jpm["model"] = pmu->_model_name;
-		jpm["mesh_id"] = pmu->_mesh_id;
-		jprimitive_list.append(jpm);
-	}
-	jroot["primitive_list"] = jprimitive_list;
-
-	jroot["texture_id_index"] = g_cur_texture_id_index;
-	Value jmodels(objectValue);
-
-	for (auto& model_unit : g_mmodel_list)
-	{
-		Value jmesh_list(arrayValue);
-		auto& mesh_list = *model_unit.second;
-		for (auto& mesh_unit : mesh_list)
-		{
-			Value jmesh_unit(objectValue);
-			jmesh_unit["prim_id"] = mesh_unit._prm_id;
-			Value diffuse_list(arrayValue);
-			for (auto& diffuse : mesh_unit._text_diffuse_list)
-			{
-				diffuse_list.append(diffuse);
-			}
-			jmesh_unit["diffuse_list"] = diffuse_list;
-			Value spcular_list(arrayValue);
-			for (auto& specular : mesh_unit._text_specular_list)
-			{
-				spcular_list.append(specular);
-			}
-			jmesh_unit["specular_list"] = spcular_list;
-			Value height_list(arrayValue);
-			for (auto& height : mesh_unit._text_height_list)
-			{
-				height_list.append(height);
-			}
-			jmesh_unit["height_list"] = height_list;
-			Value ambient_list(arrayValue);
-			for (auto& ambient : mesh_unit._text_ambient_list)
-			{
-				ambient_list.append(ambient);
-			}
-			jmesh_unit["ambient_list"] = ambient_list;
-			Value jbdbox(objectValue);
-			jbdbox["xmin"] = mesh_unit._box._xmin;
-			jbdbox["xmax"] = mesh_unit._box._xmax;
-			jbdbox["ymin"] = mesh_unit._box._ymin;
-			jbdbox["ymax"] = mesh_unit._box._ymax;
-			jbdbox["zmin"] = mesh_unit._box._zmin;
-			jbdbox["zmax"] = mesh_unit._box._zmax;
-			jmesh_unit["bounding_box"] = jbdbox;
-			jmesh_list.append(jmesh_unit);
-		}
-		jmodels[model_unit.first] = jmesh_list;
-	}
-	jroot["models"] = jmodels;
-	_root.save_property_to_json(jroot);
-	Value aliase(objectValue);
-	for (auto& ialias:g_aliase_dic)
-	{
-		auto& ikey = ialias.first;
-		auto& ipos = *ialias.second;
-		prop_ele_pos_index pep_id;
-		calcu_prop_ele_pos_index(ipos, pep_id);
-		Value jpos(arrayValue);
-		for (auto pos_id:pep_id)
-		{
-			jpos.append(pos_id);
-		}
-		aliase[ikey] = jpos;
-	}
-	jroot["aliase"] = aliase;
-	Value binds(objectValue);
-	Value dic(arrayValue);
-	for (auto& idic:g_bind_dic)
-	{
-		Value dic_unit(objectValue);
-		Value dic_key(arrayValue);
-		prop_ele_pos_index pep_id;
-		auto& ikey = idic.first;
-		calcu_prop_ele_pos_index(ikey, pep_id);
-		for (auto keyid:pep_id)
-		{
-			dic_key.append(keyid);
-		}
-		dic_unit["key"] = dic_key;
-		auto& bind_unit = *idic.second;
-		Value jbind_unit(objectValue);
-		Value param_list(arrayValue);
-		for (auto& pele_pos : bind_unit._param_list)
-		{
-			prop_ele_pos_index sub_pep_id;
-			calcu_prop_ele_pos_index(pele_pos, sub_pep_id);
-			Value param(arrayValue);
-			for (auto keyid:sub_pep_id)
-			{
-				param.append(keyid);
-			}
-			param_list.append(param);
-		}
-		jbind_unit["param_list"] = param_list;
-		jbind_unit["expression"] = bind_unit._expression;
-		dic_unit["bind_unit"] = jbind_unit;
-		dic.append(dic_unit);
-	}
-	binds["dic"] = dic;
-	Value ref_dic(arrayValue);
-	for (auto& idic:g_bind_ref_dic)
-	{
-		Value dic_unit(objectValue);
-		Value dic_key(arrayValue);
-		prop_ele_pos_index pep_id;
-		auto& ikey = idic.first;
-		calcu_prop_ele_pos_index(ikey, pep_id);
-		for (auto keyid:pep_id)
-		{
-			dic_key.append(keyid);
-		}
-		dic_unit["key"] = dic_key;
-		auto&ref_bind_unit = *idic.second;
-		Value ref_list(arrayValue);
-		for (auto& iref : ref_bind_unit)
-		{
-			prop_ele_pos_index sub_pep_id;
-			calcu_prop_ele_pos_index(iref, sub_pep_id);
-			Value param(arrayValue);
-			for (auto keyid:sub_pep_id)
-			{
-				param.append(keyid);
-			}
-			ref_list.append(param);
-		}
-		dic_unit["ref_list"] = ref_list;
-		ref_dic.append(dic_unit);
-	}
-	binds["ref_dic"] = ref_dic;
-	jroot["binds"] = binds;
-	Value state_manager(objectValue);
-	for (auto& ism:g_mstate_manager)
-	{
-		Value st_m_unit(objectValue);
-		auto& stm_unit = *ism.second;
-		auto& prop_list = stm_unit._prop_list;
-		Value jprop_list(arrayValue);
-		for (auto& pp_unit:prop_list)
-		{
-			prop_ele_pos_index prp_id;
-			calcu_prop_ele_pos_index(pp_unit, prp_id);
-			Value jprp_id(arrayValue);
-			for (auto keyid:prp_id)
-			{
-				jprp_id.append(keyid);
-			}
-			jprop_list.append(jprp_id);
-		}
-		st_m_unit["prop_list"] = jprop_list;
-		auto& prop_value_list = stm_unit._prop_value_list;
-		Value jprop_value_list(arrayValue);
-		for (auto& vprp_value:prop_value_list)
-		{
-			Value jprp_value(arrayValue);
-			for (auto& prp_value:vprp_value )
-			{
-				string prp_value_value;
-				convert_binary_to_string(&prp_value[0],prp_value.size(),prp_value_value);
-				jprp_value.append(prp_value_value);
-			}
-			jprop_value_list.append(jprp_value);
-		}
-		st_m_unit["prop_value_list"] = jprop_value_list;
-		auto& any_to_any = stm_unit._any_to_any;
-		Value jany(objectValue);
-		jany["start_time"] = any_to_any._start_time;
-		jany["duration"] = any_to_any._duration;
-		jany["easing_fun"] = any_to_any._easing_func;
-		st_m_unit["any_to_any"] = jany;
-		auto& mtrans = stm_unit._mtrans;
-		Value jmstrans(arrayValue);
-		for (auto& itran:mtrans)
-		{
-			Value jtran(objectValue);
-			jtran["key_from"] = itran.first._from;
-			jtran["key_to"] = itran.first._to;
-			auto& tran = *itran.second;
-			jtran["start_time"] = tran._start_time;
-			jtran["duration"] = tran._duration;
-			jtran["easing_fun"] = tran._easing_func;
-			jmstrans.append(jtran);
-		}
-		st_m_unit["mtrans"] = jmstrans;
-		auto& state_idx = stm_unit._state_idx;
-		st_m_unit["state_idx"] = state_idx;
-		auto& mstate = stm_unit._mstate;
-		st_m_unit["mstate"] = mstate;
-          auto& playlist_list = stm_unit._playlist_list;
-          Value jplaylist_list( arrayValue );
-          for (auto& iplaylist:playlist_list)
+          jroot[ "window_show" ] = window_show;
+          jroot[ "afb_output_path" ] = g_afb_output_path;
+          Value fonts( arrayValue );
+          //vfont_face_name& ft_nm_list = g_pfont_face_manager->get_font_name_list();
+          auto& dic_fonts = g_pfont_face_manager->get_dic_fonts();
+          for( auto& font_item : dic_fonts )
           {
-               Value jplaylist( arrayValue );
-               for (auto& itran:iplaylist)
+               Value jfont( objectValue );
+               jfont[ "name" ] = font_item->_name;
+               jfont[ "cols" ] = font_item->_char_count_c;
+               jfont[ "rows" ] = font_item->_char_count_r;
+               fonts.append( jfont );
+          }
+          jroot[ "fonts" ] = fonts;
+          Value output_bin_fmt( objectValue );
+          output_bin_fmt[ "txt_fmt" ] = g_output_bin_format._txt_fmt;
+          output_bin_fmt[ "pgm_fmt" ] = g_output_bin_format._pgm_fmt;
+          jroot[ "output_bin_fmt" ] = output_bin_fmt;
+          Value jtexture( arrayValue );
+          for( auto& reslist : g_vres_texture_list )
+          {
+               Value jtext_res_unit( objectValue );
+               jtext_res_unit[ "texture_pack_file" ] = reslist.texture_pack_file;
+               jtext_res_unit[ "texture_data_file" ] = reslist.texture_data_file;
+               jtext_res_unit[ "separated" ] = reslist._is_separated;
+               jtexture.append( jtext_res_unit );
+          }
+          jroot[ "texture_res_list" ] = jtexture;
+          Value texture_list( arrayValue );
+          for( auto& txt : g_mtexture_list )
+          {
+               auto& kname = txt.first;
+               Value txt_unit( objectValue );
+               txt_unit[ "name" ] = kname;
+               txt_unit[ "separated" ] = txt.second->_is_separated;
+               txt_unit[ "mipmap" ] = txt.second->_mip_map;
+               //auto& af_txt = txt.second;
+               texture_list.append( txt_unit );
+          }
+          jroot[ "texture_list" ] = texture_list;
+          Value file_list( arrayValue );
+          string str_files_path = g_cureent_directory + files_fold;
+          for( auto& fileu : g_mfiles_list )
+          {
+               auto& kname = fileu.first;
+               Value jfile( kname );
+               file_list.append( jfile );
+               string file_full_path = str_files_path + kname;
+               //if (!fileExist(file_full_path.c_str()))
+               {
+                    auto& fobj = *fileu.second;
+                    ofstream fout;// (file_full_path);
+                    fout.open( file_full_path, ios::binary );
+                    fout.write( (char*)fobj._pbin, fobj._fsize );
+                    fout.close();
+               }
+          }
+          jroot[ "file_list" ] = file_list;
+          Value jshader( arrayValue );
+          string str_shader_path = g_cureent_directory + shaders_fold;
+          for( auto& shd_ut : g_af_shader_list )
+          {
+               Value jshd_unit( objectValue );
+               auto& sd_name = shd_ut.first;
+               auto& p_sd = shd_ut.second;
+               jshd_unit[ "name" ] = sd_name;
+               jshd_unit[ "vs_name" ] = p_sd->_vs_name;
+               jshd_unit[ "fs_name" ] = p_sd->_fs_name;
+               string vs_file = str_shader_path + p_sd->_vs_name;
+               string fs_file = str_shader_path + p_sd->_fs_name;
+               string& vs_code = p_sd->get_vs_code();
+               string& fs_code = p_sd->get_fs_code();
+               ofstream ofs_shd;
+               ofs_shd.open( vs_file, ios::out );
+               ofs_shd.write( vs_code.c_str(), vs_code.size() );
+               ofs_shd.close();
+               ofs_shd.open( fs_file, ios::out );
+               ofs_shd.write( fs_code.c_str(), fs_code.size() );
+               ofs_shd.close();
+               jshader.append( jshd_unit );
+          }
+          jroot[ "shader_list" ] = jshader;
+          Value jmaterial( arrayValue );
+          for( auto& mtl_ut : g_material_list )
+          {
+               Value jmtl_ut( objectValue );
+               auto& pmtl = mtl_ut.second;
+               pmtl->output_2_json( jmtl_ut );
+               jmaterial.append( jmtl_ut );
+          }
+          jroot[ "material_list" ] = jmaterial;
+          Value jprimitive_list( arrayValue );
+          for( auto& pm : g_primitive_list )
+          {
+               Value jpm( objectValue );
+               jpm[ "name" ] = pm.first;
+
+               auto& pmu = pm.second;
+               Value jformat( arrayValue );
+               for( auto& fmu : pmu->_ele_format )
+               {
+                    jformat.append( fmu );
+               }
+               jpm[ "format" ] = jformat;
+               jpm[ "vbo_len" ] = pmu->_vertex_buf_len;
+               jpm[ "ebo_len" ] = pmu->_ele_buf_len;
+               jpm[ "model" ] = pmu->_model_name;
+               jpm[ "mesh_id" ] = pmu->_mesh_id;
+               jprimitive_list.append( jpm );
+          }
+          jroot[ "primitive_list" ] = jprimitive_list;
+
+          jroot[ "texture_id_index" ] = g_cur_texture_id_index;
+          Value jmodels( objectValue );
+
+          for( auto& model_unit : g_mmodel_list )
+          {
+               Value jmesh_list( arrayValue );
+               auto& mesh_list = *model_unit.second;
+               for( auto& mesh_unit : mesh_list )
+               {
+                    Value jmesh_unit( objectValue );
+                    jmesh_unit[ "prim_id" ] = mesh_unit._prm_id;
+                    Value diffuse_list( arrayValue );
+                    for( auto& diffuse : mesh_unit._text_diffuse_list )
+                    {
+                         diffuse_list.append( diffuse );
+                    }
+                    jmesh_unit[ "diffuse_list" ] = diffuse_list;
+                    Value spcular_list( arrayValue );
+                    for( auto& specular : mesh_unit._text_specular_list )
+                    {
+                         spcular_list.append( specular );
+                    }
+                    jmesh_unit[ "specular_list" ] = spcular_list;
+                    Value height_list( arrayValue );
+                    for( auto& height : mesh_unit._text_height_list )
+                    {
+                         height_list.append( height );
+                    }
+                    jmesh_unit[ "height_list" ] = height_list;
+                    Value ambient_list( arrayValue );
+                    for( auto& ambient : mesh_unit._text_ambient_list )
+                    {
+                         ambient_list.append( ambient );
+                    }
+                    jmesh_unit[ "ambient_list" ] = ambient_list;
+                    Value jbdbox( objectValue );
+                    jbdbox[ "xmin" ] = mesh_unit._box._xmin;
+                    jbdbox[ "xmax" ] = mesh_unit._box._xmax;
+                    jbdbox[ "ymin" ] = mesh_unit._box._ymin;
+                    jbdbox[ "ymax" ] = mesh_unit._box._ymax;
+                    jbdbox[ "zmin" ] = mesh_unit._box._zmin;
+                    jbdbox[ "zmax" ] = mesh_unit._box._zmax;
+                    jmesh_unit[ "bounding_box" ] = jbdbox;
+                    jmesh_list.append( jmesh_unit );
+               }
+               jmodels[ model_unit.first ] = jmesh_list;
+          }
+          jroot[ "models" ] = jmodels;
+          _root.save_property_to_json( jroot );
+          Value aliase( objectValue );
+          for( auto& ialias : g_aliase_dic )
+          {
+               auto& ikey = ialias.first;
+               auto& ipos = *ialias.second;
+               prop_ele_pos_index pep_id;
+               calcu_prop_ele_pos_index( ipos, pep_id );
+               Value jpos( arrayValue );
+               for( auto pos_id : pep_id )
+               {
+                    jpos.append( pos_id );
+               }
+               aliase[ ikey ] = jpos;
+          }
+          jroot[ "aliase" ] = aliase;
+          Value binds( objectValue );
+          Value dic( arrayValue );
+          for( auto& idic : g_bind_dic )
+          {
+               Value dic_unit( objectValue );
+               Value dic_key( arrayValue );
+               prop_ele_pos_index pep_id;
+               auto& ikey = idic.first;
+               calcu_prop_ele_pos_index( ikey, pep_id );
+               for( auto keyid : pep_id )
+               {
+                    dic_key.append( keyid );
+               }
+               dic_unit[ "key" ] = dic_key;
+               auto& bind_unit = *idic.second;
+               Value jbind_unit( objectValue );
+               Value param_list( arrayValue );
+               for( auto& pele_pos : bind_unit._param_list )
+               {
+                    prop_ele_pos_index sub_pep_id;
+                    calcu_prop_ele_pos_index( pele_pos, sub_pep_id );
+                    Value param( arrayValue );
+                    for( auto keyid : sub_pep_id )
+                    {
+                         param.append( keyid );
+                    }
+                    param_list.append( param );
+               }
+               jbind_unit[ "param_list" ] = param_list;
+               jbind_unit[ "expression" ] = bind_unit._expression;
+               dic_unit[ "bind_unit" ] = jbind_unit;
+               dic.append( dic_unit );
+          }
+          binds[ "dic" ] = dic;
+          Value ref_dic( arrayValue );
+          for( auto& idic : g_bind_ref_dic )
+          {
+               Value dic_unit( objectValue );
+               Value dic_key( arrayValue );
+               prop_ele_pos_index pep_id;
+               auto& ikey = idic.first;
+               calcu_prop_ele_pos_index( ikey, pep_id );
+               for( auto keyid : pep_id )
+               {
+                    dic_key.append( keyid );
+               }
+               dic_unit[ "key" ] = dic_key;
+               auto&ref_bind_unit = *idic.second;
+               Value ref_list( arrayValue );
+               for( auto& iref : ref_bind_unit )
+               {
+                    prop_ele_pos_index sub_pep_id;
+                    calcu_prop_ele_pos_index( iref, sub_pep_id );
+                    Value param( arrayValue );
+                    for( auto keyid : sub_pep_id )
+                    {
+                         param.append( keyid );
+                    }
+                    ref_list.append( param );
+               }
+               dic_unit[ "ref_list" ] = ref_list;
+               ref_dic.append( dic_unit );
+          }
+          binds[ "ref_dic" ] = ref_dic;
+          jroot[ "binds" ] = binds;
+          Value state_manager( objectValue );
+          for( auto& ism : g_mstate_manager )
+          {
+               Value st_m_unit( objectValue );
+               auto& stm_unit = *ism.second;
+               auto& prop_list = stm_unit._prop_list;
+               Value jprop_list( arrayValue );
+               for( auto& pp_unit : prop_list )
+               {
+                    prop_ele_pos_index prp_id;
+                    calcu_prop_ele_pos_index( pp_unit, prp_id );
+                    Value jprp_id( arrayValue );
+                    for( auto keyid : prp_id )
+                    {
+                         jprp_id.append( keyid );
+                    }
+                    jprop_list.append( jprp_id );
+               }
+               st_m_unit[ "prop_list" ] = jprop_list;
+               auto& prop_value_list = stm_unit._prop_value_list;
+               Value jprop_value_list( arrayValue );
+               for( auto& vprp_value : prop_value_list )
+               {
+                    Value jprp_value( arrayValue );
+                    for( auto& prp_value : vprp_value )
+                    {
+                         string prp_value_value;
+                         convert_binary_to_string( &prp_value[ 0 ], prp_value.size(), prp_value_value );
+                         jprp_value.append( prp_value_value );
+                    }
+                    jprop_value_list.append( jprp_value );
+               }
+               st_m_unit[ "prop_value_list" ] = jprop_value_list;
+               auto& any_to_any = stm_unit._any_to_any;
+               Value jany( objectValue );
+               jany[ "start_time" ] = any_to_any._start_time;
+               jany[ "duration" ] = any_to_any._duration;
+               jany[ "easing_fun" ] = any_to_any._easing_func;
+               st_m_unit[ "any_to_any" ] = jany;
+               auto& mtrans = stm_unit._mtrans;
+               Value jmstrans( arrayValue );
+               for( auto& itran : mtrans )
                {
                     Value jtran( objectValue );
-                    jtran[ "key_from" ] = itran._from;
-                    jtran[ "key_to" ] = itran._to;
-                    jplaylist.append( jtran );
+                    jtran[ "key_from" ] = itran.first._from;
+                    jtran[ "key_to" ] = itran.first._to;
+                    auto& tran = *itran.second;
+                    jtran[ "start_time" ] = tran._start_time;
+                    jtran[ "duration" ] = tran._duration;
+                    jtran[ "easing_fun" ] = tran._easing_func;
+                    jmstrans.append( jtran );
                }
-               jplaylist_list.append( jplaylist );
-          }
-          st_m_unit[ "playlist_list" ] = jplaylist_list;
-		state_manager[ism.first] = st_m_unit;
-	}
-	jroot["state_manager_list"] = state_manager;
-     Value common_value_list(objectValue);
-     for (auto& ivc:g_base_prp_dic)
-     {
-          Value uvalue( objectValue );
-          auto& knm = ivc.first;
-          auto& cmvalue = *ivc.second;
-          auto& mvalue = cmvalue._pbase;
-          auto& pmlist = cmvalue._param_list;
-          auto& vtype = cmvalue._type;
-          uvalue[ "type" ] = vtype;
-          Value jprop_list( arrayValue );
-          for( auto& pp_unit : pmlist )
-          {
-               prop_ele_pos_index prp_id;
-               calcu_prop_ele_pos_index( pp_unit, prp_id );
-               Value jprp_id( arrayValue );
-               for( auto keyid : prp_id )
+               st_m_unit[ "mtrans" ] = jmstrans;
+               auto& state_idx = stm_unit._state_idx;
+               st_m_unit[ "state_idx" ] = state_idx;
+               auto& mstate = stm_unit._mstate;
+               st_m_unit[ "mstate" ] = mstate;
+               auto& playlist_list = stm_unit._playlist_list;
+               Value jplaylist_list( arrayValue );
+               for( auto& iplaylist : playlist_list )
                {
-                    jprp_id.append( keyid );
+                    Value jplaylist( arrayValue );
+                    for( auto& itran : iplaylist )
+                    {
+                         Value jtran( objectValue );
+                         jtran[ "key_from" ] = itran._from;
+                         jtran[ "key_to" ] = itran._to;
+                         jplaylist.append( jtran );
+                    }
+                    jplaylist_list.append( jplaylist );
                }
-               jprop_list.append( jprp_id );
+               st_m_unit[ "playlist_list" ] = jplaylist_list;
+               state_manager[ ism.first ] = st_m_unit;
           }
-          uvalue[ "prop_list" ] = jprop_list;
-          if (vtype=="int")
+          jroot[ "state_manager_list" ] = state_manager;
+          Value common_value_list( objectValue );
+          for( auto& ivc : g_base_prp_dic )
           {
-               int* pvi = (int*)mvalue;
-               uvalue[ "value" ] = *pvi;
+               Value uvalue( objectValue );
+               auto& knm = ivc.first;
+               auto& cmvalue = *ivc.second;
+               auto& mvalue = cmvalue._pbase;
+               auto& pmlist = cmvalue._param_list;
+               auto& vtype = cmvalue._type;
+               uvalue[ "type" ] = vtype;
+               Value jprop_list( arrayValue );
+               for( auto& pp_unit : pmlist )
+               {
+                    prop_ele_pos_index prp_id;
+                    calcu_prop_ele_pos_index( pp_unit, prp_id );
+                    Value jprp_id( arrayValue );
+                    for( auto keyid : prp_id )
+                    {
+                         jprp_id.append( keyid );
+                    }
+                    jprop_list.append( jprp_id );
+               }
+               uvalue[ "prop_list" ] = jprop_list;
+               if( vtype == "int" )
+               {
+                    int* pvi = (int*)mvalue;
+                    uvalue[ "value" ] = *pvi;
+               }
+               else if( vtype == "float" || vtype == "double" )
+               {
+                    uvalue[ "value" ] = *(float*)mvalue;
+               }
+               else if( vtype == "bool" )
+               {
+                    uvalue[ "value" ] = *(bool*)mvalue;
+               }
+               else if( vtype == "af_vec2" )
+               {
+                    Value jv2( objectValue );
+                    jv2[ "x" ] = *(float*)mvalue;
+                    jv2[ "y" ] = *( (float*)mvalue + 1 );
+                    uvalue[ "value" ] = jv2;
+               }
+               else if( vtype == "af_vec3" )
+               {
+                    Value jv3( objectValue );
+                    jv3[ "x" ] = *(float*)mvalue;
+                    jv3[ "y" ] = *( (float*)mvalue + 1 );
+                    jv3[ "z" ] = *( (float*)mvalue + 2 );
+                    uvalue[ "value" ] = jv3;
+               }
+               else if( vtype == "af_vec4" )
+               {
+                    Value jv4( objectValue );
+                    jv4[ "x" ] = *(float*)mvalue;
+                    jv4[ "y" ] = *( (float*)mvalue + 1 );
+                    jv4[ "z" ] = *( (float*)mvalue + 2 );
+                    jv4[ "w" ] = *( (float*)mvalue + 3 );
+                    uvalue[ "value" ] = jv4;
+               }
+               common_value_list[ knm ] = uvalue;
           }
-          else if( vtype == "float" || vtype=="double")
+          jroot[ "common_value_list" ] = common_value_list;
+          Value feedback( arrayValue );
+          for( auto& ifb : g_feedback_list )
           {
-               uvalue[ "value" ] = *(float*)mvalue;
+               auto& mtl_key = ifb.first._mtl_key;
+               auto& prm_key = ifb.first._prm_key;
+               Value fbkey( objectValue );
+               fbkey[ "mtl_key" ] = mtl_key;
+               fbkey[ "prm_key" ] = prm_key;
+               feedback.append( fbkey );
           }
-          else if( vtype == "bool" )
-          {
-               uvalue[ "value" ] = *(bool*)mvalue;
-          }
-          else if (vtype=="af_vec2")
-          {
-               Value jv2( objectValue );
-               jv2["x"] = *(float*)mvalue;
-               jv2[ "y" ] = *((float*)mvalue+1);
-               uvalue[ "value" ] = jv2;
-          }
-          else if( vtype == "af_vec3" )
-          {
-               Value jv3( objectValue );
-               jv3["x"]=*(float*)mvalue;
-               jv3["y"]=*((float*)mvalue+1);
-               jv3["z"]=*((float*)mvalue+2);
-               uvalue[ "value" ] = jv3;
-          }
-          else if (vtype=="af_vec4")
-          {
-               Value jv4( objectValue );
-               jv4[ "x" ] = *(float*)mvalue;
-               jv4[ "y" ] = *( (float*)mvalue + 1 );
-               jv4[ "z" ] = *( (float*)mvalue + 2 );
-               jv4[ "w" ] = *( (float*)mvalue + 3 );
-               uvalue[ "value" ] = jv4;
-          }
-          common_value_list[ knm ] = uvalue;
+          jroot[ "feedback" ] = feedback;
      }
-     jroot[ "common_value_list" ] = common_value_list;
-	 Value feedback(arrayValue);
-	 for (auto& ifb:g_feedback_list)
-	 {
-		 auto& mtl_key = ifb.first._mtl_key;
-		 auto& prm_key = ifb.first._prm_key;
-		 Value fbkey(objectValue);
-		 fbkey["mtl_key"] = mtl_key;
-		 fbkey["prm_key"] = prm_key;
-		 feedback.append(fbkey);
-	 }
-	 jroot["feedback"] = feedback;
+     catch (...)
+     {
+          printf( "some bad things happed\n" );
+          return false;
+     }
+     ofstream fout;
+     fout.open( file_path );
 	fout << jroot << endl;
 	fout.close();
 	//save_fbx_file();
