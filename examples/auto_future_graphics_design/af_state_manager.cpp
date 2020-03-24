@@ -15,6 +15,22 @@ static char* str_play_state[en_play_state_cnt] =
 	"playing a trans",
 	"playing a playlist"
 };
+AFG_EXPORT bool trans_is_playing( string trans_name )
+{
+     const auto& istm = g_mstate_manager.find( trans_name );
+     if( istm == g_mstate_manager.end() )
+     {
+          printf( "invalid state manager name:%s\n", trans_name.c_str() );
+          return false;
+     }
+     auto& stm = *istm->second;
+     if( stm._play_state != en_play_stop )
+     {
+          printf( "state manager:%s is running in state:%s\n", trans_name.c_str(), str_play_state[ stm._play_state ] );
+          return false;
+     }
+     return true;
+}
 AFG_EXPORT bool play_tran(string stm_name, int from, int to)
 {
 	const auto& istm = g_mstate_manager.find(stm_name);
@@ -228,6 +244,44 @@ void keep_state_trans_on()
 			}
 		}
      }
+}
+AFG_EXPORT bool save_property_to_trans_state( string trans_name,
+                                              prop_ele_position& prp_pos,
+                                              int base_id )
+{
+     const auto& itrans = g_mstate_manager.find( trans_name );
+     if( itrans == g_mstate_manager.end() )
+     {
+          printf( "invalid trans name:%s\n", trans_name.c_str() );
+          return false;
+     }
+     auto& pobj = prp_pos._pobj;
+     auto& pgidx = prp_pos._page_index;
+     auto& fidx = prp_pos._field_index;
+     field_ele& fel = pobj->get_filed_ele( pgidx, fidx );
+
+     auto& trans = *itrans->second;
+     auto& prp_list = trans._prop_list;
+     int pos_id = 0;
+     for( ; pos_id < prp_list.size(); pos_id++ )
+     {
+          if( prp_list[ pos_id ] == prp_pos )
+          {
+               break;
+          }
+     }
+     if( pos_id == prp_list.size() )
+     {
+          printf( "invalid property element position\n" );
+          return false;
+     }
+     auto& prp_value_list = trans._prop_value_list;
+     auto& pp_vl_list_target = prp_value_list[ base_id ];
+     auto& value_target = pp_vl_list_target[ pos_id ];
+     //T tar_value;
+     memcpy( &value_target[ 0 ], fel._address, fel._tpsz );
+
+     return true;
 }
 
 bool save_trans_value( string trans_name, int sid )

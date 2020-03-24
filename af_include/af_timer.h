@@ -3,6 +3,7 @@
 #include <functional>
 #include <chrono>
 #include <map>
+#include <vector>
 using namespace std;
 using namespace chrono;
 namespace auto_future
@@ -26,6 +27,7 @@ namespace auto_future
 		timer_unit _timer_list[max_timer_num];
 		timer_unit_ex _timer_list_ex[max_timer_num];
 		map<int, int> _active_tm_list,_active_tm_ex_list;
+          vector<int> _will_erase_id_list;
 	public:
 		af_timer();
 		~af_timer();
@@ -137,9 +139,10 @@ namespace auto_future
 			auto ict = _active_tm_ex_list.find(timer_id);
 			return ict != _active_tm_ex_list.end();
 		}
-		bool deactive_time_ex(int timer_id)
+		void deactive_time_ex(int timer_id)
 		{
-			if (timer_id < max_timer_num&&_timer_list_ex[timer_id]._handle)
+               _will_erase_id_list.emplace_back( timer_id );
+			/*if (timer_id < max_timer_num&&_timer_list_ex[timer_id]._handle)
 			{
 				_timer_list_ex[timer_id]._tvalue = 0;
 				const auto& actm = _active_tm_ex_list.find(timer_id);
@@ -149,7 +152,7 @@ namespace auto_future
 				}
 				return true;
 			}
-			return false;
+			return false;*/
 		}		
 
 		void execute();
