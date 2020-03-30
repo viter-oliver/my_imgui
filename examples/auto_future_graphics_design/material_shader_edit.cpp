@@ -99,7 +99,7 @@ void material_shader_edit::draw_shader()
 	}
 	if (pshd_sel&&ImGui::BeginPopupContextWindow())
 	{
-
+          /**
 		if (ImGui::MenuItem("create material", NULL, false))
 		{
 			ImGui::OpenPopup("create material");
@@ -117,7 +117,7 @@ void material_shader_edit::draw_shader()
 				}
 				ImGui::EndPopup();
 			}
-		}
+		}*/
 		if (ImGui::MenuItem("delete", NULL, false, pshd_sel.use_count() == 2))
 		{
 			auto& it_del = g_af_shader_list.find(sd_key_name);
@@ -364,6 +364,7 @@ void material_shader_edit::draw_material()
 				}
 				mtl->_sel = true;
 				pmateral_sel = mtl;
+                    mt_key_name = mtl->get_name();
 			}
 			ImGui::TreePop();
 		}

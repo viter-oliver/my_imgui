@@ -45,11 +45,13 @@
 		"show_tsr" : [ 6, 0, 5, 1 ],
 		"show_turn_left" : [ 6, 0, 0, 1 ],
 		"show_turn_right" : [ 6, 0, 1, 1 ],
+		"show_version" : [ 6, 0, 6 ],
 		"speed" : [ 4, 1, 1, 2 ],
 		"text_acc_speed" : [ 4, 1, 0, 2, 1 ],
 		"text_acc_speed_a" : [ 4, 1, 1, 2, 1 ],
 		"text_remain_dis" : [ 4, 1, 0, 4 ],
 		"text_tsr_speed" : [ 4, 1, 0, 5, 1 ],
+		"text_version" : [ 4, 1, 0, 6 ],
 		"txt_left_wing" : [ 0, 1, 0, 1 ],
 		"txt_right_wing" : [ 0, 1, 1, 1 ]
 	},
@@ -57,18 +59,6 @@
 	{
 		"dic" : 
 		[
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 5, 1 ]
-					]
-				},
-				"key" : [ 6, 0, 0, 3 ]
-			},
 			
 			{
 				"bind_unit" : 
@@ -84,14 +74,6 @@
 		],
 		"ref_dic" : 
 		[
-			
-			{
-				"key" : [ 6, 0, 5, 1 ],
-				"ref_list" : 
-				[
-					[ 6, 0, 0, 3 ]
-				]
-			},
 			
 			{
 				"key" : [ 6, 0, 2, 3 ],
@@ -990,6 +972,67 @@
 			"_sizew" : 10.0,
 			"_visible" : false,
 			"type" : "ft_image_file"
+		},
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_bdclr" : 
+			{
+				"w" : 1.0,
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"_bkclr" : 
+			{
+				"w" : 0.5882353186607361,
+				"x" : 0.0,
+				"y" : 0.0,
+				"z" : 0.0
+			},
+			"_border_width_uhd" : 1.0,
+			"_name" : "ft_block",
+			"_posx" : 100.0,
+			"_posy" : 50.67200088500977,
+			"_round_utn" : 0.0,
+			"_sizeh" : 145.7830047607422,
+			"_sizew" : 600.0,
+			"_visible" : false,
+			"_with_border" : false,
+			"childs" : 
+			[
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_content" : "version：vdddddddddddddddddjijiijijijiiiijijijijijjiii",
+					"_font_id" : 1,
+					"_font_scale" : 1.0,
+					"_font_size" : 34,
+					"_name" : "ft_textblock",
+					"_omit_rest" : 0,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 302.4950256347656,
+					"_posy" : 69.09799957275391,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_txt_alignh_nml" : 0.50,
+					"_txt_alignv_nml" : 0.50,
+					"_txt_clr" : 
+					{
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_visible" : true,
+					"_width" : 600.0,
+					"_width_limit" : true,
+					"type" : "ft_textblock"
+				}
+			],
+			"type" : "ft_block"
 		}
 	],
 	"common_value_list" : 
@@ -1127,7 +1170,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ 0.8000000119209290 ]
+					"value_list" : [ 1.0 ]
 				},
 				"model" : 
 				{
@@ -1535,7 +1578,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ -1500.0 ]
+					"value_list" : [ 0.0 ]
 				},
 				"lane_w" : 
 				{
@@ -3823,13 +3866,13 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : true,
+		"show_aliase_edit" : false,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : false,
+		"show_resource_manager" : true,
 		"show_slider_path_picker" : false,
 		"show_state_manager_edit" : true
 	}

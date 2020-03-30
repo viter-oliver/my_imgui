@@ -85,3 +85,16 @@ extern AFG_EXPORT base_ui_component*  get_aliase_ui_control(string prp_aliase_na
 extern bs_prp_dic g_base_prp_dic;
 extern bool AFG_EXPORT prp_is_catched_by_base_prp_type( prop_ele_position& prp_pos, base_prp_type& base_prp );
 extern bool AFG_EXPORT cover_common_value( string name_of_common_value );
+template<class T> bool get_prop_fd_value( prop_ele_position& pep, T& pvalue )
+{
+     auto& pgidx = pep._page_index;
+     auto& fdidx = pep._field_index;
+     auto& field = pep._pobj->get_filed_ele( pgidx, fdidx );
+     if (field._tpsz!=sizeof(T))
+     {
+          printf("input a variable which type is invalid for(%s_%d_%d)!\n",pep._pobj->get_name().c_str(),pgidx,fdidx);
+          return false;
+     }
+     memcpy( &pvalue, field._address, field._tpsz );
+     return true;
+}
