@@ -20,10 +20,14 @@ namespace auto_future
 			(af_vec3,_light_position_shd),
 			(float, _light_constant,{1.f}),
 			(float, _light_linear,{0.09f}),
-			(float, _light_quadratic, { 0.032f })
+			(float, _light_quadratic, { 0.032f }),
+               (char,_txt_diffuse[FILE_NAME_LEN]),
+               (char,_txt_specular[ FILE_NAME_LEN ] )
 			)
 		shared_ptr<af_shader> _pshd_modeling;
 		shared_ptr<af_model> _pmodel;
+          ps_af_texture _pdiffuse;
+          ps_af_texture _pspecular;
 	public:
 		ft_modeling_3d();
 		~ft_modeling_3d();
@@ -39,6 +43,16 @@ namespace auto_future
 			{
 				_pmodel = imodel->second;
 			}
+               auto itxt = g_mtexture_list.find( _pty_page._txt_diffuse );
+               if( itxt != g_mtexture_list.end() )
+               {
+                    _pdiffuse = itxt->second;
+               }
+               itxt = g_mtexture_list.find( _pty_page._txt_specular );
+               if( itxt != g_mtexture_list.end() )
+               {
+                    _pspecular = itxt->second;
+               }
 		}
 		camera& get_cam()
 		{

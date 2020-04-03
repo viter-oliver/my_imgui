@@ -8,7 +8,8 @@ namespace auto_future
 		strcpy(_pt._uf_model_name, "model");
 		strcpy(_pt._uf_view_name, "view");
 		strcpy(_pt._uf_proj_name, "projection");
-
+          _pt._cam = { { -400, 400, 0 }, { -400, 400, 0 }, { 0, 1, 0 } };
+          _pt._pj = { 20, 10, 10000 };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		_pt._primitive_name[0] = '\0';
 		_pt._material_name[0] = '\0';
