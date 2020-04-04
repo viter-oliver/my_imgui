@@ -11,6 +11,7 @@
 #include "af_bind.h"
 #include "af_state_manager.h"
 #include "common_functions.h"
+#include "af_playlist_group.h"
 #include "af_factory.h"
 #include "imgui_impl_glfw_gl3.h"
 //#include "af_model.h"
@@ -562,7 +563,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 			   auto ifbsz = feedback.size();
 			   for (int ix = 0; ix < ifbsz;ix++)
 			   {
-				   Value fbunit = feedback[ix];
+				   Value& fbunit = feedback[ix];
 				   auto& mtl_key = fbunit["mtl_key"].asString();
 				   auto& prm_key = fbunit["prm_key"].asString();
 				   const auto& imtl = g_material_list.find(mtl_key);
@@ -579,7 +580,23 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				   }
 				   feedback_key fkey = { mtl_key, prm_key };
 				   g_feedback_list[fkey] = make_shared<af_feedback>(imtl->second, iprm->second);
-
+			   }
+			   Value& jplaylist_group_list = jroot["playlist_group_list"];
+			   auto ipgl_sz = jplaylist_group_list.size();
+			   for (int ix = 0; ix < ipgl_sz;ix++)
+			   {
+				   Value& plg_u = jplaylist_group_list[ix];
+				   auto plg_key = plg_u["plg_key"].asString();
+				   auto ps_plg_list = make_shared<playlist_unit_list>();
+				   Value& plg_list = plg_u["plg_list"];
+				   auto iplg_list_sz = plg_list.size();
+				   for (int iy = 0; iy < iplg_list_sz;iy++)
+				   {
+					   Value& pl_u = plg_list[iy];
+					   playlist_unit plu = { pl_u["st_name"].asString(), pl_u["playlist_id"].asInt() };
+					   ps_plg_list->emplace_back(plu);
+				   }
+				   g_playlist_group_list[plg_key] = ps_plg_list;
 			   }
 		}
 		fin.close();
@@ -1005,6 +1022,25 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
                feedback.append( fbkey );
           }
           jroot[ "feedback" ] = feedback;
+		  Value playlist_group_list(arrayValue);
+		  for (auto& ipgl : g_playlist_group_list)
+		  {
+			  auto& plg_key = ipgl.first;
+			  auto& plg_list = *ipgl.second;
+			  Value plg_u(objectValue);
+			  plg_u["plg_key"] = plg_key;
+			  Value jplg_list(arrayValue);
+			  for (auto& iu:plg_list)
+			  {
+				  Value pl_u(objectValue);
+				  pl_u["st_name"] = iu._st_name;
+				  pl_u["playlist_id"] = iu._playlist_id;
+				  jplg_list.append(pl_u);
+			  }
+			  plg_u["plg_list"] = jplg_list;
+			  playlist_group_list.append(plg_u);
+		  }
+		  jroot["playlist_group_list"] = playlist_group_list;
      }
      catch (...)
      {

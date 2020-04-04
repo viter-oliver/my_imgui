@@ -20,5 +20,6 @@ enum afb_res_index
 	en_state_manager,
     en_common_value,
 	en_feedback_list,
+	en_playlist_group_list,
 	en_afb_res_cnt
 };

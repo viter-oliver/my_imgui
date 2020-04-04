@@ -202,6 +202,9 @@
     <ClCompile Include="af_feedback.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="af_playlist_group.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">

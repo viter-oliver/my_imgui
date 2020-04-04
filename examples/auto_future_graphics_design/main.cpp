@@ -47,6 +47,7 @@
 #include "aliase_edit.h"
 #include "state_manager_edit.h"
 #include "base_prp_type_edit.h"
+#include "playlist_group_edit.h"
 #include "slider_path_picker.h"
 #include "primitve_edit.h"
 #include "feedback_edit.h"
@@ -78,6 +79,7 @@ bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
 base_prp_type_edit g_common_value_edit;
+playlist_group_edit g_playlist_group_edit;
 slider_path_picker g_slider_path_picker;
 unreferenced_items g_unreferenced_items;
 primitve_edit g_primitive_edit;
@@ -102,7 +104,7 @@ show_fonts_manager = true, show_file_manager = true, \
 show_output_format = false, show_model_list = false, show_world_space = false, \
 show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
 show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false,\
-show_common_value_edit = false,show_feedback_edit=false;
+show_common_value_edit = false,show_feedback_edit=false,show_playlist_group=false;
 
 enum en_editing_wd_state
 {
@@ -855,6 +857,10 @@ int main(int argc, char* argv[])
                 {
                         show_common_value_edit = !show_common_value_edit;
                 }
+				if (ImGui::MenuItem("Playlist group edit", NULL, show_playlist_group))
+				{
+					show_playlist_group = !show_playlist_group;
+				}
 				if (ImGui::MenuItem("Aliases edit", NULL, show_aliase_edit))
 				{
 					show_aliase_edit = !show_aliase_edit;
@@ -1070,20 +1076,30 @@ int main(int argc, char* argv[])
 		{
 			ImGui::Begin("State manager edit", &show_state_manager_edit, ImVec2(500, 600));
 			ImGui::Columns(2);
+			ImGui::SetColumnWidth(0, 200);
 			g_state_manager_edit.view_state_managers();
 			ImGui::NextColumn();
 			g_state_manager_edit.view_state_manager_item_property();
 			ImGui::End();
 		}
-          if( show_common_value_edit )
-          {
-               ImGui::Begin( "Common value edit", &show_common_value_edit, ImVec2( 500, 600 ) );
-               ImGui::Columns( 2 );
-               g_common_value_edit.view_base_prp_list();
-               ImGui::NextColumn();
-               g_common_value_edit.base_prp_item();
-               ImGui::End();
-          }
+		  if (show_common_value_edit)
+		  {
+			  ImGui::Begin("Common value edit", &show_common_value_edit, ImVec2(500, 600));
+			  ImGui::Columns(2);
+			  g_common_value_edit.view_base_prp_list();
+			  ImGui::NextColumn();
+			  g_common_value_edit.base_prp_item();
+			  ImGui::End();
+		  }
+		  if (show_playlist_group)
+		  {
+			  ImGui::Begin("Playlist group edit", &show_playlist_group, ImVec2(500, 600));
+			  ImGui::Columns(2);
+			  g_playlist_group_edit.view_playlit_group_list();
+			  ImGui::NextColumn();
+			  g_playlist_group_edit.playlist_group_item();
+			  ImGui::End();
+		  }
 		if (show_slider_path_picker)
 		{
 			ImGui::Begin("Slider path picker", &show_slider_path_picker, ImVec2(500, 600),0.5);

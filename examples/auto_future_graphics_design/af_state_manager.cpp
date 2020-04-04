@@ -27,9 +27,9 @@ AFG_EXPORT bool trans_is_playing( string trans_name )
      if( stm._play_state != en_play_stop )
      {
           printf( "state manager:%s is running in state:%s\n", trans_name.c_str(), str_play_state[ stm._play_state ] );
-          return false;
+          return true;
      }
-     return true;
+     return false;
 }
 AFG_EXPORT bool play_tran(string stm_name, int from, int to)
 {

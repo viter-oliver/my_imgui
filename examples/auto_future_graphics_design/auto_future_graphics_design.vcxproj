@@ -187,6 +187,7 @@
     <ClCompile Include="af_feedback.cpp" />
     <ClCompile Include="af_font_res_set.cpp" />
     <ClCompile Include="af_model.cpp" />
+    <ClCompile Include="af_playlist_group.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />
     <ClCompile Include="af_state_manager.cpp" />
@@ -237,6 +238,7 @@
     <ClCompile Include="model_edit.cpp" />
     <ClCompile Include="paricles_system.cpp" />
     <ClCompile Include="af_primitive_object.cpp" />
+    <ClCompile Include="playlist_group_edit.cpp" />
     <ClCompile Include="primitve_edit.cpp" />
     <ClCompile Include="project_edit.cpp" />
     <ClCompile Include="python_interpreter.cpp" />
@@ -263,6 +265,7 @@
     <ClInclude Include="..\..\af_include\af_font_res_set.h" />
     <ClInclude Include="..\..\af_include\af_material.h" />
     <ClInclude Include="..\..\af_include\af_model.h" />
+    <ClInclude Include="..\..\af_include\af_playlist_group.h" />
     <ClInclude Include="..\..\af_include\af_primitive_object.h" />
     <ClInclude Include="..\..\af_include\af_shader.h" />
     <ClInclude Include="..\..\af_include\af_state_manager.h" />
@@ -345,6 +348,7 @@
     <ClInclude Include="miniz.h" />
     <ClInclude Include="model_edit.h" />
     <ClInclude Include="paricles_system.h" />
+    <ClInclude Include="playlist_group_edit.h" />
     <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="project_edit.h" />
     <ClInclude Include="python_interpreter.h" />

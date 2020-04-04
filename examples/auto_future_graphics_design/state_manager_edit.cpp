@@ -1,10 +1,12 @@
 #include "state_manager_edit.h"
+#include "playlist_group_edit.h"
 #include "res_internal.h"
 #include "user_control_imgui.h"
 #include "common_functions.h"
 #include "ft_base.h"
 #include "res_internal.h"
 #include <sstream>
+extern playlist_group_edit g_playlist_group_edit;
 //#include <algorithm>
 void state_manager_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t page_idx, uint16_t off_idx)
 {
@@ -165,7 +167,9 @@ void state_manager_edit::view_state_manager_item_property()
 	auto& mtrans = _psel->_mtrans;
 	auto state_cnt = pp_value_list.size();
 	ImGui::BeginChild("stata_manager",ImVec2(0,0),true);
-	ImGui::Columns(2);
+	ImGui::Columns(3);
+	ImGui::SetColumnWidth(0, 200);
+	ImGui::SetColumnWidth(1, 400);
 	stringstream stm_sel;
 	string str_sel;
 	idx = 0;
@@ -253,6 +257,15 @@ void state_manager_edit::view_state_manager_item_property()
 	ImGui::NextColumn();
 	if (state_cnt>=2)
 	{
+		auto ntrans = mtrans.size();
+		auto mxn_trans = state_cnt*(state_cnt - 1);
+		if (ntrans < mxn_trans&&ImGui::Button("Add new trans"))
+		{
+			ImGui::OpenPopup("trans_edit");
+			_trans_tar = en_trans_new;
+			_trans_edit = { 0, 250, EaseLinear };
+			_cur_trans_edit_key = { 0, 0 };
+		}
 		if (ImGui::Button("any<->any"))
 		{
 			ImGui::OpenPopup("trans_edit");
@@ -282,29 +295,30 @@ void state_manager_edit::view_state_manager_item_property()
 				//g_state_trans_player.play_state_trans(_psel, itrans->first._from,itrans->first._to);
                     play_tran( _stm_key_name, itrans->first._from, itrans->first._to );
 			}
-               if (pl_sz>0)
-               {
-                    assert( cur_playlist_id < pl_sz );
-                    auto& itrans_key = itrans->first;
-                    auto& cur_pl = playlist_list[ cur_playlist_id ];
-                    bool finded = false;
-                    for (auto& itran:cur_pl)
-                    {
-                         if (itran==itrans_key)
-                         {
-                              finded = true;
-                              break;
-                         }
-                    }
-                    if (!finded)
-                    {
-                         string str_add = "add to playlist..." + str_sel;
-                         if (ImGui::Button(str_add.c_str()))
-                         {
-                              cur_pl.emplace_back( itrans_key );
-                         }
-                    }
-               }
+            if (pl_sz>0)
+            {
+                assert( cur_playlist_id < pl_sz );
+                auto& itrans_key = itrans->first;
+                auto& cur_pl = playlist_list[ cur_playlist_id ];
+                bool finded = false;
+                for (auto& itran:cur_pl)
+                {
+                        if (itran==itrans_key)
+                        {
+                            finded = true;
+                            break;
+                        }
+                }
+                if (!finded)
+                {
+					string str_add = "add to playlist##" + str_sel;
+						ImGui::SameLine();
+                        if (ImGui::Button(str_add.c_str()))
+                        {
+                            cur_pl.emplace_back( itrans_key );
+                        }
+                }
+            }
 			str_sel = "X##" + str_sel;
 			ImGui::SameLine();
 			if (ImGui::Button(str_sel.c_str()))
@@ -316,15 +330,8 @@ void state_manager_edit::view_state_manager_item_property()
 				itrans++;
 			}
 		}
-		auto ntrans = mtrans.size();
-		auto mxn_trans = state_cnt*(state_cnt - 1);
-		if (ntrans<mxn_trans&&ImGui::Button("Add new trans"))
-		{
-			ImGui::OpenPopup("trans_edit");
-			_trans_tar = en_trans_new;
-			_trans_edit = {0,250,EaseLinear};
-			_cur_trans_edit_key = { 0, 0 };
-		}
+
+		ImGui::NextColumn();
 		if (ImGui::Button("Add new play list"))
 		{
 			playlist_list.emplace_back();
@@ -342,51 +349,65 @@ void state_manager_edit::view_state_manager_item_property()
 			{
 				cur_playlist_id = idx;
 			}
-
                if (plsz>0)
                {
-                    str_sel = ">>##" + stm_sel.str();
+				   ImGui::SameLine();
+                  str_sel = ">>##" + stm_sel.str();
                     if( ImGui::Button( str_sel.c_str() ))
                     {
                          play_tran_playlist( _stm_key_name, idx );
                     }
+					if (ImGui::IsItemActive())
+					{
+						// Draw a line between the button and the mouse cursor
+						ImDrawList* draw_list = ImGui::GetWindowDrawList();
+						draw_list->PushClipRectFullScreen();
+						ImGuiIO& io = ImGui::GetIO();
+						draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
+						draw_list->PopClipRect();
+						g_playlist_group_edit.set_dragging(true, _stm_key_name, idx);
+					}
+					if (ImGui::IsMouseReleased(0))
+					{
+						g_playlist_group_edit.set_dragging(false, _stm_key_name, idx);
+					}
                     str_sel = "##" + stm_sel.str();
                     ImGui::BeginChild( str_sel.c_str(), ImVec2( 0, 110 ), true );
                     ImGui::Columns( plsz );
                     int ixx = 0;
                     for( auto ipl = playlist.begin(); ipl != playlist.end(); )
-			     {
+					{
 
-                         ImGui::Text( "%d<->%d", ipl->_from, ipl->_to );
-				     stm_sel.str(string());
-				     stm_sel.clear();
-				     stm_sel << "trans" << idx<<"+"<<ixx;
-				     str_sel = "<-##"+stm_sel.str();
-				     if (ixx>0 && ImGui::Button(str_sel.c_str()))
-				     {
-                              swap( playlist[ ixx ], playlist[ ixx - 1 ] );
-				     }
-				     str_sel = "->##" + stm_sel.str();
-				     if (ixx<plsz-1&&ImGui::Button(str_sel.c_str()))
-				     {
-                              swap( playlist[ ixx ], playlist[ ixx + 1 ] );
-				     }
-                         str_sel = "X##X" + stm_sel.str();
-                         if (ImGui::Button(str_sel.c_str()))
-                         {
-                              ipl = playlist.erase( ipl );
-                              plsz = playlist.size();
-                         }
-                         else
-                         {
-                              ixx++;
-                              ipl++;
-                         }
-                         if( ixx<plsz )
-                         {
-                              ImGui::NextColumn();
-                         }
-			     }
+						ImGui::Text( "%d<->%d", ipl->_from, ipl->_to );
+						stm_sel.str(string());
+						stm_sel.clear();
+						stm_sel << "trans" << idx<<"+"<<ixx;
+						str_sel = "<-##"+stm_sel.str();
+						if (ixx>0 && ImGui::Button(str_sel.c_str()))
+						{
+								swap( playlist[ ixx ], playlist[ ixx - 1 ] );
+						}
+						str_sel = "->##" + stm_sel.str();
+						if (ixx<plsz-1&&ImGui::Button(str_sel.c_str()))
+						{
+								swap( playlist[ ixx ], playlist[ ixx + 1 ] );
+						}
+							str_sel = "X##X" + stm_sel.str();
+							if (ImGui::Button(str_sel.c_str()))
+							{
+								ipl = playlist.erase( ipl );
+								plsz = playlist.size();
+							}
+							else
+							{
+								ixx++;
+								ipl++;
+							}
+							if( ixx<plsz )
+							{
+								ImGui::NextColumn();
+							}
+					}
                     ImGui::EndChild();
                }
                stm_sel.str( string() );
@@ -515,9 +536,7 @@ void state_manager_edit::view_state_manager_item_property()
 		{
 			ImGui::CloseCurrentPopup();
 		}
-		
 		ImGui::EndPopup();
 	}
 	ImGui::EndChild();
-	
 }

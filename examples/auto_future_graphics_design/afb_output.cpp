@@ -17,6 +17,7 @@
 #include "af_bind.h"
 #include "af_state_manager.h"
 #include "af_feedback.h"
+#include "af_playlist_group.h"
 #include "common_functions.h"
 extern "C"{
 #include "image_DXT.h"
@@ -506,7 +507,7 @@ void afb_output::output_afb(const char* afb_file)
                pk.pack_bin_body( (char*)&prp_id[ 0 ], bin_sz );
           }
      }
-	 pk.pack_array(g_feedback_list.size());
+	 pk.pack_array(g_feedback_list.size());//en_feedback_list
 	 for (auto& ifb:g_feedback_list)
 	 {
 		 pk.pack_array(2);
@@ -516,6 +517,26 @@ void afb_output::output_afb(const char* afb_file)
 		 pk.pack_str_body(mtlkey.c_str(),mtlkey.size());
 		 pk.pack_str(prmkey.size());
 		 pk.pack_str_body(prmkey.c_str(),prmkey.size());
+	 }
+	 pk.pack_array(g_playlist_group_list.size());//en_playlist_group_list
+	 for (auto& iplg:g_playlist_group_list)
+	 {
+		 pk.pack_array(2);
+		 auto& plg_key=iplg.first;
+		 auto& plg_u=*iplg.second;
+		 pk.pack_str(plg_key.size());
+		 pk.pack_str_body(plg_key.c_str(),plg_key.size());
+		 auto isz=plg_u.size();
+		 pk.pack_array(isz);
+		 for (int ix=0;ix<isz;ix++)
+		 {
+			 auto& plg = plg_u[ix];
+			 pk.pack_array(2);
+			 pk.pack_str(plg._st_name.size());
+			 pk.pack_str_body(plg._st_name.c_str(), plg._st_name.size());
+			 pk.pack_int(plg._playlist_id);
+		 }
+
 	 }
 #ifndef _DX5_COMPRESS
 	uint8_t* pout_buff = new uint8_t[sbuff.size()];

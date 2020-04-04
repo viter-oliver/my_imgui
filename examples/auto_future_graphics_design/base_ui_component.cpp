@@ -190,7 +190,8 @@ static	string aliase_btn_cp = "  ##";
 					memcpy(&before_op_memb_value[0], memb_address, mtpsz);
 
 					auto& imemb_tp_handl = _mcustom_type_property_handles_container.find(mtype);
-					//bool be_base_type = mtype == "int" || mtype == "float" || mtype == "double" || mtype == "bool";
+					bool be_base_type = mtype == "int" || mtype == "float" || mtype == "double" || mtype == "bool"\
+						||mtype=="af_vec2"||mtype=="af_vec3"||mtype=="af_vec4";
 					if (imemb_tp_handl != _mcustom_type_property_handles_container.end())
 					{
 						imemb_tp_handl->second(memb_address);
@@ -386,7 +387,7 @@ static	string aliase_btn_cp = "  ##";
 						show_aliase_edit = true;
 						g_aliase_edit.sel_aliase(this, pgidx, idx);
 					}
-					//if (be_base_type)
+					if (be_base_type)
 					{
 						btn_cap = bind_btn_cp + idstr;
 						ImGui::SameLine();

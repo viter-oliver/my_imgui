@@ -178,6 +178,7 @@
     <ClCompile Include="af_font_res_set.cpp" />
     <ClCompile Include="af_material.cpp" />
     <ClCompile Include="af_model.cpp" />
+    <ClCompile Include="af_playlist_group.cpp" />
     <ClCompile Include="af_primitive_object.cpp" />
     <ClCompile Include="af_shader.cpp" />
     <ClCompile Include="af_shader_source_code.cpp" />

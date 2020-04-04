@@ -17,6 +17,7 @@
 #include "af_bind.h"
 #include "af_state_manager.h"
 #include "af_feedback.h"
+#include "af_playlist_group.h"
 #define DXT5_DECOMPRESSED
 #ifdef DXT5_DECOMPRESSED
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
@@ -852,5 +853,32 @@ void afb_load::load_afb(const char* afb_file)
 		 feedback_key fkey = { mtl_key, prm_key };
 		 g_feedback_list[fkey] = make_shared<af_feedback>(imtl->second, iprm->second);
 	 }
-      TIME_CHECK( feedback list )
+     TIME_CHECK( feedback list )
+	 auto obj_playlist_group_list = obj_w.via.array.ptr[en_playlist_group_list];
+	 fdsz = obj_playlist_group_list.via.array.size;
+	 for (size_t ix = 0; ix < fdsz; ix++)
+	 {
+		 auto oplg = obj_playlist_group_list.via.array.ptr[ix];
+		 auto oplg_key = oplg.via.array.ptr[0];
+		 auto oplg_u = oplg.via.array.ptr[1];
+		 string plg_key;
+		 auto plg_key_sz = oplg_key.via.str.size;
+		 plg_key.resize(plg_key_sz);
+		 memcpy(&plg_key[0], oplg_key.via.str.ptr, plg_key_sz);
+		 auto ps_plg_list = make_shared<playlist_unit_list>();
+		 g_playlist_group_list[plg_key] = ps_plg_list;
+		 auto plg_u_sz = oplg_u.via.array.size;
+		 for (size_t iy = 0; iy < plg_u_sz;iy++)
+		 {
+			 auto oplg = oplg_u.via.array.ptr[iy];
+			 auto ostm = oplg.via.array.ptr[0];
+			 string stm_name;
+			 auto ostm_sz = ostm.via.str.size;
+			 stm_name.resize(ostm_sz);
+			 memcpy(&stm_name[0], ostm.via.str.ptr, ostm_sz);
+			 auto oplaylist_id = oplg.via.array.ptr[1];
+			 playlist_unit plu = { stm_name, oplaylist_id.as<int>() };
+			 ps_plg_list->emplace_back(plu);
+		 }
+	 }
 }

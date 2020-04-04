@@ -301,6 +301,12 @@
     <ClCompile Include="feedback_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="af_playlist_group.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="playlist_group_edit.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -617,6 +623,12 @@
       <Filter>af_include</Filter>
     </ClInclude>
     <ClInclude Include="feedback_edit.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_playlist_group.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="playlist_group_edit.h">
       <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
