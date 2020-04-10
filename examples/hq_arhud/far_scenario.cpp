@@ -6,6 +6,7 @@
 #include "af_material.h"
 #include "af_state_manager.h"
 #include "enum_txt_name0.h"
+#include "af_playlist_group.h"
 #include "afg.h"
 #include<chrono>
 #include "af_timer.h"
@@ -59,7 +60,7 @@ const char* lane_txt_name[en_clr_cnt][en_lane_num]=
 {"lane_d.png","lane_n_night.png","lane_change_night.png","lane_LDW_day.png"},
 {"lane_d.png","lane_n_snow.png","lane_change_snow.png","lane_LDW_day.png"},
 };
-
+bool be_show=false;
 const char* lane_mt="road";
 
 const char* arrow_txt_name[en_clr_cnt]={"arrow.png","arrow_night.png","arrow_snow.png"};
@@ -429,25 +430,9 @@ enum en_turn_radius_curvature_status
 
 extern char str_show[MAX_CONTENT_LEN];
 
-const char* fifo_path="/tmp/fifo_hq";
-bool g_debug_stm=false;
-string show_image_path;
-int fd_fifo=0;
-bool recieve_cmd=false;
-bool update_cmd=false;
-
 void adas_cmd_update()
 {
-	if(update_cmd)
-	{
-		update_cmd=false;
-		//g_image_show->load_image_file("cat.png");
-		if(show_image_path.size()>0)
-		{
-			g_image_show->load_image_file((char*)show_image_path.c_str());
-
-		}
-	}
+	
 }
 
 enum en_signal_status
@@ -633,15 +618,21 @@ void KeyTest(  int key)
                restore_trans_value( "navi_direct2", 0 );
                break;
           case GLFW_KEY_4:
-               play_tran_playlist( "navi_direct", 4 );
-               play_tran_playlist( "navi_direct1", 4 );
-               play_tran_playlist( "navi_direct2", 4 );
+               //play_tran_playlist( "navi_direct", 4 );
+               //play_tran_playlist( "navi_direct1", 4 );
+               //play_tran_playlist( "navi_direct2", 4 );
+               play_playlist_group( "navi_turn_left" );
                break;
           case GLFW_KEY_5:
-               play_tran_playlist( "navi_direct", 5 );
-               play_tran_playlist( "navi_direct1", 5 );
-               play_tran_playlist( "navi_direct2", 5 );
-               break;
+               //play_tran_playlist( "navi_direct", 5 );
+               //play_tran_playlist( "navi_direct1", 5 );
+               //play_tran_playlist( "navi_direct2", 5 );
+               play_playlist_group( "navi_turn_right" );
+            break;
+          case GLFW_KEY_6:
+               be_show = !be_show;
+               set_property_aliase_value( "show_navi_dir", &be_show );
+          
           default:
                break;
      }

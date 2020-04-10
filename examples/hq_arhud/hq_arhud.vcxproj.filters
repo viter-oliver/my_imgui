@@ -28,6 +28,9 @@
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h">
       <Filter>gl3w</Filter>
     </ClInclude>
+    <ClInclude Include="debug_var_set.h">
+      <Filter>sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c">
       <Filter>gl3w</Filter>
+    </ClCompile>
+    <ClCompile Include="debug_var_set.cpp">
+      <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -114,7 +114,11 @@ void material::set_value(string unf_name, float* pfvalue, GLuint len)
 	auto& shd_ut = _mp_shader_uf.find(unf_name);
 	if (shd_ut==_mp_shader_uf.end())
 	{
+          static int debug_cnt = 0;
+          if(debug_cnt==0)
 		printf("fail to set uniform:%s\n", unf_name.c_str());
+          debug_cnt++;
+          debug_cnt %= 400;
 		return;
 	}
 	auto& pshd = shd_ut->second;

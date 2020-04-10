@@ -58,7 +58,8 @@ namespace auto_future
             ( float, _trans_rotation_x, {0.f} ),
             ( float, _trans_rotation_y, {0.f} ),
             ( float, _trans_rotation_z, {0.f} ),
-			(bool, _with_feedback, {false}))
+            ( float, _alpha_nml, {1.f} ),
+		  (bool, _with_feedback, {false}))
 		bool _matched{ false };
         bool _same_sclae { false };
 		ps_primrive_object _ps_prm;

@@ -162,6 +162,7 @@
   <ItemGroup>
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
+    <ClInclude Include="debug_var_set.h" />
     <ClInclude Include="far_scenario.h" />
     <ClInclude Include="my_application.h" />
     <ClInclude Include="near_scenario.h" />
@@ -172,6 +173,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\libs\gl3w\GL\gl3w.c" />
+    <ClCompile Include="debug_var_set.cpp" />
     <ClCompile Include="far_scenario.cpp" />
     <ClCompile Include="my_application.cpp" />
     <ClCompile Include="near_scenario.cpp" />
