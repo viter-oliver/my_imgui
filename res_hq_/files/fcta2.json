@@ -1,0 +1,44 @@
+{"frames": [
+
+{
+	"filename": "FCTB_2level_1.png",
+	"frame": {"x":2,"y":2,"w":130,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":50},
+	"sourceSize": {"w":130,"h":50}
+},
+{
+	"filename": "FCTB_2level_2.png",
+	"frame": {"x":134,"y":2,"w":130,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":50},
+	"sourceSize": {"w":130,"h":50}
+},
+{
+	"filename": "FCTB_2level_3.png",
+	"frame": {"x":266,"y":2,"w":130,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":50},
+	"sourceSize": {"w":130,"h":50}
+},
+{
+	"filename": "FCTB_2level_4.png",
+	"frame": {"x":398,"y":2,"w":130,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":50},
+	"sourceSize": {"w":130,"h":50}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "fcta2.png",
+	"format": "RGBA8888",
+	"size": {"w":530,"h":54},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:8fe3899d1b5a2380f402e6c50ac22a9e$"
+}
+}

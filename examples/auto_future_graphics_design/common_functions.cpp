@@ -188,7 +188,7 @@ void get_txt_uv_vector(const char* data_file, vres_txt_cd& vtxt_cd)
 
 	}
 }
-ImVec2 rotate_point_by_zaxis(ImVec2& tar, float angle, ImVec2& basePoint)
+AFG_EXPORT ImVec2 rotate_point_by_zaxis( ImVec2& tar, float angle, ImVec2& basePoint )
 {
 	ImVec2 des;
 	des.x = (tar.x - basePoint.x)*cos(angle) + (tar.y - basePoint.y)*sin(angle) + basePoint.x;

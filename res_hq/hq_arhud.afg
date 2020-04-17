@@ -44,10 +44,8 @@
 		"show_road" : [ 6, 0, 0, 0, 0 ],
 		"show_sacc" : [ 6, 0, 6, 0, 0 ],
 		"show_tsr" : [ 6, 0, 5, 1 ],
-		"show_turn_left" : [ 6, 0, 0, 1 ],
-		"show_turn_right" : [ 6, 0, 1, 1 ],
 		"show_version" : [ 6, 0, 6 ],
-		"speed" : [ 4, 1, 1, 2 ],
+		"speed" : [ 4, 1, 3, 2 ],
 		"text_acc_speed" : [ 4, 1, 0, 2, 1 ],
 		"text_acc_speed_a" : [ 4, 1, 1, 2, 1 ],
 		"text_remain_dis" : [ 4, 1, 0, 4 ],
@@ -70,7 +68,7 @@
 						[ 6, 0, 2, 3 ]
 					]
 				},
-				"key" : [ 6, 0, 0, 2 ]
+				"key" : [ 6, 0, 2, 2 ]
 			},
 			
 			{
@@ -140,7 +138,7 @@
 				"key" : [ 6, 0, 2, 3 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 0, 2 ]
+					[ 6, 0, 2, 2 ]
 				]
 			},
 			
@@ -177,10 +175,10 @@
 					"_aj_model" : 0,
 					"_bk_clr" : 
 					{
-						"w" : 0.0,
-						"x" : 0.0,
-						"y" : 0.0,
-						"z" : 0.0
+						"w" : 1.0,
+						"x" : 0.003921568859368563,
+						"y" : 0.003921568859368563,
+						"z" : 0.003921568859368563
 					},
 					"_name" : "ft_scene",
 					"_posx" : 0.0,
@@ -194,6 +192,7 @@
 						{
 							"_adjacent_to_p" : 73.68400573730469,
 							"_aj_model" : 0,
+							"_alpha_nml" : 0.0,
 							"_cam" : "aaaamimdaaaamdedjgonccdmaaaamimdaaaamdedponekidpaaaaaaaaddddlddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "road",
@@ -226,6 +225,7 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
+							"_alpha_nml" : 1.0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "arrow",
@@ -245,8 +245,8 @@
 							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
 							"_trans_translation_x" : -400.0,
-							"_trans_translation_y" : 880.0,
-							"_trans_translation_z" : 9000.0,
+							"_trans_translation_y" : 975.0,
+							"_trans_translation_z" : 11000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -258,6 +258,7 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
+							"_alpha_nml" : 1.0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "arrow",
@@ -290,6 +291,7 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
+							"_alpha_nml" : 1.0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "arrow",
@@ -322,6 +324,7 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
+							"_alpha_nml" : 0.0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "fcw_v",
@@ -354,6 +357,7 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
+							"_alpha_nml" : 0.0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "fcw",
@@ -386,6 +390,7 @@
 						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
+							"_alpha_nml" : 0.0,
 							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "sacc",
@@ -398,12 +403,12 @@
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_trans_order" : 5,
-							"_trans_rotation_x" : 90.0,
+							"_trans_rotation_x" : 88.0,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 0.0,
 							"_trans_scale_x" : 2.0,
 							"_trans_scale_y" : 1.0,
-							"_trans_scale_z" : 13.0,
+							"_trans_scale_z" : 28.0,
 							"_trans_translation_x" : 631.0940551757813,
 							"_trans_translation_y" : -121.3050079345703,
 							"_trans_translation_z" : 10000.0,
@@ -589,8 +594,8 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "tsr",
-					"_posx" : 302.0,
-					"_posy" : 235.0,
+					"_posx" : 292.0,
+					"_posy" : 238.0,
 					"_sizeh" : 41.0,
 					"_sizew" : 41.0,
 					"_texture_index_txt" : 86,
@@ -784,13 +789,49 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
+					"_angle_nml" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_frame_index" : 44,
+					"_name" : "turn_left",
+					"_posx" : 0.0,
+					"_posy" : 198.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 286.0,
+					"_texture_fmt_name" : "left_wing.json",
+					"_texture_name" : "left_wing.png",
+					"_visible" : true,
+					"type" : "ft_image_play"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_angle_nml" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_frame_index" : 44,
+					"_name" : "turn_right",
+					"_posx" : 514.0,
+					"_posy" : 198.0,
+					"_sizeh" : 80.0,
+					"_sizew" : 286.0,
+					"_texture_fmt_name" : "right_wing.json",
+					"_texture_name" : "right_wing.png",
+					"_visible" : true,
+					"type" : "ft_image_play"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "flag",
 					"_posx" : 399.0,
-					"_posy" : 264.0,
+					"_posy" : 266.0,
 					"_sizeh" : 34.0,
 					"_sizew" : 3.0,
 					"_texture_index_txt" : 85,
@@ -804,13 +845,13 @@
 					"_content" : "0",
 					"_font_id" : 0,
 					"_font_scale" : 1.0,
-					"_font_size" : 60,
+					"_font_size" : 50,
 					"_name" : "speed",
 					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 398.0,
-					"_posy" : 240.0,
+					"_posy" : 243.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_txt_alignh_nml" : 0.50,
@@ -828,7 +869,7 @@
 					[
 						
 						{
-							"_adjacent_to_p" : 0.0,
+							"_adjacent_to_p" : 8.0,
 							"_aj_model" : 1,
 							"_content" : "km/h",
 							"_font_id" : 1,
@@ -838,8 +879,8 @@
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : 17.91799926757813,
-							"_posy" : 12.08500099182129,
+							"_posx" : 30.0,
+							"_posy" : 20.0,
 							"_sizeh" : 25.03900146484375,
 							"_sizew" : 38.42800140380859,
 							"_txt_alignh_nml" : 0.0,
@@ -1328,8 +1369,8 @@
 				[ 0, 1, 0, 3 ],
 				[ 0, 1, 1, 3 ],
 				[ 0, 1, 0, 4 ],
-				[ 0, 1, 1, 2 ],
-				[ 0, 1, 0, 1, 2 ]
+				[ 0, 1, 3, 2 ],
+				[ 0, 1, 0, 3, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1346,8 +1387,8 @@
 				[ 0, 1, 0, 3 ],
 				[ 0, 1, 1, 3 ],
 				[ 0, 1, 0, 4 ],
-				[ 0, 1, 1, 2 ],
-				[ 0, 1, 0, 1, 2 ]
+				[ 0, 1, 3, 2 ],
+				[ 0, 1, 0, 3, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1364,8 +1405,8 @@
 				[ 0, 1, 0, 3 ],
 				[ 0, 1, 1, 3 ],
 				[ 0, 1, 0, 4 ],
-				[ 0, 1, 1, 2 ],
-				[ 0, 1, 0, 1, 2 ]
+				[ 0, 1, 3, 2 ],
+				[ 0, 1, 0, 3, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1402,7 +1443,7 @@
 		
 		{
 			"cols" : 20,
-			"name" : "AutoFutureSokon_v1.1.0.ttf",
+			"name" : "FAWFont_M_E115.ttf",
 			"rows" : 20
 		},
 		
@@ -2026,17 +2067,17 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						1.999999880790710,
+						2.0,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						-4.371138828673793e-008,
-						13.0,
+						0.03489949554204941,
+						27.98294448852539,
 						0.0,
 						0.0,
-						-1.0,
-						-5.682480264113110e-007,
+						-0.9993908405303955,
+						0.9771858453750610,
 						0.0,
 						631.0940551757813,
 						-121.3050079345703,
@@ -2073,7 +2114,7 @@
 				"text" : 
 				{
 					"el_size" : 1,
-					"txt_name" : "acc_dis_night.png",
+					"txt_name" : "acc_dis_day.png",
 					"type" : "shader_uf_txt",
 					"usize" : 1,
 					"utype" : 35678
@@ -2203,7 +2244,7 @@
 	[
 		
 		{
-			"plg_key" : "navi_arrows_left",
+			"plg_key" : "navi_turn_left",
 			"plg_list" : 
 			[
 				
@@ -2219,6 +2260,28 @@
 				
 				{
 					"playlist_id" : 4,
+					"st_name" : "navi_direct2"
+				}
+			]
+		},
+		
+		{
+			"plg_key" : "navi_turn_right",
+			"plg_list" : 
+			[
+				
+				{
+					"playlist_id" : 5,
+					"st_name" : "navi_direct"
+				},
+				
+				{
+					"playlist_id" : 5,
+					"st_name" : "navi_direct1"
+				},
+				
+				{
+					"playlist_id" : 5,
 					"st_name" : "navi_direct2"
 				}
 			]
@@ -3582,11 +3645,11 @@
 				
 				[
 					"aaaamimd",
-					"aakaameg",
+					"aaoacleg",
 					"aaaajgec",
 					"aaaaaaaa",
 					"aaaapked",
-					"aaaafmee",
+					"aamahdee",
 					"aaaaaaaa"
 				],
 				
@@ -3983,6 +4046,156 @@
 			"mipmap" : false,
 			"name" : "fcta1.png",
 			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "fcta1_r.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "fcta2.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "fcta2_r.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_LDW_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_change_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_change_night.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_change_snow.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_d.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_n_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_n_night.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_n_snow.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_wing.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_ACC_vehicle.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_fcw_AEB_p.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_fcw_AEB_v.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_fcw_level1_p.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_fcw_level1_v.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_fcw_level2_p.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_fcw_level2_v.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "night_left_wing.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "night_right_wing.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_wing.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "snow_left_wing.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "snow_right_wing.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "usq.png",
+			"separated" : false
 		}
 	],
 	"texture_res_list" : 
@@ -3997,13 +4210,13 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : false,
+		"show_aliase_edit" : true,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
 		"show_fonts_manager" : false,
 		"show_project_window" : true,
 		"show_property_window" : true,
-		"show_resource_manager" : true,
+		"show_resource_manager" : false,
 		"show_slider_path_picker" : false,
 		"show_state_manager_edit" : true
 	}

@@ -126,7 +126,7 @@ void my_application::onUpdate()
      }*/
 	g_msg_host.execute_data_handle_cmd();
 	g_timer.execute();
-	adas_cmd_update();
+     adas_update();
 	
 }
 struct  opgenl_container

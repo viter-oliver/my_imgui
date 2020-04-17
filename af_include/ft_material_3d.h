@@ -161,6 +161,22 @@ namespace auto_future
 		{
 			_pt._trans_translation_z = tz;
 		}
+          void set_alpha( float alpha )
+          {
+               _pt._alpha_nml=alpha ;
+          }
+          float get_trans_tlx()
+          {
+               return _pt._trans_translation_x;
+          }
+          float get_trans_tly()
+          {
+               return _pt._trans_translation_y;
+          }
+          float get_trans_tlz()
+          {
+               return _pt._trans_translation_z;
+          }
 		bool get_output_vertex(vector<float>& overtex);
 
 	};

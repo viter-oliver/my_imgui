@@ -17,6 +17,13 @@
 #include <mutex>
 #include <map>
 #include <vector>
+#include "common_functions.h"
+//#include <cmath>
+
+#ifndef PI
+#define PI 3.1415926545
+#endif
+static const double half_pi = PI / 2;
 #include <math.h>
 #include <GLFW/glfw3.h>
 using namespace chrono;
@@ -117,8 +124,6 @@ enum
 	en_parabolic_model,
 	en_3rd_degree_model,
 };
-
-
 
 enum en_obj_type
 {
@@ -430,11 +435,6 @@ enum en_turn_radius_curvature_status
 
 extern char str_show[MAX_CONTENT_LEN];
 
-void adas_cmd_update()
-{
-	
-}
-
 enum en_signal_status
 {
 	signal_vailable,
@@ -543,6 +543,259 @@ struct navi_dir_logic
 	u8 turn_radius_curvature_status:4;
 };
 
+class arrow_turn_control
+{
+     float radious;
+     float linear_dis;
+     int duration;
+     float max_angle;
+     float turn_scale = { 0 };
+     steady_clock::time_point tm_st;
+     ImVec2 prev_pos = { 0.f, 0.f };
+     float sum_dis = { 0.f };
+public:
+     arrow_turn_control( float rd, float dt,float ldis,float mag=180.f) 
+          :radious( rd ), duration( dt ),linear_dis(ldis),max_angle(mag) {}
+     void active()
+     {
+          tm_st = steady_clock::now();
+          sum_dis = 0.f;
+          prev_pos = { 0, 0 };
+     }
+     void calcu( float&xoff_set, float&z_offset, float& angle )
+     {
+          auto curt=steady_clock::now();
+          int delta = chrono::duration_cast<chrono::duration<int, std::milli>>( curt - tm_st ).count();
+          if( delta > duration )
+          {
+               active();
+               return;
+
+          }
+          angle = (float)delta*max_angle/(float)duration;
+          auto radian = PI*angle / 180.f;
+          z_offset = radious* sin( radian );
+          xoff_set = radious*( 1 - cos( radian ) );
+     }
+     void set_turn_scale( float tscale)
+     {
+          turn_scale = tscale;
+     }
+     bool calcu2( float&xoff_set, float&z_offset, float& angle,float& delta_dis,float& scale )
+     {
+          auto curt=steady_clock::now();
+          int delta = chrono::duration_cast<chrono::duration<int, std::milli>>( curt - tm_st ).count();
+          if( delta > duration )
+          {
+               active();
+               return false;
+
+          }
+          scale=(float)delta/(float)duration;
+          angle = scale*max_angle;
+          xoff_set = ( radious + radious )*scale;
+          auto dd_unit = xoff_set - radious;
+          z_offset = 80000.f-0.02f * dd_unit*dd_unit;
+          delta_dis = scale*linear_dis;
+          return true;
+     }
+     bool calcu3( float&xoff_set, float&z_offset, float& angle,float& delta_dis,float& scale )
+     {
+          auto curt=steady_clock::now();
+          int delta = chrono::duration_cast<chrono::duration<int, std::milli>>( curt - tm_st ).count();
+          if( delta > duration )
+          {
+               active();
+               return false;
+
+          }
+          scale=(float)delta/(float)duration;
+          delta_dis = scale*linear_dis;
+
+          angle = scale*max_angle;
+          auto squre = [&]( float su )
+          {
+               return su*su;
+          };
+          auto equation0 = [&]( float x )
+          {
+               float z=80000.f - 0.02f * squre( x - radious );
+               return z;
+          };
+          auto eg_xoff = 2 * radious*turn_scale;
+          auto eg_zoff = equation0( eg_xoff );
+
+          auto equation_z = [&]( float x )
+          {
+               float z = 80000.f - eg_zoff - 0.02f*squre( x - radious + eg_xoff );
+               return z;
+          };
+
+          auto equation_dz_dx = [&]( float x )
+          {
+               float dz_dx = -0.04*( x - radious + eg_xoff );
+               return dz_dx;
+          };
+          auto dz_dx0 = equation_dz_dx( 0.f );
+          float angle_turn = atanf( dz_dx0 ) -PI*0.5f;
+          //printf( "ange_turn=%f\n", angle_turn );
+          xoff_set = ( radious + radious )*scale;// *cos( angle_turn );
+
+          auto z_of = equation_z( xoff_set );
+          ImVec2 pt0 = { xoff_set, z_of }, pt1 = { 0, 0 };
+          ImVec2 des = rotate_point_by_zaxis( pt0, angle_turn, pt1 );
+          xoff_set = des.x;
+          z_offset = des.y;
+          
+          return true;
+     }
+     bool calcu4( float&xoff_set, float&z_offset, float& angle, float& delta_dis, float& scale )
+     {
+          auto curt = steady_clock::now();
+          int delta = chrono::duration_cast<chrono::duration<int, std::milli>>( curt - tm_st ).count();
+          if( delta > duration )
+          {
+               active();
+               return false;
+
+          }
+          scale = (float)delta / (float)duration;
+          delta_dis = scale*linear_dis;
+          auto tn_dis = delta_dis ;
+          auto dis_delta = tn_dis - sum_dis;
+          sum_dis = tn_dis;
+          auto squre = [&]( float su )
+          {
+               return su*su;
+          };
+          auto dis_delta_sq = squre( dis_delta );
+
+          auto pt_sq_length = [&]( ImVec2& pt0, ImVec2& pt1 )
+          {
+               auto sq_dis = squre( pt1.x - pt0.x ) + squre( pt1.y - pt0.y );
+          };
+
+          auto equation0 = [&]( float x )
+          {
+               float z = 80000.f - 0.02f * squre( x - radious );
+               return z;
+          };
+
+          auto equation_dz_dx = [&]( float x )
+          {
+               float dz_dx = -0.04*( x - radious );
+               return dz_dx;
+          };          
+          
+          auto find_pt = [&]( ImVec2& base_bt, ImVec2& des_pt )
+          {
+               auto dz_dx_base = equation_dz_dx( base_bt.x );
+               auto angle_base = atanf( dz_dx_base);
+               auto x_delta=dis_delta*cos( angle_base );
+               des_pt.x= base_bt.x + x_delta;
+               des_pt.y = equation0( des_pt.x );
+          };
+          ImVec2 next_pos;
+          find_pt( prev_pos, next_pos );
+          prev_pos = next_pos;
+          xoff_set = next_pos.x;
+          z_offset = next_pos.y;
+          return true;
+     }
+};
+arrow_turn_control arrow_cc(2000.f, 2000.f,50000.f);
+static float aw_x = 0, aw_z2 = 150000.f, aw_z1 = 100000.f, aw_z0 = 50000.f, aw_zh=0.f,aw_a = -15.f;
+static const float tga = 6.f / 500.f;
+static bool be_a_moving = false;
+static float g_turn_scale = 0;
+
+
+static const int arrow_cont = 4;
+ft_material_3d* parrows[ arrow_cont ];
+class arrow_animation_control
+{
+     float speed = 10;//∫¡√◊/∫¡√Î
+     float base_z = 150000.f;
+     struct aw_unit 
+     {
+          ft_material_3d* parw;
+          bool on_turning;
+          ImVec2 point_pre;
+     };
+     vector<aw_unit> varrow;
+     steady_clock::time_point tm_st;
+public:
+     arrow_animation_control()
+     {
+     }
+     void add_arrow( ft_material_3d* paw )
+     {
+          aw_unit tn = { paw, false, {0,0} };
+          varrow.emplace_back( tn );
+     }
+     void handle()
+     {
+         auto curt = steady_clock::now();
+         int time_delta = chrono::duration_cast<chrono::duration<int, std::milli>>( curt - tm_st ).count();
+         tm_st = curt;
+         float dis = time_delta*speed;
+         auto isz = varrow.size();
+         for( int ix = 0; ix < isz; ix++ )
+         {
+              auto& cur_paw = *varrow[ ix ].parw;
+              auto tz = cur_paw.get_trans_tlz()+dis;
+
+              if(! varrow[ ix ].on_turning )
+              {
+                   if( tz <base_z )
+                   {
+                        cur_paw.set_trans_tlz( tz );
+                        auto ty = tz*tga;
+                        cur_paw.set_trans_tly( ty );
+                        cur_paw.set_trans_tlx( 0 );
+                        cur_paw.set_alpha( 1.f );
+                        continue;
+                   }
+                   else
+                   {
+                        varrow[ ix ].on_turning = true;
+                        varrow[ ix ].point_pre = { 0, 0 };
+                        dis = tz - base_z;
+                   }
+              }
+
+              auto equation0 = [&]( float x )
+              {
+                   float z = 80000.f - 0.02f * squre( x - radious );
+                   return z;
+              };
+              
+
+         }
+     }
+
+};
+
+u8 top_arrow_index = arrow_cont-1;
+u8 prev_arrow_index( u8 by_index )
+{
+     if (by_index==0)
+     {
+          return arrow_cont-1;
+     }
+     else
+     {
+          return --by_index;
+     }
+}
+u8 next_arrow_index( u8 by_index )
+{
+     by_index++;
+     by_index %= arrow_cont;
+     return by_index;
+}
+
+
 void handle_navi_direct(u8 nv_play)
 {
      if(nv_play==ndir_no_arrow)
@@ -632,12 +885,89 @@ void KeyTest(  int key)
           case GLFW_KEY_6:
                be_show = !be_show;
                set_property_aliase_value( "show_navi_dir", &be_show );
-          
-          default:
+               break;
+          case GLFW_KEY_7:
+               be_a_moving = !be_a_moving;
+               if (be_a_moving)
+               {
+                    arrow_cc.active();
+               }
+               break;
+          case GLFW_KEY_8:
+               if( be_a_moving )
+               {
+                    g_turn_scale += 0.1;
+                    if( g_turn_scale > 10.f )
+                         g_turn_scale = 0;
+                    arrow_cc.set_turn_scale( g_turn_scale );
+               }
+               break;          default:
                break;
      }
      
      
+}
+void adas_update()
+{
+#if 0
+     if( be_a_moving )
+     {
+          float xf = 0.f, zf = 0.f, ag = 0.f,linear_zdelta=0.f,scale=0.f;
+          if (!arrow_cc.calcu4( xf, zf, ag,linear_zdelta,scale))
+          {
+               top_arrow_index = prev_arrow_index( top_arrow_index );
+          }
+          
+          printf( "linear_zdelta=%f\n", linear_zdelta );
+          auto tx = aw_x + xf;
+          auto tz = aw_z2 + zf;
+          auto ax = aw_a - ag;
+          auto alpha = 1.f - scale*0.8;
+          //printf( "....(%f,%f,%f,%f)\n", tx, tz, ax, ag );
+          auto& top_arrow = parrows[ top_arrow_index ];
+          top_arrow->set_trans_tlx( tx );
+          top_arrow->set_trans_tlz( tz );
+          auto ty = tz*tga;
+          top_arrow->set_trans_tly( ty );
+          //top_arrow->set_alpha( alpha );
+          //parrow2->set_trans_rtx( ax );
+          if (ag>90)
+          {
+               ag = 90;
+          }
+          //parrow2->set_trans_rtz( -ag );
+          //parrow2->set_trans_rty( ag );
+          auto prev_idx = prev_arrow_index( top_arrow_index );
+          auto& prev_arrow = parrows[ prev_idx ];
+          auto ab_z1 = aw_z1 + linear_zdelta;
+          auto ab_y1 = ab_z1*tga;
+          prev_arrow->set_trans_tlx( 0 );
+          prev_arrow->set_trans_tlz( ab_z1 );
+          prev_arrow->set_trans_tly( ab_y1 );
+          prev_arrow->set_alpha( 1.f );
+
+          auto last_idx = prev_arrow_index( prev_idx );
+          auto& last_arrow = parrows[ last_idx ];
+          auto ab_z0 = aw_z0 + linear_zdelta;
+          auto ab_y0 = ab_z0*tga;
+          last_arrow->set_trans_tlx( 0 );
+          last_arrow->set_trans_tlz( ab_z0 );
+          last_arrow->set_trans_tly( ab_y0 );
+          last_arrow->set_alpha( 1.f );
+
+          auto hide_idx = prev_arrow_index( last_idx );
+          auto& hide_arrow = parrows[ hide_idx ];
+          auto ab_zh = aw_zh + linear_zdelta;
+          auto ab_yh = ab_zh*tga;
+          hide_arrow->set_trans_tlx( 0 );
+          hide_arrow->set_trans_tlz( ab_zh );
+          hide_arrow->set_trans_tly( ab_yh );
+          hide_arrow->set_alpha( 1.f );
+         
+     }
+#else
+
+#endif
 }
 void register_adas_cmd_handl()
 {
@@ -648,9 +978,15 @@ void register_adas_cmd_handl()
       parrow0=(ft_material_3d*)get_aliase_ui_control("show_arrow");
       parrow1=(ft_material_3d*)get_aliase_ui_control("show_arrow1");
       parrow2=(ft_material_3d*)get_aliase_ui_control("show_arrow2");
-	  
+	 parrows[ 0 ] = (ft_material_3d*)get_aliase_ui_control("show_arrowh");
+      parrows[ 1 ] = parrow0;
+      parrows[ 2 ] = parrow1;
+      parrows[ 3 ] = parrow2;
+
       pturn_left=(ft_image_play*)get_aliase_ui_control("txt_left_wing");
       pturn_right=(ft_image_play*)get_aliase_ui_control("txt_right_wing");
+
+
 	g_msg_host.attach_monitor("show_image", [&](u8* pbuff,int len){
 		pbuff++;
 		u8 pic_id=*pbuff;

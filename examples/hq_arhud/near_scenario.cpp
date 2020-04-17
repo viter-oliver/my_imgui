@@ -1,3 +1,4 @@
+#include <map>
 #include "afg.h"
 #include "af_bind.h"
 #include "near_scenario.h"
@@ -111,11 +112,39 @@ bool g_be_phoning=false;
 //fcta,fctb
 int tmid_left_fctb=0;
 int tmid_right_fctb=0;
+map<string, int> timer_list;
+map<string, u8> signal_int;
+enum singal_state
+{
+     sg_off,
+     sg_on,
+     sg_flash_1hz,
+     sg_flash_2hz,
+};
+bool sig_show = false;
+#define  HAND_ELE(r,data,elem) timer_list[PIKSTR(elem)]=\
+        g_timer.register_timer_ex([&](int tid){\
+});\
+g_msg_host.attach_monitor( PIKSTR( elem  ), \
+                           [&]( u8* pbuff, int len )\
+{\
+     signal_int[ PIKSTR( elem )  ] = *pbuff;\
+     if(*pbuff==sg_off){\
+          sig_show = false;\
+          set_property_aliase_value( "show_"PIKSTR(  elem ), &sig_show );\
+     }\
+     else if(*pbuff==sg_on)\
+     {\
+          sig_show = true; \
+          set_property_aliase_value( "show_"PIKSTR(  elem ), &sig_show ); \
+     }\
+});
+#define  SINAL_HANDL(...)  BOOST_PP_SEQ_FOR_EACH(HAND_ELE,_,BOOST_PP_VARIADIC_TO_SEQ(__VA_ARGS__))
 
 
 void register_near_cmd_handl()
 {
-
+     SINAL_HANDL( aa, bb, cc, dd, ee,sign);
 	g_msg_host.attach_monitor("left turn",[&](u8*pbuff,int len){
 		be_turn_left=*pbuff!=0;
 		/*if(be_turn_left)
