@@ -158,7 +158,6 @@ void my_application::before_swap()
           opgenl_container glc( _screen_width, _screen_height );
           int dsz = 0;
           auto tdat = glc.get_image( dsz );
-          save_image( tdat, dsz );
 
           delete[] tdat;
      }

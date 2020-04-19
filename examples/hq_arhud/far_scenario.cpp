@@ -716,6 +716,7 @@ class arrow_animation_control
 {
      float speed = 10;//∫¡√◊/∫¡√Î
      float base_z = 150000.f;
+	 float radious;
      struct aw_unit 
      {
           ft_material_3d* parw;
@@ -740,11 +741,51 @@ public:
          tm_st = curt;
          float dis = time_delta*speed;
          auto isz = varrow.size();
+		 auto squre = [&](float su)
+		 {
+			 return su*su;
+		 };
+		 auto pt_sq_length = [&](ImVec2& pt0, ImVec2& pt1)
+		 {
+			 auto sq_dis = sqrt(squre(pt1.x - pt0.x) + squre(pt1.y - pt0.y));
+			 return sq_dis;
+		 };
+		 auto equation0 = [&](float x)
+		 {
+			 float z = 80000.f - 0.02f * squre(x - radious);
+			 return z;
+		 };
+
+		 auto equation_dz_dx = [&](float x)
+		 {
+			 float dz_dx = -0.04*(x - radious);
+			 return dz_dx;
+		 };
+		 ImVec2 og_pt = { 0, base_z };
+
+		 auto find_pt = [&](ImVec2& base_bt, float dis_delta, ImVec2& des_pt)
+		 {
+			 auto dz_dx_base = equation_dz_dx(base_bt.x);
+			 auto angle_base = atanf(dz_dx_base);
+			 auto x_delta = dis_delta*cos(angle_base);
+			 ImVec2 tp_pt;
+			 tp_pt.x = base_bt.x + x_delta;
+			 tp_pt.y = equation0(des_pt.x);
+			 auto tp_dis = pt_sq_length(base_bt, tp_pt);
+			 auto dis_c = dis_delta - tp_dis;
+
+			 auto dz_dx_tp = equation_dz_dx(tp_pt.x);
+			 auto angle_tp = atanf(dz_dx_tp);
+			 auto tp_x_delta = dis_c*cos(angle_tp);
+			 des_pt.x= tp_pt.x + tp_x_delta;
+			 des_pt.y = equation0(des_pt.x);
+		 };
+
          for( int ix = 0; ix < isz; ix++ )
          {
               auto& cur_paw = *varrow[ ix ].parw;
               auto tz = cur_paw.get_trans_tlz()+dis;
-
+			  auto dis_tp = dis;
               if(! varrow[ ix ].on_turning )
               {
                    if( tz <base_z )
@@ -760,16 +801,18 @@ public:
                    {
                         varrow[ ix ].on_turning = true;
                         varrow[ ix ].point_pre = { 0, 0 };
-                        dis = tz - base_z;
+						dis_tp = tz - base_z;
                    }
               }
-
-              auto equation0 = [&]( float x )
-              {
-                   float z = 80000.f - 0.02f * squre( x - radious );
-                   return z;
-              };
-              
+			  ImVec2& pre_point = varrow[ix].point_pre;
+			  ImVec2 cur_pt;
+			  find_pt(pre_point, dis_tp, cur_pt);
+			  varrow[ix].point_pre = cur_pt;
+			  ImVec2 r_pt = og_pt + cur_pt;
+			  cur_paw.set_trans_tlx(r_pt.y);
+			  auto ty = r_pt.y*tga;
+			  cur_paw.set_trans_tly(ty);
+			  cur_paw.set_trans_tlx(r_pt.x); 
 
          }
      }
