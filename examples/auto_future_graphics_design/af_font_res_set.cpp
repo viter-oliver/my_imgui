@@ -86,8 +86,8 @@ namespace auto_future
 				float y1 = glyph_txt_cd._y1;
 				auto advance = glyph_txt_cd._advance;
                     auto bearing_x = bearing.x*scale;
-                    auto bearing_x_n = bearing_x;
 #if 0
+                    auto bearing_x_n = bearing_x;
                     int w = tsize.x;
                     int ev = w % 2;
                     if (ev==0)
@@ -96,7 +96,7 @@ namespace auto_future
                     }
 #endif
 				float char_left_edge = end_pos.x + bearing_x;
-				float char_right_edge = char_left_edge + tsize.x*scale+bearing_x_n;
+                    float char_right_edge = char_left_edge + tsize.x*scale;// +bearing_x_n;
 				cnt_char++;
 				if (char_right_edge>str_most_right_edge)
 				{
@@ -129,10 +129,6 @@ namespace auto_future
 						char_right_edge = char_left_edge + tsize.x*scale;
 					}
 				}
-				if (char_right_edge>str_real_right_edg)
-				{
-					str_real_right_edg = char_right_edge;
-				}
 				ImVec2 pos0{ char_left_edge, base_line - bearing.y*scale };
 				ImVec2 pos1{ pos0.x, pos0.y + tsize.y*scale };
 				ImVec2 pos2{ char_right_edge, pos1.y };
@@ -145,8 +141,13 @@ namespace auto_future
 				if (!be_new)
 				ImageQuad((ImTextureID)txt_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, dcol);
 				float shift_dis = (advance >> 6)*scale;// Bitshift by 6 to get value in pixels (2^6 = 64)
-                    end_pos.x += bearing_x_n;
+                    //end_pos.x += bearing_x_n;
 				end_pos.x += shift_dis;
+                    if( end_pos.x > str_real_right_edg )
+                    {
+                         str_real_right_edg = end_pos.x;
+                    }
+
 				if (maxy<pos1.y)
 				{
 					maxy = pos1.y;

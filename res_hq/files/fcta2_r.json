@@ -115,10 +115,10 @@
 "meta": {
 	"app": "http://www.texturepacker.com",
 	"version": "1.0",
-	"image": "fcta2.png",
+	"image": "fcta2_r.png",
 	"format": "RGBA8888",
 	"size": {"w":1430,"h":46},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:d2a6b70eaf74fbca9db66848c6a09def$"
+	"smartupdate": "$TexturePacker:SmartUpdate:dfc5418cfa0ea7cf69d32a2f8e3fc853$"
 }
 }

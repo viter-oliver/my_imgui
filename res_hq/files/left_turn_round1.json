@@ -1,0 +1,92 @@
+{"frames": [
+
+{
+	"filename": "IMG_000.png",
+	"frame": {"x":2,"y":2,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_001.png",
+	"frame": {"x":429,"y":2,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_002.png",
+	"frame": {"x":856,"y":2,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_003.png",
+	"frame": {"x":2,"y":233,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_004.png",
+	"frame": {"x":429,"y":233,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_005.png",
+	"frame": {"x":856,"y":233,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_006.png",
+	"frame": {"x":2,"y":464,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_007.png",
+	"frame": {"x":429,"y":464,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_008.png",
+	"frame": {"x":856,"y":464,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+},
+{
+	"filename": "IMG_009.png",
+	"frame": {"x":2,"y":695,"w":425,"h":229},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":425,"h":229},
+	"sourceSize": {"w":425,"h":229}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "left_turn_round1.png",
+	"format": "RGBA8888",
+	"size": {"w":1283,"h":926},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:de0339fc81c072a7e57bd3baf19b44f8$"
+}
+}

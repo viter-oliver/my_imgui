@@ -71,7 +71,14 @@ namespace auto_future
 		//glEnable(GL_DEPTH_TEST);
 		//glDepthFunc(GL_LESS);
           //glDisable( GL_CULL_FACE );
-          glDisable( GL_DEPTH_TEST );
+          if (_sn_pt._test_depth)
+          {
+               glEnable( GL_DEPTH_TEST );
+          }
+          else
+          {
+               glDisable( GL_DEPTH_TEST );
+          }
 		//glDisable(GL_SCISSOR_TEST);
 		glClearColor(_sn_pt._bk_clr.x, _sn_pt._bk_clr.y, _sn_pt._bk_clr.z, _sn_pt._bk_clr.w);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

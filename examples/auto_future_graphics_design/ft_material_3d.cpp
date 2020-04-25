@@ -231,10 +231,28 @@ namespace auto_future
 		{
 			auto& ps_sd = _ps_mtl->get_shader();
 			_matched = ps_sd->match_format(_ps_prm->_ele_format);
+               if( !_matched )
+               {
+                    printf("prm:");
+                    for( auto& ifm : _ps_prm->_ele_format )
+                    {
+                         printf( "%x", ifm );
+                    }
+                    printf("\n");
+                    printf( "attrlist:" );
+                    auto& attr_list = ps_sd->get_attr_list();
+                    for( auto& iattr : attr_list )
+                    {
+                         printf( "name:%s,type%d,", iattr._name.c_str(), iattr._variable_type );
+                    }
+                    printf( "\n" );
+
+               }
 		}
 		else
 		{
 			_matched = false;
+
 		}
 #endif
 		if (_matched)

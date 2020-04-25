@@ -1076,7 +1076,7 @@ int main(int argc, char* argv[])
 		{
 			ImGui::Begin("State manager edit", &show_state_manager_edit, ImVec2(500, 600));
 			ImGui::Columns(2);
-			ImGui::SetColumnWidth(0, 200);
+			ImGui::SetColumnWidth(0, 300);
 			g_state_manager_edit.view_state_managers();
 			ImGui::NextColumn();
 			g_state_manager_edit.view_state_manager_item_property();

@@ -524,15 +524,19 @@ void calcu_arrows_transx()
 }
 enum navi_dir_play
 {
-	ndir_no_arrow,
-       ndir_turn_left,
-       ndir_turn_right,
-       ndir_lane_switch_left,
-       ndir_lane_switch_right,
-       
-       ndir_navi_same,
-       ndir_curvature_same,
+     ndir_no_play,
+     ndir_turn_left_front,
+     ndir_turn_left,
+     ndir_left_turning_round,
+     ndir_turn_right_front,
+     ndir_turn_right,
+     ndir_right_turning_round,
+     ndir_lane_switch_left,
+     ndir_lane_switch_right,
+
 };
+int pre_turn_count = 0;
+bool be_visble = false;
 struct navi_dir_logic
 {
 	u8  satisfied_projection:2;
@@ -714,111 +718,197 @@ static const int arrow_cont = 4;
 ft_material_3d* parrows[ arrow_cont ];
 class arrow_animation_control
 {
-     float speed = 10;//毫米/毫秒
+     enum motion_status
+     {
+          en_forward,
+          en_turning,
+          en_finished,
+     };
+     float speed = 30;//毫米/毫秒
      float base_z = 150000.f;
-	 float radious;
+	float radious;
+     float top_curvature;
+     float max_zoff;
+     float finish_scale = {1.f};
      struct aw_unit 
      {
           ft_material_3d* parw;
-          bool on_turning;
+          motion_status on_going;
           ImVec2 point_pre;
      };
      vector<aw_unit> varrow;
      steady_clock::time_point tm_st;
-public:
-     arrow_animation_control()
+     float squre( float su )
      {
+          return su*su;
+     }
+     float pt_sq_length( ImVec2& pt0, ImVec2& pt1 )
+     {
+          auto sq_dis = sqrt( squre( pt1.x - pt0.x ) + squre( pt1.y - pt0.y ) );
+          return sq_dis;
+     }
+     float  equation0 ( float x )
+     {
+          float z = max_zoff - top_curvature * squre( x - radious );
+          return z;
+     };
+     float equation_dz_dx( float x )
+     {
+          float dz_dx = -2*top_curvature*( x - radious );
+          return dz_dx;
+     };
+     float equation_finish( float x )
+     {
+          auto x0 = finish_scale * 2 * radious;
+          auto az0 = equation_dz_dx( x0 );
+          auto bz = -az0*x0;
+          auto zoff = az0*x + bz;
+          return zoff;
+     }
+public:
+     arrow_animation_control(float rd,float t_c)
+          :radious(rd), top_curvature(t_c)
+     {
+          max_zoff = top_curvature*radious*radious;
+     }
+     void active()
+     {
+          tm_st = steady_clock::now();
      }
      void add_arrow( ft_material_3d* paw )
      {
-          aw_unit tn = { paw, false, {0,0} };
+          aw_unit tn = { paw, en_forward, { 0, 0 } };
           varrow.emplace_back( tn );
+     }
+     void set_finish_scale( float fs )
+     {
+          finish_scale = fs;
      }
      void handle()
      {
-         auto curt = steady_clock::now();
-         int time_delta = chrono::duration_cast<chrono::duration<int, std::milli>>( curt - tm_st ).count();
-         tm_st = curt;
-         float dis = time_delta*speed;
-         auto isz = varrow.size();
-		 auto squre = [&](float su)
-		 {
-			 return su*su;
-		 };
-		 auto pt_sq_length = [&](ImVec2& pt0, ImVec2& pt1)
-		 {
-			 auto sq_dis = sqrt(squre(pt1.x - pt0.x) + squre(pt1.y - pt0.y));
-			 return sq_dis;
-		 };
-		 auto equation0 = [&](float x)
-		 {
-			 float z = 80000.f - 0.02f * squre(x - radious);
-			 return z;
-		 };
+          auto curt = steady_clock::now();
+          int time_delta = chrono::duration_cast<chrono::duration<int, std::milli>>( curt - tm_st ).count();
+          tm_st = curt;
+          float dis = time_delta*speed;
+          if( dis < 10 )
+               return;
+          auto isz = varrow.size();
+          ImVec2 og_pt = { 0, base_z };
+          auto xf0 = finish_scale * 2 * radious;//抛物线轨迹的终点
+          auto find_pt = [&](ImVec2& base_bt,float& angle_cur, float dis_delta, ImVec2& des_pt)//抛物线上寻找下一个点
+          {
+               auto dz_dx_base = equation_dz_dx(base_bt.x);
+               auto angle_base = atanf(dz_dx_base);
+               auto x_delta = dis_delta*cos(angle_base);
+               ImVec2 tp_pt;
+               tp_pt.x = base_bt.x + x_delta;
+               tp_pt.y = equation0( tp_pt.x );
+               auto tp_dis = pt_sq_length(base_bt, tp_pt);
 
-		 auto equation_dz_dx = [&](float x)
-		 {
-			 float dz_dx = -0.04*(x - radious);
-			 return dz_dx;
-		 };
-		 ImVec2 og_pt = { 0, base_z };
+               auto dis_c = dis_delta - tp_dis;
 
-		 auto find_pt = [&](ImVec2& base_bt, float dis_delta, ImVec2& des_pt)
-		 {
-			 auto dz_dx_base = equation_dz_dx(base_bt.x);
-			 auto angle_base = atanf(dz_dx_base);
-			 auto x_delta = dis_delta*cos(angle_base);
-			 ImVec2 tp_pt;
-			 tp_pt.x = base_bt.x + x_delta;
-			 tp_pt.y = equation0(des_pt.x);
-			 auto tp_dis = pt_sq_length(base_bt, tp_pt);
-			 auto dis_c = dis_delta - tp_dis;
+               //printf( "angle_base=%f,x_delta=%f,dis_c=%f\n", angle_base, x_delta, dis_c );
+               
+               auto dz_dx_tp = equation_dz_dx(tp_pt.x);
+               auto angle_tp = atanf(dz_dx_tp);
+               auto tp_x_delta = dis_c*cos(angle_tp);
+               des_pt.x= tp_pt.x + tp_x_delta;
+               des_pt.y = equation0(des_pt.x);
+               ImVec2 anm = des_pt - base_bt;
+               auto anm_c = anm.y / anm.x;
+               angle_cur = PI*0.5 - atanf( anm_c );
 
-			 auto dz_dx_tp = equation_dz_dx(tp_pt.x);
-			 auto angle_tp = atanf(dz_dx_tp);
-			 auto tp_x_delta = dis_c*cos(angle_tp);
-			 des_pt.x= tp_pt.x + tp_x_delta;
-			 des_pt.y = equation0(des_pt.x);
-		 };
 
-         for( int ix = 0; ix < isz; ix++ )
-         {
-              auto& cur_paw = *varrow[ ix ].parw;
-              auto tz = cur_paw.get_trans_tlz()+dis;
-			  auto dis_tp = dis;
-              if(! varrow[ ix ].on_turning )
-              {
-                   if( tz <base_z )
-                   {
-                        cur_paw.set_trans_tlz( tz );
-                        auto ty = tz*tga;
-                        cur_paw.set_trans_tly( ty );
-                        cur_paw.set_trans_tlx( 0 );
-                        cur_paw.set_alpha( 1.f );
-                        continue;
-                   }
-                   else
-                   {
-                        varrow[ ix ].on_turning = true;
-                        varrow[ ix ].point_pre = { 0, 0 };
-						dis_tp = tz - base_z;
-                   }
-              }
-			  ImVec2& pre_point = varrow[ix].point_pre;
-			  ImVec2 cur_pt;
-			  find_pt(pre_point, dis_tp, cur_pt);
-			  varrow[ix].point_pre = cur_pt;
-			  ImVec2 r_pt = og_pt + cur_pt;
-			  cur_paw.set_trans_tlx(r_pt.y);
-			  auto ty = r_pt.y*tga;
-			  cur_paw.set_trans_tly(ty);
-			  cur_paw.set_trans_tlx(r_pt.x); 
+          };
+          printf("~~~~~~~~~~~\n");
+          for( int ix = 0; ix < isz; ix++ )
+          {
+               auto& cur_aw = varrow[ ix ];
+               auto& cur_paw = *cur_aw.parw;
+               ImVec2& pre_point = cur_aw.point_pre;
+               auto tz = cur_paw.get_trans_tlz()+dis;
+		     auto dis_tp = dis;
+               switch( cur_aw.on_going )
+               {
+                    case en_forward:
+                         if( tz < base_z )
+                         {
+                              cur_paw.set_trans_tlz( tz );
+                              auto ty = tz*tga;
+                              cur_paw.set_trans_tly( ty );
+                              cur_paw.set_trans_tlx( 0 );
+                              cur_paw.set_alpha( 1.f );
+                              cur_paw.set_trans_rty( 0);
+                              break;
+                         }
+                         else
+                         {
+                              cur_aw.on_going = en_turning;
+                              dis_tp = tz - base_z;
+                         }
+                    case en_turning:
+                         if( pre_point.x<xf0 )
+                         {
+                              ImVec2 cur_pt;
+                              float angle_turn=0.f;
+                              find_pt( pre_point,angle_turn, dis_tp, cur_pt );
+                              pre_point = cur_pt;
+                              ImVec2 r_pt = og_pt + cur_pt;
+                              cur_paw.set_trans_tlz( r_pt.y );
+                              auto ty = r_pt.y*tga;
+                              cur_paw.set_trans_tly( ty );
+                              cur_paw.set_trans_tlx( r_pt.x );
+                              float tangle = angle_turn * 180.f/PI;
 
+                              printf( "tangle=%f，pre_x=%f,cur_x=%f\n", tangle,pre_point.x, cur_pt.x );
+                            cur_paw.set_trans_rty( tangle );
+                              break;
+                         }
+                         else
+                         {
+                              cur_aw.on_going = en_finished;
+                         }
+                    case en_finished:
+                         if (pre_point.x<(xf0+1*radious))
+                         {
+                              auto af = equation_dz_dx( xf0 );//finish line的曲率
+                              auto angle_base = atanf( af);
+                              auto x_delta = dis_tp*cos( angle_base );
+                              if( x_delta < 0 ) x_delta = -x_delta;
+                              auto xf = pre_point.x + x_delta;
+                              auto zf = equation_finish( xf );
+                              pre_point = { xf, zf };
+                              ImVec2 r_pt = og_pt + pre_point;
+                              cur_paw.set_trans_tlz( r_pt.y );
+                              auto ty = r_pt.y*tga;
+                              cur_paw.set_trans_tly( ty );
+                              cur_paw.set_trans_tlx( r_pt.x );
+                              auto tangle = angle_base*180.f/PI;
+                              cur_paw.set_trans_rty( tangle );
+                         }
+                         else
+                         {
+                              cur_aw.on_going = en_forward;
+                              cur_aw.point_pre.x = 0;
+                              cur_aw.point_pre.y = 0;
+                              cur_paw.set_trans_tlx( 0 );
+                              cur_paw.set_trans_tly( 0 );
+                              cur_paw.set_trans_tlz( 0 );
+                              cur_paw.set_trans_rty( 0 );
+                         }
+                         break;
+                    default:
+                         break;
+               }
+               float tlx = cur_paw.get_trans_tlx();
+               float tly = cur_paw.get_trans_tly();
+               float tlz = cur_paw.get_trans_tlz();
+               //printf( "%d>>%f,%f,%f,%d\n", ix, tlx, tly, tlz, cur_aw.on_going );
          }
      }
 
 };
-
+arrow_animation_control g_acm_c( 2000.f, 0.02f);
 u8 top_arrow_index = arrow_cont-1;
 u8 prev_arrow_index( u8 by_index )
 {
@@ -841,7 +931,7 @@ u8 next_arrow_index( u8 by_index )
 
 void handle_navi_direct(u8 nv_play)
 {
-     if(nv_play==ndir_no_arrow)
+     if( nv_play == ndir_no_play )
      {
 	     parrow0->set_visible(false);
 	     parrow1->set_visible(false);
@@ -888,10 +978,13 @@ void KeyTest(  int key)
      switch( key )
      {
           case GLFW_KEY_LEFT:
-               /*play_tran_playlist( "navi_direct", 0 );
-               play_tran_playlist( "navi_direct1", 0 );
-               play_tran_playlist( "navi_direct2", 0 );*/
-               handle_navi_direct( ndir_lane_switch_left );
+               pre_turn_count = 4;
+               be_visble = false;
+               set_property_aliase_value( "show_arrows", &be_visble );
+               be_visble = true;
+               set_property_aliase_value( "show_left_turn_round0", &be_visble );
+               play_tran( "play_left_turn_round0", 0, 1 );
+               restore_trans_value( "play_left_turn_round0", 0 );
                break;
           case GLFW_KEY_RIGHT:
                play_tran_playlist( "navi_direct", 1 );
@@ -933,7 +1026,7 @@ void KeyTest(  int key)
                be_a_moving = !be_a_moving;
                if (be_a_moving)
                {
-                    arrow_cc.active();
+                    //g_acm_c.active();
                }
                break;
           case GLFW_KEY_8:
@@ -944,7 +1037,8 @@ void KeyTest(  int key)
                          g_turn_scale = 0;
                     arrow_cc.set_turn_scale( g_turn_scale );
                }
-               break;          default:
+               break;          
+         default:
                break;
      }
      
@@ -1009,7 +1103,10 @@ void adas_update()
          
      }
 #else
-
+     if( be_a_moving )
+     {
+          //g_acm_c.handle();
+     }
 #endif
 }
 void register_adas_cmd_handl()
@@ -1018,14 +1115,19 @@ void register_adas_cmd_handl()
       pfcw_p=(ft_material_3d*)get_aliase_ui_control("show_fcw");
       pfcw_v=(ft_material_3d*)get_aliase_ui_control("show_fcw_v");
       psacc=(ft_material_3d*)get_aliase_ui_control("show_sacc");
-      parrow0=(ft_material_3d*)get_aliase_ui_control("show_arrow");
-      parrow1=(ft_material_3d*)get_aliase_ui_control("show_arrow1");
-      parrow2=(ft_material_3d*)get_aliase_ui_control("show_arrow2");
-	 parrows[ 0 ] = (ft_material_3d*)get_aliase_ui_control("show_arrowh");
+      parrow0=(ft_material_3d*)get_aliase_ui_control("show_arrow3d0");
+      parrow1=(ft_material_3d*)get_aliase_ui_control("show_arrow3d1");
+      parrow2=(ft_material_3d*)get_aliase_ui_control("show_arrow3d2");
+	 /** parrows[ 0 ] = (ft_material_3d*)get_aliase_ui_control("show_arrowh");
       parrows[ 1 ] = parrow0;
       parrows[ 2 ] = parrow1;
       parrows[ 3 ] = parrow2;
-
+     
+      g_acm_c.add_arrow( parrows[ 0 ] );
+      g_acm_c.add_arrow( parrows[ 1 ] );
+      g_acm_c.add_arrow( parrows[ 2 ] );
+      g_acm_c.add_arrow( parrows[ 3 ] );
+      */
       pturn_left=(ft_image_play*)get_aliase_ui_control("txt_left_wing");
       pturn_right=(ft_image_play*)get_aliase_ui_control("txt_right_wing");
 
@@ -1073,6 +1175,44 @@ void register_adas_cmd_handl()
 		}
 	});	
 	*/
+     reg_trans_handle( "play_left_turn_round0", [&]( int from, int to )
+     {
+          be_visble = false;
+          set_property_aliase_value( "show_left_turn_round0", &be_visble );
+          restore_trans_value( "show_left_turn_round0", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_left_turn_round1", &be_visble );
+          play_tran( "play_left_turn_round1", 0, 1 );
+     } );
+     reg_trans_handle( "play_left_turn_round1", [&]( int from, int to )
+     {
+          if( pre_turn_count > 2 )
+          {
+
+               play_tran( "play_left_turn_round1", 0, 1 );
+               pre_turn_count--;
+          }
+          else
+          {
+               be_visble = false;
+               set_property_aliase_value( "show_left_turn_round1", &be_visble );
+               restore_trans_value( "show_left_turn_round1", 0 );
+               be_visble = true;
+               set_property_aliase_value( "show_left_turn_round2", &be_visble );
+               play_tran( "play_left_turn_round2", 0, 1 );
+          }
+     } );
+     reg_trans_handle( "play_left_turn_round2", [&]( int from, int to )
+     {
+          pre_turn_count = 0;
+          be_visble = false;
+          set_property_aliase_value( "show_left_turn_round2", &be_visble );
+          restore_trans_value( "show_left_turn_round2", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_arrows", &be_visble );
+
+     } );
+
 	g_msg_host.attach_monitor("navi message",[&](u8*pbuff,int len){
 		enum en_navi_direction
 		{

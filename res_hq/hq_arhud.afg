@@ -11,48 +11,59 @@
 	"afb_output_path" : "C:\\Users\\Dell\\AppData\\Local\\Packages\\CanonicalGroupLimited.UbuntuonWindows_79rhkp1fndgsc\\LocalState\\rootfs\\home\\viter\\ar_hud\\e115\\hq_res\\",
 	"aliase" : 
 	{
-		"chk_clr" : [ 2, 1, 7 ],
-		"control_acc" : [ 3, 1, 2, 1 ],
-		"control_lka" : [ 3, 1, 3, 1 ],
-		"control_navi_dir" : [ 3, 1, 1, 4 ],
-		"driving_model" : [ 4, 1, 1, 3 ],
-		"gear" : [ 4, 1, 0, 3 ],
-		"show_acc" : [ 6, 0, 2, 1 ],
-		"show_acc_speed" : [ 6, 0, 0, 2, 1 ],
-		"show_acc_speed_a" : [ 6, 0, 1, 2, 1 ],
-		"show_arrow" : [ 6, 0, 3, 0, 0 ],
-		"show_arrow1" : [ 6, 0, 2, 0, 0 ],
-		"show_arrow2" : [ 6, 0, 1, 0, 0 ],
-		"show_base_info" : [ 6, 0, 3 ],
-		"show_far_scenario" : [ 6, 0, 0 ],
-		"show_fcw" : [ 6, 0, 5, 0, 0 ],
-		"show_fcw_v" : [ 6, 0, 4, 0, 0 ],
-		"show_image" : [ 6, 0, 5 ],
-		"show_lcd" : [ 6, 0, 4, 1 ],
-		"show_left_fcta1" : [ 6, 0, 0, 6, 1 ],
-		"show_left_fcta2" : [ 6, 0, 1, 6, 1 ],
-		"show_left_fctb" : [ 6, 0, 2, 6, 1 ],
-		"show_lka" : [ 6, 0, 3, 1 ],
-		"show_navi" : [ 6, 0, 4 ],
-		"show_navi_des" : [ 6, 0, 2, 4 ],
-		"show_navi_dir" : [ 6, 0, 1, 4 ],
-		"show_near_scenario" : [ 6, 0, 1 ],
-		"show_phone_ring" : [ 6, 0, 2, 3 ],
-		"show_right_fcta1" : [ 6, 0, 0, 7, 1 ],
-		"show_right_fcta2" : [ 6, 0, 1, 7, 1 ],
-		"show_right_fctb" : [ 6, 0, 2, 7, 1 ],
-		"show_road" : [ 6, 0, 0, 0, 0 ],
-		"show_sacc" : [ 6, 0, 6, 0, 0 ],
-		"show_tsr" : [ 6, 0, 5, 1 ],
-		"show_version" : [ 6, 0, 6 ],
-		"speed" : [ 4, 1, 3, 2 ],
-		"text_acc_speed" : [ 4, 1, 0, 2, 1 ],
-		"text_acc_speed_a" : [ 4, 1, 1, 2, 1 ],
-		"text_remain_dis" : [ 4, 1, 0, 4 ],
-		"text_tsr_speed" : [ 4, 1, 0, 5, 1 ],
-		"text_version" : [ 4, 1, 0, 6 ],
-		"txt_left_wing" : [ 0, 1, 0, 1 ],
-		"txt_right_wing" : [ 0, 1, 1, 1 ]
+		"chk_clr" : [ 2, 1, 8 ],
+		"control_acc" : [ 3, 1, 0, 2 ],
+		"control_lca" : [ 3, 1, 2, 2 ],
+		"control_lka" : [ 3, 1, 1, 2 ],
+		"control_lka_dir" : [ 3, 1, 7, 2 ],
+		"control_navi_dir" : [ 3, 1, 1, 5 ],
+		"driving_model" : [ 4, 1, 1, 4 ],
+		"gear" : [ 4, 1, 0, 4 ],
+		"show_acc" : [ 6, 0, 0, 2 ],
+		"show_acc_speed" : [ 6, 0, 0, 0, 2 ],
+		"show_acc_speed_a" : [ 6, 0, 1, 0, 2 ],
+		"show_arrow" : [ 6, 0, 3, 1, 1 ],
+		"show_arrow1" : [ 6, 0, 2, 1, 1 ],
+		"show_arrow2" : [ 6, 0, 1, 1, 1 ],
+		"show_arrow3d0" : [ 6, 0, 0, 0, 1 ],
+		"show_arrow3d1" : [ 6, 0, 1, 0, 1 ],
+		"show_arrow3d2" : [ 6, 0, 2, 0, 1 ],
+		"show_arrows" : [ 6, 0, 0, 1 ],
+		"show_base_info" : [ 6, 0, 4 ],
+		"show_bsd_left" : [ 6, 0, 8, 2 ],
+		"show_bsd_right" : [ 6, 0, 9, 2 ],
+		"show_far_scenario" : [ 6, 0, 1 ],
+		"show_fcw" : [ 6, 0, 5, 1, 1 ],
+		"show_fcw_v" : [ 6, 0, 4, 1, 1 ],
+		"show_image" : [ 6, 0, 6 ],
+		"show_lca" : [ 6, 0, 2, 2 ],
+		"show_lca_r" : [ 6, 0, 5, 2 ],
+		"show_left_fcta1" : [ 6, 0, 0, 4, 2 ],
+		"show_left_fcta2" : [ 6, 0, 1, 4, 2 ],
+		"show_left_fctb" : [ 6, 0, 2, 4, 2 ],
+		"show_left_turn_round0" : [ 6, 0, 0, 10, 2 ],
+		"show_left_turn_round1" : [ 6, 0, 1, 10, 2 ],
+		"show_left_turn_round2" : [ 6, 0, 2, 10, 2 ],
+		"show_lka" : [ 6, 0, 1, 2 ],
+		"show_lka_dir" : [ 6, 0, 7, 2 ],
+		"show_navi" : [ 6, 0, 5 ],
+		"show_navi_des" : [ 6, 0, 2, 5 ],
+		"show_navi_dir" : [ 6, 0, 1, 5 ],
+		"show_near_scenario" : [ 6, 0, 2 ],
+		"show_phone_ring" : [ 6, 0, 2, 4 ],
+		"show_right_fcta1" : [ 6, 0, 0, 6, 2 ],
+		"show_right_fcta2" : [ 6, 0, 1, 6, 2 ],
+		"show_right_fctb" : [ 6, 0, 2, 6, 2 ],
+		"show_road" : [ 6, 0, 0, 1, 1 ],
+		"show_sacc" : [ 6, 0, 6, 1, 1 ],
+		"show_tsr" : [ 6, 0, 3, 2 ],
+		"show_version" : [ 6, 0, 7 ],
+		"speed" : [ 4, 1, 2, 3 ],
+		"text_acc_speed" : [ 4, 1, 0, 0, 2 ],
+		"text_acc_speed_a" : [ 4, 1, 1, 0, 2 ],
+		"text_remain_dis" : [ 4, 1, 0, 5 ],
+		"text_tsr_speed" : [ 4, 1, 0, 3, 2 ],
+		"text_version" : [ 4, 1, 0, 7 ]
 	},
 	"binds" : 
 	{
@@ -62,37 +73,25 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
-					"param_list" : 
-					[
-						[ 6, 0, 2, 3 ]
-					]
-				},
-				"key" : [ 6, 0, 2, 2 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
 					"expression" : "def bind_fun(v0):\n  return v0==1\n",
 					"param_list" : 
 					[
-						[ 2, 1, 7 ]
+						[ 2, 1, 8 ]
 					]
 				},
-				"key" : [ 6, 0, 0, 8 ]
+				"key" : [ 6, 0, 0, 9 ]
 			},
 			
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0==2\n",
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 2, 1, 7 ]
+						[ 6, 0, 2, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 1, 8 ]
+				"key" : [ 6, 0, 1, 4 ]
 			},
 			
 			{
@@ -101,10 +100,10 @@
 					"expression" : "def bind_fun(v0):\n  return v0==3\n",
 					"param_list" : 
 					[
-						[ 2, 1, 7 ]
+						[ 2, 1, 8 ]
 					]
 				},
-				"key" : [ 6, 0, 2, 8 ]
+				"key" : [ 6, 0, 2, 9 ]
 			},
 			
 			{
@@ -113,10 +112,22 @@
 					"expression" : "def bind_fun(v0):\n  return v0==4\n",
 					"param_list" : 
 					[
-						[ 2, 1, 7 ]
+						[ 2, 1, 8 ]
 					]
 				},
-				"key" : [ 6, 0, 3, 8 ]
+				"key" : [ 6, 0, 3, 9 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "def bind_fun(v0):\n  return v0==2\n",
+					"param_list" : 
+					[
+						[ 2, 1, 8 ]
+					]
+				},
+				"key" : [ 6, 0, 1, 9 ]
 			},
 			
 			{
@@ -125,38 +136,55 @@
 					"expression" : "def bind_fun(v0):\n  return v0==5\n",
 					"param_list" : 
 					[
-						[ 2, 1, 7 ]
+						[ 2, 1, 8 ]
 					]
 				},
-				"key" : [ 6, 0, 4, 8 ]
+				"key" : [ 6, 0, 4, 9 ]
 			}
 		],
 		"ref_dic" : 
 		[
 			
 			{
-				"key" : [ 6, 0, 2, 3 ],
+				"key" : [ 6, 0, 2, 4 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 2, 2 ]
+					[ 6, 0, 1, 4 ]
 				]
 			},
 			
 			{
-				"key" : [ 2, 1, 7 ],
+				"key" : [ 2, 1, 8 ],
 				"ref_list" : 
 				[
-					[ 6, 0, 0, 8 ],
-					[ 6, 0, 1, 8 ],
-					[ 6, 0, 2, 8 ],
-					[ 6, 0, 3, 8 ],
-					[ 6, 0, 4, 8 ]
+					[ 6, 0, 0, 9 ],
+					[ 6, 0, 1, 9 ],
+					[ 6, 0, 2, 9 ],
+					[ 6, 0, 3, 9 ],
+					[ 6, 0, 4, 9 ]
 				]
 			}
 		]
 	},
 	"childs" : 
 	[
+		
+		{
+			"_adjacent_to_p" : 0.0,
+			"_aj_model" : 0,
+			"_anchor_type" : 0,
+			"_angle_srd" : 0.0,
+			"_aposx" : 0.0,
+			"_aposy" : 0.0,
+			"_name" : "ft_image",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 300.0,
+			"_sizew" : 800.0,
+			"_texture_index_txt" : 90,
+			"_visible" : true,
+			"type" : "ft_image"
+		},
 		
 		{
 			"_adjacent_to_p" : 0.0,
@@ -175,7 +203,129 @@
 					"_aj_model" : 0,
 					"_bk_clr" : 
 					{
-						"w" : 1.0,
+						"w" : 0.0,
+						"x" : 0.0,
+						"y" : 0.0,
+						"z" : 0.0
+					},
+					"_name" : "sceme_arrow",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 300.0,
+					"_sizew" : 800.0,
+					"_test_depth" : true,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_alpha_nml" : 1.0,
+							"_cam" : "aaaamimdaaaamdedaaaaaaaaaaaamimdaaaamdedaaaacaebaaaaaaaaaaaaiadpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "arrow3d",
+							"_name" : "arrow3d0",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "arrow_with_turn.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : 169.0140075683594,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 180.0,
+							"_trans_scale_x" : 6.0,
+							"_trans_scale_y" : 6.0,
+							"_trans_scale_z" : 6.0,
+							"_trans_translation_x" : 0.0,
+							"_trans_translation_y" : 0.0,
+							"_trans_translation_z" : 8000.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : true,
+							"_with_feedback" : false,
+							"type" : "ft_material_3d"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_alpha_nml" : 1.0,
+							"_cam" : "aaaamimdaaaamdedaaaaaaaaaaaamimdaaaamdedaaaacaebaaaaaaaaaaaaiadpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "arrow3d",
+							"_name" : "arrow3d1",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "arrow_with_turn.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : 169.0140075683594,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 180.0,
+							"_trans_scale_x" : 6.0,
+							"_trans_scale_y" : 6.0,
+							"_trans_scale_z" : 6.0,
+							"_trans_translation_x" : 0.0,
+							"_trans_translation_y" : 250.0,
+							"_trans_translation_z" : 11000.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : true,
+							"_with_feedback" : false,
+							"type" : "ft_material_3d"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_alpha_nml" : 1.0,
+							"_cam" : "aaaamimdaaaamdedaaaaaaaaaaaamimdaaaamdedaaaacaebaaaaaaaaaaaaiadpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "arrow3d",
+							"_name" : "arrow3d2",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "arrow_with_turn.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : 169.0140075683594,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 180.0,
+							"_trans_scale_x" : 6.0,
+							"_trans_scale_y" : 6.0,
+							"_trans_scale_z" : 6.0,
+							"_trans_translation_x" : 0.0,
+							"_trans_translation_y" : 600.0,
+							"_trans_translation_z" : 14000.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : true,
+							"_with_feedback" : false,
+							"type" : "ft_material_3d"
+						}
+					],
+					"type" : "ft_scene"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_bk_clr" : 
+					{
+						"w" : 0.0,
 						"x" : 0.003921568859368563,
 						"y" : 0.003921568859368563,
 						"z" : 0.003921568859368563
@@ -185,6 +335,7 @@
 					"_posy" : 0.0,
 					"_sizeh" : 300.0,
 					"_sizew" : 800.0,
+					"_test_depth" : true,
 					"_visible" : true,
 					"childs" : 
 					[
@@ -250,7 +401,7 @@
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
-							"_visible" : true,
+							"_visible" : false,
 							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
@@ -283,7 +434,7 @@
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
-							"_visible" : true,
+							"_visible" : false,
 							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
@@ -316,7 +467,7 @@
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
-							"_visible" : true,
+							"_visible" : false,
 							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
@@ -441,49 +592,13 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_angle_nml" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_frame_index" : 44,
-					"_name" : "turn_left",
-					"_posx" : 0.0,
-					"_posy" : 198.0,
-					"_sizeh" : 80.0,
-					"_sizew" : 286.0,
-					"_texture_fmt_name" : "left_wing.json",
-					"_texture_name" : "left_wing.png",
-					"_visible" : true,
-					"type" : "ft_image_play"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_angle_nml" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_frame_index" : 44,
-					"_name" : "turn_right",
-					"_posx" : 514.0,
-					"_posy" : 198.0,
-					"_sizeh" : 80.0,
-					"_sizew" : 286.0,
-					"_texture_fmt_name" : "right_wing.json",
-					"_texture_name" : "right_wing.png",
-					"_visible" : true,
-					"type" : "ft_image_play"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
 					"_anchor_type" : 0,
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "acc",
 					"_posx" : 83.0,
-					"_posy" : 254.0,
+					"_posy" : 258.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 48.0,
 					"_texture_index_txt" : 1,
@@ -497,13 +612,13 @@
 							"_content" : "120",
 							"_font_id" : 1,
 							"_font_scale" : 1.0,
-							"_font_size" : 30,
+							"_font_size" : 32,
 							"_name" : "acc_speed",
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : -64.86500549316406,
-							"_posy" : 7.0,
+							"_posx" : -62.0,
+							"_posy" : 8.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_txt_alignh_nml" : 0.0,
@@ -531,8 +646,8 @@
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : -64.86500549316406,
-							"_posy" : 7.0,
+							"_posx" : -56.0,
+							"_posy" : 8.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_txt_alignh_nml" : 0.0,
@@ -560,11 +675,11 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "LKA",
-					"_posx" : 134.0,
-					"_posy" : 254.0,
+					"_posx" : 132.0,
+					"_posy" : 260.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 30.0,
-					"_texture_index_txt" : 10,
+					"_texture_index_txt" : 11,
 					"_visible" : false,
 					"type" : "ft_image"
 				},
@@ -576,13 +691,13 @@
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
-					"_name" : "LCD",
-					"_posx" : 134.0,
-					"_posy" : 254.0,
+					"_name" : "LCA",
+					"_posx" : 130.0,
+					"_posy" : 260.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 30.0,
 					"_texture_index_txt" : 6,
-					"_visible" : false,
+					"_visible" : true,
 					"type" : "ft_image"
 				},
 				
@@ -594,11 +709,11 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "tsr",
-					"_posx" : 292.0,
-					"_posy" : 238.0,
+					"_posx" : 290.0,
+					"_posy" : 253.0,
 					"_sizeh" : 41.0,
 					"_sizew" : 41.0,
-					"_texture_index_txt" : 86,
+					"_texture_index_txt" : 101,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -653,7 +768,7 @@
 							"_angle_nml" : 0.0,
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
-							"_frame_index" : 3,
+							"_frame_index" : 0,
 							"_name" : "fcta1",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
@@ -671,7 +786,7 @@
 							"_angle_nml" : 0.0,
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
-							"_frame_index" : 3,
+							"_frame_index" : 0,
 							"_name" : "fcta2",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
@@ -706,6 +821,23 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "LCA_r",
+					"_posx" : 340.0,
+					"_posy" : 90.0,
+					"_sizeh" : 120.0,
+					"_sizew" : 120.0,
+					"_texture_index_txt" : 10,
+					"_visible" : false,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
 					"_name" : "fct_right",
 					"_posx" : 678.0,
 					"_posy" : 118.4290084838867,
@@ -721,7 +853,7 @@
 							"_angle_nml" : 0.0,
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
-							"_frame_index" : 3,
+							"_frame_index" : 0,
 							"_name" : "fcta1",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
@@ -739,7 +871,7 @@
 							"_angle_nml" : 0.0,
 							"_aposx" : 0.0,
 							"_aposy" : 0.0,
-							"_frame_index" : 3,
+							"_frame_index" : 0,
 							"_name" : "fcta2",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
@@ -769,6 +901,126 @@
 						}
 					],
 					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "LKA_dir",
+					"_posx" : 352.50,
+					"_posy" : 102.50,
+					"_sizeh" : 95.0,
+					"_sizew" : 95.0,
+					"_texture_index_txt" : 14,
+					"_visible" : false,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "bsd_left",
+					"_posx" : 42.0,
+					"_posy" : 88.0,
+					"_sizeh" : 118.0,
+					"_sizew" : 208.0,
+					"_texture_index_txt" : 91,
+					"_visible" : false,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "bsd_right",
+					"_posx" : 550.0,
+					"_posy" : 88.0,
+					"_sizeh" : 118.0,
+					"_sizew" : 208.0,
+					"_texture_index_txt" : 92,
+					"_visible" : false,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "turn_left",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_turn_round0",
+							"_posx" : 142.0,
+							"_posy" : 71.0,
+							"_sizeh" : 176.0,
+							"_sizew" : 413.0,
+							"_texture_fmt_name" : "left_turn_round0.json",
+							"_texture_name" : "left_turn_round0.png",
+							"_visible" : true,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_turn_round1",
+							"_posx" : 133.0,
+							"_posy" : 19.0,
+							"_sizeh" : 229.0,
+							"_sizew" : 425.0,
+							"_texture_fmt_name" : "left_turn_round1.json",
+							"_texture_name" : "left_turn_round1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 64,
+							"_name" : "left_turn_round2",
+							"_posx" : 176.0,
+							"_posy" : 125.0,
+							"_sizeh" : 145.0,
+							"_sizew" : 348.0,
+							"_texture_fmt_name" : "left_turn_round2.json",
+							"_texture_name" : "left_turn_round2.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
 				}
 			],
 			"type" : "ft_base"
@@ -789,37 +1041,18 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_angle_nml" : 0.0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
-					"_frame_index" : 44,
-					"_name" : "turn_left",
+					"_name" : "left_wing",
 					"_posx" : 0.0,
-					"_posy" : 198.0,
-					"_sizeh" : 80.0,
-					"_sizew" : 286.0,
-					"_texture_fmt_name" : "left_wing.json",
-					"_texture_name" : "left_wing.png",
+					"_posy" : 221.0,
+					"_sizeh" : 79.0,
+					"_sizew" : 275.0,
+					"_texture_index_txt" : 93,
 					"_visible" : true,
-					"type" : "ft_image_play"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
-					"_angle_nml" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_frame_index" : 44,
-					"_name" : "turn_right",
-					"_posx" : 514.0,
-					"_posy" : 198.0,
-					"_sizeh" : 80.0,
-					"_sizew" : 286.0,
-					"_texture_fmt_name" : "right_wing.json",
-					"_texture_name" : "right_wing.png",
-					"_visible" : true,
-					"type" : "ft_image_play"
+					"type" : "ft_image"
 				},
 				
 				{
@@ -829,12 +1062,12 @@
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
-					"_name" : "flag",
-					"_posx" : 399.0,
-					"_posy" : 266.0,
-					"_sizeh" : 34.0,
-					"_sizew" : 3.0,
-					"_texture_index_txt" : 85,
+					"_name" : "right_wing",
+					"_posx" : 525.0,
+					"_posy" : 221.0,
+					"_sizeh" : 79.0,
+					"_sizew" : 275.0,
+					"_texture_index_txt" : 98,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -851,7 +1084,7 @@
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 398.0,
-					"_posy" : 243.0,
+					"_posy" : 256.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_txt_alignh_nml" : 0.50,
@@ -869,7 +1102,7 @@
 					[
 						
 						{
-							"_adjacent_to_p" : 8.0,
+							"_adjacent_to_p" : 5.0,
 							"_aj_model" : 1,
 							"_content" : "km/h",
 							"_font_id" : 1,
@@ -879,7 +1112,7 @@
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : 30.0,
+							"_posx" : 27.0,
 							"_posy" : 20.0,
 							"_sizeh" : 25.03900146484375,
 							"_sizew" : 38.42800140380859,
@@ -919,19 +1152,19 @@
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
 					"_content" : "D",
-					"_font_id" : 1,
+					"_font_id" : 2,
 					"_font_scale" : 0.8999999761581421,
-					"_font_size" : 36,
+					"_font_size" : 32,
 					"_name" : "gear",
 					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 194.0,
-					"_posy" : 260.0,
+					"_posy" : 276.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_txt_alignh_nml" : 0.0,
-					"_txt_alignv_nml" : 0.0,
+					"_txt_alignv_nml" : 0.3460000157356262,
 					"_txt_clr" : 
 					{
 						"x" : 1.0,
@@ -950,13 +1183,13 @@
 					"_content" : "自定义",
 					"_font_id" : 1,
 					"_font_scale" : 0.8999999761581421,
-					"_font_size" : 30,
+					"_font_size" : 28,
 					"_name" : "riding_model",
 					"_omit_rest" : 0,
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 546.0,
-					"_posy" : 260.0,
+					"_posy" : 264.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_txt_alignh_nml" : 0.0,
@@ -981,7 +1214,7 @@
 					"_aposy" : 0.0,
 					"_frame_index" : 14,
 					"_name" : "phone_ring",
-					"_posx" : 380.0,
+					"_posx" : 550.0,
 					"_posy" : 266.0,
 					"_sizeh" : 35.0,
 					"_sizew" : 43.0,
@@ -1018,7 +1251,7 @@
 					"_play_circle" : 1.0,
 					"_playing" : false,
 					"_posx" : 752.8260498046875,
-					"_posy" : 260.0,
+					"_posy" : 264.0,
 					"_sizeh" : 20.0,
 					"_sizew" : 20.0,
 					"_txt_alignh_nml" : 1.0,
@@ -1047,7 +1280,7 @@
 					"_posy" : 250.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 40.0,
-					"_texture_index_txt" : 42,
+					"_texture_index_txt" : 47,
 					"_visible" : true,
 					"type" : "ft_image"
 				},
@@ -1064,7 +1297,7 @@
 					"_posy" : 110.0,
 					"_sizeh" : 83.0,
 					"_sizew" : 83.0,
-					"_texture_index_txt" : 84,
+					"_texture_index_txt" : 96,
 					"_visible" : false,
 					"type" : "ft_image"
 				}
@@ -1338,7 +1571,7 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 1, 2, 1 ]
+				[ 0, 1, 1, 0, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1352,7 +1585,7 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 1, 2, 1 ]
+				[ 0, 1, 1, 0, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1366,11 +1599,12 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 0, 3 ],
-				[ 0, 1, 1, 3 ],
 				[ 0, 1, 0, 4 ],
-				[ 0, 1, 3, 2 ],
-				[ 0, 1, 0, 3, 2 ]
+				[ 0, 1, 1, 4 ],
+				[ 0, 1, 0, 5 ],
+				[ 0, 1, 2, 3 ],
+				[ 0, 1, 0, 2, 3 ],
+				[ 0, 1, 0, 0, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1384,11 +1618,12 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 0, 3 ],
-				[ 0, 1, 1, 3 ],
 				[ 0, 1, 0, 4 ],
-				[ 0, 1, 3, 2 ],
-				[ 0, 1, 0, 3, 2 ]
+				[ 0, 1, 1, 4 ],
+				[ 0, 1, 0, 5 ],
+				[ 0, 1, 2, 3 ],
+				[ 0, 1, 0, 2, 3 ],
+				[ 0, 1, 0, 0, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1402,11 +1637,12 @@
 		{
 			"prop_list" : 
 			[
-				[ 0, 1, 0, 3 ],
-				[ 0, 1, 1, 3 ],
 				[ 0, 1, 0, 4 ],
-				[ 0, 1, 3, 2 ],
-				[ 0, 1, 0, 3, 2 ]
+				[ 0, 1, 1, 4 ],
+				[ 0, 1, 0, 5 ],
+				[ 0, 1, 2, 3 ],
+				[ 0, 1, 0, 2, 3 ],
+				[ 0, 1, 0, 0, 2 ]
 			],
 			"type" : "af_vec3",
 			"value" : 
@@ -1428,9 +1664,16 @@
 	"file_list" : 
 	[
 		"SACC.FBX0",
+		"arrow_3d.FBX0",
+		"arrow_with_turn.FBX0",
+		"bsd_red_left.json",
+		"bsd_yellow_left.json",
 		"e115.json",
 		"fcta1.json",
 		"fcta2.json",
+		"left_turn_round0.json",
+		"left_turn_round1.json",
+		"left_turn_round2.json",
 		"left_wing.json",
 		"right_wing.json",
 		"road.FBX0",
@@ -1451,6 +1694,12 @@
 			"cols" : 90,
 			"name" : "FZLanTingHeiS-R-GB.TTF",
 			"rows" : 100
+		},
+		
+		{
+			"cols" : 9,
+			"name" : "SourceHanSansCN-Normal.ttf",
+			"rows" : 14
 		}
 	],
 	"material_list" : 
@@ -1559,6 +1808,202 @@
 		},
 		
 		{
+			"name" : "arrow3d",
+			"shader" : "arrow3d",
+			"uniform_list" : 
+			{
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-5.999999523162842,
+						5.149238972990133e-007,
+						-9.996048788707412e-008,
+						0.0,
+						5.245366310191457e-007,
+						5.890042781829834,
+						-1.143414735794067,
+						0.0,
+						0.0,
+						-1.143414735794067,
+						-5.890042781829834,
+						0.0,
+						0.0,
+						600.0,
+						14000.0,
+						1.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						2.126730680465698,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						5.671281814575195,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.001349210739136,
+						-1.0,
+						0.0,
+						0.0,
+						-40.47728729248047,
+						0.0
+					]
+				},
+				"text" : 
+				{
+					"el_size" : 1,
+					"txt_name" : "arrow_with_turn.png",
+					"type" : "shader_uf_txt",
+					"usize" : 1,
+					"utype" : 35678
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-1.0,
+						0.0,
+						-0.0,
+						0.0,
+						0.0,
+						1.0,
+						-0.0,
+						0.0,
+						0.0,
+						-0.0,
+						-1.0,
+						0.0,
+						-400.0,
+						-390.0,
+						0.0,
+						1.0
+					]
+				}
+			}
+		},
+		
+		{
+			"name" : "arrow_3d",
+			"shader" : "arrow",
+			"uniform_list" : 
+			{
+				"alpha" : 
+				{
+					"el_size" : 1,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 5126,
+					"value_list" : [ 1.0 ]
+				},
+				"model" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-5.360202789306641,
+						-0.8397949337959290,
+						2.561829090118408,
+						0.0,
+						-1.687493681907654,
+						5.491572856903076,
+						-1.730605602264404,
+						0.0,
+						-2.102519035339356,
+						-2.266577959060669,
+						-5.142182350158691,
+						0.0,
+						0.0,
+						408.6790161132813,
+						6000.0,
+						1.0
+					]
+				},
+				"proj" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						2.126730680465698,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						5.671281814575195,
+						0.0,
+						0.0,
+						0.0,
+						0.0,
+						-1.001349210739136,
+						-1.0,
+						0.0,
+						0.0,
+						-40.47728729248047,
+						0.0
+					]
+				},
+				"text" : 
+				{
+					"el_size" : 1,
+					"txt_name" : "arrow_3d.png",
+					"type" : "shader_uf_txt",
+					"usize" : 1,
+					"utype" : 35678
+				},
+				"view" : 
+				{
+					"el_size" : 16,
+					"type" : "shader_uf_float",
+					"usize" : 1,
+					"utype" : 35676,
+					"value_list" : 
+					[
+						-1.0,
+						0.0,
+						-0.0,
+						0.0,
+						0.0,
+						1.0,
+						-0.0,
+						0.0,
+						0.0,
+						-0.0,
+						-1.0,
+						0.0,
+						-400.0,
+						-390.0,
+						2.980232238769531e-006,
+						1.0
+					]
+				}
+			}
+		},
+		
+		{
 			"name" : "fcw",
 			"shader" : "unit3d",
 			"uniform_list" : 
@@ -1569,7 +2014,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ 1.0 ]
+					"value_list" : [ 0.0 ]
 				},
 				"model" : 
 				{
@@ -1671,7 +2116,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ 1.0 ]
+					"value_list" : [ 0.0 ]
 				},
 				"model" : 
 				{
@@ -1883,7 +2328,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ 160.0 ]
+					"value_list" : [ 250.0 ]
 				},
 				"lc0" : 
 				{
@@ -1891,7 +2336,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ -2000.0 ]
+					"value_list" : [ -2600.0 ]
 				},
 				"lc1" : 
 				{
@@ -1920,7 +2365,7 @@
 				"llane" : 
 				{
 					"el_size" : 1,
-					"txt_name" : "lane_d.png",
+					"txt_name" : "lane_n_day.png",
 					"type" : "shader_uf_txt",
 					"usize" : 1,
 					"utype" : 35678
@@ -1983,7 +2428,7 @@
 					"type" : "shader_uf_float",
 					"usize" : 1,
 					"utype" : 5126,
-					"value_list" : [ 2000.0 ]
+					"value_list" : [ 2600.0 ]
 				},
 				"rc1" : 
 				{
@@ -2012,7 +2457,7 @@
 				"rlane" : 
 				{
 					"el_size" : 1,
-					"txt_name" : "lane_d.png",
+					"txt_name" : "lane_n_day.png",
 					"type" : "shader_uf_txt",
 					"usize" : 1,
 					"utype" : 35678
@@ -2234,7 +2679,29 @@
 			}
 		}
 	],
-	"models" : {},
+	"models" : 
+	{
+		"arrow_with_turn.FBX" : 
+		[
+			
+			{
+				"ambient_list" : [],
+				"bounding_box" : 
+				{
+					"xmax" : 100.5818710327148,
+					"xmin" : -100.5818710327148,
+					"ymax" : 13.61070156097412,
+					"ymin" : -18.10534477233887,
+					"zmax" : 100.0,
+					"zmin" : -99.09897613525391
+				},
+				"diffuse_list" : [],
+				"height_list" : [],
+				"prim_id" : "arrow_with_turn.FBX0",
+				"specular_list" : []
+			}
+		]
+	},
 	"output_bin_fmt" : 
 	{
 		"pgm_fmt" : 0,
@@ -2300,6 +2767,24 @@
 		},
 		
 		{
+			"ebo_len" : 60,
+			"format" : [ 3, 3, 2 ],
+			"mesh_id" : 0,
+			"model" : "arrow_3d.FBX",
+			"name" : "arrow_3d.FBX0",
+			"vbo_len" : 320
+		},
+		
+		{
+			"ebo_len" : 444,
+			"format" : [ 3, 3, 2 ],
+			"mesh_id" : 0,
+			"model" : "arrow_with_turn.FBX",
+			"name" : "arrow_with_turn.FBX0",
+			"vbo_len" : 2368
+		},
+		
+		{
 			"ebo_len" : 360,
 			"format" : [ 3, 3, 2 ],
 			"mesh_id" : 0,
@@ -2335,6 +2820,12 @@
 			"fs_name" : "arrow.fs",
 			"name" : "arrow",
 			"vs_name" : "arrow.vs"
+		},
+		
+		{
+			"fs_name" : "aw.fs",
+			"name" : "arrow3d",
+			"vs_name" : "aw.vs"
 		},
 		
 		{
@@ -2386,12 +2877,12 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 0, 6, 1 ]
+				[ 4, 1, 0, 4, 2 ]
 			],
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "adaaaaaa" ]
+				[ "bnaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -2418,12 +2909,12 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 1, 6, 1 ]
+				[ 4, 1, 1, 4, 2 ]
 			],
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "adaaaaaa" ]
+				[ "anaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -2686,13 +3177,13 @@
 			],
 			"prop_list" : 
 			[
-				[ 9, 1, 3, 0, 0 ],
-				[ 11, 1, 3, 0, 0 ],
-				[ 16, 1, 3, 0, 0 ],
-				[ 18, 1, 3, 0, 0 ],
-				[ 12, 1, 3, 0, 0 ],
-				[ 10, 1, 3, 0, 0 ],
-				[ 17, 1, 3, 0, 0 ]
+				[ 9, 1, 3, 1, 1 ],
+				[ 11, 1, 3, 1, 1 ],
+				[ 16, 1, 3, 1, 1 ],
+				[ 18, 1, 3, 1, 1 ],
+				[ 12, 1, 3, 1, 1 ],
+				[ 10, 1, 3, 1, 1 ],
+				[ 17, 1, 3, 1, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3162,13 +3653,13 @@
 			],
 			"prop_list" : 
 			[
-				[ 9, 1, 2, 0, 0 ],
-				[ 11, 1, 2, 0, 0 ],
-				[ 16, 1, 2, 0, 0 ],
-				[ 18, 1, 2, 0, 0 ],
-				[ 12, 1, 2, 0, 0 ],
-				[ 10, 1, 2, 0, 0 ],
-				[ 17, 1, 2, 0, 0 ]
+				[ 9, 1, 2, 1, 1 ],
+				[ 11, 1, 2, 1, 1 ],
+				[ 16, 1, 2, 1, 1 ],
+				[ 18, 1, 2, 1, 1 ],
+				[ 12, 1, 2, 1, 1 ],
+				[ 10, 1, 2, 1, 1 ],
+				[ 17, 1, 2, 1, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3632,13 +4123,13 @@
 			],
 			"prop_list" : 
 			[
-				[ 9, 1, 1, 0, 0 ],
-				[ 11, 1, 1, 0, 0 ],
-				[ 16, 1, 1, 0, 0 ],
-				[ 18, 1, 1, 0, 0 ],
-				[ 12, 1, 1, 0, 0 ],
-				[ 10, 1, 1, 0, 0 ],
-				[ 17, 1, 1, 0, 0 ]
+				[ 9, 1, 1, 1, 1 ],
+				[ 11, 1, 1, 1, 1 ],
+				[ 16, 1, 1, 1, 1 ],
+				[ 18, 1, 1, 1, 1 ],
+				[ 12, 1, 1, 1, 1 ],
+				[ 10, 1, 1, 1, 1 ],
+				[ 17, 1, 1, 1, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -3858,12 +4349,108 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 2, 3 ]
+				[ 4, 1, 2, 4 ]
 			],
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
 				[ "aoaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_turn_round0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 10, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "claaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_turn_round1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 10, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "ajaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_turn_round2" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 2000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 2, 10, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "eaaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -3890,12 +4477,12 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 0, 7, 1 ]
+				[ 4, 1, 0, 6, 2 ]
 			],
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "adaaaaaa" ]
+				[ "bnaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -3922,76 +4509,12 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 1, 7, 1 ]
+				[ 4, 1, 1, 6, 2 ]
 			],
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
-				[ "adaaaaaa" ]
-			],
-			"state_idx" : 0
-		},
-		"turn_left" : 
-		{
-			"any_to_any" : 
-			{
-				"duration" : 250,
-				"easing_fun" : 0,
-				"start_time" : 0
-			},
-			"mstate" : 0,
-			"mtrans" : 
-			[
-				
-				{
-					"duration" : 2000,
-					"easing_fun" : 0,
-					"key_from" : 0,
-					"key_to" : 1,
-					"start_time" : 0
-				}
-			],
-			"playlist_list" : [],
-			"prop_list" : 
-			[
-				[ 4, 1, 0, 1 ]
-			],
-			"prop_value_list" : 
-			[
-				[ "aaaaaaaa" ],
-				[ "cmaaaaaa" ]
-			],
-			"state_idx" : 0
-		},
-		"turn_right" : 
-		{
-			"any_to_any" : 
-			{
-				"duration" : 250,
-				"easing_fun" : 0,
-				"start_time" : 0
-			},
-			"mstate" : 0,
-			"mtrans" : 
-			[
-				
-				{
-					"duration" : 2000,
-					"easing_fun" : 0,
-					"key_from" : 0,
-					"key_to" : 1,
-					"start_time" : 0
-				}
-			],
-			"playlist_list" : [],
-			"prop_list" : 
-			[
-				[ 4, 1, 1, 1 ]
-			],
-			"prop_value_list" : 
-			[
-				[ "aaaaaaaa" ],
-				[ "cmaaaaaa" ]
+				[ "anaaaaaa" ]
 			],
 			"state_idx" : 0
 		}
@@ -4026,6 +4549,12 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "arrow_3d.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "arrow_night.png",
 			"separated" : false
 		},
@@ -4038,6 +4567,12 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "arrow_with_turn.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "e115.png",
 			"separated" : false
 		},
@@ -4045,30 +4580,42 @@
 		{
 			"mipmap" : false,
 			"name" : "fcta1.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "fcta1_r.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "fcta2.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "fcta2_r.png",
-			"separated" : false
+			"separated" : true
 		},
 		
 		{
 			"mipmap" : false,
 			"name" : "lane_LDW_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_LDW_dottedline_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_SACC_day.png",
 			"separated" : false
 		},
 		
@@ -4116,7 +4663,19 @@
 		
 		{
 			"mipmap" : false,
-			"name" : "left_wing.png",
+			"name" : "left_turn_round0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_turn_round1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_turn_round2.png",
 			"separated" : true
 		},
 		
@@ -4164,36 +4723,6 @@
 		
 		{
 			"mipmap" : false,
-			"name" : "night_left_wing.png",
-			"separated" : true
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "night_right_wing.png",
-			"separated" : true
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "right_wing.png",
-			"separated" : true
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "snow_left_wing.png",
-			"separated" : true
-		},
-		
-		{
-			"mipmap" : false,
-			"name" : "snow_right_wing.png",
-			"separated" : true
-		},
-		
-		{
-			"mipmap" : false,
 			"name" : "usq.png",
 			"separated" : false
 		}
@@ -4218,7 +4747,7 @@
 		"show_property_window" : true,
 		"show_resource_manager" : false,
 		"show_slider_path_picker" : false,
-		"show_state_manager_edit" : true
+		"show_state_manager_edit" : false
 	}
 }
 

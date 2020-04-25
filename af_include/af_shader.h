@@ -91,6 +91,10 @@ public:
 	void reset_sel(){ _vs_selected = _fs_selected = false; }
 #endif
 	bool match_format(vector<GLubyte>& fmt);
+     attr_vect& get_attr_list()
+     {
+          return _att_list;
+     }
 	bool is_valid(){ return _valid; }
 	void use(){ 
 		glUseProgram(_shader_program_id); 
