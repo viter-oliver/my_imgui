@@ -972,6 +972,7 @@ void handle_navi_direct(u8 nv_play)
                break;
      }
 }
+bool be_finish_changelane = false;
 
 void KeyTest(  int key) 
 {
@@ -987,36 +988,51 @@ void KeyTest(  int key)
                restore_trans_value( "play_left_turn_round0", 0 );
                break;
           case GLFW_KEY_RIGHT:
-               play_tran_playlist( "navi_direct", 1 );
-               play_tran_playlist( "navi_direct1", 1 );
-               play_tran_playlist( "navi_direct2", 1 );
+               pre_turn_count = 4;
+               be_visble = false;
+               set_property_aliase_value( "show_arrows", &be_visble );
+               be_visble = true;
+               set_property_aliase_value( "show_right_turn0", &be_visble );
+               restore_trans_value( "play_right_turn0", 0 );
+               play_tran( "play_right_turn0", 0, 1 );
                break;
           case GLFW_KEY_L:
-               play_tran_playlist( "navi_direct", 2 );
-               play_tran_playlist( "navi_direct1", 2 );
-               play_tran_playlist( "navi_direct2", 2 );
+
                break;
           case GLFW_KEY_R:
-               play_tran_playlist( "navi_direct", 3 );
-               play_tran_playlist( "navi_direct1", 3 );
-               play_tran_playlist( "navi_direct2", 3 );
+               pre_turn_count = 4;
+               be_visble = false;
+               set_property_aliase_value( "show_arrows", &be_visble );
+               be_visble = true;
+               set_property_aliase_value( "show_right_turn_front0", &be_visble );
+               restore_trans_value( "play_right_turn_front0", 0 );
+               play_tran( "play_right_turn_front0", 0, 1 );
                break;
           case GLFW_KEY_0:
-               restore_trans_value( "navi_direct", 0 );
-               restore_trans_value( "navi_direct1", 0 );
-               restore_trans_value( "navi_direct2", 0 );
+               be_visble = false;
+               set_property_aliase_value( "show_arrows", &be_visble );
+               be_visble = true;
+               set_property_aliase_value( "show_right_change_lane0", &be_visble );
+               restore_trans_value( "play_right_change_lane0", 0 );
+               be_finish_changelane = false;
+               play_tran( "play_right_change_lane0", 0, 1 );
+
+               break;
+          case GLFW_KEY_1:
+               be_finish_changelane = true;
                break;
           case GLFW_KEY_4:
-               //play_tran_playlist( "navi_direct", 4 );
-               //play_tran_playlist( "navi_direct1", 4 );
-               //play_tran_playlist( "navi_direct2", 4 );
-               play_playlist_group( "navi_turn_left" );
+               be_visble = false;
+               set_property_aliase_value( "show_arrows", &be_visble );
+               be_visble = true;
+               set_property_aliase_value( "show_left_change_lane0", &be_visble );
+               restore_trans_value( "play_left_change_lane0", 0 );
+               be_finish_changelane = false;
+               play_tran( "play_left_change_lane0", 0, 1 );
+
                break;
           case GLFW_KEY_5:
-               //play_tran_playlist( "navi_direct", 5 );
-               //play_tran_playlist( "navi_direct1", 5 );
-               //play_tran_playlist( "navi_direct2", 5 );
-               play_playlist_group( "navi_turn_right" );
+ 
             break;
           case GLFW_KEY_6:
                be_show = !be_show;
@@ -1044,6 +1060,7 @@ void KeyTest(  int key)
      
      
 }
+
 void adas_update()
 {
 #if 0
@@ -1158,23 +1175,65 @@ void register_adas_cmd_handl()
 	const auto& imtl_sacc=g_material_list.find("sacc");
 	assert(imtl_sacc!=g_material_list.end());
 	mtl_sacc=imtl_sacc->second;
-	/*
-	g_msg_host.attach_monitor("navi req",[&](u8*pbuff,int len){
-		enum 
-		{
-			navi_inactive,
-			navi_off,
-			navi_on,
-			navi_reserved,
-		};
-		if(*pbuff==navi_on)
-		{
-		}
-		else
-		{
-		}
-	});	
-	*/
+     //HU_HUD_2(0x28b)
+     //right turn front
+     reg_trans_handle( "play_right_turn_front0", [&]( int from, int to )
+     {
+          if( pre_turn_count > 2 )
+          {
+               play_tran( "play_right_turn_front0", 0, 1 );
+               pre_turn_count--;
+          }
+          else
+          {
+               be_visble = false;
+               set_property_aliase_value( "show_right_turn_front0", &be_visble );
+               restore_trans_value( "show_right_turn_front0", 0 );
+               be_visble = true;
+               set_property_aliase_value( "show_right_turn_front1", &be_visble );
+               play_tran( "play_right_turn_front1", 0, 1 );
+          }
+
+     } );
+     reg_trans_handle( "play_right_turn_front1", [&]( int from, int to )
+     {
+          pre_turn_count = 0;
+          be_visble = false;
+          set_property_aliase_value( "show_right_turn_front1", &be_visble );
+          restore_trans_value( "show_right_turn_front1", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_arrows", &be_visble );
+     } );
+
+     //right turn
+     reg_trans_handle( "play_right_turn0", [&]( int from, int to )
+     {
+          if( pre_turn_count > 2 )
+          {
+               play_tran( "play_right_turn0", 0, 1 );
+               pre_turn_count--;
+          }
+          else
+          {
+               be_visble = false;
+               set_property_aliase_value( "show_right_turn0", &be_visble );
+               restore_trans_value( "show_right_turn0", 0 );
+               be_visble = true;
+               set_property_aliase_value( "show_right_turn1", &be_visble );
+               play_tran( "play_right_turn1", 0, 1 );
+          }
+
+     } );
+     reg_trans_handle( "play_right_turn1", [&]( int from, int to )
+     {
+          pre_turn_count = 0;
+          be_visble = false;
+          set_property_aliase_value( "show_right_turn1", &be_visble );
+          restore_trans_value( "show_lright_turn1", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_arrows", &be_visble );
+     } );
+     //left turn round
      reg_trans_handle( "play_left_turn_round0", [&]( int from, int to )
      {
           be_visble = false;
@@ -1374,7 +1433,79 @@ void register_adas_cmd_handl()
 			set_property_aliase_value("text_remain_dis", str_show);
 		}
 		
-	});	
+	});
+     reg_trans_handle( "play_left_change_lane0", [&]( int from, int to )
+     {
+
+          be_visble = false;
+          set_property_aliase_value( "show_left_change_lane0", &be_visble );
+          restore_trans_value( "show_left_change_lane0", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_left_change_lane1", &be_visble );
+          play_tran( "play_left_change_lane1", 0, 1 );
+     } );
+     reg_trans_handle( "play_left_change_lane1", [&]( int from, int to )
+     {
+          if( !be_finish_changelane )//
+          {
+               play_tran( "play_left_change_lane1", 0, 1 );
+          }
+          else
+          {
+               be_visble = false;
+               set_property_aliase_value( "show_left_change_lane1", &be_visble );
+               restore_trans_value( "show_left_change_lane1", 0 );
+               be_visble = true;
+               set_property_aliase_value( "show_left_change_lane2", &be_visble );
+               play_tran( "play_left_change_lane2", 0, 1 );
+          }
+     } );
+     reg_trans_handle( "play_left_change_lane2", [&]( int from, int to )
+     {
+
+          be_visble = false;
+          set_property_aliase_value( "show_left_change_lane2", &be_visble );
+          restore_trans_value( "show_left_change_lane2", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_arrows", &be_visble );
+     } );
+
+     reg_trans_handle( "play_right_change_lane0", [&]( int from, int to )
+     {
+
+          be_visble = false;
+          set_property_aliase_value( "show_right_change_lane0", &be_visble );
+          restore_trans_value( "show_right_change_lane0", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_right_change_lane1", &be_visble );
+          play_tran( "play_right_change_lane1", 0, 1 );
+     } );
+     reg_trans_handle( "play_right_change_lane1", [&]( int from, int to )
+     {
+          if( !be_finish_changelane )//
+          {
+               play_tran( "play_right_change_lane1", 0, 1 );
+          }
+          else
+          {
+               be_visble = false;
+               set_property_aliase_value( "show_right_change_lane1", &be_visble );
+               restore_trans_value( "show_right_change_lane1", 0 );
+               be_visble = true;
+               set_property_aliase_value( "show_right_change_lane2", &be_visble );
+               play_tran( "play_right_change_lane2", 0, 1 );
+          }
+     } );
+     reg_trans_handle( "play_right_change_lane2", [&]( int from, int to )
+     {
+
+          be_visble = false;
+          set_property_aliase_value( "show_right_change_lane2", &be_visble );
+          restore_trans_value( "show_right_change_lane2", 0 );
+          be_visble = true;
+          set_property_aliase_value( "show_arrows", &be_visble );
+     } );
+
 	 g_msg_host.attach_monitor("turning curvature", [&](u8* pbuff,int len){
 		u8 DMS_VehicleTurningCurvature=*pbuff;
 	  });

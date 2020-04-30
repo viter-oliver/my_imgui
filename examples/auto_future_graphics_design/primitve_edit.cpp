@@ -257,13 +257,51 @@ void primitve_edit::draw_primitive_item_property()
             }
 			ImGui::Combo("memory usage", &mem_usage_idx, &get_mem_usage_item, mem_usage_item, en_mem_usage_cnt);
 			stringstream stm_it;
+               string citstr;
+               const int max_stide = 20;
+               static float adj_unit[ max_stide ] = { 0.f };
+               //ImGui::InputFloatN( "adjust member of vertex", adj_unit, stride, -1, 0 );
+               ImGui::Spacing();
+               for( int ix = 0; ix < stride; ix++ )
+               {
+                    stm_it.str( string() );
+                    stm_it.clear();
+                    stm_it << "member"<<ix;
+                    citstr = stm_it.str();
+                    ImGui::InputFloat( citstr.c_str(), &adj_unit[ix]);
+  
+                    citstr = "-##" +stm_it.str();
+                    ImGui::SameLine();
+                    if( ImGui::Button( citstr.c_str() ) )
+                    {
+                         float* padj = _pvertex + ix;
+                         for( int ii = 0; ii < vcnt; ii++ )
+                         {
+                              *padj -= adj_unit[ ix ];
+                              padj += stride;
+                         }
+                    }
+                    ImGui::SameLine();
+                    citstr = "+##" + stm_it.str();
+                    if( ImGui::Button( citstr.c_str() ) )
+                    {
+                         float* padj = _pvertex + ix;
+                         for( int ii = 0; ii < vcnt; ii++ )
+                         {
+                              *padj += adj_unit[ ix ];
+                              padj += stride;
+                         }
+                    }
+
+                    
+               }
 			ImGui::Text("vertex buffer:");
 			for (int ix = 0; ix < vcnt;ix++)
 			{
 				stm_it.str(string());
 				stm_it.clear();
 				stm_it << "Vertex" << ix;
-				string citstr = stm_it.str();
+				citstr = stm_it.str();
 				ImGui::InputFloatN(citstr.c_str(), pvt, stride,-1,0);
 				pvt += stride;
 			}

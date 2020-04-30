@@ -148,12 +148,12 @@ namespace auto_future
 			pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nml, axisBasePos);
 		}
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
-		auto& txt_hd_id = _slider_pt._texture_head_index_txt;
+		const auto& txt_hd_id = _slider_pt._texture_head_index_txt;
 		/***********************************************************progress*********************************************************/
 		if (txt_hd_id >= ptext_cd.size())
 		{
 			printf("invalid texture index:%d\n", txt_hd_id);
-			txt_hd_id = 0;
+			return;//txt_hd_id = 0;
 		}
 		ImVec2 value_point0, value_point1, dir_thumb0, dir_thumb1;
 		if (en_custom == _slider_pt._direction_item) //任意轨道

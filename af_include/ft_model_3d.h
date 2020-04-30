@@ -13,7 +13,7 @@ namespace auto_future
 		//string _texture_file;
 		//string _mesh_data_file;
 
-		DEF_STRUCT(intl_pt,_pt,
+		DEF_STRUCT_WITH_INIT(intl_pt,_pt,
 			(af_vec3,_scale_stn),
 			(af_vec3, _rotation_srd),
 			(af_vec3, _translation_shd),

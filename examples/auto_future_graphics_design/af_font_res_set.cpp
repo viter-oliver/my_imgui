@@ -28,7 +28,7 @@ namespace auto_future
 	*/
 	using namespace ImGui;
 
-	int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, af_vec3& txt_col, float width, int omit_rest, bool be_new)
+	int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, const af_vec3& txt_col, float width, int omit_rest,bool be_new)
 	{
 		//if (fontSize != _font_rp._font_size)//!texture will be rebuilt
 		//{
@@ -42,9 +42,8 @@ namespace auto_future
 		txt_font_repository* pfrp = nullptr;
 		GLint max_beary = 0;
 		//auto& ifont = _dic_fonts.find(fontFace);
-		//ps_font_unit pf_u = nullptr;
 		auto& f_u = *pf_u;
-		auto& irep = f_u._ft_rep.find(fontSize);
+		const auto& irep = f_u._ft_rep.find(fontSize);
 		if (irep != f_u._ft_rep.end())
 		{
 			pfrp = &irep->second;
@@ -74,7 +73,7 @@ namespace auto_future
 		int cnt_char_w = str_content.size();
 		for (auto& wstr_item:str_content)
 		{
-			auto& glyph_txt_it = txt_cd_container.find(wstr_item);
+			const auto& glyph_txt_it = txt_cd_container.find(wstr_item);
 			if (glyph_txt_it != txt_cd_container.end())
 			{
 				auto& glyph_txt_cd = glyph_txt_it->second;

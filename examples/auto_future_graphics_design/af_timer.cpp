@@ -43,6 +43,27 @@ namespace auto_future
                     _timer_list_ex[ eid ]._tvalue = 0;
                }*/
           }
+          for( auto eid = _will_erase_id_list0.begin(); eid != _will_erase_id_list0.end(); )
+          {
+               auto& tid = eid->first;
+               auto& tdly = eid->second;
+
+               int delta = chrono::duration_cast<chrono::duration<int, std::milli>>( currentTime - tdly._start ).count();
+               if( delta > tdly._tvalue )
+               {
+                    const auto& actm = _active_tm_list.find( tid );
+                    if( actm != _active_tm_list.end() )
+                    {
+                         _active_tm_list.erase( actm );
+                    }
+                    eid = _will_erase_id_list0.erase( eid );
+               }
+               else
+               {
+                    eid++;
+               }
+          }
+
 		for (auto& ictm : _active_tm_list)
 		{
 			auto& ix = ictm.first;

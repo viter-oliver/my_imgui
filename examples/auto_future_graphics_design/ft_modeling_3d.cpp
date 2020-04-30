@@ -198,59 +198,59 @@ namespace auto_future
           draw_list->AddCircleFilled( lt_pos, 5, lt_col );
      }
 #endif	
-     void ft_modeling_3d::draw()
-     {
-          if( !_pmodel )
-          {
-               return;
-          }
-          af_model& my_model = *_pmodel;
-          af_shader& my_shader = *_pshd_modeling;
-          my_shader.use();
-          glm::mat4 model;
-          auto& aftr = _pty_page._trans._translation;
-          auto& afsc = _pty_page._trans._scale;
-          auto& afrt = _pty_page._trans._rotation;
-          glm::vec3 gtranslate( aftr.x, aftr.y, aftr.z );
-          glm::vec3 gscale( afsc.x, afsc.y, afsc.z );
-          model = glm::translate( model, gtranslate );
-          model = glm::scale( model, gscale );
-          model = glm::rotate( model, afrt.x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
-          model = glm::rotate( model, afrt.y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-          model = glm::rotate( model, afrt.z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
-          glm::mat4 view;
-          auto& cam_pos = _pty_page._cam._position;
-          auto& cam_dir = _pty_page._cam._direction;
-          auto& cam_up = _pty_page._cam._up;
-          glm::vec3 gcam_pos( cam_pos.x, cam_pos.y, cam_pos.z );
-          glm::vec3 gcam_dir( cam_dir.x, cam_dir.y, cam_dir.z );
-          glm::vec3 gcam_up( cam_up.x, cam_up.y, cam_up.z );
-          view = glm::lookAt( gcam_pos, gcam_dir, gcam_up );
-          glm::mat4 proj;
-          auto& cproj = _pty_page._pj;
-          auto pparent = get_parent();
-          float w, h;
-          pparent->get_size( w, h );
-          float aspect = w / h;
-          proj = glm::perspective( glm::radians( cproj._fovy ), aspect, cproj._near, cproj._far );
-          my_shader.uniform( "viewPos", glm::value_ptr( gcam_pos ) );
-          my_shader.uniform( "model", glm::value_ptr( model ) );
-          my_shader.uniform( "view", glm::value_ptr( view ) );
-          my_shader.uniform( "projection", glm::value_ptr( proj ) );
-          my_shader.uniform( "light.ambient", (float*)&_pty_page._light_ambient_clr );
-          my_shader.uniform( "light.diffuse", (float*)&_pty_page._light_diffuse_clr );
-          my_shader.uniform( "light.specular", (float*)&_pty_page._light_specular_clr );
-          my_shader.uniform( "light.position", (float*)&_pty_page._light_position_shd );
-          my_shader.uniform( "light.constant", &_pty_page._light_constant );
-          my_shader.uniform( "light.linear", &_pty_page._light_linear );
-          my_shader.uniform( "light.quadratic", &_pty_page._light_quadratic );
+	void ft_modeling_3d::draw()
+	{
+		if (!_pmodel)
+		{
+			return;
+		}
+		af_model& my_model = *_pmodel;
+		af_shader& my_shader =*_pshd_modeling;
+		my_shader.use();
+		glm::mat4 model;
+		const auto& aftr = _pty_page._trans._translation;
+		const auto& afsc = _pty_page._trans._scale;
+		const auto& afrt = _pty_page._trans._rotation;
+		glm::vec3 gtranslate(aftr.x, aftr.y, aftr.z);
+		glm::vec3 gscale(afsc.x, afsc.y, afsc.z);
+		model = glm::translate(model, gtranslate);
+		model = glm::scale(model, gscale);
+		model = glm::rotate(model, afrt.x*glm::radians(1.f), glm::vec3(1.0f, 0.0f, 0.0f));
+		model = glm::rotate(model, afrt.y*glm::radians(1.f), glm::vec3(0.0f, 1.0f, 0.0f));
+		model = glm::rotate(model, afrt.z*glm::radians(1.f), glm::vec3(0.0f, 0.0f, 1.0f));
+		glm::mat4 view;
+		const auto& cam_pos = _pty_page._cam._position;
+		const auto& cam_dir = _pty_page._cam._direction;
+		const auto& cam_up = _pty_page._cam._up;
+		glm::vec3 gcam_pos(cam_pos.x, cam_pos.y, cam_pos.z);
+		glm::vec3 gcam_dir(cam_dir.x, cam_dir.y, cam_dir.z);
+		glm::vec3 gcam_up(cam_up.x, cam_up.y, cam_up.z);
+		view = glm::lookAt(gcam_pos, gcam_dir, gcam_up);
+		glm::mat4 proj;
+		const auto& cproj = _pty_page._pj;
+		auto pparent = get_parent();
+		float w, h;
+		pparent->get_size(w, h);
+		float aspect = w / h;
+		proj = glm::perspective(glm::radians(cproj._fovy), aspect, cproj._near, cproj._far);
+		my_shader.uniform("viewPos", glm::value_ptr(gcam_pos));
+		my_shader.uniform("model", glm::value_ptr(model));
+		my_shader.uniform("view", glm::value_ptr(view));
+		my_shader.uniform("projection", glm::value_ptr(proj));
+		my_shader.uniform("light.ambient", (float*)&_pty_page._light_ambient_clr);
+		my_shader.uniform("light.diffuse", (float*)&_pty_page._light_diffuse_clr);
+		my_shader.uniform("light.specular", (float*)&_pty_page._light_specular_clr);
+		my_shader.uniform("light.position", (float*)&_pty_page._light_position_shd);
+		my_shader.uniform("light.constant", &_pty_page._light_constant);
+		my_shader.uniform("light.linear", &_pty_page._light_linear);
+		my_shader.uniform("light.quadratic", &_pty_page._light_quadratic);
 
 
           
 		for (auto& amesh:my_model)
 		{
 			
-			auto& primid=*amesh._ps_prm_id;
+			const auto& primid=*amesh._ps_prm_id;
 			
                int ix = 0, itx_cnt = 0;
                if( _pdiffuse )
@@ -279,7 +279,7 @@ namespace auto_future
 				     {
 					     ps_diffuse_list.emplace_back();
 					     auto& txt_diff = ps_diffuse_list.back();
-					     auto& itxt = g_mtexture_list.find(diff);
+					const auto& itxt = g_mtexture_list.find(diff);
 					     if (itxt!=g_mtexture_list.end())
 					     {
 						     txt_diff = itxt->second;
@@ -297,7 +297,7 @@ namespace auto_future
 				     {
 					     ps_specular_list.emplace_back();
 					     auto& txt_spec = ps_specular_list.back();
-					     auto& itxt = g_mtexture_list.find(spec);
+					const auto& itxt = g_mtexture_list.find(spec);
 					     if (itxt != g_mtexture_list.end())
 					     {
 						     txt_spec = itxt->second;
@@ -331,8 +331,6 @@ namespace auto_future
 			glBindVertexArray(primid._vao);
 			glDrawElements(GL_TRIANGLES, primid._ele_buf_len, GL_UNSIGNED_INT, 0);
 		}
-         
-          
 	}
 
 }

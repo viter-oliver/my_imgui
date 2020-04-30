@@ -73,7 +73,7 @@ namespace auto_future
 		{
 			_txt_pt._font_id = 0;
 		}
-		string font_name = ft_nm_list[_txt_pt._font_id]->_name;
+		//string font_name = ft_nm_list[_txt_pt._font_id]->_name;
 		float font_scale = _txt_pt._font_scale;
 
 		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
