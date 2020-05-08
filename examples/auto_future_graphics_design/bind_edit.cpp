@@ -51,17 +51,8 @@ void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_
 	cobj = pobj;
 	cpgidx = page_idx;
 	cfdidx = off_idx;
-	/*if (_edit_new_obj)
-	{
-		if (_pnew_bind_unit)
-		{
-		//	delete _pnew_bind_unit;
-		}
-	}*/
 	_edit_new_obj = true;
 	_be_unsavable = true;
-	//_pnew_bind_unit._param_list.clear();
-	//_pnew_bind_unit._expression.clear();
 	auto ibind = g_bind_dic.find(_current_prop_ele);
 	if (ibind != g_bind_dic.end())
 	{
@@ -255,9 +246,6 @@ void bind_edit::bind_source_view()
 				}
 			}
 		}
-		auto pnew_bind_unit= new prop_ele_bind_unit();
-		pnew_bind_unit->_expression = _pnew_bind_unit->_expression;
-		pnew_bind_unit->_param_list = _pnew_bind_unit->_param_list;
 		_edit_new_obj = true;
 		g_bind_dic.erase(_current_prop_ele);
 	}

@@ -9,23 +9,31 @@ uniform sampler2D rlane;
 
 void main()
 {
-   float x=posx.x;
-   if(x<=1.0)
-   {
-        if(lhide!=0)
-       	 discard;
-        else
-			gl_FragColor = texture2D(llane, Textcoord);
-   }
-   else if(x>=2.0)
-   {
-         if(rhide!=0)
-         	discard;
-         else  
-             gl_FragColor = texture2D(rlane, Textcoord);
-    }
-    else
+	if(gl_FragCoord.y<64.0)
 	{
+           discard;
+    }
+   else
+   {
+       float x=posx.x;
+       if(x<=1.0)
+       {
+            if(lhide!=0)
+       	     discard;
+            else
+			    gl_FragColor = texture2D(llane, Textcoord);
+       }
+       else if(x>=2.0)
+       {
+           if(rhide!=0)
+         	  discard;
+           else  
+               gl_FragColor = texture2D(rlane, Textcoord);
+       }
+      else
+	  {
 		discard;// gl_FragColor = vec4(0,0,0,0);//texture2D(road, Textcoord);
-	}
+	   }
+   
+    }
 }

@@ -1,0 +1,116 @@
+{"frames": [
+
+{
+	"filename": "IMG_046.png",
+	"frame": {"x":2,"y":2,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_047.png",
+	"frame": {"x":366,"y":2,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_048.png",
+	"frame": {"x":730,"y":2,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_049.png",
+	"frame": {"x":1094,"y":2,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_050.png",
+	"frame": {"x":1458,"y":2,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_051.png",
+	"frame": {"x":2,"y":142,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_052.png",
+	"frame": {"x":366,"y":142,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_053.png",
+	"frame": {"x":730,"y":142,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_054.png",
+	"frame": {"x":1094,"y":142,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_055.png",
+	"frame": {"x":1458,"y":142,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_056.png",
+	"frame": {"x":2,"y":282,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_057.png",
+	"frame": {"x":366,"y":282,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+},
+{
+	"filename": "IMG_058.png",
+	"frame": {"x":730,"y":282,"w":362,"h":138},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":362,"h":138},
+	"sourceSize": {"w":362,"h":138}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "left_change_lane1.png",
+	"format": "RGBA8888",
+	"size": {"w":1822,"h":422},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:df4bd2b3639a81fcd0613a33c79ed371$"
+}
+}

@@ -74,7 +74,6 @@ static void error_callback(int error, const char* description)
 string g_cureent_project_file_path;
 string g_cureent_directory;
 string g_afb_output_path;
-string g_app_path;
 bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
 state_manager_edit g_state_manager_edit;
@@ -162,12 +161,12 @@ void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 uint32_t s_user_count=0;
 #pragma data_seg()
 #pragma comment(linker,"/section:afg_seg,RWS")
-int main(int argc, char* argv[])
+int main( int argc, char* argv[] )
 {
 	s_user_count++;
 	/*HWND hwnd = GetConsoleWindow();
 	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));*/
-	g_app_path = argv[0];
+	     
 	//register_app_and_icon(g_app_path);
 	printf("%s__%d\n", __FILE__, s_user_count);
 #ifndef _DEBUG

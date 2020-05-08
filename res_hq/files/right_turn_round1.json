@@ -1,0 +1,100 @@
+{"frames": [
+
+{
+	"filename": "IMG_064.png",
+	"frame": {"x":2,"y":2,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_065.png",
+	"frame": {"x":334,"y":2,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_066.png",
+	"frame": {"x":666,"y":2,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_067.png",
+	"frame": {"x":998,"y":2,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_068.png",
+	"frame": {"x":1330,"y":2,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_069.png",
+	"frame": {"x":1662,"y":2,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_070.png",
+	"frame": {"x":2,"y":198,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_071.png",
+	"frame": {"x":334,"y":198,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_072.png",
+	"frame": {"x":666,"y":198,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_073.png",
+	"frame": {"x":998,"y":198,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+},
+{
+	"filename": "IMG_074.png",
+	"frame": {"x":1330,"y":198,"w":330,"h":194},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":330,"h":194},
+	"sourceSize": {"w":330,"h":194}
+}],
+"meta": {
+	"app": "http://www.texturepacker.com",
+	"version": "1.0",
+	"image": "right_turn_round1.png",
+	"format": "RGBA8888",
+	"size": {"w":1994,"h":394},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:98733636ff3f439643deca28f46a1fcc$"
+}
+}

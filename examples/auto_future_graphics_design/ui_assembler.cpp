@@ -62,7 +62,9 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 	HCURSOR hcur_cursor= GetCursor();
 	SetCursor(g_hcursor_wait);
 	ifstream fin;
+     locale::global( locale( "" ) );
 	fin.open(file_path);
+     locale::global( locale( "C" ) );
 	if (fin.is_open())
 	{
 		Reader reader;

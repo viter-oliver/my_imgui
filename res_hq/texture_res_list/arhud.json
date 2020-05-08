@@ -2,19 +2,19 @@
 
 {
 	"filename": "ACC.png",
-	"frame": {"x":510,"y":86,"w":48,"h":40},
+	"frame": {"x":510,"y":86,"w":42,"h":40},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":40},
-	"sourceSize": {"w":48,"h":40}
+	"spriteSourceSize": {"x":0,"y":0,"w":42,"h":40},
+	"sourceSize": {"w":42,"h":40}
 },
 {
 	"filename": "ACC_b.png",
-	"frame": {"x":560,"y":86,"w":48,"h":40},
+	"frame": {"x":554,"y":86,"w":42,"h":40},
 	"rotated": false,
 	"trimmed": false,
-	"spriteSourceSize": {"x":0,"y":0,"w":48,"h":40},
-	"sourceSize": {"w":48,"h":40}
+	"spriteSourceSize": {"x":0,"y":0,"w":42,"h":40},
+	"sourceSize": {"w":42,"h":40}
 },
 {
 	"filename": "ACC_b_n.png",
@@ -26,7 +26,7 @@
 },
 {
 	"filename": "ACC_n.png",
-	"frame": {"x":610,"y":86,"w":42,"h":40},
+	"frame": {"x":598,"y":86,"w":42,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":42,"h":40},
@@ -50,7 +50,7 @@
 },
 {
 	"filename": "LCA.png",
-	"frame": {"x":654,"y":86,"w":30,"h":40},
+	"frame": {"x":642,"y":86,"w":30,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":40},
@@ -58,7 +58,7 @@
 },
 {
 	"filename": "LCA_b.png",
-	"frame": {"x":718,"y":86,"w":30,"h":40},
+	"frame": {"x":706,"y":86,"w":30,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":40},
@@ -66,7 +66,7 @@
 },
 {
 	"filename": "LCA_b_n.png",
-	"frame": {"x":750,"y":86,"w":30,"h":40},
+	"frame": {"x":738,"y":86,"w":30,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":40},
@@ -74,7 +74,7 @@
 },
 {
 	"filename": "LCA_n.png",
-	"frame": {"x":686,"y":86,"w":30,"h":40},
+	"frame": {"x":674,"y":86,"w":30,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":30,"h":40},
@@ -274,7 +274,7 @@
 },
 {
 	"filename": "NaviIcon_RightFront_1_Back.png",
-	"frame": {"x":824,"y":86,"w":40,"h":40},
+	"frame": {"x":812,"y":86,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
@@ -298,7 +298,7 @@
 },
 {
 	"filename": "NaviIcon_RightFront_1_UpRight.png",
-	"frame": {"x":866,"y":86,"w":40,"h":40},
+	"frame": {"x":854,"y":86,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
@@ -354,7 +354,7 @@
 },
 {
 	"filename": "NaviIcon_RoundaboutExit.png",
-	"frame": {"x":782,"y":86,"w":40,"h":40},
+	"frame": {"x":770,"y":86,"w":40,"h":40},
 	"rotated": false,
 	"trimmed": false,
 	"spriteSourceSize": {"x":0,"y":0,"w":40,"h":40},
@@ -823,6 +823,6 @@
 	"format": "RGBA8888",
 	"size": {"w":932,"h":460},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:200b8b9ace20b6397bb6a225098e6638$"
+	"smartupdate": "$TexturePacker:SmartUpdate:7604d57ce1b99b862f1c34aa5e6eb231$"
 }
 }

@@ -15,7 +15,7 @@
 		"control_acc" : [ 3, 1, 0, 2 ],
 		"control_lca" : [ 3, 1, 2, 2 ],
 		"control_lka" : [ 3, 1, 1, 2 ],
-		"control_lka_dir" : [ 3, 1, 7, 2 ],
+		"control_lka_dir" : [ 3, 1, 6, 2 ],
 		"control_navi_dir" : [ 3, 1, 1, 5 ],
 		"driving_model" : [ 4, 1, 1, 4 ],
 		"gear" : [ 4, 1, 0, 4 ],
@@ -24,38 +24,56 @@
 		"show_acc_speed_a" : [ 6, 0, 1, 0, 2 ],
 		"show_arrow" : [ 6, 0, 3, 1, 1 ],
 		"show_arrow1" : [ 6, 0, 2, 1, 1 ],
-		"show_arrow2" : [ 6, 0, 1, 1, 1 ],
+		"show_arrow2" : [ 6, 0, 0, 1, 1 ],
 		"show_arrow3d0" : [ 6, 0, 0, 0, 1 ],
 		"show_arrow3d1" : [ 6, 0, 1, 0, 1 ],
 		"show_arrow3d2" : [ 6, 0, 2, 0, 1 ],
 		"show_arrows" : [ 6, 0, 0, 1 ],
 		"show_base_info" : [ 6, 0, 4 ],
-		"show_bsd_left" : [ 6, 0, 8, 2 ],
-		"show_bsd_right" : [ 6, 0, 9, 2 ],
+		"show_bsd_left" : [ 6, 0, 9, 2 ],
+		"show_bsd_right" : [ 6, 0, 10, 2 ],
 		"show_far_scenario" : [ 6, 0, 1 ],
-		"show_fcw" : [ 6, 0, 5, 1, 1 ],
-		"show_fcw_v" : [ 6, 0, 4, 1, 1 ],
+		"show_fcw" : [ 6, 0, 6, 1, 1 ],
+		"show_fcw_v" : [ 6, 0, 5, 1, 1 ],
 		"show_image" : [ 6, 0, 6 ],
 		"show_lca" : [ 6, 0, 2, 2 ],
-		"show_lca_r" : [ 6, 0, 5, 2 ],
+		"show_lca_r" : [ 6, 0, 7, 2 ],
+		"show_left_change_lane0" : [ 6, 0, 0, 14, 2 ],
+		"show_left_change_lane1" : [ 6, 0, 1, 14, 2 ],
+		"show_left_change_lane2" : [ 6, 0, 2, 14, 2 ],
 		"show_left_fcta1" : [ 6, 0, 0, 4, 2 ],
 		"show_left_fcta2" : [ 6, 0, 1, 4, 2 ],
 		"show_left_fctb" : [ 6, 0, 2, 4, 2 ],
-		"show_left_turn_round0" : [ 6, 0, 0, 10, 2 ],
-		"show_left_turn_round1" : [ 6, 0, 1, 10, 2 ],
-		"show_left_turn_round2" : [ 6, 0, 2, 10, 2 ],
+		"show_left_turn0" : [ 6, 0, 0, 12, 2 ],
+		"show_left_turn1" : [ 6, 0, 1, 12, 2 ],
+		"show_left_turn_front0" : [ 6, 0, 0, 11, 2 ],
+		"show_left_turn_front1" : [ 6, 0, 1, 11, 2 ],
+		"show_left_turn_round0" : [ 6, 0, 0, 13, 2 ],
+		"show_left_turn_round1" : [ 6, 0, 1, 13, 2 ],
+		"show_left_turn_round2" : [ 6, 0, 2, 13, 2 ],
 		"show_lka" : [ 6, 0, 1, 2 ],
-		"show_lka_dir" : [ 6, 0, 7, 2 ],
+		"show_lka_dir" : [ 6, 0, 6, 2 ],
 		"show_navi" : [ 6, 0, 5 ],
 		"show_navi_des" : [ 6, 0, 2, 5 ],
 		"show_navi_dir" : [ 6, 0, 1, 5 ],
+		"show_navi_end" : [ 6, 0, 8, 2 ],
 		"show_near_scenario" : [ 6, 0, 2 ],
 		"show_phone_ring" : [ 6, 0, 2, 4 ],
-		"show_right_fcta1" : [ 6, 0, 0, 6, 2 ],
-		"show_right_fcta2" : [ 6, 0, 1, 6, 2 ],
-		"show_right_fctb" : [ 6, 0, 2, 6, 2 ],
-		"show_road" : [ 6, 0, 0, 1, 1 ],
-		"show_sacc" : [ 6, 0, 6, 1, 1 ],
+		"show_right_change_lane0" : [ 6, 0, 0, 18, 2 ],
+		"show_right_change_lane1" : [ 6, 0, 1, 18, 2 ],
+		"show_right_change_lane2" : [ 6, 0, 2, 18, 2 ],
+		"show_right_fcta1" : [ 6, 0, 0, 5, 2 ],
+		"show_right_fcta2" : [ 6, 0, 1, 5, 2 ],
+		"show_right_fctb" : [ 6, 0, 2, 5, 2 ],
+		"show_right_turn0" : [ 6, 0, 0, 16, 2 ],
+		"show_right_turn1" : [ 6, 0, 1, 16, 2 ],
+		"show_right_turn_front0" : [ 6, 0, 0, 15, 2 ],
+		"show_right_turn_front1" : [ 6, 0, 1, 15, 2 ],
+		"show_right_turn_round0" : [ 6, 0, 0, 17, 2 ],
+		"show_right_turn_round1" : [ 6, 0, 1, 17, 2 ],
+		"show_right_turn_round2" : [ 6, 0, 2, 17, 2 ],
+		"show_road" : [ 6, 0, 1, 1, 1 ],
+		"show_sacc" : [ 6, 0, 7, 1, 1 ],
 		"show_tsr" : [ 6, 0, 3, 2 ],
 		"show_version" : [ 6, 0, 7 ],
 		"speed" : [ 4, 1, 2, 3 ],
@@ -85,13 +103,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return not v0\n",
+					"expression" : "def bind_fun(v0):\n  return v0==2\n",
 					"param_list" : 
 					[
-						[ 6, 0, 2, 4 ]
+						[ 2, 1, 8 ]
 					]
 				},
-				"key" : [ 6, 0, 1, 4 ]
+				"key" : [ 6, 0, 1, 9 ]
 			},
 			
 			{
@@ -109,6 +127,18 @@
 			{
 				"bind_unit" : 
 				{
+					"expression" : "def bind_fun(v0):\n  return v0==5\n",
+					"param_list" : 
+					[
+						[ 2, 1, 8 ]
+					]
+				},
+				"key" : [ 6, 0, 4, 9 ]
+			},
+			
+			{
+				"bind_unit" : 
+				{
 					"expression" : "def bind_fun(v0):\n  return v0==4\n",
 					"param_list" : 
 					[
@@ -121,25 +151,13 @@
 			{
 				"bind_unit" : 
 				{
-					"expression" : "def bind_fun(v0):\n  return v0==2\n",
+					"expression" : "def bind_fun(v0):\n  return not v0\n",
 					"param_list" : 
 					[
-						[ 2, 1, 8 ]
+						[ 6, 0, 2, 4 ]
 					]
 				},
-				"key" : [ 6, 0, 1, 9 ]
-			},
-			
-			{
-				"bind_unit" : 
-				{
-					"expression" : "def bind_fun(v0):\n  return v0==5\n",
-					"param_list" : 
-					[
-						[ 2, 1, 8 ]
-					]
-				},
-				"key" : [ 6, 0, 4, 9 ]
+				"key" : [ 6, 0, 1, 4 ]
 			}
 		],
 		"ref_dic" : 
@@ -222,7 +240,7 @@
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
 							"_alpha_nml" : 1.0,
-							"_cam" : "aaaamimdaaaamdedaaaaaaaaaaaamimdaaaamdedaaaacaebaaaaaaaaaaaaiadpaaaaaaaa",
+							"_cam" : "aaaamimdaaaamdedaaaaaaaaaaaamimdaaaamdedaaaamiecaaaaaaaaaaaaiadpaaaaaaaa",
 							"_draw_mode" : 4,
 							"_material_name" : "arrow3d",
 							"_name" : "arrow3d0",
@@ -300,7 +318,7 @@
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_trans_order" : 5,
-							"_trans_rotation_x" : 169.0140075683594,
+							"_trans_rotation_x" : 168.50,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 180.0,
 							"_trans_scale_x" : 6.0,
@@ -341,39 +359,6 @@
 					[
 						
 						{
-							"_adjacent_to_p" : 73.68400573730469,
-							"_aj_model" : 0,
-							"_alpha_nml" : 0.0,
-							"_cam" : "aaaamimdaaaamdedjgonccdmaaaamimdaaaamdedponekidpaaaaaaaaddddlddpaaaaaaaa",
-							"_draw_mode" : 4,
-							"_material_name" : "road",
-							"_name" : "roadd",
-							"_pj" : "jgedmnebmnmmkbebaafamdeh",
-							"_posx" : 0.0,
-							"_posy" : 0.0,
-							"_primitive_name" : "roadd.FBX0",
-							"_rotate_order" : 0,
-							"_sizeh" : 20.0,
-							"_sizew" : 20.0,
-							"_trans_order" : 5,
-							"_trans_rotation_x" : 83.0,
-							"_trans_rotation_y" : 0.0,
-							"_trans_rotation_z" : 0.0,
-							"_trans_scale_x" : 1.0,
-							"_trans_scale_y" : 1.0,
-							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : 0.0,
-							"_trans_translation_y" : 0.0,
-							"_trans_translation_z" : 4500.0,
-							"_uf_model_name" : "model",
-							"_uf_proj_name" : "proj",
-							"_uf_view_name" : "view",
-							"_visible" : true,
-							"_with_feedback" : false,
-							"type" : "ft_material_3d"
-						},
-						
-						{
 							"_adjacent_to_p" : 0.0,
 							"_aj_model" : 0,
 							"_alpha_nml" : 1.0,
@@ -402,6 +387,39 @@
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
 							"_visible" : false,
+							"_with_feedback" : false,
+							"type" : "ft_material_3d"
+						},
+						
+						{
+							"_adjacent_to_p" : 73.68400573730469,
+							"_aj_model" : 0,
+							"_alpha_nml" : 0.0,
+							"_cam" : "aaaamimdaaaamdedjgonccdmaaaamimdaaaamdedponekidpaaaaaaaaddddlddpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "road",
+							"_name" : "roadd",
+							"_pj" : "jgedmnebmnmmkbebaafamdeh",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "roadd.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : 83.0,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 0.0,
+							"_trans_scale_x" : 1.0,
+							"_trans_scale_y" : 1.0,
+							"_trans_scale_z" : 1.0,
+							"_trans_translation_x" : 0.0,
+							"_trans_translation_y" : 0.0,
+							"_trans_translation_z" : 4500.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : true,
 							"_with_feedback" : false,
 							"type" : "ft_material_3d"
 						},
@@ -455,15 +473,48 @@
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
 							"_trans_order" : 5,
-							"_trans_rotation_x" : 75.0,
+							"_trans_rotation_x" : 72.43500518798828,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 0.0,
 							"_trans_scale_x" : 500.0,
 							"_trans_scale_y" : 500.0,
 							"_trans_scale_z" : 1.0,
-							"_trans_translation_x" : -400.0,
+							"_trans_translation_x" : -484.5070190429688,
 							"_trans_translation_y" : 350.0,
-							"_trans_translation_z" : 6000.0,
+							"_trans_translation_z" : 2000.0,
+							"_uf_model_name" : "model",
+							"_uf_proj_name" : "proj",
+							"_uf_view_name" : "view",
+							"_visible" : false,
+							"_with_feedback" : false,
+							"type" : "ft_material_3d"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_alpha_nml" : 1.0,
+							"_cam" : "aaaamimdaaaamdedaaaaeidgaaaamimdaaaamdedeeilnaeaaaaaaaaaeglglddpaaaaaaaa",
+							"_draw_mode" : 4,
+							"_material_name" : "arrow",
+							"_name" : "arrow0_",
+							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_posx" : 0.0,
+							"_posy" : 0.0,
+							"_primitive_name" : "1X1.FBX0",
+							"_rotate_order" : 0,
+							"_sizeh" : 20.0,
+							"_sizew" : 20.0,
+							"_trans_order" : 5,
+							"_trans_rotation_x" : -20.0,
+							"_trans_rotation_y" : 0.0,
+							"_trans_rotation_z" : 0.0,
+							"_trans_scale_x" : 500.0,
+							"_trans_scale_y" : 500.0,
+							"_trans_scale_z" : 1.0,
+							"_trans_translation_x" : 123.9440078735352,
+							"_trans_translation_y" : 350.0,
+							"_trans_translation_z" : 2000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -546,23 +597,23 @@
 							"_draw_mode" : 4,
 							"_material_name" : "sacc",
 							"_name" : "sacc",
-							"_pj" : "aaaakaebmnmmkbebaagaokeg",
+							"_pj" : "aaaakaebmnmmkbebaaceheej",
 							"_posx" : 0.0,
 							"_posy" : 0.0,
 							"_primitive_name" : "SACC.FBX0",
 							"_rotate_order" : 0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
-							"_trans_order" : 5,
+							"_trans_order" : 3,
 							"_trans_rotation_x" : 88.0,
 							"_trans_rotation_y" : 0.0,
 							"_trans_rotation_z" : 0.0,
-							"_trans_scale_x" : 2.0,
-							"_trans_scale_y" : 1.0,
-							"_trans_scale_z" : 28.0,
-							"_trans_translation_x" : 631.0940551757813,
-							"_trans_translation_y" : -121.3050079345703,
-							"_trans_translation_z" : 10000.0,
+							"_trans_scale_x" : 1.0,
+							"_trans_scale_y" : 5.0,
+							"_trans_scale_z" : 1.0,
+							"_trans_translation_x" : 0.0,
+							"_trans_translation_y" : 0.0,
+							"_trans_translation_z" : 5000.0,
 							"_uf_model_name" : "model",
 							"_uf_proj_name" : "proj",
 							"_uf_view_name" : "view",
@@ -600,8 +651,8 @@
 					"_posx" : 83.0,
 					"_posy" : 258.0,
 					"_sizeh" : 40.0,
-					"_sizew" : 48.0,
-					"_texture_index_txt" : 1,
+					"_sizew" : 42.0,
+					"_texture_index_txt" : 0,
 					"_visible" : false,
 					"childs" : 
 					[
@@ -641,12 +692,12 @@
 							"_content" : "120",
 							"_font_id" : 1,
 							"_font_scale" : 1.0,
-							"_font_size" : 30,
+							"_font_size" : 32,
 							"_name" : "acc_speed_a",
 							"_omit_rest" : 0,
 							"_play_circle" : 1.0,
 							"_playing" : false,
-							"_posx" : -56.0,
+							"_posx" : -62.0,
 							"_posy" : 8.0,
 							"_sizeh" : 20.0,
 							"_sizew" : 20.0,
@@ -692,12 +743,12 @@
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
 					"_name" : "LCA",
-					"_posx" : 130.0,
+					"_posx" : 132.0,
 					"_posy" : 260.0,
 					"_sizeh" : 40.0,
 					"_sizew" : 30.0,
 					"_texture_index_txt" : 6,
-					"_visible" : true,
+					"_visible" : false,
 					"type" : "ft_image"
 				},
 				
@@ -821,23 +872,6 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_anchor_type" : 0,
-					"_angle_srd" : 0.0,
-					"_aposx" : 0.0,
-					"_aposy" : 0.0,
-					"_name" : "LCA_r",
-					"_posx" : 340.0,
-					"_posy" : 90.0,
-					"_sizeh" : 120.0,
-					"_sizew" : 120.0,
-					"_texture_index_txt" : 10,
-					"_visible" : false,
-					"type" : "ft_image"
-				},
-				
-				{
-					"_adjacent_to_p" : 0.0,
-					"_aj_model" : 0,
 					"_name" : "fct_right",
 					"_posx" : 678.0,
 					"_posy" : 118.4290084838867,
@@ -927,6 +961,40 @@
 					"_angle_srd" : 0.0,
 					"_aposx" : 0.0,
 					"_aposy" : 0.0,
+					"_name" : "LCA_r",
+					"_posx" : 340.0,
+					"_posy" : 90.0,
+					"_sizeh" : 120.0,
+					"_sizew" : 120.0,
+					"_texture_index_txt" : 10,
+					"_visible" : false,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
+					"_name" : "navi_end",
+					"_posx" : 358.0,
+					"_posy" : 108.0,
+					"_sizeh" : 83.0,
+					"_sizew" : 83.0,
+					"_texture_index_txt" : 96,
+					"_visible" : false,
+					"type" : "ft_image"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_anchor_type" : 0,
+					"_angle_srd" : 0.0,
+					"_aposx" : 0.0,
+					"_aposy" : 0.0,
 					"_name" : "bsd_left",
 					"_posx" : 42.0,
 					"_posy" : 88.0,
@@ -957,7 +1025,109 @@
 				{
 					"_adjacent_to_p" : 0.0,
 					"_aj_model" : 0,
-					"_name" : "turn_left",
+					"_name" : "left_turn_front",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_turn_front0",
+							"_posx" : 107.0,
+							"_posy" : 85.0,
+							"_sizeh" : 147.0,
+							"_sizew" : 403.0,
+							"_texture_fmt_name" : "left_turn_front0.json",
+							"_texture_name" : "left_turn_front0.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_turn_front1",
+							"_posx" : 107.0,
+							"_posy" : 85.0,
+							"_sizeh" : 147.0,
+							"_sizew" : 403.0,
+							"_texture_fmt_name" : "left_turn_front1.json",
+							"_texture_name" : "left_turn_front1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "left_turn",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_turn0",
+							"_posx" : 106.0,
+							"_posy" : 85.0,
+							"_sizeh" : 147.0,
+							"_sizew" : 403.0,
+							"_texture_fmt_name" : "left_turn0.json",
+							"_texture_name" : "left_turn0.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_turn1",
+							"_posx" : 106.0,
+							"_posy" : 85.0,
+							"_sizeh" : 147.0,
+							"_sizew" : 403.0,
+							"_texture_fmt_name" : "left_turn1.json",
+							"_texture_name" : "left_turn1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "left_turn_round",
 					"_posx" : 0.0,
 					"_posy" : 0.0,
 					"_sizeh" : 20.0,
@@ -980,7 +1150,7 @@
 							"_sizew" : 413.0,
 							"_texture_fmt_name" : "left_turn_round0.json",
 							"_texture_name" : "left_turn_round0.png",
-							"_visible" : true,
+							"_visible" : false,
 							"type" : "ft_image_play"
 						},
 						
@@ -1016,6 +1186,315 @@
 							"_sizew" : 348.0,
 							"_texture_fmt_name" : "left_turn_round2.json",
 							"_texture_name" : "left_turn_round2.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "left_change_lane",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_change_lane0",
+							"_posx" : 150.0,
+							"_posy" : 105.0,
+							"_sizeh" : 138.0,
+							"_sizew" : 362.0,
+							"_texture_fmt_name" : "left_change_lane0.json",
+							"_texture_name" : "left_change_lane0.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_change_lane1",
+							"_posx" : 150.0,
+							"_posy" : 105.0,
+							"_sizeh" : 138.0,
+							"_sizew" : 362.0,
+							"_texture_fmt_name" : "left_change_lane1.json",
+							"_texture_name" : "left_change_lane1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "left_change_lane2",
+							"_posx" : 150.0,
+							"_posy" : 105.0,
+							"_sizeh" : 138.0,
+							"_sizew" : 362.0,
+							"_texture_fmt_name" : "left_change_lane2.json",
+							"_texture_name" : "left_change_lane2.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "right_turn_front",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_turn_front0",
+							"_posx" : 362.0,
+							"_posy" : 84.0,
+							"_sizeh" : 162.0,
+							"_sizew" : 373.0,
+							"_texture_fmt_name" : "right_turn_front0.json",
+							"_texture_name" : "right_turn_front0.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_turn_front1",
+							"_posx" : 362.0,
+							"_posy" : 84.0,
+							"_sizeh" : 162.0,
+							"_sizew" : 373.0,
+							"_texture_fmt_name" : "right_turn_front1.json",
+							"_texture_name" : "right_turn_front1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "right_turn",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_turn0",
+							"_posx" : 365.3920288085938,
+							"_posy" : 53.11900329589844,
+							"_sizeh" : 173.0,
+							"_sizew" : 371.0,
+							"_texture_fmt_name" : "right_turn0.json",
+							"_texture_name" : "right_turn0.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_turn1",
+							"_posx" : 367.0,
+							"_posy" : 110.0,
+							"_sizeh" : 173.0,
+							"_sizew" : 371.0,
+							"_texture_fmt_name" : "right_turn1.json",
+							"_texture_name" : "right_turn1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "right_turn_round",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_turn_round0",
+							"_posx" : 360.0,
+							"_posy" : 78.0,
+							"_sizeh" : 194.0,
+							"_sizew" : 330.0,
+							"_texture_fmt_name" : "right_turn_round0.json",
+							"_texture_name" : "right_turn_round0.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_turn_round1",
+							"_posx" : 360.0,
+							"_posy" : 78.0,
+							"_sizeh" : 194.0,
+							"_sizew" : 330.0,
+							"_texture_fmt_name" : "right_turn_round1.json",
+							"_texture_name" : "right_turn_round1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 59,
+							"_name" : "right_turn_round2",
+							"_posx" : 360.0,
+							"_posy" : 78.0,
+							"_sizeh" : 194.0,
+							"_sizew" : 330.0,
+							"_texture_fmt_name" : "right_turn_round2.json",
+							"_texture_name" : "right_turn_round2.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						}
+					],
+					"type" : "ft_base"
+				},
+				
+				{
+					"_adjacent_to_p" : 0.0,
+					"_aj_model" : 0,
+					"_name" : "right_change_lane",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_visible" : true,
+					"childs" : 
+					[
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 30,
+							"_name" : "right_change_lane0",
+							"_posx" : 339.6380310058594,
+							"_posy" : 107.8470077514648,
+							"_sizeh" : 129.0,
+							"_sizew" : 359.0,
+							"_texture_fmt_name" : "right_change_lane0.json",
+							"_texture_name" : "right_change_lane0.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_change_lane1",
+							"_posx" : 339.6380310058594,
+							"_posy" : 107.8470077514648,
+							"_sizeh" : 129.0,
+							"_sizew" : 359.0,
+							"_texture_fmt_name" : "right_change_lane1.json",
+							"_texture_name" : "right_change_lane1.png",
+							"_visible" : false,
+							"type" : "ft_image_play"
+						},
+						
+						{
+							"_adjacent_to_p" : 0.0,
+							"_aj_model" : 0,
+							"_angle_nml" : 0.0,
+							"_aposx" : 0.0,
+							"_aposy" : 0.0,
+							"_frame_index" : 0,
+							"_name" : "right_change_lane2",
+							"_posx" : 339.6380310058594,
+							"_posy" : 107.8470077514648,
+							"_sizeh" : 129.0,
+							"_sizew" : 359.0,
+							"_texture_fmt_name" : "right_change_lane2.json",
+							"_texture_name" : "right_change_lane2.png",
 							"_visible" : false,
 							"type" : "ft_image_play"
 						}
@@ -1663,6 +2142,7 @@
 	],
 	"file_list" : 
 	[
+		"1X1.FBX0",
 		"SACC.FBX0",
 		"arrow_3d.FBX0",
 		"arrow_with_turn.FBX0",
@@ -1671,10 +2151,27 @@
 		"e115.json",
 		"fcta1.json",
 		"fcta2.json",
+		"left_change_lane0.json",
+		"left_change_lane1.json",
+		"left_change_lane2.json",
+		"left_turn0.json",
+		"left_turn1.json",
+		"left_turn_front0.json",
+		"left_turn_front1.json",
 		"left_turn_round0.json",
 		"left_turn_round1.json",
 		"left_turn_round2.json",
 		"left_wing.json",
+		"right_change_lane0.json",
+		"right_change_lane1.json",
+		"right_change_lane2.json",
+		"right_turn0.json",
+		"right_turn1.json",
+		"right_turn_front0.json",
+		"right_turn_front1.json",
+		"right_turn_round0.json",
+		"right_turn_round1.json",
+		"right_turn_round2.json",
 		"right_wing.json",
 		"road.FBX0",
 		"roadd.FBX0",
@@ -1739,8 +2236,8 @@
 						0.2588190734386444,
 						0.0,
 						-400.0,
-						350.0,
-						6000.0,
+						975.0,
+						11000.0,
 						1.0
 					]
 				},
@@ -1821,16 +2318,16 @@
 					"value_list" : 
 					[
 						-5.999999523162842,
-						5.149238972990133e-007,
-						-9.996048788707412e-008,
+						5.140064445185999e-007,
+						-1.045757755946397e-007,
 						0.0,
 						5.245366310191457e-007,
-						5.890042781829834,
-						-1.143414735794067,
+						5.87954854965210,
+						-1.196207404136658,
 						0.0,
 						0.0,
-						-1.143414735794067,
-						-5.890042781829834,
+						-1.196207404136658,
+						-5.87954854965210,
 						0.0,
 						0.0,
 						600.0,
@@ -2512,21 +3009,21 @@
 					"utype" : 35676,
 					"value_list" : 
 					[
-						2.0,
+						1.0,
 						0.0,
 						0.0,
 						0.0,
 						0.0,
-						0.03489949554204941,
-						27.98294448852539,
+						0.1744974851608276,
+						4.996953964233398,
 						0.0,
 						0.0,
 						-0.9993908405303955,
-						0.9771858453750610,
+						0.03489949554204941,
 						0.0,
-						631.0940551757813,
-						-121.3050079345703,
-						10000.0,
+						0.0,
+						0.0,
+						5000.0,
 						1.0
 					]
 				},
@@ -2548,11 +3045,11 @@
 						0.0,
 						0.0,
 						0.0,
-						-1.001349210739136,
+						-1.000040531158447,
 						-1.0,
 						0.0,
 						0.0,
-						-40.47728729248047,
+						-40.45082092285156,
 						0.0
 					]
 				},
@@ -2679,33 +3176,11 @@
 			}
 		}
 	],
-	"models" : 
-	{
-		"arrow_with_turn.FBX" : 
-		[
-			
-			{
-				"ambient_list" : [],
-				"bounding_box" : 
-				{
-					"xmax" : 100.5818710327148,
-					"xmin" : -100.5818710327148,
-					"ymax" : 13.61070156097412,
-					"ymin" : -18.10534477233887,
-					"zmax" : 100.0,
-					"zmin" : -99.09897613525391
-				},
-				"diffuse_list" : [],
-				"height_list" : [],
-				"prim_id" : "arrow_with_turn.FBX0",
-				"specular_list" : []
-			}
-		]
-	},
+	"models" : {},
 	"output_bin_fmt" : 
 	{
 		"pgm_fmt" : 0,
-		"txt_fmt" : 0
+		"txt_fmt" : 1
 	},
 	"playlist_group_list" : 
 	[
@@ -2756,6 +3231,15 @@
 	],
 	"primitive_list" : 
 	[
+		
+		{
+			"ebo_len" : 6,
+			"format" : [ 3, 3, 2 ],
+			"mesh_id" : 0,
+			"model" : "1X1.FBX",
+			"name" : "1X1.FBX0",
+			"vbo_len" : 48
+		},
 		
 		{
 			"ebo_len" : 24,
@@ -4123,13 +4607,13 @@
 			],
 			"prop_list" : 
 			[
-				[ 9, 1, 1, 1, 1 ],
-				[ 11, 1, 1, 1, 1 ],
-				[ 16, 1, 1, 1, 1 ],
-				[ 18, 1, 1, 1, 1 ],
-				[ 12, 1, 1, 1, 1 ],
-				[ 10, 1, 1, 1, 1 ],
-				[ 17, 1, 1, 1, 1 ]
+				[ 9, 1, 0, 1, 1 ],
+				[ 11, 1, 0, 1, 1 ],
+				[ 16, 1, 0, 1, 1 ],
+				[ 18, 1, 0, 1, 1 ],
+				[ 12, 1, 0, 1, 1 ],
+				[ 10, 1, 0, 1, 1 ],
+				[ 17, 1, 0, 1, 1 ]
 			],
 			"prop_value_list" : 
 			[
@@ -4358,6 +4842,230 @@
 			],
 			"state_idx" : 0
 		},
+		"play_left_change_lane0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 14, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "bnaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_change_lane1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 14, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "amaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_change_lane2" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 2, 14, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "dpaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_turn0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 700,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 12, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "bmaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_turn1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 2000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 12, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "ebaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_turn_front0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 11, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "bmaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_left_turn_front1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 1000,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 2000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 11, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "eaaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
 		"play_left_turn_round0" : 
 		{
 			"any_to_any" : 
@@ -4381,7 +5089,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 0, 10, 2 ]
+				[ 4, 1, 0, 13, 2 ]
 			],
 			"prop_value_list" : 
 			[
@@ -4413,7 +5121,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 1, 10, 2 ]
+				[ 4, 1, 1, 13, 2 ]
 			],
 			"prop_value_list" : 
 			[
@@ -4445,12 +5153,332 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 2, 10, 2 ]
+				[ 4, 1, 2, 13, 2 ]
 			],
 			"prop_value_list" : 
 			[
 				[ "aaaaaaaa" ],
 				[ "eaaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_change_lane0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 18, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "boaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_change_lane1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 18, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "amaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_change_lane2" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 2, 18, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "dpaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_turn0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 700,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 16, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "daaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_turn1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 2000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 16, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "dgaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_turn_front0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 600,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 15, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "diaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_turn_front1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 2000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 15, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "dlaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_turn_round0" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 1000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 0, 17, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "claaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_turn_round1" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 500,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 1, 17, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "akaaaaaa" ]
+			],
+			"state_idx" : 0
+		},
+		"play_right_turn_round2" : 
+		{
+			"any_to_any" : 
+			{
+				"duration" : 250,
+				"easing_fun" : 0,
+				"start_time" : 0
+			},
+			"mstate" : 0,
+			"mtrans" : 
+			[
+				
+				{
+					"duration" : 2000,
+					"easing_fun" : 0,
+					"key_from" : 0,
+					"key_to" : 1,
+					"start_time" : 0
+				}
+			],
+			"playlist_list" : [],
+			"prop_list" : 
+			[
+				[ 4, 1, 2, 17, 2 ]
+			],
+			"prop_value_list" : 
+			[
+				[ "aaaaaaaa" ],
+				[ "dlaaaaaa" ]
 			],
 			"state_idx" : 0
 		},
@@ -4477,7 +5505,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 0, 6, 2 ]
+				[ 4, 1, 0, 5, 2 ]
 			],
 			"prop_value_list" : 
 			[
@@ -4509,7 +5537,7 @@
 			"playlist_list" : [],
 			"prop_list" : 
 			[
-				[ 4, 1, 1, 6, 2 ]
+				[ 4, 1, 1, 5, 2 ]
 			],
 			"prop_value_list" : 
 			[
@@ -4663,6 +5691,48 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "left_change_lane0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_change_lane1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_change_lane2.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_turn0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_turn1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_turn_front0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "left_turn_front1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "left_turn_round0.png",
 			"separated" : true
 		},
@@ -4723,6 +5793,66 @@
 		
 		{
 			"mipmap" : false,
+			"name" : "right_change_lane0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_change_lane1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_change_lane2.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_turn0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_turn1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_turn_front0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_turn_front1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_turn_round0.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_turn_round1.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "right_turn_round2.png",
+			"separated" : true
+		},
+		
+		{
+			"mipmap" : false,
 			"name" : "usq.png",
 			"separated" : false
 		}
@@ -4739,7 +5869,7 @@
 	"type" : "ft_base",
 	"window_show" : 
 	{
-		"show_aliase_edit" : true,
+		"show_aliase_edit" : false,
 		"show_edit_window" : true,
 		"show_file_manager" : false,
 		"show_fonts_manager" : false,
