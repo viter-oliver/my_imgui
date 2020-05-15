@@ -49,12 +49,12 @@ void fonts_edit::draw_fonts_list()
 		{
 			OPENFILENAME ofn = { sizeof(OPENFILENAME) };
 			ofn.hwndOwner = GetForegroundWindow();
-			ofn.lpstrFilter = "ttf file:\0*.ttf\0\0";
+			//ofn.lpstrFilter = "ttf file:\0*.ttf\0\0";
 			char strFileName[MAX_PATH] = { 0 };
 			ofn.nFilterIndex = 1;
 			ofn.lpstrFile = strFileName;
 			ofn.nMaxFile = sizeof(strFileName);
-			ofn.lpstrTitle = "Loading ttf file...";
+			ofn.lpstrTitle = "Loading font file...";
 			ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
 			if (GetOpenFileName(&ofn))
 			{

@@ -5,10 +5,12 @@ class project_edit
 	base_ui_component& _root;
 	base_ui_component* _pcurrent_object;
 	base_ui_component* _pcopy_object;
+     base_ui_component* _pcut_object;
+
 	void view_object(base_ui_component& fb);
 public:
 	project_edit(base_ui_component& fb) 
-		:_root(fb), _pcurrent_object(nullptr), _pcopy_object(nullptr)
+          :_root(fb), _pcurrent_object(nullptr), _pcopy_object(nullptr), _pcut_object(nullptr)
 	{}
 	void objects_view();
 	void popup_context_menu();

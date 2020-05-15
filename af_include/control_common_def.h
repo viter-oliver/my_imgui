@@ -428,13 +428,14 @@ namespace auto_future
 			_vprop_eles.shrink_to_fit();
 			_vchilds.shrink_to_fit();
 		}
-		virtual void remove_child(base_ui_component* pchild)
+		virtual void remove_child(base_ui_component* pchild,bool release=true)
 		{
 			auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
 			if (it != _vchilds.end())
 			{
 				_vchilds.erase(it);
-				delete pchild;
+                    if(release )
+				     delete pchild;
 			}
 		}
 		bool move_pre(base_ui_component* pchild)

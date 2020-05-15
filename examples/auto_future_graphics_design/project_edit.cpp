@@ -104,6 +104,10 @@ void project_edit::popup_context_menu()
 		{
 			_pcopy_object = _pcurrent_object;
 		}
+          if (ImGui::MenuItem("cut",NULL,false))
+          {
+               _pcut_object = _pcurrent_object;
+          }
 		if (ImGui::MenuItem("paste",NULL,false))
 		{
 			if (_pcopy_object)
@@ -112,7 +116,15 @@ void project_edit::popup_context_menu()
 				string chld_name = _pcurrent_object->try_create_a_child_name(_pcopy_object->get_name());
 				a_copy->set_name(chld_name);
 				_pcurrent_object->add_child(a_copy);
+                    _pcopy_object = nullptr;
 			}
+               if( _pcut_object )
+               {
+                    auto pparent = _pcut_object->get_parent();
+                    pparent->remove_child( _pcut_object, false );
+                    _pcurrent_object->add_child( _pcut_object );
+                    _pcut_object = nullptr;
+               }
 		}
 		if (ImGui::BeginMenu("add child"))
 		{
