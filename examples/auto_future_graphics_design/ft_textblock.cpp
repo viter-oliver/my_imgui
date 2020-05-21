@@ -77,10 +77,10 @@ namespace auto_future
 		float font_scale = _txt_pt._font_scale;
 
 		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
-		dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
-		dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
-		af_vec2 draw_pos{ dpos.x, dpos.y };
-		af_vec2 end_pos;
+          af_vec2 draw_pos;
+          draw_pos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
+          draw_pos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
+          af_vec2 end_pos;
 		wstring draw_content = utf8ToWstring(_txt_pt._content);
 		bool be_new = false;
 		if (draw_content != _str_bk)
@@ -101,22 +101,28 @@ namespace auto_future
 			static steady_clock::time_point  lastTime;
 			if (be_new)
 			{
-				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
-				//real_size = end_pos - draw_pos;
-				_txt_area.Min = dpos;
-				_txt_area.Max = { end_pos.x, end_pos.y };
+				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, 
+                                                        draw_pos, end_pos,
+                                                        _txt_pt._font_scale,draw_content,
+                                                        _txt_pt._txt_clr,width,
+                                                        _txt_pt._omit_rest, true);
+                    auto new_sz = end_pos - draw_pos;
+                    draw_pos.x = dpos.x - new_sz.x*_txt_pt._txt_alignh_nml;
+                    draw_pos.y = dpos.y - new_sz.y*_txt_pt._txt_alignv_nml;
+
 				start_id = 0;
 				lastTime = steady_clock::now();
-				/*const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
-				dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
-				dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
-				draw_pos = { dpos.x, dpos.y };*/
+				
 			}
 			if (_txt_pt._playing)
 			{
 				wstring sub_content = draw_content.substr(start_id);
 				auto cnt_content= sub_content.size();
-				auto cnt_draw_char = g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, sub_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
+				auto cnt_draw_char = g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size,
+                                                                             draw_pos, end_pos,
+                                                                             _txt_pt._font_scale,sub_content,
+                                                                             _txt_pt._txt_clr,width,
+                                                                             _txt_pt._omit_rest, false);
 				auto currentTime = steady_clock::now();
 				int delta = chrono::duration_cast<chrono::duration<int, std::milli>>(currentTime - lastTime).count();
 				auto circle_time = delta * 0.001f;
@@ -130,18 +136,22 @@ namespace auto_future
 			}
 			else
 			{
-				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
+				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size,
+                                                        draw_pos, end_pos,
+                                                        _txt_pt._font_scale, draw_content,
+                                                        _txt_pt._txt_clr, width,
+                                                        _txt_pt._omit_rest, false);
 			}
+               _txt_area.Min = { draw_pos.x, draw_pos.y };
+               _txt_area.Max = { end_pos.x, end_pos.y };
 		}
-		af_vec2 real_size = end_pos - draw_pos;
-		_txt_area.Min = dpos;
-		_txt_area.Max = {end_pos.x,end_pos.y};
 		//ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())
 		{
-			ImVec2 pos1 = dpos;
+               af_vec2 real_size = end_pos - draw_pos;
+               ImVec2 pos1 = { draw_pos.x, draw_pos.y };
 			ImVec2 pos2 = { pos1.x, pos1.y + real_size.y };
 			ImVec2 pos3 = { pos1.x + real_size.x, pos1.y + real_size.y };
 			ImVec2 pos4 = { pos1.x + real_size.x, pos1.y };
