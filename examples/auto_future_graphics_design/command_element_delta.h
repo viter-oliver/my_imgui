@@ -31,20 +31,30 @@ namespace auto_future
 		int _cur_command_id;
 		vector<edit_commd<T>> _edit_command_list;
 		bool _lack_cur_value_cmd;
+          bool _suspending;
 	public:
 		commmand_manager()
-			:_cur_command_id(0), _lack_cur_value_cmd(false)
+               :_cur_command_id(0), _lack_cur_value_cmd(false), _suspending(false)
 		{
 		}
 		~commmand_manager()
 		{
 		}
+          void resume()
+          {
+               _suspending = false;
+          }
+          bool suspending()
+          {
+               return _suspending;
+          }
 		void create_command(edit_commd<T>& ecommd)
 		{
 			if (_cur_command_id<_edit_command_list.size()-1)
 			{
 				_edit_command_list.erase(_edit_command_list.begin() + _cur_command_id, _edit_command_list.end());
 			}
+               _suspending = true;
 			_lack_cur_value_cmd = true;
 			_edit_command_list.emplace_back(ecommd);
 			_cur_command_id = _cur_command_id<_edit_command_list.size() - 1;

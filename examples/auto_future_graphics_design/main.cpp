@@ -425,6 +425,7 @@ int main( int argc, char* argv[] )
 			
 			ui_assembler _ui_as(*_proot);
 			_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
+               g_ui_edit_command_mg.resume();
 		}
 		break;
 		case en_ctrl_b:
@@ -1245,7 +1246,7 @@ Rendering:
         ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
     }
-	if (g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able())
+	if (g_ui_edit_command_mg.suspending())//g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able())
 	{
 		int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
 		if (result == IDYES)
