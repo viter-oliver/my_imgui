@@ -118,12 +118,14 @@ namespace auto_future
 		GLuint _fmbf_id {0};
 		void clear_texture(GLuint& txt_id)
 		{
+               GLint last_fmid;
+               glGetIntegerv( GL_FRAMEBUFFER_BINDING, &last_fmid );
 			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, _fmbf_id);
 			glFramebufferTexture(GL_DRAW_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, txt_id, 0); //Only need to do this once.
 			glDrawBuffer(GL_COLOR_ATTACHMENT0); //Only need to do this once.
 			GLuint clearColor[4] = { 0, 0, 0, 0 };
 			glClearBufferuiv(GL_COLOR, 0, clearColor);
-			glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+               glBindFramebuffer( GL_DRAW_FRAMEBUFFER, last_fmid );
 		}
 		void init_txt_font_repository(GLint fontSize, txt_font_repository& newFrep)
 		{

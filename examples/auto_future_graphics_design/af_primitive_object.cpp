@@ -4,19 +4,22 @@ void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, 
 {
 	_vertex_buf_len = vetexlen;
 	_ele_buf_len = ele_cnt;
+     _mem_usage = mem_usage;
+
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-	_mem_usage = mem_usage;
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, mem_usage);
+
 	if (pele_buff)
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*_ele_buf_len, pele_buff, mem_usage);
 	}	
-	GLuint idx = 0;
 
+	GLuint idx = 0;
 	GLubyte stride = get_stride();
 	int pointer = 0;
+
 	for (auto& el : _ele_format)
 	{
 		glEnableVertexAttribArray(idx);
@@ -24,6 +27,7 @@ void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, 
 		pointer += el;
 		idx++;
 	}
+
 	glBindVertexArray(0);
 }
 void primitive_object::enableVertex()
@@ -33,9 +37,11 @@ void primitive_object::enableVertex()
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
 	}
+
 	GLuint idx = 0;
 	GLubyte stride = get_stride();
 	int pointer = 0;
+
 	for (auto& el : _ele_format)
 	{
 		glEnableVertexAttribArray(idx);
@@ -112,6 +118,7 @@ bool ref_a_intenal_primitive(string& prm_name)
 {
 	auto& itn_prm_lst = internal_primitive_name_list;
 	GLuint isz = sizeof(itn_prm_lst) / sizeof(internal_prm);
+
 	for (int ix = 0; ix < isz;ix++)
 	{
 		auto& prm_un = itn_prm_lst[ix];

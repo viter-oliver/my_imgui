@@ -19,6 +19,7 @@
 #include "afb_load.h"
 #include "af_state_manager.h"
 #include "af_primitive_object.h"
+#include "screen_image_distortion.h"
 #include <chrono>
 //extern void instantiating_internal_shader();
 static void error_callback(int error, const char* description)
@@ -132,13 +133,14 @@ namespace auto_future
 			}
 		}
 #endif
+          screen_image_distortion scr_ds( _screen_width, _screen_height );
 		while (!glfwWindowShouldClose(_window))
 		{
 			// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
 			// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
 			// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
 			// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
-			glfwPollEvents();
+               glfwPollEvents();
 			ImGui_ImplGlfwGL3_NewFrame();
 			ImGui::SetNextWindowSize(ImVec2(_win_width, _win_height), ImGuiCond_FirstUseEver);
 			ImGui::SetNextWindowPos(ImVec2(_wposx, _wposy));
@@ -195,13 +197,19 @@ namespace auto_future
 			ImGui::PopStyleVar();
 			ImGui::PopStyleVar();
 			// Rendering
-			int display_w, display_h;
+			/*int display_w, display_h;
 			glfwGetFramebufferSize(_window, &display_w, &display_h);
-			glViewport(0, 0, display_w, display_h);
+			glViewport(0, 0, display_w, display_h);*/
+               //int display_w, display_h;
+               //glfwGetFramebufferSize(_window, &display_w, &display_h);
+               glViewport( 0, 0, _screen_width, _screen_height );
 			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 			glClear(GL_COLOR_BUFFER_BIT);
 			ImGui::Render();
+               scr_ds.bind_framebuffer();
 			ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
+               scr_ds.disbind_framebuffer();
+               scr_ds.draw();
 			glfwSwapBuffers(_window);
 		}
 		return true;

@@ -172,7 +172,11 @@ namespace auto_future
                }
 			
 		}		
-
+          bool is_pending( int timer_id )
+          {
+               const auto& iwid = _will_erase_id_list.find( timer_id );
+               return iwid != _will_erase_id_list.end();
+          }
 		void execute();
 	};
 

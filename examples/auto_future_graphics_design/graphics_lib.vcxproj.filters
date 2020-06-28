@@ -289,7 +289,6 @@
     <ClInclude Include="easing.h">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="screen_image_distortion.h" />
     <ClInclude Include="..\..\soil\image_DXT.h">
       <Filter>soil</Filter>
     </ClInclude>
@@ -307,6 +306,9 @@
     </ClInclude>
     <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h">
       <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="screen_image_distortion.h">
+      <Filter>sources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

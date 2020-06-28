@@ -7,7 +7,7 @@ namespace auto_future
 {
 	class screen_image_distortion
 	{
-		GLuint _vbo[2];
+          GLuint g_VboHandle;
 		GLuint _fboId;
 		GLint _prev_fbo;
 		GLuint _colorTextId;
