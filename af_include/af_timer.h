@@ -140,6 +140,27 @@ namespace auto_future
 			}
 			return false;
 		}
+          bool active_timer_with_attachment( int timer_id, int tvalue, int timer_id_attached )
+          {
+               const auto& iav = _active_tm_ex_list.find( timer_id_attached );
+               if( iav == _active_tm_ex_list.end() )
+               {
+                    _timer_list_ex[ timer_id ]._tp = steady_clock::now();
+                    _timer_list_ex[ timer_id ]._start = _timer_list_ex[ timer_id ]._tp;
+                    _timer_list_ex[ timer_id ]._tvalue = tvalue;
+                    _active_tm_ex_list[ timer_id ] = 0;
+                    return false;
+               }
+               else
+               {
+                    auto& tm_item = _timer_list_ex[ timer_id_attached ];
+                    _timer_list_ex[ timer_id ]._tp = tm_item._tp;
+                    _timer_list_ex[ timer_id ]._start = tm_item._start;
+                    _timer_list_ex[ timer_id ]._tvalue = tm_item._tvalue;
+                    _active_tm_ex_list[ timer_id ] = _active_tm_ex_list[ timer_id_attached ];
+               }
+               return true;
+          }
 		int get_timer_duration_for(int timer_id)
 		{
 		    const auto& ict=_active_tm_ex_list.find(timer_id);

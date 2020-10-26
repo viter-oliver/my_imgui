@@ -19,7 +19,6 @@
 #include "afb_load.h"
 #include "af_state_manager.h"
 #include "af_primitive_object.h"
-#include "screen_image_distortion.h"
 #include <chrono>
 //extern void instantiating_internal_shader();
 static void error_callback(int error, const char* description)
@@ -133,7 +132,8 @@ namespace auto_future
 			}
 		}
 #endif
-          screen_image_distortion scr_ds( _screen_width, _screen_height );
+          _pscr_ds = make_shared<screen_image_distortion>( _screen_width, _screen_height );
+
 		while (!glfwWindowShouldClose(_window))
 		{
 			// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
@@ -206,15 +206,22 @@ namespace auto_future
 			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 			glClear(GL_COLOR_BUFFER_BIT);
 			ImGui::Render();
-               scr_ds.bind_framebuffer();
+               _pscr_ds->bind_framebuffer();
 			ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
-               scr_ds.disbind_framebuffer();
-               scr_ds.draw();
+               _pscr_ds->disbind_framebuffer();
+               _pscr_ds->draw();
 			glfwSwapBuffers(_window);
 		}
 		return true;
 	}
-
+     void application::set_rotate_angle( float angle )
+     {
+          _pscr_ds->set_rotate_angle( angle );
+     }
+     void application::set_rotate_axis_pos( float px, float py )
+     {
+          _pscr_ds->set_rotate_axis_pos( px, py );
+     }
 
 	void application::destroy()
 	{

@@ -38,16 +38,32 @@ void project_edit::view_object(base_ui_component& fb)
 	{
 		node_flags_root |= ImGuiTreeNodeFlags_Selected;
 	}
-	if (IconTreeNode(cname,objname.c_str(), node_flags_root))
+    char* icon_postfix = NULL;
+     if( !fb.is_visible() )
+     {
+          icon_postfix = "hide";
+     }
+     auto unflolded = IconTreeNode( cname, objname.c_str(), node_flags_root, (const char*)icon_postfix );
+     
+     if( ImGui::IsItemClicked() )
+     {
+          printf( "tree icon itemclicked!\n" );
+          if (ImGui::IsMouseDoubleClicked(0))
+          {
+               printf("item double clicked\n");
+          }
+     }
+	if (unflolded)
 	{
+          //printf( "tree item unfolded\n" );
 		if (ImGui::IsItemClicked())
 		{
-		    fb.set_selected(true);
 			if (_pcurrent_object)
 			{
 				_pcurrent_object->set_selected(false);
 			}
-			_pcurrent_object = &fb;
+			_pcurrent_object = &fb;		    
+               fb.set_selected(true);
 		}
 		if (beparent)
 		{
@@ -59,6 +75,7 @@ void project_edit::view_object(base_ui_component& fb)
 		}
 		ImGui::TreePop();
 	}
+    
 	//if (ImGui::IsItemActive())
 	//{
 	//	// Draw a line between the button and the mouse cursor

@@ -12,6 +12,8 @@ namespace auto_future
 			(float, _aposy, {0.f}),
 			(int, _anchor_type, {en_anchor_top_left}),
 			(int, _texture_index_txt, {0}),
+               (float, _alpha_nml, {1.f} ),
+               ( af_vec3, _tin_clr ),
 			(float, _angle_srd, {0.f}))
 	public:	
 		ft_image();// : ft_base(){}

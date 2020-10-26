@@ -219,6 +219,8 @@
             <filename>ft_image_file.png</filename>
             <filename>shared_value.png</filename>
             <filename>feedback.png</filename>
+            <filename>hide.png</filename>
+            <filename>ft_material_3d.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

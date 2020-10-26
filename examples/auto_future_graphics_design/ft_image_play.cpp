@@ -115,8 +115,10 @@ namespace auto_future
 			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_nml, axisBasePos);
 			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle_nml, axisBasePos);
 		}
-
-		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+          float alpha_s =_img_pt._alpha_nml;
+          ImVec4 vtin_cl( 1.f, 1.f, 1.f, alpha_s );
+          //ImU32 tin_cl = ImGui::ColorConvertFloat4ToU32( vtin_cl );
+          ImGui::ImageQuad( (ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3, vtin_cl );
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())//draw envelope

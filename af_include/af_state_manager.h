@@ -96,6 +96,8 @@ AFG_EXPORT void keep_state_trans_on();
 AFG_EXPORT bool save_property_to_trans_state( string trans_name,
                                               prop_ele_position& prp_pos,
                                               int base_id );
+AFG_EXPORT bool cancel_play_tran( string stm_name );
+
 template<class T> struct paire_value
 {
      int id;

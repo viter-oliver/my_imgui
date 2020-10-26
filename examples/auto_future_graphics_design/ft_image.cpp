@@ -14,7 +14,7 @@ namespace auto_future
 	ft_image::ft_image()
 		:ft_base()
 	{
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+ #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 2, [this](void*){
 			ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0");
 		});
@@ -58,8 +58,8 @@ namespace auto_future
 			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle_srd, axisBasePos);
 			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_srd, axisBasePos);
 		}
-
-		ImGui::ImageQuad((ImTextureID)texture_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3);
+          ImVec4 tin_clr( _img_pt._tin_clr.x, _img_pt._tin_clr.y, _img_pt._tin_clr.z, _img_pt._alpha_nml );
+          ImGui::ImageQuad( (ImTextureID)texture_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, tin_clr );
 		//ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

@@ -4,14 +4,17 @@
 namespace auto_future
 {
 #if 1
-	const char* vs_code = R"glsl(
+     const char* vs_code = R"glsl(
 	   attribute vec2 position;
+        uniform mat2 customMtx;
+        uniform vec2 customDelta;
         //attribute vec2 txtcoord;
         varying vec2 outTxtCd;
         void main()
         {
              outTxtCd=(position+vec2(1,1))*0.5;
-             gl_Position=vec4(position,0.0,1.0);
+             vec2 tmpv=customMtx*position.xy+customDelta;
+             gl_Position=vec4(tmpv,0.0,1.0);
         }
 		)glsl";
      const char* fs_code = R"glsl(
@@ -102,7 +105,8 @@ namespace auto_future
           glBufferData( GL_ARRAY_BUFFER, sizeof( _plain_vertices ), _plain_vertices, GL_STATIC_DRAW );
           GLint posAttrib = glGetAttribLocation( pmid, "position" );
           glEnableVertexAttribArray( posAttrib );
-
+          _Ul_customMtx = glGetUniformLocation( pmid, "customMtx" );
+          _Ul_customDelta = glGetUniformLocation( pmid, "customDelta" );
           glVertexAttribPointer( posAttrib, 2, GL_FLOAT, GL_FALSE,0, (GLvoid*)0 );
 #endif
 		prepareFBO1(_colorTextId, _depthStencilTextId, _fboId, _width, _height);
@@ -117,6 +121,16 @@ namespace auto_future
 		glDeleteFramebuffers(1, &_fboId);
 	}
 
+     void screen_image_distortion::set_rotate_angle( float angle )
+     {
+          g_cs_a = cos( angle );
+          g_sn_a = sin( angle );
+     }
+     void screen_image_distortion::set_rotate_axis_pos( float px, float py )
+     {
+          g_ox = px;
+          g_oy = py;
+     }
 	void screen_image_distortion::bind_framebuffer()
 	{
 		glGetIntegerv(GL_FRAMEBUFFER_BINDING,&_prev_fbo);
@@ -150,6 +164,19 @@ namespace auto_future
 #else
 
 #endif
+          float custom_matrix[ 2 ][ 2 ] =
+          {
+               { g_cs_a, g_sn_a },
+               { -g_sn_a, g_cs_a },
+          };
+          glUniformMatrix2fv( _Ul_customMtx, 1, GL_FALSE, &custom_matrix[ 0 ][ 0 ] );
+          float vdelta[ 2 ] =
+          {
+               g_ox*( 1 - g_cs_a ) - g_oy*g_sn_a,
+               g_ox*g_sn_a + g_oy*( 1 - g_cs_a ),
+          };
+          glUniform2fv( _Ul_customDelta, 1, vdelta );
+
           glBindBuffer( GL_ARRAY_BUFFER, g_VboHandle );
           glBufferData( GL_ARRAY_BUFFER, sizeof( _plain_vertices ), _plain_vertices, GL_STATIC_DRAW );
           GLint posAttrib = glGetAttribLocation( pmid, "position" );

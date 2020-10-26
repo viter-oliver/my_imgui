@@ -283,6 +283,19 @@ AFG_EXPORT bool save_property_to_trans_state( string trans_name,
 
      return true;
 }
+AFG_EXPORT bool cancel_play_tran( string stm_name )
+{
+     const auto& istm = g_mstate_manager.find( stm_name );
+     if( istm == g_mstate_manager.end() )
+     {
+          printf( "invalid state manager name:%s\n", stm_name.c_str() );
+          return false;
+     }
+     auto& stm = *istm->second;
+     stm._play_state = en_play_stop;
+     return true;
+
+}
 
 bool save_trans_value( string trans_name, int sid )
 {
