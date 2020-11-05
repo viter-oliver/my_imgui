@@ -70,6 +70,7 @@ void base_prp_type_edit::view_base_prp_list()
           }
           ImGui::EndPopup();
      }
+     ImGui::BeginChild( "common_value_list", ImVec2( 0, 0 ), true );
      string icon_str = icn_shared_value;
      ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
      if( IconTreeNode( icon_str, "Common value list", node_flags_root ) )
@@ -108,6 +109,7 @@ void base_prp_type_edit::view_base_prp_list()
           
           ImGui::EndPopup();
      }
+     ImGui::EndChild();
 }
 static const float _minf = -base_ui_component::screenw;
 static const float _maxf = base_ui_component::screenw;

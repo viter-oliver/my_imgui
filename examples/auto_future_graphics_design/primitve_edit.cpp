@@ -232,11 +232,11 @@ void primitve_edit::draw_primitive_item_property()
 		ImGui::Text("Element format:%s", str_fmt.c_str());
 		if (ImGui::Button("Vertex Edit..."))
 		{
-			ImGui::OpenPopup("vertex_edit");
+			ImGui::OpenPopup("Vertex edit");
 			mem_usage_idx = init_mem_usage_idx( _pmobj->_mem_usage);
 		}
 
-		if (ImGui::BeginPopupModal("vertex_edit"))
+		if (ImGui::BeginPopupModal("Vertex edit"))
 		{
 			auto& vlen=_pmobj->_vertex_buf_len;
 			GLubyte stride = _pmobj->get_stride();
@@ -296,6 +296,7 @@ void primitve_edit::draw_primitive_item_property()
                     
                }
 			ImGui::Text("vertex buffer:");
+               ImGui::BeginChild( "vertex_buffer",ImVec2(0,0),true);
 			for (int ix = 0; ix < vcnt;ix++)
 			{
 				stm_it.str(string());
@@ -305,6 +306,7 @@ void primitve_edit::draw_primitive_item_property()
 				ImGui::InputFloatN(citstr.c_str(), pvt, stride,-1,0);
 				pvt += stride;
 			}
+               ImGui::EndChild();
 			/*
 			ImGui::InputFloat("##0", pvt);
 			pvt++;

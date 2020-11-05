@@ -56,6 +56,9 @@ void aliase_edit::aliase_item_propoerty()
 {
 	if (_psel)
 	{
+          string item_key = _key_name + "->";
+          ImGui::Text( item_key.c_str() );
+          ImGui::SameLine();
 		auto& pobj = _psel->_pobj;
 		auto& pgidx = _psel->_page_index;
 		auto& fdidx = _psel->_field_index;
