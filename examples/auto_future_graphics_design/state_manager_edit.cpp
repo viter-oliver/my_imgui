@@ -81,6 +81,7 @@ void state_manager_edit::view_state_managers()
 	}
 	string icon_str = icn_nm_state_manager;
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
+     ImGui::BeginChild( "state manager list area" );
 	if (IconTreeNode(icon_str, "State manager list", node_flags_root))
 	{
 		for (auto& ist_mg:g_mstate_manager)
@@ -120,6 +121,7 @@ void state_manager_edit::view_state_managers()
 		}
 		ImGui::EndPopup();
 	}
+     ImGui::EndChild();
 }
 
 void state_manager_edit::view_state_manager_item_property()

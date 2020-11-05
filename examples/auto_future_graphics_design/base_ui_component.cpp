@@ -455,15 +455,21 @@ static	string aliase_btn_cp = "  ##";
 						}
 					}
 				}
-				if (array_cnt > 1){
+				if (array_cnt > 1)
+                    {
+                         Value& jtemp = jvalue[ mname ];
+                         if (jtemp.isNull())
+                         {
+                              continue;
+                         }
 					if (mtype == "char")
 					{
-						Value vbytes = jvalue[mname];//must be string
+                              Value&vbytes = jtemp;//must be string
 						strcpy((char*)memb_address, vbytes.asCString());
 					}
 					else
 					{
-						Value marray=jvalue[mname];
+						Value& marray=jtemp;
 						function<void(void*,Value&)> f_assingn_json_to_memb;
 						if (mtype == "int"){
 							f_assingn_json_to_memb = [&](void* membaddr,Value& vele)
@@ -523,26 +529,32 @@ static	string aliase_btn_cp = "  ##";
 						
 					}
 				}
-				else{
+				else
+                    {
+                         Value& jtemp = jvalue[ mname ];
+                         if (jtemp.isNull())
+                         {
+                              continue;
+                         }
 					if (mtype == "int"){
-						*(int*)memb_address = jvalue[mname].asInt();
+                              *(int*)memb_address = jtemp.asInt();
 					}
 					else if (mtype == "float" || mtype == "double"){
-						*(float*)memb_address=jvalue[mname].asDouble();
+                              *(float*)memb_address = jtemp.asDouble();
 					}
 					else if (mtype == "af_vec2"){
-						Value jv2=jvalue[mname];
+                              Value& jv2 = jtemp;
 						 *(float*)memb_address=jv2["x"].asDouble();
 						 *((float*)memb_address + 1)=jv2["y"].asDouble();
 					}
 					else if (mtype == "af_vec3") {
-						Value jv3=jvalue[mname];
+						Value& jv3=jtemp;
 						 *(float*)memb_address=jv3["x"].asDouble();
 						*((float*)memb_address + 1) = jv3["y"].asDouble();
 						*((float*)memb_address + 2) = jv3["z"].asDouble();
 					}
 					else if (mtype == "af_vec4") {
-						Value jv4=jvalue[mname];
+                              Value& jv4 = jtemp;
 						 *(float*)memb_address=jv4["x"].asDouble();
 						*((float*)memb_address + 1) = jv4["y"].asDouble();
 						*((float*)memb_address + 2) = jv4["z"].asDouble();
@@ -550,11 +562,11 @@ static	string aliase_btn_cp = "  ##";
 
 					}
 					else if (mtype == "bool"){
-						*(bool*)memb_address=jvalue[mname].asBool();
+                              *(bool*)memb_address = jtemp.asBool();
 					}
 					else{
 						string out_bin;
-						convert_string_to_binary(jvalue[mname].asString(), out_bin);
+                              convert_string_to_binary( jtemp.asString(), out_bin );
 						memcpy(memb_address, &out_bin[0], out_bin.size());
 					}
 				}

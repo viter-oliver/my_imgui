@@ -45,14 +45,6 @@ void project_edit::view_object(base_ui_component& fb)
      }
      auto unflolded = IconTreeNode( cname, objname.c_str(), node_flags_root, (const char*)icon_postfix );
      
-     if( ImGui::IsItemClicked() )
-     {
-          printf( "tree icon itemclicked!\n" );
-          if (ImGui::IsMouseDoubleClicked(0))
-          {
-               printf("item double clicked\n");
-          }
-     }
 	if (unflolded)
 	{
           //printf( "tree item unfolded\n" );

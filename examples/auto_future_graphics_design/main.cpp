@@ -686,6 +686,17 @@ int main( int argc, char* argv[] )
 			{
 				fun_shortct(en_ctrl_b);
 			}
+               else
+               if( ImGui::GetIO().KeysDown[ GLFW_KEY_H ] )
+               {
+                    auto cur_ui_obj=prj_edit->current_object();
+                    if (cur_ui_obj)
+                    {
+                         bool be_visible = cur_ui_obj->is_visible();
+                         cur_ui_obj->set_visible( !be_visible );
+                         std::this_thread::sleep_for( std::chrono::milliseconds( 300 ) );
+                    }
+               }
 			else
 			if (ImGui::GetIO().KeysDown[GLFW_KEY_F2])
 			{
@@ -1110,12 +1121,16 @@ int main( int argc, char* argv[] )
 		if (show_aliase_edit)
 		{
 			ImGui::Begin("Aliases edit", &show_aliase_edit, ImVec2(400, 400));
-			ImGui::Columns(2);
+			//ImGui::Columns(2);
 			//ImGui::SetColumnWidth(0, 200);
+               ImGui::Text( "Current Alias:" );
+               g_aliase_edit.aliase_item_propoerty();
+               ImGui::Separator();
+               ImGui::BeginChild("aliase list");
 			g_aliase_edit.aliase_dic_view();
-			ImGui::NextColumn();
-			g_aliase_edit.aliase_item_propoerty();
+			//ImGui::NextColumn();
 			g_aliase_edit.popup_new_aliase();
+               ImGui::EndChild();
 			ImGui::End();
 		}
 		if (show_prm_edit)

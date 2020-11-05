@@ -31,6 +31,7 @@ void file_res_edit::draw_file_res_list()
 	}
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
 	string icon_str = icn_nm_file;
+     ImGui::BeginChild( "file list area" );
 	if (IconTreeNode(icon_str, "file list", node_flags_root))
 	{
 		for (auto& mf_ut : g_mfiles_list)
@@ -69,6 +70,7 @@ void file_res_edit::draw_file_res_list()
 		}
 		ImGui::EndPopup();
 	}
+     ImGui::EndChild();
 }
 
 void file_res_edit::draw_file_res_item_property()

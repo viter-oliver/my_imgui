@@ -246,6 +246,8 @@ void bind_edit::bind_source_view()
 				}
 			}
 		}
+          _pnew_bind_unit = new prop_ele_bind_unit();
+          *_pnew_bind_unit = *g_bind_dic[ _current_prop_ele ];
 		_edit_new_obj = true;
 		g_bind_dic.erase(_current_prop_ele);
 	}
