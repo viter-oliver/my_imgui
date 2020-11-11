@@ -50,6 +50,7 @@ namespace auto_future
 	{
 		//init_txt_obj();
 		_pboIds[0] = _pboIds[1] = 0;
+          set_size( 800, 800 );
 		memset(_video_dev_name, 0, name_len);
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

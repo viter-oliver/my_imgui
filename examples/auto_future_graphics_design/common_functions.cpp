@@ -588,9 +588,10 @@ static BYTE Clip(int clr)
 	return (BYTE)(clr < 0 ? 0 : (clr > 255 ? 255 : clr));
 }
 
-static RGBQUAD ConvertYCrCbToRGB(int y, int cr, int cb)
+static RGBQUAD ConvertYCrCbToRGB(int y, int cb, int cr)
 {
 	RGBQUAD rgbq = { 0 };
+#if 1
 
 	int c = y - 16;
 	int d = cb - 128;
@@ -599,9 +600,11 @@ static RGBQUAD ConvertYCrCbToRGB(int y, int cr, int cb)
 	rgbq.rgbRed = Clip((298 * c + 409 * e + 128) >> 8);
 	rgbq.rgbGreen = Clip((298 * c - 100 * d - 208 * e + 128) >> 8);
 	rgbq.rgbBlue = Clip((298 * c + 516 * d + 128) >> 8);
-	/*rgbq.rgbRed =y+1.402f*(cr-128);
-	rgbq.rgbGreen =y-0.34414f*(cb-128)-0.71414f*(cr-128);
-	rgbq.rgbBlue = y+1.772f*(cb-128);*/
+#else
+	rgbq.rgbRed =y+1.4075f*(cr-128);
+	rgbq.rgbGreen =y-0.3455f*(cb-128)-0.7169f*(cr-128);
+	rgbq.rgbBlue = y+1.779f*(cb-128);
+#endif
 
 	//rgbq.rgbRed = 0xff - rgbq.rgbRed;
 	//rgbq.rgbGreen = 0xff - rgbq.rgbGreen;
