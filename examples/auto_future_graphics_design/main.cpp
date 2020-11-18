@@ -98,7 +98,7 @@ enum en_short_cut_item
 };
 function<void(en_short_cut_item)> fun_shortct;
 bool show_project_window = true, show_edit_window = true, \
-show_property_window = true, show_resource_manager = true, \
+show_property_window = true, show_texture_res_manager = true,show_shader_material_manager=false, \
 show_fonts_manager = true, show_file_manager = true, \
 show_output_format = false, show_model_list = false, show_world_space = false, \
 show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
@@ -842,12 +842,34 @@ int main( int argc, char* argv[] )
 				ImGui::MenuItem("Close Active Window", NULL, false, false);
 				ImGui::Separator();
 
-				if (ImGui::MenuItem("Project Window", NULL, show_project_window)) { show_project_window = !show_project_window; }
-				if (ImGui::MenuItem("Edit Window", NULL, show_edit_window)) { show_edit_window = !show_edit_window; }
-				if (ImGui::MenuItem("Property Window", NULL, show_property_window)) { show_property_window = !show_property_window; }
-				if (ImGui::MenuItem("Resource Manager", NULL, show_resource_manager)) { show_resource_manager = !show_resource_manager; }
-				if (ImGui::MenuItem("Fonts Manager", NULL, show_fonts_manager)) { show_fonts_manager = !show_fonts_manager; }
-				if (ImGui::MenuItem("Files Manager", NULL, show_file_manager)) { show_file_manager = !show_file_manager; }
+				if (ImGui::MenuItem("Project Window", NULL, show_project_window))
+                    { 
+                         show_project_window = !show_project_window; 
+                    }
+				if (ImGui::MenuItem("Edit Window", NULL, show_edit_window)) 
+                    { 
+                         show_edit_window = !show_edit_window; 
+                    }
+				if (ImGui::MenuItem("Property Window", NULL, show_property_window)) 
+                    { 
+                         show_property_window = !show_property_window; 
+                    }
+				if (ImGui::MenuItem("Texture Resource Manager", NULL, show_texture_res_manager)) 
+                    { 
+                         show_texture_res_manager = !show_texture_res_manager; 
+                    }
+                    if( ImGui::MenuItem( "Shader&Material Manager", NULL, show_shader_material_manager ) )
+                    {
+                         show_shader_material_manager = !show_shader_material_manager;
+                    }
+				if (ImGui::MenuItem("Fonts Manager", NULL, show_fonts_manager)) 
+                    { 
+                         show_fonts_manager = !show_fonts_manager; 
+                    }
+				if (ImGui::MenuItem("Files Manager", NULL, show_file_manager)) 
+                    { 
+                         show_file_manager = !show_file_manager; 
+                    }
 				if (ImGui::MenuItem("Models Manager", NULL, show_model_list))
 				{
 					show_model_list = !show_model_list;
@@ -864,10 +886,10 @@ int main( int argc, char* argv[] )
 				{
 					show_state_manager_edit = !show_state_manager_edit;
 				}
-                if( ImGui::MenuItem( "Common value edit", NULL, show_common_value_edit) )
-                {
-                        show_common_value_edit = !show_common_value_edit;
-                }
+                    if( ImGui::MenuItem( "Common value edit", NULL, show_common_value_edit ) )
+                    {
+                         show_common_value_edit = !show_common_value_edit;
+                    }
 				if (ImGui::MenuItem("Playlist group edit", NULL, show_playlist_group))
 				{
 					show_playlist_group = !show_playlist_group;
@@ -1153,60 +1175,56 @@ int main( int argc, char* argv[] )
 			g_feedback_edit.draw_feedback_item_property();
 			ImGui::End();
 		}
-		if (show_resource_manager)
+		if (show_texture_res_manager)
 		{
 			//ImGui::SetNextWindowBgAlpha(1.0f); // Transparent background
-			ImGui::Begin("resources manager", &show_resource_manager, ImVec2(200, 500));
-			//ImGui::BeginDockspace();
-
-			//ImGui::BeginDock("resource list:");
-			ImGui::BeginChild("res_list",ImVec2(1000, 160), true);
+			ImGui::Begin("Texture resources manager", &show_texture_res_manager, ImVec2(200, 500));
+			ImGui::BeginChild("Combined texture res list",ImVec2(1000, 160), true);
 			ImGui::Columns(2);
 			ImGui::Text("Spliced texture list:");
-			if (_pres_mg)
-			{
-				_pres_mg->draw_res_list();
-				ImGui::NextColumn();
-				_pres_mg->draw_res_item_property();
-			}
+               _pres_mg->draw_res_list();
+               ImGui::NextColumn();
+               _pres_mg->draw_res_item_property();
+			
 			ImGui::NextColumn();
 			ImGui::Spacing();
 			ImGui::EndChild();
-
-			
-			if(_pml_shd_mg)
-			{
-				ImGui::BeginChild("shaders", ImVec2(1000, 500), true);
-			//ImGui::Separator();
-				ImGui::Columns(2);
-				ImGui::Text("shaders:");
-				_pml_shd_mg->load_shader();
-				_pml_shd_mg->draw_shader();
-				ImGui::NextColumn();
-				_pml_shd_mg->load_shader_info();
-				_pml_shd_mg->draw_shader_item_property();
-				ImGui::NextColumn();
-				ImGui::EndChild();
-				ImGui::BeginChild("materials", ImVec2(1000, 500), true);
-				ImGui::Columns(2);
-				ImGui::Text("materials:");
-				_pml_shd_mg->draw_material();
-				ImGui::NextColumn();
-				_pml_shd_mg->draw_material_item_property();
-				ImGui::NextColumn();
-			//ImGui::Separator();
-				ImGui::EndChild();
-				ImGui::BeginChild("textures", ImVec2(1000, 500), true);
-				ImGui::Columns(2);
-				ptexture->draw_texture_list();
-				ImGui::NextColumn();
-				ptexture->draw_texture_item_property();
-				ImGui::NextColumn();
-				ImGui::EndChild();
-
-			}
+               ImGui::BeginChild( "Separated textures list", ImVec2( 1000, 500 ), true );
+               ImGui::Columns( 2 );
+               ImGui::BeginChild( "Separated_textures list", ImVec2( 0, 0 ), true );
+               ptexture->draw_texture_list();
+               ImGui::EndChild();
+               ImGui::NextColumn();
+               ptexture->draw_texture_item_property();
+               ImGui::NextColumn();
+               ImGui::EndChild();
 			ImGui::End();
 		}
+          if( show_shader_material_manager )
+          {
+               ImGui::Begin( "Shader&Material manager", &show_shader_material_manager );
+               ImGui::BeginChild("shaders", ImVec2(1000, 500), true);
+               //ImGui::Separator();
+               ImGui::Columns(2);
+               ImGui::Text("shaders:");
+               _pml_shd_mg->load_shader();
+               _pml_shd_mg->draw_shader();
+               ImGui::NextColumn();
+               _pml_shd_mg->load_shader_info();
+               _pml_shd_mg->draw_shader_item_property();
+               ImGui::NextColumn();
+               ImGui::EndChild();
+               ImGui::BeginChild("materials", ImVec2(1000, 500), true);
+               ImGui::Columns(2);
+               ImGui::Text("materials:");
+               _pml_shd_mg->draw_material();
+               ImGui::NextColumn();
+               _pml_shd_mg->draw_material_item_property();
+               ImGui::NextColumn();
+               //ImGui::Separator();
+               ImGui::EndChild();
+               ImGui::End();
+          }
           /**
           else
           {

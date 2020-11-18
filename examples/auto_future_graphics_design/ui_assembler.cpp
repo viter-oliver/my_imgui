@@ -18,7 +18,7 @@
 //#include "./fbx_save_info.h"
 extern string g_cureent_directory, g_afb_output_path;
 extern bool show_project_window, show_edit_window, show_property_window,\
-show_resource_manager, show_fonts_manager, show_file_manager,show_state_manager_edit,\
+show_texture_res_manager, show_fonts_manager, show_file_manager,show_state_manager_edit,\
 show_aliase_edit, show_slider_path_picker;
 void init_controls_res_constrained()
 {
@@ -96,7 +96,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				show_project_window = window_show["show_project_window"].asBool();
 				show_edit_window=window_show["show_edit_window"].asBool();
 				show_property_window = window_show["show_property_window"].asBool();
-				show_resource_manager = window_show["show_resource_manager"].asBool();
+				show_texture_res_manager = window_show["show_resource_manager"].asBool();
 				show_fonts_manager = window_show["show_fonts_manager"].asBool();
 				show_file_manager=window_show["show_file_manager"].asBool();
 				show_state_manager_edit=window_show["show_state_manager_edit"].asBool();
@@ -627,7 +627,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
           window_show[ "show_project_window" ] = show_project_window;
           window_show[ "show_edit_window" ] = show_edit_window;
           window_show[ "show_property_window" ] = show_property_window;
-          window_show[ "show_resource_manager" ] = show_resource_manager;
+          window_show[ "show_resource_manager" ] = show_texture_res_manager;
           window_show[ "show_fonts_manager" ] = show_fonts_manager;
           window_show[ "show_file_manager" ] = show_file_manager;
           window_show[ "show_state_manager_edit" ] = show_state_manager_edit;
