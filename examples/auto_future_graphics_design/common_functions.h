@@ -22,6 +22,12 @@ extern bool prepareFBO2(GLuint& textId, GLuint& fboId, GLuint frame_width, GLuin
 extern bool fileExist(const char* fileName);
 extern bool directoryExist(const char* dir);
 extern bool createDirectory(const char* pathName);
+
+extern std::string stoLower( std::string str );
+extern std::string stoUpper( std::string str );
+extern std::wstring wtoLower( std::wstring str );
+extern std::wstring wtoUpper( std::wstring str );
+
 extern bool createFileWithDirectory(const char* pathName);
 extern void align_expression(string& exp, string&expo);
 extern void trim_align_expression(string& exp, string&expo);

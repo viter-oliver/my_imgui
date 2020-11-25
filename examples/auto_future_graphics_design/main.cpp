@@ -1179,7 +1179,7 @@ int main( int argc, char* argv[] )
 		{
 			//ImGui::SetNextWindowBgAlpha(1.0f); // Transparent background
 			ImGui::Begin("Texture resources manager", &show_texture_res_manager, ImVec2(200, 500));
-			ImGui::BeginChild("Combined texture res list",ImVec2(1000, 160), true);
+			ImGui::BeginChild("Combined texture res list",ImVec2(1000, 220), true);
 			ImGui::Columns(2);
 			ImGui::Text("Spliced texture list:");
                _pres_mg->draw_res_list();

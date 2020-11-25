@@ -307,6 +307,9 @@
     <ClCompile Include="playlist_group_edit.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="video_dev_manager.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -629,6 +632,9 @@
       <Filter>af_include</Filter>
     </ClInclude>
     <ClInclude Include="playlist_group_edit.h">
+      <Filter>res_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="video_dev_manager.h">
       <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>

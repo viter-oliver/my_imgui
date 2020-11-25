@@ -348,6 +348,46 @@ bool createDirectory(const char* pathName)
 	return true;
 }
 
+std::string stoLower( std::string str )
+{
+     for( auto &i : str )
+     {
+          if( i >= 'A'&&i <= 'Z' )
+          i |= 32;
+     }
+     return str;
+}
+std::string stoUpper( std::string str )
+{
+     for( auto &i : str )
+     {
+          if( i >= 'a'&&i <= 'z' )
+          i &= -33;
+     }
+     return str;
+}
+std::wstring wtoLower( std::wstring str )
+{
+     for( auto &i : str )
+     {
+          if (i>='A'&&i<='Z')
+          {
+               i |= 32;
+          }
+     }
+     return str;
+}
+std::wstring wtoUpper( std::wstring str )
+{
+     for( auto &i : str )
+     {
+          if (i>='a'&&i<='z')
+          {
+               i &= -33;
+          }
+     }
+     return str;
+}
 
 
 bool createFileWithDirectory(const char* pathName)

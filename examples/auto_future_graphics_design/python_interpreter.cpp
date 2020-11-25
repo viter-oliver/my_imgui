@@ -164,6 +164,7 @@ bool python_interpreter::call_python_fun(string& fun_exp, string fun_name, var_u
                PyArg_Parse( pRtn, "O&", (af_vec4*)fun_retn._value_addr );
           }
 		Py_XDECREF(pFunc);
+          Py_CLEAR( pArgs );
 
 	} while (0);
 

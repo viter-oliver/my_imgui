@@ -254,6 +254,7 @@
     <ClCompile Include="unreferenced_items.cpp" />
     <ClCompile Include="user_control_imgui.cpp" />
     <ClCompile Include="video_capture.cpp" />
+    <ClCompile Include="video_dev_manager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\af_include\afb_load.h" />
@@ -364,6 +365,7 @@
     <ClInclude Include="unreferenced_items.h" />
     <ClInclude Include="user_control_imgui.h" />
     <ClInclude Include="video_capture.h" />
+    <ClInclude Include="video_dev_manager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\json\json_internalarray.inl" />
