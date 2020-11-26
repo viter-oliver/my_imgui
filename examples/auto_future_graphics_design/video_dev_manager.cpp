@@ -155,47 +155,28 @@ done:
 }
 video_dev_unit::~video_dev_unit()
 {
- 
-     SafeRelease( &_pActivate );
-     if( _pSource )
+     if( _pReader )
      {
           //_pSource->Shutdown();
      }
-     SafeRelease( &_pSource );
+     SafeRelease( &_pReader );
 }
 
 void video_dev_unit::start_pulling_data()
 {
-     assert( _pSource != NULL );
+     assert( _pReader != NULL );
      thread td_pulling_data( [&]
      {
           HRESULT hr;
-          IMFAttributes *pAttributes = NULL;
-          IMFSourceReader *pReader;
           IMFMediaType *pConfigureType = NULL;
           pVideoframe = new BYTE[ _width*_height * 4 ];
           do
           {
-               hr = MFCreateAttributes( &pAttributes, 1 );
-               if( FAILED( hr ) )
-               {
-                    printf( "fail to MFCreateAttributes!\n" );
-                    break;
-               }
-               hr = pAttributes->SetUINT32( MF_SOURCE_READER_ENABLE_VIDEO_PROCESSING, TRUE );
-               hr = MFCreateSourceReaderFromMediaSource( _pSource, pAttributes, &pReader );
-               //hr = MFCreateSourceReaderFromMediaSource(_pSource, NULL, &pReader);
-
-               if( FAILED( hr ) )
-               {
-                    printf( "fail to MFCreateSourceReaderFromMediaSource\n" );
-                    break;
-               }
                DWORD dwStream = MF_SOURCE_READER_FIRST_VIDEO_STREAM;
                for( DWORD dwMediaTypeIndex = 0;; dwMediaTypeIndex++ )
                {
                     IMFMediaType *pType = NULL;
-                    hr = pReader->GetNativeMediaType( dwStream, dwMediaTypeIndex, &pType );
+                    hr = _pReader->GetNativeMediaType( dwStream, dwMediaTypeIndex, &pType );
                     if( hr == MF_E_NO_MORE_TYPES )
                     {
                          break;
@@ -218,7 +199,7 @@ void video_dev_unit::start_pulling_data()
                {
                     DWORD streamIndex, flags;
                     LONGLONG llTimeStamp;
-                    hr = pReader->ReadSample(
+                    hr = _pReader->ReadSample(
                          dwStream,    // Stream index.
                          0,                              // Flags.
                          &streamIndex,                   // Receives the actual stream index. 
@@ -296,9 +277,6 @@ void video_dev_unit::start_pulling_data()
 
           delete pVideoframe;
           SafeRelease( &pConfigureType );
-          SafeRelease( &pAttributes );
-          SafeRelease( &pReader );
-
      } );
      td_pulling_data.detach();
 }
@@ -528,7 +506,8 @@ HRESULT EnumDeviceVideoDevices()
      IMFMediaSource *pSource = NULL;
      IMFAttributes *pAttributes = NULL;
      IMFActivate **ppDevices = NULL;
-    
+     IMFSourceReader* pVideoReader;
+
      // Create an attribute store to specify the enumeration parameters.
      HRESULT hr = MFCreateAttributes( &pAttributes, 1 );
      if( FAILED( hr ) )
@@ -581,7 +560,16 @@ HRESULT EnumDeviceVideoDevices()
                     SafeRelease( &psource );
                     break;
                }
-               auto devUnit = make_shared<video_dev_unit>( ppDevices[ id ],psource);
+               wchar_t* psystem_link = NULL;
+               HRESULT hr = ppDevices[ id ]->GetAllocatedString( MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK, \
+                                                            &psystem_link, \
+                                                          NULL );
+               hr = MFCreateSourceReaderFromMediaSource(
+                    psource,
+                    pAttributes,
+                    &pVideoReader );
+
+               auto devUnit = make_shared<video_dev_unit>( psystem_link, pVideoReader );
                g_map_dev_units[ str_key ] = devUnit;
      
                auto& txt_width = devUnit->width();
@@ -589,7 +577,6 @@ HRESULT EnumDeviceVideoDevices()
                GetVideoFrameSize( psource, txt_width, txt_height );
 
           }
-          //delete szFriendlyName;
      }
 done:
      SafeRelease( &pAttributes );

@@ -25,19 +25,18 @@ using mp_dev_unit = map<string, sdev_unit>;
 class video_dev_unit
 {
      mutex _mutex;
+     wstring _link_str;
      UINT32 _width, _height;
      atomic<bool> _frame_valid { false };
      condition_variable _cond;
-     IMFActivate* _pActivate = NULL;
-     IMFMediaSource* _pSource = NULL;
+     IMFSourceReader* _pReader = NULL;
      BYTE* pVideoframe;
      DWORD dwCurrentLenth = 0, dwMaxlenth = 0;
      bool _be_pulling_frame = false;
      mp_video_ctl _video_ctl_list;
 public:
-     video_dev_unit( IMFActivate* pActivate, IMFMediaSource* pSource ) :_pActivate( pActivate ), _pSource( pSource )
+     video_dev_unit( wchar_t* plink, IMFSourceReader* pSource ) :_link_str( plink ), _pReader( pSource )
      {
-          _pActivate->AddRef();
          // _pSource->AddRef();
      }
      ~video_dev_unit();
@@ -50,11 +49,7 @@ public:
      }
      bool unlink_self( wchar_t* unlink_dev_name )
      {
-          wchar_t* psystem_link = NULL;
-          HRESULT hr = _pActivate->GetAllocatedString( MF_DEVSOURCE_ATTRIBUTE_SOURCE_TYPE_VIDCAP_SYMBOLIC_LINK, \
-                                                       &psystem_link, \
-                                                       NULL );
-          if( wcsncmp( psystem_link, unlink_dev_name, 25 ) == 0 )
+          if( wcsncmp( _link_str.c_str(), unlink_dev_name, 25 ) == 0 )
           {
                return true;
           }
@@ -117,7 +112,7 @@ public:
 		}
 		else
 		{
-			if (ImGui::Button("Start pulling video frame") && ctl_list.size()>0)
+			if (ImGui::Button("Start pulling video frame"))
 			{
 				start_pulling_data();
 			}
