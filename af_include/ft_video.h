@@ -10,8 +10,10 @@ namespace auto_future
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
 			(float, _aposx, { 0.f }),
-			(float, _aposy, { 0.f }),			
-			(float, _angle_nml, {0.f}))
+			(float, _aposy, { 0.f }),
+			(float, _angle_nml, {0.f}),
+               (float, _alpha_nml,{ 1.f }),
+               (af_vec3, _tin_clr ))
 		GLuint _txt_id = {0};
 		GLuint _pboIds[2];
 		int _txt_width, _txt_height;

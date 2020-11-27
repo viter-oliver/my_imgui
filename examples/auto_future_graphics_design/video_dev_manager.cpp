@@ -5,6 +5,8 @@
 #pragma comment(lib,"mf.lib")
 #pragma comment(lib,"mfreadwrite.lib")
 #pragma comment(lib,"mfuuid.lib")
+#pragma comment(lib, "wmcodecdspuuid.lib")
+
 template <class T> void SafeRelease( T **ppT )
 {
      if( *ppT )
@@ -12,6 +14,38 @@ template <class T> void SafeRelease( T **ppT )
           ( *ppT )->Release();
           *ppT = NULL;
      }
+}
+template <class T> inline void SafeRelease( T*& pT )
+{
+     if( pT != NULL )
+     {
+          pT->Release();
+          pT = NULL;
+     }
+}
+/**
+* Copies a media type attribute from an input media type to an output media type. Useful when setting
+* up the video sink and where a number of the video sink input attributes need to be duplicated on the
+* video writer attributes.
+* @param[in] pSrc: the media attribute the copy of the key is being made from.
+* @param[in] pDest: the media attribute the copy of the key is being made to.
+* @param[in] key: the media attribute key to copy.
+*/
+HRESULT CopyAttribute( IMFAttributes* pSrc, IMFAttributes* pDest, const GUID& key )
+{
+     PROPVARIANT var;
+     PropVariantInit( &var );
+
+     HRESULT hr = S_OK;
+
+     hr = pSrc->GetItem( key, &var );
+     if( SUCCEEDED( hr ) )
+     {
+          hr = pDest->SetItem( key, var );
+     }
+
+     PropVariantClear( &var );
+     return hr;
 }
 typedef HRESULT( *COPY_TRANSFORM_FN )( BYTE*, LONG, BYTE*, LONG, UINT, UINT );
 
@@ -159,7 +193,8 @@ video_dev_unit::~video_dev_unit()
      {
           //_pSource->Shutdown();
      }
-     SafeRelease( &_pReader );
+     SafeRelease( _pReader );
+     SafeRelease(_videoSourceOutputType );
 }
 
 void video_dev_unit::start_pulling_data()
@@ -169,7 +204,9 @@ void video_dev_unit::start_pulling_data()
      {
           HRESULT hr;
           IMFMediaType *pConfigureType = NULL;
-          pVideoframe = new BYTE[ _width*_height * 4 ];
+          dwCurrentLenth = _width*_height * 4;
+          pVideoframe = new BYTE[ dwCurrentLenth ];
+
           do
           {
                DWORD dwStream = MF_SOURCE_READER_FIRST_VIDEO_STREAM;
@@ -194,7 +231,7 @@ void video_dev_unit::start_pulling_data()
                }
 
                _be_pulling_frame = true;
-               IMFSample *pSample = NULL;
+               IMFSample *videoSample = NULL;
                while( _be_pulling_frame )
                {
                     DWORD streamIndex, flags;
@@ -205,7 +242,7 @@ void video_dev_unit::start_pulling_data()
                          &streamIndex,                   // Receives the actual stream index. 
                          &flags,                         // Receives status flags.
                          &llTimeStamp,                   // Receives the time stamp.
-                         &pSample                        // Receives the sample or NULL.
+                         &videoSample                        // Receives the sample or NULL.
                          );
 
                     if( FAILED( hr ) )
@@ -224,30 +261,23 @@ void video_dev_unit::start_pulling_data()
 
                          //printf("Stream %d (%I64d)\n", streamIndex, llTimeStamp);
                          DWORD dwBuffCount = 0;
-                         hr = pSample->GetBufferCount( &dwBuffCount );
+                         hr = videoSample->GetBufferCount( &dwBuffCount );
 
                          if( dwBuffCount>0 )
                          {
                               LONGLONG phduration = 0;
-                              hr = pSample->GetSampleDuration( &phduration );
+                              hr = videoSample->GetSampleDuration( &phduration );
                               if( SUCCEEDED( hr ) )
                               {
                               }
                               IMFMediaBuffer* pMediaBuffer;
-                              hr = pSample->ConvertToContiguousBuffer( &pMediaBuffer );
+                              hr = videoSample->ConvertToContiguousBuffer( &pMediaBuffer );
 
                               //hr = pMediaBuffer->GetCurrentLength(&dwBufferSize);
                               BYTE* pData = NULL;
-                              hr = pMediaBuffer->Lock( &pData, &dwMaxlenth, &dwCurrentLenth );
-                              /*BYTE* paph = pVideoframe + 3;
-                              auto pxcnt = dwCurrentLenth / 4;
-                              for (int ix = 0; ix < pxcnt;ix++)
-                              {
-                              *paph = 0xff;
-                              paph += 4;
-                              }
-                              */
-                              FromYUY2ToRGB32( pVideoframe, pData, _width, _height );
+                              DWORD dtmpLenth = 0;
+                              hr = pMediaBuffer->Lock( &pData, &dwMaxlenth, &dtmpLenth );
+                              FromYUY2ToBGR32( pVideoframe, pData, _width, _height );
 
                               pMediaBuffer->Unlock();
                               pMediaBuffer->Release();
@@ -269,7 +299,7 @@ void video_dev_unit::start_pulling_data()
                          printf( "\tStream tick\n" );
                     }
 
-                    SafeRelease( &pSample );
+                    SafeRelease( &videoSample );
                }
 
           }
@@ -280,225 +310,189 @@ void video_dev_unit::start_pulling_data()
      } );
      td_pulling_data.detach();
 }
-#if 0
-
-BOOL IsTargetMediaType( IMFMediaType *pType )
+struct init_mtf_env
 {
-     GUID subType = { 0 };
-     HRESULT hr = pType->GetGUID( MF_MT_SUBTYPE, &subType );
-     //StringFromCLSID
-     return TRUE;
-}
-HRESULT EnumerateCaptureFormats( IMFMediaSource *pSource )
-{
-     IMFPresentationDescriptor *pPD = NULL;
-     IMFStreamDescriptor *pSD = NULL;
-     IMFMediaTypeHandler *pHandler = NULL;
-     IMFMediaType *pType = NULL;
-
-     HRESULT hr = pSource->CreatePresentationDescriptor( &pPD );
-     if( FAILED( hr ) )
+     IUnknown* colorConvTransformUnk = NULL;
+     IMFTransform* pColorConvTransform = NULL; // This is colour converter MFT is used to convert between the webcam pixel format and RGB32.
+ 
+     init_mtf_env()
      {
-          goto done;
-     }
-
-     BOOL fSelected;
-     hr = pPD->GetStreamDescriptorByIndex( 0, &fSelected, &pSD );
-     if( FAILED( hr ) )
-     {
-          goto done;
-     }
-
-     hr = pSD->GetMediaTypeHandler( &pHandler );
-     if( FAILED( hr ) )
-     {
-          goto done;
-     }
-
-     DWORD cTypes = 0;
-     hr = pHandler->GetMediaTypeCount( &cTypes );
-     if( FAILED( hr ) )
-     {
-          goto done;
-     }
-
-     for( DWORD i = 0; i < cTypes; i++ )
-     {
-          hr = pHandler->GetMediaTypeByIndex( i, &pType );
-          if( FAILED( hr ) )
+          try
           {
-               goto done;
+               CHECK_HR( CoInitializeEx( NULL, COINIT_APARTMENTTHREADED | COINIT_DISABLE_OLE1DDE ),
+                         "COM initialisation failed." );
+               CHECK_HR( MFTRegisterLocalByCLSID(
+                    __uuidof( CColorConvertDMO ),
+                    MFT_CATEGORY_VIDEO_PROCESSOR,
+                    L"",
+                    MFT_ENUM_FLAG_SYNCMFT,
+                    0,
+                    NULL,
+                    0,
+                    NULL ),
+                    "Error registering colour converter DSP." );
+               CHECK_HR( CoCreateInstance( CLSID_CColorConvertDMO, NULL, CLSCTX_INPROC_SERVER,
+                    IID_IUnknown, (void**)&colorConvTransformUnk ),
+                    "Failed to create colour converter MFT." );
+               CHECK_HR( colorConvTransformUnk->QueryInterface( IID_PPV_ARGS( &pColorConvTransform ) ),
+                         "Failed to get IMFTransform interface from colour converter MFT object." );
+               CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_COMMAND_FLUSH, NULL ), "Failed to process FLUSH command on colour converter MFT." );
+               CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_NOTIFY_BEGIN_STREAMING, NULL ), "Failed to process BEGIN_STREAMING command on colour converter MFT." );
+               CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_NOTIFY_START_OF_STREAM, NULL ), "Failed to process START_OF_STREAM command on colour converter MFT." );
+
           }
-          hr = pHandler->SetCurrentMediaType( pType );
-          if( FAILED( hr ) )
+          catch( ... )
           {
-               goto done;
+               printf( "fail to initialize mtf env\n" );
           }
-          //LogMediaType(pType);
-          //OutputDebugString(L"\n");
 
-          SafeRelease( &pType );
      }
-
-done:
-     SafeRelease( &pPD );
-     SafeRelease( &pSD );
-     SafeRelease( &pHandler );
-     SafeRelease( &pType );
-     return hr;
-}
-HRESULT SetDeviceFormat( IMFMediaSource *pSource, DWORD dwFormatIndex )
+} mtf_env;
+const int VIDEO_FRAME_RATE = 30;
+void video_dev_unit::start_pulling_data_with_mtf()
 {
-     IMFPresentationDescriptor *pPD = NULL;
-     IMFStreamDescriptor *pSD = NULL;
-     IMFMediaTypeHandler *pHandler = NULL;
-     IMFMediaType *pType = NULL;
-
-     HRESULT hr = pSource->CreatePresentationDescriptor( &pPD );
-     if( FAILED( hr ) )
+     assert( _pReader != NULL );
+     thread td_pulling_data( [&]
      {
-          goto done;
-     }
+          HRESULT hr;
+          IMFSample *videoSample = NULL;
+          IMFMediaType* pDecInputMediaType = NULL, *pDecOutputMediaType=NULL;
+          IMFMediaType* pWebcamSourceType = NULL, *pImfEvrSinkType = NULL;
+          IMFTransform*& pColorConvTransform = mtf_env.pColorConvTransform;
+          CHECK_HR( MFCreateMediaType( &pImfEvrSinkType ), "Failed to create video output media type." );
+          CHECK_HR( pImfEvrSinkType->SetGUID( MF_MT_MAJOR_TYPE, MFMediaType_Video ), "Failed to set video output media major type." );
+          CHECK_HR( pImfEvrSinkType->SetGUID( MF_MT_SUBTYPE, MFVideoFormat_RGB32 ), "Failed to set video sub-type attribute on media type." );
+          CHECK_HR( pImfEvrSinkType->SetUINT32( MF_MT_INTERLACE_MODE, MFVideoInterlace_Progressive ), "Failed to set interlace mode attribute on media type." );
+          CHECK_HR( pImfEvrSinkType->SetUINT32( MF_MT_ALL_SAMPLES_INDEPENDENT, TRUE ), "Failed to set independent samples attribute on media type." );
+          CHECK_HR( MFSetAttributeRatio( pImfEvrSinkType, MF_MT_PIXEL_ASPECT_RATIO, 1, 1 ), "Failed to set pixel aspect ratio attribute on media type." );
+          CHECK_HR( MFSetAttributeSize( pImfEvrSinkType, MF_MT_FRAME_SIZE, _width, _height ), "Failed to set the frame size attribute on media type." );
+          CHECK_HR( MFSetAttributeSize( pImfEvrSinkType, MF_MT_FRAME_RATE, VIDEO_FRAME_RATE, 1 ), "Failed to set the frame rate attribute on media type." );
 
-     BOOL fSelected;
-     hr = pPD->GetStreamDescriptorByIndex( 0, &fSelected, &pSD );
-     if( FAILED( hr ) )
-     {
-          goto done;
-     }
+          CHECK_HR( MFCreateMediaType( &pWebcamSourceType ), "Failed to create webcam output media type." );
+          CHECK_HR( pImfEvrSinkType->CopyAllItems( pWebcamSourceType ), "Error copying media type attributes from EVR input to webcam output media type." );
+          CHECK_HR( CopyAttribute( _videoSourceOutputType, pWebcamSourceType, MF_MT_SUBTYPE ), "Failed to set video sub-type attribute on webcam media type." );
+          CHECK_HR( _pReader->SetCurrentMediaType( (DWORD)MF_SOURCE_READER_FIRST_VIDEO_STREAM, NULL, pWebcamSourceType ),
+                    "Failed to set output media type on source reader." );
 
-     hr = pSD->GetMediaTypeHandler( &pHandler );
-     if( FAILED( hr ) )
-     {
-          goto done;
-     }
+          MFCreateMediaType( &pDecInputMediaType );
+          CHECK_HR( pWebcamSourceType->CopyAllItems( pDecInputMediaType ), "Error copying media type attributes to colour converter input media type." );
+          CHECK_HR( pColorConvTransform->SetInputType( 0, pDecInputMediaType, 0 ), "Failed to set input media type on colour converter MFT." );
+          
+          MFCreateMediaType( &pDecOutputMediaType );
+          CHECK_HR( pImfEvrSinkType->CopyAllItems( pDecOutputMediaType ), "Error copying media type attributes to colour converter output media type." );
+          CHECK_HR( pColorConvTransform->SetOutputType( 0, pDecOutputMediaType, 0 ), "Failed to set output media type on colour converter MFT." );
 
-     hr = pHandler->GetMediaTypeByIndex( dwFormatIndex, &pType );
-     if( FAILED( hr ) )
-     {
-          goto done;
-     }
-
-     hr = pHandler->SetCurrentMediaType( pType );
-
-done:
-     SafeRelease( &pPD );
-     SafeRelease( &pSD );
-     SafeRelease( &pHandler );
-     SafeRelease( &pType );
-     return hr;
-}
-
-class SourceReaderCB : public IMFSourceReaderCallback
-{
-     long                m_nRefCount;        // Reference count.
-     CRITICAL_SECTION    m_critsec;
-     HANDLE              m_hEvent;
-     BOOL                m_bEOS;
-     HRESULT             m_hrStatus;
-public:
-     SourceReaderCB( HANDLE hEvent ) :
-          m_nRefCount( 1 ), m_hEvent( hEvent ), m_bEOS( FALSE ), m_hrStatus( S_OK )
-     {
-          InitializeCriticalSection( &m_critsec );
-     }
-
-     // IUnknown methods
-     STDMETHODIMP QueryInterface( REFIID iid, void** ppv )
-     {
-          static const QITAB qit[] =
+          pVideoframe = new BYTE[ _width*_height * 4 ];
+          try
           {
-               QITABENT( SourceReaderCB, IMFSourceReaderCallback ),
-               { 0 },
-          };
-          return QISearch( this, qit, iid, ppv );
-     }
-     STDMETHODIMP_( ULONG ) AddRef()
-     {
-          return InterlockedIncrement( &m_nRefCount );
-     }
-     STDMETHODIMP_( ULONG ) Release()
-     {
-          ULONG uCount = InterlockedDecrement( &m_nRefCount );
-          if( uCount == 0 )
-          {
-               delete this;
-          }
-          return uCount;
-     }
-
-     // IMFSourceReaderCallback methods
-     STDMETHODIMP OnReadSample( HRESULT hrStatus, DWORD dwStreamIndex,
-                                DWORD dwStreamFlags, LONGLONG llTimestamp, IMFSample *pSample )
-     {
-          EnterCriticalSection( &m_critsec );
-
-          if( SUCCEEDED( hrStatus ) )
-          {
-               if( pSample )
+               _be_pulling_frame = true;
+               DWORD  flags;
+               while( _be_pulling_frame )
                {
-                    // Do something with the sample.
-                    wprintf( L"Frame @ %I64d\n", llTimestamp );
+                    DWORD streamIndex, flags;
+                    LONGLONG llTimeStamp;
+                    hr = _pReader->ReadSample(
+                         MF_SOURCE_READER_FIRST_VIDEO_STREAM,    // Stream index.
+                         0,                              // Flags.
+                         &streamIndex,                   // Receives the actual stream index. 
+                         &flags,                         // Receives status flags.
+                         &llTimeStamp,                   // Receives the time stamp.
+                         &videoSample                        // Receives the sample or NULL.
+                         );
+
+                    if( FAILED( hr ) )
+                    {
+                         break;
+                    }
+                    if (videoSample)
+                    {
+                         LONGLONG sampleDuration = 0;
+                         DWORD mftOutFlags;
+
+                         // ----- Video source sample. -----
+
+                         CHECK_HR( videoSample->SetSampleTime( llTimeStamp ), "Error setting the video sample time." );
+                         CHECK_HR( videoSample->GetSampleDuration( &sampleDuration ), "Failed to get video sample duration." );
+                         CHECK_HR( pColorConvTransform->ProcessInput( 0, videoSample, NULL ), "The colour conversion decoder ProcessInput call failed." );
+                         IMFSample* mftOutSample = NULL;
+                         IMFMediaBuffer* mftOutBuffer = NULL;
+                         MFT_OUTPUT_STREAM_INFO StreamInfo;
+                         MFT_OUTPUT_DATA_BUFFER outputDataBuffer;
+                         DWORD processOutputStatus = 0;
+
+                         CHECK_HR( pColorConvTransform->GetOutputStreamInfo( 0, &StreamInfo ), "Failed to get output stream info from colour conversion MFT." );
+                         CHECK_HR( MFCreateSample( &mftOutSample ), "Failed to create MF sample." );
+                         CHECK_HR( MFCreateMemoryBuffer( StreamInfo.cbSize, &mftOutBuffer ), "Failed to create memory buffer." );
+                         CHECK_HR( mftOutSample->AddBuffer( mftOutBuffer ), "Failed to add sample to buffer." );
+                         outputDataBuffer.dwStreamID = 0;
+                         outputDataBuffer.dwStatus = 0;
+                         outputDataBuffer.pEvents = NULL;
+                         outputDataBuffer.pSample = mftOutSample;
+
+                         auto mftProcessOutput = pColorConvTransform->ProcessOutput( 0, 1, &outputDataBuffer, &processOutputStatus );
+
+                         //printf("Colour conversion result %.2X, MFT status %.2X.\n", mftProcessOutput, processOutputStatus);
+
+                         if( mftProcessOutput == S_OK )
+                         {
+                              // ----- Make Direct3D sample. -----
+                              IMFMediaBuffer* buf = NULL;
+                              DWORD bufLength = 0, pByteBufLength = 0;
+                              BYTE* pByteBuf = NULL;
+
+                              CHECK_HR( mftOutSample->ConvertToContiguousBuffer( &buf ), "ConvertToContiguousBuffer failed." );
+                              CHECK_HR( buf->GetCurrentLength( &bufLength ), "Get buffer length failed." );
+                              CHECK_HR( buf->Lock( &pByteBuf, NULL, &dwCurrentLenth ), "Failed to lock sample buffer." );
+                              memcpy( pVideoframe, pByteBuf, dwCurrentLenth );
+                              CHECK_HR( buf->Unlock(), "Failed to unlock source buffer." );
+
+                              unique_lock<mutex> lck( _mutex );
+                              _frame_valid = true;
+                              _cond.wait( lck );
+
+                              SafeRelease( buf );
+                              SafeRelease( mftOutSample );
+                              SafeRelease( mftOutBuffer );
+                         }
+                         else
+                         {
+                              printf( "Colour conversion failed with %.2X.\n", mftProcessOutput );
+                              break;
+                         }
+
+                    }
+                    if( flags & MF_SOURCE_READERF_ENDOFSTREAM )
+                    {
+                         printf( "\tEnd of stream\n" );
+                         _be_pulling_frame = false;
+                    }
+                    
+                    if( flags & MF_SOURCE_READERF_NATIVEMEDIATYPECHANGED )
+                    {
+                         printf( "\tNative type changed\n" );
+                    }
+                    if( flags & MF_SOURCE_READERF_CURRENTMEDIATYPECHANGED )
+                    {
+                         printf( "\tCurrent type changed\n" );
+                    }
+                    if( flags & MF_SOURCE_READERF_STREAMTICK )
+                    {
+                         printf( "\tStream tick\n" );
+                    }
+                    SafeRelease( &videoSample );
                }
+
           }
-          else
+          catch(...)
           {
-               // Streaming error.
-               NotifyError( hrStatus );
+               printf( "fail to pull data with the mtf\n " );
           }
+         
+          delete pVideoframe;
 
-          if( MF_SOURCE_READERF_ENDOFSTREAM & dwStreamFlags )
-          {
-               // Reached the end of the stream.
-               m_bEOS = TRUE;
-          }
-          m_hrStatus = hrStatus;
-
-          LeaveCriticalSection( &m_critsec );
-          SetEvent( m_hEvent );
-          return S_OK;
-     }
-
-     STDMETHODIMP OnEvent( DWORD, IMFMediaEvent * )
-     {
-          return S_OK;
-     }
-
-     STDMETHODIMP OnFlush( DWORD )
-     {
-          return S_OK;
-     }
-     HRESULT Wait( DWORD dwMilliseconds, BOOL *pbEOS )
-     {
-          *pbEOS = FALSE;
-
-          DWORD dwResult = WaitForSingleObject( m_hEvent, dwMilliseconds );
-          if( dwResult == WAIT_TIMEOUT )
-          {
-               return E_PENDING;
-          }
-          else if( dwResult != WAIT_OBJECT_0 )
-          {
-               return HRESULT_FROM_WIN32( GetLastError() );
-          }
-
-          *pbEOS = m_bEOS;
-          return m_hrStatus;
-     }
-
-private:
-
-     // Destructor is private. Caller should call Release.
-     virtual ~SourceReaderCB()
-     {}
-
-     void NotifyError( HRESULT hr )
-     {
-          wprintf( L"Source Reader error: 0x%X\n", hr );
-     }
-};
-
-#endif
+     } );
+     td_pulling_data.detach();
+}
 mp_dev_unit g_map_dev_units;
 HRESULT EnumDeviceVideoDevices()
 {
@@ -571,10 +565,12 @@ HRESULT EnumDeviceVideoDevices()
 
                auto devUnit = make_shared<video_dev_unit>( psystem_link, pVideoReader );
                g_map_dev_units[ str_key ] = devUnit;
-     
-               auto& txt_width = devUnit->width();
-               auto& txt_height = devUnit->height();
-               GetVideoFrameSize( psource, txt_width, txt_height );
+               if (!devUnit->initialized())
+               {
+                    auto& txt_width = devUnit->width();
+                    auto& txt_height = devUnit->height();
+                    GetVideoFrameSize( psource, txt_width, txt_height );
+               }
 
           }
      }

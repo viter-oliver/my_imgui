@@ -10,7 +10,11 @@
 #include <mfidl.h>
 #include <mferror.h>
 #include <mfreadwrite.h>
+#include <wmcodecdsp.h>
+
 #include "ft_video.h"
+#define CHECK_HR(hr, msg) if (hr != S_OK) { printf(msg); printf(" Error: %.2X.\n", hr); throw ""; }
+
 using namespace std;
 using namespace chrono;
 
@@ -30,16 +34,38 @@ class video_dev_unit
      atomic<bool> _frame_valid { false };
      condition_variable _cond;
      IMFSourceReader* _pReader = NULL;
+     IMFMediaType* _videoSourceOutputType = NULL;
      BYTE* pVideoframe;
      DWORD dwCurrentLenth = 0, dwMaxlenth = 0;
      bool _be_pulling_frame = false;
      mp_video_ctl _video_ctl_list;
+     bool _initialized = false;
 public:
      video_dev_unit( wchar_t* plink, IMFSourceReader* pSource ) :_link_str( plink ), _pReader( pSource )
      {
+          try
+          {
+               CHECK_HR( _pReader->GetCurrentMediaType( (DWORD)MF_SOURCE_READER_FIRST_VIDEO_STREAM, &_videoSourceOutputType ),
+                         "Error retrieving current media type from first video stream." );
+               CHECK_HR( MFGetAttributeSize(_videoSourceOutputType, MF_MT_FRAME_SIZE, &_width, &_height ), "faile to get video frame size." );
+               CHECK_HR( _pReader->SetStreamSelection( (DWORD)MF_SOURCE_READER_FIRST_VIDEO_STREAM, TRUE ),
+                         "Failed to set the first video stream on the source reader." );
+
+               _initialized = true;
+          }
+          catch( ... )
+          {
+               printf( "fail to initialize video unit\n" );
+          }
+          
+
          // _pSource->AddRef();
      }
      ~video_dev_unit();
+     bool initialized()
+     {
+          return _initialized;
+     }
      void delink_cltrl_list()
      {
           for( auto&ictlv : _video_ctl_list )
@@ -70,13 +96,14 @@ public:
                //processing frame
                for( auto& ictl : _video_ctl_list )
                {
-                    ictl.first->update_pixels( pVideoframe, dwCurrentLenth * 2 );
+                    ictl.first->update_pixels( pVideoframe, dwCurrentLenth );
                }
                _frame_valid = false;
                _cond.notify_one();
           }
      }
      void start_pulling_data();
+     void start_pulling_data_with_mtf();
      bool add_video_ctrl( ft_video* pfv, int& vwidth, int& vheight )
      {
           auto& dic_f_video =_video_ctl_list;
@@ -114,7 +141,8 @@ public:
 		{
 			if (ImGui::Button("Start pulling video frame"))
 			{
-				start_pulling_data();
+				//start_pulling_data();
+                    start_pulling_data_with_mtf();
 			}
 		}
      }

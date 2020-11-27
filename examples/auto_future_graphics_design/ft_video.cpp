@@ -18,8 +18,8 @@ namespace auto_future
 		// Step3 设定filter参数
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _txt_width, _txt_height,
-			0, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+          glTexImage2D( GL_TEXTURE_2D, 0, GL_BGRA, _txt_width, _txt_height,
+                        0, GL_BGRA, GL_UNSIGNED_BYTE, 0 );
 	}
 	void ft_video::init_pbo()
 	{
@@ -52,7 +52,7 @@ namespace auto_future
 		_pboIds[0] = _pboIds[1] = 0;
           set_size( 800, 800 );
 		memset(_video_dev_name, 0, name_len);
-
+          _img_pt._tin_clr = { 1.f, 1.f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
 		reg_property_handle(&_img_pt, 2, [this](void*){
@@ -124,8 +124,8 @@ namespace auto_future
 			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_nml, axisBasePos);
 			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle_nml, axisBasePos);
 		}
-
-		ImGui::ImageQuad((ImTextureID)_txt_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+          ImVec4 tin_clr( _img_pt._tin_clr.x, _img_pt._tin_clr.y, _img_pt._tin_clr.z, _img_pt._alpha_nml );
+		ImGui::ImageQuad((ImTextureID)_txt_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3,tin_clr);
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())//draw envelope
@@ -167,7 +167,7 @@ namespace auto_future
 		bool nindex = !index;
 		glBindTexture(GL_TEXTURE_2D, _txt_id);
 		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[index]);
-		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, _txt_width, _txt_height, GL_RGBA, GL_UNSIGNED_BYTE, 0);
+          glTexSubImage2D( GL_TEXTURE_2D, 0, 0, 0, _txt_width, _txt_height, GL_BGRA, GL_UNSIGNED_BYTE, 0 );
 		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[nindex]);
 		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
 		GLubyte* ptr = (GLubyte*)glMapBuffer(GL_PIXEL_UNPACK_BUFFER, GL_WRITE_ONLY);

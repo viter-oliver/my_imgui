@@ -628,7 +628,7 @@ static BYTE Clip(int clr)
 	return (BYTE)(clr < 0 ? 0 : (clr > 255 ? 255 : clr));
 }
 
-static RGBQUAD ConvertYCrCbToRGB(int y, int cb, int cr)
+static RGBQUAD ConvertYCrCbToBGR(int y, int cb, int cr)
 {
 	RGBQUAD rgbq = { 0 };
 #if 1
@@ -637,9 +637,9 @@ static RGBQUAD ConvertYCrCbToRGB(int y, int cb, int cr)
 	int d = cb - 128;
 	int e = cr - 128;
 
-	rgbq.rgbRed = Clip((298 * c + 409 * e + 128) >> 8);
+	rgbq.rgbBlue = Clip((298 * c + 409 * e + 128) >> 8);
 	rgbq.rgbGreen = Clip((298 * c - 100 * d - 208 * e + 128) >> 8);
-	rgbq.rgbBlue = Clip((298 * c + 516 * d + 128) >> 8);
+	rgbq.rgbRed = Clip((298 * c + 516 * d + 128) >> 8);
 #else
 	rgbq.rgbRed =y+1.4075f*(cr-128);
 	rgbq.rgbGreen =y-0.3455f*(cb-128)-0.7169f*(cr-128);
@@ -652,7 +652,7 @@ static RGBQUAD ConvertYCrCbToRGB(int y, int cb, int cr)
 	return rgbq;
 }
 
-void FromYUY2ToRGB32(LPVOID lpDest, LPVOID lpSource, LONG lWidth, LONG lHeight)
+void FromYUY2ToBGR32(LPVOID lpDest, LPVOID lpSource, LONG lWidth, LONG lHeight)
 {
 	RGBQUAD *pDestPel = (RGBQUAD*)lpDest;
 	WORD *pSrcPel = (WORD*)lpSource;
@@ -669,8 +669,8 @@ void FromYUY2ToRGB32(LPVOID lpDest, LPVOID lpSource, LONG lWidth, LONG lHeight)
 			int y1 = (int)LOBYTE(pSrcPel[x + 1]);
 			int v0 = (int)HIBYTE(pSrcPel[x + 1]);
 
-			pDestPel[x] = ConvertYCrCbToRGB(y0, v0, u0);
-			pDestPel[x + 1] = ConvertYCrCbToRGB(y1, v0, u0);
+               pDestPel[ x ] = ConvertYCrCbToBGR( y0, v0, u0 );
+               pDestPel[ x + 1 ] = ConvertYCrCbToBGR( y1, v0, u0 );
 		}
 
 		pSrcPel += lWidth;
