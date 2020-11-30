@@ -331,15 +331,7 @@ struct init_mtf_env
                     0,
                     NULL ),
                     "Error registering colour converter DSP." );
-               CHECK_HR( CoCreateInstance( CLSID_CColorConvertDMO, NULL, CLSCTX_INPROC_SERVER,
-                    IID_IUnknown, (void**)&colorConvTransformUnk ),
-                    "Failed to create colour converter MFT." );
-               CHECK_HR( colorConvTransformUnk->QueryInterface( IID_PPV_ARGS( &pColorConvTransform ) ),
-                         "Failed to get IMFTransform interface from colour converter MFT object." );
-               CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_COMMAND_FLUSH, NULL ), "Failed to process FLUSH command on colour converter MFT." );
-               CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_NOTIFY_BEGIN_STREAMING, NULL ), "Failed to process BEGIN_STREAMING command on colour converter MFT." );
-               CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_NOTIFY_START_OF_STREAM, NULL ), "Failed to process START_OF_STREAM command on colour converter MFT." );
-
+               
           }
           catch( ... )
           {
@@ -358,7 +350,17 @@ void video_dev_unit::start_pulling_data_with_mtf()
           IMFSample *videoSample = NULL;
           IMFMediaType* pDecInputMediaType = NULL, *pDecOutputMediaType=NULL;
           IMFMediaType* pWebcamSourceType = NULL, *pImfEvrSinkType = NULL;
-          IMFTransform*& pColorConvTransform = mtf_env.pColorConvTransform;
+          IUnknown* colorConvTransformUnk = NULL;
+          IMFTransform* pColorConvTransform = NULL;// mtf_env.pColorConvTransform;
+          CHECK_HR( CoCreateInstance( CLSID_CColorConvertDMO, NULL, CLSCTX_INPROC_SERVER,
+               IID_IUnknown, (void**)&colorConvTransformUnk ),
+               "Failed to create colour converter MFT." );
+          CHECK_HR( colorConvTransformUnk->QueryInterface( IID_PPV_ARGS( &pColorConvTransform ) ),
+                    "Failed to get IMFTransform interface from colour converter MFT object." );
+          CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_COMMAND_FLUSH, NULL ), "Failed to process FLUSH command on colour converter MFT." );
+          CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_NOTIFY_BEGIN_STREAMING, NULL ), "Failed to process BEGIN_STREAMING command on colour converter MFT." );
+          CHECK_HR( pColorConvTransform->ProcessMessage( MFT_MESSAGE_NOTIFY_START_OF_STREAM, NULL ), "Failed to process START_OF_STREAM command on colour converter MFT." );
+
           CHECK_HR( MFCreateMediaType( &pImfEvrSinkType ), "Failed to create video output media type." );
           CHECK_HR( pImfEvrSinkType->SetGUID( MF_MT_MAJOR_TYPE, MFMediaType_Video ), "Failed to set video output media major type." );
           CHECK_HR( pImfEvrSinkType->SetGUID( MF_MT_SUBTYPE, MFVideoFormat_RGB32 ), "Failed to set video sub-type attribute on media type." );
@@ -489,7 +491,7 @@ void video_dev_unit::start_pulling_data_with_mtf()
           }
          
           delete pVideoframe;
-
+          SafeRelease(&colorConvTransformUnk);
      } );
      td_pulling_data.detach();
 }
