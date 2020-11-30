@@ -69,7 +69,7 @@ static GLFWcursor*  g_MouseCursors[ImGuiMouseCursor_COUNT] = { 0 };
 static char         g_GlslVersion[32] = "#version 150";
 /*static*/ GLuint       g_FontTexture = 0;
 static int          g_ShaderHandle = 0, g_VertHandle = 0, g_FragHandle = 0;
-static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0;
+static int          g_AttribLocationTex = 0, g_AttribLocationProjMtx = 0, g_UniformLocationVideoFormat=0;
 #ifdef BUILD_DLL
 #include <math.h>
 static int g_AttribLocationcustomMtx = 0, g_AttribLocationcustomDelta = 0;
@@ -196,6 +196,18 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
             else
             {
                 glBindTexture(GL_TEXTURE_2D, (GLuint)(intptr_t)pcmd->TextureId);
+                GLint color_format;
+                glGetTexLevelParameteriv( GL_TEXTURE_2D, 0, GL_TEXTURE_INTERNAL_FORMAT, &color_format);
+                if( GL_BGRA ==color_format)
+                {
+                     color_format = 1;
+                }
+                else
+                {
+                     color_format = 0;
+                }
+                glUniform1iv( g_UniformLocationVideoFormat, 1, &color_format );
+                
                 glScissor((int)pcmd->ClipRect.x, (int)(fb_height - pcmd->ClipRect.w), (int)(pcmd->ClipRect.z - pcmd->ClipRect.x), (int)(pcmd->ClipRect.w - pcmd->ClipRect.y));
                 glDrawElements(GL_TRIANGLES, (GLsizei)pcmd->ElemCount, sizeof(ImDrawIdx) == 2 ? GL_UNSIGNED_SHORT : GL_UNSIGNED_INT, idx_buffer_offset);
             }
@@ -424,15 +436,18 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
 #endif
 		
 
-    const GLchar* fragment_shader =
-        "#version 150\n"
-        "uniform sampler2D Texture;\n"
-        "in vec2 Frag_UV;\n"
-        "in vec4 Frag_Color;\n"
-        "out vec4 Out_Color;\n"
-        "void main()\n"
-        "{\n"
-        "	Out_Color = Frag_Color * texture( Texture, Frag_UV.st);\n"
+     const GLchar* fragment_shader =
+          "#version 150\n"
+          "uniform sampler2D Texture;\n"
+          "uniform int be_video_texture;\n"
+          "in vec2 Frag_UV;\n"
+          "in vec4 Frag_Color;\n"
+          "out vec4 Out_Color;\n"
+          "void main()\n"
+          "{\n"
+          "vec4 txtCol=texture( Texture, Frag_UV.st);\n"
+          "if(be_video_texture>0) txtCol.a=1;\n"
+        "	Out_Color = Frag_Color * txtCol;\n"
         "}\n";
 
     g_ShaderHandle = glCreateProgram();
@@ -448,6 +463,7 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
 
     g_AttribLocationTex = glGetUniformLocation(g_ShaderHandle, "Texture");
     g_AttribLocationProjMtx = glGetUniformLocation(g_ShaderHandle, "ProjMtx");
+    g_UniformLocationVideoFormat=glGetUniformLocation(g_ShaderHandle,"be_video_texture");
 #ifdef BUILD_DLL
 	g_AttribLocationcustomMtx = glGetUniformLocation(g_ShaderHandle, "customMtx");
 	g_AttribLocationcustomDelta = glGetUniformLocation(g_ShaderHandle, "customDelta");
