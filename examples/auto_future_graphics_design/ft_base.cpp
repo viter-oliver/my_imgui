@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <typeinfo>
 #include "af_bind.h"
+#include <regex>
 namespace auto_future
 {
 	ft_base::ft_base()
@@ -277,7 +278,7 @@ namespace auto_future
 	}
 	base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname)
 	{
-		if (tar_ui.get_name() == uname)
+          if( regex_search( tar_ui.get_name(), regex( uname ) ) )//tar_ui.get_name() == uname)
 		{
 			return&tar_ui;
 		}

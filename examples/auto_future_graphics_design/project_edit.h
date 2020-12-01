@@ -6,7 +6,7 @@ class project_edit
 	base_ui_component* _pcurrent_object;
 	base_ui_component* _pcopy_object;
      base_ui_component* _pcut_object;
-
+     bool _trigger_focus_switch = { false };
 	void view_object(base_ui_component& fb);
 public:
 	project_edit(base_ui_component& fb) 
@@ -22,6 +22,10 @@ public:
 		_pcurrent_object = nullptr;
 		_pcopy_object = nullptr;
 	}
+     void trigger_focus_switch()
+     {
+          _trigger_focus_switch = true;
+     }
 	void sel_ui_component(base_ui_component* ui_target){
 		assert(ui_target);
 		if (_pcurrent_object)

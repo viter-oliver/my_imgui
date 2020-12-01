@@ -590,16 +590,7 @@ static	string aliase_btn_cp = "  ##";
 		}
 	}
 	void base_ui_component::save_property_to_json(Value& junit){
-          if( _be_inner_use )
-          {
-               size_t chcnt = child_count();
-               for( size_t ix = 0; ix < chcnt; ix++ )
-               {
-                    base_ui_component* pch_uc = get_child( ix );
-                    pch_uc->save_property_to_json( junit );
-               }
-               return;
-          }
+
 		string cname = typeid(*this).name();
 		cname = cname.substr(sizeof("class autofuture::"));
 		junit["type"] = cname;

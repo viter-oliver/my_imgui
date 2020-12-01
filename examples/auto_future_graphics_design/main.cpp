@@ -976,24 +976,38 @@ int main( int argc, char* argv[] )
 		}
 		if (show_project_window)
 		{
+              
 			ImGui::Begin("project");
 			static char str_ctrl_name[name_len] = {0};
-			ImGui::InputText("####", str_ctrl_name, name_len);
+               auto de_search = [&]
+               {
+                    auto search_ctrl = find_a_uc_from_uc( *_proot, str_ctrl_name );
+                    if( search_ctrl )
+                    {
+                         prj_edit->sel_ui_component( search_ctrl );
+                         prj_edit->trigger_focus_switch();
+                         return true;
+                    }
+                    return false;
+               };			
+               if( ImGui::InputText( "####", str_ctrl_name, name_len, ImGuiInputTextFlags_EnterReturnsTrue ) )
+               {
+                       de_search();
+               }
+
 			ImGui::SameLine();
 			if (ImGui::Button("search..."))
 			{
-				auto search_ctrl = find_a_uc_from_uc(*_proot, str_ctrl_name);
-				if (search_ctrl)
-				{
-					prj_edit->sel_ui_component(search_ctrl);
-				}
+                    de_search();
 			}
 			//ImGui::Text("\xE4\xBD\xA0\xE5\xA5\xBD");
+               ImGui::BeginChild( "project_members", ImVec2( 0, 0 ), true );
 			if (_proot)
 			{
 				prj_edit->objects_view();
 				prj_edit->popup_context_menu();
 			}
+               ImGui::EndChild();
 			ImGui::End();
 		}
 		if (show_property_window)

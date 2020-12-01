@@ -13,18 +13,7 @@
 void project_edit::view_object(base_ui_component& fb)
 {
      bool beparent = fb.get_child_count() > 0;
-     if (fb._be_inner_use)
-     {
-          if (beparent)
-          {
-               for( size_t ix = 0; ix < fb.get_child_count(); ix++ )
-               {
-                    base_ui_component* pchild = fb.get_child( ix );
-                    view_object( *pchild );
-               }
-          }
-          return;
-     }
+
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;// | ImGuiTreeNodeFlags_Selected;
 	string cname = typeid(fb).name();
 	cname = cname.substr(sizeof("class autofuture::"));
@@ -67,7 +56,12 @@ void project_edit::view_object(base_ui_component& fb)
 		}
 		ImGui::TreePop();
 	}
-    
+     if( _trigger_focus_switch&&fb.is_selected() && !ImGui::IsItemVisible() )
+     {
+          ImGui::SetScrollHere();
+          _trigger_focus_switch = false;
+     }
+     
 	//if (ImGui::IsItemActive())
 	//{
 	//	// Draw a line between the button and the mouse cursor
@@ -83,6 +77,7 @@ void project_edit::view_object(base_ui_component& fb)
 void project_edit::objects_view()
 {
 	view_object(_root);
+     _trigger_focus_switch = false;
 }
 
 void project_edit::popup_context_menu()

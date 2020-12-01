@@ -148,7 +148,6 @@ namespace auto_future
 		}
 
 	public:
-          bool _be_inner_use = false;
 		/**
 		*@brief draw property on the property page for editing
 		*/
