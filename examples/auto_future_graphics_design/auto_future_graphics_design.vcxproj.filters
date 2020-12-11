@@ -157,15 +157,6 @@
     <ClCompile Include="ft_particles1_3d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="ft_plane_3d.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_sphere_3d.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_trajectory_box_3d.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="file_outputor.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
@@ -176,9 +167,6 @@
       <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="ft_block.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_plane_play_2d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="ft_plot_lines.cpp">
@@ -552,12 +540,6 @@
     <ClInclude Include="..\..\af_include\ft_particles1_3d.h">
       <Filter>af_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_plane_3d.h">
-      <Filter>af_include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_plane_play_2d.h">
-      <Filter>af_include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\af_include\ft_plot_lines.h">
       <Filter>af_include</Filter>
     </ClInclude>
@@ -573,16 +555,7 @@
     <ClInclude Include="..\..\af_include\ft_slider_thumb.h">
       <Filter>af_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_sphere_3d.h">
-      <Filter>af_include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\af_include\ft_textblock.h">
-      <Filter>af_include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_textblock_bk.h">
-      <Filter>af_include</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_trajectory_box_3d.h">
       <Filter>af_include</Filter>
     </ClInclude>
     <ClInclude Include="..\..\af_include\property_utilities.h">

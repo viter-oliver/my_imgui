@@ -1206,6 +1206,7 @@ int main( int argc, char* argv[] )
                ImGui::BeginChild( "Separated textures list", ImVec2( 1000, 500 ), true );
                ImGui::Columns( 2 );
                ImGui::BeginChild( "Separated_textures list", ImVec2( 0, 0 ), true );
+               ImGui::Text( "Separated texture list" );
                ptexture->draw_texture_list();
                ImGui::EndChild();
                ImGui::NextColumn();

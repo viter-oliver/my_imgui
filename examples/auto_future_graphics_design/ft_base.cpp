@@ -46,7 +46,7 @@ namespace auto_future
 		{
 			auto bs_ps = base_pos();
 			bool be_intersected;
-			auto& adj_value = _in_p._adjacent_to_p;
+			auto& adj_value = _in_p._interval;
 			if (ajm == en_horisontal)
 			{
 				float hitpos;
@@ -93,7 +93,7 @@ namespace auto_future
 		{
 			auto bs_ps = base_pos();
 			bool be_intersected;
-			auto& adj_value = _in_p._adjacent_to_p;
+			auto& adj_value = _in_p._interval;
 			if (ajm == en_horisontal)
 			{
 				float hitpos;
@@ -292,6 +292,17 @@ namespace auto_future
 		}
 		return NULL;
 	}
+     void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*> resut_list )
+     {
+          if( regex_search( node.get_name(), regex( uname ) ) )
+          {
+               resut_list.emplace_back( &node );
+          }
+          for (auto& it:node._vchilds)
+          {
+               find_by_un_from_the_node( *it, uname, resut_list );
+          }
+     }
 	float base_ui_component::screenw = 1920.f;
 	float base_ui_component::screenh =720.f;
 	prop_ele base_ui_component::null_prop_ele = { nullptr, 0 };
