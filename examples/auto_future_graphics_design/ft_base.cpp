@@ -292,7 +292,7 @@ namespace auto_future
 		}
 		return NULL;
 	}
-     void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*> resut_list )
+     void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list )
      {
           if( regex_search( node.get_name(), regex( uname ) ) )
           {

@@ -52,7 +52,7 @@ namespace auto_future
      typedef function<void( float, float )>mouse_drag_fun;
 	extern void ShowHelpMarker(const char* desc);
 	extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
-     extern base_ui_component* find_by_un_from_the_node( base_ui_component& node, const char* uname, bool down );
+     extern void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 	/**
 	* @brief  base_ui_component is the base class of control class \n
 	* description: base_ui_component is designed as a recursive composition
@@ -68,7 +68,7 @@ namespace auto_future
 	class AFG_EXPORT base_ui_component
 	{
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
-          friend void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*> resut_list );
+          friend void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 	protected:
           mouse_fun _mouse_clicked;
           mouse_fun _mouse_down;

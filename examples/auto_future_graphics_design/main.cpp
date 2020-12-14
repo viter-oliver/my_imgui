@@ -979,8 +979,13 @@ int main( int argc, char* argv[] )
               
 			ImGui::Begin("project");
 			static char str_ctrl_name[name_len] = {0};
+               static vector<base_ui_component*> find_resut_list;
                auto de_search = [&]
                {
+                    if (strlen(str_ctrl_name)==0)
+                    {
+                         return false;
+                    }
                     auto search_ctrl = find_a_uc_from_uc( *_proot, str_ctrl_name );
                     if( search_ctrl )
                     {
@@ -994,18 +999,51 @@ int main( int argc, char* argv[] )
                {
                        de_search();
                }
-
+               ImGui::SameLine();
+               if (ImGui::Button("X"))
+               {
+                    str_ctrl_name[ 0 ] = '\0';
+               }
 			ImGui::SameLine();
-			if (ImGui::Button("search..."))
+               if( ImGui::Button( "search..." ) && strlen( str_ctrl_name )>0)
 			{
-                    de_search();
+                    //de_search();
+                    find_resut_list.clear();
+                    find_by_un_from_the_node( *_proot, str_ctrl_name, find_resut_list );
+                    /*if (find_resut_list.size()>0)
+                    {
+
+                    }*/
 			}
 			//ImGui::Text("\xE4\xBD\xA0\xE5\xA5\xBD");
                ImGui::BeginChild( "project_members", ImVec2( 0, 0 ), true );
 			if (_proot)
 			{
-				prj_edit->objects_view();
-				prj_edit->popup_context_menu();
+                    if (find_resut_list.size()>0)
+                    {
+                         int ix = 0;
+                         for (const auto& ui_item:find_resut_list)
+                         {
+                              char cc[ 50 ] = { 0 };
+                              itoa( ix, cc, 10 );
+                              string btn_cap = ui_item->get_name();
+                              btn_cap += "##";
+                              btn_cap += cc;
+                              if (ImGui::Button(btn_cap.c_str()))
+                              {
+                                   prj_edit->sel_ui_component( ui_item );
+                                   prj_edit->trigger_focus_switch();
+                                   find_resut_list.clear();
+                                   break;
+                              }
+                              ix++;
+                         }
+                    }
+                    else
+                    {
+                         prj_edit->objects_view();
+                         prj_edit->popup_context_menu();
+                    }
 			}
                ImGui::EndChild();
 			ImGui::End();
