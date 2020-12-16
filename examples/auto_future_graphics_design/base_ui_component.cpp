@@ -7,6 +7,8 @@
 #include "aliase_edit.h"
 #include "base_prp_type_edit.h"
 #include "common_functions.h"
+#include <regex>
+
 extern bind_edit g_bind_edit;
 extern state_manager_edit g_state_manager_edit;
 extern aliase_edit g_aliase_edit;
@@ -184,6 +186,11 @@ static	string aliase_btn_cp = "  ##";
 							_vrange = irg_reg->second;
 						}
 					}
+                         string float_format = "%.3f";
+                         if( regex_search(mname, regex("_hac") ))
+                         {
+                              float_format = "%.6f";
+                         }
 					cmd_value_block before_op_memb_value;
 					before_op_memb_value.reserve(mtpsz);
 					before_op_memb_value.resize(mtpsz);
@@ -267,12 +274,12 @@ static	string aliase_btn_cp = "  ##";
 							else if (mtype == "float" || mtype == "double"){
 								//be_base_type = true;
 								f_draw_index_prop = [&](string& str_show, void*maddress){
-									return  ImGui::SliderFloat(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
+                                             return  ImGui::SliderFloat( str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f, float_format.c_str());
 								};
 							}
 							else if (mtype == "af_vec2"){
 								f_draw_index_prop = [&](string& str_show, void*maddress){
-										return ImGui::SliderFloat2(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
+                                             return ImGui::SliderFloat2( str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f, float_format.c_str() );
 								};
 				
 							}
@@ -284,7 +291,7 @@ static	string aliase_btn_cp = "  ##";
 									}
 									else
 									{
-										return ImGui::SliderFloat3(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
+                                                  return ImGui::SliderFloat3( str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f, float_format.c_str() );
 									}
 								};
 										
@@ -297,7 +304,7 @@ static	string aliase_btn_cp = "  ##";
 									}
 									else
 									{
-										return ImGui::SliderFloat4(str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f);
+                                                  return ImGui::SliderFloat4( str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f, float_format.c_str() );
 									}
 								};
 							}

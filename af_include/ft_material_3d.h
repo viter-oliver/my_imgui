@@ -7,37 +7,7 @@ namespace auto_future
 	class AFG_EXPORT ft_material_3d :
 		public ft_base
 	{
-		enum
-		{
-			en_gl_points,
-			en_gl_lines,
-			eg_gl_line_loop,
-			en_gl_line_strip,
-			en_gl_triangles,
-			en_gl_triangle_strip,
-			en_gl_triangle_fan,
-			en_gl_count
-		};
-          enum en_trans_order
-          {
-               en_translate_scale_rotate,
-               en_translate_rotate_scale,
-               en_scale_translate_rotate,
-               en_scale_rotate_translate,
-               en_rotate_translate_scale,
-               en_rotate_scale_translate,
-               en_trans_order_cnt
-          };
-          enum en_rotate_order
-          {
-               en_rotate_x_y_z,
-               en_rotate_x_z_y,
-               en_rotate_y_x_z,
-               en_rotate_y_z_x,
-               en_rotate_z_x_y,
-               en_rotate_z_y_x,
-               en_rotate_order_cnt
-          };
+
 		DEF_STRUCT_WITH_INIT(intl_pt, _pt,
 			(int, _draw_mode, {en_gl_triangles}),
 			(char, _primitive_name[FILE_NAME_LEN]),

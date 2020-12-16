@@ -1019,7 +1019,12 @@ void KeyTest(  int key)
 
                break;
           case GLFW_KEY_1:
-               be_finish_changelane = true;
+               str_show[ 0 ] = '\0';
+               set_property_aliase_value( "text_remain_dis", str_show );
+               break;
+          case GLFW_KEY_2:
+               sprintf( str_show, "200m" );
+               set_property_aliase_value( "text_remain_dis", str_show );
                break;
           case GLFW_KEY_4:
                be_visble = false;
@@ -1147,7 +1152,8 @@ void register_adas_cmd_handl()
       */
       pturn_left=(ft_image_play*)get_aliase_ui_control("txt_left_wing");
       pturn_right=(ft_image_play*)get_aliase_ui_control("txt_right_wing");
-
+      be_show = true;
+      set_property_aliase_value( "show_navi", &be_show );
 
 	g_msg_host.attach_monitor("show_image", [&](u8* pbuff,int len){
 		pbuff++;

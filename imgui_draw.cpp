@@ -2075,6 +2075,7 @@ const ImWchar*  ImFontAtlas::GetGlyphRangesChinese()
 	static ImWchar base_ranges[] = // not zero-terminated
 	{
 		0x0020, 0x00FF, // Basic Latin + Latin Supplement
+          0x2190, 0x221A,
 		0x3000, 0x30FF, // Punctuations, Hiragana, Katakana
 		0x31F0, 0x31FF, // Katakana Phonetic Extensions
 		0xFF00, 0xFFEF, // Half-width characters

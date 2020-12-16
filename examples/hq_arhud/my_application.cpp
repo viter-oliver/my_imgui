@@ -14,7 +14,7 @@
 #include "SOIL.h"
 #include "near_scenario.h"
 #include "far_scenario.h"
-
+#include "debug_var_set.h"
 using namespace chrono;
 using namespace auto_future_utilities;
 //#define debug_fps
@@ -70,6 +70,7 @@ void KeyCallback( GLFWwindow*, int key, int, int action, int mods )
 void my_application::resLoaded()
 {
      gl3wInit();
+     init_var_set_fifo();
 	lastTime = steady_clock::now();
       // ImGui_ImplGlfwGL3_Init_Shader_Source(vtsource,ftsource);
      glfwSetKeyCallback( _window, KeyCallback );
@@ -107,6 +108,11 @@ void my_application::resLoaded()
 		//fd_i2c=get_ioc_fd();		
 
 	}
+     g_mp_var_set[ "ra" ] = [&]( char* str_value )
+     {
+               float ta = atof( str_value );
+               set_rotate_angle( ta );
+     };
 	auto currentTime = steady_clock::now();
 	int delta = chrono::duration_cast<chrono::duration<int, std::milli>>(currentTime - lastTime).count();
 	printf("msg_host consume%d milli seconds\n", delta);
@@ -126,7 +132,7 @@ void my_application::onUpdate()
      }*/
 	g_msg_host.execute_data_handle_cmd();
 	g_timer.execute();
-     adas_update();
+     cmd_update();
 	
 }
 struct  opgenl_container

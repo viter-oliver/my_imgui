@@ -9,13 +9,17 @@ namespace auto_future
      ft_modeling_3d::ft_modeling_3d()
      {
           memset( _pty_page._model_name, 0, FILE_NAME_LEN );
+          memset( _pty_page._txt_diffuse, 0, FILE_NAME_LEN );
+          memset( _pty_page._txt_specular, 0, FILE_NAME_LEN );
+
           _pty_page._cam = { { 0.f, 0.f, 3.f }, { 0.f, 0.f, 0.f }, { 0.f, 1.f, 0.f } };
           _pty_page._pj = { 60.f, 0.1f, 100.f };
-          _pty_page._trans = { { 0.15f, 0.15f, 0.15f }, { 0, 0, 0 }, { 0, 0, 0 }, true };
+         // _pty_page._trans = { { 0.15f, 0.15f, 0.15f }, { 0, 0, 0 }, { 0, 0, 0 }, true };
           _pty_page._light_ambient_clr = { 0.2f, 0.2f, 0.2f };
           _pty_page._light_diffuse_clr = { 0.5f, 0.5f, 0.5f };
           _pty_page._light_specular_clr = { 1.f, 1.f, 1.f };
-          _pty_page._light_position_shd = { -1.f, 1.f, -2.f };
+          _pty_page._draw_mode = en_gl_triangles;
+          //_pty_page._light_position_shd = { -1.f, 1.f, -2.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           string str_modeling( modeling );
           auto shd_modeling = g_af_shader_list.find( str_modeling );
@@ -82,32 +86,28 @@ namespace auto_future
                                         mbox._zmax = box._zmax;
                                    }
                               }
-                              af_vec3 pt_core = { ( mbox._xmax - mbox._xmin )*0.5f, \
-                                   ( mbox._ymax - mbox._ymin )*0.5, ( mbox._zmax - mbox._zmin )*0.5f };
-                              _pty_page._cam._position = pt_core;
-                              _pty_page._cam._position.z = 5 * pt_core.z;
-                              _pty_page._cam._direction = _pty_page._cam._position - pt_core;
-                              _pty_page._cam._up = { 0.f, 1.f, 0.f };
-                              _pty_page._light_position_shd = _pty_page._cam._position;
-                              _pty_page._light_position_shd.x = 3 * pt_core.x;
+                              auto zthickness = mbox._zmax - mbox._zmin;
+                              auto yheight = mbox._ymax - mbox._zmin;
 
+                              _pty_page._cam._position = { ( mbox._xmax + mbox._xmin )*0.5f, \
+                                   ( mbox._ymax + mbox._ymin )*0.5,mbox._zmin-zthickness };
+                              _pty_page._cam._direction = _pty_page._cam._position;
+                              _pty_page._cam._direction.z = mbox._zmin;
+                              _pty_page._cam._up = { 0.f, 1.f, 0.f };
+                              _pty_page._pj._near = mbox._zmin;
+                              _pty_page._pj._far= mbox._zmax;
+#define PI 3.1415926545
+                              _pty_page._pj._fovy = 2 * atanf( yheight*0.5 / zthickness )*180/PI;
+                              _pty_page._light_posx = _pty_page._cam._position.x;
+                              _pty_page._light_posy = _pty_page._cam._position.y;
+                              _pty_page._light_posz = _pty_page._cam._position.z;
 
                          }
                     }
                }
 
           } );
-          reg_property_handle( &_pty_page, 7, [this]( void* member_address )
-          {
-               ImGui::Text( "Light position:" );
-               auto parent = get_parent();
-               float w, h;
-               parent->get_size( w, h );
-               ImGui::SliderFloat( "X", &_pty_page._light_position_shd.x, w, -w );
-               ImGui::SliderFloat( "Y", &_pty_page._light_position_shd.y, h, -h );
-               ImGui::SliderFloat( "Z", &_pty_page._light_position_shd.z, h, -h );
-          } );
-          reg_property_handle( &_pty_page, 11, [this]( void* member_address )
+          reg_property_handle( &_pty_page, 10, [this]( void* member_address )
           {
                if( _pdiffuse )
                {
@@ -131,7 +131,7 @@ namespace auto_future
                     }
                }
           } );
-          reg_property_handle( &_pty_page, 12, [this]( void* member_address )
+          reg_property_handle( &_pty_page, 11, [this]( void* member_address )
           {
                if( _pspecular )
                {
@@ -154,6 +154,18 @@ namespace auto_future
                          }
                     }
                }
+          } );
+          reg_property_handle( &_pty_page, 14, [this]( void* memb_adress )
+          {
+               ImGui::Combo( "Draw mode:", &_pty_page._draw_mode, draw_mode, en_gl_count );
+          } );
+          reg_property_handle( &_pty_page, 15, [this]( void* memb_adress )
+          {
+               ImGui::Combo( "trans order:", &_pty_page._trans_order, str_trans_order, en_trans_order_cnt );
+          } );
+          reg_property_handle( &_pty_page, 22, [this]( void* memb_adress )
+          {
+               ImGui::Combo( "rotate order:", &_pty_page._rotate_order, str_rotate_oder, en_rotate_order_cnt );
           } );
 #endif
      }
@@ -179,7 +191,7 @@ namespace auto_future
           draw_list->AddLine( pos_left, pos_right, col );
           draw_list->AddLine( pos_top, pos_bottom, col );
           ImVec2 lt_pos = pos0;
-          af_vec3& ltPos = _pty_page._light_position_shd;
+          af_vec3  ltPos { _pty_page._light_posx, _pty_page._light_posy, _pty_page._light_posz };
           switch( _dir_view )
           {
                case 0:
@@ -208,16 +220,89 @@ namespace auto_future
 		af_shader& my_shader =*_pshd_modeling;
 		my_shader.use();
 		glm::mat4 model;
-		const auto& aftr = _pty_page._trans._translation;
-		const auto& afsc = _pty_page._trans._scale;
-		const auto& afrt = _pty_page._trans._rotation;
-		glm::vec3 gtranslate(aftr.x, aftr.y, aftr.z);
-		glm::vec3 gscale(afsc.x, afsc.y, afsc.z);
-		model = glm::translate(model, gtranslate);
-		model = glm::scale(model, gscale);
-		model = glm::rotate(model, afrt.x*glm::radians(1.f), glm::vec3(1.0f, 0.0f, 0.0f));
-		model = glm::rotate(model, afrt.y*glm::radians(1.f), glm::vec3(0.0f, 1.0f, 0.0f));
-		model = glm::rotate(model, afrt.z*glm::radians(1.f), glm::vec3(0.0f, 0.0f, 1.0f));
+
+          glm::vec3 gtranslate( _pty_page._trans_translation_x, _pty_page._trans_translation_y, _pty_page._trans_translation_z );
+          glm::vec3 gscale( _pty_page._trans_scale_x, _pty_page._trans_scale_y, _pty_page._trans_scale_z );
+          auto& _pt = _pty_page;
+          function<void()> f_rotate[ en_rotate_order_cnt ] =
+          {
+               [&]()
+               {
+                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+               },
+                    [&]()
+               {
+                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+               },
+                    [&]()
+               {
+                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+               },
+                    [&]()
+               {
+                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+               },
+                    [&]()
+               {
+                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+               },
+                    [&]()
+               {
+                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+               },
+          };
+          function<void()> f_trans[ en_trans_order_cnt ] =
+          {
+               [&]()
+               {
+                    f_rotate[ _pt._rotate_order ]();
+                    model = glm::scale( model, gscale );
+                    model = glm::translate( model, gtranslate );
+               },
+                    [&]()
+               {
+                    model = glm::scale( model, gscale );
+                    f_rotate[ _pt._rotate_order ]();
+                    model = glm::translate( model, gtranslate );
+               },
+                    [&]()
+               {
+                    f_rotate[ _pt._rotate_order ]();
+                    model = glm::translate( model, gtranslate );
+                    model = glm::scale( model, gscale );
+               },
+                    [&]()
+               {
+                    model = glm::translate( model, gtranslate );
+                    f_rotate[ _pt._rotate_order ]();
+                    model = glm::scale( model, gscale );
+               },
+                    [&]()
+               {
+                    model = glm::scale( model, gscale );
+                    model = glm::translate( model, gtranslate );
+                    f_rotate[ _pt._rotate_order ]();
+               },
+                    [&]()
+               {
+                    model = glm::translate( model, gtranslate );
+                    model = glm::scale( model, gscale );
+                    f_rotate[ _pt._rotate_order ]();
+               },
+          };
+          f_trans[ _pt._trans_order ]();
 		glm::mat4 view;
 		const auto& cam_pos = _pty_page._cam._position;
 		const auto& cam_dir = _pty_page._cam._direction;
@@ -240,13 +325,11 @@ namespace auto_future
 		my_shader.uniform("light.ambient", (float*)&_pty_page._light_ambient_clr);
 		my_shader.uniform("light.diffuse", (float*)&_pty_page._light_diffuse_clr);
 		my_shader.uniform("light.specular", (float*)&_pty_page._light_specular_clr);
-		my_shader.uniform("light.position", (float*)&_pty_page._light_position_shd);
-		my_shader.uniform("light.constant", &_pty_page._light_constant);
-		my_shader.uniform("light.linear", &_pty_page._light_linear);
-		my_shader.uniform("light.quadratic", &_pty_page._light_quadratic);
+		my_shader.uniform("light.position", (float*)&_pty_page._light_posx);
+		my_shader.uniform("light.constant", &_pty_page._light_constant_hac);
+		my_shader.uniform("light.linear", &_pty_page._light_linear_hac);
+		my_shader.uniform("light.quadratic", &_pty_page._light_quadratic_hac);
 
-
-          
 		for (auto& amesh:my_model)
 		{
 			
@@ -327,9 +410,19 @@ namespace auto_future
 			     }
 
                }
-               
+               static GLuint draw_model[ en_gl_count ] =
+               {
+                    GL_POINTS,
+                    GL_LINES,
+                    GL_LINE_LOOP,
+                    GL_LINE_STRIP,
+                    GL_TRIANGLES,
+                    GL_TRIANGLE_STRIP,
+                    GL_TRIANGLE_FAN,
+               };
+               GLuint& dml = draw_model[ _pty_page._draw_mode ];
 			glBindVertexArray(primid._vao);
-			glDrawElements(GL_TRIANGLES, primid._ele_buf_len, GL_UNSIGNED_INT, 0);
+               glDrawElements( dml, primid._ele_buf_len, GL_UNSIGNED_INT, 0 );
 		}
 	}
 

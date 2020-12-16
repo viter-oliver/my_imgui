@@ -13,16 +13,7 @@ namespace auto_future
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		_pt._primitive_name[0] = '\0';
 		_pt._material_name[0] = '\0';
-		static const char* draw_mode[en_gl_count] =
-		{
-			"GL_POINTS",
-			"GL_LINES",
-			"GL_LINE_LOOP",
-			"GL_LINE_STRIP",
-			"GL_TRIANGLES",
-			"GL_TRIANGLE_STRIP",
-			"GL_TRIANGLE_FAN"
-		};
+
 		reg_property_handle(&_pt, 0, [this](void* memb_adress)
 		{
 			ImGui::Combo("Draw mode:", &_pt._draw_mode, draw_mode, en_gl_count);
@@ -148,28 +139,11 @@ namespace auto_future
 			}
 			
 		});
-          static char* str_trans_order[ en_trans_order_cnt ] =
-          {
-               "translate_scale_rotate",
-               "translate_rotate_scale",
-               "scale_translate_rotate",
-               "scale_rotate_translate",
-               "rotate_translate_scale",
-               "rotate_scale_translate",
-          };
           reg_property_handle( &_pt, 8, [this]( void* memb_adress )
           {
                ImGui::Combo( "trans order:", &_pt._trans_order, str_trans_order, en_trans_order_cnt );
           } );
-          static char* str_rotate_oder[ en_rotate_order_cnt ] =
-          {
-               "x_y_z",
-               "x_z_y",
-               "y_x_z",
-               "y_z_x",
-               "z_x_y",
-               "z_y_x",
-          };
+           
           reg_property_handle( &_pt, 15, [this]( void* memb_adress )
           {
                ImGui::Combo( "rotate order:", &_pt._rotate_order, str_rotate_oder, en_rotate_order_cnt );

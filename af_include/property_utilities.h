@@ -162,7 +162,7 @@ stname vname{_vprop_eles}; MSC_PACK_END
    uhd 即unsigned hundred，数值范围0，100
    utn 即unsigned ten，数值范围0，10
    urd 即unsigned round，数值范围0，360
-
+   hac 即high accuracy,保留6位小数
    nml 即normal，数值范围0，1
    clr 即color，该属性使用颜色编辑器来操作
    txt 即texture，该属性是一个纹理属性
