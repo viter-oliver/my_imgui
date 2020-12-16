@@ -112,7 +112,7 @@ enum en_editing_wd_state
 };
 int editing_state = en_editing;
 string reg_path = "afg_ide";
-string ikey = "max&maj20190815x";
+string ikey = "autofuture&afgER";// "max&maj20190815x";
 unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
 DWORD get_time_span(vector<BYTE> plainText)
 {
@@ -712,7 +712,26 @@ int main( int argc, char* argv[] )
 			{
 				g_ui_edit_command_mg.redo_command();
 			}
-			
+               else
+               if( ImGui::IsKeyReleased(GLFW_KEY_C) )
+               {
+                    prj_edit->copy_item();
+               }
+               else
+               if( ImGui::IsKeyReleased( GLFW_KEY_X ))
+               {
+                    prj_edit->cut_item();
+               }
+               else
+               if( ImGui::IsKeyReleased( GLFW_KEY_V ))
+               {
+                    prj_edit->past_item();
+               }               
+               else
+               if( ImGui::IsKeyReleased( GLFW_KEY_A ))
+               {
+                    prj_edit->add_sibling();
+               }               
 		}
 		
 		if (ImGui::BeginMainMenuBar())
@@ -824,15 +843,22 @@ int main( int argc, char* argv[] )
 
 				// Disabled item
 				ImGui::Separator();
-				if (ImGui::MenuItem("Cut", "CTRL+X")) 
-				{
-				}
 				if (ImGui::MenuItem("Copy", "CTRL+C")) 
 				{
+                         prj_edit->copy_item();
+				}				
+                    if (ImGui::MenuItem("Cut", "CTRL+X")) 
+				{
+                         prj_edit->cut_item();
 				}
 				if (ImGui::MenuItem("Paste", "CTRL+V")) 
 				{
+                         prj_edit->past_item();
 				}
+                    if (ImGui::MenuItem("Add sibling","CTRL+A"))
+                    {
+                         prj_edit->add_sibling();
+                    }
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Window"))
