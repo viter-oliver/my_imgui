@@ -127,11 +127,35 @@ void project_edit::add_item()
 	string cur_cname = typeid(*_pcurrent_object).name();
 	cur_cname = cur_cname.substr(sizeof("class autofuture::"));
 	bool is_ft_scene = cur_cname == "ft_scene";
-	factory::get().iterate_types([this, is_ft_scene](string cname, function<base_ui_component*()> infun){
+     bool is_ft_listbox_ex = cur_cname == "ft_listbox_ex";
+     bool is_ft_modeling = cur_cname == "ft_modeling_3d";
+     bool is_trans = cur_cname == "ft_trans";
+     bool is_material_3d = cur_cname == "ft_material_3d";
+     factory::get().iterate_types( [this, is_ft_scene, is_ft_listbox_ex,is_trans,is_ft_modeling,
+     is_material_3d]( string cname, function<base_ui_component*( )> infun )
+     {
 		string ext_name = cname.substr(cname.size() - 2, 2);
-		if (is_ft_scene&&ext_name != "3d"&&ext_name != "2d" || !is_ft_scene && (ext_name == "3d" || ext_name == "2d"))
+		if (is_ft_scene&&ext_name != "3d"&&ext_name != "2d" 
+               || !is_ft_scene && (ext_name == "3d" || ext_name == "2d"))
 		{
 			return;
+		}
+          if (is_ft_listbox_ex 
+               && (cname =="ft_base"
+               ||cname=="ft_circle"
+               ||cname=="ft_textblock"
+               ||cname=="ft_listbox"
+               ||cname=="ft_listbox_ex"
+               ||cname=="ft_polygon_image"
+               || cname == "ft_quad_image"
+               || cname == "ft_polygon_image" 
+               || cname == "ft_slider_thumb" ) )
+          {
+               return;
+          }
+          if( is_trans || (is_ft_modeling || is_material_3d)&&cname != "ft_trans" )
+		{
+               return;
 		}
 				
 		if (ImGui::MenuItem(cname.c_str(), NULL, false,infun!=nullptr))

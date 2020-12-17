@@ -205,6 +205,7 @@
     <ClCompile Include="ft_block.cpp" />
     <ClCompile Include="ft_image_file.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
+    <ClCompile Include="ft_listbox_ex.cpp" />
     <ClCompile Include="ft_material_2d.cpp" />
     <ClCompile Include="ft_material_3d.cpp" />
     <ClCompile Include="ft_modeling_3d.cpp" />
@@ -224,6 +225,7 @@
     <ClCompile Include="ft_polygon_image.cpp" />
     <ClCompile Include="ft_scene.cpp" />
     <ClCompile Include="ft_textblock.cpp" />
+    <ClCompile Include="ft_trans.cpp" />
     <ClCompile Include="ft_video.cpp" />
     <ClCompile Include="get_web_time.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
@@ -280,6 +282,7 @@
     <ClInclude Include="..\..\af_include\ft_image_file.h" />
     <ClInclude Include="..\..\af_include\ft_image_play.h" />
     <ClInclude Include="..\..\af_include\ft_listbox.h" />
+    <ClInclude Include="..\..\af_include\ft_listbox_ex.h" />
     <ClInclude Include="..\..\af_include\ft_logo_animation.h" />
     <ClInclude Include="..\..\af_include\ft_material_2d.h" />
     <ClInclude Include="..\..\af_include\ft_material_3d.h" />
@@ -295,6 +298,7 @@
     <ClInclude Include="..\..\af_include\ft_slider.h" />
     <ClInclude Include="..\..\af_include\ft_slider_thumb.h" />
     <ClInclude Include="..\..\af_include\ft_textblock.h" />
+    <ClInclude Include="..\..\af_include\ft_trans.h" />
     <ClInclude Include="..\..\af_include\ft_video.h" />
     <ClInclude Include="..\..\af_include\property_utilities.h" />
     <ClInclude Include="..\..\af_include\shader_uf.h" />

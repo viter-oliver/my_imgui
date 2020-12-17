@@ -47,9 +47,11 @@ enum en_rotate_order
      en_rotate_z_y_x,
      en_rotate_order_cnt
 };
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 extern const char* draw_mode[ en_gl_count ];
 extern const char* str_trans_order[ en_trans_order_cnt ];
 extern const char* str_rotate_oder[ en_rotate_order_cnt ];
+#endif
 struct primitive_cube;
 struct primitive_object
 {

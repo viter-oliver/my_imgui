@@ -161,6 +161,7 @@ void keep_state_trans_on()
 					{
 						ppt_addr[0] = ppt_blk_to[0];
 					}
+                         calcu_bind_node( prop );
 					idx++;
 				}
 			}
@@ -239,6 +240,7 @@ void keep_state_trans_on()
 					{
 						ppt_addr[0] = ppt_blk_to[0];
 					}
+                         calcu_bind_node( prop );
 					idx++;
 				}
 			}

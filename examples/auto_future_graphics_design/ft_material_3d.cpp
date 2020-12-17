@@ -1,5 +1,6 @@
 #include "ft_material_3d.h"
 #include "af_model.h"
+#include "ft_trans.h"
 namespace auto_future
 {
 
@@ -250,6 +251,11 @@ namespace auto_future
 			//auto& aftr = _pt._trans._translation;
 			//auto& afsc = _pt._trans._scale;
 			//auto& afrt = _pt._trans._rotation;
+               for (auto& item:_vchilds)
+               {
+                    ft_trans* ptrans_item = (ft_trans*) item;
+                    ptrans_item->transform( model );
+               }
                glm::vec3 gtranslate( _pt._trans_translation_x, _pt._trans_translation_y, _pt._trans_translation_z );
                glm::vec3 gscale( _pt._trans_scale_x, _pt._trans_scale_y, _pt._trans_scale_z );
                function<void()> f_rotate[ en_rotate_order_cnt ]=

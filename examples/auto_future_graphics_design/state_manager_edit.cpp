@@ -200,6 +200,7 @@ void state_manager_edit::view_state_manager_item_property()
 					{
 						char* ppt_addr =  fel._address;
 						memcpy(ppt_addr, &pp_block[0], fel._tpsz);
+                              calcu_bind_node( p_pos );
 					}
 				}
 			}

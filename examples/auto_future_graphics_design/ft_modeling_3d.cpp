@@ -3,6 +3,7 @@
 #include "af_model.h"
 #include "af_primitive_object.h"
 #include "res_output.h"
+#include "ft_trans.h"
 #include <sstream>
 namespace auto_future
 {
@@ -220,7 +221,11 @@ namespace auto_future
 		af_shader& my_shader =*_pshd_modeling;
 		my_shader.use();
 		glm::mat4 model;
-
+          for( auto& item : _vchilds )
+          {
+               ft_trans* ptrans_item = (ft_trans*)item;
+               ptrans_item->transform( model );
+          }
           glm::vec3 gtranslate( _pty_page._trans_translation_x, _pty_page._trans_translation_y, _pty_page._trans_translation_z );
           glm::vec3 gscale( _pty_page._trans_scale_x, _pty_page._trans_scale_y, _pty_page._trans_scale_z );
           auto& _pt = _pty_page;
