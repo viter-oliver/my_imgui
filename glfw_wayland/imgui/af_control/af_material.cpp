@@ -117,7 +117,7 @@ void material::set_value(string unf_name, float* pfvalue, GLuint len)
 	const auto& shd_ut = _mp_shader_uf.find(unf_name);
 	if (shd_ut==_mp_shader_uf.end())
 	{
-		printf("fail to set uniform:%s\n", unf_name.c_str());
+		//printf("fail to set uniform:%s\n", unf_name.c_str());
 		return;
 	}
 	auto& pshd = shd_ut->second;
@@ -147,6 +147,8 @@ void material::set_value(string unf_name, int* pivalue, GLuint len)
 	string cname = typeid(*pshd).name();
 #ifdef WIN32
 	cname = cname.substr(sizeof("class"));
+#else
+       cname = cname.substr(2);
 #endif
 	if (cname != "shader_uf_int")
 	{
@@ -168,6 +170,8 @@ void material::set_value(string unf_name, unsigned int* puivalue, GLuint len)
 	string cname = typeid(*pshd).name();
 #ifdef WIN32
 	cname = cname.substr(sizeof("class"));
+#else
+       cname = cname.substr(2);
 #endif
 	if (cname != "shader_uf_uint")
 	{

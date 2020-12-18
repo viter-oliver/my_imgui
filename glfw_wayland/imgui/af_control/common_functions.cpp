@@ -220,6 +220,8 @@ ImVec2 rotate_point_by_zaxis(ImVec2& tar, float angle, ImVec2& basePoint)
 bool prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fboId, GLuint frame_width, GLuint frame_height)
 {
 	glGenFramebuffers(1, &fboId);
+	GLint last_fmid;
+    glGetIntegerv( GL_FRAMEBUFFER_BINDING, &last_fmid );
 	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 	// 附加 纹理 color attachment
 	colorTextId = TextureHelper::makeAttachmentTexture(0, GL_RGBA, frame_width, frame_height, GL_RGBA, GL_UNSIGNED_BYTE);
@@ -231,14 +233,17 @@ bool prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fboId,
 	// 检测完整性
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
+		glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );
 		return false;
 	}
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );
 	return true;
 }
 bool af_prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fboId, GLuint frame_width, GLuint frame_height)
 {
 	glGenFramebuffers(1, &fboId);
+	GLint last_fmid;
+    glGetIntegerv( GL_FRAMEBUFFER_BINDING, &last_fmid );
 	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
 	// 附加 纹理 color attachment
 	glGenTextures(1, &colorTextId);
@@ -261,10 +266,11 @@ bool af_prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fbo
 	auto chk = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if (chk != GL_FRAMEBUFFER_COMPLETE)
 	{
+		glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );
 		printf("chk=0x%x\n", chk);
 		return false;
 	}
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );
 	return true;
 }
 bool frame_buffer()

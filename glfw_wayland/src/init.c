@@ -194,7 +194,6 @@ GLFWAPI int glfwInit(void)
 
     memset(&_glfw, 0, sizeof(_glfw));
     _glfw.hints.init = _glfwInitHints;
-
     if (!_glfwPlatformInit())
     {
         terminate();

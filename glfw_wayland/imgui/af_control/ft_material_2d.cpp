@@ -10,16 +10,7 @@ namespace auto_future
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		_pt._primitive_name[0] = '\0';
 		_pt._material_name[0] = '\0';
-		static const char* draw_mode[en_gl_count] =
-		{
-			"GL_POINTS",
-			"GL_LINES",
-			"GL_LINE_LOOP",
-			"GL_LINE_STRIP",
-			"GL_TRIANGLES",
-			"GL_TRIANGLE_STRIP",
-			"GL_TRIANGLE_FAN"
-		};
+		
 		reg_property_handle(&_pt, 0, [this](void* memb_adress)
 		{
 			ImGui::Combo("Draw mode:", &_pt._draw_mode, draw_mode, en_gl_count);
@@ -156,7 +147,7 @@ namespace auto_future
 		{
 			printf("material:%s is unmatched\n",_pt._material_name);
 		}
-		ft_base::draw();
+		//ft_base::draw();
 	}
 
 }

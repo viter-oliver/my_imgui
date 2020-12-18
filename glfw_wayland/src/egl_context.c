@@ -720,10 +720,10 @@ GLFWbool _glfwCreateContextEGL(_GLFWwindow* window,
 #elif defined(__CYGWIN__)
             "libGLESv2-2.so",
 #elif defined(__QNXNTO__)
-#if  QNX_VERSION<=660
-            "libGLESv2.so.1",
-#else
+#ifdef GLFW_INCLUDE_ES3
             "libGLESv2.so.2",
+#else
+            "libGLESv2.so.1",
 #endif
 #else
             "libGLESv2.so.2",

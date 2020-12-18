@@ -220,6 +220,67 @@ void collect_attr(string& vscode, vattr& vat)
 		}
 	}
 }
+string remove_semicolon(const string& star)
+{
+	string str_rt;
+	for (auto& ch:star)
+	{
+		if (ch != ' '&&ch != ';'&&ch!='\n')
+		{
+			str_rt += ch;
+		}
+	}
+	return str_rt;
+}
+void collect_out( string& vscode, attr_vect& vat )
+{
+     stringstream sexp( vscode );
+     string line;
+     std::regex re( ".*out.*vec\\d\\s*" );
+     std::regex re_main( "main" );
+     std::regex re_float( "float" );
+     std::regex re_vec2( "vec2" );
+     std::regex re_vec3( "vec3" );
+     std::regex re_vec4( "vec4" );
+
+     smatch sout;
+     while( getline( sexp, line ) )
+     {
+          if( std::regex_search( line, re_main ) )
+          {
+               return;
+          }
+          if( std::regex_search( line, sout,re ) )
+          {
+               const auto& stype = sout.str( 0 );
+               const auto& sname = sout.suffix().str();
+               vat.emplace_back();
+               auto& attr = vat.back();
+			   attr._name = remove_semicolon(sname);
+               attr._location = 0;
+               if( std::regex_match( stype, re_vec2) )
+               {
+                    attr._variable_type = GL_FLOAT_VEC2;
+                    attr._size = 2 * sizeof(GLfloat);
+               }
+               else if( std::regex_match( stype, re_vec3 ) )
+               {
+                    attr._variable_type = GL_FLOAT_VEC3;
+                    attr._size = 3 * sizeof(GLfloat);
+               }
+               else if( std::regex_match( stype, re_vec4 ) )
+               {
+                    attr._variable_type = GL_FLOAT_VEC4;
+                    attr._size = 4 * sizeof(GLfloat);
+               }
+               else if( std::regex_match( stype, re_float ) )
+               {
+                    attr._variable_type = GL_FLOAT;
+                    attr._size = sizeof(GLfloat);
+               }
+          }
+     }
+}
 void af_shader::link()
 {
 	//link
@@ -230,6 +291,7 @@ void af_shader::link()
 	}
 	_att_list.clear();
 	_unf_list.clear();
+	_out_list.clear();
 	glAttachShader(_shader_program_id, _vertex_shader);
 	glAttachShader(_shader_program_id, _fragment_shader);
 	vattr vat;
@@ -248,6 +310,12 @@ void af_shader::link()
 		}
 	}
 	//glBindFragDataLocation(_shader_program_id, 0, "outColor");
+	collect_out( _fs_code, _out_list );
+	if (_out_list.size()==0)
+	{
+		collect_out( _vs_code, _out_list );
+	}
+	specify_transfeedback();
 	glLinkProgram(_shader_program_id);
 	glReleaseShaderCompiler();
 	glUseProgram(_shader_program_id);
@@ -255,7 +323,22 @@ void af_shader::link()
 
 }
 
-
+void af_shader::specify_transfeedback( bool relink )
+{
+	char** feedbackVaryings = new char*[_out_list.size()];
+	auto isz = _out_list.size();
+	for (int ix = 0; ix < isz;ix++)
+	{
+	  //GLchar *varyings[] = { "outValue" };
+	 	feedbackVaryings[ix] = (char*)_out_list[ix]._name.c_str();
+	}
+	glTransformFeedbackVaryings(_shader_program_id, isz, (const GLchar* const*)feedbackVaryings, GL_INTERLEAVED_ATTRIBS);
+	delete[] feedbackVaryings;
+	if( relink )
+	{
+	 	glLinkProgram( _shader_program_id );
+	}
+}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source)
 {

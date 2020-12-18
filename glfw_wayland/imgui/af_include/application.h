@@ -1,6 +1,7 @@
 #pragma once
 #include "afg.h"
 #include <string>
+#include "screen_image_distortion.h"
 
 namespace auto_future
 {
@@ -16,6 +17,7 @@ namespace auto_future
 		float _win_width = { SCREEN_W }, _win_height = { SCREEN_H };
 		base_ui_component* _proot = { NULL };
 		float _wposx=0.f, _wposy=0.f;
+		shared_ptr<screen_image_distortion> _pscr_ds;
 	public:
 		application(int argc, char **argv);
 		~application();
@@ -37,6 +39,9 @@ namespace auto_future
 			_win_width = w_width;
 			_win_height = w_height;
 		}
+		void set_image_height(int height);
+		void set_rotate_angle( float angle );
+        void set_rotate_axis_pos( float px, float py );
 	};
 }
 

@@ -99,7 +99,7 @@ namespace auto_future
 
 
 		ImGui::ImageQuad((ImTextureID)texture_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3);
-		ft_base::draw();
+		//ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())//draw envelope

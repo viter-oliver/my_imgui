@@ -42,6 +42,8 @@ class af_shader
 {
 	/** all the type of attribute variables  of shader */
 	attr_vect _att_list;
+       /** all the out variables of shader*/
+       attr_vect _out_list;
 	/** all the type of uniform variables of shader */
 	mshader_variable_list _unf_list;
 	GLuint _shader_program_id = { 0 };
@@ -68,6 +70,7 @@ public:
 	bool build_vs_code(string& vs_code);
 	bool build_fs_code(string& fs_code);
 	void link();
+       void specify_transfeedback(bool relink=false);
     	bool is_valid(){ return _valid; }
     
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)		
@@ -86,6 +89,10 @@ public:
 
 #endif
 	bool match_format(vector<GLubyte>& fmt);
+        attr_vect& get_attr_list()
+        {
+            return _att_list;
+        }
 	void use(){ glUseProgram(_shader_program_id); }
 	bool vertex_att_pointer();
 	//template<typename T> bool uniform(string unf_name, GLsizei icnt, T* pvalue);

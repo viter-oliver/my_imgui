@@ -1,12 +1,15 @@
 #pragma once
 #include "utilitis_base_def.h"
+#include <fstream>
 #include<map>
 #include<mutex>
 #include <condition_variable>
-//#include <thread>
-#include "base_filter_n.h"
+#include <thread>
+#include <json/json.h>
 #include <memory>
-#include <queue>
+#include <atomic>
+#include <chrono>
+#include <semaphore.h>
 //#include "af_message_queue.h"
 //#include<semaphore.h>
 
@@ -14,77 +17,112 @@ namespace auto_future_utilities
 {
 using namespace std;
 using namespace Json;
+using namespace chrono;
+
 typedef vector<u8> vdata_list;
+typedef function<u8(u8*,string& )> f_get_cmd;
+typedef function<bool(u8*,int)> f_batching_handle;
+using vbatching_handle= vector<f_batching_handle>;
 //typedef unsigned char u8;
 class AFG_EXPORT msg_host_n
 {
 
-	struct key_unit
+	struct sub_unit
 	{
-		static bool is_byid;
-		u8 _id;
 		string _name;
-		key_unit() :_id(0){}
-		key_unit(u8 id, const string& mname) :_id(id), _name(mname){}
-		/*
-		bool operator ==(const key_unit& ku) const
-		{
-			return key_unit::is_byid ? this->_id == ku._id : this->_name == ku._name;
-		}*/
-		bool operator <(const key_unit& ku) const
-		{
-			return _id < ku._id;
-			/*if (key_unit::is_byid)
-			{
-				
-			}
-			else
-			{
-				return _name < ku._name;
-			}*/
-		}
-		
+		u8 _seg_len{0};
+		msg_handle _handle{nullptr};
 	};
-private:
 	struct data_unit
 	{
-		msg_handle _handle;
-		queue<vdata_list> _data_buff;
-        map<key_unit, data_unit*> _child;
-		//unique_ptr<map<key_unit, data_unit> > _pchild;
-		bool _is_root;
-		data_unit():_is_root(false){}
-		~data_unit()
-		{
-			for (auto itu:_child)
-			{
-				delete itu.second;
-			}
-			_child.clear();
-		}
-		
+		msg_handle _handle{nullptr};
+		vector<sub_unit> _vsub_unit;		
 	};
-	data_unit _root_protocol_receive_data_map;
-	map<string,data_unit*> _mvalid_data_buff;
-	map<string, vector<u8>> _protocol_send_data_map;
-	void load_protocol_from_json(Value& junit,data_unit& recv);
-	void load_send_protocol_from_json(Value& junit,vector<u8>* pparent_id=NULL);
-	data_unit& find_data_unit_by_key_unit(key_unit& ku,data_unit& data_host);
-    data_unit& find_data_unit_by_id(u8* pin_buff,data_unit& data_host,u8*& pout_buff,string& key_name);
-	base_filter_n* _task_entry;
+	using ps_du = shared_ptr<data_unit>;
+	using mprotocol = map<string, ps_du >;
+	using mpid_name = map<string, string>;
+       vbatching_handle _batching_handle_list;
+	mprotocol _recieve_protocol;
+	mpid_name _rec_id_name;
+	mprotocol _send_protocol;
+	mpid_name _sd_id_name;
+#define static_buff_len  256
+	struct buff_unit
+	{
+		u32 _data_len{ 0 };
+		u8 _static_buff[static_buff_len];
+		u8* _pdynamic_buff = nullptr;
+	};
+#define queque_len 512
+	atomic<unsigned int > _rear_id{ 0 }, _front_id{ 0 };
+	buff_unit _cmd_queue[queque_len];
+	//data_unit _root_protocol_receive_data_map;
+	//map<string, vector<u8>> _protocol_send_data_map;
+
 	msg_handle _send_cmd;
-	bool _be_running;
+    f_get_cmd _get_cmd;
+	bool _be_replaying={false};
+	bool _be_recording={false};
+	ofstream _frcording;
+	ifstream _fin_rp;
+	string _recording_file_name;
+	steady_clock::time_point  _pickdata_tm;
+	sem_t m_sem;
+	atomic<bool> _waitting_replay{false};
 public:
 	msg_host_n();
 	~msg_host_n();
 	void load_protocol_from_config(const char* config_path);
 	void load_send_protocol_from_config(const char* config_path);
+    	void set_f_get_cmd(f_get_cmd gcmd)
+	{
+		_get_cmd = gcmd;
+	}
 	bool attach_monitor(const char* object_name, msg_handle fn_obj);
+	bool attach_monitor(const char* object_name, const char* seg_name, msg_handle fn_obj);
+	bool attach_monitor(const char* object_name, u8 seg_id, msg_handle fn_obj);
+        int reg_batching_cmd( int id, f_batching_handle fbat )
+        {
+            auto bat_cnt = _batching_handle_list.size();
+            if( id < bat_cnt )
+            {
+               swap( _batching_handle_list[ id ], fbat );
+               return id;
+            }
+            else
+            {
+               _batching_handle_list.emplace_back( fbat );
+               return bat_cnt;
+            }
+        }
 	//void start_data_loop();
 	//void execute_data_task();
-	void set_task_entry(base_filter_n* pendtry)
+	
+	void begin_recording(string recording_name)
+    {
+		_be_recording=true;
+		_recording_file_name=recording_name;
+	}
+	void end_recooding()
 	{
-		_task_entry = pendtry;
+		_be_recording=false;
+		if(_frcording.is_open())
+		{
+			_frcording.close();
+		}
+	}
+	void replay_file(string recording_file);
+	void end_replay()
+	{
+		_be_recording=false;
+	}
+	bool is_waitting_replay()
+	{
+		return _waitting_replay;
+	}
+	void restart_play()
+	{
+		sem_post(&m_sem);
 	}
 	void set_send_cmd(msg_handle cmd_send)
 	{

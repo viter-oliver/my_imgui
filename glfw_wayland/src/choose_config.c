@@ -19,7 +19,7 @@ struct {
 	.green_size = EGL_DONT_CARE,
 	.blue_size = EGL_DONT_CARE,
 	.alpha_size = EGL_DONT_CARE,
-	.samples = EGL_DONT_CARE,
+	.samples = 4,
 	.config_id = EGL_DONT_CARE,
 };
 

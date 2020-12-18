@@ -12,9 +12,11 @@
 // https://github.com/ocornut/imgui
 
 struct GLFWwindow;
+IMGUI_API void ImGui_ImplGlfwGL3_Init_Shader_Source(char* vt_source,char*fg_source);
 IMGUI_API void set_rotate_angle(float angle);
 
 IMGUI_API void set_rotate_axis_pos(float px,float py);
+IMGUI_API float& proj_item(int row,int col);
 
 IMGUI_API bool        ImGui_ImplGlfwGL3_Init(GLFWwindow* window, bool install_callbacks, const char* glsl_version = NULL);
 IMGUI_API void        ImGui_ImplGlfwGL3_Shutdown();

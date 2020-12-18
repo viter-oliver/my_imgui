@@ -67,7 +67,7 @@ namespace auto_future
 			ImGui::RenderFrame(pos4a, pos4b, col);
 		}
 #endif
-		ft_base::draw();
+		//ft_base::draw();
 	}
 
 }

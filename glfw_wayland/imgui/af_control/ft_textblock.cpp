@@ -1,13 +1,22 @@
 #include "ft_textblock.h"
 #include "common_functions.h"
+#include <chrono>
+
 namespace auto_future
 {
+	using namespace chrono;
 	static bool get_font_item(void* data, int idx, const char** out_str)
 	{
 		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
 		*out_str = ft_nm_list[idx]->_name.c_str();
 		return true;
 	}
+	static const char* omit_show[en_omit_type_number] =
+	{
+		"no omit",
+		"omit rest",
+		"omit rest with ellipsis",
+	};
 	ft_textblock::ft_textblock()
 		: _txt_area(0.f, 0.f, 0.f, 0.f)
 	{
@@ -15,25 +24,41 @@ namespace auto_future
 		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
 		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		reg_property_handle(&_txt_pt, 7, [this](void*){
-			auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
-			if (_txt_pt._font_id >= ft_nm_list.size())
-			{
-				_txt_pt._font_id = 0;
-			}
-			ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size());
+		reg_property_handle(&_txt_pt, 6, [this](void*){
+			ImGui::Combo("omit:", &_txt_pt._omit_rest, omit_show, en_omit_type_number);
 		});
-		reg_property_handle(&_txt_pt,8, [this](void*){
+		reg_property_handle(&_txt_pt, 9, [this](void*){
+			auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
+			
+			if(ImGui::Combo("font:", &_txt_pt._font_id, &get_font_item, 0, ft_nm_list.size()))
+			{
+				_pfont_unit = ft_nm_list[_txt_pt._font_id];
+			}
+		});
+		reg_property_handle(&_txt_pt,10, [this](void*){
 			ImGui::SliderInt("Font size", &_txt_pt._font_size, 8, 60); 
 		});
-		reg_property_handle(&_txt_pt,9, [this](void*){
+		reg_property_handle(&_txt_pt,11, [this](void*){
 			ImGui::DragFloat("Font scale", &_txt_pt._font_scale, 0.005f, 1.f, 10.0f, "%.1f");   // Scale only this font
 			
 		});
 #endif
 	}
+	void ft_textblock::link()
+	{
+		auto& ft_nm_list = g_pfont_face_manager->get_dic_fonts();
+		if (_txt_pt._font_id>=ft_nm_list.size())
+		{
+			_txt_pt._font_id = 0;
+		}
+		_pfont_unit = ft_nm_list[_txt_pt._font_id];
+	}
 	void ft_textblock::draw()
 	{
+	       if (!_pfont_unit)
+		{
+			return;
+		}
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 dpos = abpos + winpos;
@@ -47,13 +72,13 @@ namespace auto_future
 		{
 			_txt_pt._font_id = 0;
 		}
-		string font_name = ft_nm_list[_txt_pt._font_id]->_name;
+		//string font_name = ft_nm_list[_txt_pt._font_id]->_name;
 		float font_scale = _txt_pt._font_scale;
 
 		const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
-		dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
-		dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
-		af_vec2 draw_pos{ dpos.x, dpos.y };
+		af_vec2 draw_pos;
+		draw_pos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
+		draw_pos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
 		af_vec2 end_pos;
 		wstring draw_content = utf8ToWstring(_txt_pt._content);
 		bool be_new = false;
@@ -70,29 +95,57 @@ namespace auto_future
 		}
 		if (str_sz > 0)
 		{
-			//const GLuint max_pixel_size = 512 * 512;
+			static int start_id = 0;
+			static steady_clock::time_point  lastTime;
 			if (be_new)
 			{
-				g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, true);
-				//real_size = end_pos - draw_pos;
-				_txt_area.Min = dpos;
-				_txt_area.Max = { end_pos.x, end_pos.y };
-				/*const ImVec2 ctnt_size = _txt_area.Max - _txt_area.Min;
-				dpos.x = dpos.x - ctnt_size.x*_txt_pt._txt_alignh_nml;
-				dpos.y = dpos.y - ctnt_size.y*_txt_pt._txt_alignv_nml;
-				draw_pos = { dpos.x, dpos.y };*/
+				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size, 
+												 draw_pos, end_pos,
+												 _txt_pt._font_scale,draw_content,
+												 _txt_pt._txt_clr,width,
+												 _txt_pt._omit_rest, true);
+				auto new_sz = end_pos - draw_pos;
+				draw_pos.x = dpos.x - new_sz.x*_txt_pt._txt_alignh_nml;
+				draw_pos.y = dpos.y - new_sz.y*_txt_pt._txt_alignv_nml;
 			}
-			g_pfont_face_manager->draw_wstring(font_name, _txt_pt._font_size, draw_pos, end_pos, _txt_pt._font_scale, draw_content, _txt_pt._txt_clr, width, _txt_pt._omit_rest, false);
+			if (_txt_pt._playing)
+			{
+				wstring sub_content = draw_content.substr(start_id);
+				auto cnt_content= sub_content.size();
+				auto cnt_draw_char = g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size,
+																		 draw_pos, end_pos,
+																		 _txt_pt._font_scale,sub_content,
+																		 _txt_pt._txt_clr,width,
+																		 _txt_pt._omit_rest, false);
+				auto currentTime = steady_clock::now();
+				int delta = chrono::duration_cast<chrono::duration<int, std::milli>>(currentTime - lastTime).count();
+				auto circle_time = delta * 0.001f;
+				if (circle_time>_txt_pt._play_circle)
+				{
+					start_id++;
+					if (cnt_content == cnt_draw_char)
+						start_id = 0;
+					lastTime = currentTime;
+				}
+			}
+			else
+			{
+				g_pfont_face_manager->draw_wstring(_pfont_unit, _txt_pt._font_size,
+                                                        draw_pos, end_pos,
+                                                        _txt_pt._font_scale, draw_content,
+                                                        _txt_pt._txt_clr, width,
+                                                        _txt_pt._omit_rest, false);
+			}
+			_txt_area.Min = { draw_pos.x, draw_pos.y };
+            _txt_area.Max = { end_pos.x, end_pos.y };
 		}
-		af_vec2 real_size = end_pos - draw_pos;
-		_txt_area.Min = dpos;
-		_txt_area.Max = {end_pos.x,end_pos.y};
-		ft_base::draw();
+		//ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())
 		{
-			ImVec2 pos1 = dpos;
+			af_vec2 real_size = end_pos - draw_pos;
+			ImVec2 pos1 = { draw_pos.x, draw_pos.y };
 			ImVec2 pos2 = { pos1.x, pos1.y + real_size.y };
 			ImVec2 pos3 = { pos1.x + real_size.x, pos1.y + real_size.y };
 			ImVec2 pos4 = { pos1.x + real_size.x, pos1.y };

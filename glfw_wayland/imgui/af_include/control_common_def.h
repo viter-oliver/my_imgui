@@ -46,12 +46,16 @@ namespace auto_future
 	};
 	using namespace std;
 	typedef vector<property_range> vproperty_list;
+     typedef function<void( int )> frame_fun;
+     typedef vector<frame_fun> vframe_fun;
 	const unsigned char name_len = 40;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	using namespace Json;
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
 #endif
+     typedef function<void( void )> mouse_fun;
+     typedef function<void( float, float )>mouse_drag_fun;
 	extern void ShowHelpMarker(const char* desc);
 	extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	/**
@@ -69,7 +73,11 @@ namespace auto_future
 	{
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
 	protected:
-
+          mouse_fun _mouse_clicked;
+          mouse_fun _mouse_down;
+          mouse_fun _mouse_release;
+          mouse_drag_fun _mouse_drag;
+          vframe_fun _vframe_fun;
 		vp_prop_ele _vprop_eles;
 		enum adjacent_model
 		{
@@ -86,7 +94,7 @@ namespace auto_future
 			(float, _posy, {0.f}),
 			(float, _sizew, { 20.f }),
 			(float, _sizeh, { 20.f }),
-			(float, _adjacent_to_p, {0.f}),
+			(float, _interval, {0.f}),
 			(int, _aj_model, { en_fixed }),
 			(bool, _visible, {true}),
 			(char, _name[name_len]))
@@ -95,7 +103,7 @@ namespace auto_future
 		of the child class of base_ui_componnet */
 		vector<base_ui_component*> _vchilds;
 		/** the parent object, this member will NULL if current object is root */
-		base_ui_component* _parent;
+		base_ui_component* _parent=nullptr;
 		//bool _be_window = { false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 
@@ -159,6 +167,8 @@ namespace auto_future
 		{
 			_selected = beselected;
 		}
+         
+
 		vp_prop_ele& get_prop_ele(){
 			return _vprop_eles;
 		}
@@ -166,7 +176,6 @@ namespace auto_future
 		//{
 		//	return ImVec2();
 		//}
-		virtual base_ui_component* get_hit_ui_object(float posx, float posy) = 0;
 
 		/**
 		*@brief init some data member from a json value unit
@@ -221,13 +230,79 @@ namespace auto_future
 		*@brief draw self on a surface
 		*/
 		virtual void draw() = 0;
+          int instance_cnt()
+          {
+               return _vframe_fun.size();
+          }
+          int reg_frame_fun( int idx, frame_fun ffun )
+          {
+               auto ifsz = _vframe_fun.size();
+               if( idx < ifsz )
+               {
+                    swap( _vframe_fun[ idx ], ffun );
+                    return idx;
+               }
+               _vframe_fun.emplace_back( ffun );
+               return ifsz;
+          }
+          void reg_frame_fun( vframe_fun&& vffuns )
+          {
+               _vframe_fun.clear();
+               for( auto& ffun : vffuns )
+               {
+                    _vframe_fun.emplace_back( ffun );
+               }
+          }
+          void clear_frame_fun()
+          {
+               _vframe_fun.clear();
+          }
+          virtual void draw_frames() = 0;
+          void register_mouse_click( mouse_fun mclick )
+          {
+               swap( _mouse_clicked, mclick );
+          }
+          void register_mouse_down( mouse_fun mdown )
+          {
+               swap( _mouse_down, mdown );
+          }
+          void register_mouse_release( mouse_fun mrelease )
+          {
+               swap( _mouse_release, mrelease );
+          }
+          void register_mouse_draging( mouse_drag_fun mdrag )
+          {
+               swap( _mouse_drag, mdrag );
+          }
+          void trigger_click()
+          {
+               if( _mouse_clicked ) _mouse_clicked;
+          }
+          void trigger_mouse_down()
+          {
+               if( _mouse_down ) _mouse_down;
+          }
+          void trigger_mouse_release()
+          {
+               if( _mouse_release ) _mouse_release;
+          }
+          void trigger_mouse_drag( float xof, float yof )
+          {
+               if( _mouse_drag ) _mouse_drag( xof, yof );
+          }
+          virtual void mouse_clicked(){}
+          virtual void mouse_down(){}
+          virtual void mouse_relese(){}
+          virtual void mouse_drag(float xoffset, float yoffset){}
+          virtual base_ui_component* get_hit_ui_object( float posx, float posy ) = 0;
+
 		virtual bool contains(float posx, float posy) = 0;
 		virtual bool relative_contain(float pos, bool be_h) = 0;
 		virtual bool set_prop_fd_value(int pg_id, int fd_id, void* pvalue) = 0;
 		bool get_border_hit_point(float pos, bool be_h, float& hitpos)
 		{
 			const unsigned int max_repeat_cnt = 1000;
-			bool from_et;
+			bool from_et=false;
 			float delta = 0;
 			for (unsigned int ix = 0; ix < max_repeat_cnt; ix++)
 			{

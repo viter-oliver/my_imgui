@@ -5,6 +5,7 @@ enum afb_res_index
 	en_screen_h,
 	en_font_faces,
 	en_output_bin_format,
+	en_vtextures_res_cidx,
 	en_vtextures_res,
 	en_mtextures_res,
 	en_mfiles_res,
@@ -17,5 +18,8 @@ enum afb_res_index
 	en_bind_dic,
 	en_bind_ref_dic,
 	en_state_manager,
+    en_common_value,
+	en_feedback_list,
+	en_playlist_group_list,
 	en_afb_res_cnt
 };

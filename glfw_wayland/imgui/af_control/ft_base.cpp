@@ -34,15 +34,17 @@ namespace auto_future
 
 #endif
 	}
+     
 	void ft_base::draw()
 	{
+          /**
 		auto pbase = get_parent();
-		const auto& ajm=_in_p._aj_model;
+		auto& ajm=_in_p._aj_model;
 		if (pbase&&_in_p._aj_model!=en_fixed)
 		{
 			auto bs_ps = base_pos();
 			bool be_intersected;
-			const auto& adj_value = _in_p._adjacent_to_p;
+			auto& adj_value = _in_p._adjacent_to_p;
 			if (ajm == en_horisontal)
 			{
 				float hitpos;
@@ -67,7 +69,6 @@ namespace auto_future
 			}
 
 		}
-		
 
 		if (!is_visible())
 		{
@@ -80,8 +81,83 @@ namespace auto_future
 				it->draw();
 			}
 		}
+		*/
 	}
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)	
+	void ft_base::draw_frames()
+	{
+		auto pbase = get_parent();
+		auto ajm = _in_p._aj_model;
+		if (pbase&&_in_p._aj_model != en_fixed)
+		{
+			auto bs_ps = base_pos();
+			bool be_intersected;
+			auto adj_value = _in_p._interval;
+			if (ajm == en_horisontal)
+			{
+				float hitpos;
+				bs_ps.x -= adj_value;
+				be_intersected = pbase->get_border_hit_point(bs_ps.x, true, hitpos);
+				if (be_intersected)
+				{
+					hitpos += adj_value;
+					set_base_posx(hitpos);
+				}
+			}
+			else
+			{
+				float hitpos;
+				bs_ps.y -= adj_value;
+				be_intersected = pbase->get_border_hit_point(bs_ps.y, false, hitpos);
+				if (be_intersected)
+				{
+					hitpos += adj_value;
+					set_base_posy(hitpos);
+				}
+			}
+
+		}
+		if (!is_visible())
+		{
+			return;
+		}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		if (_selected)
+		{
+			auto ab_pos = absolute_coordinate_of_base_pos();
+			auto offset = ImGui::GetCursorScreenPos();
+			auto cur_pos = ab_pos + offset;
+			ImGui::SetCursorScreenPos(cur_pos);
+			ImGui::InvisibleButton(_in_p._name, ImVec2(_in_p._sizew, _in_p._sizeh));
+			if (ImGui::IsItemActive() && ImGui::IsMouseDragging())
+			{
+				auto ms_delta = ImGui::GetIO().MouseDelta;
+				_in_p._posx += ms_delta.x;
+				_in_p._posy += ms_delta.y;
+			}
+		}
+#endif
+		auto ifsz = _vframe_fun.size();
+		if (ifsz > 0)
+		{
+			for (int ix = 0; ix < ifsz; ix++)
+			{
+				_vframe_fun[ix](ix);
+				draw();
+			}
+		}
+		else
+		{
+			draw();
+		}
+		for (auto it : _vchilds)
+		{
+			if (it->is_visible())
+			{
+				it->draw_frames();
+			}
+		}
+	}
+
 	base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
 	{
 		for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
@@ -106,7 +182,7 @@ namespace auto_future
 			return nullptr;
 		}
 	}
-#endif
+
 	bool ft_base::contains(float posx, float posy)
 	{
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
@@ -175,7 +251,7 @@ namespace auto_future
 		{
 			count = 1;
 		}
-		memcpy(pdest, pvalue, fd_ele._count + fd_ele._tpsz);
+		memcpy(pdest, pvalue,count * fd_ele._tpsz);
 		prop_ele_position cur_prp_ele_pos = { this, pg_id, fd_id};
 		calcu_bind_node(cur_prp_ele_pos);
 		return true;
@@ -235,6 +311,7 @@ namespace auto_future
 		prtn->collect_property_range(vrtn);
 		byobject->collect_property_range(vobj);
 		property_copy(vrtn, vobj);
+		prtn->link();
 		auto icnt = byobject->get_child_count();
 		for (int ii = 0; ii < icnt; ii++)
 		{

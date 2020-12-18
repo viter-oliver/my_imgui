@@ -82,7 +82,7 @@ namespace auto_future
 		{
 			return;
 		}
-		ft_base::draw();
+		//ft_base::draw();
 		vres_txt_cd& ptext_cd = _vtexture_cd;
 		if (_img_pt._frame_index >= ptext_cd.size())
 		{
@@ -118,7 +118,9 @@ namespace auto_future
 			pos4 = rotate_point_by_zaxis(pos4, _img_pt._angle_nml, axisBasePos);
 		}
 
-		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+		float alpha_s =_img_pt._alpha_nml;
+        ImVec4 vtin_cl( 1.f, 1.f, 1.f, alpha_s );
+		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3,vtin_cl);
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		if (is_selected())//draw envelope

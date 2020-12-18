@@ -10,15 +10,18 @@ namespace auto_future
 	{
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_sn_pt,
-			(af_vec4, _bk_clr))
+			(af_vec4, _bk_clr),
+                     (bool,_test_depth))
 		//frame buffer
-		unsigned int _fboId;
+		unsigned int _fboId={0};
 		unsigned int _colorTextId;
 		unsigned int _depthStencilTextId;
+		void release_resource();
 	public:
 		ft_scene();
 		~ft_scene();
-		void draw();
+		void link();
+		void draw_frames();
 		bool handle_mouse();
 	};
 

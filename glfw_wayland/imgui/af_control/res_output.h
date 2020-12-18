@@ -95,6 +95,7 @@ struct res_texture_list
 	}
 	~res_texture_list()
 	{
+		glDeleteTextures(1, &txt_id);
 	}
 };
 typedef vector<res_texture_list> vres_txt_list;
@@ -159,6 +160,10 @@ struct af_texture
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif
+	~af_texture()
+	{
+		glDeleteTextures(1, &_atxt_id);
+	}
 };
 struct af_file
 {

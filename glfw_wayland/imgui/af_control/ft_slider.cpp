@@ -66,7 +66,7 @@ namespace auto_future
 		_slider_pt._cbuffer_random_text[0] = '\0';
 		//reg_property_handle(&_slider_pt, 0, [this](void*){});
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		reg_property_handle(&_slider_pt, 2, [this](void*){
+		reg_property_handle(&_slider_pt, 8, [this](void*){
 			ImGui::Combo("direction", &_slider_pt._direction_item, direction_iitem, en_direction_cnt);
 			if (en_custom == _slider_pt._direction_item)
 			{
@@ -110,7 +110,7 @@ namespace auto_future
 	
 	void ft_slider::draw()
 	{
-		ft_base::draw();
+		//ft_base::draw();
 		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
 		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
 		if (ptext_cd.size() == 0)

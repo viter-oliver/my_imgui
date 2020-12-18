@@ -71,7 +71,7 @@ namespace auto_future
 	}
 	void ft_plot_lines::draw()
 	{
-		ft_base::draw();
+		//ft_base::draw();
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		//ImVec2 winpos = ImGui::GetWindowPos();
 		ImGui::SetCursorPosX(abpos.x);

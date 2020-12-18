@@ -412,13 +412,13 @@ int _glfwPlatformCreateWindow(_GLFWwindow* window,
             if (!_glfwCreateContextEGL(window, ctxconfig, fbconfig))
                 return GLFW_FALSE;
         }
-        else if (ctxconfig->source == GLFW_OSMESA_CONTEXT_API)
+       /* else if (ctxconfig->source == GLFW_OSMESA_CONTEXT_API)
         {
             if (!_glfwInitOSMesa())
                 return GLFW_FALSE;
             if (!_glfwCreateContextOSMesa(window, ctxconfig, fbconfig))
                 return GLFW_FALSE;
-        }
+        }*/
     }
 
     if (wndconfig->title)
@@ -503,9 +503,11 @@ void _glfwPlatformGetWindowPos(_GLFWwindow* window, int* xpos, int* ypos)
 void _glfwPlatformSetWindowPos(_GLFWwindow* window, int xpos, int ypos)
 {
     // A Wayland client can not set its position, so just warn
-
-    _glfwInputError(GLFW_PLATFORM_ERROR,
-                    "Wayland: Window position setting not supported");
+    //wl_shell_surface_set_transient(window->wl.shellSurface,window->wl.surface,xpos,ypos,0);
+    wl_surface_attach(window->wl.surface, 0, xpos, ypos);
+    wl_surface_commit(window->wl.surface);
+    printf("_glfwPlatformSetWindowPos\n");
+    //_glfwInputError(GLFW_PLATFORM_ERROR, "Wayland: Window position setting not supported");
 }
 
 void _glfwPlatformGetWindowSize(_GLFWwindow* window, int* width, int* height)
@@ -712,6 +714,8 @@ void _glfwPlatformSetWindowOpacity(_GLFWwindow* window, float opacity)
 
 void _glfwPlatformPollEvents(void)
 {
+    wl_display_dispatch_pending(_glfw.wl.display);
+    wl_display_dispatch(_glfw.wl.display);
     handleEvents(0);
 }
 
@@ -1090,7 +1094,7 @@ VkResult _glfwPlatformCreateWindowSurface(VkInstance instance,
     {
         _glfwInputError(GLFW_PLATFORM_ERROR,
                         "Wayland: Failed to create Vulkan surface: %s",
-                        _glfwGetVulkanResultString(err));
+                        " no vulkan surface");
     }
 
     return err;

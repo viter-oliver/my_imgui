@@ -7,7 +7,7 @@ namespace auto_future
 	class AFG_EXPORT ft_cube_3d :
 		public ft_base
 	{
-		DEF_STRUCT(intl_pt, _pt, 
+		DEF_STRUCT_WITH_INIT(intl_pt, _pt, 
 			(af_vec3, _translation_shd),
 			(af_vec3, _scale_stn),
 			(af_vec3, _rotation_srd))

@@ -11,7 +11,8 @@
 #include <fcntl.h>
 #include <linux/fb.h>
 //#include <GL/gl3w.h>
-
+#include <chrono>
+#include <thread>
 #include <GLFW/glfw3.h>
 #include "SOIL.h"
 //#include "texture.h"
@@ -22,6 +23,8 @@
 #include "afb_load.h"
 #include "af_state_manager.h"
 #include "af_primitive_object.h"
+
+using namespace chrono;
 //extern void instantiating_internal_shader();
 static void error_callback(int error, const char* description)
 {
@@ -47,27 +50,30 @@ namespace auto_future
 	{
 	}
 
-int get_resolution(int* width,int* height)
-{
-	struct fb_var_screeninfo sc_info;
-	int fd=open("/dev/fb0",O_RDWR);
-	ioctl(fd,FBIOGET_VSCREENINFO,&sc_info);
-	printf("%d*%d\n",sc_info.xres,sc_info.yres);
-	*width=sc_info.xres;
-	*height=sc_info.yres;
-	close(fd);
-	return 0;
-}
+	int get_resolution(int* width,int* height)
+	{
+		struct fb_var_screeninfo sc_info;
+		int fd=open("/dev/fb0",O_RDWR);
+		if(!fd)
+			return 0;
+		ioctl(fd,FBIOGET_VSCREENINFO,&sc_info);
+		printf("%d*%d\n",sc_info.xres,sc_info.yres);
+		*width=sc_info.xres;
+		*height=sc_info.yres;
+		close(fd);
+		return 0;
+	}
 	bool application::prepare()
 	{
 		glfwSetErrorCallback(error_callback);
 		if (!glfwInit())
 			return false;
-        glfwWindowHint(GLFW_CLIENT_API,GLFW_OPENGL_ES_API);
+              glfwWindowHint(GLFW_CLIENT_API,GLFW_OPENGL_ES_API);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,GL_TRUE);
+		glfwWindowHint(GLFW_SAMPLES,4);
 #if __APPLE__
 		glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif
@@ -95,9 +101,12 @@ int get_resolution(int* width,int* height)
 #else
 		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", glfwGetPrimaryMonitor(), NULL);
 #endif
-              glfwSetWindowPos(_window,100,100);
+              //glfwSetWindowPos(_window,100,100);
+
 		glfwMakeContextCurrent(_window);
+
 		glfwSwapInterval(1); // Enable vsync
+
 		//gl3wInit();
 
 		// Setup ImGui binding
@@ -121,18 +130,26 @@ int get_resolution(int* width,int* height)
 		int max_tex_size=0;
 		glGetIntegerv(GL_MAX_TEXTURE_SIZE,&max_tex_size);
 		printf("max texture size=%d\n",max_tex_size);
+		GLint max_samples=0;
+		glGetIntegerv(GL_MAX_SAMPLES,&max_samples);
+		printf("samples=%d\n",max_samples);
 		//init_internal_primitive_list();
 	// Setup style
 		//ImGui::StyleColorsLight();
 		ImGui::StyleColorsClassic();
-
-		while (!glfwWindowShouldClose(_window))
+		int tar_fps=60;
+		int iper_sc=1000.f/tar_fps;
+		steady_clock::time_point  t_bf_render,t_af_render;
+		
+		_pscr_ds = make_shared<screen_image_distortion>( _screen_width, _screen_height );
+		while (1)//!glfwWindowShouldClose(_window))
 		{
 			// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
 			// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
 			// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
 			// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
-			glfwPollEvents();
+			//glfwPollEvents();
+			t_bf_render=steady_clock::now();
 			ImGui_ImplGlfwGL3_NewFrame();
 			ImGui::SetNextWindowSize(ImVec2(_win_width, _win_height), ImGuiCond_FirstUseEver);
 			ImGui::SetNextWindowPos(ImVec2(_wposx, _wposy));
@@ -147,9 +164,9 @@ int get_resolution(int* width,int* height)
 			if (_proot)
 			{
 				onUpdate();
-				g_state_trans_player.keep_state_trans_on();
-				_proot->draw();
-				
+				keep_state_trans_on();
+				execute_lazy_value();
+                _proot->draw_frames();
 			}
 			ImGui::End();
 			ImGui::PopStyleVar();
@@ -161,13 +178,35 @@ int get_resolution(int* width,int* height)
 			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 			glClear(GL_COLOR_BUFFER_BIT);
 			ImGui::Render();
+			 _pscr_ds->bind_framebuffer();
 			ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
+			 _pscr_ds->disbind_framebuffer();
+             _pscr_ds->draw();
 			glfwSwapBuffers(_window);
+			t_af_render=steady_clock::now();
+			int delta = chrono::duration_cast<chrono::duration<int,std::milli>>(t_af_render - t_bf_render).count();
+			if(delta<iper_sc)
+			{
+			    auto sp_pd=iper_sc-delta-10;
+			    //this_thread::sleep_for(chrono::milliseconds(sp_pd));
+			}
 			
 		}
 		return true;
 	}
+	void application::set_image_height(int height)
+	{
+		_pscr_ds->set_height(height);
+	}
 
+	void application::set_rotate_angle( float angle )
+	{
+		 _pscr_ds->set_rotate_angle( angle );
+	}
+	void application::set_rotate_axis_pos( float px, float py )
+	{
+		 _pscr_ds->set_rotate_axis_pos( px, py );
+	}
 
 	void application::destroy()
 	{

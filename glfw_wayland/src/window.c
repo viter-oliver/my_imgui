@@ -143,7 +143,6 @@ GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height,
 
         return NULL;
     }
-
     fbconfig  = _glfw.hints.framebuffer;
     ctxconfig = _glfw.hints.context;
     wndconfig = _glfw.hints.window;
@@ -190,9 +189,13 @@ GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height,
     window->denom       = GLFW_DONT_CARE;
     // Save the currently current context so it can be restored later
     previous = _glfwPlatformGetTls(&_glfw.contextSlot);
+    ctxconfig.client=GLFW_OPENGL_ES_API;
     if (ctxconfig.client != GLFW_NO_API)
+    {
         glfwMakeContextCurrent(NULL);
+    }
     // Open the actual window and create its context
+
     if (!_glfwPlatformCreateWindow(window, &wndconfig, &ctxconfig, &fbconfig))
     {
         glfwMakeContextCurrent((GLFWwindow*) previous);
@@ -346,6 +349,10 @@ GLFWAPI void glfwWindowHint(int hint, int value)
         case GLFW_COCOA_GRAPHICS_SWITCHING:
             _glfw.hints.context.nsgl.offline = value ? GLFW_TRUE : GLFW_FALSE;
             return;
+        case GLFW_SCREEN_WINDOW_ZORDER:
+            _glfw.hints.window.zorder=value;
+            break;
+            
         case GLFW_CENTER_CURSOR:
             _glfw.hints.window.centerCursor = value ? GLFW_TRUE : GLFW_FALSE;
             return;
@@ -406,6 +413,10 @@ GLFWAPI void glfwWindowHintString(int hint, const char* value)
         case GLFW_X11_INSTANCE_NAME:
             strncpy(_glfw.hints.window.x11.instanceName, value,
                     sizeof(_glfw.hints.window.x11.instanceName) - 1);
+            return;
+        case GLFW_SCREEN_DISPLAY_NAME:
+            strcpy(_glfw.hints.window.display_name,value);
+            _glfw.hints.window.display_name[strlen(value)]='\0';
             return;
     }
 

@@ -12,7 +12,7 @@
 #include <assert.h>
 #include <ft2build.h>
 #include <memory>
-#define _CHECK_TIME_CONSUME
+//#define _CHECK_TIME_CONSUME
 #ifdef _CHECK_TIME_CONSUME
 #include <chrono>
 #endif
@@ -58,6 +58,7 @@ namespace auto_future
 		GLuint _txt_id{ 0 };
 		af_vi2 _txt_size;
 		af_vui2 _border;
+              GLint _max_bearingy;
 		GLuint _font_size{ 0 };
 		bool _be_full{ false };
 		dic_glyph_txt _dic_txt_cd;
@@ -95,7 +96,13 @@ namespace auto_future
 
 		}
 	}
-
+	enum omit_type
+	{
+		en_no_omit,
+		en_omit_rest,
+		en_omit_rest_with_ellipsis,
+		en_omit_type_number
+	};
 	class font_face_manager
 	{
 		FT_Library _ft;
@@ -118,9 +125,10 @@ namespace auto_future
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			glBindTexture(GL_TEXTURE_2D, 0);
 		}
-		void load_chars(FT_Face&fontFace, txt_font_repository&fp, wstring& wchar_list, GLint& max_bearingy)
+		void load_chars(FT_Face&fontFace, txt_font_repository&fp, wstring& wchar_list)
 		{
 			dic_glyph_txt& container = fp._dic_txt_cd;
+                     GLint& max_bearingy=fp._max_bearingy;
 			GLuint& txtid = fp._txt_id;
 			assert(txtid&&"you must pass a valid texture id into the function load_chars!");
 			af_vui2& border = fp._border;
@@ -216,13 +224,13 @@ namespace auto_future
 		}
 		~font_face_manager()
 		{
-			glDeleteFramebuffers(1, &_fmbf_id);
+			//glDeleteFramebuffers(1, &_fmbf_id);
 		}
 		
-		vfont_face_name& get_font_name_list()
+		/*vfont_face_name& get_font_name_list()
 		{
-			return _font_face_names;
-		}
+		return _font_face_names;
+		}*/
 		dic_fonts& get_dic_fonts()
 		{
 			return _dic_fonts; 
@@ -273,6 +281,7 @@ namespace auto_future
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
 			auto ft_u = make_shared<font_unit>();
 			ft_u->_ft_face = face;
+			ft_u->_name = fontFaceName;
 			_dic_fonts.emplace_back(ft_u);
 			//
 			//auto currentTime = std::chrono::high_resolution_clock::now();
@@ -282,7 +291,11 @@ namespace auto_future
 		}
 
 	
-		void draw_wstring(string& fontFace, GLint fontSize, af_vec2& start_pos, af_vec2& end_pos, GLfloat scale, wstring& str_content, const af_vec3& txt_col, float width, bool omit_rest,bool be_new);
+		int draw_wstring(ps_font_unit& pf_u, GLint fontSize,
+							af_vec2& start_pos, af_vec2& end_pos, 
+							GLfloat scale, wstring& str_content, 
+							const af_vec3& txt_col, float width, 
+							int omit_rest,bool be_new);
 	};
 
 	extern shared_ptr<font_face_manager> g_pfont_face_manager;

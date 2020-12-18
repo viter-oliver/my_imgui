@@ -1,21 +1,53 @@
 #include "af_primitive_object.h"
 #include "common_functions.h"
-void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff, GLuint ele_cnt)
+const char* draw_mode[ en_gl_count ] =
+{
+     "GL_POINTS",
+     "GL_LINES",
+     "GL_LINE_LOOP",
+     "GL_LINE_STRIP",
+     "GL_TRIANGLES",
+     "GL_TRIANGLE_STRIP",
+     "GL_TRIANGLE_FAN"
+};
+const char* str_trans_order[ en_trans_order_cnt ] =
+{
+     "translate_scale_rotate",
+     "translate_rotate_scale",
+     "scale_translate_rotate",
+     "scale_rotate_translate",
+     "rotate_translate_scale",
+     "rotate_scale_translate",
+};
+const char* str_rotate_oder[ en_rotate_order_cnt ] =
+{
+     "x_y_z",
+     "x_z_y",
+     "y_x_z",
+     "y_z_x",
+     "z_x_y",
+     "z_y_x",
+};
+void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, GLuint* pele_buff, GLuint ele_cnt,GLuint mem_usage)
 {
 	_vertex_buf_len = vetexlen;
 	_ele_buf_len = ele_cnt;
+     _mem_usage = mem_usage;
+
 	glBindVertexArray(_vao);
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-	GLuint mem_usage = _read_only ? GL_STATIC_DRAW : GL_DYNAMIC_DRAW;
 	glBufferData(GL_ARRAY_BUFFER, sizeof(GLfloat)*_vertex_buf_len, pvertex_data, mem_usage);
+
 	if (pele_buff)
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint)*_ele_buf_len, pele_buff, mem_usage);
 	}	
+
 	GLuint idx = 0;
 	GLubyte stride = get_stride();
 	int pointer = 0;
+
 	for (auto& el : _ele_format)
 	{
 		glEnableVertexAttribArray(idx);
@@ -23,18 +55,21 @@ void primitive_object::load_vertex_data(GLfloat* pvertex_data, GLuint vetexlen, 
 		pointer += el;
 		idx++;
 	}
+
 	glBindVertexArray(0);
 }
 void primitive_object::enableVertex()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, _vbo);
-	if (_ele_buf_len>0)
+	if (_ele_buf_len > 0)
 	{
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _ebo);
-	}	
+	}
+
 	GLuint idx = 0;
 	GLubyte stride = get_stride();
 	int pointer = 0;
+
 	for (auto& el : _ele_format)
 	{
 		glEnableVertexAttribArray(idx);
@@ -111,13 +146,13 @@ bool ref_a_intenal_primitive(string& prm_name)
 {
 	auto& itn_prm_lst = internal_primitive_name_list;
 	GLuint isz = sizeof(itn_prm_lst) / sizeof(internal_prm);
+
 	for (int ix = 0; ix < isz;ix++)
 	{
 		auto& prm_un = itn_prm_lst[ix];
 		if (prm_name == prm_un._name)
 		{
 			auto ps_prm = make_shared<primitive_object>();
-			ps_prm->_read_only = false;
 			ps_prm->set_ele_format(prm_un._fmt);
 			ps_prm->load_vertex_data(prm_un._pvert, prm_un._vert_cnt, prm_un._ele, prm_un._ele_cnt);
 			auto buff_len = 4 + prm_un._vert_cnt*sizeof(float) + prm_un._ele_cnt*sizeof(GLuint);
@@ -151,8 +186,7 @@ ps_primrive_object get_prm_object(const char* prm_name)
 	auto iprm = g_primitive_list.find(prm_name);
 	if (iprm != g_primitive_list.end())
 	{
-		return iprm->second;
-		
+		return iprm->second;	
 	}
 }
 

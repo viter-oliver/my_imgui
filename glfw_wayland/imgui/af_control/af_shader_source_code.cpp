@@ -154,13 +154,12 @@ void main(){
 
 const char* modeling = "modeling";
 const char* modeling_vs=R"glsl(
-#version 330 core
-layout(location = 0) in vec3 position;
-layout(location = 1) in vec2 textCoord;
-layout(location = 2) in vec3 normal;
-out vec3 FragPos;
-out vec2 TextCoord;
-out vec3 FragNormal;
+attribute vec3 position;
+attribute vec3 normal;
+attribute vec2 textCoord;
+varying vec3 FragPos;
+varying vec2 TextCoord;
+varying vec3 FragNormal;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -169,20 +168,16 @@ uniform mat4 projection;
 void main()
 {
     gl_Position = projection * view * model * vec4(position, 1.0);
-	FragPos = vec3(model * vec4(position, 1.0)); // 在世界坐标系中指定片元位置
-	TextCoord = textCoord;
+	FragPos = vec3(model * vec4(position, 1.0));//special a position for fragment
+    TextCoord = textCoord;
 	mat3 normalMatrix = mat3(transpose(inverse(model)));
-	FragNormal = normalMatrix * normal; // 计算法向量经过模型变换后值
+	FragNormal = normalMatrix * normal; //calculate normal
 }
 )glsl";
 const char* modeling_fs=R"glsl(
-#version 330 core
-
-in vec3 FragPos;
-in vec2 TextCoord;
-in vec3 FragNormal;
-
-// 光源属性结构体
+varying vec3 FragPos;
+varying vec2 TextCoord;
+varying vec3 FragNormal;
 struct LightAttr
 {
 	vec3 position;
@@ -190,47 +185,39 @@ struct LightAttr
 	vec3 diffuse;
 	vec3 specular;
 
-	float constant;	// 衰减常数
-	float linear;   // 衰减一次系数
-	float quadratic; // 衰减二次系数
+	float constant;
+	float linear;
+	float quadratic;
 };
 
 uniform LightAttr light;
 uniform vec3 viewPos;
 uniform sampler2D texture_diffuse0;
-uniform sampler2D texture_diffuse1;
-uniform sampler2D texture_diffuse2;
+//uniform sampler2D texture_diffuse1;
+//uniform sampler2D texture_diffuse2;
 uniform sampler2D texture_specular0;
-uniform sampler2D texture_specular1;
-uniform sampler2D texture_specular2;
-
-out vec4 color;
+//uniform sampler2D texture_specular1;
+//uniform sampler2D texture_specular2;
 
 void main()
 {
-	// 环境光成分
 	vec3	ambient = light.ambient * vec3(texture(texture_diffuse0, TextCoord));
 
-	// 漫反射光成分 此时需要光线方向为指向光源
 	vec3	lightDir = normalize(light.position - FragPos);
 	vec3	normal = normalize(FragNormal);
 	float	diffFactor = max(dot(lightDir, normal), 0.0);
 	vec3	diffuse = diffFactor * light.diffuse * vec3(texture(texture_diffuse0, TextCoord));
-
-	// 镜面反射成分 此时需要光线方向为由光源指出
 	float	specularStrength = 0.5f;
 	vec3	reflectDir = normalize(reflect(-lightDir, normal));
 	vec3	viewDir = normalize(viewPos - FragPos);
 	float	specFactor = pow(max(dot(reflectDir, viewDir), 0.0), 64.0f);
 	vec3	specular = specFactor * light.specular * vec3(texture(texture_specular0, TextCoord));
-
-	// 计算衰减因子
-	float distance = length(light.position - FragPos); // 在世界坐标系中计算距离
+	float distance = length(light.position - FragPos);
 	float attenuation = 1.0f / (light.constant 
 			+ light.linear * distance
 			+ light.quadratic * distance * distance);
 
 	vec3	result = (ambient + diffuse + specular) * attenuation;
-	color	= vec4(result , 1.0f);
+	gl_FragColor	= vec4(result , 1.0f);
 }
 )glsl";

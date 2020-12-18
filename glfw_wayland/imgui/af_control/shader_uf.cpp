@@ -22,7 +22,7 @@ void shader_uf::init_from_json(Value& jvalue)
 }
 
 
-void shader_uf_float::edit()
+void shader_uf_float::edit( string obj_name )
 {
 	float* pfvalue = _pfvalue;
 	int wsize = _usize*_el_size;
@@ -105,7 +105,7 @@ void shader_uf_float::init_from_json(Value& jvalue)
 		_pfvalue[ix] = value_list[ix].asDouble();
 	}
 }
-void shader_uf_int::edit()
+void shader_uf_int::edit( string obj_name )
 {
 	int *pivalue = _pivalue;
 	int wsize = _usize*_el_size;
@@ -167,7 +167,7 @@ void shader_uf_int::init_from_json(Value& jvalue)
 		_pivalue[ix] = value_list[ix].asInt();
 	}
 }
-void shader_uf_uint::edit()
+void shader_uf_uint::edit( string obj_name )
 {
 	unsigned int* puivalue = _puivalue;
 	int wsize = _usize*_el_size;
@@ -228,7 +228,7 @@ void shader_uf_uint::init_from_json(Value& jvalue)
 		_puivalue[ix] = value_list[ix].asUInt();
 	}
 }
-void shader_uf_double::edit()
+void shader_uf_double::edit( string obj_name )
 {
 	double* pdvalue = _pdvalue;
 	int wsize = _usize*_el_size;
@@ -290,13 +290,16 @@ void shader_uf_double::init_from_json(Value& jvalue)
 	}
 }
 
-void shader_uf_txt::edit()
+void shader_uf_txt::edit( string obj_name )
 {
+     string txtCat = "Texture name##", btnCat = "Link##";
 	if (_pdtxt)
 	{
 		ImGui::Text("Texture name:%s", _txt_name);
 		ImGui::SameLine();
-		if (ImGui::Button("Delink##txtname"))
+          btnCat = "Delink##";
+          btnCat += obj_name;
+          if( ImGui::Button( btnCat.c_str()) )
 		{
 			_pdtxt = nullptr;
 			_txt_name[0] = '\0';
@@ -317,8 +320,10 @@ void shader_uf_txt::edit()
 	}
 	else
 	{
-		ImGui::InputText("Texture name", _txt_name, FILE_NAME_LEN);
-		if (ImGui::Button("Link##txtobj"))
+          txtCat += obj_name;
+          btnCat += obj_name;
+		ImGui::InputText(txtCat.c_str(), _txt_name, FILE_NAME_LEN);
+		if (ImGui::Button(btnCat.c_str()))
 		{
 			auto& itxt = g_mtexture_list.find(_txt_name);
 			if (itxt!=g_mtexture_list.end())
@@ -358,7 +363,7 @@ void shader_uf_txt::link(){
 		ptn++;
 	}
 	*ptn='\0';*/
-	printf("txt=%s",_txt_name);
+	//printf("txt=%s",_txt_name);
 	const auto& itxt = g_mtexture_list.find(_txt_name);
 	if (itxt != g_mtexture_list.end())
 	{
@@ -367,7 +372,7 @@ void shader_uf_txt::link(){
 	}
 	else
 	{
-		//printf("failto find %s  \n",_txt_name);
+		printf("failto find %s  \n",_txt_name);
 		for(auto& imt:g_mtexture_list)
 		{
 			printf("txtname:%s\n",imt.first.c_str());	

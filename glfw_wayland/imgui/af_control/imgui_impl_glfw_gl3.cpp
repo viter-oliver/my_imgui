@@ -69,6 +69,28 @@ float g_cs_a = 1.f, g_sn_a = 0.f, g_ox = -400, g_oy = -267;
 
 static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_AttribLocationColor = 0;
 static unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
+float f_invalid=-10000.0;
+ float ortho_projection[4][4] =
+    {
+        { 0.0025f,    0.0f,     0.0f,   0.0f },
+        { 0.0f,    0.00625f,     0.0f,   0.0f },
+        { 0.0f,    0.0f,     -1.0f,  0.0f },
+        {-1.0f,    1.0f,     0.0f,  1.0f },
+    };
+ float& proj_item(int row,int col)
+ {
+       if(row<4&&col<4)
+       {
+		return ortho_projection[row][col];
+	}
+	return f_invalid;
+ }
+ GLchar *s_vt_source=NULL,*s_fg_source=NULL;
+void ImGui_ImplGlfwGL3_Init_Shader_Source(GLchar* vt_source,GLchar*fg_source)
+{
+	s_vt_source=vt_source;
+	s_fg_source=fg_source;
+}
 
 // OpenGL3 Render function.
 // (this used to be set in io.RenderDrawListsFn and called by ImGui::Render(), but you can now call this directly from your main loop)
@@ -83,6 +105,7 @@ void set_rotate_axis_pos(float px,float py)
 	g_ox=-px;
 	g_oy=-py;
 }
+
 void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
 {
 #if	0
@@ -198,6 +221,7 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
 
     // Setup render state: alpha-blending enabled, no face culling, no depth testing, scissor enabled
     glEnable(GL_BLEND);
+    //glEnable(GL_MULTISAMPLE);
     glBlendEquation(GL_FUNC_ADD);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     glDisable(GL_CULL_FACE);
@@ -211,13 +235,13 @@ void ImGui_ImplGlfwGL3_RenderDrawData(ImDrawData* draw_data)
     draw_data->ScaleClipRects(io.DisplayFramebufferScale);
 
     // Setup orthographic projection matrix
-    const float ortho_projection[4][4] =
+    /*const float ortho_projection[4][4] =
     {
         { 2.0f/io.DisplaySize.x, 0.0f,                   0.0f, 0.0f },
         { 0.0f,                  2.0f/-io.DisplaySize.y, 0.0f, 0.0f },
         { 0.0f,                  0.0f,                  -1.0f, 0.0f },
         {-1.0f,                  1.0f,                   0.0f, 1.0f },
-    };
+    };*/
     glUseProgram(g_ShaderHandle);
     glUniform1i(g_AttribLocationTex, 0);
     glUniformMatrix4fv(g_AttribLocationProjMtx, 1, GL_FALSE, &ortho_projection[0][0]);
@@ -357,16 +381,8 @@ bool ImGui_ImplGlfwGL3_CreateFontsTexture()
 
     return true;
 }
-
-bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
-{
-    // Backup GL state
-    GLint last_texture, last_array_buffer, last_vertex_array;
-    glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
-    glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
-    glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
 #if 0
-    const GLchar *vertex_shader =
+    GLchar *vertex_shader =
         "#version 150\n"
         "uniform mat4 ProjMtx;\n"
 		"//uniform mat4 customMtx;\n"
@@ -394,7 +410,7 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
         "}\n";
 #else
 #ifdef _LEVEL_CAL
-    const GLchar *vertex_shader =
+    GLchar *vertex_shader =
         "uniform mat4 ProjMtx;\n"
         "uniform mat2 customMtx;\n"
 	 "uniform vec2 customDelta;\n"
@@ -411,7 +427,7 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
         "	gl_Position =  ProjMtx * vec4(tmpv.xy,0,1);\n"
         "}\n";
 #else
- const GLchar *vertex_shader =
+ GLchar *vertex_shader =
         "uniform mat4 ProjMtx;\n"
         "attribute vec2 Position;\n"
         "attribute vec2 UV;\n"
@@ -425,7 +441,7 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
         "	gl_Position =  ProjMtx * vec4(Position.xy,0,1);\n"
         "}\n";
 #endif
-    const GLchar* fragment_shader =
+    GLchar* fragment_shader =
 #ifdef __EMSCRIPTEN__
         // WebGL requires precision specifiers but OpenGL 2.1 disallows
         // them, so I define the shader without it and then add it here.
@@ -439,11 +455,27 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
         "	gl_FragColor = Frag_Color * texture2D(Texture, Frag_UV);\n"
         "}\n";
 #endif
+bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
+{
+    // Backup GL state
+    GLint last_texture, last_array_buffer, last_vertex_array;
+    glGetIntegerv(GL_TEXTURE_BINDING_2D, &last_texture);
+    glGetIntegerv(GL_ARRAY_BUFFER_BINDING, &last_array_buffer);
+    glGetIntegerv(GL_VERTEX_ARRAY_BINDING, &last_vertex_array);
+
     g_ShaderHandle = glCreateProgram();
     g_VertHandle = glCreateShader(GL_VERTEX_SHADER);
     g_FragHandle = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(g_VertHandle, 1, &vertex_shader, 0);
-    glShaderSource(g_FragHandle, 1, &fragment_shader, 0);
+    if(!s_vt_source)
+    {
+    	s_vt_source=vertex_shader;
+    }
+    if(!s_fg_source)
+    {
+	s_fg_source=fragment_shader;
+    }
+    glShaderSource(g_VertHandle, 1, &s_vt_source, 0);
+    glShaderSource(g_FragHandle, 1, &s_fg_source, 0);
     glCompileShader(g_VertHandle);
     glCompileShader(g_FragHandle);
     glAttachShader(g_ShaderHandle, g_VertHandle);
@@ -589,8 +621,7 @@ void ImGui_ImplGlfwGL3_Shutdown()
 
 void ImGui_ImplGlfwGL3_NewFrame()
 {
-	if (!g_VboHandle)
-		ImGui_ImplGlfwGL3_CreateDeviceObjects();
+	
 
     ImGuiIO& io = ImGui::GetIO();
 
@@ -599,6 +630,13 @@ void ImGui_ImplGlfwGL3_NewFrame()
     int display_w, display_h;
     glfwGetWindowSize(g_Window, &w, &h);
     glfwGetFramebufferSize(g_Window, &display_w, &display_h);
+    if (!g_VboHandle)
+    {
+		ImGui_ImplGlfwGL3_CreateDeviceObjects();
+		proj_item(0, 0)= 2.0f/w;
+		proj_item(1, 1)= -2.0f/h;
+		
+    }
     io.DisplaySize = ImVec2((float)w, (float)h);
     io.DisplayFramebufferScale = ImVec2(w > 0 ? ((float)display_w / w) : 0, h > 0 ? ((float)display_h / h) : 0);
 

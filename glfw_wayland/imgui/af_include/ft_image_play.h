@@ -14,7 +14,8 @@ namespace auto_future
 			(float, _aposy, { 0.f }),			
 			(char, _texture_fmt_name[FILE_NAME_LEN]),
 			(int, _frame_index, {0}),
-			(float, _angle_nml, {0.f}))
+			( float, _angle_nml, { 0.f } ),
+            ( float, _alpha_nml, { 1.f } ))
 		ps_af_texture _ps_texture;
 		ps_af_file _ps_format;
 		vres_txt_cd _vtexture_cd;
