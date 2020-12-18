@@ -115,20 +115,18 @@ bool python_interpreter::call_python_fun(string& fun_exp, string fun_name, var_u
                else if (parm._type=="af_vec2")
                {
                     af_vec2* pv2 = (af_vec2*)parm._value_addr;
-                    PyTuple_SetItem( pArgs, ix, Py_BuildValue( "O&", *pv2 ) );
+                    PyTuple_SetItem( pArgs, ix, Py_BuildValue( "[f,f]", pv2->x,pv2->y ) );
                }
                else if( parm._type == "af_vec3" )
                {
                     af_vec3* pv3 = (af_vec3*)parm._value_addr;
-                    PyTuple_SetItem( pArgs, ix, Py_BuildValue( "O&", *pv3 ) );
+                    PyTuple_SetItem( pArgs, ix, Py_BuildValue( "[f,f,f]", pv3->x,pv3->y,pv3->z) );
                }
                else if( parm._type == "af_vec4" )
                {
                     af_vec4* pv4 = (af_vec4*)parm._value_addr;
-                    PyTuple_SetItem( pArgs, ix, Py_BuildValue( "O&", *pv4) );
+                    PyTuple_SetItem( pArgs, ix, Py_BuildValue( "[f,f,f,f]", pv4->x,pv4->y,pv4->z,pv4->w) );
                }
-               
-               
 		}
 		PyObject* pRtn = PyObject_CallObject(pFunc, pArgs);
 		if (fun_retn._type=="int")
@@ -153,16 +151,30 @@ bool python_interpreter::call_python_fun(string& fun_exp, string fun_name, var_u
 		}
           else if(fun_retn._type=="af_vec2" )
           {
-               PyArg_Parse( pRtn, "O&", (af_vec2*)fun_retn._value_addr );
+               //PyArg_Parse( pRtn, "O", (af_vec2*)fun_retn._value_addr );
+               //PyArg_ParseTuple( pRtn, "O&", (af_vec2*)fun_retn._value_addr );
+               af_vec2 tv2;
+               PyArg_ParseTuple( pRtn, "ff", &tv2.x, &tv2.y );
+               memcpy( fun_retn._value_addr, &tv2, sizeof( af_vec2 ) );
           }
           else if( fun_retn._type == "af_vec3" )
           {
-               PyArg_Parse( pRtn, "O&", (af_vec3*)fun_retn._value_addr );
+              //PyArg_Parse( pRtn, "O", (af_vec3*)fun_retn._value_addr );
+              af_vec3 tv3;
+              PyArg_ParseTuple( pRtn, "fff", &tv3.x, &tv3.y, &tv3.z );
+              memcpy( fun_retn._value_addr, &tv3, sizeof( af_vec3 ) );
+                //PyArg_ParseTuple( pRtn, "O&", (af_vec3*)fun_retn._value_addr );
+
           }
           else if( fun_retn._type == "af_vec4" )
           {
-               PyArg_Parse( pRtn, "O&", (af_vec4*)fun_retn._value_addr );
-          }
+               //PyArg_Parse( pRtn, "O", (af_vec4*)fun_retn._value_addr );
+               //PyObject* py_this;
+               //PyArg_ParseTuple( pRtn, "O", &py_this );
+               af_vec4 tv4;
+               PyArg_ParseTuple( pRtn, "ffff", &tv4.x, &tv4.y, &tv4.z, &tv4.w );
+               memcpy( fun_retn._value_addr, &tv4, sizeof( af_vec4 ) );
+         }
 		Py_XDECREF(pFunc);
           Py_CLEAR( pArgs );
 
