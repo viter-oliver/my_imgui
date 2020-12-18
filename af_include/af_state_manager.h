@@ -90,7 +90,7 @@ AFG_EXPORT bool trans_is_playing( string trans_name );
 AFG_EXPORT bool save_trans_value( string trans_name, int sid );
 AFG_EXPORT bool restore_trans_value( string trans_name, int sid );
 AFG_EXPORT bool reg_trans_handle(string trans_name, trans_finish_handle trans_handle);
-AFG_EXPORT bool play_tran(string stm_name, int from, int to);
+AFG_EXPORT bool play_tran(string stm_name, int from, int to,bool cover_from_value=true);
 AFG_EXPORT bool play_tran_playlist(string stm_name, int playlist_id);
 AFG_EXPORT void keep_state_trans_on();
 AFG_EXPORT bool save_property_to_trans_state( string trans_name,

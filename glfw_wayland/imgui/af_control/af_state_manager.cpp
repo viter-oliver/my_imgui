@@ -31,7 +31,7 @@ AFG_EXPORT bool trans_is_playing( string trans_name)
 	}
 	return false;
 }
-AFG_EXPORT bool play_tran(string stm_name, int from, int to)
+AFG_EXPORT bool play_tran(string stm_name, int from, int to,bool cover_from_value)
 {
 	const auto& istm = g_mstate_manager.find(stm_name);
 	if (istm == g_mstate_manager.end())
@@ -55,6 +55,25 @@ AFG_EXPORT bool play_tran(string stm_name, int from, int to)
 	stm._play_state = en_play_tran;
 	stm._cur_from = from;
 	stm._cur_to = to;
+	if (cover_from_value)
+	{
+	  auto& pp_value_list = stm._prop_value_list;
+	  auto& cur_pp_value = pp_value_list[ from ];
+	  auto& pplist = stm._prop_list;
+	  int iidx = 0;
+	  for( auto&p_pos : pplist )
+	  {
+	       auto& pgidx = p_pos._page_index;
+	       auto& fidx = p_pos._field_index;
+	       field_ele &fel = p_pos._pobj->get_filed_ele( pgidx, fidx );
+	       auto& pp_block = cur_pp_value[ iidx ];
+	       char* ppt_addr = fel._address;
+	       int tp_sz = fel._tpsz;
+	       pp_block.resize( tp_sz );
+	       memcpy( ppt_addr, &pp_block[ 0 ], tp_sz );
+	       iidx++;
+	  }
+	}
 	return true;
 }
 AFG_EXPORT bool play_tran_playlist(string stm_name, int playlist_id)
