@@ -6,6 +6,7 @@ namespace auto_future
 
      ft_trans::ft_trans()
      {
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           reg_property_handle( &_pt, 0, [this]( void* memb_adress )
           {
                ImGui::Combo( "trans order:", &_pt._trans_order, str_trans_order, en_trans_order_cnt );
@@ -15,6 +16,7 @@ namespace auto_future
           {
                ImGui::Combo( "rotate order:", &_pt._rotate_order, str_rotate_oder, en_rotate_order_cnt );
           } );
+#endif
      }
      void ft_trans::transform( glm::mat4& model )
      {

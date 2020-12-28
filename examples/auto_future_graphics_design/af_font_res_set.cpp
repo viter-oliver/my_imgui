@@ -31,7 +31,7 @@ namespace auto_future
 	int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize,
                                           af_vec2& start_pos, af_vec2& end_pos, 
                                           GLfloat scale, wstring& str_content, 
-                                          const af_vec3& txt_col, float width, 
+                                          const af_vec4& txt_col, float width, 
                                           int omit_rest,bool be_new)
 	{
 		//if (fontSize != _font_rp._font_size)//!texture will be rebuilt
@@ -140,7 +140,7 @@ namespace auto_future
 				ImVec2 uv1{ x0, y1 };
 				ImVec2 uv2{ x1, y1 };
 				ImVec2 uv3{ x1, y0 };
-				ImVec4 dcol{ txt_col.x, txt_col.y, txt_col.z, 1.f };
+				ImVec4 dcol{ txt_col.x, txt_col.y, txt_col.z, txt_col.w };
 				if (!be_new)
 				ImageQuad((ImTextureID)txt_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, dcol);
 				float shift_dis = (advance >> 6)*scale;// Bitshift by 6 to get value in pixels (2^6 = 64)

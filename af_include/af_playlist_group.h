@@ -1,5 +1,5 @@
 #pragma once
-#include "platform_def.h "
+#include "platform_def.h"
 #include <string>
 #include <vector>
 #include <map>

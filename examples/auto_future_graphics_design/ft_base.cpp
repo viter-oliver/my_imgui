@@ -3,6 +3,7 @@
 #include <typeinfo>
 #include "af_bind.h"
 #include <regex>
+extern bool is_editing();
 namespace auto_future
 {
 	ft_base::ft_base()
@@ -123,7 +124,7 @@ namespace auto_future
 			return;
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		if (_selected)
+		if (is_editing()&& _selected)
 		{
 			auto ab_pos = absolute_coordinate_of_base_pos();
 			auto offset = ImGui::GetCursorScreenPos();
@@ -267,6 +268,7 @@ namespace auto_future
 		prtn->collect_property_range(vrtn);
 		this->collect_property_range(vobj);
 		property_copy(vrtn, vobj);
+          prtn->link();
 		auto icnt = this->get_child_count();
 		for (int ii = 0; ii < icnt; ii++)
 		{

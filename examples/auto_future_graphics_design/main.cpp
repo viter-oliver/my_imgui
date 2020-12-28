@@ -110,7 +110,12 @@ enum en_editing_wd_state
 	en_editing,
 	en_preview,
 };
-int editing_state = en_editing;
+
+int g_editing_state = en_editing;
+bool is_editing()
+{
+     return g_editing_state == en_editing;
+}
 string reg_path = "afg_ide";
 string ikey = "autofuture&afgER";// "max&maj20190815x";
 unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
@@ -979,8 +984,8 @@ int main( int argc, char* argv[] )
                     }
                     ImGui::EndMenu();
                }
-			ImGui::RadioButton("Editing", &editing_state, en_editing);
-			if (ImGui::RadioButton("Preview", &editing_state, en_preview))
+			ImGui::RadioButton("Editing", &g_editing_state, en_editing);
+			if (ImGui::RadioButton("Preview", &g_editing_state, en_preview))
 			{
 				prj_edit->clear_sel_item();
 			}
@@ -1110,7 +1115,7 @@ int main( int argc, char* argv[] )
 				base_ui_component* psel_ui = _proot->get_hit_ui_object(ImGui::GetIO().MousePos.x, ImGui::GetIO().MousePos.y);
 				if (psel_ui)
 				{
-					if (editing_state == en_editing)
+					if (is_editing())
 					{
 						if (ImGui::IsMouseClicked(0))
 						{

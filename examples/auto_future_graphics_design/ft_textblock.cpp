@@ -23,7 +23,7 @@ namespace auto_future
 	{
 		//_pfont_res_set = make_shared<af_font_res_set>(*g_pfont_face_manager);
 		memset(_txt_pt._content, 0, MAX_CONTENT_LEN);
-		_txt_pt._txt_clr = { 1.f, 1.f, 1.f };
+		_txt_pt._txt_clr = { 1.f, 1.f, 1.f,1.f};
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_txt_pt, 6, [this](void*){
 			ImGui::Combo("omit:", &_txt_pt._omit_rest, omit_show, en_omit_type_number);

@@ -6,13 +6,16 @@ namespace auto_future
           public ft_base
      {
           DEF_STRUCT_WITH_INIT( intl_pt, _pt,
-          ( bool, _vertical, { true } )
+               ( bool, _vertical, { true } ),
+               ( float, _interval, { 0.f } ),
+               ( float, _inner_left, { 0.f }  ),
+               ( float, _inner_top , { 0.f } ),
+               ( float, _inner_right, { 0.f }  ),
+               ( float, _inner_bottom, { 0.f }  )
           )
-          af_vec2 _left_top , _right_bottom ;
      public:
           ft_listbox_ex();
           void draw_frames();
-          void scroll( float delta );
      };
      REGISTER_CONTROL( ft_listbox_ex )
 }

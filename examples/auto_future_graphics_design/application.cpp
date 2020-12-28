@@ -206,10 +206,10 @@ namespace auto_future
 			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
 			glClear(GL_COLOR_BUFFER_BIT);
 			ImGui::Render();
-               _pscr_ds->bind_framebuffer();
+               //_pscr_ds->bind_framebuffer();
 			ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
-               _pscr_ds->disbind_framebuffer();
-               _pscr_ds->draw();
+               //_pscr_ds->disbind_framebuffer();
+               //_pscr_ds->draw();
 			glfwSwapBuffers(_window);
 		}
 		return true;

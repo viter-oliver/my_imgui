@@ -20,6 +20,7 @@ extern string g_cureent_directory, g_afb_output_path;
 extern bool show_project_window, show_edit_window, show_property_window,\
 show_texture_res_manager, show_fonts_manager, show_file_manager,show_state_manager_edit,\
 show_aliase_edit, show_slider_path_picker;
+extern int g_editing_state;
 void init_controls_res_constrained()
 {
 	auto vres_texture_constrain = [&](){return g_vres_texture_list.size() > 0; };
@@ -102,6 +103,7 @@ bool ui_assembler::load_ui_component_from_file(const char* file_path)
 				show_state_manager_edit=window_show["show_state_manager_edit"].asBool();
 				show_aliase_edit = window_show["show_aliase_edit"].asBool();
 				show_slider_path_picker = window_show["show_slider_path_picker"].asBool();
+                    g_editing_state = window_show[ "be_editing" ].asInt();
 
 			}
                Value& afb_output_path = jroot[ "afb_output_path" ];
@@ -633,6 +635,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
           window_show[ "show_state_manager_edit" ] = show_state_manager_edit;
           window_show[ "show_aliase_edit" ] = show_aliase_edit;
           window_show[ "show_slider_path_picker" ] = show_slider_path_picker;
+          window_show[ "be_editing" ] = g_editing_state;
 
           jroot[ "window_show" ] = window_show;
           jroot[ "afb_output_path" ] = g_afb_output_path;

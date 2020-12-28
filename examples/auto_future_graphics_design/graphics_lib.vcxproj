@@ -191,6 +191,7 @@
     <ClCompile Include="ft_cube_3d.cpp" />
     <ClCompile Include="ft_image_file.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
+    <ClCompile Include="ft_listbox_ex.cpp" />
     <ClCompile Include="ft_material_2d.cpp" />
     <ClCompile Include="ft_material_3d.cpp" />
     <ClCompile Include="ft_modeling_3d.cpp" />
@@ -213,6 +214,7 @@
     <ClCompile Include="ft_scene.cpp" />
     <ClCompile Include="ft_textblock.cpp" />
     <ClCompile Include="ft_trajectory_box_3d.cpp" />
+    <ClCompile Include="ft_trans.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="miniz.c" />
     <ClCompile Include="ofbx.cpp" />
@@ -245,7 +247,6 @@
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="afb_load.h" />
-    <ClInclude Include="afg.h" />
     <ClInclude Include="easing.h" />
     <ClInclude Include="common_functions.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />

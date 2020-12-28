@@ -205,6 +205,12 @@
     <ClCompile Include="af_playlist_group.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
+    <ClCompile Include="ft_listbox_ex.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_trans.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -282,7 +288,6 @@
     <ClInclude Include="imgui_impl_glfw_gl3.h">
       <Filter>imgui</Filter>
     </ClInclude>
-    <ClInclude Include="afg.h" />
     <ClInclude Include="python_interpreter.h">
       <Filter>render_utilities</Filter>
     </ClInclude>
