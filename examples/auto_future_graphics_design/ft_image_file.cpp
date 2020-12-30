@@ -93,9 +93,6 @@ namespace auto_future
                return;
           }
           int texture_id = _texture_id;
-		
-		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();

@@ -15,11 +15,10 @@ namespace auto_future
 		};
 	private:
 		DEF_STRUCT_WITH_INIT(intl_pt, _pt,
-			(int, _image_normal_txt, {0}),
-			(int, _image_press_txt, { 0 }), 
-			(int, _image_select_txt, { 0 }))
+			(af_vi2, _image_normal_txt),
+               ( af_vi2, _image_press_txt ),
+               ( af_vi2, _image_select_txt ) )
 		state _state = { en_normal };
-
 	public:
 
 		ft_button();
@@ -42,7 +41,7 @@ namespace auto_future
 			return _state;
 		}
 
-		int get_cur_txt_id()
+          af_vi2 get_cur_txt_id()
 		{
 			switch (_state)
 			{
@@ -53,7 +52,7 @@ namespace auto_future
 			case auto_future::ft_button::en_selected:
 				return _pt._image_select_txt;
 			}
-			return 0;
+               return {0,0};
 		}
 
 

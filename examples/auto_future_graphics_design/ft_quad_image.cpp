@@ -73,18 +73,18 @@ namespace auto_future
 	}
 	void ft_quad_image::draw()
 	{
-		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
-		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+          auto& img_txt_id = _img_pt._texture_index_txt;
+          int texture_id = g_vres_texture_list[ img_txt_id.x].texture_id();
+          vres_txt_cd& ptext_cd = g_vres_texture_list[ img_txt_id.x].vtexture_coordinates;
 		if (ptext_cd.size() == 0)
 			return;
-		if (_img_pt._texture_index_txt >= ptext_cd.size())
+          if( img_txt_id.y >= ptext_cd.size() )
 		{
-			printf("invalid texture index:%d\n", _img_pt._texture_index_txt);
-			_img_pt._texture_index_txt = 0;
-
+               printf( "invalid texture index:%d\n", img_txt_id.y);
+               return;
 		}
-		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+          int texture_width = g_vres_texture_list[ img_txt_id.x].texture_width;
+          int texture_height = g_vres_texture_list[ img_txt_id.x].texture_height;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 basepos= { abpos.x + winpos.x, abpos.y + winpos.y };
@@ -93,11 +93,10 @@ namespace auto_future
 		ImVec2 pos2 = basepos + _img_pt._imge_pos[2];
 		ImVec2 pos3 = basepos + _img_pt._imge_pos[3];
 
-		int img_txt_id = _img_pt._texture_index_txt;
-		ImVec2 uv0 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, ptext_cd[img_txt_id]._y0 / texture_height);
-		ImVec2 uv1 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
-		ImVec2 uv2 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
-		ImVec2 uv3 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y0) / texture_height);
+          ImVec2 uv0 = ImVec2( ptext_cd[ img_txt_id.y ]._x0 / texture_width, ptext_cd[ img_txt_id.y ]._y0 / texture_height );
+          ImVec2 uv1 = ImVec2( ptext_cd[ img_txt_id.y ]._x0 / texture_width, ( ptext_cd[ img_txt_id.y ]._y1 ) / texture_height );
+          ImVec2 uv2 = ImVec2( ( ptext_cd[ img_txt_id.y ]._x1 ) / texture_width, ( ptext_cd[ img_txt_id.y ]._y1 ) / texture_height );
+          ImVec2 uv3 = ImVec2( ( ptext_cd[ img_txt_id.y ]._x1 ) / texture_width, ( ptext_cd[ img_txt_id.y ]._y0 ) / texture_height );
 
 
 

@@ -30,6 +30,10 @@ namespace auto_future
 			af_vt2 av{ this->x - tar.x, this->y - tar.y };
 			return av;
 		}
+          bool operator !=( af_vt2& tar )
+          {
+               return x != tar.x||y != tar.y; 
+          }
 		bool operator == (af_vt2& tar)
 		{
 			return x == tar.x&&y == tar.y;

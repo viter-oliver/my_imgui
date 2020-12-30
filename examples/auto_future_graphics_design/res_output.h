@@ -99,7 +99,6 @@ extern int g_cur_texture_id_index;
 //	en_integrated,
 //	en_discrete,
 //};
-extern bool get_texture_item(void* data, int idx, const char** out_str);
 struct af_texture
 {
 	bool _mip_map{ false };
@@ -208,4 +207,5 @@ struct output_bin_format
 	//output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
 };
 extern bool get_texture_item( void* data, int idx, const char** out_str );
+extern bool get_texture_group_name( void* data, int idx, const char** out_str );
 extern output_bin_format g_output_bin_format;

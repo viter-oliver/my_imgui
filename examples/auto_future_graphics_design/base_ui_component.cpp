@@ -198,6 +198,7 @@ static	string aliase_btn_cp = "  ##";
 
 					auto& imemb_tp_handl = _mcustom_type_property_handles_container.find(mtype);
 					bool be_base_type = mtype == "int" || mtype == "float" || mtype == "double" || mtype == "bool"\
+						||mtype=="af_vi2"||mtype=="af_vi3"||mtype=="af_vi4"\
 						||mtype=="af_vec2"||mtype=="af_vec3"||mtype=="af_vec4";
 					if (imemb_tp_handl != _mcustom_type_property_handles_container.end())
 					{
@@ -234,42 +235,10 @@ static	string aliase_btn_cp = "  ##";
 									ImGui::SliderInt(mname.c_str(), (int*)memb_address, 0, 255);
 							}
 							else if (mtype == "int"){
-								//be_base_type = true;
-								if (rg == "txt")// atexture
-								{
-									f_draw_index_prop = [&](string& str_show, void*maddress){									
-										auto& res_coors = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
-										int isize = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates.size();
-										int imem_value = *(int*)memb_address;
-										bool be_changed=ImGui::Combo(str_show.c_str(), (int*)maddress, &get_texture_item, &g_vres_texture_list[g_cur_texture_id_index], isize);
-
-										ImGui::SameLine(); ShowHelpMarker("select a image from image resource!\n");
-										int txt_idx = *(int*)memb_address;
-										float reswidth = res_coors[txt_idx].owidth();
-										float resheight = res_coors[txt_idx].oheight();
-										ImGui::Text("original size:%f,%f", reswidth, resheight);
-										ImGui::Spacing();
-										if (reswidth > 0)
-										{
-											float draw_height = imge_edit_view_width*resheight / reswidth;
-											ImVec2 draw_size(imge_edit_view_width, draw_height);
-											int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
-											float wtexture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-											float wtexture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
-
-											ImVec2 uv0(res_coors[txt_idx]._x0 / wtexture_width, res_coors[txt_idx]._y0 / wtexture_height);
-											ImVec2 uv1(res_coors[txt_idx]._x1 / wtexture_width, res_coors[txt_idx]._y1 / wtexture_height);
-											ImGui::Image((ImTextureID)texture_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
-										}
-										return be_changed;
-									};
-								}
-								else{
-									f_draw_index_prop = [&](string& str_show, void*maddress){
-										return  ImGui::SliderInt(str_show.c_str(), (int*)maddress, _vrange._min._i, _vrange._max._i);
-									};
-								}
-
+                                        f_draw_index_prop = [&]( string& str_show, void*maddress )
+                                        {
+                                             return  ImGui::SliderInt( str_show.c_str(), (int*)maddress, _vrange._min._i, _vrange._max._i );
+                                        };
 							}
 							else if (mtype == "float" || mtype == "double"){
 								//be_base_type = true;
@@ -277,6 +246,64 @@ static	string aliase_btn_cp = "  ##";
                                              return  ImGui::SliderFloat( str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f, float_format.c_str());
 								};
 							}
+                                   else if (mtype=="af_vi2")
+                                   {
+                                        if( rg == "txt" )// atexture
+                                        {
+                                             f_draw_index_prop = [&]( string& str_show, void*maddress )
+                                             {
+                                                  af_vi2* ptxt_idx = (af_vi2*)maddress;
+                                                  int igsize = g_vres_texture_list.size();
+                                                  string str_gp = "Group id of" + str_show;
+                                                  ImGui::Combo( str_gp.c_str(), &ptxt_idx->x, get_texture_group_name, &g_vres_texture_list, igsize );
+                                                  int img_gp_id = ptxt_idx->x;
+                                                  auto& res_coors = g_vres_texture_list[ img_gp_id ].vtexture_coordinates;
+                                                  int isize = g_vres_texture_list[ img_gp_id ].vtexture_coordinates.size();
+                                                  int txt_idx = ptxt_idx->y;
+                                                  bool be_changed = ImGui::Combo( str_show.c_str(), &ptxt_idx->y, &get_texture_item, &img_gp_id, isize );
+
+                                                  ImGui::SameLine(); ShowHelpMarker( "select a image from image resource!\n" );
+                                                  float reswidth = res_coors[ txt_idx ].owidth();
+                                                  float resheight = res_coors[ txt_idx ].oheight();
+                                                  ImGui::Text( "original size:%f,%f", reswidth, resheight );
+                                                  ImGui::Spacing();
+                                                  if( reswidth > 0 )
+                                                  {
+                                                       float draw_height = imge_edit_view_width*resheight / reswidth;
+                                                       ImVec2 draw_size( imge_edit_view_width, draw_height );
+                                                       int texture_id = g_vres_texture_list[ img_gp_id ].texture_id();
+                                                       float wtexture_width = g_vres_texture_list[ img_gp_id ].texture_width;
+                                                       float wtexture_height = g_vres_texture_list[ img_gp_id ].texture_height;
+
+                                                       ImVec2 uv0( res_coors[ txt_idx ]._x0 / wtexture_width, res_coors[ txt_idx ]._y0 / wtexture_height );
+                                                       ImVec2 uv1( res_coors[ txt_idx ]._x1 / wtexture_width, res_coors[ txt_idx ]._y1 / wtexture_height );
+                                                       ImGui::Image( (ImTextureID)texture_id, draw_size, uv0, uv1, ImColor( 255, 255, 255, 255 ), ImColor( 255, 255, 255, 128 ) );
+                                                  }
+                                                  return be_changed;
+                                             };
+                                        }
+                                        else 
+                                        {
+                                             f_draw_index_prop = [&]( string& str_show, void*maddress )
+                                             {
+                                                  return ImGui::SliderInt2( str_show.c_str(), (int*)maddress, _vrange._min._i, _vrange._max._i );
+                                             };
+                                        }
+                                   }
+                                   else if (mtype=="af_vi3")
+                                   {
+                                        f_draw_index_prop = [&]( string& str_show, void*maddress )
+                                        {
+                                             return ImGui::SliderInt3( str_show.c_str(), (int*)maddress, _vrange._min._i, _vrange._max._i );
+                                        };
+                                   }
+                                   else if( mtype == "af_vi4" )
+                                   {
+                                        f_draw_index_prop = [&]( string& str_show, void*maddress )
+                                        {
+                                             return ImGui::SliderInt4( str_show.c_str(), (int*)maddress, _vrange._min._i, _vrange._max._i );
+                                        };
+                                   }
 							else if (mtype == "af_vec2"){
 								f_draw_index_prop = [&](string& str_show, void*maddress){
                                              return ImGui::SliderFloat2( str_show.c_str(), (float*)maddress, _vrange._min._f, _vrange._max._f, float_format.c_str() );
@@ -462,6 +489,91 @@ static	string aliase_btn_cp = "  ##";
 						}
 					}
 				}
+                    function<void( void*, Value& )> f_assingn_json_to_memb;
+                    if( mtype == "int" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(int*)membaddr = vele.asInt();
+                         };
+                    }
+                    else if( mtype == "float" || mtype == "double" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele.asDouble();
+                         };
+                    }
+                    else if( mtype == "af_vi2" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(int*)membaddr = vele[ "x" ].asInt();
+                              *( (int*)membaddr + 1 ) = vele[ "y" ].asInt();
+                         };
+                    }
+                    else if( mtype == "af_vi3" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(int*)membaddr = vele[ "x" ].asInt();
+                              *( (int*)membaddr + 1 ) = vele[ "y" ].asInt();
+                              *( (int*)membaddr + 2 ) = vele[ "z" ].asInt();
+                         };
+                    }
+                    else if( mtype == "af_vi4" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(int*)membaddr = vele[ "x" ].asInt();
+                              *( (int*)membaddr + 1 ) = vele[ "y" ].asInt();
+                              *( (int*)membaddr + 2 ) = vele[ "z" ].asInt();
+                              *( (int*)membaddr + 3 ) = vele[ "w" ].asInt();
+                         };
+                    }
+                    else if( mtype == "af_vec2" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele[ "x" ].asDouble();
+                              *( (float*)membaddr + 1 ) = vele[ "y" ].asDouble();
+                         };
+                    }
+                    else if( mtype == "af_vec3" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele[ "x" ].asDouble();
+                              *( (float*)membaddr + 1 ) = vele[ "y" ].asDouble();
+                              *( (float*)membaddr + 2 ) = vele[ "z" ].asDouble();
+                         };
+                    }
+                    else if( mtype == "af_vec4" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele[ "x" ].asDouble();
+                              *( (float*)membaddr + 1 ) = vele[ "y" ].asDouble();
+                              *( (float*)membaddr + 2 ) = vele[ "z" ].asDouble();
+                              *( (float*)membaddr + 3 ) = vele[ "w" ].asDouble();
+                         };
+                    }
+                    else if( mtype == "bool" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(bool*)membaddr = vele.asBool();
+                         };
+                    }
+                    else
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              string out_bin;
+                              convert_string_to_binary( vele.asString(), out_bin );
+                              memcpy( membaddr, &out_bin[ 0 ], out_bin.size() );
+                         };
+                    }
 				if (array_cnt > 1)
                     {
                          Value& jtemp = jvalue[ mname ];
@@ -477,57 +589,7 @@ static	string aliase_btn_cp = "  ##";
 					else
 					{
 						Value& marray=jtemp;
-						function<void(void*,Value&)> f_assingn_json_to_memb;
-						if (mtype == "int"){
-							f_assingn_json_to_memb = [&](void* membaddr,Value& vele)
-							{
-								*(int*)membaddr=vele.asInt();
-							};
-						}
-						else if (mtype == "float" || mtype == "double"){
-							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
-							{
-								*(float*)membaddr=vele.asDouble();
-							};
-						}
-						else if (mtype == "af_vec2"){
-							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
-							{
-								 *(float*)membaddr=vele["x"].asDouble();
-								 *((float*)membaddr + 1)=vele["y"].asDouble();
-							};
-						}
-						else if (mtype == "af_vec3"){
-							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
-							{
-								*(float*)membaddr=vele["x"].asDouble();
-								*((float*)membaddr + 1)=vele["y"].asDouble();
-								*((float*)membaddr + 2)=vele["z"].asDouble();
-							};
-						}
-						else if (mtype == "af_vec4"){
-							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
-							{
-								*(float*)membaddr=vele["x"].asDouble();
-								*((float*)membaddr + 1)=vele["y"].asDouble();
-								*((float*)membaddr + 2)=vele["z"].asDouble();
-								*((float*)membaddr + 3) = vele["w"].asDouble();					
-							};
-						}
-						else if (mtype == "bool"){
-							f_assingn_json_to_memb = [&marray](void* membaddr, Value& vele)
-							{
-								*(bool*)membaddr=vele.asBool();
-							};
-						}
-						else {
-							f_assingn_json_to_memb = [&](void* membaddr, Value& vele)
-							{
-								string out_bin;
-								convert_string_to_binary(vele.asString(), out_bin);
-								memcpy(membaddr, &out_bin[0], out_bin.size());
-							};
-						}
+
 						for (int ix = 0; ix < array_cnt; ++ix)
 						{
 							void* memb_index_address = (char*)memb_address + ix*mtpsz;
@@ -543,39 +605,8 @@ static	string aliase_btn_cp = "  ##";
                          {
                               continue;
                          }
-					if (mtype == "int"){
-                              *(int*)memb_address = jtemp.asInt();
-					}
-					else if (mtype == "float" || mtype == "double"){
-                              *(float*)memb_address = jtemp.asDouble();
-					}
-					else if (mtype == "af_vec2"){
-                              Value& jv2 = jtemp;
-						 *(float*)memb_address=jv2["x"].asDouble();
-						 *((float*)memb_address + 1)=jv2["y"].asDouble();
-					}
-					else if (mtype == "af_vec3") {
-						Value& jv3=jtemp;
-						 *(float*)memb_address=jv3["x"].asDouble();
-						*((float*)memb_address + 1) = jv3["y"].asDouble();
-						*((float*)memb_address + 2) = jv3["z"].asDouble();
-					}
-					else if (mtype == "af_vec4") {
-                              Value& jv4 = jtemp;
-						 *(float*)memb_address=jv4["x"].asDouble();
-						*((float*)memb_address + 1) = jv4["y"].asDouble();
-						*((float*)memb_address + 2) = jv4["z"].asDouble();
-						*((float*)memb_address + 3) = jv4["w"].asDouble();
-
-					}
-					else if (mtype == "bool"){
-                              *(bool*)memb_address = jtemp.asBool();
-					}
-					else{
-						string out_bin;
-                              convert_string_to_binary( jtemp.asString(), out_bin );
-						memcpy(memb_address, &out_bin[0], out_bin.size());
-					}
+                         f_assingn_json_to_memb( memb_address, jtemp );
+					
 				}
 			}
 		}
@@ -596,6 +627,191 @@ static	string aliase_btn_cp = "  ##";
 			
 		}
 	}
+     void base_ui_component::init_property_from_json( Value& jvalue, dic_id& font_dic, dic_id& txt_dic )
+     {
+          for( auto& prop_ele : _vprop_eles )
+          {
+               auto& prop_page = prop_ele->_pro_page;
+               for( auto& memb : prop_page )
+               {
+                    auto mtype = memb->_type;
+                    auto mname = memb->_name;
+                    auto mtpsz = memb->_tpsz;
+                    string rg = mname.substr( mname.length() - 3, 3 );
+                    char* memb_address = memb->_address;
+                    int array_cnt = memb->_count;
+                    string::size_type apos = mname.find( '[' );
+                    if( apos != string::npos )//is array
+                    {
+                         mname = mname.substr( 0, apos );
+                    }
+                    else
+                    {
+                         auto eppos = mname.find( '=' );
+                         if( eppos != string::npos )
+                         {
+                              mname = mname.substr( 0, eppos );
+                         }
+                         else
+                         {
+                              auto brpos = mname.find( '{' );
+                              if( brpos != string::npos )
+                              {
+                                   mname = mname.substr( 0, brpos );
+                              }
+                         }
+                    }
+                    function<void( void*, Value& )> f_assingn_json_to_memb;
+                    if( mtype == "int" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              if (mname=="_font_id")
+                              {
+                                   *(int*)membaddr = font_dic[vele.asInt()];
+                              }
+                              else
+                              {
+                                   *(int*)membaddr = vele.asInt();
+                              }
+                         };
+                    }
+                    else if( mtype == "float" || mtype == "double" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele.asDouble();
+                         };
+                    }
+                    else if( mtype == "af_vi2" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              if( rg =="txt")
+                              {
+                                   *(int*)membaddr = txt_dic[vele[ "x" ].asInt()];
+                              }
+                              else
+                              {
+                                   *(int*)membaddr = vele[ "x" ].asInt();
+                              }
+                              *( (int*)membaddr + 1 ) = vele[ "y" ].asInt();
+                         };
+                    }
+                    else if( mtype == "af_vi3" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(int*)membaddr = vele[ "x" ].asInt();
+                              *( (int*)membaddr + 1 ) = vele[ "y" ].asInt();
+                              *( (int*)membaddr + 2 ) = vele[ "z" ].asInt();
+                         };
+                    }
+                    else if( mtype == "af_vi4" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(int*)membaddr = vele[ "x" ].asInt();
+                              *( (int*)membaddr + 1 ) = vele[ "y" ].asInt();
+                              *( (int*)membaddr + 2 ) = vele[ "z" ].asInt();
+                              *( (int*)membaddr + 3 ) = vele[ "w" ].asInt();
+                         };
+                    }
+                    else if( mtype == "af_vec2" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele[ "x" ].asDouble();
+                              *( (float*)membaddr + 1 ) = vele[ "y" ].asDouble();
+                         };
+                    }
+                    else if( mtype == "af_vec3" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele[ "x" ].asDouble();
+                              *( (float*)membaddr + 1 ) = vele[ "y" ].asDouble();
+                              *( (float*)membaddr + 2 ) = vele[ "z" ].asDouble();
+                         };
+                    }
+                    else if( mtype == "af_vec4" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(float*)membaddr = vele[ "x" ].asDouble();
+                              *( (float*)membaddr + 1 ) = vele[ "y" ].asDouble();
+                              *( (float*)membaddr + 2 ) = vele[ "z" ].asDouble();
+                              *( (float*)membaddr + 3 ) = vele[ "w" ].asDouble();
+                         };
+                    }
+                    else if( mtype == "bool" )
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              *(bool*)membaddr = vele.asBool();
+                         };
+                    }
+                    else
+                    {
+                         f_assingn_json_to_memb = [&]( void* membaddr, Value& vele )
+                         {
+                              string out_bin;
+                              convert_string_to_binary( vele.asString(), out_bin );
+                              memcpy( membaddr, &out_bin[ 0 ], out_bin.size() );
+                         };
+                    }
+                    if( array_cnt > 1 )
+                    {
+                         Value& jtemp = jvalue[ mname ];
+                         if( jtemp.isNull() )
+                         {
+                              continue;
+                         }
+                         if( mtype == "char" )
+                         {
+                              Value&vbytes = jtemp;//must be string
+                              strcpy( (char*)memb_address, vbytes.asCString() );
+                         }
+                         else
+                         {
+                              Value& marray = jtemp;
+
+                              for( int ix = 0; ix < array_cnt; ++ix )
+                              {
+                                   void* memb_index_address = (char*)memb_address + ix*mtpsz;
+                                   f_assingn_json_to_memb( memb_index_address, marray[ ix ] );
+                              }
+
+                         }
+                    }
+                    else
+                    {
+                         Value& jtemp = jvalue[ mname ];
+                         if( jtemp.isNull() )
+                         {
+                              continue;
+                         }
+                         f_assingn_json_to_memb( memb_address, jtemp );
+
+                    }
+               }
+          }
+          link();
+          Value childs = jvalue[ "childs" ];
+          if( !childs.isArray() )
+          {
+               return;
+          }
+          size_t chcnt = childs.size();
+          for( size_t ix = 0; ix < chcnt; ix++ )
+          {
+               Value& child = childs[ ix ];
+               auto& cname = child[ "type" ].asString();
+               base_ui_component* pcontrol_instance = factory::get().produce( cname );
+               add_child( pcontrol_instance );
+               pcontrol_instance->init_property_from_json( child );
+          }
+     }
 	void base_ui_component::save_property_to_json(Value& junit){
 
 		string cname = typeid(*this).name();
@@ -629,6 +845,7 @@ static	string aliase_btn_cp = "  ##";
 						}
 					}
 				}
+
 				if (array_cnt > 0){
 					if (mtype == "char")
 					{
@@ -656,6 +873,39 @@ static	string aliase_btn_cp = "  ##";
 								marray.append(fmemb);
 							};
 						}
+                              else if (mtype=="af_vi2")
+                              {
+                                   f_save_to_json = [&marray]( void* membaddr )
+                                   {
+                                        Value jv2( objectValue );
+                                        jv2[ "x" ] = *(int*)membaddr;
+                                        jv2[ "y" ] = *( (int*)membaddr + 1 );
+                                        marray.append( jv2 );
+                                   };
+                              }
+                              else if( mtype == "af_vi3" )
+                              {
+                                   f_save_to_json = [&marray]( void* membaddr )
+                                   {
+                                        Value jv( objectValue );
+                                        jv[ "x" ] = *(int*)membaddr;
+                                        jv[ "y" ] = *( (int*)membaddr + 1 );
+                                        jv[ "z" ] = *( (int*)membaddr + 2 );
+                                        marray.append( jv);
+                                   };
+                              }
+                              else if( mtype == "af_vi4" )
+                              {
+                                   f_save_to_json = [&marray]( void* membaddr )
+                                   {
+                                        Value jv( objectValue );
+                                        jv[ "x" ] = *(int*)membaddr;
+                                        jv[ "y" ] = *( (int*)membaddr + 1 );
+                                        jv[ "z" ] = *( (int*)membaddr + 2 );
+                                        jv[ "w" ] = *( (int*)membaddr + 3 );
+                                        marray.append( jv );
+                                   };
+                              }
 						else if (mtype == "af_vec2"){
 							f_save_to_json = [&marray](void* membaddr)
 							{
@@ -719,6 +969,30 @@ static	string aliase_btn_cp = "  ##";
 					else if (mtype == "float" || mtype == "double"){
 						junit[mname] = *(float*)memb_address;
 					}
+                         else if( mtype == "af_vi2" )
+                         {
+                              Value jv( objectValue );
+                              jv[ "x" ] = *(int*)memb_address;
+                              jv[ "y" ] = *( (int*)memb_address + 1 );
+                              junit[ mname ] = jv;
+                         }
+                         else if( mtype == "af_vi3" )
+                         {
+                              Value jv( objectValue );
+                              jv[ "x" ] = *(int*)memb_address;
+                              jv[ "y" ] = *( (int*)memb_address + 1 );
+                              jv[ "z" ] = *( (int*)memb_address + 2 );
+                              junit[ mname ] = jv;
+                         }
+                         else if( mtype == "af_vi4" )
+                         {
+                              Value jv( objectValue );
+                              jv[ "x" ] = *(int*)memb_address;
+                              jv[ "y" ] = *( (int*)memb_address + 1 );
+                              jv[ "z" ] = *( (int*)memb_address + 2 );
+                              jv[ "w" ] = *( (int*)memb_address + 3 );
+                              junit[ mname ] = jv;
+                         }
 					else if (mtype == "af_vec2"){
 						Value jv2(objectValue);
 						jv2["x"] = *(float*)memb_address;

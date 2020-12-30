@@ -60,7 +60,8 @@ void fonts_edit::draw_fonts_list()
 			{
 				string ttf_file = strFileName;
 				string ttf_file_name = ttf_file.substr(ttf_file.find_last_of('\\') + 1);
-				auto ft_u = g_pfont_face_manager->load_font(ttf_file_name, ttf_file);
+                    int idx;
+				auto ft_u = g_pfont_face_manager->load_font(ttf_file_name, ttf_file,idx);
 				if (!ft_u)
 				{
 					string err_msg = "fail to load file:";

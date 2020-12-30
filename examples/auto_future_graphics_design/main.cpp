@@ -156,7 +156,7 @@ void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 	_proot = new ft_base;
 	_proot->set_name("screen");
 	ui_assembler _ui_as(*_proot);
-	_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
+	_ui_as.load_afg_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 
 	prj_edit.reset(new project_edit(*_proot));
 }
@@ -301,7 +301,7 @@ int main( int argc, char* argv[] )
 	if (!g_cureent_project_file_path.empty())
 	{
 		ui_assembler _ui_as(*_proot);
-		_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
+		_ui_as.load_afg_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 	}
 	//init_internal_primitive_list();
 	init_common_type_property_handles();
@@ -381,7 +381,7 @@ int main( int argc, char* argv[] )
 				_proot = new ft_base;
 				_proot->set_name("screen");
 				ui_assembler _ui_as(*_proot);
-				_ui_as.load_ui_component_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
+				_ui_as.load_afg_from_file(g_cureent_project_file_path.c_str());//note:this call must be executed after TextureHelper::load2DTexture 
 				
 				prj_edit.reset(new project_edit(*_proot));
 			}

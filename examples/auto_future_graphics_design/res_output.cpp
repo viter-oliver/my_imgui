@@ -14,9 +14,15 @@ const char* afb_fold = "afb\\";
 vres_txt_list  g_vres_texture_list;
 int g_cur_texture_id_index=0;
 mtexture_list g_mtexture_list;
+bool get_texture_group_name( void* data, int idx, const char** out_str )
+{
+     *out_str = g_vres_texture_list[ idx ].texture_pack_file.c_str();
+     return true;
+}
 bool get_texture_item(void* data, int idx, const char** out_str)
 {
-	*out_str = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[idx]._file_name.c_str();
+     int image_id = *(int *)data;
+     *out_str = g_vres_texture_list[ image_id ].vtexture_coordinates[ idx ]._file_name.c_str();
 	return true;
 }
 

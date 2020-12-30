@@ -47,6 +47,7 @@ namespace auto_future
 	using namespace Json;
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
+     using dic_id = map<int, int>;
 #endif
      typedef function<void( void )> mouse_fun;
      typedef function<void( float, float )>mouse_drag_fun;
@@ -182,7 +183,9 @@ namespace auto_future
 		*  --true success
 		*  --false failure
 		*/
-			void init_property_from_json(Value& jvalue);
+		void init_property_from_json(Value& jvalue);
+          void init_property_from_json( Value& jvalue, dic_id& font_dic,dic_id& txt_dic);
+               
 	    /**
 		*@brief save some data members to a json unit
 		*@param junit a json value

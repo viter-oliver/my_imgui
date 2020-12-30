@@ -19,7 +19,6 @@ texture_res_list
 */
 void texture_res_load::load_res_from_json(Value& jroot)
 {
-	g_cur_texture_id_index = jroot["texture_id_index"].asInt();
 	Value& texture_res_list = jroot["texture_res_list"];
 	int isize = texture_res_list.size();
 	for (int ix = 0; ix < isize;ix++)

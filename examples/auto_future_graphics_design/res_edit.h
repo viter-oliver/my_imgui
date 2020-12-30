@@ -3,7 +3,6 @@
 using namespace std;
 class res_edit
 {
-	int _tmp_current_txt_id_index;
 public:
 	res_edit();
 	~res_edit();

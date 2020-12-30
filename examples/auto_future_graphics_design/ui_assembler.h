@@ -24,7 +24,7 @@ public:
 	*@param file_path project file path
 	*@return true if success,false if failure
 	*/
-	bool load_ui_component_from_file(const char* file_path);
+	bool load_afg_from_file(const char* file_path);
 	/**
 	*@brief transferring ui components to ui project file
 	*@param file_path project file path
@@ -36,6 +36,8 @@ public:
 	*@return true if success,false if failure
 	*/
 	bool update_texture_res();
+
+     bool load_ui_component_from_file(base_ui_component& insert_node, const char* file_path );
 private:
 
 	ps_primrive_object load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len);

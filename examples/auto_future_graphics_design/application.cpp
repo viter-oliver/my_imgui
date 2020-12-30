@@ -89,6 +89,7 @@ namespace auto_future
 #else
 		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", glfwGetPrimaryMonitor(), NULL);
 #endif
+          glfwSetWindowPos( _window, 1920, 0 );
 		glfwMakeContextCurrent(_window);
 		glfwSwapInterval(1); // Enable vsync
 		gl3wInit();

@@ -7,7 +7,7 @@
 #include <sstream>
 static char sal_name_str[ FILE_NAME_LEN ] = "";
 static char* new_common_value = "New common value";
-static char* vtyps[] = { "float", "double","int",  "bool", "af_vec2", "af_vec3", "af_vec4" };
+static char* vtyps[] = { "float", "double", "int", "bool", "af_vi2", "af_vi3", "af_vi4", "af_vec2", "af_vec3", "af_vec4" };
 static int tpidx = 0;
 
 
@@ -199,6 +199,50 @@ void base_prp_type_edit::base_prp_item()
      else if( _type == "bool" )
      {
           ImGui::Checkbox( "value", (bool*)_pbase );
+     }
+     else if( _type == "af_vi2" )
+     {
+          if( rg == "txt" )// atexture
+          {
+               af_vi2* ptxt_idx = (af_vi2*)_pbase;
+               int igsize = g_vres_texture_list.size();
+               ImGui::Combo( "Texture group list", &ptxt_idx->x, get_texture_group_name, &g_vres_texture_list, igsize );
+               int img_gp_id = ptxt_idx->x;
+               auto& res_coors = g_vres_texture_list[ img_gp_id ].vtexture_coordinates;
+               int isize = g_vres_texture_list[ img_gp_id ].vtexture_coordinates.size();
+               int txt_idx = ptxt_idx->y;
+               bool be_changed = ImGui::Combo( "Texture list", &ptxt_idx->y, &get_texture_item, &img_gp_id, isize );
+
+               ImGui::SameLine(); ShowHelpMarker( "select a image from image resource!\n" );
+               float reswidth = res_coors[ txt_idx ].owidth();
+               float resheight = res_coors[ txt_idx ].oheight();
+               ImGui::Text( "original size:%f,%f", reswidth, resheight );
+               ImGui::Spacing();
+               if( reswidth > 0 )
+               {
+                    float draw_height = imge_edit_view_width*resheight / reswidth;
+                    ImVec2 draw_size( imge_edit_view_width, draw_height );
+                    int texture_id = g_vres_texture_list[ img_gp_id ].texture_id();
+                    float wtexture_width = g_vres_texture_list[ img_gp_id ].texture_width;
+                    float wtexture_height = g_vres_texture_list[ img_gp_id ].texture_height;
+
+                    ImVec2 uv0( res_coors[ txt_idx ]._x0 / wtexture_width, res_coors[ txt_idx ]._y0 / wtexture_height );
+                    ImVec2 uv1( res_coors[ txt_idx ]._x1 / wtexture_width, res_coors[ txt_idx ]._y1 / wtexture_height );
+                    ImGui::Image( (ImTextureID)texture_id, draw_size, uv0, uv1, ImColor( 255, 255, 255, 255 ), ImColor( 255, 255, 255, 128 ) );
+               }
+          }
+          else
+          {
+               ImGui::SliderInt2( "value", (int*)_pbase, _mini, _maxi );
+          }
+     }
+     else if( _type == "af_vi3" )
+     {
+          ImGui::SliderInt3( "value", (int*)_pbase, _mini, _maxi );
+     }
+     else if( _type == "af_vi4" )
+     {
+          ImGui::SliderInt4( "value", (int*)_pbase, _mini, _maxi );
      }
      else if( _type == "af_vec2" )
      {

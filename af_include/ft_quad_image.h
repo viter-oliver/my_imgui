@@ -9,7 +9,7 @@ namespace auto_future
 	
 		DEF_STRUCT_WITH_INIT(intl_pt,_img_pt,
 			(af_vec2, _imge_pos[4]),
-			(int, _texture_index_txt, { 0 }))
+			(af_vi2, _texture_index_txt))
 	public:	
 		ft_quad_image();// : ft_base(){}
 		

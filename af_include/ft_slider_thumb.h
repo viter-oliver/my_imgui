@@ -19,7 +19,7 @@ namespace auto_future
 			(float, _pos_maxy, { 20.f }),
 			(float, _size_maxw, { 40.f }),
 			(float, _size_maxh, { 40.f }),
-			(int, _thumb_id_txt, {0}))
+			(af_vi2, _thumb_id_txt))
 		ft_image _thumb;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		bool _keep_min_scale{false};

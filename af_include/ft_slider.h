@@ -25,14 +25,14 @@ namespace auto_future
 			(float, _bg_aposx, {0.f}),
 			(float, _bg_aposy, {0.f}),
 			(float, _bg_angle_nml, {0.f}),
-			(int, _texture_bg_index_txt, {0}),
+			(af_vi2, _texture_bg_index_txt),
 			(float, _hd_posx, { 20.f }),
 			(float, _hd_posy, { 20.f }),
-			(int, _texture_head_index_txt,{0}),
+			(af_vi2, _texture_head_index_txt),
 			(float, _tb_height, { 20.f }),
 			(float, _tb_offset, { 0.f }),
 			(bool, _thumb_visible, {false}),
-			(int, _texture_thumb_index_txt, {0}))
+			(af_vi2, _texture_thumb_index_txt))
 	public:
 		ft_slider();
 		~ft_slider(){}

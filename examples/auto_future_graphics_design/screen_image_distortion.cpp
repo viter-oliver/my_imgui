@@ -13,8 +13,8 @@ namespace auto_future
         void main()
         {
              outTxtCd=(position+vec2(1,1))*0.5;
-             vec2 tmpv=customMtx*position.xy+customDelta;
-             gl_Position=vec4(tmpv,0.0,1.0);
+             //vec2 tmpv=customMtx*position.xy+customDelta;
+             gl_Position=vec4(position.x,position.y,0.0,1.0);
         }
 		)glsl";
      const char* fs_code = R"glsl(
