@@ -80,6 +80,21 @@ base_prp_type::base_prp_type( string bty )
           _pbase = new bool;
           _size = sizeof( bool );
      }
+     else if( _type == "af_vi2" )
+     {
+          _pbase = new af_vi2;
+          _size = sizeof( af_vi2 );
+     }
+     else if( _type == "af_vi3" )
+     {
+          _pbase = new af_vi3;
+          _size = sizeof( af_vi3 );
+     }
+     else if( _type == "af_vi4" )
+     {
+          _pbase = new af_vi4;
+          _size = sizeof( af_vi4 );
+     }
      else if( _type == "af_vec2" )
      {
           _pbase = new af_vec2;

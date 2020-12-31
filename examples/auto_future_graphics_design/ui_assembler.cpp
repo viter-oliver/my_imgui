@@ -1535,12 +1535,12 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                
                insert_node.init_property_from_json( jroot, dic_font,dic_txt);
                //
-               auto jarry_2_prp_pos = [this]( Value& jarry, prop_ele_position&prp_epos )
+               auto jarry_2_prp_pos = [&]( Value& jarry, prop_ele_position&prp_epos )
                {
                     int jsize = jarry.size();
                     assert( jsize > 1 );
                     int con_id_max = jsize - 1;
-                    base_ui_component* pcontrol = &_root;
+                    base_ui_component* pcontrol = &insert_node;
                     int ii = con_id_max;
                     for( ; ii > 1; ii-- )
                     {
@@ -1560,6 +1560,11 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     Value& jpepid = alias[ *imemb ];
                     auto ps_pep_pos = make_shared<prop_ele_position>();
                     jarry_2_prp_pos( jpepid, *ps_pep_pos );
+                    auto ifd = g_aliase_dic.find( *imemb );
+                    if( ifd!=g_aliase_dic.end() )
+                    {
+                         g_aliase_dic.erase( ifd );
+                    }
                     g_aliase_dic[ *imemb ] = ps_pep_pos;
                }
                Value& binds = jroot[ "binds" ];
@@ -1679,6 +1684,11 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                               tran_unit._to = jtran[ "key_to" ].asInt();
                          }
                     }
+                    auto ifd = g_mstate_manager.find( mname );
+                    if (ifd!=g_mstate_manager.end())
+                    {
+                         g_mstate_manager.erase( ifd );
+                    }
                     g_mstate_manager[ mname ] = ps_stm;
                }
                Value& jcommonvalue_list = jroot[ "common_value_list" ];
@@ -1690,6 +1700,7 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     Value& jvalue = jcmv[ "value" ];
                     Value& jprop_list = jcmv[ "prop_list" ];
                     string vtype = jcmv[ "type" ].asString();
+                    auto rg = mname.substr( mname.length() - 3, 3 );
                     auto pcmv = make_shared<base_prp_type>( vtype );
                     auto& mvalue = pcmv->_pbase;
                     auto& pmlist = pcmv->_param_list;
@@ -1703,7 +1714,14 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     }
                     else if( vtype == "af_vi2" )
                     {
-                         *(int*)mvalue = jvalue[ "x" ].asInt();
+                         if (rg=="txt")
+                         {
+                              *(int*)mvalue = dic_txt[jvalue[ "x" ].asInt()];
+                         }
+                         else
+                         {
+                             *(int*)mvalue = jvalue[ "x" ].asInt();
+                         }
                          *( (int*)mvalue + 1 ) = jvalue[ "y" ].asInt();
                     }
                     else if( vtype == "af_vi3" )
@@ -1745,6 +1763,11 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                          Value& jprp_pos = jprop_list[ ii ];
                          jarry_2_prp_pos( jprp_pos, prp_pos );
                     }
+                    auto ifd = g_base_prp_dic.find( mname );
+                    if (ifd!=g_base_prp_dic.end())
+                    {
+                         g_base_prp_dic.erase( ifd );
+                    }
                     g_base_prp_dic[ mname ] = pcmv;
                }
                Value& feedback = jroot[ "feedback" ];
@@ -1767,6 +1790,11 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                          continue;
                     }
                     feedback_key fkey = { mtl_key, prm_key };
+                    auto ifd = g_feedback_list.find( fkey );
+                    if (ifd!=g_feedback_list.end())
+                    {
+                         g_feedback_list.erase( ifd );
+                    }
                     g_feedback_list[ fkey ] = make_shared<af_feedback>( imtl->second, iprm->second );
                }
                Value& jplaylist_group_list = jroot[ "playlist_group_list" ];
@@ -1783,6 +1811,11 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                          Value& pl_u = plg_list[ iy ];
                          playlist_unit plu = { pl_u[ "st_name" ].asString(), pl_u[ "playlist_id" ].asInt() };
                          ps_plg_list->emplace_back( plu );
+                    }
+                    auto ifd = g_playlist_group_list.find( plg_key );
+                    if (ifd!=g_playlist_group_list.end())
+                    {
+                         g_playlist_group_list.erase( ifd );
                     }
                     g_playlist_group_list[ plg_key ] = ps_plg_list;
                }
