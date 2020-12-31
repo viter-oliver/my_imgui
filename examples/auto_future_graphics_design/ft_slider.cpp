@@ -113,8 +113,9 @@ namespace auto_future
 		//ft_base::draw();
           auto& bg_gp_id = _slider_pt._texture_bg_index_txt.x;
           auto& bg_txt_index=_slider_pt._texture_bg_index_txt.y;
-          int texture_id = g_vres_texture_list[ bg_gp_id ].texture_id();
-          vres_txt_cd& ptext_cd = g_vres_texture_list[ bg_gp_id ].vtexture_coordinates;
+          auto& cur_res_list = *g_vres_texture_list[ bg_gp_id ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
 		if (ptext_cd.size() == 0)
 			return;
           if( bg_txt_index >= ptext_cd.size() )
@@ -122,8 +123,8 @@ namespace auto_future
                printf( "invalid texture index:%d\n", bg_txt_index );
                return;
 		}
-          int bg_gp_texture_width = g_vres_texture_list[ bg_txt_index ].texture_width;
-          int bg_gp_texture_height = g_vres_texture_list[ bg_txt_index ].texture_height;
+          int bg_gp_texture_width = cur_res_list.texture_width;
+          int bg_gp_texture_height = cur_res_list.texture_height;
 		float sizew = _slider_pt._bg_txtw;
 		float sizeh = _slider_pt._bg_txth;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
@@ -151,10 +152,11 @@ namespace auto_future
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
 		auto& hd_gp_id = _slider_pt._texture_head_index_txt.x;
           auto& txt_hd_id = _slider_pt._texture_head_index_txt.y;
-          int hd_texture_id = g_vres_texture_list[ hd_gp_id ].texture_id();
-          int hd_gp_texture_width = g_vres_texture_list[ hd_gp_id ].texture_width;
-          int hd_gp_texture_height = g_vres_texture_list[ hd_gp_id ].texture_height;
-          vres_txt_cd& hd_text_cd = g_vres_texture_list[ hd_gp_id ].vtexture_coordinates;
+          auto& hd_res_gp = *g_vres_texture_list[ hd_gp_id ];
+          int hd_texture_id = hd_res_gp.texture_id();
+          int hd_gp_texture_width = hd_res_gp.texture_width;
+          int hd_gp_texture_height = hd_res_gp.texture_height;
+          vres_txt_cd& hd_text_cd = hd_res_gp.vtexture_coordinates;
 
 		/***********************************************************progress*********************************************************/
           if( txt_hd_id >= hd_text_cd.size() )
@@ -281,10 +283,11 @@ namespace auto_future
 		pos4 = screen_base_pos + tb_point3;
 		auto& tb_gp_id=_slider_pt._texture_thumb_index_txt.x;
           auto& tb_id = _slider_pt._texture_thumb_index_txt.y;
-          int tb_texture_id = g_vres_texture_list[ tb_gp_id ].texture_id();
-          int tb_gp_texture_width = g_vres_texture_list[ tb_gp_id ].texture_width;
-          int tb_gp_texture_height = g_vres_texture_list[ tb_gp_id ].texture_height;
-          vres_txt_cd& tb_text_cd = g_vres_texture_list[ hd_gp_id ].vtexture_coordinates;
+          auto& tb_re_gp = *g_vres_texture_list[ tb_gp_id ];
+          int tb_texture_id = tb_re_gp.texture_id();
+          int tb_gp_texture_width = tb_re_gp.texture_width;
+          int tb_gp_texture_height = tb_re_gp.texture_height;
+          vres_txt_cd& tb_text_cd = tb_re_gp.vtexture_coordinates;
 
           uv0 = ImVec2( tb_text_cd[ tb_id ]._x0 / tb_gp_texture_width, tb_text_cd[ tb_id ]._y0 / tb_gp_texture_height );
           uv1 = ImVec2( tb_text_cd[ tb_id ]._x0 / tb_gp_texture_width, ( tb_text_cd[ tb_id ]._y1 ) / tb_gp_texture_height );

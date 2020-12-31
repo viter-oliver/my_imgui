@@ -74,8 +74,9 @@ namespace auto_future
 	void ft_quad_image::draw()
 	{
           auto& img_txt_id = _img_pt._texture_index_txt;
-          int texture_id = g_vres_texture_list[ img_txt_id.x].texture_id();
-          vres_txt_cd& ptext_cd = g_vres_texture_list[ img_txt_id.x].vtexture_coordinates;
+          auto& cur_res_list = *g_vres_texture_list[ img_txt_id.x ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
 		if (ptext_cd.size() == 0)
 			return;
           if( img_txt_id.y >= ptext_cd.size() )
@@ -83,8 +84,8 @@ namespace auto_future
                printf( "invalid texture index:%d\n", img_txt_id.y);
                return;
 		}
-          int texture_width = g_vres_texture_list[ img_txt_id.x].texture_width;
-          int texture_height = g_vres_texture_list[ img_txt_id.x].texture_height;
+          int texture_width = cur_res_list.texture_width;
+          int texture_height = cur_res_list.texture_height;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 basepos= { abpos.x + winpos.x, abpos.y + winpos.y };

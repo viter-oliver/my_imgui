@@ -14,17 +14,6 @@ const char* afb_fold = "afb\\";
 vres_txt_list  g_vres_texture_list;
 int g_cur_texture_id_index=0;
 mtexture_list g_mtexture_list;
-bool get_texture_group_name( void* data, int idx, const char** out_str )
-{
-     *out_str = g_vres_texture_list[ idx ].texture_pack_file.c_str();
-     return true;
-}
-bool get_texture_item(void* data, int idx, const char** out_str)
-{
-     int image_id = *(int *)data;
-     *out_str = g_vres_texture_list[ image_id ].vtexture_coordinates[ idx ]._file_name.c_str();
-	return true;
-}
 
 af_file::af_file(GLuint fsize)
 	:_fsize(fsize)
@@ -47,7 +36,19 @@ mfile_list g_mfiles_list;
 #include <fstream>
 #include "dir_output.h"
 extern string g_cureent_directory;
-
+bool get_texture_group_name( void* data, int idx, const char** out_str )
+{
+     auto& res_gp = *g_vres_texture_list[ idx ];
+     *out_str = res_gp.texture_pack_file.c_str();
+     return true;
+}
+bool get_texture_item( void* data, int idx, const char** out_str )
+{
+     int image_id = *(int *)data;
+     auto& res_gp = *g_vres_texture_list[ image_id ];
+     *out_str = res_gp.vtexture_coordinates[ idx ]._file_name.c_str();
+     return true;
+}
 bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 {
 	string img_file_name = imgPath.substr(imgPath.find_last_of('\\') + 1);

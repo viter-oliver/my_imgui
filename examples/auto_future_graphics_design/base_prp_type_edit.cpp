@@ -164,33 +164,7 @@ void base_prp_type_edit::base_prp_item()
      string rg = _key_name.substr( _key_name.length() - 3, 3 );
      if( _type == "int" )
      {
-          if (rg=="txt")
-          {
-               auto& res_coors = g_vres_texture_list[ g_cur_texture_id_index ].vtexture_coordinates;
-               int isize = g_vres_texture_list[ g_cur_texture_id_index ].vtexture_coordinates.size();
-               bool be_changed = ImGui::Combo( "value", (int*)_pbase, &get_texture_item, &g_vres_texture_list[ g_cur_texture_id_index ], isize );
-
-               ImGui::SameLine(); ShowHelpMarker( "select a image from image resource!\n" );
-               int txt_idx = *(int*)_pbase;
-               float reswidth = res_coors[ txt_idx ].owidth();
-               float resheight = res_coors[ txt_idx ].oheight();
-               ImGui::Text( "original size:%f,%f", reswidth, resheight );
-               ImGui::Spacing();
-               if( reswidth > 0 )
-               {
-                    float draw_height = imge_edit_view_width*resheight / reswidth;
-                    ImVec2 draw_size( imge_edit_view_width, draw_height );
-                    int texture_id = g_vres_texture_list[ g_cur_texture_id_index ].texture_id();
-                    float wtexture_width = g_vres_texture_list[ g_cur_texture_id_index ].texture_width;
-                    float wtexture_height = g_vres_texture_list[ g_cur_texture_id_index ].texture_height;
-
-                    ImVec2 uv0( res_coors[ txt_idx ]._x0 / wtexture_width, res_coors[ txt_idx ]._y0 / wtexture_height );
-                    ImVec2 uv1( res_coors[ txt_idx ]._x1 / wtexture_width, res_coors[ txt_idx ]._y1 / wtexture_height );
-                    ImGui::Image( (ImTextureID)texture_id, draw_size, uv0, uv1, ImColor( 255, 255, 255, 255 ), ImColor( 255, 255, 255, 128 ) );
-               }
-          }
-          else
-               ImGui::SliderInt( "value", (int*)_pbase, _mini, _maxi );
+          ImGui::SliderInt( "value", (int*)_pbase, _mini, _maxi );
      }
      else if( _type == "float" || _type == "double" )
      {
@@ -208,8 +182,9 @@ void base_prp_type_edit::base_prp_item()
                int igsize = g_vres_texture_list.size();
                ImGui::Combo( "Texture group list", &ptxt_idx->x, get_texture_group_name, &g_vres_texture_list, igsize );
                int img_gp_id = ptxt_idx->x;
-               auto& res_coors = g_vres_texture_list[ img_gp_id ].vtexture_coordinates;
-               int isize = g_vres_texture_list[ img_gp_id ].vtexture_coordinates.size();
+               auto& res_gp = *g_vres_texture_list[ img_gp_id ];
+               auto& res_coors = res_gp.vtexture_coordinates;
+               int isize = res_gp.vtexture_coordinates.size();
                int txt_idx = ptxt_idx->y;
                bool be_changed = ImGui::Combo( "Texture list", &ptxt_idx->y, &get_texture_item, &img_gp_id, isize );
 
@@ -222,9 +197,9 @@ void base_prp_type_edit::base_prp_item()
                {
                     float draw_height = imge_edit_view_width*resheight / reswidth;
                     ImVec2 draw_size( imge_edit_view_width, draw_height );
-                    int texture_id = g_vres_texture_list[ img_gp_id ].texture_id();
-                    float wtexture_width = g_vres_texture_list[ img_gp_id ].texture_width;
-                    float wtexture_height = g_vres_texture_list[ img_gp_id ].texture_height;
+                    int texture_id = res_gp.texture_id();
+                    float wtexture_width = res_gp.texture_width;
+                    float wtexture_height = res_gp.texture_height;
 
                     ImVec2 uv0( res_coors[ txt_idx ]._x0 / wtexture_width, res_coors[ txt_idx ]._y0 / wtexture_height );
                     ImVec2 uv1( res_coors[ txt_idx ]._x1 / wtexture_width, res_coors[ txt_idx ]._y1 / wtexture_height );

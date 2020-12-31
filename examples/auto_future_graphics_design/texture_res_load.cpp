@@ -26,8 +26,8 @@ void texture_res_load::load_res_from_json(Value& jroot)
 		Value& junit = texture_res_list[ix];
 		Value& texture_pack_file = junit["texture_pack_file"];
 		Value& texture_data_file = junit["texture_data_file"];
-		_texture_res_tar.emplace_back();
-		res_texture_list& rtlist = _texture_res_tar[ix];
+          _texture_res_tar.emplace_back( make_shared<res_texture_list>() );
+		res_texture_list& rtlist = *_texture_res_tar[ix];
 		rtlist.texture_pack_file = texture_pack_file.asString();
 		rtlist.texture_data_file = texture_data_file.asString();
 		rtlist._is_separated = junit["separated"].asBool();
@@ -45,13 +45,33 @@ bool load_texture_info(res_texture_list& rtlist, string& str_txt_pack_file, stri
 		
 	str_texture_pack_file += str_txt_pack_file;
 	str_texture_data_file += str_txt_data_file;
-		
-	rtlist.txt_id =move( TextureHelper::load2DTexture(str_texture_pack_file.c_str(), \
-	rtlist.texture_width, rtlist.texture_height, GL_RGBA, GL_RGBA, SOIL_LOAD_RGBA));
-	if (rtlist.texture_id()==0)
-	{
-		return false;
-	}
+     GLubyte* imgdata = NULL;
+     int width, height, channels;
+     imgdata = SOIL_load_image( str_texture_pack_file.c_str(), &width, &height, &channels, SOIL_LOAD_RGBA );
+     if( imgdata == NULL )
+     {
+          printf( "Fail to load texture file:%s\n", str_texture_pack_file.c_str() );
+          return false;
+     }
+     GLuint textureId = 0;
+     glGenTextures( 1, &textureId );
+     glBindTexture( GL_TEXTURE_2D, textureId );
+     glEnable( GL_BLEND );
+     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
+     // Step2 设定wrap参数
+     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE );
+     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE );
+     // Step3 设定filter参数
+     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
+     // Step4 加载纹理
+     glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
+     glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgdata );
+     // Step5 释放纹理图片资源
+     SOIL_free_image_data( imgdata );
+     rtlist.txt_id = textureId;
+     rtlist.texture_width = width;
+     rtlist.texture_height = height;
+
 	ifstream fin;
 	fin.open(str_texture_data_file);
 	if (fin.is_open())

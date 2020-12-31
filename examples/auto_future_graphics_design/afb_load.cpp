@@ -254,8 +254,8 @@ void afb_load::load_afb(const char* afb_file)
 	}
 	for (size_t ix = 0; ix < re_cnt; ix++)
 	{
-		g_vres_texture_list.emplace_back(res_texture_list());
-		res_texture_list& res_unit = g_vres_texture_list.back();
+          g_vres_texture_list.emplace_back( make_shared<res_texture_list>() );
+		res_texture_list& res_unit = *g_vres_texture_list.back();
 		auto bin_res_unit = obj_res.via.array.ptr[ix];
 		auto txt_name = bin_res_unit.via.array.ptr[0];
 		auto txt_name_sz = txt_name.via.str.size;

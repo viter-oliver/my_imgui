@@ -674,8 +674,9 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
           output_bin_fmt[ "pgm_fmt" ] = g_output_bin_format._pgm_fmt;
           jroot[ "output_bin_fmt" ] = output_bin_fmt;
           Value jtexture( arrayValue );
-          for( auto& reslist : g_vres_texture_list )
+          for( auto& reslist_item : g_vres_texture_list )
           {
+               auto& reslist = *reslist_item;
                Value jtext_res_unit( objectValue );
                jtext_res_unit[ "texture_pack_file" ] = reslist.texture_pack_file;
                jtext_res_unit[ "texture_data_file" ] = reslist.texture_data_file;
@@ -1104,7 +1105,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
 }
 
 void update_ui_component_texture_res_index( base_ui_component& tar, vres_txt_cd& old_txt_cd, vres_txt_cd& new_txt_cd, int gp_idx );
-bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, const char* file_path )
+bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, char* file_path )
 {
      HCURSOR hcur_cursor = GetCursor();
      SetCursor( g_hcursor_wait );
@@ -1162,7 +1163,7 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     int ii = 0;
                     for( ; ii < sz;++ii )
                     {
-                         auto& rt_list = res_container[ ii ];
+                         auto& rt_list = *res_container[ ii ];
                          if (rt_list.texture_pack_file==pack_file)
                          {
                               return ii;
@@ -1183,22 +1184,22 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     Value& texture_data_file = junit[ "texture_data_file" ];
                     auto gp_id = find_text_group( g_vres_texture_list, texture_pack_file.asString() );
                     str_cmd = "copy ";
-                    str_cmd += str_res_path;
+                    str_cmd += str_tar_res_path;
                     
                     string str_cpy_pack_file = str_cmd+texture_pack_file.asString();
                     str_cpy_pack_file +=" ";
-                    str_cpy_pack_file += str_tar_res_path;
+                    str_cpy_pack_file += str_res_path;
                     system( str_cpy_pack_file.c_str() );
                     string str_cpy_data_file=str_cmd +texture_data_file.asString() ;
                     str_cpy_data_file += " ";
-                    str_cpy_data_file += str_tar_res_path;
+                    str_cpy_data_file += str_res_path;
                     system( str_cpy_data_file.c_str() );
 
                     dic_txt[ ix ] = gp_id;
 
                     if( gp_id<group_sz )//update all of old texture objects related this group_id
                     {
-                         res_texture_list& cur_txt_list = g_vres_texture_list[ gp_id ];
+                         res_texture_list& cur_txt_list = *g_vres_texture_list[ gp_id ];
                          vres_txt_cd old_txt_cd = cur_txt_list.vtexture_coordinates;
                          unsigned int txtid = cur_txt_list.texture_id();
                          glDeleteTextures( 1, &txtid );
@@ -1224,8 +1225,8 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     }
                     else
                     {
-                         g_vres_texture_list.emplace_back();
-                         res_texture_list& rtlist = g_vres_texture_list[ gp_id ];
+                         g_vres_texture_list.emplace_back( make_shared<res_texture_list>() );
+                         res_texture_list& rtlist = *g_vres_texture_list[ gp_id ];
                          rtlist.texture_pack_file = texture_pack_file.asString();
                          rtlist.texture_data_file = texture_data_file.asString();
                          rtlist._is_separated = junit[ "separated" ].asBool();
@@ -1880,7 +1881,7 @@ bool ui_assembler::update_texture_res()
      int isize = g_vres_texture_list.size();
      for( int idx = 0; idx < isize;++idx )
      {
-          res_texture_list& cur_txt_list = g_vres_texture_list[ idx ];
+          res_texture_list& cur_txt_list = *g_vres_texture_list[ idx ];
           vres_txt_cd old_txt_cd = cur_txt_list.vtexture_coordinates;
           unsigned int txtid = cur_txt_list.texture_id();
           glDeleteTextures( 1, &txtid );

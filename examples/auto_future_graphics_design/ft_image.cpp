@@ -24,8 +24,9 @@ namespace auto_future
 	void ft_image::draw()
 	{
           auto& img_txt_id = _img_pt._texture_index_txt;
-          int texture_id = g_vres_texture_list[ img_txt_id.x ].texture_id();
-          vres_txt_cd& ptext_cd = g_vres_texture_list[ img_txt_id.x].vtexture_coordinates;
+          auto& cur_res_list = *g_vres_texture_list[ img_txt_id.x ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
 		if (ptext_cd.size() == 0)
 			return;
           if( img_txt_id.y >= ptext_cd.size() )
@@ -34,8 +35,8 @@ namespace auto_future
                return;
 
 		}
-          int texture_width = g_vres_texture_list[ img_txt_id.x ].texture_width;
-          int texture_height = g_vres_texture_list[ img_txt_id.x ].texture_height;
+          int texture_width = cur_res_list.texture_width;
+          int texture_height = cur_res_list.texture_height;
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();

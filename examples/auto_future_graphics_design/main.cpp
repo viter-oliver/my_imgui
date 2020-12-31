@@ -808,6 +808,31 @@ int main( int argc, char* argv[] )
 				{
 					fun_shortct(an_alt_f4);
 				}
+                    auto psel_ui=prj_edit->current_object();
+                    if( psel_ui&&ImGui::MenuItem( "Insert ui node from afg project..." ) )
+                    {
+                         int result = MessageBox( GetForegroundWindow(), "Be careful about this operation! \nObjects in this project that have the same name as objects in the imported project will be overwritten.", "Import", MB_YESNOCANCEL );
+                         if( result == IDYES )
+                         {
+                              OPENFILENAME ofn = { sizeof( OPENFILENAME ) };
+                              ofn.hwndOwner = GetForegroundWindow();
+                              ofn.lpstrFilter = "valid file:\0*.afg\0\0";
+                              char strFileName[ MAX_PATH ] = { 0 };
+                              ofn.nFilterIndex = 1;
+                              ofn.lpstrFile = strFileName;
+                              ofn.nMaxFile = sizeof( strFileName );
+                              ofn.lpstrTitle = "select a auto-future graphics design project file(*.afg) please!";
+                              ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+                              if( GetOpenFileName( &ofn ) )
+                              {
+                                   printf( "open file%s\n", strFileName );
+                                   ui_assembler _ui_as( *_proot );
+                                   _ui_as.load_ui_component_from_file( *psel_ui, strFileName );
+                              }
+                         }
+
+                         
+                    }
 				ImGui::EndMenu();
 			}
 			if (ImGui::BeginMenu("Edit"))

@@ -257,11 +257,15 @@ static	string aliase_btn_cp = "  ##";
                                                   string str_gp = "Group id of" + str_show;
                                                   ImGui::Combo( str_gp.c_str(), &ptxt_idx->x, get_texture_group_name, &g_vres_texture_list, igsize );
                                                   int img_gp_id = ptxt_idx->x;
-                                                  auto& res_coors = g_vres_texture_list[ img_gp_id ].vtexture_coordinates;
-                                                  int isize = g_vres_texture_list[ img_gp_id ].vtexture_coordinates.size();
+                                                  auto& res_gp = *g_vres_texture_list[ img_gp_id ];
+                                                  auto& res_coors = res_gp.vtexture_coordinates;
+                                                  int isize = res_coors.size();
                                                   int txt_idx = ptxt_idx->y;
                                                   bool be_changed = ImGui::Combo( str_show.c_str(), &ptxt_idx->y, &get_texture_item, &img_gp_id, isize );
-
+                                                  if( txt_idx<isize)
+                                                  {
+                                                       return be_changed;
+                                                  }
                                                   ImGui::SameLine(); ShowHelpMarker( "select a image from image resource!\n" );
                                                   float reswidth = res_coors[ txt_idx ].owidth();
                                                   float resheight = res_coors[ txt_idx ].oheight();
@@ -271,9 +275,9 @@ static	string aliase_btn_cp = "  ##";
                                                   {
                                                        float draw_height = imge_edit_view_width*resheight / reswidth;
                                                        ImVec2 draw_size( imge_edit_view_width, draw_height );
-                                                       int texture_id = g_vres_texture_list[ img_gp_id ].texture_id();
-                                                       float wtexture_width = g_vres_texture_list[ img_gp_id ].texture_width;
-                                                       float wtexture_height = g_vres_texture_list[ img_gp_id ].texture_height;
+                                                       int texture_id = res_gp.texture_id();
+                                                       float wtexture_width = res_gp.texture_width;
+                                                       float wtexture_height = res_gp.texture_height;
 
                                                        ImVec2 uv0( res_coors[ txt_idx ]._x0 / wtexture_width, res_coors[ txt_idx ]._y0 / wtexture_height );
                                                        ImVec2 uv1( res_coors[ txt_idx ]._x1 / wtexture_width, res_coors[ txt_idx ]._y1 / wtexture_height );
@@ -689,7 +693,8 @@ static	string aliase_btn_cp = "  ##";
                          {
                               if( rg =="txt")
                               {
-                                   *(int*)membaddr = txt_dic[vele[ "x" ].asInt()];
+                                   auto gp_id = vele[ "x" ].asInt();
+                                   *(int*)membaddr = txt_dic[ gp_id ];
                               }
                               else
                               {
@@ -809,7 +814,7 @@ static	string aliase_btn_cp = "  ##";
                auto& cname = child[ "type" ].asString();
                base_ui_component* pcontrol_instance = factory::get().produce( cname );
                add_child( pcontrol_instance );
-               pcontrol_instance->init_property_from_json( child );
+               pcontrol_instance->init_property_from_json( child,font_dic,txt_dic );
           }
      }
 	void base_ui_component::save_property_to_json(Value& junit){

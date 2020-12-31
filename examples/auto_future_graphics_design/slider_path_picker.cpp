@@ -108,16 +108,16 @@ void slider_path_picker::view()
 	ImGui::SliderFloat("view scale", &view_scale, 0.2, 20);
 	static float range_w{ 0. }, range_h{0.};
 	static bool trak_a_image = true;
-	int _txt_index = g_cur_texture_id_index;
-	auto isize = g_vres_texture_list[_txt_index].vtexture_coordinates.size();
+     auto& res_gp = *g_vres_texture_list[ g_cur_texture_id_index ];
+     auto isize = res_gp.vtexture_coordinates.size();
 	ImGui::Checkbox("Track a image", &trak_a_image);
-	auto& res_coors = g_vres_texture_list[_txt_index].vtexture_coordinates;
+     auto& res_coors = res_gp.vtexture_coordinates;
 	if (trak_a_image)
 	{
-		bool be_changed = ImGui::Combo("picker target", &_img_id, &get_texture_item, &g_vres_texture_list[_txt_index], isize);
+          bool be_changed = ImGui::Combo( "picker target", &_img_id, &get_texture_item, &res_gp, isize );
 		if (be_changed)
 		{
-			auto& icon_name = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates[_img_id]._file_name;
+               auto& icon_name = res_gp.vtexture_coordinates[ _img_id ]._file_name;
 			string tr_strk_name = icon_name.substr(0, icon_name.find_last_of('.'));
 			tr_strk_name += ".trk";
 			strcpy(track_file_name, tr_strk_name.c_str());
@@ -295,9 +295,9 @@ void slider_path_picker::view()
 	ImVec2 draw_size(range_w*view_scale, range_h*view_scale);
 	if (trak_a_image)
 	{
-		int txt_id = g_vres_texture_list[_txt_index].texture_id();
-		float wtxt_w = g_vres_texture_list[_txt_index].texture_width;
-		float wtxt_h = g_vres_texture_list[_txt_index].texture_height;
+          int txt_id = res_gp.texture_id();
+          float wtxt_w = res_gp.texture_width;
+          float wtxt_h = res_gp.texture_height;
 		ImVec2 uv0(res_coors[_img_id]._x0 / wtxt_w, res_coors[_img_id]._y0 / wtxt_h);
 		ImVec2 uv1(res_coors[_img_id]._x1 / wtxt_w, res_coors[_img_id]._y1 / wtxt_h);
 		ImGui::Image((ImTextureID)txt_id, draw_size, uv0, uv1, ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));

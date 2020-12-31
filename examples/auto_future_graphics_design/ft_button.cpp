@@ -11,11 +11,12 @@ namespace auto_future
 	{
 		//ft_base::draw();
 		af_vi2 cur_txt_id = get_cur_txt_id();
-          int texture_id = g_vres_texture_list[ cur_txt_id.x].texture_id();
-          vres_txt_cd& ptext_cd = g_vres_texture_list[ cur_txt_id.x].vtexture_coordinates;
+          auto& cur_res_list = *g_vres_texture_list[ cur_txt_id.x ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
 		printf("cur_txt_id=%d\n", cur_txt_id);
-          int texture_width = g_vres_texture_list[ cur_txt_id.x ].texture_width;
-          int texture_height = g_vres_texture_list[ cur_txt_id.x ].texture_height;
+          int texture_width = cur_res_list.texture_width;
+          int texture_height = cur_res_list.texture_height;
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();

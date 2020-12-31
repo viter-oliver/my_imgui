@@ -33,9 +33,8 @@ void res_edit::draw_res_list()
      ImGui::InputText( "texture data file:", texture_data_name_str, FILE_NAME_LEN );
      if( ImGui::Button( "new texture group" ) )
      {
-          g_vres_texture_list.push_back( res_texture_list() );
-          int isize = g_vres_texture_list.size();
-          res_texture_list& retxt = g_vres_texture_list[ isize - 1 ];
+          g_vres_texture_list.emplace_back( make_shared<res_texture_list>() );
+          res_texture_list& retxt = *g_vres_texture_list.back();
           retxt.texture_pack_file = texture_pack_name_str;
           retxt.texture_data_file = texture_data_name_str;
           if( !load_texture_info( retxt, retxt.texture_pack_file, retxt.texture_data_file ) )
@@ -54,11 +53,11 @@ void res_edit::draw_res_item_property()
 	{
 		ImGui::Text("texture data file:");
 		ImGui::SameLine();
-          ImGui::Text( g_vres_texture_list[ g_cur_texture_id_index ].texture_data_file.c_str() );
-          ImGui::Text( "Texture size:%d*%d", g_vres_texture_list[ g_cur_texture_id_index ].texture_width, \
-                       g_vres_texture_list[ g_cur_texture_id_index ].texture_height );
+          auto& res_gp = *g_vres_texture_list[ g_cur_texture_id_index ];
+          ImGui::Text( res_gp.texture_data_file.c_str() );
+          ImGui::Text( "Texture size:%d*%d", res_gp.texture_width, res_gp.texture_height );
 
-          ImGui::Checkbox( "is separated", &g_vres_texture_list[ g_cur_texture_id_index ]._is_separated );
+          ImGui::Checkbox( "is separated", &res_gp._is_separated );
 	}
 	else
 	{

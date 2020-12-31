@@ -37,7 +37,7 @@ public:
 	*/
 	bool update_texture_res();
 
-     bool load_ui_component_from_file(base_ui_component& insert_node, const char* file_path );
+     bool load_ui_component_from_file(base_ui_component& insert_node, char* file_path );
 private:
 
 	ps_primrive_object load_primitive_from_file(string &kname, vector<GLubyte> ele_format, GLuint vbo_len, GLuint ebo_len);
