@@ -9,11 +9,17 @@ void point_to_underline(string& target)
 		}
 	}
 }
-void file_outputor::begin_enum_file(string enum_file)
+file_outputor::file_outputor( string output_path ) 
 {
-	string file_name = _output_path + enum_file;
-	_fout.open(file_name);
-	point_to_underline(enum_file);
+     _fout.open( output_path );
+}
+file_outputor::~file_outputor()
+{
+     _fout.close();
+}
+void file_outputor::begin_enum(string enum_file)
+{
+	//point_to_underline(enum_file);
 	_fout << "enum " << enum_file << "{" << endl;
 }
 
@@ -23,8 +29,7 @@ void file_outputor::push_enum_name(string enum_name)
 	_fout << "en_" << enum_name <<","<< endl;
 }
 
-void file_outputor::end_enum_file()
+void file_outputor::end_enum()
 {
 	_fout << "};" << endl;
-	_fout.close();
 }

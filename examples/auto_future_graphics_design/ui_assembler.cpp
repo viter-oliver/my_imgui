@@ -127,9 +127,12 @@ bool ui_assembler::load_afg_from_file(const char* file_path)
 					string font_full_name= str_font_path + font_name;
                          int tmp_id;
 					auto ft_u=g_pfont_face_manager->load_font(font_name, font_full_name,tmp_id);
-					ft_u->_name = font_name;
-					ft_u->_char_count_c = jfont["cols"].asInt();
-					ft_u->_char_count_r = jfont["rows"].asInt();
+					if (ft_u)
+					{
+                              ft_u->_name = font_name;
+                              ft_u->_char_count_c = jfont[ "cols" ].asInt();
+                              ft_u->_char_count_r = jfont[ "rows" ].asInt();
+					}
 				}
 
 			}
@@ -1147,9 +1150,12 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                               if( new_font_id >= ft_sz )
                               {
                                    str_cmd = "copy ";
+                                   str_cmd += "\"";
                                    str_cmd += font_full_name;
-                                   str_cmd += " ";
+                                   str_cmd += "\" ";
+                                   str_cmd += "\"";
                                    str_cmd += cur_afg_font_path;
+                                   str_cmd += "\"";
                                    system( str_cmd.c_str() );
                               }
                          }
@@ -1184,15 +1190,20 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     Value& texture_data_file = junit[ "texture_data_file" ];
                     auto gp_id = find_text_group( g_vres_texture_list, texture_pack_file.asString() );
                     str_cmd = "copy ";
+                    str_cmd += "\"";
                     str_cmd += str_tar_res_path;
-                    
                     string str_cpy_pack_file = str_cmd+texture_pack_file.asString();
-                    str_cpy_pack_file +=" ";
+                    str_cpy_pack_file += "\" ";
+                    str_cpy_pack_file += "\"";
                     str_cpy_pack_file += str_res_path;
+                    str_cpy_pack_file += "\"";
                     system( str_cpy_pack_file.c_str() );
-                    string str_cpy_data_file=str_cmd +texture_data_file.asString() ;
-                    str_cpy_data_file += " ";
+                    string str_cpy_data_file=str_cmd +texture_data_file.asString();
+                    str_cpy_data_file += "\" ";
+
+                    str_cpy_data_file += "\"";
                     str_cpy_data_file += str_res_path;
+                    str_cpy_data_file += "\" ";
                     system( str_cpy_data_file.c_str() );
 
                     dic_txt[ ix ] = gp_id;
@@ -1244,10 +1255,11 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     Value& txt_unit = texture_list[ ix ];
                     auto& kname = txt_unit[ "name" ].asString();
                     auto img_file_path = str_img_path + kname;
-                    str_cmd = "copy ";
+                    str_cmd = "copy \""; 
                     str_cmd += img_file_path;                    
-                    str_cmd += " ";
+                    str_cmd += "\" \"";
                     str_cmd += str_cur_img_path;
+                    str_cmd += "\"";
                     system( str_cmd.c_str() );
                     ps_af_texture pimge;
                     auto ifd=g_mtexture_list.find( kname );
@@ -1315,10 +1327,11 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     auto& kname = filse_unit.asString();
                     auto file_path = str_files_path + kname;
 
-                    str_cmd = "copy ";
+                    str_cmd = "copy \"";
                     str_cmd += file_path;
-                    str_cmd += " ";
+                    str_cmd += "\" \"";
                     str_cmd += str_cur_file_path;
+                    str_cmd += "\"";
                     system( str_cmd.c_str() );
 
                     ifstream ifs;
@@ -1351,10 +1364,10 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                for( ix = 0; ix < isize; ix++ )
                {
                     Value& shd_unit = shader_list[ ix ];
-                    //auto& vs_code = shd_unit["vs_code"].asString();
-                    //auto& fs_code = shd_unit["fs_code"].asString();
-                    string vs_file = str_shader_path + shd_unit[ "vs_name" ].asString();
-                    string fs_file = str_shader_path + shd_unit[ "fs_name" ].asString();
+                    auto& vs_code_f = shd_unit["vs_name"].asString();
+                    auto& fs_code_f = shd_unit["fs_name"].asString();
+                    string vs_file = str_shader_path + vs_code_f;
+                    string fs_file = str_shader_path + fs_code_f;
                     ifstream ifs_shd;
                     string vs_code, fs_code;
                     ifs_shd.open( vs_file );
@@ -1373,17 +1386,17 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                     getline( ifs_shd, fs_code, (char)EOF );
                     ifs_shd.close();
 
-                    str_cmd = "copy ";
+                    str_cmd = "copy \"";
                     str_cmd += str_shader_path;
-                    string cp_vs = str_cmd + vs_file;
-                    cp_vs += " ";
+                    string cp_vs = str_cmd + vs_code_f;
+                    cp_vs += "\" \"";
                     cp_vs += str_cur_shader_path;
-                    
-
+                    cp_vs += "\"";
                     system( cp_vs.c_str() );
-                    string cp_fs = str_cmd + fs_file;
-                    cp_fs += " ";
+                    string cp_fs = str_cmd + fs_code_f;
+                    cp_fs += "\" \"";
                     cp_fs += str_cur_shader_path;
+                    cp_fs += "\"";
                     system( cp_fs.c_str() );
                     auto sd_name = shd_unit[ "name" ].asString();
                     ps_shader pshd;
@@ -1398,8 +1411,8 @@ bool ui_assembler::load_ui_component_from_file( base_ui_component& insert_node, 
                          pshd = make_shared<af_shader>( vs_code.c_str(), fs_code.c_str() );
                          g_af_shader_list[ sd_name ] = pshd;
                     }
-                    pshd->_vs_name = shd_unit[ "vs_name" ].asString();
-                    pshd->_fs_name = shd_unit[ "fs_name" ].asString();
+                    pshd->_vs_name = vs_code_f;
+                    pshd->_fs_name = fs_code_f;
                     pshd->set_name( sd_name );
                }
                Value& material_list = jroot[ "material_list" ];

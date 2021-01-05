@@ -113,7 +113,6 @@ void afb_output::output_afb(const char* afb_file)
      
      string output_file_path = afb_path.substr( 0, afb_path.find_last_of( '\\' ) + 1 ); //g_cureent_directory + "afb\\";
 	int idx = 0;
-	file_outputor fout_put(output_file_path);
 	pk.pack_int(g_cur_texture_id_index);//en_vtextures_res_cidx
 	pk.pack_array(g_vres_texture_list.size());//en_vtextures_res
 	function<uint8_t*(uint8_t*, int,int,int&)> ftxt_press;
@@ -131,6 +130,16 @@ void afb_output::output_afb(const char* afb_file)
 	}
 	int DDS_size = 0;
 	unsigned char *DDS_data = NULL;
+     string en_txt_indx_name = output_file_path + "enum_txt_res_name.h";
+     file_outputor fout_put( en_txt_indx_name );
+     int v_sz = g_vres_texture_list.size();
+     fout_put.begin_enum( "enum_txt_res_group" );
+     stringstream stm_ix;
+     for( int ix = 0; ix < v_sz;++ix )
+     {
+          fout_put.push_enum_name( g_vres_texture_list[ ix ]->texture_pack_file );
+     }
+     fout_put.end_enum();
 	for (auto& res_item : g_vres_texture_list)
 	{
           auto& res_unit = *res_item;
@@ -166,12 +175,10 @@ void afb_output::output_afb(const char* afb_file)
 		}
 		delete[] txtdata;
 		pk.pack_array(res_unit.vtexture_coordinates.size());
-		string enum_file = "enum_txt_name";
-		char str_ix[20] = { 0 };
-		sprintf(str_ix, "%d.h", idx);
-		enum_file += str_ix;
-		idx++;
-		fout_put.begin_enum_file(enum_file);
+          stm_ix.str( string() );
+          stm_ix.clear();
+          stm_ix << "enum_txt_group_" << idx;
+          fout_put.begin_enum( stm_ix.str() );
 		for (auto& tcd_unit : res_unit.vtexture_coordinates)
 		{
 			pk.pack_array(5);
@@ -183,7 +190,8 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_float(tcd_unit._y1);
 			fout_put.push_enum_name(tcd_unit._file_name);
 		}
-		fout_put.end_enum_file();
+		fout_put.end_enum();
+          idx++;
 	}
 
 

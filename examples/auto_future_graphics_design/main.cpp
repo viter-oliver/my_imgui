@@ -803,11 +803,7 @@ int main( int argc, char* argv[] )
 					_ui_as.update_texture_res();
 					_ui_as.output_ui_component_to_file(g_cureent_project_file_path.c_str());
 				}
-				ImGui::Separator();
-				if (ImGui::MenuItem("Quit", "Alt+F4")) 
-				{
-					fun_shortct(an_alt_f4);
-				}
+
                     auto psel_ui=prj_edit->current_object();
                     if( psel_ui&&ImGui::MenuItem( "Insert ui node from afg project..." ) )
                     {
@@ -829,9 +825,12 @@ int main( int argc, char* argv[] )
                                    ui_assembler _ui_as( *_proot );
                                    _ui_as.load_ui_component_from_file( *psel_ui, strFileName );
                               }
-                         }
-
-                         
+                         }     
+                    }
+                    ImGui::Separator();
+                    if( ImGui::MenuItem( "Quit", "Alt+F4" ) )
+                    {
+                         fun_shortct( an_alt_f4 );
                     }
 				ImGui::EndMenu();
 			}
