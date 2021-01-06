@@ -188,7 +188,12 @@ void afb_output::output_afb(const char* afb_file)
 			pk.pack_float(tcd_unit._x1);
 			pk.pack_float(tcd_unit._y0);
 			pk.pack_float(tcd_unit._y1);
-			fout_put.push_enum_name(tcd_unit._file_name);
+               stm_ix.str( string() );
+               stm_ix.clear();
+               stm_ix << "gid_" << idx;
+               string enum_name = stm_ix.str();
+               enum_name += tcd_unit._file_name;
+               fout_put.push_enum_name( enum_name );
 		}
 		fout_put.end_enum();
           idx++;

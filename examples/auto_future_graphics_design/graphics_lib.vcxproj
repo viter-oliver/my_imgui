@@ -97,7 +97,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\json_lib;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;$(SolutionDir)\..\Python_2.7.2;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib_d.lib;assimp.lib;freetype_d.lib;python27.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;json_lib_d.lib;assimp.lib;freetype_d.lib;python27_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>

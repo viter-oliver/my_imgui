@@ -2,6 +2,7 @@
 #include "ft_base.h"
 #include "af_shader.h"
 #include "af_model.h"
+#include "af_shader_source_code.h"
 namespace auto_future
 {
 
@@ -64,6 +65,19 @@ namespace auto_future
                if( itxt != g_mtexture_list.end() )
                {
                     _pspecular = itxt->second;
+               }
+               string str_modeling( modeling );
+               auto shd_modeling = g_af_shader_list.find( modeling );
+               if( shd_modeling == g_af_shader_list.end() )
+               {
+                    _pshd_modeling = make_shared<af_shader>( modeling_vs, modeling_fs );
+                    _pshd_modeling->set_name( str_modeling );
+
+                    g_af_shader_list[ modeling ] = _pshd_modeling;
+               }
+               else
+               {
+                    _pshd_modeling = shd_modeling->second;
                }
 		}
 		camera& get_cam()
