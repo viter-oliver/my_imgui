@@ -23,6 +23,7 @@ namespace auto_future
 	ft_quad_image::ft_quad_image()
 		:ft_base()
 	{
+          _img_pt._texture_index_txt = { 0, 0 };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		_in_p._sizew = 200;
 		_in_p._sizeh = 200;

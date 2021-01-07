@@ -11,6 +11,7 @@ namespace auto_future
 		, max_display_num(-1)
 	{
 		/*_be_window = true;*/
+          _lt_pt._texture_index_txt = { 0, 0 };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_in_p, 2, [this](void*){
 

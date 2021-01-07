@@ -236,7 +236,7 @@ int main( int argc, char* argv[] )
 	iw = mode->width;
 	ih = mode->height;
 	//printf("x%", this);
-    GLFWwindow* window = glfwCreateWindow(iw, ih, "Auto Future Graphics Designer", NULL, NULL);
+     GLFWwindow* window = glfwCreateWindow(iw, ih, "Auto Future Graphics Designer", NULL, NULL);
 	HWND hwnd_main = glfwGetWin32Window(window);
 	SendMessage(hwnd_main, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));
 

@@ -5,7 +5,7 @@ namespace auto_future
 	ft_button::ft_button()
 		:ft_base()
 	{
-
+          _pt._image_normal_txt = _pt._image_press_txt = _pt._image_select_txt ={ 0, 0 };
 	}
 	void ft_button::draw()
 	{

@@ -15,6 +15,7 @@ namespace auto_future
 		:ft_base()
 	{
           _img_pt._tin_clr = { 1.f, 1.f, 1.f };
+          _img_pt._texture_index_txt = { 0, 0 };
  #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 2, [this](void*){
 			ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0");

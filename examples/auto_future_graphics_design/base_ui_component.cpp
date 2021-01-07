@@ -262,7 +262,7 @@ static	string aliase_btn_cp = "  ##";
                                                   int isize = res_coors.size();
                                                   int txt_idx = ptxt_idx->y;
                                                   bool be_changed = ImGui::Combo( str_show.c_str(), &ptxt_idx->y, &get_texture_item, &img_gp_id, isize );
-                                                  if( txt_idx<isize)
+                                                  if( txt_idx>=isize)
                                                   {
                                                        return be_changed;
                                                   }

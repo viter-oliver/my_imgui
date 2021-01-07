@@ -64,6 +64,7 @@ namespace auto_future
 		:ft_base()
 	{
 		_slider_pt._cbuffer_random_text[0] = '\0';
+          _slider_pt._texture_bg_index_txt = _slider_pt._texture_head_index_txt = _slider_pt._texture_thumb_index_txt = { 0, 0 };
 		//reg_property_handle(&_slider_pt, 0, [this](void*){});
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_slider_pt, 8, [this](void*){

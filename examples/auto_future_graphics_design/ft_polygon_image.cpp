@@ -44,6 +44,7 @@ namespace auto_future
 	ft_polygon_image::ft_polygon_image()
 		:ft_base()
 	{
+          _img_pt._img_txt = { 0, 0 };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 0, [this](void*){
 			if (_track0.size()<2)

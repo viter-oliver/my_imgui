@@ -427,6 +427,30 @@ namespace auto_future
 			pchild->_parent = this; 
 			_vchilds.push_back(pchild); 
 		}
+          virtual void insert_child( int index, base_ui_component* pchild )
+          {
+               pchild->_parent = this;
+               int index_end= _vchilds.size();
+               if( index>index_end )
+               {
+                    index = index_end;
+               }
+               _vchilds.emplace( _vchilds.begin() + index, pchild );
+          }
+          virtual void insert_child( base_ui_component* pinsert_node, base_ui_component* pchild )
+          {
+               pchild->_parent = this;
+               int index = 0;
+               for (auto& item:_vchilds)
+               {
+                    if (item==pinsert_node)
+                    {
+                         break;
+                    }
+                    index++;
+               }
+               _vchilds.emplace( _vchilds.begin() + index, pchild );
+          }
 		void clear_rebundent_memory()
 		{
 			_vprop_eles.shrink_to_fit();

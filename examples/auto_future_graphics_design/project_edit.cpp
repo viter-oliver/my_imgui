@@ -171,6 +171,56 @@ void project_edit::add_item()
 	});
 	ImGui::EndMenu();
 }
+void project_edit::insert_item()
+{
+     string cur_cname = typeid( *_pcurrent_object ).name();
+     cur_cname = cur_cname.substr( sizeof( "class autofuture::" ) );
+     bool is_ft_scene = cur_cname == "ft_scene";
+     bool is_ft_listbox_ex = cur_cname == "ft_listbox_ex";
+     bool is_ft_modeling = cur_cname == "ft_modeling_3d";
+     bool is_trans = cur_cname == "ft_trans";
+     bool is_material_3d = cur_cname == "ft_material_3d";
+     factory::get().iterate_types( [this, is_ft_scene, is_ft_listbox_ex, is_trans, is_ft_modeling,
+                                   is_material_3d]( string cname, function<base_ui_component*( )> infun )
+     {
+          string ext_name = cname.substr( cname.size() - 2, 2 );
+          if( is_ft_scene&&ext_name != "3d"&&ext_name != "2d"
+              || !is_ft_scene && ( ext_name == "3d" || ext_name == "2d" ) )
+          {
+               return;
+          }
+          if( is_ft_listbox_ex
+              && ( cname == "ft_base"
+              || cname == "ft_circle"
+              || cname == "ft_textblock"
+              || cname == "ft_listbox"
+              || cname == "ft_listbox_ex"
+              || cname == "ft_polygon_image"
+              || cname == "ft_quad_image"
+              || cname == "ft_polygon_image"
+              || cname == "ft_slider_thumb" ) )
+          {
+               return;
+          }
+          if( is_trans || ( is_ft_modeling || is_material_3d ) && cname != "ft_trans" )
+          {
+               return;
+          }
+
+          if( ImGui::MenuItem( cname.c_str(), NULL, false, infun != nullptr ) )
+          {
+
+               base_ui_component* pchild = infun();
+               auto pparent = _pcurrent_object->get_parent();
+               string chd_name = pparent->try_create_a_child_name( cname );
+               pchild->set_name( chd_name );
+               pparent->insert_child( _pcurrent_object, pchild );
+               pchild->link();
+          }
+
+     } );
+     ImGui::EndMenu();
+}
 void project_edit::add_sibling()
 {
      if( auto pparent = _pcurrent_object->get_parent() )
@@ -282,15 +332,15 @@ void project_edit::popup_context_menu()
 	{
 		return;
 	}
-	if (ImGui::IsKeyReleased(GLFW_KEY_UP))
+	if (ImGui::IsKeyPressed(GLFW_KEY_LEFT_CONTROL)&&ImGui::IsKeyReleased(GLFW_KEY_UP))
 	{
           move_item_pre();
 	}
-	if (ImGui::IsKeyReleased(GLFW_KEY_DOWN))
+     if( ImGui::IsKeyPressed( GLFW_KEY_LEFT_CONTROL ) && ImGui::IsKeyReleased( GLFW_KEY_DOWN ) )
 	{
           move_item_next();
 	}
-     if( ImGui::IsKeyReleased( GLFW_KEY_DELETE ) )
+     if( ImGui::IsKeyPressed( GLFW_KEY_LEFT_CONTROL ) && ImGui::IsKeyReleased( GLFW_KEY_DELETE ) )
      {
           delete_item();
      }    
@@ -312,7 +362,11 @@ void project_edit::popup_context_menu()
 		{
                add_item();
 		}
-		if (ImGui::MenuItem("add sibling", "CTRL+A", false))
+          if( ImGui::BeginMenu( "insert child" ) )
+          {
+               insert_item();
+          }		
+          if( ImGui::MenuItem( "add sibling", "CTRL+A", false ) )
 		{
                add_sibling();
 			//ImGui::EndMenu();

@@ -20,6 +20,7 @@ public:
      void cut_item();
      void past_item();
      void add_item();
+     void insert_item();
      void add_sibling();
      void delete_item();
 	void popup_context_menu();
