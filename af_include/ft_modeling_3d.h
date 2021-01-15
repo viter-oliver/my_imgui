@@ -49,37 +49,8 @@ namespace auto_future
 		void view_components_in_world_space();
 #endif		
 		void draw();
-		void link()
-		{
-			auto imodel = g_mmodel_list.find(_pty_page._model_name);
-			if (imodel != g_mmodel_list.end())
-			{
-				_pmodel = imodel->second;
-			}
-               auto itxt = g_mtexture_list.find( _pty_page._txt_diffuse );
-               if( itxt != g_mtexture_list.end() )
-               {
-                    _pdiffuse = itxt->second;
-               }
-               itxt = g_mtexture_list.find( _pty_page._txt_specular );
-               if( itxt != g_mtexture_list.end() )
-               {
-                    _pspecular = itxt->second;
-               }
-               string str_modeling( modeling );
-               auto shd_modeling = g_af_shader_list.find( modeling );
-               if( shd_modeling == g_af_shader_list.end() )
-               {
-                    _pshd_modeling = make_shared<af_shader>( modeling_vs, modeling_fs );
-                    _pshd_modeling->set_name( str_modeling );
+          void link();
 
-                    g_af_shader_list[ modeling ] = _pshd_modeling;
-               }
-               else
-               {
-                    _pshd_modeling = shd_modeling->second;
-               }
-		}
 		camera& get_cam()
 		{
 			return _pty_page._cam;

@@ -278,6 +278,7 @@ namespace auto_future
 		}
 		return prtn;
 	}
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname)
 	{
           if( regex_search( tar_ui.get_name(), regex( uname ) ) )//tar_ui.get_name() == uname)
@@ -305,6 +306,7 @@ namespace auto_future
                find_by_un_from_the_node( *it, uname, resut_list );
           }
      }
+#endif
 	float base_ui_component::screenw = 1920.f;
 	float base_ui_component::screenh =720.f;
 	prop_ele base_ui_component::null_prop_ele = { nullptr, 0 };

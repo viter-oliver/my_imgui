@@ -117,18 +117,15 @@ af_shader::~af_shader()
 		{
 			glDeleteShader(_vertex_shader);
 		}
-		if (_fragment_shader)
+		if (_frag_shader)
 		{
-			glDeleteShader(_fragment_shader);
+			glDeleteShader(_frag_shader);
 		}
 	}
 }
 
 af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_shader_source)
 {
-	_vertex_shader = glCreateShader(GL_VERTEX_SHADER);
-	_fragment_shader = glCreateShader(GL_FRAGMENT_SHADER);
-	_shader_program_id = glCreateProgram();
 	string vs_code(vertex_shader_source);
 	string fs_code(fragment_shader_source);
 	build_vs_code(vs_code);
@@ -141,13 +138,42 @@ af_shader::af_shader(const GLchar* vertex_shader_source, const GLchar* fragment_
 	{
 		refresh_viarable_list();
 	}
-	
+     /**
+     GLuint vs_sd, fs_sd, pg_m;
+     vs_sd = glCreateShader( GL_VERTEX_SHADER );
+     _vs_code = vs_code;
+     char* pvs = &vs_code[ 0 ];
+     glShaderSource( vs_sd, 1, &pvs, NULL );
+     GLint status;
+     glGetShaderiv( vs_sd, GL_COMPILE_STATUS, &status );
+     glCompileShader( vs_sd );
+     fs_sd = glCreateShader( GL_FRAGMENT_SHADER );
+     char* pfs = &fs_code[ 0 ];
+     glShaderSource( fs_sd, 1, &pfs, NULL );
+     glCompileShader( fs_sd );
+     glGetShaderiv( fs_sd, GL_COMPILE_STATUS, &status );
+
+     pg_m = glCreateProgram();
+     glAttachShader( pg_m, vs_sd );
+     glAttachShader( pg_m, fs_sd );
+     glLinkProgram( pg_m );
+     GLint attr_count;
+     glGetProgramiv( pg_m, GL_ACTIVE_ATTRIBUTES, &attr_count );
+     GLint uns_count;
+     glGetProgramiv( pg_m, GL_ACTIVE_UNIFORMS, &uns_count );
+     printf( "test attrs:%d,uniforms:%d\n", attr_count, uns_count );
+     */
 }
 static char buffer[512];
 bool af_shader::build_vs_code(string& vs_code)
 {
 	_vs_code = vs_code;
 	char* pvs = &vs_code[0];
+     if (_vertex_shader!=0)
+     {
+          glDeleteShader( _vertex_shader );
+     }
+     _vertex_shader = glCreateShader( GL_VERTEX_SHADER );
 	glShaderSource(_vertex_shader, 1, &pvs, NULL);
 	glCompileShader(_vertex_shader);
 	GLint status;
@@ -171,15 +197,20 @@ bool af_shader::build_fs_code(string& fs_code)
 {
 	_fs_code = fs_code;
 	char* pfs = &fs_code[0];
-	glShaderSource(_fragment_shader, 1, &pfs, NULL);
-	glCompileShader(_fragment_shader);
+     if( 0!=_frag_shader)
+     {
+          glDeleteShader( _frag_shader );
+     }
+     _frag_shader = glCreateShader( GL_FRAGMENT_SHADER );
+	glShaderSource(_frag_shader, 1, &pfs, NULL);
+	glCompileShader(_frag_shader);
 	GLint status;
-	glGetShaderiv(_fragment_shader, GL_COMPILE_STATUS, &status);
+	glGetShaderiv(_frag_shader, GL_COMPILE_STATUS, &status);
 	bool be_success = true;
 	buffer[0] = '\0';
 	if (status != GL_TRUE)
 	{
-		glGetShaderInfoLog(_fragment_shader, 512, NULL, buffer);
+		glGetShaderInfoLog(_frag_shader, 512, NULL, buffer);
 		printf("fragment shader error:%s\n", buffer);
 		be_success= false;
 		_valid = false;
@@ -287,40 +318,25 @@ void af_shader::link()
 	if (_shader_program_id!=0)
 	{
 		glDeleteProgram(_shader_program_id);
-		_shader_program_id = glCreateProgram();
 	}
+     _shader_program_id = glCreateProgram();
 	_att_list.clear();
 	_unf_list.clear();
      _out_list.clear();
 	glAttachShader(_shader_program_id, _vertex_shader);
-	glAttachShader(_shader_program_id, _fragment_shader);
-	vattr vat;
-	collect_attr(_vs_code, vat);
-	if (vat.size()>0)
-	{
-		sort(vat.begin(), vat.end());
-		for (int ix = 0; ix < vat.size();ix++)
-		{
-			_att_list.emplace_back();
-			auto& attr=_att_list.back();
-			attr._name = vat[ix];
-			attr._location = ix;
-			//attr._variable_type;
-			glBindAttribLocation(_shader_program_id, ix, vat[ix].c_str());
-		}
-	}
-     collect_out( _fs_code, _out_list );
-     if (_out_list.size()==0)
-     {
-          collect_out( _vs_code, _out_list );
-     }
-     specify_transfeedback();
-	//glBindFragDataLocation(_shader_program_id, 0, "outColor");
+	glAttachShader(_shader_program_id, _frag_shader);
+
 	glLinkProgram(_shader_program_id);
+     GLint attr_count;
+     glGetProgramiv( _shader_program_id, GL_ACTIVE_ATTRIBUTES, &attr_count );
+     GLint uns_count;
+     glGetProgramiv( _shader_program_id, GL_ACTIVE_UNIFORMS, &uns_count );
+     printf( "attrs:%d,uniforms:%d\n", attr_count, uns_count );
 	glReleaseShaderCompiler();
 	glUseProgram(_shader_program_id);
 	_valid = true;
 }
+/**
 void af_shader::specify_transfeedback( bool relink )
 {
 	char** feedbackVaryings = new char*[_out_list.size()];
@@ -337,7 +353,7 @@ void af_shader::specify_transfeedback( bool relink )
           glLinkProgram( _shader_program_id );
      }
 }
-
+*/
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragment_shader_source)
 {
@@ -345,7 +361,7 @@ void af_shader::refresh_sourcecode(string& vertex_shader_source, string& fragmen
 	{
 		glDeleteProgram(_shader_program_id);
 		glDeleteShader(_vertex_shader);
-		glDeleteShader(_fragment_shader);
+		glDeleteShader(_frag_shader);
 	}
 	build_vs_code(vertex_shader_source);
 	build_fs_code(fragment_shader_source);

@@ -48,12 +48,12 @@ namespace auto_future
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
      using dic_id = map<int, int>;
+     extern void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 #endif
      typedef function<void( void )> mouse_fun;
      typedef function<void( float, float )>mouse_drag_fun;
 	extern void ShowHelpMarker(const char* desc);
 	extern base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
-     extern void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 	/**
 	* @brief  base_ui_component is the base class of control class \n
 	* description: base_ui_component is designed as a recursive composition
@@ -69,7 +69,6 @@ namespace auto_future
 	class AFG_EXPORT base_ui_component
 	{
 		friend base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname);
-          friend void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 	protected:
           mouse_fun _mouse_clicked;
           mouse_fun _mouse_down;
@@ -104,6 +103,7 @@ namespace auto_future
 		base_ui_component* _parent=nullptr;
 		//bool _be_window = { false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+          friend void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 
 	protected:
 		/** used for selecting a object in project edit for property editing */

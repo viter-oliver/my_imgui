@@ -21,6 +21,7 @@
 #include "project_edit.h"
 #include "res_internal.h"
 #include "texture_res_load.h"
+#include "HttpBoost.h"
 #include <functional>
 #if !defined(IMGUI_WAYLAND)
 #include <windows.h>
@@ -61,6 +62,9 @@
 #include "main_version.h"
 #include "svn_version.h"
 #include "HtmlHelp.h"
+#include <fstream>
+#include <thread>
+#include <atomic>
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -73,6 +77,7 @@ static void error_callback(int error, const char* description)
 }
 string g_cureent_project_file_path;
 string g_cureent_directory;
+string g_current_running_directory;
 string g_afb_output_path;
 bind_edit g_bind_edit;
 aliase_edit g_aliase_edit;
@@ -116,21 +121,12 @@ bool is_editing()
 {
      return g_editing_state == en_editing;
 }
-string reg_path = "afg_ide";
-string ikey = "autofuture&afgER";// "max&maj20190815x";
-unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
-DWORD get_time_span(vector<BYTE> plainText)
-{
-	if (plainText.size() != 32)
-	{
-		return 0;
-	}
-	DWORD *prelease_time = (DWORD*)&plainText[0];
-	DWORD *prelease_numb = (DWORD*)&plainText[4];
-	DWORD *time_span = (DWORD*)&plainText[8];
-	DWORD valid_time_point = *prelease_time + *time_span;
-	return valid_time_point;
-}
+static string front_part_license_valid_time_key = "fplvt";
+static string rear_part_file_name = "rplvt";
+static string reg_path = "afg_ide";
+static string ikey = "autofuture&afgER";// "max&maj20190815x";
+
+string iv = "123456qwaszx0000";
 
 void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 {
@@ -166,50 +162,75 @@ void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 uint32_t s_user_count=0;
 #pragma data_seg()
 #pragma comment(linker,"/section:afg_seg,RWS")
+static DWORD fp_lc_len = 16;
+static DWORD lc_ld_len = 32;
+static DWORD app_valid_min = 0;
+atomic<bool> counting_thread_is_running( false );
+DWORD get_valid_mins( vector<BYTE>& plainText )
+{
+     if( plainText.size() != lc_ld_len )
+     {
+          return 0;
+     }
+     auto write_pos = plainText[ 4 ];
+     if( plainText[ 5 + write_pos ] != 'a' || plainText[ 6 + write_pos ] != 'f' || plainText[ 7 + write_pos ] != 'g' )
+     {
+          return 0;
+     }
+     DWORD valid_mins;
+     memcpy( &valid_mins, &plainText[ write_pos + 8 ], 4 );
+     return valid_mins;
+}
+#define _request_authentication
+
 int main( int argc, char* argv[] )
 {
+
 	s_user_count++;
 	/*HWND hwnd = GetConsoleWindow();
 	SendMessage(hwnd, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));*/
 	     
 	//register_app_and_icon(g_app_path);
 	printf("%s__%d\n", __FILE__, s_user_count);
-#ifndef _DEBUG
-	auto sec_consume = GetTimeFromServer(NULL);
-	if (!sec_consume)
-	{
-		MessageBox(GetForegroundWindow(), "fail to connect to network!", "warning", MB_OK);
-		exit(0);
-	}
+     string running_app = argv[ 0 ];
+     g_current_running_directory = running_app.substr( 0, running_app.find_last_of( '\\' ) + 1 );
+     printf( "cur_app:%s\n", argv[ 0 ] );
+
+#ifdef _request_authentication
+     string rear_part_lv = g_current_running_directory + rear_part_file_name;
 	AESModeOfOperation moo;
 	moo.set_key((unsigned char*)ikey.c_str());
 	moo.set_mode(MODE_CBC);
-	moo.set_iv(iv);
+	moo.set_iv((BYTE*)iv.c_str());
 	HKEY hKey;
-#define  MAX_LC_LEN 0x100
-	BYTE license[MAX_LC_LEN] = { 0 };
-	DWORD lc_len = MAX_LC_LEN;
 	bool be_get_license = false;
-	vector<unsigned char> plainText;
+     vector<BYTE> encrpText;
+     encrpText.resize( fp_lc_len * 2 );
+	vector<BYTE> plainText;
+     plainText.resize( fp_lc_len * 2 );
 	auto lRet = RegOpenKeyEx(HKEY_CURRENT_USER, reg_path.c_str(), 0, KEY_READ, &hKey);
 	if (lRet == ERROR_SUCCESS)
 	{
-
 		//读取键值
-		if (RegQueryValueEx(hKey, "license", 0, 0, license, &lc_len) == ERROR_SUCCESS)
+          if( RegQueryValueEx( hKey, front_part_license_valid_time_key.c_str(), 0, 0, &encrpText[ 0 ], &fp_lc_len ) == ERROR_SUCCESS )
 		{
-			be_get_license = true;
-			plainText.resize(lc_len);
-			moo.Decrypt(license, lc_len, &plainText[0]);
-			DWORD valid_time_point = get_time_span(plainText);
-			if (valid_time_point < sec_consume)
-			{
-				be_get_license = false;
-			}
+		     //关闭键
+		     RegCloseKey(hKey);
+               ifstream ifs;
+               ifs.open( rear_part_lv, ios::binary );
+               if (ifs.is_open())
+               {
+                    ifs.read( (char*)&encrpText[ fp_lc_len ], fp_lc_len );
+                    moo.Decrypt( &encrpText[0], fp_lc_len*2,&plainText[0] );
+                    app_valid_min = get_valid_mins( plainText );
+                    if (app_valid_min>0)
+                    {
+                         be_get_license = true;
+                    }
+               }
 		}
 
-		//关闭键
-		RegCloseKey(hKey);
+
 	}
 #endif
 	
@@ -226,10 +247,9 @@ int main( int argc, char* argv[] )
 	g_hcursor_wait = LoadCursor(NULL, IDC_WAIT);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-#if __APPLE__
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif
+    glfwWindowHint( GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE );
+    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT,GL_TRUE);
+
 	GLFWmonitor*  pmornitor = glfwGetPrimaryMonitor();
 	const GLFWvidmode * mode = glfwGetVideoMode(pmornitor);
 	int iw, ih;
@@ -279,9 +299,9 @@ int main( int argc, char* argv[] )
 		io.Fonts->AddFontFromFileTTF(FZLanTingHeiS.c_str(), 16.0f, NULL, io.Fonts->GetGlyphRangesChinese());
 	}
 
-    bool show_demo_window = true;
-    bool show_another_window = false;
-	bool show_edit_window = true;
+     bool show_demo_window = true;
+     bool show_another_window = false;
+     bool show_edit_window = true;
 	//ImVec2 edit_window_size = ImVec2()
     ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 #ifdef _MY_IMGUI__
@@ -612,11 +632,35 @@ int main( int argc, char* argv[] )
         }
 #elif defined(_MY_IMGUI__)
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
-#ifndef _DEBUG
+#ifdef _request_authentication
 		if (!be_get_license)
 		{
 			ImGui::OpenPopup("get license");
 		}
+          else
+          {
+               if (!counting_thread_is_running)
+               {
+                    thread td_counting( [&]()
+                    {
+                         counting_thread_is_running = true;
+                         while( counting_thread_is_running )
+                         {
+                              if( app_valid_min > 0 )
+                              {
+                                   app_valid_min--;
+                              }
+                              else
+                              {
+                                   counting_thread_is_running = false;
+                                   be_get_license = false;
+                              }
+                         }
+                        
+                    });
+                    td_counting.detach();
+               }
+          }
 		if (ImGui::BeginPopupModal("get license"))
 		{
 #define LICENSE_LEN 0x100
@@ -634,24 +678,23 @@ int main( int argc, char* argv[] )
 				}
 				else
 				{
+                         string afg_mg_path = "http://localhost:8080/afg_manager/afg_authentification";
+                         string str_post = "\{"
+
+
 					vector<unsigned char> hexLicense;
 					//vector<unsigned char> plainText;
 					char_to_hex(slicense, hexLicense);
 					plainText.resize(hexLicense.size());
 					moo.Decrypt(&hexLicense[0], hexLicense.size(), &plainText[0]);
-					DWORD valid_time_point = get_time_span(plainText);
-					if (valid_time_point < sec_consume)
-					{
-						auto state = "he license number has expired, please apply for another license number!";
-						strcpy(str_state, state);
-					}
-					else
+					
+					if (0)
 					{
 						DWORD state;
 						lRet = RegCreateKeyEx(HKEY_CURRENT_USER, reg_path.c_str(), 0, NULL, 0, KEY_WRITE, NULL, &hKey, &state);
 						if (lRet == ERROR_SUCCESS)
 						{
-							RegSetValueEx(hKey, "license", 0, REG_BINARY, &hexLicense[0], 32);
+                                   RegSetValueEx( hKey, front_part_license_valid_time_key.c_str(), 0, REG_BINARY, &hexLicense[ 0 ], 32 );
 							RegCloseKey(hKey);
 						}
 						be_get_license = true;

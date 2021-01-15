@@ -52,7 +52,8 @@ class af_shader
 	mshader_variable_list _unf_list;
 	GLuint _shader_program_id = { 0 };
 	string _vs_code, _fs_code;
-	GLuint  _vertex_shader = { 0 }, _fragment_shader = { 0 };
+     GLuint  _vertex_shader = { 0 };
+     GLuint _frag_shader = { 0 };
 	string _name;
 	/** whether shader is valid */
 	/** vertex shader source code and fragment shader source code */
@@ -76,7 +77,7 @@ public:
 	bool build_vs_code(string& vs_code);
 	bool build_fs_code(string& fs_code);
 	void link();
-     void specify_transfeedback(bool relink=false);
+     //void specify_transfeedback(bool relink=false);
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	string& get_vs_code(){ return _vs_code; }
 	string& get_fs_code(){ return _fs_code; }

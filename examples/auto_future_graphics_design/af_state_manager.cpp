@@ -349,7 +349,7 @@ bool save_trans_value( string trans_name, int sid )
      }
      return true;
 }
-bool restore_trans_value( string trans_name, int sid )
+AFG_EXPORT bool restore_trans_value( string trans_name, int sid )
 {
      const auto& itrans = g_mstate_manager.find( trans_name );
      if( itrans == g_mstate_manager.end() )
