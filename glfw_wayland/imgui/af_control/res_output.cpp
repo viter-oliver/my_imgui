@@ -21,6 +21,11 @@ af_file::af_file(GLuint fsize)
 {
 	_pbin = malloc(fsize);
 }
+void af_file::re_alloc(GLuint fsize)
+{
+	free(_pbin);
+	_pbin = malloc(fsize);
+}
 af_file::~af_file()
 {
 	free(_pbin);
@@ -31,7 +36,19 @@ mfile_list g_mfiles_list;
 #include <fstream>
 #include "dir_output.h"
 extern string g_cureent_directory;
-
+bool get_texture_group_name( void* data, int idx, const char** out_str )
+{
+     auto& res_gp = *g_vres_texture_list[ idx ];
+     *out_str = res_gp.texture_pack_file.c_str();
+     return true;
+}
+bool get_texture_item( void* data, int idx, const char** out_str )
+{
+     int image_id = *(int *)data;
+     auto& res_gp = *g_vres_texture_list[ image_id ];
+     *out_str = res_gp.vtexture_coordinates[ idx ]._file_name.c_str();
+     return true;
+}
 bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 {
 	string img_file_name = imgPath.substr(imgPath.find_last_of('\\') + 1);
@@ -127,6 +144,23 @@ void add_file_to_mfiles_list(string& file_path)
 	g_mfiles_list[strfile_name] = make_shared<af_file>(sz_file);
 	pbuf->sgetn((char*)g_mfiles_list[strfile_name]->_pbin, sz_file);
 	ifs.close();
+}
+void save_ojfile_to_file(string& key_name)
+{
+	auto ifl = g_mfiles_list.find(key_name);
+	if (ifl == g_mfiles_list.end())
+	{
+		printf("invalid file key:%s\n", key_name.c_str());
+		return;
+	}
+	auto& ofl = *ifl->second;
+	string af_file_path = g_cureent_directory + files_fold;
+	string file_full_path = af_file_path + "\\";
+	file_full_path += key_name;
+	ofstream ofs;
+	ofs.open(file_full_path, ios::out | ios::binary);
+	ofs.write((char*)ofl._pbin, ofl._fsize);
+	ofs.close();
 }
 #endif
 output_bin_format g_output_bin_format;

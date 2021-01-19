@@ -1,6 +1,4 @@
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
+
 #include "ft_trans.h"
 #include "af_primitive_object.h"
 

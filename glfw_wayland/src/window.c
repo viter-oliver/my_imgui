@@ -34,6 +34,7 @@
 #include <float.h>
 
 
+
 //////////////////////////////////////////////////////////////////////////
 //////                         GLFW event API                       //////
 //////////////////////////////////////////////////////////////////////////
@@ -516,10 +517,11 @@ GLFWAPI void glfwSetWindowPos(GLFWwindow* handle, int xpos, int ypos)
     assert(window != NULL);
 
     _GLFW_REQUIRE_INIT();
-
+     /*
     if (window->monitor)
         return;
-
+     */
+     
     _glfwPlatformSetWindowPos(window, xpos, ypos);
 }
 

@@ -21,12 +21,14 @@ struct value_range
 	union 
 	{
 		int _i;
+          unsigned int _u;
 		float _f;
 		double _d;
 	}_min;
 	union
 	{
 		int _i;
+          unsigned int _u;
 		float _f;
 		double _d;
 	}_max;
@@ -165,7 +167,8 @@ stname vname{_vprop_eles}; MSC_PACK_END
    hac 即high accuracy,保留6位小数
    nml 即normal，数值范围0，1
    clr 即color，该属性使用颜色编辑器来操作
-   txt 即texture，该属性是一个纹理属性
+   txt 即texture，该属性是一个纹理属性,是某个拼接纹理的子纹理索引，所以该属性页之前必然包含一个拼接纹理索引,_image_group_id
+   
 8、用户也可以为特定的结构体成员变量提供数值范围，方法是注册数值范围。
 9、type,childs不可作为变量名称。
 */

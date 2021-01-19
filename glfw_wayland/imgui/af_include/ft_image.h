@@ -10,7 +10,7 @@ namespace auto_future
 			(float, _aposx, {0.f}),
 			(float, _aposy, {0.f}),
 			(int, _anchor_type, {en_anchor_top_left}),
-			(int, _texture_index_txt, {0}),
+			(af_vi2, _texture_index_txt),
 			(float, _alpha_nml, {1.f} ),
             (af_vec3, _tin_clr ),
 			(float, _angle_srd, {0.f}))
@@ -46,11 +46,12 @@ namespace auto_future
 		{
 			_img_pt._anchor_type = antp;
 		}
-		void set_texture_id(int texture_id)
+          
+		void set_texture_id(af_vi2 texture_id)
 		{
 			_img_pt._texture_index_txt = texture_id;
 		}
-		int get_texture_id()
+		af_vi2 get_texture_id()
 		{
 			return _img_pt._texture_index_txt;
 		}

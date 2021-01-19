@@ -53,6 +53,8 @@ namespace auto_future
 	using namespace Json;
 	const float edit_unit_len = 5.0f;
 	const float imge_edit_view_width = 300.f;
+     using dic_id = map<int, int>;
+     extern void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 #endif
      typedef function<void( void )> mouse_fun;
      typedef function<void( float, float )>mouse_drag_fun;
@@ -106,6 +108,7 @@ namespace auto_future
 		base_ui_component* _parent=nullptr;
 		//bool _be_window = { false };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+          friend void find_by_un_from_the_node( base_ui_component& node, const char* uname, vector<base_ui_component*>& resut_list );
 
 	protected:
 		/** used for selecting a object in project edit for property editing */
@@ -185,7 +188,9 @@ namespace auto_future
 		*  --true success
 		*  --false failure
 		*/
-			void init_property_from_json(Value& jvalue);
+		void init_property_from_json(Value& jvalue);
+          void init_property_from_json( Value& jvalue, dic_id& font_dic,dic_id& txt_dic);
+               
 	    /**
 		*@brief save some data members to a json unit
 		*@param junit a json value
@@ -427,18 +432,43 @@ namespace auto_future
 			pchild->_parent = this; 
 			_vchilds.push_back(pchild); 
 		}
+          virtual void insert_child( int index, base_ui_component* pchild )
+          {
+               pchild->_parent = this;
+               int index_end= _vchilds.size();
+               if( index>index_end )
+               {
+                    index = index_end;
+               }
+               _vchilds.emplace( _vchilds.begin() + index, pchild );
+          }
+          virtual void insert_child( base_ui_component* pinsert_node, base_ui_component* pchild )
+          {
+               pchild->_parent = this;
+               int index = 0;
+               for (auto& item:_vchilds)
+               {
+                    if (item==pinsert_node)
+                    {
+                         break;
+                    }
+                    index++;
+               }
+               _vchilds.emplace( _vchilds.begin() + index, pchild );
+          }
 		void clear_rebundent_memory()
 		{
 			_vprop_eles.shrink_to_fit();
 			_vchilds.shrink_to_fit();
 		}
-		virtual void remove_child(base_ui_component* pchild)
+		virtual void remove_child(base_ui_component* pchild,bool release=true)
 		{
 			auto it = find(_vchilds.begin(), _vchilds.end(), pchild);
 			if (it != _vchilds.end())
 			{
 				_vchilds.erase(it);
-				delete pchild;
+                    if(release )
+				     delete pchild;
 			}
 		}
 		bool move_pre(base_ui_component* pchild)

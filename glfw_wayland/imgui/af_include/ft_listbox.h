@@ -15,7 +15,7 @@ namespace auto_future
 			(int, _direction, { direction_vertical }),
 			(int, _cur_index_uhd, { 0 }),
 			(int, _max_display_num_uhd, { 1 }),
-			(int, _texture_index_txt, { 0 })			
+			(af_vi2, _texture_index_txt)			
 			)
 
 	public:

@@ -1,9 +1,12 @@
 #pragma once
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "ft_base.h"
 #include "af_shader.h"
 namespace auto_future
 {
-     class ft_trans :
+     class AFG_EXPORT ft_trans :
           public ft_base
      {
           DEF_STRUCT_WITH_INIT( intl_pt, _pt,

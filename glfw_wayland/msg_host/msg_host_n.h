@@ -114,7 +114,7 @@ public:
 	void replay_file(string recording_file);
 	void end_replay()
 	{
-		_be_recording=false;
+		_be_replaying=false;
 	}
 	bool is_waitting_replay()
 	{

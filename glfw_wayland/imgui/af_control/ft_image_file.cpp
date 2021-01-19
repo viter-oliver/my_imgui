@@ -65,10 +65,10 @@ namespace auto_future
           imgdata = SOIL_load_image( image_path, &_width, &_height, &_channels, SOIL_LOAD_RGBA );
           if (imgdata==NULL)
           {
-               printf( "fail to load image from:%s\n", image_path );
-		 const char* fail_reson=SOIL_last_result();
-		 printf("reson:%s\n",fail_reson);
-               return false;
+			printf( "fail to load image from:%s\n", image_path );
+			const char* fail_reson=SOIL_last_result();
+			printf("reson:%s\n",fail_reson);
+			return false;
           }
           glGenTextures( 1, &_texture_id );
           glBindTexture( GL_TEXTURE_2D, _texture_id );
@@ -91,9 +91,6 @@ namespace auto_future
                return;
           }
           int texture_id = _texture_id;
-		
-		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();

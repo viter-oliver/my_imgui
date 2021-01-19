@@ -10,7 +10,7 @@ namespace auto_future
 		DEF_STRUCT_WITH_INIT(pg_img_pt,_img_pt,
 			(char, _track_file[name_len]),
 			(float, _progrss_nml, {0.}),
-			(int, _img_txt, {0})
+			(af_vi2, _img_txt)
 			)
 	public:
 		void link();

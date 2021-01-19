@@ -84,7 +84,7 @@ static void mode(void* data,
 static void done(void* data, struct wl_output* output)
 {
     struct _GLFWmonitor *monitor = data;
-
+    printf("output:0x%x\n",monitor->wl.output);
     _glfwInputMonitor(monitor, GLFW_CONNECTED, _GLFW_INSERT_LAST);
 }
 
@@ -103,14 +103,19 @@ static const struct wl_output_listener outputListener = {
     done,
     scale,
 };
+#define MAX_OUTPUT_CNT 20
+static struct wl_output *wl_output_list[MAX_OUTPUT_CNT];
+static int wl_output_recnt=0;
 
 
 //////////////////////////////////////////////////////////////////////////
 //////                       GLFW internal API                      //////
 //////////////////////////////////////////////////////////////////////////
 
+
 void _glfwAddOutputWayland(uint32_t name, uint32_t version)
 {
+
     _GLFWmonitor *monitor;
     struct wl_output *output;
 
@@ -138,6 +143,21 @@ void _glfwAddOutputWayland(uint32_t name, uint32_t version)
     monitor->wl.output = output;
 
     wl_output_add_listener(output, &outputListener, monitor);
+	
+	wl_output_list[wl_output_recnt]=output;
+	wl_output_recnt++;
+	printf("wl_output_recnt=%d\n",wl_output_recnt);
+}
+struct wl_output * get_wl_out_put(int id)
+{
+	if(id<wl_output_recnt)
+	{
+		return wl_output_list[id];
+	}
+	else
+	{
+		return 0;
+	}
 }
 
 

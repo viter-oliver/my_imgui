@@ -134,7 +134,6 @@ void afb_load::load_afb(const char* afb_file)
 	auto obj_format = obj_w.via.array.ptr[en_output_bin_format];
 	g_output_bin_format._txt_fmt = static_cast<texture_format>(obj_format.via.array.ptr[0].as<int>());
 	g_output_bin_format._pgm_fmt = static_cast<program_format>(obj_format.via.array.ptr[1].as<int>());
-       g_cur_texture_id_index=obj_w.via.array.ptr[en_vtextures_res_cidx].as<int>();
 	auto obj_res = obj_w.via.array.ptr[en_vtextures_res];
 	auto re_cnt = obj_res.via.array.size;
 	function<unsigned int(const char*, int, int, unsigned int,bool mipv)> f_gen_txt;
@@ -203,9 +202,8 @@ void afb_load::load_afb(const char* afb_file)
 	}
 	for (size_t ix = 0; ix < re_cnt; ix++)
 	{
-		g_vres_texture_list.emplace_back();
-		int cur_pos = g_vres_texture_list.size() - 1;
-		res_texture_list& res_unit = g_vres_texture_list[cur_pos];
+          g_vres_texture_list.emplace_back( make_shared<res_texture_list>() );
+		res_texture_list& res_unit = *g_vres_texture_list.back();
 		auto bin_res_unit = obj_res.via.array.ptr[ix];
 		auto txt_name = bin_res_unit.via.array.ptr[0];
 		auto txt_name_sz = txt_name.via.str.size;

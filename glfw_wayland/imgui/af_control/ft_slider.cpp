@@ -64,6 +64,7 @@ namespace auto_future
 		:ft_base()
 	{
 		_slider_pt._cbuffer_random_text[0] = '\0';
+          _slider_pt._texture_bg_index_txt = _slider_pt._texture_head_index_txt = _slider_pt._texture_thumb_index_txt = { 0, 0 };
 		//reg_property_handle(&_slider_pt, 0, [this](void*){});
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_slider_pt, 8, [this](void*){
@@ -111,17 +112,20 @@ namespace auto_future
 	void ft_slider::draw()
 	{
 		//ft_base::draw();
-		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
-		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+          auto bg_gp_id = _slider_pt._texture_bg_index_txt.x;
+          auto bg_txt_index=_slider_pt._texture_bg_index_txt.y;
+          auto& cur_res_list = *g_vres_texture_list[ bg_gp_id ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
 		if (ptext_cd.size() == 0)
 			return;
-		if (_slider_pt._texture_bg_index_txt >= ptext_cd.size())
+          if( bg_txt_index >= ptext_cd.size() )
 		{
-			printf("invalid texture index:%d\n", _slider_pt._texture_bg_index_txt);
-			_slider_pt._texture_bg_index_txt = 0;
+               printf( "invalid texture index:%d\n", bg_txt_index );
+               return;
 		}
-		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+          int bg_gp_texture_width = cur_res_list.texture_width;
+          int bg_gp_texture_height = cur_res_list.texture_height;
 		float sizew = _slider_pt._bg_txtw;
 		float sizeh = _slider_pt._bg_txth;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
@@ -131,11 +135,10 @@ namespace auto_future
 		ImVec2 pos2 = { pos1.x, pos1.y + sizeh };
 		ImVec2 pos3 = { pos1.x + sizew, pos1.y + sizeh };
 		ImVec2 pos4 = { pos1.x + sizew, pos1.y };
-		int bg_txt_id = _slider_pt._texture_bg_index_txt;
-		ImVec2 uv0 = ImVec2(ptext_cd[bg_txt_id]._x0 / texture_width, ptext_cd[bg_txt_id]._y0 / texture_height);
-		ImVec2 uv1 = ImVec2(ptext_cd[bg_txt_id]._x0 / texture_width, ptext_cd[bg_txt_id]._y1 / texture_height);
-		ImVec2 uv2 = ImVec2((ptext_cd[bg_txt_id]._x1) / texture_width, ptext_cd[bg_txt_id]._y1 / texture_height);
-		ImVec2 uv3 = ImVec2((ptext_cd[bg_txt_id]._x1) / texture_width, ptext_cd[bg_txt_id]._y0 / texture_height);
+          ImVec2 uv0 = ImVec2( ptext_cd[ bg_txt_index ]._x0 / bg_gp_texture_width, ptext_cd[ bg_txt_index ]._y0 / bg_gp_texture_height );
+          ImVec2 uv1 = ImVec2( ptext_cd[ bg_txt_index ]._x0 / bg_gp_texture_width, ptext_cd[ bg_txt_index ]._y1 / bg_gp_texture_height );
+          ImVec2 uv2 = ImVec2( ( ptext_cd[ bg_txt_index ]._x1 ) / bg_gp_texture_width, ptext_cd[ bg_txt_index ]._y1 / bg_gp_texture_height );
+          ImVec2 uv3 = ImVec2( ( ptext_cd[ bg_txt_index ]._x1 ) / bg_gp_texture_width, ptext_cd[ bg_txt_index ]._y0 / bg_gp_texture_height );
 
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
@@ -148,9 +151,16 @@ namespace auto_future
 			pos4 = rotate_point_by_zaxis(pos4, _slider_pt._bg_angle_nml, axisBasePos);
 		}
 		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
-		const auto& txt_hd_id = _slider_pt._texture_head_index_txt;
+		auto  hd_gp_id = _slider_pt._texture_head_index_txt.x;
+		auto  txt_hd_id = _slider_pt._texture_head_index_txt.y;
+		auto&  hd_res_gp = *g_vres_texture_list[ hd_gp_id ];
+		int hd_texture_id = hd_res_gp.texture_id();
+		int hd_gp_texture_width = hd_res_gp.texture_width;
+		int hd_gp_texture_height = hd_res_gp.texture_height;
+		vres_txt_cd& hd_text_cd = hd_res_gp.vtexture_coordinates;
+
 		/***********************************************************progress*********************************************************/
-		if (txt_hd_id >= ptext_cd.size())
+          if( txt_hd_id >= hd_text_cd.size() )
 		{
 			printf("invalid texture index:%d\n", txt_hd_id);
 			return;//txt_hd_id = 0;
@@ -162,8 +172,8 @@ namespace auto_future
 			float tmp_length = 0.f;
 			int idx = 0;
 			float real_length = _custom_trace_length*_slider_pt._progress_nml;
-			ImVec2 txt_size(texture_width, texture_height);
-			ImVec2 uv_org =  ImVec2((ptext_cd[txt_hd_id]._x0) / texture_width, (ptext_cd[txt_hd_id]._y0) / texture_height);
+               ImVec2 txt_size( hd_gp_texture_width, hd_gp_texture_height );
+               ImVec2 uv_org = ImVec2( ( hd_text_cd[ txt_hd_id ]._x0 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y0 ) / hd_gp_texture_height );
 			for (auto seg_unit:_custom_track_segment)
 			{
 				auto test_len = tmp_length + seg_unit;
@@ -178,7 +188,7 @@ namespace auto_future
 					uv1 = uv_org + _custom_track1[idx] / txt_size;
 					uv2 = uv_org + _custom_track1[idx+1] / txt_size;
 					uv3 = uv_org + _custom_track0[idx+1] / txt_size;
-					ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+                         ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
 					if (test_len==real_length)
 					{
 						value_point0 = _custom_track0[idx];
@@ -210,7 +220,7 @@ namespace auto_future
 					uv1 = uv_org + _custom_track1[idx] / txt_size;
 					uv2 = uv_org + value_point1 / txt_size;
 					uv3 = uv_org + value_point0 /txt_size;
-					ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+                         ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
 					break;
 				}
 			}
@@ -241,10 +251,10 @@ namespace auto_future
 			}
 			value_point0 = {pos3.x,pos3.y};
 			value_point1 = {pos4.x,pos4.y};
-			uv0 = ImVec2(ptext_cd[txt_hd_id]._x0 / texture_width, ptext_cd[txt_hd_id]._y0 / texture_height);
-			uv1 = ImVec2(ptext_cd[txt_hd_id]._x0 / texture_width, (ptext_cd[txt_hd_id]._y1) / texture_height);
-			uv2 = ImVec2((ptext_cd[txt_hd_id]._x1) / texture_width, (ptext_cd[txt_hd_id]._y1) / texture_height);
-			uv3 = ImVec2((ptext_cd[txt_hd_id]._x1) / texture_width, (ptext_cd[txt_hd_id]._y0) / texture_height);
+               uv0 = ImVec2( hd_text_cd[ txt_hd_id ]._x0 / hd_gp_texture_width, hd_text_cd[ txt_hd_id ]._y0 / hd_gp_texture_height );
+               uv1 = ImVec2( hd_text_cd[ txt_hd_id ]._x0 / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y1 ) / hd_gp_texture_height );
+               uv2 = ImVec2( ( hd_text_cd[ txt_hd_id ]._x1 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y1 ) / hd_gp_texture_height );
+               uv3 = ImVec2( ( hd_text_cd[ txt_hd_id ]._x1 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y0 ) / hd_gp_texture_height );
 			if (en_horizontal == _slider_pt._direction_item)
 			{
 				uv2.x = uv1.x + _slider_pt._progress_nml*(uv2.x - uv1.x);
@@ -255,7 +265,7 @@ namespace auto_future
 				uv0.y = uv1.y - _slider_pt._progress_nml*(uv1.y - uv0.y);
 				uv3.y = uv2.y - _slider_pt._progress_nml*(uv2.y - uv3.y);
 			}
-			ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3);
+               ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
 		}
 		/************************************************thumb**************************************************/
 		if (!_slider_pt._thumb_visible) return;
@@ -272,11 +282,18 @@ namespace auto_future
 		pos2 = screen_base_pos + tb_point1;
 		pos3 = screen_base_pos + tb_point2;
 		pos4 = screen_base_pos + tb_point3;
-		auto tb_id = _slider_pt._texture_thumb_index_txt;
-		uv0 = ImVec2(ptext_cd[tb_id]._x0 / texture_width, ptext_cd[tb_id]._y0 / texture_height);
-		uv1 = ImVec2(ptext_cd[tb_id]._x0 / texture_width, (ptext_cd[tb_id]._y1) / texture_height);
-		uv2 = ImVec2((ptext_cd[tb_id]._x1) / texture_width, (ptext_cd[tb_id]._y1) / texture_height);
-		uv3 = ImVec2((ptext_cd[tb_id]._x1) / texture_width, (ptext_cd[tb_id]._y0) / texture_height);
-		ImGui::ImageQuad((ImTextureID)texture_id, pos1, pos2, pos3, pos4, uv1, uv2, uv3, uv0);
+		auto  tb_gp_id=_slider_pt._texture_thumb_index_txt.x;
+		auto  tb_id = _slider_pt._texture_thumb_index_txt.y;
+		auto& tb_re_gp = *g_vres_texture_list[ tb_gp_id ];
+		int tb_texture_id = tb_re_gp.texture_id();
+		int tb_gp_texture_width = tb_re_gp.texture_width;
+		int tb_gp_texture_height = tb_re_gp.texture_height;
+		vres_txt_cd& tb_text_cd = tb_re_gp.vtexture_coordinates;
+
+		uv0 = ImVec2( tb_text_cd[ tb_id ]._x0 / tb_gp_texture_width, tb_text_cd[ tb_id ]._y0 / tb_gp_texture_height );
+		uv1 = ImVec2( tb_text_cd[ tb_id ]._x0 / tb_gp_texture_width, ( tb_text_cd[ tb_id ]._y1 ) / tb_gp_texture_height );
+		uv2 = ImVec2( ( tb_text_cd[ tb_id ]._x1 ) / tb_gp_texture_width, ( tb_text_cd[ tb_id ]._y1 ) / tb_gp_texture_height );
+		uv3 = ImVec2( ( tb_text_cd[ tb_id ]._x1 ) / tb_gp_texture_width, ( tb_text_cd[ tb_id ]._y0 ) / tb_gp_texture_height );
+		ImGui::ImageQuad( (ImTextureID)tb_texture_id, pos1, pos2, pos3, pos4, uv1, uv2, uv3, uv0 );
 	}
 }

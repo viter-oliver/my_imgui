@@ -8,14 +8,14 @@ using namespace Json;
 #include <stdexcept>
 #define ASSERT_MESSAGE(condition, message) if (!(condition)) throw std::runtime_error(message);
 #include <string>
+#include <string.h>
 #include "fab.h"
 #include "af_type.h"
 #include "res_output.h"
-#include <string.h>
-
+#include "platform_def.h"
 using namespace fab;
 using namespace std;
-class shader_uf
+class AFG_EXPORT shader_uf
 {
 protected:
 	GLuint _el_size;
@@ -342,7 +342,7 @@ public:
 REG_SHADER_UF(shader_uf_double);
 #endif
 
-class shader_uf_txt :public shader_uf
+class AFG_EXPORT shader_uf_txt :public shader_uf
 {
 	char _txt_name[FILE_NAME_LEN];
 	ps_af_texture _pdtxt;

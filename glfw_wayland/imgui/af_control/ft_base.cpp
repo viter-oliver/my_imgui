@@ -121,7 +121,7 @@ namespace auto_future
 			return;
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		if (_selected)
+		if (is_editing()&& _selected)
 		{
 			auto ab_pos = absolute_coordinate_of_base_pos();
 			auto offset = ImGui::GetCursorScreenPos();
@@ -276,7 +276,7 @@ namespace auto_future
 	}
 	base_ui_component* find_a_uc_from_uc(base_ui_component& tar_ui, const char* uname)
 	{
-		if (tar_ui.get_name() == uname)
+          if( tar_ui.get_name() == uname)
 		{
 			return&tar_ui;
 		}

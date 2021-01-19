@@ -472,7 +472,7 @@ bool ImGui_ImplGlfwGL3_CreateDeviceObjects()
     }
     if(!s_fg_source)
     {
-	s_fg_source=fragment_shader;
+	   s_fg_source=fragment_shader;
     }
     glShaderSource(g_VertHandle, 1, &s_vt_source, 0);
     glShaderSource(g_FragHandle, 1, &s_fg_source, 0);

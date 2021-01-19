@@ -2,7 +2,6 @@
 #include "python_interpreter.h"
 bind_dic g_bind_dic;
 bind_ref_dic g_bind_ref_dic;
-
 void calcu_bind_node(prop_ele_position& pep)
 {
 	const auto& iref = g_bind_ref_dic.find(pep);
@@ -81,6 +80,21 @@ base_prp_type::base_prp_type( string bty )
           _pbase = new bool;
           _size = sizeof( bool );
      }
+     else if( _type == "af_vi2" )
+     {
+          _pbase = new af_vi2;
+          _size = sizeof( af_vi2 );
+     }
+     else if( _type == "af_vi3" )
+     {
+          _pbase = new af_vi3;
+          _size = sizeof( af_vi3 );
+     }
+     else if( _type == "af_vi4" )
+     {
+          _pbase = new af_vi4;
+          _size = sizeof( af_vi4 );
+     }
      else if( _type == "af_vec2" )
      {
           _pbase = new af_vec2;
@@ -122,7 +136,6 @@ bool set_property_aliase_value(string prp_aliase_name, void* pvalue)
 	auto& prop_pos =*ialiase->second;
 	return prop_pos._pobj->set_prop_fd_value(prop_pos._page_index, prop_pos._field_index, pvalue);
 }
-
 prop_ele_value_dic g_lazy_value_buff;
 bool set_property_aliase_lazy_value( string prp_aliase_name, int during, void* pvalue )
 {

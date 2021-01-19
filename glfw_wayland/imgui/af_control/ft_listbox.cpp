@@ -11,6 +11,7 @@ namespace auto_future
 		, max_display_num(-1)
 	{
 		/*_be_window = true;*/
+          _lt_pt._texture_index_txt = { 0, 0 };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_in_p, 2, [this](void*){
 
@@ -63,19 +64,19 @@ namespace auto_future
 		{
 			set_max_display_num(_lt_pt._max_display_num_uhd);
 		}
-
-		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
-		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+          auto img_txt_id = _lt_pt._texture_index_txt;
+          auto& cur_res_list = *g_vres_texture_list[ img_txt_id.x ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
 		if (ptext_cd.size() == 0)
 			return;
-		if (_lt_pt._texture_index_txt >= ptext_cd.size())
+          if( img_txt_id.y >= ptext_cd.size() )
 		{
-			printf("invalid texture index:%d\n", _lt_pt._texture_index_txt);
-			_lt_pt._texture_index_txt = 0;
-
+               printf( "invalid texture index:%d\n", img_txt_id.y);
+               return;
 		}
-		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+          int texture_width = cur_res_list.texture_width;
+          int texture_height = cur_res_list.texture_height;
 
 
 		ImVec2 apos = absolute_coordinate_of_base_pos();
@@ -83,20 +84,20 @@ namespace auto_future
 		
 		apos += winpos;
 		ImVec2 szpos = apos + ImVec2(_in_p._sizew, _in_p._sizeh);
-		int img_txt_id = _lt_pt._texture_index_txt;
+		
 
 		int num_space = cur_index - min_dis_index;
-		ImVec2 offset = (item_size - ImVec2(ptext_cd[img_txt_id].owidth(), ptext_cd[img_txt_id].oheight())) / 2;
+          ImVec2 offset = ( item_size - ImVec2( ptext_cd[ img_txt_id.y ].owidth(), ptext_cd[ img_txt_id.y ].oheight() ) ) / 2;
 		
 		ImVec2 pos0 = apos + offset + spacing*num_space;
-		ImVec2 pos1 = { pos0.x, pos0.y + ptext_cd[img_txt_id].oheight() };
-		ImVec2 pos2 = { pos0.x + ptext_cd[img_txt_id].owidth(), pos0.y + ptext_cd[img_txt_id].oheight() };
-		ImVec2 pos3 = { pos0.x + ptext_cd[img_txt_id].owidth(), pos0.y };
+          ImVec2 pos1 = { pos0.x, pos0.y + ptext_cd[ img_txt_id.y ].oheight() };
+          ImVec2 pos2 = { pos0.x + ptext_cd[ img_txt_id.y ].owidth(), pos0.y + ptext_cd[ img_txt_id.y ].oheight() };
+          ImVec2 pos3 = { pos0.x + ptext_cd[ img_txt_id.y ].owidth(), pos0.y };
 		
-		ImVec2 uv0 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, ptext_cd[img_txt_id]._y0 / texture_height);
-		ImVec2 uv1 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
-		ImVec2 uv2 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
-		ImVec2 uv3 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y0) / texture_height);
+          ImVec2 uv0 = ImVec2( ptext_cd[ img_txt_id.y ]._x0 / texture_width, ptext_cd[ img_txt_id.y ]._y0 / texture_height );
+          ImVec2 uv1 = ImVec2( ptext_cd[ img_txt_id.y ]._x0 / texture_width, ( ptext_cd[ img_txt_id.y ]._y1 ) / texture_height );
+          ImVec2 uv2 = ImVec2( ( ptext_cd[ img_txt_id.y ]._x1 ) / texture_width, ( ptext_cd[ img_txt_id.y ]._y1 ) / texture_height );
+          ImVec2 uv3 = ImVec2( ( ptext_cd[ img_txt_id.y ]._x1 ) / texture_width, ( ptext_cd[ img_txt_id.y ]._y0 ) / texture_height );
 
 		ImGui::PushClipRect(apos, szpos, true);
 

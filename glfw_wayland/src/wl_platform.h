@@ -121,7 +121,7 @@ typedef struct _GLFWwindowWayland
     struct wl_egl_window*       native;
     struct wl_shell_surface*    shellSurface;
     struct wl_callback*         callback;
-
+    struct wl_buffer*           buffer;
     _GLFWcursor*                currentCursor;
     double                      cursorPosX, cursorPosY;
 

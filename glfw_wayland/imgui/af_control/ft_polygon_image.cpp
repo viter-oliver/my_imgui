@@ -44,6 +44,7 @@ namespace auto_future
 	ft_polygon_image::ft_polygon_image()
 		:ft_base()
 	{
+          _img_pt._img_txt = { 0, 0 };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 0, [this](void*){
 			if (_track0.size()<2)
@@ -77,22 +78,24 @@ namespace auto_future
 		{
 			return;
 		}
-		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
-		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
-		if (_img_pt._img_txt >= ptext_cd.size())
+          auto img_id = _img_pt._img_txt;
+          auto& cur_res_list = *g_vres_texture_list[ img_id.x ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
+          if( img_id.y >= ptext_cd.size() )
 		{
 			return;
 
 		}
-		int tw = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-		int th = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+          int tw = cur_res_list.texture_width;
+          int th = cur_res_list.texture_height;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 basePpos = { abpos.x + winpos.x, abpos.y + winpos.y };
-		float x0 = ptext_cd[_img_pt._img_txt]._x0/tw;
-		float y0 = ptext_cd[_img_pt._img_txt]._y0/th;
-		float x1 = ptext_cd[_img_pt._img_txt]._x1/tw;
-		float y1 = ptext_cd[_img_pt._img_txt]._y1/th;
+          float x0 = ptext_cd[ img_id.y]._x0 / tw;
+          float y0 = ptext_cd[ img_id.y ]._y0 / th;
+          float x1 = ptext_cd[ img_id.y ]._x1 / tw;
+          float y1 = ptext_cd[ img_id.y ]._y1 / th;
 		float wdelta = (y1 - y0) / 80.0;
 		y0 += wdelta;
 		y1 -= wdelta;

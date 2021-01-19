@@ -315,9 +315,9 @@ void af_shader::link()
 	{
 		collect_out( _vs_code, _out_list );
 	}
-	specify_transfeedback();
+	//specify_transfeedback();
 	glLinkProgram(_shader_program_id);
-	glReleaseShaderCompiler();
+	//glReleaseShaderCompiler();
 	glUseProgram(_shader_program_id);
 	_valid = true;
 
@@ -402,7 +402,7 @@ void af_shader::refresh_viarable_list()
 
 
 	glGetProgramiv(_shader_program_id, GL_ACTIVE_UNIFORMS, &count);
-	//printf("Active Uniforms: %d\n", count);
+	printf("Active Uniforms: %d\n", count);
 
 	for (idx = 0; idx < count; idx++)
 	{

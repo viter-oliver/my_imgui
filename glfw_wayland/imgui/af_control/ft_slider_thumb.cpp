@@ -51,9 +51,10 @@ namespace auto_future
 	}
 	void ft_slider_thumb::draw()
 	{
-		if (_thumb.get_texture_id()!=_img_pt._thumb_id_txt)
+	    auto _thumb_id_txt=_img_pt._thumb_id_txt;
+		if (_thumb.get_texture_id()!=_thumb_id_txt)
 		{
-			_thumb.set_texture_id(_img_pt._thumb_id_txt);
+			_thumb.set_texture_id(_thumb_id_txt);
 		}
 		calcu_thumb_pos();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

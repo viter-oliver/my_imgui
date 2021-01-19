@@ -599,7 +599,8 @@ static void registryHandleGlobal(void* data,
     }
     else if (strcmp(interface, "wl_output") == 0)
     {
-        _glfwAddOutputWayland(name, version);
+		_glfwAddOutputWayland(name, version);
+       
     }
     else if (strcmp(interface, "wl_seat") == 0)
     {

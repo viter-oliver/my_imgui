@@ -293,6 +293,12 @@ GLFWAPI GLFWmonitor* glfwGetPrimaryMonitor(void)
 
     return (GLFWmonitor*) _glfw.monitors[0];
 }
+GLFWAPI GLFWmonitor* glfwGetMonitor_by_id(int id)
+{
+     printf("monitorid=%d,count=%d\n",id,_glfw.monitorCount);
+	 printf("select output=0x%x\n",_glfw.monitors[id]->wl.output);
+     return (GLFWmonitor*) _glfw.monitors[id];
+}
 
 GLFWAPI void glfwGetMonitorPos(GLFWmonitor* handle, int* xpos, int* ypos)
 {

@@ -43,6 +43,6 @@ namespace auto_future
 	-#vdest and vsource must have same size
 	*/
 	void property_copy(vproperty_list& vdest, vproperty_list& vsource);
-	base_ui_component* get_copy_of_object(base_ui_component* byobject);
+     AFG_EXPORT  base_ui_component*  get_copy_of_object( base_ui_component* byobject );
 	void get_uic_path(base_ui_component* pobj, string& path_rtn);
 }

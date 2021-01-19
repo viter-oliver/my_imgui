@@ -11,8 +11,9 @@ namespace auto_future
 	ft_image::ft_image()
 		:ft_base()
 	{
-	   _img_pt._tin_clr = { 1.f, 1.f, 1.f };
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+          _img_pt._tin_clr = { 1.f, 1.f, 1.f };
+          _img_pt._texture_index_txt = { 0, 0 };
+ #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		reg_property_handle(&_img_pt, 2, [this](void*){
 			ImGui::Combo("anchor type:", &_img_pt._anchor_type, "top left\0top right\0bottom right\0bottom left\0center\0\0");
 		});
@@ -20,18 +21,20 @@ namespace auto_future
 	}
 	void ft_image::draw()
 	{
-		int texture_id = g_vres_texture_list[g_cur_texture_id_index].texture_id();
-		vres_txt_cd& ptext_cd = g_vres_texture_list[g_cur_texture_id_index].vtexture_coordinates;
+          auto img_txt_id = _img_pt._texture_index_txt;
+          auto& cur_res_list = *g_vres_texture_list[ img_txt_id.x ];
+          int texture_id = cur_res_list.texture_id();
+          vres_txt_cd& ptext_cd = cur_res_list.vtexture_coordinates;
 		if (ptext_cd.size() == 0)
 			return;
-		if (_img_pt._texture_index_txt >= ptext_cd.size())
+          if( img_txt_id.y >= ptext_cd.size() )
 		{
-			printf("invalid texture index:%d\n", _img_pt._texture_index_txt);
-			_img_pt._texture_index_txt = 0;
+               printf( "invalid texture index:%d\n", img_txt_id.y);
+               return;
 
 		}
-		int texture_width = g_vres_texture_list[g_cur_texture_id_index].texture_width;
-		int texture_height = g_vres_texture_list[g_cur_texture_id_index].texture_height;
+          int texture_width = cur_res_list.texture_width;
+          int texture_height = cur_res_list.texture_height;
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
@@ -40,11 +43,10 @@ namespace auto_future
 		ImVec2 pos1 = { pos0.x, pos0.y + sizeh };
 		ImVec2 pos2 = { pos0.x + sizew, pos0.y + sizeh };
 		ImVec2 pos3 = { pos0.x + sizew, pos0.y };
-		int img_txt_id = _img_pt._texture_index_txt;
-		ImVec2 uv0 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, ptext_cd[img_txt_id]._y0 / texture_height);
-		ImVec2 uv1 = ImVec2(ptext_cd[img_txt_id]._x0 / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
-		ImVec2 uv2 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y1) / texture_height);
-		ImVec2 uv3 = ImVec2((ptext_cd[img_txt_id]._x1) / texture_width, (ptext_cd[img_txt_id]._y0) / texture_height);
+          ImVec2 uv0 = ImVec2( ptext_cd[ img_txt_id.y ]._x0 / texture_width, ptext_cd[ img_txt_id.y ]._y0 / texture_height );
+          ImVec2 uv1 = ImVec2( ptext_cd[ img_txt_id.y ]._x0 / texture_width, ( ptext_cd[ img_txt_id.y ]._y1 ) / texture_height );
+          ImVec2 uv2 = ImVec2( ( ptext_cd[ img_txt_id.y ]._x1 ) / texture_width, ( ptext_cd[ img_txt_id.y ]._y1 ) / texture_height );
+          ImVec2 uv3 = ImVec2( ( ptext_cd[ img_txt_id.y ]._x1 ) / texture_width, ( ptext_cd[ img_txt_id.y ]._y0 ) / texture_height );
 
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
@@ -56,9 +58,8 @@ namespace auto_future
 			pos2 = rotate_point_by_zaxis(pos2, _img_pt._angle_srd, axisBasePos);
 			pos3 = rotate_point_by_zaxis(pos3, _img_pt._angle_srd, axisBasePos);
 		}
-
-		ImVec4 tin_clr( _img_pt._tin_clr.x, _img_pt._tin_clr.y, _img_pt._tin_clr.z, _img_pt._alpha_nml );
-        ImGui::ImageQuad( (ImTextureID)texture_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, tin_clr );
+          ImVec4 tin_clr( _img_pt._tin_clr.x, _img_pt._tin_clr.y, _img_pt._tin_clr.z, _img_pt._alpha_nml );
+          ImGui::ImageQuad( (ImTextureID)texture_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, tin_clr );
 		//ft_base::draw();
 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

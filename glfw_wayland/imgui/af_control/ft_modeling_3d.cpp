@@ -174,7 +174,6 @@ namespace auto_future
           } );
 #endif
      }
-
      ft_modeling_3d::~ft_modeling_3d()
      {}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
@@ -215,6 +214,39 @@ namespace auto_future
           draw_list->AddCircleFilled( lt_pos, 5, lt_col );
      }
 #endif	
+
+	void ft_modeling_3d::link()
+	{
+		auto imodel = g_mmodel_list.find(_pty_page._model_name);
+		if (imodel != g_mmodel_list.end())
+		{
+		_pmodel = imodel->second;
+		}
+		auto itxt = g_mtexture_list.find( _pty_page._txt_diffuse );
+		if( itxt != g_mtexture_list.end() )
+		{
+		    _pdiffuse = itxt->second;
+		}
+		itxt = g_mtexture_list.find( _pty_page._txt_specular );
+		if( itxt != g_mtexture_list.end() )
+		{
+		    _pspecular = itxt->second;
+		}
+
+		string str_modeling( modeling );
+		auto shd_modeling = g_af_shader_list.find( modeling );
+		if( shd_modeling == g_af_shader_list.end() )
+		{
+		    _pshd_modeling = make_shared<af_shader>( modeling_vs, modeling_fs );
+		    _pshd_modeling->set_name( str_modeling );
+
+		    g_af_shader_list[ modeling ] = _pshd_modeling;
+		}
+		else
+		{
+		    _pshd_modeling = shd_modeling->second;
+		}
+	}
 	void ft_modeling_3d::draw()
 	{
 		if (!_pmodel)
@@ -331,13 +363,13 @@ namespace auto_future
 		my_shader.uniform("model", glm::value_ptr(model));
 		my_shader.uniform("view", glm::value_ptr(view));
 		my_shader.uniform("projection", glm::value_ptr(proj));
-		my_shader.uniform("light.ambient", (float*)&_pty_page._light_ambient_clr);
-		my_shader.uniform("light.diffuse", (float*)&_pty_page._light_diffuse_clr);
-		my_shader.uniform("light.specular", (float*)&_pty_page._light_specular_clr);
-		my_shader.uniform("light.position", (float*)&_pty_page._light_posx);
-		my_shader.uniform("light.constant", &_pty_page._light_constant_hac);
-		my_shader.uniform("light.linear", &_pty_page._light_linear_hac);
-		my_shader.uniform("light.quadratic", &_pty_page._light_quadratic_hac);
+		my_shader.uniform("light_ambient", (float*)&_pty_page._light_ambient_clr);
+		my_shader.uniform("light_diffuse", (float*)&_pty_page._light_diffuse_clr);
+		my_shader.uniform("light_specular", (float*)&_pty_page._light_specular_clr);
+		my_shader.uniform("light_position", (float*)&_pty_page._light_posx);
+		my_shader.uniform("light_constant", &_pty_page._light_constant_hac);
+		my_shader.uniform("light_linear", &_pty_page._light_linear_hac);
+		my_shader.uniform("light_quadratic", &_pty_page._light_quadratic_hac);
 
 		for (auto& amesh:my_model)
 		{

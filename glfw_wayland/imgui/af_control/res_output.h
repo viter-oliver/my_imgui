@@ -4,6 +4,7 @@
 #include <string>
 #include <atomic>
 #include <thread>
+#include <memory>
 using namespace std;
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
 struct res_texture_coordinate
@@ -61,44 +62,38 @@ struct res_texture_list
 #endif
 		return txt_id;
 	}
+#if 0
 	res_texture_list()
 		:txt_id(0)
 	{
 	}
-
 	res_texture_list(res_texture_list& target)
 	{
-		if (target.txt_id==0)
-		{
-			txt_id = 0;
-		}
-		else
-		{
-			txt_id = texture_id();
-		}
-	}
-     res_texture_list(res_texture_list&& target)
-	{
-		if (target.txt_id==0)
-		{
-			txt_id = 0;
-		}
-		else
-		{
-			txt_id = texture_id();
-		}
+		
+          txt_id = target.txt_id;
+          texture_width = target.texture_width;
+          texture_height = target.texture_height;
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+          texture_pack_file=target.texture_pack_file;
+          texture_data_file=target.texture_data_file;
+
+#endif
+          _is_separated = target._is_separated;
+          vtexture_coordinates = target.vtexture_coordinates;
 	}
 	res_texture_list& operator =(res_texture_list& tar)
 	{
 		txt_id = tar.texture_id();
 		return *this;
 	}
+#endif
 	~res_texture_list()
 	{
 		glDeleteTextures(1, &txt_id);
 	}
 };
-typedef vector<res_texture_list> vres_txt_list;
+using sd_res_txt_list = shared_ptr<res_texture_list>;
+using  vres_txt_list = vector<sd_res_txt_list>;
 extern vres_txt_list g_vres_texture_list;
 extern int g_cur_texture_id_index;
 //enum res_output_model
@@ -106,7 +101,6 @@ extern int g_cur_texture_id_index;
 //	en_integrated,
 //	en_discrete,
 //};
-extern bool get_texture_item(void* data, int idx, const char** out_str);
 struct af_texture
 {
 	bool _mip_map{ false };
@@ -133,7 +127,7 @@ struct af_texture
 			int pix_sz = _width*_height * 4;
 			if (_mip_map)
 			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 涓篗ipMap璁惧畾filter鏂规硶
 			}
 			if (txt_buff.size() < pix_sz)// texture is compressed
 			{
@@ -214,4 +208,6 @@ struct output_bin_format
 	program_format _pgm_fmt;
 	//output_bin_format() :_txt_fmt(en_uncompressed_txt), _pgm_fmt(en_shader_code){}
 };
+extern bool get_texture_item( void* data, int idx, const char** out_str );
+extern bool get_texture_group_name( void* data, int idx, const char** out_str );
 extern output_bin_format g_output_bin_format;

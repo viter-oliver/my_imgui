@@ -261,16 +261,18 @@ namespace auto_future
 			
 			return ft_u;
 		}
-		ps_font_unit load_font(string& fontFaceName, string& fontPath)
+		ps_font_unit load_font(string& fontFaceName, string& fontPath,int& idx)
 		{
 			//auto lastTime = std::chrono::high_resolution_clock::now();
+               idx = 0;
 			for (auto& ft_item : _dic_fonts)
 			{
 				if (ft_item->_name == fontFaceName)
 				{
 					printf("font %s have been loaded!\n", fontFaceName.c_str());
-					return nullptr;
+                         return ft_item;
 				}
+                    idx++;
 			}
 			FT_Face face;
 			if (FT_New_Face(_ft, fontPath.c_str(), 0, &face))
@@ -294,7 +296,7 @@ namespace auto_future
 		int draw_wstring(ps_font_unit& pf_u, GLint fontSize,
 							af_vec2& start_pos, af_vec2& end_pos, 
 							GLfloat scale, wstring& str_content, 
-							const af_vec3& txt_col, float width, 
+							const af_vec4& txt_col, float width, 
 							int omit_rest,bool be_new);
 	};
 

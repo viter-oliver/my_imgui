@@ -13,7 +13,7 @@ namespace auto_future
 #define  SCREEN_H 534
 		string _cureent_project_file_path;
 		vector<string> _arg_list;
-		int _screen_width = { SCREEN_W }, _screen_height = { SCREEN_H };
+		int _screen_width = { SCREEN_W }, _screen_height = { SCREEN_H },_screen_posx={0},_screen_posy={0};
 		float _win_width = { SCREEN_W }, _win_height = { SCREEN_H };
 		base_ui_component* _proot = { NULL };
 		float _wposx=0.f, _wposy=0.f;
@@ -39,6 +39,7 @@ namespace auto_future
 			_win_width = w_width;
 			_win_height = w_height;
 		}
+		void set_screen_pos(float posx, float posy);
 		void set_image_height(int height);
 		void set_rotate_angle( float angle );
         void set_rotate_axis_pos( float px, float py );

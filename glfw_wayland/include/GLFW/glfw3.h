@@ -1858,6 +1858,7 @@ GLFWAPI GLFWmonitor** glfwGetMonitors(int* count);
  *  @ingroup monitor
  */
 GLFWAPI GLFWmonitor* glfwGetPrimaryMonitor(void);
+GLFWAPI GLFWmonitor* glfwGetMonitor_by_id(int id);
 
 /*! @brief Returns the position of the monitor's viewport on the virtual screen.
  *

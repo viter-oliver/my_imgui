@@ -8,7 +8,7 @@ namespace auto_future
 	{
 
 		DEF_STRUCT_WITH_INIT(intl_pt,_txt_pt,
-			(af_vec3, _txt_clr),
+			(af_vec4, _txt_clr),
 			(float, _txt_alignh_nml, {0.f}),
 			(float, _txt_alignv_nml, {0.f}),
 			(float, _width, { 200.0f }),

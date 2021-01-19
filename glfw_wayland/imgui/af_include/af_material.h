@@ -8,7 +8,7 @@ typedef map<string, shared_ptr<shader_uf>> mp_shader_uf;
 * description:
 * - a material contain a variable list which is correspond to the shader variable type of the shader referenced by the material
 */
-class material
+class AFG_EXPORT material
 {
 	shared_ptr<af_shader> _pshader;
 	mp_shader_uf _mp_shader_uf;

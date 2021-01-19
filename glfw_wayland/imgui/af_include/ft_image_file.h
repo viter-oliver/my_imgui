@@ -2,6 +2,7 @@
 #include "ft_base.h"
 namespace auto_future
 {
+
 	class AFG_EXPORT ft_image_file :
 		public ft_base
 	{

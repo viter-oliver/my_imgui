@@ -4,7 +4,6 @@
 #include "af_model.h"
 namespace auto_future
 {
-
 	class AFG_EXPORT ft_modeling_3d :
 		public ft_base
 	{
@@ -48,24 +47,7 @@ namespace auto_future
 		void view_components_in_world_space();
 #endif		
 		void draw();
-		void link()
-		{
-			auto imodel = g_mmodel_list.find(_pty_page._model_name);
-			if (imodel != g_mmodel_list.end())
-			{
-				_pmodel = imodel->second;
-			}
-               auto itxt = g_mtexture_list.find( _pty_page._txt_diffuse );
-               if( itxt != g_mtexture_list.end() )
-               {
-                    _pdiffuse = itxt->second;
-               }
-               itxt = g_mtexture_list.find( _pty_page._txt_specular );
-               if( itxt != g_mtexture_list.end() )
-               {
-                    _pspecular = itxt->second;
-               }
-		}
+		void link();
 		camera* get_cam()
 		{
 			return &_pty_page._cam;

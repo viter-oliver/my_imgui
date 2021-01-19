@@ -39,6 +39,7 @@
 
 #include <wayland-egl.h>
 #include <wayland-cursor.h>
+extern struct wl_output * get_wl_out_put(int id);
 
 static void handlePing(void* data,
                        struct wl_shell_surface* shellSurface,
@@ -192,6 +193,49 @@ static void setIdleInhibitor(_GLFWwindow* window, GLFWbool enable)
 {
     
 }
+int createAnonymousFile(off_t size);
+
+static GLFWbool  createBuff(_GLFWwindow* window)
+{
+    struct wl_shm_pool* pool;
+    int stride = window->wl.width * 4;
+    int length = window->wl.width * window->wl.height * 4;
+    void* data;
+    int fd, i;
+
+    fd = createAnonymousFile(length);
+    if (fd < 0)
+    {
+        _glfwInputError(GLFW_PLATFORM_ERROR,
+                        "Wayland: Creating a buffer file for %d B failed: %m",
+                        length);
+        return GLFW_FALSE;
+    }
+
+    data = mmap(NULL, length, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+    if (data == MAP_FAILED)
+    {
+        _glfwInputError(GLFW_PLATFORM_ERROR,
+                        "Wayland: Cursor mmap failed: %m");
+        close(fd);
+        return GLFW_FALSE;
+    }
+
+    pool = wl_shm_create_pool(_glfw.wl.shm, fd, length);
+
+    close(fd);
+
+
+    window->wl.buffer =
+        wl_shm_pool_create_buffer(pool, 0,
+                                  window->wl.width,
+                                  window->wl.height,
+                                  stride, WL_SHM_FORMAT_ARGB8888);
+    munmap(data, length);
+    wl_shm_pool_destroy(pool);
+
+    return GLFW_TRUE;
+}
 
 static GLFWbool createSurface(_GLFWwindow* window,
                               const _GLFWwndconfig* wndconfig)
@@ -235,7 +279,7 @@ static GLFWbool createShellSurface(_GLFWwindow* window)
 
     if (window->wl.title)
         wl_shell_surface_set_title(window->wl.shellSurface, window->wl.title);
-
+#if 0
     if (window->monitor)
     {
         wl_shell_surface_set_fullscreen(
@@ -255,7 +299,20 @@ static GLFWbool createShellSurface(_GLFWwindow* window)
         wl_shell_surface_set_toplevel(window->wl.shellSurface);
         setIdleInhibitor(window, GLFW_FALSE);
     }
+#else
+    printf("createshellfurface wl_output=0x%x\n",window->monitor->wl.output);
+	wl_shell_surface_set_toplevel(window->wl.shellSurface);
+    //window->monitor->wl.output=get_wl_out_put(1);
+	wl_shell_surface_set_fullscreen(
+				window->wl.shellSurface,
+				0,
+				60,
+				window->monitor->wl.output);
+	wl_shell_surface_set_user_data(window->wl.shellSurface, window->wl.surface);
+	//wl_shell_surface_set_maximized(window->wl.shellSurface, NULL);
 
+
+#endif
     wl_surface_commit(window->wl.surface);
 
     return GLFW_TRUE;
@@ -401,7 +458,10 @@ int _glfwPlatformCreateWindow(_GLFWwindow* window,
 
     if (!createSurface(window, wndconfig))
         return GLFW_FALSE;
-
+    if (!createBuff(window))
+	{
+		return GLFW_FALSE;
+	}
     if (ctxconfig->client != GLFW_NO_API)
     {
         if (ctxconfig->source == GLFW_EGL_CONTEXT_API ||
@@ -503,9 +563,20 @@ void _glfwPlatformGetWindowPos(_GLFWwindow* window, int* xpos, int* ypos)
 void _glfwPlatformSetWindowPos(_GLFWwindow* window, int xpos, int ypos)
 {
     // A Wayland client can not set its position, so just warn
+    #if 0
+
+    wl_shell_surface_move(window->wl.shellSurface, window->wl.seat, uint32_t serial);
+	
+	#else
     //wl_shell_surface_set_transient(window->wl.shellSurface,window->wl.surface,xpos,ypos,0);
-    wl_surface_attach(window->wl.surface, 0, xpos, ypos);
+	//wl_shell_surface_set_toplevel(window->wl.shellSurface);
+	wl_surface_attach(window->wl.surface, window->wl.buffer, xpos, ypos);
     wl_surface_commit(window->wl.surface);
+	#endif
+    //wl_surface_attach(window->wl.surface, window->wl.buffer, xpos, ypos);
+    //wl_surface_commit(window->wl.surface);
+    //wl_shell_surface_set_transient (wl_shell_surface, window->wl.surface, xpos, POS, 0);
+    //wl_shell_surface_set_toplevel(wl_shell_surface);
     printf("_glfwPlatformSetWindowPos\n");
     //_glfwInputError(GLFW_PLATFORM_ERROR, "Wayland: Window position setting not supported");
 }
@@ -594,7 +665,7 @@ void _glfwPlatformMaximizeWindow(_GLFWwindow* window)
         if (window->wl.shellSurface)
         {
             // Let the compositor select the best output.
-            wl_shell_surface_set_maximized(window->wl.shellSurface, NULL);
+            //wl_shell_surface_set_maximized(window->wl.shellSurface, NULL);
         }
         window->wl.maximized = GLFW_TRUE;
     }
@@ -641,6 +712,7 @@ void _glfwPlatformSetWindowMonitor(_GLFWwindow* window,
 {
     if (monitor)
     {
+        //monitor->wl.output=get_wl_out_put(1);
         wl_shell_surface_set_fullscreen(
             window->wl.shellSurface,
             WL_SHELL_SURFACE_FULLSCREEN_METHOD_DEFAULT,

@@ -99,10 +99,11 @@ namespace auto_future
 #if !defined(IMGUI_WAYLAND)
 		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", NULL, NULL);
 #else
-		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", glfwGetPrimaryMonitor(), NULL);
+		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", glfwGetMonitor_by_id(1), NULL);
 #endif
-              //glfwSetWindowPos(_window,100,100);
+        glfwSetWindowPos(_window,_screen_posx,0);
 
+		//glfwSetWindowPos(_window, -_screen_posx,_screen_posy);
 		glfwMakeContextCurrent(_window);
 
 		glfwSwapInterval(1); // Enable vsync
@@ -193,6 +194,14 @@ namespace auto_future
 			
 		}
 		return true;
+	}
+	void application::set_screen_pos(float posx, float posy)
+	{
+		GLFWwindow* cur_c=glfwGetCurrentContext();
+		_screen_posx=posx;
+		_screen_posy=posy;
+		
+		glfwSetWindowPos(cur_c, posx, posy);
 	}
 	void application::set_image_height(int height)
 	{

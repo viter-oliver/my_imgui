@@ -1,24 +1,27 @@
 #include "ft_listbox_ex.h"
+#include "af_bind.h"
 namespace auto_future
 {
 
      ft_listbox_ex::ft_listbox_ex()
      {
-          _left_top = _right_bottom= { 0.f, 0.f };
           _in_p._sizew = 100.f;
           _in_p._sizeh = 200.f;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
          reg_property_handle( &_pt, 0, [this]( void* )
           {
-               ImGui::Checkbox( "vertical", &_pt._vertical );
-               if( _pt._vertical )
+               if(ImGui::Checkbox( "vertical", &_pt._vertical ))
                {
-                    _left_top.x = 0;
+                    if( _pt._vertical )
+                    {
+                         _pt._inner_top = 0;
+                    }
+                    else
+                    {
+                         _pt._inner_left = 0;
+                    }
                }
-               else
-               {
-                    _left_top.y = 0;
-               }
+               
           } );
 #endif
      }
@@ -38,11 +41,12 @@ namespace auto_future
                     auto ms_delta = ImGui::GetIO().MouseDelta;
                     if( _pt._vertical )
                     {
-                         _left_top.y += ms_delta.y;
+                         _pt._inner_top += ms_delta.y;
                     }
                     else
                     {
-                         _left_top.x += ms_delta.x;
+                         _pt._inner_left += ms_delta.x;
+
                     }
                }
           }
@@ -56,36 +60,46 @@ namespace auto_future
           ImVec2 pos2 = { pos0.x + sizew, pos0.y + sizeh };
           ImVec2 pos3 = { pos0.x + sizew, pos0.y };
           ImGui::PushClipRect( pos0, pos2, true );
-          af_vec2 spos = _left_top;
           if( _pt._vertical )
           {
+               float spos_y = _pt._inner_top;
                for( auto item : _vchilds )
                {
-                    if( item->is_visible() )
+                    auto bpos = item->base_pos();
+                    float w, h;
+                    item->get_size( w, h );
+                    if( bpos.y != spos_y )
                     {
-                         item->set_base_pos( spos.x,spos.y);
-                         float w, h;
-                         item->get_size( w, h );
-                         spos.y += h;
-                         item->draw_frames();
+                         item->set_base_posy( spos_y );
+                         prop_ele_position pep { item, 0, 1 };
+                         calcu_bind_node( pep );
                     }
+                    spos_y += h;
+                    spos_y += _pt._interval;
+                    item->draw_frames();
                }
+               _pt._inner_bottom = spos_y;
           }
           else
           {
+               float spos_x = _pt._inner_left;
                for( auto item : _vchilds )
                {
-                    if( item->is_visible() )
+                    auto bpos = item->base_pos();
+                    float w, h;
+                    item->get_size( w, h );
+                    if( bpos.x != spos_x )
                     {
-                         item->set_base_pos( spos.x, spos.y );
-                         float w, h;
-                         item->get_size( w, h );
-                         spos.x += w;
-                         item->draw_frames();
+                         item->set_base_posy( spos_x );
+                         prop_ele_position pep { item, 0, 0 };
+                         calcu_bind_node( pep );
                     }
+                    spos_x += w;
+                    spos_x += _pt._interval;
+                    item->draw_frames();
                }
+               _pt._inner_right = spos_x;
           }
-          _right_bottom = spos;
           ImGui::PopClipRect();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           if( is_selected() )//draw envelope
@@ -106,17 +120,5 @@ namespace auto_future
                ImGui::RenderFrame( pos4a, pos4b, col );
           }
 #endif
-     }
-     void ft_listbox_ex::scroll( float delta )
-     {
-          if( _pt._vertical )
-          {
-               _left_top.y += delta;
-          }
-          else
-          {
-               _left_top.x += delta;
-          }
-
      }
 }
