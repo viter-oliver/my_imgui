@@ -198,7 +198,7 @@ namespace cly{
 	std::string post(std::string url) {
 		boost::asio::io_service io;
 		HttpBoost c(io);
-		c.post(url);
+ 		c.post(url);
 		io.run();
 		return c.getResponse();
 	}

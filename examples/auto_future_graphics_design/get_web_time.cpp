@@ -1,9 +1,37 @@
 #include <stdio.h>
 #include <windows.h>
+#include <iphlpapi.h>
 
 #include "get_web_time.h"
 #include "winsock2.h"
 #pragma comment(lib, "WS2_32.lib")
+#pragma comment(lib, "iphlpapi.lib")
+extern void hex_to_char( vector<unsigned char>& hex_list, string& str_list );
+string get_mac_address( vector<BYTE>& vbyte_mac )
+{
+     IP_ADAPTER_INFO AdapterInfo[ 6 ];       // Allocate information for up to 16 NICs
+     DWORD dwBufLen = sizeof( AdapterInfo );  // Save memory size of buffer
+
+     DWORD dwStatus = GetAdaptersInfo( AdapterInfo, &dwBufLen );                  // [in] size of receive data buffer
+     if( dwStatus != ERROR_SUCCESS )
+     {
+          printf( "GetAdaptersInfo failed. err=%d\n", GetLastError() );
+          return "";
+     }
+
+     PIP_ADAPTER_INFO pAdapterInfo = AdapterInfo; // Contains pointer to  current adapter info
+     BYTE* addr = pAdapterInfo->Address;
+     vbyte_mac.resize( 6 );
+     for( int ix = 0; ix < 6;++ix )
+     {
+          vbyte_mac[ ix ] = *addr++;
+     }
+     string mac_str;
+     hex_to_char( vbyte_mac, mac_str );
+     return mac_str;
+     
+}
+
 
 DWORD GetTimeFromServer(char *ip_addr)
 {

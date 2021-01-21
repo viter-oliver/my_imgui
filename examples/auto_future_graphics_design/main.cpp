@@ -21,7 +21,6 @@
 #include "project_edit.h"
 #include "res_internal.h"
 #include "texture_res_load.h"
-#include "HttpBoost.h"
 #include <functional>
 #if !defined(IMGUI_WAYLAND)
 #include <windows.h>
@@ -65,6 +64,7 @@
 #include <fstream>
 #include <thread>
 #include <atomic>
+#include "simple_http.h"
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -181,6 +181,12 @@ DWORD get_valid_mins( vector<BYTE>& plainText )
      memcpy( &valid_mins, &plainText[ write_pos + 8 ], 4 );
      return valid_mins;
 }
+void pack_value_to_plainText( vector<BYTE>& plainText, DWORD valid_mis )
+{
+     auto write_pos = plainText[ 4 ];
+     DWORD* pvalid_pos = (DWORD*)&plainText[ write_pos + 8 ];
+     *pvalid_pos = valid_mis;
+}
 #define _request_authentication
 
 int main( int argc, char* argv[] )
@@ -203,7 +209,7 @@ int main( int argc, char* argv[] )
 	moo.set_mode(MODE_CBC);
 	moo.set_iv((BYTE*)iv.c_str());
 	HKEY hKey;
-	bool be_get_license = false;
+     atomic<bool> be_hold_license = false;
      vector<BYTE> encrpText;
      encrpText.resize( fp_lc_len * 2 );
 	vector<BYTE> plainText;
@@ -223,17 +229,50 @@ int main( int argc, char* argv[] )
                     ifs.read( (char*)&encrpText[ fp_lc_len ], fp_lc_len );
                     moo.Decrypt( &encrpText[0], fp_lc_len*2,&plainText[0] );
                     app_valid_min = get_valid_mins( plainText );
-                    if (app_valid_min>0)
-                    {
-                         be_get_license = true;
-                    }
+                    ifs.close();
                }
 		}
-
-
 	}
+     auto save_value = [&]()
+     {
+          pack_value_to_plainText( plainText, app_valid_min );
+          moo.Encrypt( &plainText[ 0 ], fp_lc_len * 2, &encrpText[ 0 ] );
+          ofstream ofs;
+          ofs.open( rear_part_lv, ios::binary );
+          ofs.write( (const char*)&encrpText[ fp_lc_len ], fp_lc_len );
+          ofs.flush();
+          ofs.close();
+          HKEY hKey;
+          if( RegOpenKeyEx( HKEY_CURRENT_USER, reg_path.c_str(), 0, KEY_WRITE, &hKey ) != ERROR_SUCCESS )
+          {
+               DWORD state;
+               RegCreateKeyEx( HKEY_CURRENT_USER, reg_path.c_str(), 0, NULL, 0, KEY_WRITE, NULL, &hKey, &state );
+          }
+          RegSetKeyValue( hKey, front_part_license_valid_time_key.c_str(), 0, REG_BINARY, &encrpText[ 0 ], fp_lc_len );
+          RegCloseKey( hKey );
+     };
+     thread td_counting( [&]()
+     {
+          while( true )
+          {
+               if( app_valid_min > 0 )
+               {
+                    save_value();
+                    app_valid_min--;
+                    this_thread::sleep_for( chrono::seconds( 60 ) );
+                    be_hold_license = true;
+               }
+               else
+               {
+                    be_hold_license = false;
+                    this_thread::sleep_for( chrono::seconds( 1 ) );
+               }
+          }
+
+     } );
+     td_counting.detach();
 #endif
-	
+     
     // Setup window
 	if (argc>1)
 	{
@@ -633,34 +672,11 @@ int main( int argc, char* argv[] )
 #elif defined(_MY_IMGUI__)
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
 #ifdef _request_authentication
-		if (!be_get_license)
+		if (!be_hold_license)
 		{
 			ImGui::OpenPopup("get license");
 		}
-          else
-          {
-               if (!counting_thread_is_running)
-               {
-                    thread td_counting( [&]()
-                    {
-                         counting_thread_is_running = true;
-                         while( counting_thread_is_running )
-                         {
-                              if( app_valid_min > 0 )
-                              {
-                                   app_valid_min--;
-                              }
-                              else
-                              {
-                                   counting_thread_is_running = false;
-                                   be_get_license = false;
-                              }
-                         }
-                        
-                    });
-                    td_counting.detach();
-               }
-          }
+          
 		if (ImGui::BeginPopupModal("get license"))
 		{
 #define LICENSE_LEN 0x100
@@ -678,29 +694,47 @@ int main( int argc, char* argv[] )
 				}
 				else
 				{
-                         string afg_mg_path = "http://localhost:8080/afg_manager/afg_authentification";
-                         string str_post = "\{"
-
-
-					vector<unsigned char> hexLicense;
-					//vector<unsigned char> plainText;
-					char_to_hex(slicense, hexLicense);
-					plainText.resize(hexLicense.size());
-					moo.Decrypt(&hexLicense[0], hexLicense.size(), &plainText[0]);
-					
-					if (0)
-					{
-						DWORD state;
-						lRet = RegCreateKeyEx(HKEY_CURRENT_USER, reg_path.c_str(), 0, NULL, 0, KEY_WRITE, NULL, &hKey, &state);
-						if (lRet == ERROR_SUCCESS)
-						{
-                                   RegSetValueEx( hKey, front_part_license_valid_time_key.c_str(), 0, REG_BINARY, &hexLicense[ 0 ], 32 );
-							RegCloseKey(hKey);
-						}
-						be_get_license = true;
-						ImGui::CloseCurrentPopup();
-
-					}
+                         //string afg_mg_path = "http://10.0.0.101:8080/afg_manager/afg_authentification";
+                         Value jpost( objectValue );
+                         vector<BYTE> mac_address_bt;
+                         string str_mac = get_mac_address( mac_address_bt );
+                         jpost[ "mac_adrress" ] = str_mac;
+                         jpost[ "license" ] = slicense;
+                         string str_post =jpost.toStyledString();
+                     
+                         DWORD http_response_code = -1;
+                         unsigned char *http_response_content = NULL;
+                         http_response_code = https_post_binary( "http://10.0.0.101:8080/afg_manager/afg_authentification", \
+                                                                 (unsigned char*)str_post.c_str(), str_post.length(), &http_response_content );
+                         printf( "%d\n", http_response_code );
+                         printf( "%s\n", http_response_content );
+                         string str_encrp_text( (char*)http_response_content );
+                         vector<BYTE> encrp_text;
+                         char_to_hex( str_encrp_text, encrp_text );
+                         vector<BYTE>plain_text;
+                         moo.Decrypt( &encrp_text[ 0 ], encrp_text.size(), &plain_text[ 0 ] );
+                        
+                         if( mac_address_bt[ 0 ] != plain_text[ 8 ] 
+                             || mac_address_bt[ 1 ] != plain_text[ 9 ] 
+                             || mac_address_bt[ 2 ] != plain_text[ 10 ] 
+                             || mac_address_bt[ 3 ] != plain_text[ 11 ] 
+                             || mac_address_bt[ 4 ] != plain_text[ 12 ]
+                             || mac_address_bt[ 5 ] != plain_text[ 13 ]
+                             )
+                         {
+                              printf( "this license is occupied,you must cancel the authorization of host:%2x-%2x-%2x-%2x-%2x-%2x\n",\
+                                      plain_text[ 8 ], plain_text[ 9 ], plain_text[ 10 ], plain_text[ 11 ], plain_text[ 12], plain_text[ 13 ] );
+                              app_valid_min = 0;
+                         }
+                         else
+                         {
+                              UINT* pvalid_time = (UINT*)&plain_text[ 4 ];
+                              app_valid_min = *pvalid_time;
+                              
+                         }
+                         
+                         //string str_rt = cly::post( afg_mg_path );
+                         //printf( "%s\n", str_rt.c_str() );
 				}
 				
 			}

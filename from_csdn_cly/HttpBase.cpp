@@ -35,7 +35,7 @@ namespace cly
 		std::string& out_port, std::string& out_path) {
 		const std::string& http___ = "http://";
 		const std::string& https___ = "https://";
-		std::string temp_data = url;
+   		std::string temp_data = url;
 
 		// ½Ø¶ÏhttpĞ­ÒéÍ·
 		if (temp_data.find(http___) == 0) {
