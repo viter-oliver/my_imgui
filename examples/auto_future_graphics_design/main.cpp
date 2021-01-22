@@ -172,19 +172,21 @@ DWORD get_valid_mins( vector<BYTE>& plainText )
      {
           return 0;
      }
-     auto write_pos = plainText[ 4 ];
-     if( plainText[ 5 + write_pos ] != 'a' || plainText[ 6 + write_pos ] != 'f' || plainText[ 7 + write_pos ] != 'g' )
+     if( plainText[ 0 ] != 'a' || plainText[ 1 ] != 'f' || plainText[ 2] != 'g' )
      {
           return 0;
      }
      DWORD valid_mins;
-     memcpy( &valid_mins, &plainText[ write_pos + 8 ], 4 );
+     memcpy( &valid_mins, &plainText[ 8 ], 4 );
      return valid_mins;
 }
 void pack_value_to_plainText( vector<BYTE>& plainText, DWORD valid_mis )
 {
-     auto write_pos = plainText[ 4 ];
-     DWORD* pvalid_pos = (DWORD*)&plainText[ write_pos + 8 ];
+     plainText[ 0 ] = 'a';
+     plainText[ 1 ] = 'f';
+     plainText[ 2] =  'g';
+
+     DWORD* pvalid_pos = (DWORD*)&plainText[  8 ];
      *pvalid_pos = valid_mis;
 }
 #define _request_authentication
@@ -209,16 +211,34 @@ int main( int argc, char* argv[] )
 	moo.set_mode(MODE_CBC);
 	moo.set_iv((BYTE*)iv.c_str());
 	HKEY hKey;
-     atomic<bool> be_hold_license = false;
      vector<BYTE> encrpText;
      encrpText.resize( fp_lc_len * 2 );
 	vector<BYTE> plainText;
      plainText.resize( fp_lc_len * 2 );
-	auto lRet = RegOpenKeyEx(HKEY_CURRENT_USER, reg_path.c_str(), 0, KEY_READ, &hKey);
+     DWORD data_type = REG_BINARY;
+     
+     auto lret = RegGetValue( HKEY_CURRENT_USER, "afg_ide\\fplvt", NULL, RRF_RT_REG_BINARY, &data_type, &encrpText[ 0 ], &fp_lc_len );
+     if (lret==ERROR_SUCCESS)
+     {
+          //RegCloseKey( hKey );
+          ifstream ifs;
+          ifs.open( rear_part_lv, ios::binary );
+          if( ifs.is_open() )
+          {
+               ifs.read( (char*)&encrpText[ fp_lc_len ], fp_lc_len );
+               moo.Decrypt( &encrpText[ 0 ], fp_lc_len * 2, &plainText[ 0 ] );
+               app_valid_min = get_valid_mins( plainText );
+               ifs.close();
+          }
+     }
+     /**
+	auto lRet = RegOpenKeyEx(HKEY_CURRENT_USER, "afg_ide\\fplvt", 0, KEY_READ, &hKey);
 	if (lRet == ERROR_SUCCESS)
 	{
 		//读取键值
-          if( RegQueryValueEx( hKey, front_part_license_valid_time_key.c_str(), 0, 0, &encrpText[ 0 ], &fp_lc_len ) == ERROR_SUCCESS )
+          //string reg_path = front_part_license_valid_time_key + "\\";
+          auto get_rt = RegQueryValueEx( hKey, NULL, 0, &data_type, &encrpText[ 0 ], &fp_lc_len );
+          if( get_rt == ERROR_SUCCESS )
 		{
 		     //关闭键
 		     RegCloseKey(hKey);
@@ -232,7 +252,11 @@ int main( int argc, char* argv[] )
                     ifs.close();
                }
 		}
-	}
+          else
+          {
+
+          }
+	}*/
      auto save_value = [&]()
      {
           pack_value_to_plainText( plainText, app_valid_min );
@@ -241,6 +265,7 @@ int main( int argc, char* argv[] )
           ofs.open( rear_part_lv, ios::binary );
           ofs.write( (const char*)&encrpText[ fp_lc_len ], fp_lc_len );
           ofs.flush();
+          SetFileAttributesA( rear_part_lv.c_str(), FILE_ATTRIBUTE_HIDDEN );
           ofs.close();
           HKEY hKey;
           if( RegOpenKeyEx( HKEY_CURRENT_USER, reg_path.c_str(), 0, KEY_WRITE, &hKey ) != ERROR_SUCCESS )
@@ -248,6 +273,7 @@ int main( int argc, char* argv[] )
                DWORD state;
                RegCreateKeyEx( HKEY_CURRENT_USER, reg_path.c_str(), 0, NULL, 0, KEY_WRITE, NULL, &hKey, &state );
           }
+          //RegSetValueEx
           RegSetKeyValue( hKey, front_part_license_valid_time_key.c_str(), 0, REG_BINARY, &encrpText[ 0 ], fp_lc_len );
           RegCloseKey( hKey );
      };
@@ -260,11 +286,9 @@ int main( int argc, char* argv[] )
                     save_value();
                     app_valid_min--;
                     this_thread::sleep_for( chrono::seconds( 60 ) );
-                    be_hold_license = true;
                }
                else
                {
-                    be_hold_license = false;
                     this_thread::sleep_for( chrono::seconds( 1 ) );
                }
           }
@@ -672,7 +696,7 @@ int main( int argc, char* argv[] )
 #elif defined(_MY_IMGUI__)
 		//ImGui::SetNextWindowPos(ImVec2(0, 0));
 #ifdef _request_authentication
-		if (!be_hold_license)
+        if(app_valid_min ==0)
 		{
 			ImGui::OpenPopup("get license");
 		}
@@ -704,14 +728,16 @@ int main( int argc, char* argv[] )
                      
                          DWORD http_response_code = -1;
                          unsigned char *http_response_content = NULL;
-                         http_response_code = https_post_binary( "http://10.0.0.101:8080/afg_manager/afg_authentification", \
+                         http_response_code = https_post_binary( "http://202.105.144.245:8080/afg_manager/afg_authentification", \
                                                                  (unsigned char*)str_post.c_str(), str_post.length(), &http_response_content );
                          printf( "%d\n", http_response_code );
                          printf( "%s\n", http_response_content );
                          string str_encrp_text( (char*)http_response_content );
+                         string str_enc_txt = str_encrp_text.substr( str_encrp_text.size() - 69,64 );
                          vector<BYTE> encrp_text;
-                         char_to_hex( str_encrp_text, encrp_text );
+                         char_to_hex( str_enc_txt, encrp_text );
                          vector<BYTE>plain_text;
+                         plain_text.resize( encrp_text.size() );
                          moo.Decrypt( &encrp_text[ 0 ], encrp_text.size(), &plain_text[ 0 ] );
                         
                          if( mac_address_bt[ 0 ] != plain_text[ 8 ] 
@@ -730,6 +756,10 @@ int main( int argc, char* argv[] )
                          {
                               UINT* pvalid_time = (UINT*)&plain_text[ 4 ];
                               app_valid_min = *pvalid_time;
+                              if( app_valid_min >0)
+                              {
+                                   ImGui::CloseCurrentPopup();
+                              }
                               
                          }
                          
