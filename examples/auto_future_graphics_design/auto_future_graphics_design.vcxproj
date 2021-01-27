@@ -243,6 +243,7 @@
     <ClCompile Include="primitve_edit.cpp" />
     <ClCompile Include="project_edit.cpp" />
     <ClCompile Include="python_interpreter.cpp" />
+    <ClCompile Include="rescontainer_manager.cpp" />
     <ClCompile Include="res_edit.cpp" />
     <ClCompile Include="res_internal.cpp" />
     <ClCompile Include="res_output.cpp" />
@@ -331,7 +332,6 @@
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="aes.h" />
     <ClInclude Include="af_shader_source_code.h" />
-    <ClInclude Include="af_type.h" />
     <ClInclude Include="aliase_edit.h" />
     <ClInclude Include="base_prp_type_edit.h" />
     <ClInclude Include="bind_edit.h" />
@@ -353,6 +353,7 @@
     <ClInclude Include="primitve_edit.h" />
     <ClInclude Include="project_edit.h" />
     <ClInclude Include="python_interpreter.h" />
+    <ClInclude Include="rescontainer_manager.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="res_edit.h" />
     <ClInclude Include="res_internal.h" />

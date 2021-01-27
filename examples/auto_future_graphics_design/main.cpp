@@ -61,6 +61,7 @@
 #include "main_version.h"
 #include "svn_version.h"
 #include "HtmlHelp.h"
+#include <filesystem>
 #include <fstream>
 #include <thread>
 #include <atomic>
@@ -109,7 +110,7 @@ show_output_format = false, show_model_list = false, show_world_space = false, \
 show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
 show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false,\
 show_common_value_edit = false,show_feedback_edit=false,show_playlist_group=false;
-
+bool show_project_file_strategy = false;
 enum en_editing_wd_state
 {
 	en_editing,
@@ -1084,6 +1085,10 @@ int main( int argc, char* argv[] )
 				if (ImGui::MenuItem("OutputBinaryFormat", NULL, show_output_format)){
 					show_output_format = !show_output_format;
 				}
+                    if( ImGui::MenuItem( "Project manage strategy", NULL, show_project_file_strategy ) )
+                    {
+                         show_project_file_strategy = !show_project_file_strategy;
+                    }
 				ImGui::EndMenu();
 			}
                if (ImGui::BeginMenu("Help"))
@@ -1136,6 +1141,21 @@ int main( int argc, char* argv[] )
 
 			ImGui::End();
 		}
+          if( show_project_file_strategy )
+          {
+               ImGui::Begin( "Project backup strategy", &show_project_file_strategy, ImVec2( 400, 400 ) );
+               ImGui::Combo( "Backup model", &g_prj_backup_mg.backup_model, str_backup_model, en_backup_model_cnt );
+               ImGui::InputInt( "Backup interval(minutes)", &g_prj_backup_mg.backup_interval );
+               ImGui::Text( "Backup path:" );
+               ImGui::SameLine();
+               ImGui::Text( g_prj_backup_mg.backup_path.c_str() );
+               ImGui::SameLine();
+               if( ImGui::Button( "...#####" ) )
+               {
+
+               }
+               ImGui::End();
+          }
 		if (show_project_window)
 		{
               

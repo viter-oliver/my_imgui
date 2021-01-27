@@ -13,7 +13,7 @@ void bind_edit::set_dragging(bool be_dragging, base_ui_component* pobj, uint16_t
 	{
 		//string uname = pobj->get_name();
 		//printf("we get %s a prop\n", uname.c_str());
-		auto& pmlist = _pnew_bind_unit->_param_list;
+		auto& pmlist = _pcur_bind_unit->_param_list;
 	
 		prop_ele_position new_prp_pos = { pobj, _pgidx, _fdidx };
 		if (!(new_prp_pos==_current_prop_ele))
@@ -51,13 +51,11 @@ void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_
 	cobj = pobj;
 	cpgidx = page_idx;
 	cfdidx = off_idx;
-	_edit_new_obj = true;
-	_be_unsavable = true;
 	auto ibind = g_bind_dic.find(_current_prop_ele);
 	if (ibind != g_bind_dic.end())
 	{
-		_pnew_bind_unit = ibind->second.get();
-		auto&exp = _pnew_bind_unit->_expression;
+		_pcur_bind_unit = ibind->second.get();
+		auto&exp = _pcur_bind_unit->_expression;
 		auto end_pos = exp.find('\n')+1;
 		auto exp_content = exp.substr(end_pos);
 		string exp_content_trim;
@@ -67,12 +65,14 @@ void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_
 		memcpy(txt_buff, exp_content_trim.c_str(), slen);
 		txt_buff[slen] = 0;
 		//strcpy((char*)txt_buff.c_str(), exp.c_str());
-		_edit_new_obj = false;
 		_be_unsavable = false;
 	}
 	else{
-		_pnew_bind_unit = new prop_ele_bind_unit();
+         
+          _pcur_bind_unit = &_new_bind_unit;
+
 		txt_buff[0] = '\0';
+          _be_unsavable = true;
 		//memset(txt_buff, 0, TXT_BUFF_SZ);
 	}
 }
@@ -97,7 +97,7 @@ void bind_edit::bind_source_view()
 	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::Spacing();
-	prop_ele_bind_unit* pele_bu=  _pnew_bind_unit;
+	prop_ele_bind_unit* pele_bu=  _pcur_bind_unit;
 	
 	auto& prop_ele_unit = *pele_bu;
 	int ix = 0;
@@ -134,7 +134,7 @@ void bind_edit::bind_source_view()
 		del_btn += cc;
 		if (ImGui::Button(del_btn.c_str()))
 		{
-			if (!_edit_new_obj)
+               if( !is_edit_new_obj())
 			{
 				auto& iprop_ref = g_bind_ref_dic.find(*itp);
 				if (iprop_ref!=g_bind_ref_dic.end())
@@ -193,18 +193,16 @@ void bind_edit::bind_source_view()
 	if (ImGui::Button("save"))
 	{
 		vprop_pos* pparam_list = &param_list;
-		if (_edit_new_obj)
+          if( is_edit_new_obj() )
 		{
 			g_bind_dic[_current_prop_ele] = make_shared<prop_ele_bind_unit>();
 			auto& cprop_ele_bu = g_bind_dic[_current_prop_ele];
-			*cprop_ele_bu = *_pnew_bind_unit;
+			*cprop_ele_bu = *_pcur_bind_unit;
 			pparam_list = &cprop_ele_bu->_param_list;
-			_edit_new_obj = false;
-			delete _pnew_bind_unit;
-			_pnew_bind_unit = cprop_ele_bu.get();
+			_pcur_bind_unit = cprop_ele_bu.get();
 		}
 		
-		_pnew_bind_unit->_expression = _exp_calcu;
+		_pcur_bind_unit->_expression = _exp_calcu;
 		for (auto& prp_ele_pos:*pparam_list)
 		{
 			auto& iprop_ref = g_bind_ref_dic.find(prp_ele_pos);
@@ -225,9 +223,9 @@ void bind_edit::bind_source_view()
 			}
 		}
 	}
-	if (!_edit_new_obj&&ImGui::Button("remove"))
+     if( !is_edit_new_obj()&&ImGui::Button( "remove" ) )
 	{
-		vprop_pos& param_list=_pnew_bind_unit->_param_list;
+		vprop_pos& param_list=_pcur_bind_unit->_param_list;
 		for (auto& prp_ele_pos:param_list)
 		{
 			auto& iprop_ref = g_bind_ref_dic.find(prp_ele_pos);
@@ -246,10 +244,8 @@ void bind_edit::bind_source_view()
 				}
 			}
 		}
-          _pnew_bind_unit = new prop_ele_bind_unit();
-          *_pnew_bind_unit = *g_bind_dic[ _current_prop_ele ];
-		_edit_new_obj = true;
-		g_bind_dic.erase(_current_prop_ele);
+          g_bind_dic.erase( _current_prop_ele );
+         _pcur_bind_unit = &_new_bind_unit;
 	}
 	if (_be_unsavable)
 	{

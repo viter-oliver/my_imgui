@@ -11,5 +11,10 @@ public:
 	void aliase_item_propoerty();
 	void popup_new_aliase();
 	void sel_aliase(base_ui_component* pobj, int pg_idx, int fd_idx);
+     void clear_sel()
+     {
+          _psel = nullptr;
+          _edit_prp_ele_pos._pobj = nullptr;
+     }
 };
 

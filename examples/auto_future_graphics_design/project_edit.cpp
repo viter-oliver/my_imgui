@@ -4,13 +4,21 @@
 #include <GLFW/glfw3.h>
 #include "command_element_delta.h"
 #include "af_state_manager.h"
+#include <map>
 #include "common_functions.h"
+#include "aliase_edit.h"
+#include "base_prp_type_edit.h"
+#include "bind_edit.h"
+extern aliase_edit g_aliase_edit;
+extern base_prp_type_edit g_common_value_edit;
+extern bind_edit g_bind_edit;
 /*
 1、如果是末端则flags|leaf，否则flags|openonarrow
 2、所有node都是selectable,如果ctrl则保留上次的node的selected状态，如果此次!ctrl则遗弃上次的selected node状态
 3、当有多个node处于selected状态，快捷菜单只有copy和addsiblings，执行add sibling时，自末端向父级寻找selected的node，执行复制行为
 4、root被选中时不可以执行addsibling
 */
+
 void project_edit::view_object(base_ui_component& fb)
 {
      bool beparent = fb.get_child_count() > 0;
@@ -122,42 +130,65 @@ void project_edit::past_item()
           _pcut_object = nullptr;
      }
 }
+bool allow_add_item( string& parent_type_name, string& child_type_name )
+{
+     static multimap<string, string> dic_controls_child_control = {
+          { "ft_scene", "ft_material_2d" },
+          { "ft_scene", "ft_material_3d" },
+          { "ft_scene", "ft_modeling_3d" },
+          { "ft_scene", "ft_particles_3d" },
+          { "ft_scene", "ft_particles_effect_3d" },
+          { "ft_scene", "ft_particles1_3d" },
+          { "ft_modeling_3d", "ft_trans" },
+          { "ft_material_3d", "ft_trans" },
+          { "ft_listbox_ex", "ft_block" },
+          { "ft_listbox_ex", "ft_image" },
+          { "ft_listbox_ex", "ft_image_file" },
+          { "ft_listbox_ex", "ft_image_play" },
+          { "ft_listbox_ex", "ft_button" },
+          { "ft_listbox_ex", "ft_secne" },
+     };
+     if( parent_type_name=="ft_trans")
+     {
+          return false;
+     }
+     auto irg = dic_controls_child_control.equal_range( parent_type_name );
+     bool find_ptype = irg.first != irg.second;
+     for( auto m = irg.first; m != irg.second;++m )
+     {
+          if (m->second==child_type_name)
+          {
+               return true;
+          }
+     }
+     if (!find_ptype)
+     {
+          if( child_type_name =="ft_trans")
+          {
+               return false;
+          }
+          string ext_name = child_type_name.substr( child_type_name.size() - 2, 2 );
+          if (ext_name=="3d"||ext_name=="2d")
+          {
+               return false;
+          }
+          return true;
+     }
+     return false;
+
+}
 void project_edit::add_item()
 {
 	string cur_cname = typeid(*_pcurrent_object).name();
 	cur_cname = cur_cname.substr(sizeof("class autofuture::"));
-	bool is_ft_scene = cur_cname == "ft_scene";
-     bool is_ft_listbox_ex = cur_cname == "ft_listbox_ex";
-     bool is_ft_modeling = cur_cname == "ft_modeling_3d";
-     bool is_trans = cur_cname == "ft_trans";
-     bool is_material_3d = cur_cname == "ft_material_3d";
-     factory::get().iterate_types( [this, is_ft_scene, is_ft_listbox_ex,is_trans,is_ft_modeling,
-     is_material_3d]( string cname, function<base_ui_component*( )> infun )
+
+     factory::get().iterate_types( [&]( string cname, function<base_ui_component*( )> infun )
      {
-		string ext_name = cname.substr(cname.size() - 2, 2);
-		if (is_ft_scene&&ext_name != "3d"&&ext_name != "2d" 
-               || !is_ft_scene && (ext_name == "3d" || ext_name == "2d"))
-		{
-			return;
-		}
-          if (is_ft_listbox_ex 
-               && (cname =="ft_base"
-               ||cname=="ft_circle"
-               ||cname=="ft_textblock"
-               ||cname=="ft_listbox"
-               ||cname=="ft_listbox_ex"
-               ||cname=="ft_polygon_image"
-               || cname == "ft_quad_image"
-               || cname == "ft_polygon_image" 
-               || cname == "ft_slider_thumb" ) )
+          if( !allow_add_item(cur_cname,cname))
           {
                return;
           }
-          if( is_trans || (is_ft_modeling || is_material_3d)&&cname != "ft_trans" )
-		{
-               return;
-		}
-				
+		
 		if (ImGui::MenuItem(cname.c_str(), NULL, false,infun!=nullptr))
 		{
 
@@ -180,29 +211,9 @@ void project_edit::insert_item()
      bool is_ft_modeling = cur_cname == "ft_modeling_3d";
      bool is_trans = cur_cname == "ft_trans";
      bool is_material_3d = cur_cname == "ft_material_3d";
-     factory::get().iterate_types( [this, is_ft_scene, is_ft_listbox_ex, is_trans, is_ft_modeling,
-                                   is_material_3d]( string cname, function<base_ui_component*( )> infun )
+     factory::get().iterate_types( [&]( string cname, function<base_ui_component*( )> infun )
      {
-          string ext_name = cname.substr( cname.size() - 2, 2 );
-          if( is_ft_scene&&ext_name != "3d"&&ext_name != "2d"
-              || !is_ft_scene && ( ext_name == "3d" || ext_name == "2d" ) )
-          {
-               return;
-          }
-          if( is_ft_listbox_ex
-              && ( cname == "ft_base"
-              || cname == "ft_circle"
-              || cname == "ft_textblock"
-              || cname == "ft_listbox"
-              || cname == "ft_listbox_ex"
-              || cname == "ft_polygon_image"
-              || cname == "ft_quad_image"
-              || cname == "ft_polygon_image"
-              || cname == "ft_slider_thumb" ) )
-          {
-               return;
-          }
-          if( is_trans || ( is_ft_modeling || is_material_3d ) && cname != "ft_trans" )
+          if( !allow_add_item( cur_cname, cname ) )
           {
                return;
           }
@@ -236,6 +247,7 @@ void project_edit::delete_item()
      base_ui_component* pparent = _pcurrent_object->get_parent();
      if( pparent )
      {
+          /**
           bool find_ref = false;
           string obj_name;
           auto find_ref_in_mstate_manager = [&]( base_ui_component* pobj, string& obj_name )
@@ -317,9 +329,12 @@ void project_edit::delete_item()
                ImGui::EndPopup();
                return;
           }
-
-
+          */
+          g_aliase_edit.clear_sel();
+          g_common_value_edit.clear_sel();
+          g_bind_edit.clear_sel();
           g_ui_edit_command_mg.clear_cmds_by_component( _pcurrent_object );
+
           pparent->remove_child( _pcurrent_object );
           _pcurrent_object = pparent;
 

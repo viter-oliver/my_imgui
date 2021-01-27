@@ -325,6 +325,9 @@
     <ClCompile Include="..\..\simple_http\simple_http.c">
       <Filter>simple_http</Filter>
     </ClCompile>
+    <ClCompile Include="rescontainer_manager.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -473,9 +476,6 @@
     </ClInclude>
     <ClInclude Include="aliase_edit.h">
       <Filter>res_manager</Filter>
-    </ClInclude>
-    <ClInclude Include="af_type.h">
-      <Filter>common</Filter>
     </ClInclude>
     <ClInclude Include="slider_path_picker.h">
       <Filter>res_manager</Filter>
@@ -650,6 +650,9 @@
     </ClInclude>
     <ClInclude Include="..\..\simple_http\zmem.h">
       <Filter>simple_http</Filter>
+    </ClInclude>
+    <ClInclude Include="rescontainer_manager.h">
+      <Filter>res_manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

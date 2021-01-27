@@ -164,3 +164,11 @@ void save_ojfile_to_file(string& key_name)
 }
 #endif
 output_bin_format g_output_bin_format;
+const char* str_backup_model[ en_backup_model_cnt ] =
+{
+     "backup off",
+     "intelligent backup",
+     "auto backup",
+     "manual backup",
+};
+project_backup_manager g_prj_backup_mg;

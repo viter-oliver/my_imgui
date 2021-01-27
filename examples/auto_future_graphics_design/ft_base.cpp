@@ -2,6 +2,7 @@
 #include <GLFW/glfw3.h>
 #include <typeinfo>
 #include "af_bind.h"
+#include "rescontainer_manager.h"
 #include <regex>
 extern bool is_editing();
 namespace auto_future
@@ -38,7 +39,12 @@ namespace auto_future
 #endif
 	}
      
-	void ft_base::draw()
+     ft_base::~ft_base()
+     {
+          removl_base_ui_component_ref( this );
+     }
+
+     void ft_base::draw()
 	{
           /**
 		auto pbase = get_parent();

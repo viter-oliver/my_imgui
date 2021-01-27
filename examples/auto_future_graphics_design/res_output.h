@@ -216,3 +216,21 @@ struct output_bin_format
 extern bool get_texture_item( void* data, int idx, const char** out_str );
 extern bool get_texture_group_name( void* data, int idx, const char** out_str );
 extern output_bin_format g_output_bin_format;
+enum en_backup_model
+{
+     en_backup_off,
+     en_intelligent_backup,
+     en_auto_backup,
+     en_manual_backup,
+     en_backup_model_cnt
+};
+extern const char* str_backup_model[ en_backup_model_cnt ];
+struct project_backup_manager
+{
+     int backup_model = en_backup_off;
+     int backup_interval = 5;//mins
+     int backup_max_cnt = 10;
+     string backup_path;//relative to the path which project file is in
+     vector<string> back_up_prj_list;
+};
+extern project_backup_manager g_prj_backup_mg;

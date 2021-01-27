@@ -17,6 +17,7 @@ namespace auto_future
 	{
 	public:
 		ft_base(); 
+          ~ft_base();
 		void draw();
 		void draw_frames();
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

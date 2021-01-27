@@ -92,7 +92,7 @@ template<class T> bool get_prop_fd_value( prop_ele_position& pep, T& pvalue )
      auto& field = pep._pobj->get_filed_ele( pgidx, fdidx );
      if (field._tpsz!=sizeof(T))
      {
-          printf("input a variable which type is invalid for(%s_%d_%d)!\n",pep._pobj->get_name().c_str(),pgidx,fdidx);
+          printf("The variable you input which type is invalid for(%s_%d_%d)!\n",pep._pobj->get_name().c_str(),pgidx,fdidx);
           return false;
      }
      memcpy( &pvalue, field._address, field._tpsz );

@@ -14,5 +14,10 @@ public:
      void set_dragging( bool be_dragging, base_ui_component* pobj = nullptr, uint16_t page_idx = 0, uint16_t off_idx = 0 );
      void view_base_prp_list();
      void base_prp_item();
+     void clear_sel()
+     {
+          _sl_bs_prp = nullptr;
+          _be_draging = _hit_sm_window = false;
+     }
 };
 
