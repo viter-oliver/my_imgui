@@ -148,6 +148,7 @@ void drag_dop_callback(GLFWwindow*wh, int cnt, const char** fpaths)
 		}
 	}
 	prj_edit->clear_sel_item();
+      g_ui_edit_command_mg.clear_all();
 	delete _proot;
 
 	_proot = new ft_base;
@@ -420,6 +421,7 @@ int main( int argc, char* argv[] )
 					fun_shortct(en_ctrl_s);
 				}
 				prj_edit->clear_sel_item();
+                    g_ui_edit_command_mg.clear_all();
 				delete _proot;
 				_proot = NULL;
 
@@ -457,6 +459,7 @@ int main( int argc, char* argv[] )
 						fun_shortct(en_ctrl_s);
 					}
 					prj_edit->clear_sel_item();				
+                         g_ui_edit_command_mg.clear_all();
 					delete _proot;
 					_proot = NULL;
 				}

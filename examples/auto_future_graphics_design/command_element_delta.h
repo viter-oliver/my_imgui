@@ -95,6 +95,14 @@ namespace auto_future
 				return ecmd._phost == target;
 			}), _edit_command_list.end());
 		}
+          void clear_all()
+          {
+               _edit_command_list.clear();
+          }
+          int command_count()
+          {
+               return _edit_command_list.size();
+          }
 	};
 	using bc_cmd_mg = commmand_manager<base_ui_component>;
 	//extern bc_cmd_mg g_ui_edit_command_mg1;
