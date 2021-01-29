@@ -3,6 +3,9 @@
 #include <typeinfo>
 #include "af_bind.h"
 #include "rescontainer_manager.h"
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+#include "command_element_delta.h"
+#endif
 #include <regex>
 extern bool is_editing();
 namespace auto_future
@@ -130,19 +133,34 @@ namespace auto_future
 			return;
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		if (is_editing()&& _selected)
+		if (_parent&&is_editing()&& _selected)
 		{
+               static cmd_value_block bk_posx_value = { 0, 0, 0, 0 }, bk_posy_value = {0,0,0,0};
+               static bool be_dragging = false;
 			auto ab_pos = absolute_coordinate_of_base_pos();
 			auto offset = ImGui::GetCursorScreenPos();
 			auto cur_pos = ab_pos + offset;
 			ImGui::SetCursorScreenPos(cur_pos);
 			ImGui::InvisibleButton(_in_p._name, ImVec2(_in_p._sizew, _in_p._sizeh));
-			if (ImGui::IsItemActive() && ImGui::IsMouseDragging())
+               
+               if( ImGui::IsItemActive() && ImGui::IsMouseDragging() )
 			{
-				auto ms_delta = ImGui::GetIO().MouseDelta;
-				_in_p._posx += ms_delta.x;
-				_in_p._posy += ms_delta.y;
+                    if( !be_dragging )
+                    {
+                         memcpy( &bk_posx_value[ 0 ], &_in_p._posx, sizeof(float) );
+                         memcpy( &bk_posy_value[ 0 ], &_in_p._posy, sizeof( float ) );
+                    }
+                    be_dragging = true;
+                    auto ms_delta = ImGui::GetIO().MouseDelta;
+                    _in_p._posx += ms_delta.x;
+                    _in_p._posy += ms_delta.y;
 			}
+               if( ImGui::IsMouseReleased( 0 ) )
+               {
+                    g_ui_edit_command_mg.create_command( edit_commd<base_ui_component>( this, &(_in_p._posx), &bk_posx_value[ 0 ], bk_posx_value.size() ) );
+                    g_ui_edit_command_mg.create_command( edit_commd<base_ui_component>( this, &( _in_p._posy ), &bk_posy_value[ 0 ], bk_posy_value.size() ));
+                    be_dragging = false;
+               }
 		}
 #endif
 		auto ifsz = _vframe_fun.size();

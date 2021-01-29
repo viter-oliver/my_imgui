@@ -378,13 +378,15 @@ static	string aliase_btn_cp = "  ##";
 						memcpy(&after_op_memb_value[0], memb_address, mtpsz);
 
 						ImGuiContext& g = *GImGui;
+                            
 						if (g.operating_be_started)
 						{
-							printf("start changing value\n");
 							pmem_address = memb_address;
 							page_idx = pgidx;
 							fd_idx = idx;
 							bk_memb_value = before_op_memb_value;
+                                   //printf( "start changing value\n" );
+                                   //print_buff( &bk_memb_value[ 0 ], bk_memb_value.size() );
 							g.operating_be_started = false;
 							be_operating = true;
 						}
@@ -392,6 +394,8 @@ static	string aliase_btn_cp = "  ##";
 						{
 							if (g.IO.MouseReleased[0])
 							{
+                                        //printf( "store a value:\n" );
+                                        //print_buff( &bk_memb_value[ 0 ], bk_memb_value.size() );
 								g_ui_edit_command_mg.create_command(edit_commd<base_ui_component>(this, pmem_address, &bk_memb_value[0], bk_memb_value.size()));
 								be_operating = false;
 								prop_ele_position cur_prp_ele_pos = { this, page_idx, fd_idx };
@@ -421,7 +425,7 @@ static	string aliase_btn_cp = "  ##";
 					bool be_sel = false;
 					if (ImGui::Selectable(btn_cap.c_str(), &be_sel, ImGuiSelectableFlags_AllowDoubleClick, ImVec2(10, 15)) && ImGui::IsMouseDoubleClicked(0))
 					{
-						printf("%s is double(sel) clicked\n", idstr);
+						//printf("%s is double(sel) clicked\n", idstr);
 						show_aliase_edit = true;
 						g_aliase_edit.sel_aliase(this, pgidx, idx);
 					}

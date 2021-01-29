@@ -780,27 +780,27 @@ int main( int argc, char* argv[] )
 #endif
 		if (ImGui::GetIO().KeyCtrl)
 		{
-			if (ImGui::GetIO().KeysDown[GLFW_KEY_S])
+               if( ImGui::IsKeyReleased(GLFW_KEY_S ) )
 			{
 				fun_shortct(en_ctrl_s);
 			}
 			else
-			if (ImGui::GetIO().KeysDown[GLFW_KEY_O])
+               if( ImGui::IsKeyReleased( GLFW_KEY_O ) )
 			{
 				fun_shortct(en_ctrl_o);
 			}
 			else
-			if (ImGui::GetIO().KeysDown[GLFW_KEY_N])
+               if( ImGui::IsKeyReleased( GLFW_KEY_N) )
 			{
 				fun_shortct(en_ctrl_n);
 			}
 			else
-			if (ImGui::GetIO().KeysDown[GLFW_KEY_B])
+               if( ImGui::IsKeyReleased( GLFW_KEY_B) )
 			{
 				fun_shortct(en_ctrl_b);
 			}
                else
-               if( ImGui::GetIO().KeysDown[ GLFW_KEY_H ] )
+               if( ImGui::IsKeyReleased( GLFW_KEY_H ) )
                {
                     auto cur_ui_obj=prj_edit->current_object();
                     if (cur_ui_obj)
@@ -811,17 +811,17 @@ int main( int argc, char* argv[] )
                     }
                }
 			else
-			if (ImGui::GetIO().KeysDown[GLFW_KEY_F2])
+               if( ImGui::IsKeyReleased( GLFW_KEY_F2) )
 			{
 				fun_shortct(en_ctrl_f2);
 			}
 			else
-			if (ImGui::GetIO().KeysDown[GLFW_KEY_Z]&&g_ui_edit_command_mg.undo_able())
+               if( ImGui::IsKeyReleased( GLFW_KEY_Z) && g_ui_edit_command_mg.undo_able() )
 			{
 				g_ui_edit_command_mg.undo_command();
 			}
 			else
-			if (ImGui::GetIO().KeysDown[GLFW_KEY_Y]&&g_ui_edit_command_mg.redo_able())
+               if( ImGui::IsKeyReleased(GLFW_KEY_Y) && g_ui_edit_command_mg.redo_able() )
 			{
 				g_ui_edit_command_mg.redo_command();
 			}

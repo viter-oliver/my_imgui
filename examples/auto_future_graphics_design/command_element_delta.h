@@ -62,7 +62,7 @@ namespace auto_future
 		void redo_command()
 		{
 			_cur_command_id++;
-			auto cur_cmd = _edit_command_list[_cur_command_id];
+			auto& cur_cmd = _edit_command_list[_cur_command_id];
 			cur_cmd.execute();
 		}
 		void undo_command()
@@ -75,7 +75,7 @@ namespace auto_future
 			}
 			else
 				_cur_command_id--;
-			auto cur_cmd = _edit_command_list[_cur_command_id];
+			auto& cur_cmd = _edit_command_list[_cur_command_id];
 			cur_cmd.execute();
 		}
 		bool redo_able()

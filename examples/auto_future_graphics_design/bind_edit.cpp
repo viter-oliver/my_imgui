@@ -68,7 +68,8 @@ void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_
 		_be_unsavable = false;
 	}
 	else{
-         
+          _new_bind_unit._expression = "";
+          _new_bind_unit._param_list.clear();
           _pcur_bind_unit = &_new_bind_unit;
 
 		txt_buff[0] = '\0';

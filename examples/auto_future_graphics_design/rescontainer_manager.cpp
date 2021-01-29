@@ -1,6 +1,5 @@
 #include "rescontainer_manager.h"
 #include "res_output.h"
-#include "command_element_delta.h"
 #include "af_state_manager.h"
 
 
