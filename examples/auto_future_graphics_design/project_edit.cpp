@@ -406,3 +406,13 @@ void project_edit::popup_context_menu()
 		ImGui::EndPopup();
 	}
 }
+
+void project_edit::clear_sel_item()
+{
+     if( _pcurrent_object )
+     {
+          _pcurrent_object->set_selected( false );
+     }
+     _pcurrent_object = nullptr;
+     _pcopy_object = nullptr;
+}

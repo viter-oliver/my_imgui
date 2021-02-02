@@ -25,14 +25,7 @@ public:
      void add_sibling();
      void delete_item();
 	void popup_context_menu();
-	void clear_sel_item(){ 
-		if (_pcurrent_object)
-		{
-			_pcurrent_object->set_selected(false);
-		}
-		_pcurrent_object = nullptr;
-		_pcopy_object = nullptr;
-	}
+     void clear_sel_item();
      void trigger_focus_switch()
      {
           _trigger_focus_switch = true;
