@@ -31,6 +31,7 @@ void aliase_edit::aliase_dic_view()
 		}
 		ImGui::TreePop();
 	}
+
 	if (_psel&&ImGui::BeginPopupContextWindow())
 	{
 		if (ImGui::MenuItem("delete",NULL,false))

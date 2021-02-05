@@ -56,7 +56,7 @@
     <Filter Include="web">
       <UniqueIdentifier>{d648b9f3-eb20-49eb-98ee-5bd9db26ca0e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="simple_http">
+    <Filter Include="res_manager\simple_http">
       <UniqueIdentifier>{63977e93-b98f-4dee-b7f8-321552f4e10e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -320,10 +320,10 @@
       <Filter>web</Filter>
     </ClCompile>
     <ClCompile Include="..\..\simple_http\zmem.c">
-      <Filter>simple_http</Filter>
+      <Filter>res_manager\simple_http</Filter>
     </ClCompile>
     <ClCompile Include="..\..\simple_http\simple_http.c">
-      <Filter>simple_http</Filter>
+      <Filter>res_manager\simple_http</Filter>
     </ClCompile>
     <ClCompile Include="rescontainer_manager.cpp">
       <Filter>res_manager</Filter>
@@ -646,10 +646,10 @@
       <Filter>web</Filter>
     </ClInclude>
     <ClInclude Include="..\..\simple_http\simple_http.h">
-      <Filter>simple_http</Filter>
+      <Filter>res_manager\simple_http</Filter>
     </ClInclude>
     <ClInclude Include="..\..\simple_http\zmem.h">
-      <Filter>simple_http</Filter>
+      <Filter>res_manager\simple_http</Filter>
     </ClInclude>
     <ClInclude Include="rescontainer_manager.h">
       <Filter>res_manager</Filter>

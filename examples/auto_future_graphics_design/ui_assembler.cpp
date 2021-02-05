@@ -142,6 +142,13 @@ bool ui_assembler::load_afg_from_file(const char* file_path)
 				g_output_bin_format._txt_fmt = static_cast<texture_format> (output_bin_fmt["txt_fmt"].asInt());
 				g_output_bin_format._pgm_fmt = static_cast<program_format> (output_bin_fmt["pgm_fmt"].asInt());
 			}
+               Value& backup_strategy = jroot[ "backup_strategy" ];
+               if (!backup_strategy.isNull())
+               {
+                    g_prj_backup_mg.backup_model = backup_strategy[ "model" ].asInt();
+                    g_prj_backup_mg.backup_interval = backup_strategy[ "interval" ].asInt();
+                    g_prj_backup_mg.backup_max_cnt = backup_strategy[ "max_count" ].asInt();
+               }
 			texture_res_load tresload(g_vres_texture_list);
 			tresload.load_res_from_json(jroot);
 			Value& texture_list = jroot["texture_list"];
@@ -676,6 +683,11 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
           output_bin_fmt[ "txt_fmt" ] = g_output_bin_format._txt_fmt;
           output_bin_fmt[ "pgm_fmt" ] = g_output_bin_format._pgm_fmt;
           jroot[ "output_bin_fmt" ] = output_bin_fmt;
+          Value backup_strategy( objectValue );
+          backup_strategy[ "model" ] = g_prj_backup_mg.backup_model;
+          backup_strategy[ "interval" ] = g_prj_backup_mg.backup_interval;
+          backup_strategy[ "max_count" ] = g_prj_backup_mg.backup_max_cnt;
+          jroot[ "backup_strategy" ] = backup_strategy;
           Value jtexture( arrayValue );
           for( auto& reslist_item : g_vres_texture_list )
           {
@@ -771,7 +783,7 @@ bool ui_assembler::output_ui_component_to_file(const char* file_path)
           }
           jroot[ "primitive_list" ] = jprimitive_list;
 
-          jroot[ "texture_id_index" ] = g_cur_texture_id_index;
+          jroot[ "texture_id_index" ] = 0;
           Value jmodels( objectValue );
 
           for( auto& model_unit : g_mmodel_list )

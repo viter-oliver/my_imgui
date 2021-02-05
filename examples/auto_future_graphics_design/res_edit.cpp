@@ -25,7 +25,7 @@ void res_edit::draw_res_list()
 	ImGui::SliderFloat("Height of screen", &base_ui_component::screenh, 100., 2000.);
 
 	int isize=g_vres_texture_list.size();
-     ImGui::Combo( "Texture group list", &g_cur_texture_id_index, get_texture_group_name, &g_vres_texture_list, isize );
+     ImGui::Combo( "Texture group list", &_cur_texture_id_index, get_texture_group_name, &g_vres_texture_list, isize );
 	ImGui::Text("Add new texture group:");
 	static char texture_pack_name_str[FILE_NAME_LEN] = "";
 	static char texture_data_name_str[FILE_NAME_LEN] = "";
@@ -53,7 +53,7 @@ void res_edit::draw_res_item_property()
 	{
 		ImGui::Text("texture data file:");
 		ImGui::SameLine();
-          auto& res_gp = *g_vres_texture_list[ g_cur_texture_id_index ];
+          auto& res_gp = *g_vres_texture_list[ _cur_texture_id_index ];
           ImGui::Text( res_gp.texture_data_file.c_str() );
           ImGui::Text( "Texture size:%d*%d", res_gp.texture_width, res_gp.texture_height );
 

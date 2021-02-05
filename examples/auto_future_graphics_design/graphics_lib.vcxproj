@@ -220,6 +220,7 @@
     <ClCompile Include="ofbx.cpp" />
     <ClCompile Include="paricles_system.cpp" />
     <ClCompile Include="python_interpreter.cpp" />
+    <ClCompile Include="rescontainer_manager.cpp" />
     <ClCompile Include="res_output.cpp" />
     <ClCompile Include="screen_image_distortion.cpp" />
     <ClCompile Include="shader_uf.cpp" />

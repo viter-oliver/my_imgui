@@ -101,7 +101,6 @@ struct res_texture_list
 using sd_res_txt_list = shared_ptr<res_texture_list>;
 using  vres_txt_list = vector<sd_res_txt_list>;
 extern vres_txt_list g_vres_texture_list;
-extern int g_cur_texture_id_index;
 //enum res_output_model
 //{
 //	en_integrated,
@@ -220,7 +219,7 @@ extern output_bin_format g_output_bin_format;
 enum en_backup_model
 {
      en_manual_backup,
-     en_auto_backup,
+     en_periodic_backup,
      en_intelligent_backup,
      en_backup_model_cnt
 };

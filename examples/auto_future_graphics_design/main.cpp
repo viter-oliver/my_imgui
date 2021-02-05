@@ -65,6 +65,7 @@
 #include <boost/filesystem/operations.hpp>
 //#include <boost/filesystem/directory.hpp>
 #include <boost/filesystem/path.hpp>
+#include <boost/thread/thread.hpp>
 #include <thread>
 #include <atomic>
 #include "simple_http.h"
@@ -634,84 +635,80 @@ int main( int argc, char* argv[] )
           afg_fs::path prj_path = afg_fs::system_complete( g_cureent_directory );
           string prj_file_name = g_cureent_project_file_path.substr( g_cureent_project_file_path.find_last_of( '\\' ) + 1 );
           string str_reg = prj_file_name + "_bk_";
-          static int icount = 0;
           while( keep_backup_thread )
           {
-               if( g_prj_backup_mg.backup_model == en_auto_backup)
+               auto& backup_list = g_prj_backup_mg.back_up_prj_list;
+               if (backup_list.size()==0)
                {
-                    auto& backup_list = g_prj_backup_mg.back_up_prj_list;
-                    if (backup_list.size()==0)
+                    afg_fs::directory_iterator end_iter;
+                    for( afg_fs::directory_iterator dir_itr( prj_path ); dir_itr != end_iter; ++dir_itr )
                     {
-                         afg_fs::directory_iterator end_iter;
-                         for( afg_fs::directory_iterator dir_itr( prj_path ); dir_itr != end_iter; ++dir_itr )
+                         try
                          {
-                              try
+                              if (afg_fs::is_regular_file(dir_itr->status()))
                               {
-                                   if (afg_fs::is_regular_file(dir_itr->status()))
+                                   af_file_unit file_unit = { dir_itr->path().filename().string(), afg_fs::last_write_time( dir_itr->path() ) };
+                                   if( file_unit.file_name.find( str_reg ) != string::npos )
                                    {
-                                        af_file_unit file_unit = { dir_itr->path().filename().string(), afg_fs::last_write_time( dir_itr->path() ) };
-                                        if( file_unit.file_name.find( str_reg ) != string::npos )
-                                        {
-                                             string str_id = file_unit.file_name.substr( str_reg.size() );
-                                             int i_pid = stoi( str_id );
-                                             if( i_pid > g_prj_backup_mg.max_back_id )g_prj_backup_mg.max_back_id = i_pid;
-                                             backup_list.emplace_back( file_unit );
-                                        }
+                                        string str_id = file_unit.file_name.substr( str_reg.size() );
+                                        int i_pid = stoi( str_id );
+                                        if( i_pid > g_prj_backup_mg.max_back_id )g_prj_backup_mg.max_back_id = i_pid;
+                                        backup_list.emplace_back( file_unit );
                                    }
                               }
-                              catch (std::exception& ex)
-                              {
-                                   std::cout << dir_itr->path().filename() << " " << ex.what() << std::endl;
-                              }
                          }
-                         sort( backup_list.begin(), backup_list.end(), []( af_file_unit& fu0, af_file_unit& fu1 )
+                         catch (std::exception& ex)
                          {
-                              return fu0._md_time < fu1._md_time;
-                         } );
-
+                              std::cout << dir_itr->path().filename() << " " << ex.what() << std::endl;
+                         }
                     }
-                    icount++;
-                    if (icount==g_prj_backup_mg.backup_interval)
+                    sort( backup_list.begin(), backup_list.end(), []( af_file_unit& fu0, af_file_unit& fu1 )
                     {
-                         icount = 0;
-                         //request a backup
-                         unique_lock<mutex> lck( backup_lock );
-                         if( _proot_backup )
-                         {
-                              delete _proot_backup;
-                              _proot_backup = nullptr;
-                         }
-                         backup_con.wait( lck );
-                         string stid = to_string( g_prj_backup_mg.max_back_id );
-                         string s_file_name = str_reg + stid;
-                         af_file_unit file_unit = { s_file_name, time( nullptr ) };
-                         backup_list.emplace_back( file_unit );
-                         ui_assembler _ui_as( *_proot_backup );
-                         string file_full_name = g_cureent_directory + s_file_name;
-                         _ui_as.output_ui_component_to_file( file_full_name.c_str() );
-                         int idf = backup_list.size() - g_prj_backup_mg.backup_max_cnt;
-                         if( idf>0)
-                         {
-                              for( int ix = 0; ix < idf;++ix )
-                              {
-                                   auto& fu = backup_list[ 0 ];
-                                   string fname = g_cureent_directory + fu.file_name;
-                                   afg_fs::path dlfile_path( fname );
-                                   afg_fs::remove( dlfile_path );
-                                   backup_list.erase( backup_list.begin() );
-                              }
-                         }
-                    }
-                    this_thread::sleep_for( chrono::minutes( 1 ) );
+                         return fu0._md_time < fu1._md_time;
+                    } );
+               }
+               if( g_prj_backup_mg.backup_model == en_periodic_backup )
+               {
+                   boost::this_thread::sleep_for( boost::chrono::minutes( g_prj_backup_mg.backup_interval ) );
                }
                else//en_intelligent_backup
                {
-
-                   this_thread::sleep_for( chrono::seconds( 1 ) );
+                    while( g_ui_edit_command_mg.command_count()>20)
+                    {
+                        boost::this_thread::sleep_for( boost::chrono::seconds( 10 ) );
+                    }
+                    g_ui_edit_command_mg.clear_all();
                }
-          }
+               unique_lock<mutex> lck( backup_lock );
+               if( _proot_backup )
+               {
+                    delete _proot_backup;
+                    _proot_backup = nullptr;
+               }
+               backup_con.wait( lck );
+               
+               string stid = to_string( ++g_prj_backup_mg.max_back_id);
+               string s_file_name = str_reg + stid;
+               af_file_unit file_unit = { s_file_name, time( nullptr ) };
+               backup_list.emplace_back( file_unit );
+               ui_assembler _ui_as( *_proot_backup );
+               string file_full_name = g_cureent_directory + s_file_name;
+               _ui_as.output_ui_component_to_file( file_full_name.c_str() );
+               int idf = backup_list.size() - g_prj_backup_mg.backup_max_cnt;
+               if( idf > 0 )
+               {
+                    for( int ix = 0; ix < idf; ++ix )
+                    {
+                         auto& fu = backup_list[ 0 ];
+                         string fname = g_cureent_directory + fu.file_name;
+                         afg_fs::path dlfile_path( fname );
+                         afg_fs::remove( dlfile_path );
+                         backup_list.erase( backup_list.begin() );
+                    }
+               }
+         }
      };
-     thread td_backup;
+     boost::thread td_backup;
 	// Main loop
     while (!glfwWindowShouldClose(window))
     {
@@ -944,27 +941,30 @@ int main( int argc, char* argv[] )
 			{
 				g_ui_edit_command_mg.redo_command();
 			}
-               else
-               if( ImGui::IsKeyReleased(GLFW_KEY_C) )
+		}
+          else
+          if( ImGui::GetIO().KeyShift)
+          {
+               if( ImGui::IsKeyReleased( GLFW_KEY_C ) )
                {
                     prj_edit->copy_item();
                }
                else
-               if( ImGui::IsKeyReleased( GLFW_KEY_X ))
+               if( ImGui::IsKeyReleased( GLFW_KEY_X ) )
                {
                     prj_edit->cut_item();
                }
                else
-               if( ImGui::IsKeyReleased( GLFW_KEY_V ))
+               if( ImGui::IsKeyReleased( GLFW_KEY_V ) )
                {
                     prj_edit->past_item();
-               }               
+               }
                else
-               if( ImGui::IsKeyReleased( GLFW_KEY_A ))
+               if( ImGui::IsKeyReleased( GLFW_KEY_A ) )
                {
                     prj_edit->add_sibling();
-               }               
-		}
+               }
+          }
 		
 		if (ImGui::BeginMainMenuBar())
 		{
@@ -1099,19 +1099,19 @@ int main( int argc, char* argv[] )
 
 				// Disabled item
 				ImGui::Separator();
-				if (ImGui::MenuItem("Copy", "CTRL+C")) 
+				if (ImGui::MenuItem("Copy", "SHIFT+C")) 
 				{
                          prj_edit->copy_item();
 				}				
-                    if (ImGui::MenuItem("Cut", "CTRL+X")) 
+                    if (ImGui::MenuItem("Cut", "SHIFT+X")) 
 				{
                          prj_edit->cut_item();
 				}
-				if (ImGui::MenuItem("Paste", "CTRL+V")) 
+				if (ImGui::MenuItem("Paste", "SHIFT+V")) 
 				{
                          prj_edit->past_item();
 				}
-                    if (ImGui::MenuItem("Add sibling","CTRL+A"))
+                    if (ImGui::MenuItem("Add sibling","SHIFT+A"))
                     {
                          prj_edit->add_sibling();
                     }
@@ -1266,8 +1266,9 @@ int main( int argc, char* argv[] )
                ImGui::Combo( "Backup model", &g_prj_backup_mg.backup_model, str_backup_model, en_backup_model_cnt );
                if( g_prj_backup_mg.backup_model == en_manual_backup )
                {
-                    if( td_backup.joinable())
+                    if( td_backup.joinable() )
                     {
+                         td_backup.interrupt();
                          keep_backup_thread = false;
                          td_backup.join();
                          g_prj_backup_mg.back_up_prj_list.clear();
@@ -1275,56 +1276,78 @@ int main( int argc, char* argv[] )
                }
                else
                {
-                    if( !td_backup.joinable())
-                     {
-                          keep_backup_thread = true;
-                          td_backup = thread( backup_tast );
-                     }
-                    if( g_prj_backup_mg.backup_model == en_auto_backup )
+                    if( !td_backup.joinable()&&afg_fs::exists(g_cureent_directory))
+                    {
+                         keep_backup_thread = true;
+                         td_backup = boost::thread( backup_tast );
+                    }
+                    if( g_prj_backup_mg.backup_model == en_periodic_backup )
                     {
                          ImGui::InputInt( "Backup interval(>=1minutes)", &g_prj_backup_mg.backup_interval );
-                         if( g_prj_backup_mg.backup_interval<1)
+                         if( g_prj_backup_mg.backup_interval < 1 )
                          {
                               g_prj_backup_mg.backup_interval = 1;
                          }
-                         ImGui::InputInt( "Max count of backup", &g_prj_backup_mg.backup_max_cnt );
-                         auto& prj_list = g_prj_backup_mg.back_up_prj_list;
-                         int isize = prj_list.size();
-                         stringstream stm_sel;
-                         ImGui::Text( "Backup project list:" );
-                         for( int ix = 0; ix < isize; )
-                         {
-                              stm_sel.str( string() );
-                              stm_sel.clear();
-                              stm_sel << ix;
-                    
-                              ImGui::Text( prj_list[ 0 ].file_name.c_str() );
-                              string str_m_tm = "Last write time:";
-                              str_m_tm+=ctime( &prj_list[ 0 ]._md_time );
-                              ImGui::Text( str_m_tm.c_str() );
-                              string btn_cap = "restore##";
-                              btn_cap += stm_sel.str();
-                              ImGui::SameLine();
-                              if (ImGui::Button(btn_cap.c_str()))
-                              {
+                    }
+                    ImGui::InputInt( "Max count of backup", &g_prj_backup_mg.backup_max_cnt );
+                    if( g_prj_backup_mg.backup_max_cnt < 1 )
+                    {
+                         g_prj_backup_mg.backup_max_cnt = 1;
+                    }
+                    auto& prj_list = g_prj_backup_mg.back_up_prj_list;
+                    int isize = prj_list.size();
+                    stringstream stm_sel;
+                    ImGui::Text( "Backup project list:" );
+                    for( int ix = 0; ix < isize; )
+                    {
+                         stm_sel.str( string() );
+                         stm_sel.clear();
+                         stm_sel << ix;
 
-                              }
-                              ImGui::SameLine();
-                              btn_cap = "Clear##";
-                              btn_cap += stm_sel.str();
-                              if( ImGui::Button( btn_cap.c_str() ) )
-                              {
-                                   prj_list.erase( prj_list.begin() + ix );
-                              }
-                              else
-                              {
-                                   ++ix;
-                              }
+                         ImGui::Text( prj_list[ix ].file_name.c_str() );
+                         string str_m_tm = "Last write time:";
+                         str_m_tm += ctime( &prj_list[ ix ]._md_time );
+                         ImGui::Text( str_m_tm.c_str() );
+                         string btn_cap = "restore##";
+                         btn_cap += stm_sel.str();
+                         ImGui::SameLine();
+                         if( ImGui::Button( btn_cap.c_str() ) )
+                         {
+                              string fname = g_cureent_directory + prj_list[ ix ].file_name;
+                              string str_cmd = "copy ";
+                              str_cmd += g_cureent_project_file_path;
+                              str_cmd += " ";
+                              str_cmd += fname;
+                              system( str_cmd.c_str() );
+                              g_aliase_edit.clear_sel();
+                              g_common_value_edit.clear_sel();
+                              g_bind_edit.clear_sel();
+                              prj_edit->clear_sel_item();
+                              g_ui_edit_command_mg.clear_all();
+                              delete _proot;
+                              _proot = new ft_base;
+                              _proot->set_name( "screen" );
+                              ui_assembler _ui_as( *_proot );
+                              _ui_as.load_afg_from_file( g_cureent_project_file_path.c_str() );//note:this call must be executed after TextureHelper::load2DTexture 
+
+                              prj_edit.reset( new project_edit( *_proot ) );
+                         }
+                         ImGui::SameLine();
+                         btn_cap = "Clear##";
+                         btn_cap += stm_sel.str();
+                         if( ImGui::Button( btn_cap.c_str() ) )
+                         {
+                              string fname = g_cureent_directory + prj_list[ ix ].file_name;
+                              afg_fs::path dlfile_path( fname );
+                              afg_fs::remove( dlfile_path );
+                              prj_list.erase( prj_list.begin() + ix );
+                         }
+                         else
+                         {
+                              ++ix;
                          }
                     }
                }
-              
-              
                ImGui::End();
           }
 		if (show_project_window)
@@ -1550,14 +1573,65 @@ int main( int argc, char* argv[] )
 			ImGui::Begin("Aliases edit", &show_aliase_edit, ImVec2(400, 400));
 			//ImGui::Columns(2);
 			//ImGui::SetColumnWidth(0, 200);
+               if (ImGui::Button("Export ..."))
+               {
+                    OPENFILENAME sfn = { sizeof(OPENFILENAME) };
+				sfn.hwndOwner = GetForegroundWindow();
+				sfn.lpstrFilter = "file:\0*.*\0\0";
+				sfn.lpstrDefExt = "afg_alias";
+				char strFileName[MAX_PATH] = { 0 };
+                    string str_proj_file_name = g_cureent_project_file_path.substr( g_cureent_project_file_path.find_last_of( '\\' ) + 1 );
+                    str_proj_file_name += "_als";
+                    strcpy( strFileName, str_proj_file_name.c_str());
+				sfn.nFilterIndex = 1;
+				sfn.lpstrFile = strFileName;
+				sfn.nMaxFile = sizeof(strFileName);
+				sfn.lpstrTitle = "Save to";
+				sfn.Flags = OFN_HIDEREADONLY | OFN_PATHMUSTEXIST;
+				sfn.FlagsEx = OFN_EX_NOPLACESBAR;
+                    if( GetSaveFileName( &sfn ) )
+                    {
+                         ofstream ofs;
+                         ofs.open( strFileName );
+                         if (ofs.is_open())
+                         {
+                              for (auto& ialis:g_aliase_dic)
+                              {
+                                   ofs << ialis.first << endl;
+                              }
+                              ofs.close();
+                         }
+                    }
+               }
                ImGui::Text( "Current Alias:" );
                g_aliase_edit.aliase_item_propoerty();
                ImGui::Separator();
                ImGui::BeginChild("aliase list");
+               if( ImGui::IsWindowFocused() && ImGui::GetIO().KeyCtrl&&ImGui::IsKeyReleased( GLFW_KEY_C ) )
+               {
+                    string key_name = g_aliase_edit.get_cur_key();
+                    if( !key_name.empty() )
+                    { 
+                         if (OpenClipboard(NULL))
+                         {
+                              HGLOBAL wbuf_handle = GlobalAlloc( GMEM_MOVEABLE, (SIZE_T)key_name.size()+1);
+                              if( wbuf_handle )
+                              {
+                                   auto idata = GlobalLock( wbuf_handle );
+                                   memcpy( idata, &key_name[ 0 ], key_name.size()+1 );
+                                   GlobalUnlock( wbuf_handle );
+                                   EmptyClipboard();
+                                   SetClipboardData( CF_TEXT, wbuf_handle );
+                              }
+                              CloseClipboard();
+                         } 
+                    }
+               }
 			g_aliase_edit.aliase_dic_view();
 			//ImGui::NextColumn();
 			g_aliase_edit.popup_new_aliase();
                ImGui::EndChild();
+               
 			ImGui::End();
 		}
 		if (show_prm_edit)
@@ -1570,7 +1644,7 @@ int main( int argc, char* argv[] )
 			g_primitive_edit.draw_primitive_item_property();
 			ImGui::End();
 		}
-		if (show_feedback_edit)
+		/*if (show_feedback_edit)
 		{
 			ImGui::Begin("Feedback objects", &show_feedback_edit, ImVec2(600, 500));
 			ImGui::Columns(2);
@@ -1579,7 +1653,7 @@ int main( int argc, char* argv[] )
 			ImGui::NextColumn();
 			g_feedback_edit.draw_feedback_item_property();
 			ImGui::End();
-		}
+		}*/
 		if (show_texture_res_manager)
 		{
 			//ImGui::SetNextWindowBgAlpha(1.0f); // Transparent background

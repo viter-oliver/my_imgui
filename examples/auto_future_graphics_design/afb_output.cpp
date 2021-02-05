@@ -113,7 +113,7 @@ void afb_output::output_afb(const char* afb_file)
      
      string output_file_path = afb_path.substr( 0, afb_path.find_last_of( '\\' ) + 1 ); //g_cureent_directory + "afb\\";
 	int idx = 0;
-	pk.pack_int(g_cur_texture_id_index);//en_vtextures_res_cidx
+	pk.pack_int(0);//en_vtextures_res_cidx
 	pk.pack_array(g_vres_texture_list.size());//en_vtextures_res
 	function<uint8_t*(uint8_t*, int,int,int&)> ftxt_press;
 	if (g_output_bin_format._txt_fmt == en_uncompressed_txt){

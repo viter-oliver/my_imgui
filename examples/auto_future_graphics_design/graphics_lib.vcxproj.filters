@@ -211,6 +211,9 @@
     <ClCompile Include="ft_trans.cpp">
       <Filter>controls</Filter>
     </ClCompile>
+    <ClCompile Include="rescontainer_manager.cpp">
+      <Filter>res_manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">

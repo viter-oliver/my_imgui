@@ -361,15 +361,15 @@ void project_edit::popup_context_menu()
      }    
 	if (ImGui::BeginPopupContextWindow())
 	{
-		if (ImGui::MenuItem("copy", "CTRL+C", false))
+		if (ImGui::MenuItem("copy", "SHIFT+C", false))
 		{
                copy_item();
 		}
-          if (ImGui::MenuItem("cut","CTRL+X",false))
+          if (ImGui::MenuItem("cut","SHIFT+X",false))
           {
                cut_item();
           }
-		if (ImGui::MenuItem("paste","CTRL+V",false))
+		if (ImGui::MenuItem("paste","SHIFT+V",false))
 		{
                past_item();
 		}
@@ -381,7 +381,7 @@ void project_edit::popup_context_menu()
           {
                insert_item();
           }		
-          if( ImGui::MenuItem( "add sibling", "CTRL+A", false ) )
+          if( ImGui::MenuItem( "add sibling", "SHIFT+A", false ) )
 		{
                add_sibling();
 			//ImGui::EndMenu();

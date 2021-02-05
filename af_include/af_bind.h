@@ -98,3 +98,31 @@ template<class T> bool get_prop_fd_value( prop_ele_position& pep, T& pvalue )
      memcpy( &pvalue, field._address, field._tpsz );
      return true;
 }
+
+enum get_ui_control_result
+{
+     ui_rt_invalid_reciver,
+     ui_rt_invalid_alias,
+     ui_rt_unmatched_type,
+     ui_rt_get_ui_control,
+};
+template<class T> get_ui_control_result get_ui_control_by_alias( string prp_aliase_name, T** ppUi_control )
+{
+     if( *ppUi_control != 0 );
+     {
+          return ui_rt_invalid_reciver;
+     }
+     auto icontrol = get_aliase_ui_control( prp_aliase_name );
+     if (icontrol==nullptr)
+     {
+          return ui_rt_invalid_alias;
+     }
+     const char* phost_name = typeid( T ).name();
+     const char* ptar_name = typeid( *icontrol ).name();
+     if (strcmp(phost_name,ptar_name)!=0)
+     {
+          return ui_rt_unmatched_type;
+     }
+     *ppUi_control = static_cast<T*>( icontrol );
+     return ui_rt_get_ui_control;
+}

@@ -3,6 +3,7 @@
 using namespace std;
 class res_edit
 {
+     int _cur_texture_id_index = { 0 };
 public:
 	res_edit();
 	~res_edit();

@@ -16,5 +16,9 @@ public:
           _psel = nullptr;
           _edit_prp_ele_pos._pobj = nullptr;
      }
+     string get_cur_key()
+     {
+          return _key_name;
+     }
 };
 

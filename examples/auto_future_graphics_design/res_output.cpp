@@ -12,7 +12,6 @@ const char* text_res_fold = "texture_res_list\\";
 const char* afb_fold = "afb\\";
 #endif
 vres_txt_list  g_vres_texture_list;
-int g_cur_texture_id_index=0;
 mtexture_list g_mtexture_list;
 
 af_file::af_file(GLuint fsize)
@@ -23,7 +22,9 @@ af_file::af_file(GLuint fsize)
 void af_file::re_alloc(GLuint fsize)
 {
 	free(_pbin);
-	_pbin = malloc(fsize);
+     _fsize = fsize;
+	_pbin = malloc(_fsize);
+
 }
 af_file::~af_file()
 {
@@ -167,7 +168,7 @@ output_bin_format g_output_bin_format;
 const char* str_backup_model[ en_backup_model_cnt ] =
 {
      "manual backup",
-     "auto backup",
+     "periodic backup",
      "intelligent backup",
 };
 project_backup_manager g_prj_backup_mg;
