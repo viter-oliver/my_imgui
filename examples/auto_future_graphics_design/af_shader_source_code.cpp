@@ -173,12 +173,14 @@ void main(){
 
 const char* modeling = "modeling";
 const char* modeling_vs=R"glsl(
-attribute vec3 position;
-attribute vec3 normal;
-attribute vec2 textCoord;
-varying vec3 FragPos;
-varying vec2 TextCoord;
-varying vec3 FragNormal;
+#version 300 es
+precision mediump float;
+layout(location=0) in vec3 normal;
+layout(location=1) in vec3 position;
+layout(location=2) in vec2 textCoord;
+out vec3 FragPos;
+out vec2 TextCoord;
+out vec3 FragNormal;
 
 uniform mat4 model;
 uniform mat4 view;
@@ -194,22 +196,20 @@ void main()
 }
 )glsl";
 const char* modeling_fs=R"glsl(
-varying vec3 FragPos;
-varying vec2 TextCoord;
-varying vec3 FragNormal;
-struct LightAttr
-{
-	vec3 position;
-	vec3 ambient;
-	vec3 diffuse;
-	vec3 specular;
+#version 300 es
+precision mediump float;
+in vec3 FragPos;
+in vec2 TextCoord;
+in vec3 FragNormal;
+out vec4 o_clr;
+uniform vec3 light_position;
+uniform vec3 light_ambient;
+uniform vec3 light_diffuse;
+uniform vec3 light_specular;
+uniform float light_constant;
+uniform float light_linear;
+uniform float light_quadratic;
 
-	float constant;
-	float linear;
-	float quadratic;
-};
-
-uniform LightAttr light;
 uniform vec3 viewPos;
 uniform sampler2D texture_diffuse0;
 //uniform sampler2D texture_diffuse1;
@@ -217,26 +217,26 @@ uniform sampler2D texture_diffuse0;
 uniform sampler2D texture_specular0;
 //uniform sampler2D texture_specular1;
 //uniform sampler2D texture_specular2;
-
 void main()
 {
-	vec3	ambient = light.ambient * vec3(texture(texture_diffuse0, TextCoord));
+	vec3	ambient = light_ambient * vec3(texture(texture_diffuse0, TextCoord));
 
-	vec3	lightDir = normalize(light.position - FragPos);
+	vec3	lightDir = normalize(light_position - FragPos);
 	vec3	normal = normalize(FragNormal);
 	float	diffFactor = max(dot(lightDir, normal), 0.0);
-	vec3	diffuse = diffFactor * light.diffuse * vec3(texture(texture_diffuse0, TextCoord));
+	vec3	diffuse = diffFactor * light_diffuse * vec3(texture(texture_diffuse0, TextCoord));
 	float	specularStrength = 0.5f;
 	vec3	reflectDir = normalize(reflect(-lightDir, normal));
 	vec3	viewDir = normalize(viewPos - FragPos);
 	float	specFactor = pow(max(dot(reflectDir, viewDir), 0.0), 64.0f);
-	vec3	specular = specFactor * light.specular * vec3(texture(texture_specular0, TextCoord));
-	float distance = length(light.position - FragPos);
-	float attenuation = 1.0f / (light.constant 
-			+ light.linear * distance
-			+ light.quadratic * distance * distance);
+	vec3	specular = specFactor * light_specular * vec3(texture(texture_specular0, TextCoord));
+	float distance = length(light_position - FragPos);
+	float attenuation = 1.0f / (light_constant 
+			+ light_linear * distance
+			+ light_quadratic * distance * distance);
 
 	vec3	result = (ambient + diffuse + specular) * attenuation;
-	gl_FragColor	= vec4(result , 1.0f);
+	//vec3 result=vec3(0,0,0);
+	o_clr	= vec4(result , 1.0f);
 }
 )glsl";

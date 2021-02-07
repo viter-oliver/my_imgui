@@ -41,7 +41,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>CTP_Nov2013</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -123,7 +123,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level4</WarningLevel>
-      <Optimization>Disabled</Optimization>
+      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\soil;$(SolutionDir)\libs\glfw\include;$(SolutionDir)\libs\gl3w;..\..;$(SolutionDir)\..\glm;$(SolutionDir)\..\fab;$(SolutionDir)\..\json;$(SolutionDir)\..\msgpack-c;$(SolutionDir)\..\Assimp;$(SolutionDir)\..\boost_1_65_1;$(SolutionDir)\..\freetype;$(SolutionDir)\..\af_include;$(SolutionDir)\..\misc\freetype;$(SolutionDir)\..\Python_2.7.2\include;$(SolutionDir)\..\simple_http;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -205,6 +205,8 @@
     <ClCompile Include="file_res_edit.cpp" />
     <ClCompile Include="fonts_edit.cpp" />
     <ClCompile Include="ft_block.cpp" />
+    <ClCompile Include="ft_hud_obj.cpp" />
+    <ClCompile Include="ft_hud_projection.cpp" />
     <ClCompile Include="ft_image_file.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
     <ClCompile Include="ft_listbox_ex.cpp" />
@@ -282,6 +284,8 @@
     <ClInclude Include="..\..\af_include\ft_circle.h" />
     <ClInclude Include="..\..\af_include\ft_cube_3d.h" />
     <ClInclude Include="..\..\af_include\ft_fbx_assert_3d.h" />
+    <ClInclude Include="..\..\af_include\ft_hud_obj.h" />
+    <ClInclude Include="..\..\af_include\ft_hud_projection.h" />
     <ClInclude Include="..\..\af_include\ft_image.h" />
     <ClInclude Include="..\..\af_include\ft_image_file.h" />
     <ClInclude Include="..\..\af_include\ft_image_play.h" />

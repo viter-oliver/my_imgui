@@ -328,6 +328,12 @@
     <ClCompile Include="rescontainer_manager.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="ft_hud_projection.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_hud_obj.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">
@@ -654,6 +660,10 @@
     <ClInclude Include="rescontainer_manager.h">
       <Filter>res_manager</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_hud_projection.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_hud_obj.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />

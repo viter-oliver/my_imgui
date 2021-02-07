@@ -133,7 +133,7 @@ namespace auto_future
 			return;
 		}
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		if (_parent&&is_editing()&& _selected)
+          if( _parent&&is_editing() && _selected&&ImGui::GetIO().KeyCtrl )
 		{
                static cmd_value_block bk_posx_value = { 0, 0, 0, 0 }, bk_posy_value = {0,0,0,0};
                static bool be_dragging = false;

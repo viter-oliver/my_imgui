@@ -65,13 +65,14 @@
 #include <boost/filesystem/operations.hpp>
 //#include <boost/filesystem/directory.hpp>
 #include <boost/filesystem/path.hpp>
-#include <boost/thread/thread.hpp>
+//#include <boost/thread/thread.hpp>
 #include <thread>
 #include <atomic>
 #include "simple_http.h"
 #include <sstream>
 #include <mutex>
 #include <condition_variable>
+#include <regex>
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -630,6 +631,8 @@ int main( int argc, char* argv[] )
      atomic<bool> keep_backup_thread = false;
      mutex backup_lock;
      condition_variable backup_con;
+     mutex backup_sleep;
+     condition_variable td_backup_sleep_con;
      auto backup_tast = [&]
      {
           afg_fs::path prj_path = afg_fs::system_complete( g_cureent_directory );
@@ -669,13 +672,18 @@ int main( int argc, char* argv[] )
                }
                if( g_prj_backup_mg.backup_model == en_periodic_backup )
                {
-                   boost::this_thread::sleep_for( boost::chrono::minutes( g_prj_backup_mg.backup_interval ) );
+                   //boost::this_thread::sleep_for( boost::chrono::minutes( g_prj_backup_mg.backup_interval ) );
+                    //this_thread::sleep_for( chrono::minutes( g_prj_backup_mg.backup_interval ) );
+                    unique_lock<mutex> lock( backup_sleep );
+                    td_backup_sleep_con.wait_for( lock, chrono::minutes( g_prj_backup_mg.backup_interval ) );
+                        
                }
                else//en_intelligent_backup
                {
                     while( g_ui_edit_command_mg.command_count()>20)
                     {
-                        boost::this_thread::sleep_for( boost::chrono::seconds( 10 ) );
+                        //boost::this_thread::sleep_for( boost::chrono::seconds( 10 ) );
+                        this_thread::sleep_for( chrono::seconds( 10 ) );
                     }
                     g_ui_edit_command_mg.clear_all();
                }
@@ -708,7 +716,7 @@ int main( int argc, char* argv[] )
                }
          }
      };
-     boost::thread td_backup;
+     /*boost::*/thread td_backup;
 	// Main loop
     while (!glfwWindowShouldClose(window))
     {
@@ -1268,7 +1276,9 @@ int main( int argc, char* argv[] )
                {
                     if( td_backup.joinable() )
                     {
-                         td_backup.interrupt();
+                         //td_backup.interrupt();
+                         lock_guard<mutex> lock( backup_sleep );
+                         td_backup_sleep_con.notify_one();
                          keep_backup_thread = false;
                          td_backup.join();
                          g_prj_backup_mg.back_up_prj_list.clear();
@@ -1279,7 +1289,7 @@ int main( int argc, char* argv[] )
                     if( !td_backup.joinable()&&afg_fs::exists(g_cureent_directory))
                     {
                          keep_backup_thread = true;
-                         td_backup = boost::thread( backup_tast );
+                         td_backup = /*boost::*/thread( backup_tast );
                     }
                     if( g_prj_backup_mg.backup_model == en_periodic_backup )
                     {
@@ -1581,7 +1591,7 @@ int main( int argc, char* argv[] )
 				sfn.lpstrDefExt = "afg_alias";
 				char strFileName[MAX_PATH] = { 0 };
                     string str_proj_file_name = g_cureent_project_file_path.substr( g_cureent_project_file_path.find_last_of( '\\' ) + 1 );
-                    str_proj_file_name += "_als";
+                    str_proj_file_name += "_als.txt";
                     strcpy( strFileName, str_proj_file_name.c_str());
 				sfn.nFilterIndex = 1;
 				sfn.lpstrFile = strFileName;
@@ -1600,6 +1610,18 @@ int main( int argc, char* argv[] )
                                    ofs << ialis.first << endl;
                               }
                               ofs.close();
+                         }
+                    }
+               }
+               static char str_aliase_name[ name_len ] = { 0 };
+               if( ImGui::InputText( "input key of alias you are looking for", str_aliase_name, name_len, ImGuiInputTextFlags_EnterReturnsTrue ) )
+               {
+                    for (auto& ialias:g_aliase_dic)
+                    {
+                         if (regex_search(ialias.first,regex(str_aliase_name)))
+                         {
+                              g_aliase_edit.sel_aliase( ialias.second, ialias.first );
+                              break;
                          }
                     }
                }
@@ -1644,16 +1666,6 @@ int main( int argc, char* argv[] )
 			g_primitive_edit.draw_primitive_item_property();
 			ImGui::End();
 		}
-		/*if (show_feedback_edit)
-		{
-			ImGui::Begin("Feedback objects", &show_feedback_edit, ImVec2(600, 500));
-			ImGui::Columns(2);
-			ImGui::SetColumnWidth(0, 200);
-			g_feedback_edit.draw_feedback_list();
-			ImGui::NextColumn();
-			g_feedback_edit.draw_feedback_item_property();
-			ImGui::End();
-		}*/
 		if (show_texture_res_manager)
 		{
 			//ImGui::SetNextWindowBgAlpha(1.0f); // Transparent background
