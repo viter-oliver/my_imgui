@@ -328,11 +328,14 @@
     <ClCompile Include="rescontainer_manager.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
-    <ClCompile Include="ft_hud_projection.cpp">
+    <ClCompile Include="ft_hud_obj.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="ft_hud_obj.cpp">
-      <Filter>sources</Filter>
+    <ClCompile Include="ft_hud_projector.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_hud_4_time_curve.cpp">
+      <Filter>controls</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -660,10 +663,15 @@
     <ClInclude Include="rescontainer_manager.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_hud_projection.h">
+    <ClInclude Include="..\..\af_include\ft_hud_obj.h">
       <Filter>af_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_hud_obj.h" />
+    <ClInclude Include="..\..\af_include\ft_hud_projector.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_hud_4_time_curve.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.txt" />
@@ -679,7 +687,6 @@
     <None Include="..\..\json\json_valueiterator.inl">
       <Filter>json</Filter>
     </None>
-    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="auto_future_graphics_design.rc">

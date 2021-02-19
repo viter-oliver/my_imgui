@@ -1,14 +1,8 @@
-#include "ft_hud_obj.h"
+#include "ft_hud_4_time_curve.h"
 #include "ft_hud_projector.h"
-const char* hud_obj_shd_name = "sd_hud_obj";
-const char* hud_obj_prm_name = "prm_hud_obj";
-GLfloat vertices[] = {
-     -0.5f, -0.5f,0.f, 0.f, 1.f,
-     0.5f, -0.5f, 0.f,1.f, 1.f,
-     -0.5f, 0.5f, 0.f,0.f, 0.f,
-     0.5f, 0.5f,0.f, 1.f, 0.f,
-};
-const char* hud_sd_vs = R"glsl(
+const char* hud_4_curve_shd_name = "sd_hud_4_curve";
+const char* hud_4_curve_prm_name = "prm_hud_4_curve";
+const char* hud_sd_4_curve_vs = R"glsl(
 #version 300 es
 precision mediump float;
 layout(location=0) in vec3 position;
@@ -17,14 +11,41 @@ out vec2 TextCoord;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
-
+uniform float c[4];
+uniform float w;
+uniform bool left_boder;
 void main()
 {
+    float posx0=position.x;
+    float z=position.z*0.001;
+    if(left_border)
+    {
+         if(posx0<0.1)
+         {
+              position.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0-w;
+         }
+         else
+         {
+              position.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0;
+         }
+    }
+    else
+    {
+         if(posx0<0.1)
+         {
+              position.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0;
+         }
+         else
+         {
+              position.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0+w;
+         }
+
+    } 
     gl_Position = projection * view * model * vec4(position, 1.0);
     TextCoord = textCoord;
 }
 )glsl";
-const char* hud_sd_fs = R"glsl(
+const char* hud_sd_4_curve_fs = R"glsl(
 #version 300 es
 precision mediump float;
 in vec2 TextCoord;
@@ -35,29 +56,50 @@ void main()
 	o_clr = texture(text_at, TextCoord);
 }
 )glsl";
+
 namespace auto_future
 {
-     ps_shader ft_hud_obj::_phud_sd = make_shared<af_shader>( hud_sd_vs, hud_sd_fs );
-     ps_primrive_object ft_hud_obj::_ps_prm = make_shared<primitive_object>();
-     ft_hud_obj::assist::assist()
+     ps_shader ft_hud_4_time_curve::_phud_sd = make_shared<af_shader>( hud_sd_4_curve_vs, hud_sd_4_curve_fs );
+     ps_primrive_object ft_hud_4_time_curve::_ps_prm = make_shared<primitive_object>();
+
+     ft_hud_4_time_curve::assist::assist()
      {
-          _ps_prm->set_ele_format( { 3, 2 } );
-          _ps_prm->load_vertex_data( vertices, sizeof( vertices ) / sizeof( float ) );
+          int curve_len = 100;
+          float unit_len = 1500.f;
+          auto point_cnt = curve_len * 2 + 2;
+          int demension = 5;
+          auto data_cnt = point_cnt*demension;
+          GLfloat* vertices = new GLfloat[ data_cnt ];
+          float uv_unit = 1 / curve_len;
+          for( int ix = 0; ix < curve_len + 1; ++ix )
+          {
+               auto base_id = ix * 2 * demension;
+               vertices[ base_id ] = 0;//x->
+               vertices[ base_id + 1 ] = 0;//y->
+               vertices[ base_id + 2 ] = ix*unit_len;//z->
+               vertices[ base_id + 3 ] = 0;
+               vertices[ base_id + 4 ] = uv_unit * ix;
+
+               vertices[ base_id + 5 ] = 1;//x->
+               vertices[ base_id + 6 ] = 0;//y->
+               vertices[ base_id + 7 ] = ix*unit_len;//z->
+               vertices[ base_id + 8 ] = 1;
+               vertices[ base_id + 9 ] = uv_unit * ix;
+          }
+
+          ft_hud_4_time_curve::_ps_prm->set_ele_format( { 3, 2 } );
+          ft_hud_4_time_curve::_ps_prm->load_vertex_data( vertices, data_cnt );
+          delete[] vertices;
      }
-     ft_hud_obj::ft_hud_obj()
+     ft_hud_4_time_curve::ft_hud_4_time_curve()
      {
           /*if( !_phud_sd )
           {
-               _phud_sd = make_shared<af_shader>( hud_sd_vs, hud_sd_fs );
-          }*/
-          /**
-          if(! _ps_prm )
-          {
-               
-               _ps_prm = make_shared<primitive_object>();
-               _ps_prm->set_ele_format( { 3, 2 } );
-               _ps_prm->load_vertex_data( vertices, sizeof( vertices ) / sizeof( float ) );
-          }*/
+               _phud_sd = make_shared<af_shader>( hud_sd_4_curve_vs, hud_sd_4_curve_fs );
+          }
+        */
+
+         
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           reg_property_handle( &_pt_tb, 0, [this]( void* member_address )
           {
@@ -86,23 +128,21 @@ namespace auto_future
 #endif
      }
 
-     ft_hud_obj::~ft_hud_obj()
+     ft_hud_4_time_curve::~ft_hud_4_time_curve()
      {
-     
      }
-
-     void ft_hud_obj::link()
+     void ft_hud_4_time_curve::link()
      {
           auto iat = g_mtexture_list.find( _pt_tb._attached_image );
-          if (iat!=g_mtexture_list.end())
+          if( iat != g_mtexture_list.end() )
           {
                _pat_image = iat->second;
           }
      }
 
-     void ft_hud_obj::draw()
+     void ft_hud_4_time_curve::draw()
      {
-          if (!_pat_image)
+          if( !_pat_image )
           {
                return;
           }
@@ -121,14 +161,12 @@ namespace auto_future
           glm::mat4 proj = glm::perspective( glm::radians( p_prj->get_fovy() ), aspect, p_prj->get_near(), p_prj->get_far() );
           _phud_sd->uniform( "projection", glm::value_ptr( proj ) );
           glm::mat4 trans;
-          trans = glm::translate(
-               trans,
-               glm::vec3( _pt_tb._tanslation_x, _pt_tb._tanslation_y, _pt_tb._tanslation_z )
-               );
           _phud_sd->uniform( "model", glm::value_ptr( trans ) );
+          _phud_sd->uniform( "c[0]", _pt_tb._c );
+          _phud_sd->uniform( "left_boder", _pt_tb._left_border );
+          _phud_sd->uniform( "w", _pt_tb._width );
           _phud_sd->use();
           glBindVertexArray( _ps_prm->_vao );
           glDrawArrays( GL_TRIANGLE_STRIP, 0, _ps_prm->_vertex_buf_len );
      }
-
 }

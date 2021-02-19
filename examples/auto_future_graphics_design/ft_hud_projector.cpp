@@ -1,8 +1,8 @@
-#include "ft_hud_projection.h"
+#include "ft_hud_projector.h"
 #include "common_functions.h"
 namespace auto_future
 {
-     ft_hud_projection::ft_hud_projection()
+     ft_hud_projector::ft_hud_projector()
      {
           _in_p._sizew = 640;
           _in_p._sizeh = 480;
@@ -35,7 +35,7 @@ namespace auto_future
           } );
 #endif
      }
-     void ft_hud_projection::release_resource()
+     void ft_hud_projector::release_resource()
      {
           if( _colorTextId )
                glDeleteTextures( 1, &_colorTextId );
@@ -47,16 +47,16 @@ namespace auto_future
                _fboId = 0;
           }
      }
-     ft_hud_projection::~ft_hud_projection()
+     ft_hud_projector::~ft_hud_projector()
      {
           release_resource();
      }
-     void ft_hud_projection::link()
+     void ft_hud_projector::link()
      {
           prepareFBO1( _colorTextId, _depthStencilTextId, _fboId, _in_p._sizew, _in_p._sizeh );
 
      }
-     void ft_hud_projection::draw_frames()
+     void ft_hud_projector::draw_frames()
      {
           if( !_fboId )
           {
@@ -128,7 +128,7 @@ namespace auto_future
 #endif
      }
 
-     bool ft_hud_projection::handle_mouse()
+     bool ft_hud_projector::handle_mouse()
      {
           return true;
      }

@@ -13,14 +13,33 @@ namespace auto_future
                                 ( float, _tanslation_x ),
                                 ( float, _tanslation_y ),
                                 ( float, _tanslation_z ) )
-          ps_shader _phud_sd;
+          static ps_shader _phud_sd;
+          static ps_primrive_object _ps_prm; 
           ps_af_texture _pat_image;
-          ps_primrive_object _ps_prm;
+          struct assist
+          {
+
+               assist();
+          };
+          static assist ass;
      public:
+
           ft_hud_obj();
           ~ft_hud_obj();
           void link();
           void draw();
+          void set_transx( float transx )
+          {
+               _pt_tb._tanslation_x = transx;
+          }
+          void set_transy( float transy )
+          {
+               _pt_tb._tanslation_y = transy;
+          }
+          void set_transz( float transz )
+          {
+               _pt_tb._tanslation_z = transz;
+          }
      };
      REGISTER_CONTROL( ft_hud_obj );
 }

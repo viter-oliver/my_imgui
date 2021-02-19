@@ -5,7 +5,7 @@
 #include <gtc/type_ptr.hpp>
 namespace auto_future
 {
-     class AFG_EXPORT ft_hud_projection :
+     class AFG_EXPORT ft_hud_projector :
      public ft_base
      {
           DEF_STRUCT_WITH_INIT( intl_pt, _pj_pt,
@@ -22,8 +22,8 @@ namespace auto_future
           unsigned int _depthStencilTextId = { 0 };
           void release_resource();
      public:
-          ft_hud_projection();
-          ~ft_hud_projection();
+          ft_hud_projector();
+          ~ft_hud_projector();
           void link();
           void draw_frames();
           bool handle_mouse();
@@ -52,6 +52,6 @@ namespace auto_future
                return _pj_pt._far;
           }
      };
-     REGISTER_CONTROL( ft_hud_projection )
+     REGISTER_CONTROL( ft_hud_projector )
 }
 
