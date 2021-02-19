@@ -63,46 +63,39 @@ namespace auto_future
 	ft_slider::ft_slider()
 		:ft_base()
 	{
-		_slider_pt._cbuffer_random_text[0] = '\0';
+		_slider_pt._track_path_text[0] = '\0';
           _slider_pt._texture_bg_index_txt = _slider_pt._texture_head_index_txt = _slider_pt._texture_thumb_index_txt = { 0, 0 };
 		//reg_property_handle(&_slider_pt, 0, [this](void*){});
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		reg_property_handle(&_slider_pt, 8, [this](void*){
-			ImGui::Combo("direction", &_slider_pt._direction_item, direction_iitem, en_direction_cnt);
-			if (en_custom == _slider_pt._direction_item)
-			{
-				if (_custom_mid_track.size()>0)
-				{
-					ImGui::Text("custom path file:%s", _slider_pt._cbuffer_random_text);
-					ImGui::SameLine();
-					if (ImGui::Button("Delink##custom path"))
-					{
-						_custom_track0.clear();
-						_custom_track1.clear();
-						_custom_mid_track.clear();
-						_custom_trace_length = 0;
-						_ps_track_file = nullptr;
-						_slider_pt._cbuffer_random_text[0] = '\0';
-					}
-				}
-				else
-				{
-					ImGui::InputText("custom path file", _slider_pt._cbuffer_random_text, sizeof(_slider_pt._cbuffer_random_text));
-					if (ImGui::Button("Link"))
-					{
-						read_point_position_file(_slider_pt._cbuffer_random_text);
-					}
-				}
-			}
+		reg_property_handle(&_slider_pt, 2, [this](void*){
+               if( _custom_mid_track.size() > 0 )
+               {
+                    ImGui::Text( "track path file:%s", _slider_pt._track_path_text );
+                    ImGui::SameLine();
+                    if( ImGui::Button( "Delink##custom path" ) )
+                    {
+                         _custom_track0.clear();
+                         _custom_track1.clear();
+                         _custom_mid_track.clear();
+                         _custom_trace_length = 0;
+                         _ps_track_file = nullptr;
+                         _slider_pt._track_path_text[ 0 ] = '\0';
+                    }
+               }
+               else
+               {
+                    ImGui::InputText( "custom path file", _slider_pt._track_path_text, sizeof( _slider_pt._track_path_text ) );
+                    if( ImGui::Button( "Link" ) )
+                    {
+                         read_point_position_file( _slider_pt._track_path_text );
+                    }
+               }
 		});
 #endif
 	}
 	void ft_slider::link()
 	{
-		if ( en_custom== _slider_pt._direction_item) //如果保存的是random，这时候就需从文件中读出点数据
-		{
-			read_point_position_file(_slider_pt._cbuffer_random_text);
-		}
+          read_point_position_file( _slider_pt._track_path_text );
 	}
 	ImVec2 operator +(ImVec2& imv2, af_vec2& afv2)
 	{
@@ -166,66 +159,63 @@ namespace auto_future
 			return;//txt_hd_id = 0;
 		}
 		ImVec2 value_point0, value_point1, dir_thumb0, dir_thumb1;
-		if (en_custom == _slider_pt._direction_item) //任意轨道
-		{
-			if (0 == _custom_trace_length) return; //第一次进入random时判断
-			float tmp_length = 0.f;
-			int idx = 0;
-			float real_length = _custom_trace_length*_slider_pt._progress_nml;
-               ImVec2 txt_size( hd_gp_texture_width, hd_gp_texture_height );
-               ImVec2 uv_org = ImVec2( ( hd_text_cd[ txt_hd_id ]._x0 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y0 ) / hd_gp_texture_height );
-			for (auto seg_unit:_custom_track_segment)
-			{
-				auto test_len = tmp_length + seg_unit;
-				if (test_len<=real_length)
-				{
-					tmp_length = test_len;
-					pos1 = screen_base_pos + _custom_track0[idx];// pp_prev._point0;
-					pos2 = screen_base_pos + _custom_track1[idx];// pp_prev._point1;
-					pos3 = screen_base_pos + _custom_track1[idx+1];// pp_cur._point1;
-					pos4 = screen_base_pos + _custom_track0[idx+1];// pp_cur._point0;
-					uv0 = uv_org + _custom_track0[idx] / txt_size;
-					uv1 = uv_org + _custom_track1[idx] / txt_size;
-					uv2 = uv_org + _custom_track1[idx+1] / txt_size;
-					uv3 = uv_org + _custom_track0[idx+1] / txt_size;
-                         ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
-					if (test_len==real_length)
-					{
-						value_point0 = _custom_track0[idx];
-						value_point1 = _custom_track1[idx];
-						dir_thumb0 = _custom_track0[idx + 1] - _custom_track0[idx];
-						dir_thumb0 = _custom_track1[idx + 1] - _custom_track1[idx];
-						break;
-					}
-					idx++;
-				}
-				else
-				{
-					float delta = test_len-real_length ;
-					auto cur_seg = _custom_track_segment[idx];
-					delta = cur_seg - delta;
-					auto dir0 = _custom_track0[idx + 1]- _custom_track0[idx];
-					auto dir0_nm = leng_of_imv(dir0);
-					auto dir1 = _custom_track1[idx + 1] - _custom_track1[idx];
-					auto dir1_nm = leng_of_imv(dir1);
-					value_point0 = _custom_track0[idx ] + dir0*(delta / dir0_nm);
-					value_point1 = _custom_track1[idx ] + dir1*(delta / dir1_nm);
-					dir_thumb0 = dir0;
-					dir_thumb1 = dir1;
-					pos1 = screen_base_pos + _custom_track0[idx];
-					pos2 = screen_base_pos + _custom_track1[idx];
-					pos3 = screen_base_pos + value_point1;
-					pos4 = screen_base_pos + value_point0;
-					uv0 = uv_org + _custom_track0[idx] / txt_size;
-					uv1 = uv_org + _custom_track1[idx] / txt_size;
-					uv2 = uv_org + value_point1 / txt_size;
-					uv3 = uv_org + value_point0 /txt_size;
-                         ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
-					break;
-				}
-			}
-		}
-		else
+          if( 0 == _custom_trace_length ) return; //第一次进入random时判断
+          float tmp_length = 0.f;
+          int idx = 0;
+          float real_length = _custom_trace_length*_slider_pt._progress_nml;
+          ImVec2 txt_size( hd_gp_texture_width, hd_gp_texture_height );
+          ImVec2 uv_org = ImVec2( ( hd_text_cd[ txt_hd_id ]._x0 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y0 ) / hd_gp_texture_height );
+          for( auto seg_unit : _custom_track_segment )
+          {
+               auto test_len = tmp_length + seg_unit;
+               if( test_len <= real_length )
+               {
+                    tmp_length = test_len;
+                    pos1 = screen_base_pos + _custom_track0[ idx ];// pp_prev._point0;
+                    pos2 = screen_base_pos + _custom_track1[ idx ];// pp_prev._point1;
+                    pos3 = screen_base_pos + _custom_track1[ idx + 1 ];// pp_cur._point1;
+                    pos4 = screen_base_pos + _custom_track0[ idx + 1 ];// pp_cur._point0;
+                    uv0 = uv_org + _custom_track0[ idx ] / txt_size;
+                    uv1 = uv_org + _custom_track1[ idx ] / txt_size;
+                    uv2 = uv_org + _custom_track1[ idx + 1 ] / txt_size;
+                    uv3 = uv_org + _custom_track0[ idx + 1 ] / txt_size;
+                    ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
+                    if( test_len == real_length )
+                    {
+                         value_point0 = _custom_track0[ idx ];
+                         value_point1 = _custom_track1[ idx ];
+                         dir_thumb0 = _custom_track0[ idx + 1 ] - _custom_track0[ idx ];
+                         dir_thumb0 = _custom_track1[ idx + 1 ] - _custom_track1[ idx ];
+                         break;
+                    }
+                    idx++;
+               }
+               else
+               {
+                    float delta = test_len - real_length;
+                    auto cur_seg = _custom_track_segment[ idx ];
+                    delta = cur_seg - delta;
+                    auto dir0 = _custom_track0[ idx + 1 ] - _custom_track0[ idx ];
+                    auto dir0_nm = leng_of_imv( dir0 );
+                    auto dir1 = _custom_track1[ idx + 1 ] - _custom_track1[ idx ];
+                    auto dir1_nm = leng_of_imv( dir1 );
+                    value_point0 = _custom_track0[ idx ] + dir0*( delta / dir0_nm );
+                    value_point1 = _custom_track1[ idx ] + dir1*( delta / dir1_nm );
+                    dir_thumb0 = dir0;
+                    dir_thumb1 = dir1;
+                    pos1 = screen_base_pos + _custom_track0[ idx ];
+                    pos2 = screen_base_pos + _custom_track1[ idx ];
+                    pos3 = screen_base_pos + value_point1;
+                    pos4 = screen_base_pos + value_point0;
+                    uv0 = uv_org + _custom_track0[ idx ] / txt_size;
+                    uv1 = uv_org + _custom_track1[ idx ] / txt_size;
+                    uv2 = uv_org + value_point1 / txt_size;
+                    uv3 = uv_org + value_point0 / txt_size;
+                    ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
+                    break;
+               }
+          }
+		/*else
 		{
 			if (en_horizontal == _slider_pt._direction_item)
 			{
@@ -266,7 +256,7 @@ namespace auto_future
 				uv3.y = uv2.y - _slider_pt._progress_nml*(uv2.y - uv3.y);
 			}
                ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
-		}
+		}*/
 		/************************************************thumb**************************************************/
 		if (!_slider_pt._thumb_visible) return;
 		auto tb_height = _slider_pt._tb_height;

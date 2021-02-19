@@ -15,6 +15,7 @@ namespace auto_future
 		vector<string> _arg_list;
 		int _screen_width = { SCREEN_W }, _screen_height = { SCREEN_H },_screen_posx={0},_screen_posy={0};
 		float _win_width = { SCREEN_W }, _win_height = { SCREEN_H };
+		int monitor_id={0};
 		base_ui_component* _proot = { NULL };
 		float _wposx=0.f, _wposy=0.f;
 		shared_ptr<screen_image_distortion> _pscr_ds;
