@@ -37,13 +37,9 @@ void main()
 )glsl";
 namespace auto_future
 {
-     ps_shader ft_hud_obj::_phud_sd = make_shared<af_shader>( hud_sd_vs, hud_sd_fs );
-     ps_primrive_object ft_hud_obj::_ps_prm = make_shared<primitive_object>();
-     ft_hud_obj::assist::assist()
-     {
-          _ps_prm->set_ele_format( { 3, 2 } );
-          _ps_prm->load_vertex_data( vertices, sizeof( vertices ) / sizeof( float ) );
-     }
+     ps_shader ft_hud_obj::_phud_sd =nullptr;
+     ps_primrive_object ft_hud_obj::_ps_prm = nullptr;
+     
      ft_hud_obj::ft_hud_obj()
      {
           /*if( !_phud_sd )
@@ -97,6 +93,13 @@ namespace auto_future
           if (iat!=g_mtexture_list.end())
           {
                _pat_image = iat->second;
+          }
+          if( !ft_hud_obj::_phud_sd )
+          {
+               ft_hud_obj::_phud_sd = make_shared<af_shader>( hud_sd_vs, hud_sd_fs );
+               ft_hud_obj::_ps_prm = make_shared<primitive_object>();
+               _ps_prm->set_ele_format( { 3, 2 } );
+               _ps_prm->load_vertex_data( vertices, sizeof( vertices ) / sizeof( float ) );
           }
      }
 

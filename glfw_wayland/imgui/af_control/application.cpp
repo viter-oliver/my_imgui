@@ -99,7 +99,8 @@ namespace auto_future
 #if !defined(IMGUI_WAYLAND)
 		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", NULL, NULL);
 #else
-		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", glfwGetMonitor_by_id(monitor_id), NULL);
+        //glfwGetMonitor_by_id(monitor_id)
+		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", NULL, NULL);
 #endif
         glfwSetWindowPos(_window,_screen_posx,0);
 

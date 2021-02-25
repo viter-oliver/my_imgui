@@ -16,12 +16,7 @@ namespace auto_future
           static ps_shader _phud_sd;
           static ps_primrive_object _ps_prm; 
           ps_af_texture _pat_image;
-          struct assist
-          {
-
-               assist();
-          };
-          static assist ass;
+          
      public:
 
           ft_hud_obj();

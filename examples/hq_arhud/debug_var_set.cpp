@@ -106,7 +106,7 @@ void init_var_set_fifo()
 					}
 					else
 					{
-                              buff_queue[ _front_id ][ rlen - 1 ] = '\0';
+                              buff_queue[ _front_id ][ rlen - 2 ] = '\0';
                               printf( "recieve cmd:%s\n", buff_queue[ _front_id ] );
                               unsigned int front_next_id = _front_id + 1;
                               front_next_id %= queque_len;

@@ -16,11 +16,6 @@ namespace auto_future
                                 ( float, _width, {100.f} ) )
           static ps_shader _phud_sd;
           static ps_primrive_object _ps_prm;
-          struct assist
-          {
-               assist();
-          };
-          static assist ass;
           ps_af_texture _pat_image;
      public:
           ft_hud_4_time_curve();

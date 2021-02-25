@@ -85,6 +85,15 @@ extern AFG_EXPORT base_ui_component*  get_aliase_ui_control(string prp_aliase_na
 extern bs_prp_dic g_base_prp_dic;
 extern bool AFG_EXPORT prp_is_catched_by_base_prp_type( prop_ele_position& prp_pos, base_prp_type& base_prp );
 extern bool AFG_EXPORT cover_common_value( string name_of_common_value );
+/***/template<class T> bool set_property_aliase_value_T(string prp_aliase_name, T pvalue )
+{
+     return set_property_aliase_value( prp_aliase_name, &pvalue );
+}
+
+template<> inline bool set_property_aliase_value_T( string prp_aliase_name, string pvalue )
+{
+     return set_property_aliase_value( prp_aliase_name, (void*)pvalue.c_str() );
+}
 template<class T> bool get_prop_fd_value( prop_ele_position& pep, T& pvalue )
 {
      auto& pgidx = pep._page_index;

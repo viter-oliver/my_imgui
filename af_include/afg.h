@@ -26,5 +26,6 @@
 #include "ft_sphere_3d.h"
 #include "ft_textblock.h"
 #include "ft_modeling_3d.h"
+#include "ft_video.h"
 //#include "ft_trajectory_box_3d.h"
 //#include "ft_fbx_assert_3d.h"

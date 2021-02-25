@@ -214,6 +214,9 @@
     <ClCompile Include="rescontainer_manager.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
+    <ClCompile Include="ft_video.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\imconfig.h">

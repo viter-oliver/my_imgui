@@ -174,7 +174,26 @@ GLFWAPI GLFWwindow* glfwCreateWindow(int width, int height,
     window->videoMode.greenBits   = fbconfig.greenBits;
     window->videoMode.blueBits    = fbconfig.blueBits;
     window->videoMode.refreshRate = _glfw.hints.refreshRate;
-
+	if (!monitor)
+	{
+		int mcount=0;
+        _GLFWmonitor** ppmonitors=glfwGetMonitors(&mcount);
+		printf("monitor_count=%d\n",mcount);
+		for (int ix = 0; ix < mcount; ++ ix)
+		{
+		    int mwidth=ppmonitors[ix]->modes[0].width;
+		    int mheight=ppmonitors[ix]->modes[0].height;
+			if(mwidth==width&&mheight==height)
+			{
+			    monitor=ppmonitors[ix];
+				break;
+			}
+		}
+		if (!monitor)
+		{
+			monitor=ppmonitors[0];
+		}
+	}
     window->monitor     = (_GLFWmonitor*) monitor;
     window->resizable   = wndconfig.resizable;
     window->decorated   = wndconfig.decorated;

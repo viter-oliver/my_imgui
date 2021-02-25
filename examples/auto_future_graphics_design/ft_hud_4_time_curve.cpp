@@ -59,38 +59,9 @@ void main()
 
 namespace auto_future
 {
-     ps_shader ft_hud_4_time_curve::_phud_sd = make_shared<af_shader>( hud_sd_4_curve_vs, hud_sd_4_curve_fs );
-     ps_primrive_object ft_hud_4_time_curve::_ps_prm = make_shared<primitive_object>();
+     ps_shader ft_hud_4_time_curve::_phud_sd = nullptr;
+     ps_primrive_object ft_hud_4_time_curve::_ps_prm = nullptr;
 
-     ft_hud_4_time_curve::assist::assist()
-     {
-          int curve_len = 100;
-          float unit_len = 1500.f;
-          auto point_cnt = curve_len * 2 + 2;
-          int demension = 5;
-          auto data_cnt = point_cnt*demension;
-          GLfloat* vertices = new GLfloat[ data_cnt ];
-          float uv_unit = 1 / curve_len;
-          for( int ix = 0; ix < curve_len + 1; ++ix )
-          {
-               auto base_id = ix * 2 * demension;
-               vertices[ base_id ] = 0;//x->
-               vertices[ base_id + 1 ] = 0;//y->
-               vertices[ base_id + 2 ] = ix*unit_len;//z->
-               vertices[ base_id + 3 ] = 0;
-               vertices[ base_id + 4 ] = uv_unit * ix;
-
-               vertices[ base_id + 5 ] = 1;//x->
-               vertices[ base_id + 6 ] = 0;//y->
-               vertices[ base_id + 7 ] = ix*unit_len;//z->
-               vertices[ base_id + 8 ] = 1;
-               vertices[ base_id + 9 ] = uv_unit * ix;
-          }
-
-          ft_hud_4_time_curve::_ps_prm->set_ele_format( { 3, 2 } );
-          ft_hud_4_time_curve::_ps_prm->load_vertex_data( vertices, data_cnt );
-          delete[] vertices;
-     }
      ft_hud_4_time_curve::ft_hud_4_time_curve()
      {
           /*if( !_phud_sd )
@@ -130,6 +101,7 @@ namespace auto_future
 
      ft_hud_4_time_curve::~ft_hud_4_time_curve()
      {
+
      }
      void ft_hud_4_time_curve::link()
      {
@@ -137,6 +109,37 @@ namespace auto_future
           if( iat != g_mtexture_list.end() )
           {
                _pat_image = iat->second;
+          }         
+          if( !ft_hud_4_time_curve::_phud_sd )
+          {
+              ft_hud_4_time_curve::_phud_sd = make_shared<af_shader>( hud_sd_4_curve_vs, hud_sd_4_curve_fs );
+              ft_hud_4_time_curve::_ps_prm = make_shared<primitive_object>();
+              int curve_len = 100;
+              float unit_len = 1500.f;
+              auto point_cnt = curve_len * 2 + 2;
+              int demension = 5;
+              auto data_cnt = point_cnt*demension;
+              GLfloat* vertices = new GLfloat[ data_cnt ];
+              float uv_unit = 1 / curve_len;
+              for( int ix = 0; ix < curve_len + 1; ++ix )
+              {
+                   auto base_id = ix * 2 * demension;
+                   vertices[ base_id ] = 0;//x->
+                   vertices[ base_id + 1 ] = 0;//y->
+                   vertices[ base_id + 2 ] = ix*unit_len;//z->
+                   vertices[ base_id + 3 ] = 0;
+                   vertices[ base_id + 4 ] = uv_unit * ix;
+
+                   vertices[ base_id + 5 ] = 1;//x->
+                   vertices[ base_id + 6 ] = 0;//y->
+                   vertices[ base_id + 7 ] = ix*unit_len;//z->
+                   vertices[ base_id + 8 ] = 1;
+                   vertices[ base_id + 9 ] = uv_unit * ix;
+              }
+
+              ft_hud_4_time_curve::_ps_prm->set_ele_format( { 3, 2 } );
+              ft_hud_4_time_curve::_ps_prm->load_vertex_data( vertices, data_cnt );
+              delete[] vertices;
           }
      }
 

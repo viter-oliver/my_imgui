@@ -215,6 +215,7 @@
     <ClCompile Include="ft_textblock.cpp" />
     <ClCompile Include="ft_trajectory_box_3d.cpp" />
     <ClCompile Include="ft_trans.cpp" />
+    <ClCompile Include="ft_video.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="miniz.c" />
     <ClCompile Include="ofbx.cpp" />

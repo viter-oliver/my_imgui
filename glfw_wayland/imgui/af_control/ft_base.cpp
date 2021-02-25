@@ -272,7 +272,14 @@ namespace auto_future
 		{
 			count = 1;
 		}
-		memcpy(pdest, pvalue,count * fd_ele._tpsz);
+		if (count>1&&fd_ele._type=="char")
+		{
+			strcpy( pdest, (char*)pvalue );
+		}
+		else
+		{
+			memcpy( pdest, pvalue, count * fd_ele._tpsz );
+		}
 		prop_ele_position cur_prp_ele_pos = { this, pg_id, fd_id};
 		calcu_bind_node(cur_prp_ele_pos);
 		return true;

@@ -53,6 +53,7 @@ static void geometry(void* data,
 
     snprintf(name, sizeof(name), "%s %s", make, model);
     monitor->name = strdup(name);
+	printf("monitor name:%s w=%d,h=%d\n",monitor->name,physicalWidth,physicalHeight);
 }
 
 static void mode(void* data,
@@ -71,7 +72,7 @@ static void mode(void* data,
     mode.greenBits = 8;
     mode.blueBits = 8;
     mode.refreshRate = refresh / 1000;
-
+    printf("mode w=%d,h=%d\n",width,height);
     monitor->modeCount++;
     monitor->modes =
         realloc(monitor->modes, monitor->modeCount * sizeof(GLFWvidmode));

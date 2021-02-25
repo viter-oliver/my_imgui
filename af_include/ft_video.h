@@ -16,11 +16,9 @@ namespace auto_future
                (af_vec3, _tin_clr ))
 		GLuint _txt_id = {0};
 		GLuint _pboIds[2];
-		int _txt_width, _txt_height;
+          int _txt_width = { 0 }, _txt_height = {0};
 		char _video_dev_name[name_len];
-#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 		bool _linked=false;
-#endif
 		void init_txt_obj();
 		void init_pbo();
 		void release_res();
@@ -30,6 +28,7 @@ namespace auto_future
 		void delink();
 		void draw();
 		void update_pixels(GLubyte* dst, int sz);
+          void update_text_from_image_buff( GLubyte* pimage_buff,int buff_len);
 		//GLuint get_txt_id(){ return _txt_id; }
 
 	};
