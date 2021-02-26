@@ -78,6 +78,7 @@ using ps_prp_ele_pos = shared_ptr<prop_ele_position>;
 using aliase_map = map<string, ps_prp_ele_pos>;
 extern aliase_map g_aliase_dic;
 extern bool AFG_EXPORT set_property_aliase_value(string prp_aliase_name, void* pvalue);
+extern bool AFG_EXPORT set_property_txt_aliase_value( string prp_aliase_name, int sub_id,int group_id=0);
 extern prop_ele_value_dic g_lazy_value_buff;
 extern bool AFG_EXPORT set_property_aliase_lazy_value( string prp_aliase_name, int during, void* pvalue );
 extern void AFG_EXPORT execute_lazy_value();

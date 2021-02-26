@@ -136,6 +136,11 @@ bool set_property_aliase_value(string prp_aliase_name, void* pvalue)
 	auto& prop_pos =*ialiase->second;
 	return prop_pos._pobj->set_prop_fd_value(prop_pos._page_index, prop_pos._field_index, pvalue);
 }
+bool set_property_txt_aliase_value( string prp_aliase_name, int sub_id, int group_id )
+{
+     af_vi2 txt_value = { group_id, sub_id };
+     return set_property_aliase_value( prp_aliase_name, (void*)&txt_value );
+}
 prop_ele_value_dic g_lazy_value_buff;
 bool set_property_aliase_lazy_value( string prp_aliase_name, int during, void* pvalue )
 {
