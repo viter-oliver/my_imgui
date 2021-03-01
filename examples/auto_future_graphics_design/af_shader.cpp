@@ -624,7 +624,7 @@ bool af_shader::uniform(string unf_name, float* pvalue)
 		glUniformMatrix4x3fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	default:
-		printf("unmatched type");
+		printf("unmatched type\n");
 		return false;
 	}
 	return true;
@@ -654,7 +654,7 @@ bool af_shader::uniform(string unf_name, int* pvalue)
 		glUniform4iv(unif._location, unif._size, pvalue);
 		break;
 	default:
-		printf("unmatched type");
+		printf("unmatched type\n");
 		return false;
 	}
 	return true;
@@ -710,7 +710,7 @@ bool af_shader::uniform(string unf_name, double* pvalue)
 		glUniformMatrix4x3dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	default:
-		printf("unmatched type");
+		printf("unmatched type\n");
 		return false;
 	}
 	return true;
@@ -730,10 +730,11 @@ bool af_shader::uniform(string unf_name, int ivalue)
 		glUniform1i(unif._location, ivalue);
 		break;
 	default:
-		printf("unmatched type");
+		printf("unmatched type\n");
 		return false;
 	}
 	return true;
 }
+
 
 maf_shader g_af_shader_list;

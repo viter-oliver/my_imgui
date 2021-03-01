@@ -139,8 +139,8 @@ bool allow_add_item( string& parent_type_name, string& child_type_name )
           { "ft_scene", "ft_particles_3d" },
           { "ft_scene", "ft_particles_effect_3d" },
           { "ft_scene", "ft_particles1_3d" },
-          { "ft_hud_projector", "ft_hud_obj" },
-          { "ft_hud_projector", "ft_hud_4_time_curve" },
+          { "ft_hud_projector", "ft_hud_obj_3d" },
+          { "ft_hud_projector", "ft_hud_4_time_curve_3d" },
           { "ft_modeling_3d", "ft_trans" },
           { "ft_material_3d", "ft_trans" },
           { "ft_listbox_ex", "ft_block" },
@@ -151,8 +151,8 @@ bool allow_add_item( string& parent_type_name, string& child_type_name )
           { "ft_listbox_ex", "ft_secne" },
      };
      if( parent_type_name == "ft_trans" 
-         || parent_type_name == "ft_hud_obj" 
-         || parent_type_name == "ft_hud_4_time_curve" )
+         || parent_type_name == "ft_hud_obj_3d" 
+         || parent_type_name == "ft_hud_4_time_curve_3d" )
      {
           return false;
      }

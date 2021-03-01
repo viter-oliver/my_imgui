@@ -205,8 +205,8 @@
     <ClCompile Include="file_res_edit.cpp" />
     <ClCompile Include="fonts_edit.cpp" />
     <ClCompile Include="ft_block.cpp" />
-    <ClCompile Include="ft_hud_4_time_curve.cpp" />
-    <ClCompile Include="ft_hud_obj.cpp" />
+    <ClCompile Include="ft_hud_4_time_curve_3d.cpp" />
+    <ClCompile Include="ft_hud_obj_3d.cpp" />
     <ClCompile Include="ft_hud_projector.cpp" />
     <ClCompile Include="ft_image_file.cpp" />
     <ClCompile Include="ft_image_play.cpp" />
@@ -285,8 +285,8 @@
     <ClInclude Include="..\..\af_include\ft_circle.h" />
     <ClInclude Include="..\..\af_include\ft_cube_3d.h" />
     <ClInclude Include="..\..\af_include\ft_fbx_assert_3d.h" />
-    <ClInclude Include="..\..\af_include\ft_hud_4_time_curve.h" />
-    <ClInclude Include="..\..\af_include\ft_hud_obj.h" />
+    <ClInclude Include="..\..\af_include\ft_hud_4_time_curve_3d.h" />
+    <ClInclude Include="..\..\af_include\ft_hud_obj_3d.h" />
     <ClInclude Include="..\..\af_include\ft_hud_projector.h" />
     <ClInclude Include="..\..\af_include\ft_image.h" />
     <ClInclude Include="..\..\af_include\ft_image_file.h" />

@@ -5,7 +5,7 @@
 #include "af_primitive_object.h"
 namespace auto_future
 {
-     class ft_hud_obj :
+     class ft_hud_obj_3d :
           public ft_base
      {
           DEF_STRUCT_WITH_INIT( pty_page, _pt_tb,
@@ -19,8 +19,8 @@ namespace auto_future
           
      public:
 
-          ft_hud_obj();
-          ~ft_hud_obj();
+          ft_hud_obj_3d();
+          ~ft_hud_obj_3d();
           void link();
           void draw();
           void set_transx( float transx )
@@ -36,5 +36,5 @@ namespace auto_future
                _pt_tb._tanslation_z = transz;
           }
      };
-     REGISTER_CONTROL( ft_hud_obj );
+     REGISTER_CONTROL( ft_hud_obj_3d );
 }

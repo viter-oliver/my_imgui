@@ -1,4 +1,4 @@
-#include "ft_hud_obj.h"
+#include "ft_hud_obj_3d.h"
 #include "ft_hud_projector.h"
 const char* hud_obj_shd_name = "sd_hud_obj";
 const char* hud_obj_prm_name = "prm_hud_obj";
@@ -37,10 +37,10 @@ void main()
 )glsl";
 namespace auto_future
 {
-     ps_shader ft_hud_obj::_phud_sd =nullptr;
-     ps_primrive_object ft_hud_obj::_ps_prm = nullptr;
+     ps_shader ft_hud_obj_3d::_phud_sd =nullptr;
+     ps_primrive_object ft_hud_obj_3d::_ps_prm = nullptr;
      
-     ft_hud_obj::ft_hud_obj()
+     ft_hud_obj_3d::ft_hud_obj_3d()
      {
           /*if( !_phud_sd )
           {
@@ -54,6 +54,7 @@ namespace auto_future
                _ps_prm->set_ele_format( { 3, 2 } );
                _ps_prm->load_vertex_data( vertices, sizeof( vertices ) / sizeof( float ) );
           }*/
+          _in_p._sizew = _in_p._sizeh = 1000.f;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           reg_property_handle( &_pt_tb, 0, [this]( void* member_address )
           {
@@ -82,28 +83,28 @@ namespace auto_future
 #endif
      }
 
-     ft_hud_obj::~ft_hud_obj()
+     ft_hud_obj_3d::~ft_hud_obj_3d()
      {
      
      }
 
-     void ft_hud_obj::link()
+     void ft_hud_obj_3d::link()
      {
           auto iat = g_mtexture_list.find( _pt_tb._attached_image );
           if (iat!=g_mtexture_list.end())
           {
                _pat_image = iat->second;
           }
-          if( !ft_hud_obj::_phud_sd )
+          if( !ft_hud_obj_3d::_phud_sd )
           {
-               ft_hud_obj::_phud_sd = make_shared<af_shader>( hud_sd_vs, hud_sd_fs );
-               ft_hud_obj::_ps_prm = make_shared<primitive_object>();
+               ft_hud_obj_3d::_phud_sd = make_shared<af_shader>( hud_sd_vs, hud_sd_fs );
+               ft_hud_obj_3d::_ps_prm = make_shared<primitive_object>();
                _ps_prm->set_ele_format( { 3, 2 } );
                _ps_prm->load_vertex_data( vertices, sizeof( vertices ) / sizeof( float ) );
           }
      }
 
-     void ft_hud_obj::draw()
+     void ft_hud_obj_3d::draw()
      {
           if (!_pat_image)
           {
@@ -117,6 +118,7 @@ namespace auto_future
           glm::vec3 cam_dir( pcenter->x, pcenter->y, pcenter->z );
           glm::vec3 cam_up( pup->x, pup->y, pup->z );
           glm::mat4 view = glm::lookAt( cam_pos, cam_dir, cam_up );
+          _phud_sd->use();
           _phud_sd->uniform( "view", glm::value_ptr( view ) );
           float w, h;
           p_prj->get_size( w, h );
@@ -128,10 +130,13 @@ namespace auto_future
                trans,
                glm::vec3( _pt_tb._tanslation_x, _pt_tb._tanslation_y, _pt_tb._tanslation_z )
                );
+          trans = glm::scale( trans, glm::vec3( _in_p._sizew, _in_p._sizeh,1 ) );
           _phud_sd->uniform( "model", glm::value_ptr( trans ) );
-          _phud_sd->use();
+          glActiveTexture( GL_TEXTURE0 );
+          glBindTexture( GL_TEXTURE_2D, _pat_image->_txt_id() );
+          _phud_sd->uniform( "text_at", 0 );
           glBindVertexArray( _ps_prm->_vao );
-          glDrawArrays( GL_TRIANGLE_STRIP, 0, _ps_prm->_vertex_buf_len );
+          glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
      }
 
 }

@@ -401,7 +401,7 @@
 	"sourceSize": {"w":32,"h":32}
 },
 {
-	"filename": "ft_hud_4_time_curve.png",
+	"filename": "ft_hud_4_time_curve_3d.png",
 	"frame": {"x":92,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -409,7 +409,7 @@
 	"sourceSize": {"w":32,"h":32}
 },
 {
-	"filename": "ft_hud_obj.png",
+	"filename": "ft_hud_obj_3d.png",
 	"frame": {"x":126,"y":2,"w":32,"h":32},
 	"rotated": false,
 	"trimmed": false,
@@ -727,6 +727,6 @@
 	"format": "RGBA8888",
 	"size": {"w":1486,"h":202},
 	"scale": "1",
-	"smartupdate": "$TexturePacker:SmartUpdate:bf191af1037794adec984b9f0a3becb4$"
+	"smartupdate": "$TexturePacker:SmartUpdate:68670c1a7d0144dbfff82633659be3e7$"
 }
 }

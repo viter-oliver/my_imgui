@@ -106,9 +106,7 @@ public:
 	bool uniform(string unf_name, float* pvalue);
 	bool uniform(string unf_name, int* pvalue);
 	bool uniform(string unf_name, double* pvalue);
-
 	bool uniform(string unf_name, int ivalue);
-
 };
 using ps_shader = shared_ptr<af_shader>;
 typedef map<string,ps_shader> maf_shader;

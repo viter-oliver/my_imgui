@@ -328,13 +328,13 @@
     <ClCompile Include="rescontainer_manager.cpp">
       <Filter>res_manager</Filter>
     </ClCompile>
-    <ClCompile Include="ft_hud_obj.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
     <ClCompile Include="ft_hud_projector.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="ft_hud_4_time_curve.cpp">
+    <ClCompile Include="ft_hud_obj_3d.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_hud_4_time_curve_3d.cpp">
       <Filter>controls</Filter>
     </ClCompile>
   </ItemGroup>
@@ -663,13 +663,13 @@
     <ClInclude Include="rescontainer_manager.h">
       <Filter>res_manager</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_hud_obj.h">
-      <Filter>af_include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\af_include\ft_hud_projector.h">
       <Filter>af_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_hud_4_time_curve.h">
+    <ClInclude Include="..\..\af_include\ft_hud_obj_3d.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_hud_4_time_curve_3d.h">
       <Filter>af_include</Filter>
     </ClInclude>
   </ItemGroup>
