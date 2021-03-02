@@ -168,6 +168,10 @@ namespace auto_future
           glm::mat4 proj = glm::perspective( glm::radians( p_prj->get_fovy() ), aspect, p_prj->get_near(), p_prj->get_far() );
           _phud_sd->uniform( "projection", glm::value_ptr( proj ) );
           glm::mat4 trans;
+          trans = glm::translate(
+               trans,
+               glm::vec3( _pt_tb._tanslation_x, _pt_tb._tanslation_y, _pt_tb._tanslation_z )
+               );
           _phud_sd->uniform( "model", glm::value_ptr( trans ) );
           _phud_sd->uniform( "c[0]", _pt_tb._coeff );
           int ileft_border = _pt_tb._left_border;
