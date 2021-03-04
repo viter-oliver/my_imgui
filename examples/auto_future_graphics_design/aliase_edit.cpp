@@ -48,6 +48,10 @@ void aliase_edit::aliase_dic_view()
 		{
 			_popup_cap = edit_aliase;
 			_edit_prp_ele_pos = *_psel;
+               if( !_key_name.empty() )
+               {
+                    strcpy( sal_name_str, _key_name.c_str() );
+               }
 		}
 		ImGui::EndPopup();
 	}
@@ -77,6 +81,7 @@ void aliase_edit::popup_new_aliase()
 	if (_edit_prp_ele_pos._pobj)
 	{
 		ImGui::OpenPopup(_popup_cap.c_str());
+          
 	}
 	if (ImGui::BeginPopupModal(_popup_cap.c_str()))
 	{

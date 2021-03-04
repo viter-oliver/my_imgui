@@ -13,7 +13,10 @@ namespace auto_future
                                 ( char, _attached_image[ FILE_NAME_LEN ] ),
                                 ( float, _coeff[4] ),
                                 ( bool, _left_border, {true} ),
-                                ( float, _width, {100.f} ) )
+                                ( float, _width, { 100.f } ),
+                                ( float, _tanslation_x, { 0.f } ),
+                                ( float, _tanslation_y, { 0.f } ),
+                                ( float, _tanslation_z, { 0.f } ))
           static ps_shader _phud_sd;
           static ps_primrive_object _ps_prm;
           ps_af_texture _pat_image;
