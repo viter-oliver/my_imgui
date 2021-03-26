@@ -25,6 +25,25 @@ namespace auto_future
           ~ft_hud_4_time_curve_3d();
           void link();
           void draw();
+          void set_transx( float transx )
+          {
+               _pt_tb._tanslation_x = transx;
+          }
+          void set_transy( float transy )
+          {
+               _pt_tb._tanslation_y = transy;
+          }
+          void set_transz( float transz )
+          {
+               _pt_tb._tanslation_z = transz;
+          }
+          void set_coeff( float cf0, float cf1, float cf2, float cf3 )
+          {
+               _pt_tb._coeff[ 0 ] = cf0;
+               _pt_tb._coeff[ 1 ] = cf1;
+               _pt_tb._coeff[ 2 ] = cf2;
+               _pt_tb._coeff[ 3 ] = cf3;
+        }
      };
      REGISTER_CONTROL( ft_hud_4_time_curve_3d );
 }
