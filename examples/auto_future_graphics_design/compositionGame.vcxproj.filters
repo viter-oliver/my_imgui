@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="imgui">
+      <UniqueIdentifier>{20b90ce4-7fcb-4731-b9a0-075f875de82d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{f18ab499-84e1-499f-8eff-9754361e0e52}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="gl3w">
+      <UniqueIdentifier>{42f99867-3108-43b8-99d0-fabefaf1f2e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="controls">
+      <UniqueIdentifier>{4af6253d-cf2c-4816-ad92-39a212d68b1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="user_imgui">
+      <UniqueIdentifier>{e6f8508e-b52e-415c-a22a-78b2d55e923d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="res">
+      <UniqueIdentifier>{4563ab87-9f09-4267-a43d-fda2a4512162}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="render_utilities">
+      <UniqueIdentifier>{8c38a201-8098-494d-9e3b-5dd3905a6a26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="soil">
+      <UniqueIdentifier>{a04a2d92-1ed4-4bd1-8531-5f50612cdf16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="af_include">
+      <UniqueIdentifier>{8e637091-33e1-4975-ab02-1192d80ea1a5}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\imgui.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_glfw_gl3.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libs\gl3w\GL\gl3w.c">
+      <Filter>gl3w</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\imgui_draw.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_base.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\iguidock.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\imgui_demo.cpp">
+      <Filter>imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\image_DXT.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\image_helper.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\SOIL.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\soil\stb_image_aug.c">
+      <Filter>soil</Filter>
+    </ClCompile>
+    <ClCompile Include="python_interpreter.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="af_font_res_set.cpp">
+      <Filter>render_utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\imgui_node_graph_test.cpp">
+      <Filter>user_imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="af_timer.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="compositionGame.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_essay.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_paragraph.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+    <ClCompile Include="ft_sentence.cpp">
+      <Filter>controls</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\imconfig.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\imgui.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_glfw_gl3.h">
+      <Filter>sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\gl3w\GL\gl3w.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libs\gl3w\GL\glcorearb.h">
+      <Filter>gl3w</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\imgui_internal.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\texture.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\imguidock.h">
+      <Filter>imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>res</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\image_DXT.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\image_helper.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\SOIL.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stb_image_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stbi_DDS_aug.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h">
+      <Filter>soil</Filter>
+    </ClInclude>
+    <ClInclude Include="python_interpreter.h">
+      <Filter>render_utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_font_res_set.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\af_type.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\ft_base.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\property_utilities.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\af_include\control_common_def.h">
+      <Filter>af_include</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_essay.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_sentence.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+    <ClInclude Include="ft_paragraph.h">
+      <Filter>controls</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\README.txt" />
+    <None Include="internal_texture_dataformat.json">
+      <Filter>res</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="auto_future_graphics_design.rc">
+      <Filter>res</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="internal_texture_dataformat.png">
+      <Filter>res</Filter>
+    </Image>
+    <Image Include="af_gd.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Font Include="FZLanTingHeiS-R-GB.TTF" />
+  </ItemGroup>
+</Project>

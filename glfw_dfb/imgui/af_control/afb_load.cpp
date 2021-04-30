@@ -16,6 +16,8 @@
 #include "af_model.h"
 #include "af_bind.h"
 #include "af_state_manager.h"
+#include "af_feedback.h"
+#include "af_playlist_group.h"
 #define DXT5_DECOMPRESSED
 #ifdef DXT5_DECOMPRESSED
 #define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
@@ -132,7 +134,6 @@ void afb_load::load_afb(const char* afb_file)
 	auto obj_format = obj_w.via.array.ptr[en_output_bin_format];
 	g_output_bin_format._txt_fmt = static_cast<texture_format>(obj_format.via.array.ptr[0].as<int>());
 	g_output_bin_format._pgm_fmt = static_cast<program_format>(obj_format.via.array.ptr[1].as<int>());
-       g_cur_texture_id_index=obj_w.via.array.ptr[en_vtextures_res_cidx].as<int>();
 	auto obj_res = obj_w.via.array.ptr[en_vtextures_res];
 	auto re_cnt = obj_res.via.array.size;
 	function<unsigned int(const char*, int, int, unsigned int,bool mipv)> f_gen_txt;
@@ -173,7 +174,7 @@ void afb_load::load_afb(const char* afb_file)
 		f_gen_txt = [](const char* ptxt_data, int iw, int ih, unsigned int bin_sz,bool mipv){
 			GLuint txt_id;
 			glGenTextures(1, &txt_id);
-			printf("gen txtid:%u\n", txt_id);
+			//printf("gen txtid:%u\n", txt_id);
 			glBindTexture(GL_TEXTURE_2D, txt_id);
 			glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 			glEnable(GL_BLEND);
@@ -201,9 +202,8 @@ void afb_load::load_afb(const char* afb_file)
 	}
 	for (size_t ix = 0; ix < re_cnt; ix++)
 	{
-		g_vres_texture_list.emplace_back();
-		int cur_pos = g_vres_texture_list.size() - 1;
-		res_texture_list& res_unit = g_vres_texture_list[cur_pos];
+          g_vres_texture_list.emplace_back( make_shared<res_texture_list>() );
+		res_texture_list& res_unit = *g_vres_texture_list.back();
 		auto bin_res_unit = obj_res.via.array.ptr[ix];
 		auto txt_name = bin_res_unit.via.array.ptr[0];
 		auto txt_name_sz = txt_name.via.str.size;
@@ -291,7 +291,7 @@ void afb_load::load_afb(const char* afb_file)
 			thread th_lod_res([&](string fnm){
 				ifstream ifs;
 				ifs.open(fnm, ios::binary);
-				printf("res name:%s\n", fnm.c_str());
+				//printf("res name:%s\n", fnm.c_str());
 				auto res_size = ifs.tellg();
 				ifs.seekg(0, ios::end);
 				res_size = ifs.tellg() - res_size;
@@ -721,6 +721,24 @@ void afb_load::load_afb(const char* afb_file)
 			ps_trans->_easing_func = oseasing_fun.as<int>();
 			mtrans[tkey] = ps_trans;
 		}
+          auto oplaylist_list = omstm.via.array.ptr[ 6 ];
+          auto& playlist_list = stm._playlist_list;
+          auto oplstlst_sz = oplaylist_list.via.array.size;
+          for( size_t jj = 0; jj < oplstlst_sz; jj++ )
+          {
+               auto oplaylist = oplaylist_list.via.array.ptr[ jj ];
+               playlist_list.emplace_back();
+               auto& playlist = playlist_list[ jj ];
+               auto plsz = oplaylist.via.array.size;
+               for( size_t ix = 0; ix < plsz;ix++ )
+               {
+                    auto otran = oplaylist.via.array.ptr[ ix ];
+                    playlist.emplace_back();
+                    auto& plu = playlist[ ix ];
+                    plu._from = otran.via.array.ptr[ 0 ].as<int>();
+                    plu._to=otran.via.array.ptr[ 1 ].as<int>();
+               }
+          }
 		g_mstate_manager[mskey] = ps_stm;
 	}
      TIME_CHECK(staterans list res)
@@ -756,4 +774,61 @@ void afb_load::load_afb(const char* afb_file)
 
      }
 	TIME_CHECK(commonvalue list res)
+	auto obj_feedback_list = obj_w.via.array.ptr[en_feedback_list];
+	auto fdsz = obj_feedback_list.via.array.size;
+	for (size_t ix = 0; ix < fdsz;ix++)
+	{
+		 auto ofdv_u = obj_feedback_list.via.array.ptr[ix];
+		 auto omtl_key = ofdv_u.via.array.ptr[0];
+		 auto oprm_key = ofdv_u.via.array.ptr[1];
+		 string mtl_key, prm_key;
+		 auto mtl_key_sz = omtl_key.via.str.size;
+		 mtl_key.resize(mtl_key_sz);
+		 memcpy(&mtl_key[0], omtl_key.via.str.ptr, mtl_key_sz);
+		 const auto& imtl = g_material_list.find(mtl_key);
+		 if (imtl == g_material_list.end())
+		 {
+			 printf("invalid material name:%s for the current feedback\n", mtl_key.c_str());
+			 continue;
+		 }
+		 auto prm_key_sz = oprm_key.via.str.size;
+		 prm_key.resize(prm_key_sz);
+		 memcpy(&prm_key[0], oprm_key.via.str.ptr, prm_key_sz);
+		 const auto& iprm = g_primitive_list.find(prm_key);
+		 if (iprm == g_primitive_list.end())
+		 {
+			 printf("invalid primitive name:%s for the current feedback\n", prm_key.c_str());
+			 continue;
+		 }
+		 feedback_key fkey = { mtl_key, prm_key };
+		 g_feedback_list[fkey] = make_shared<af_feedback>(imtl->second, iprm->second);
+	}
+	TIME_CHECK(feedback list)
+	auto obj_playlist_group_list = obj_w.via.array.ptr[en_playlist_group_list];
+	fdsz = obj_playlist_group_list.via.array.size;
+	for (size_t ix = 0; ix < fdsz; ix++)
+	{
+		auto oplg = obj_playlist_group_list.via.array.ptr[ix];
+		auto oplg_key = oplg.via.array.ptr[0];
+		auto oplg_u = oplg.via.array.ptr[1];
+		string plg_key;
+		auto plg_key_sz = oplg_key.via.str.size;
+		plg_key.resize(plg_key_sz);
+		memcpy(&plg_key[0], oplg_key.via.str.ptr, plg_key_sz);
+		auto ps_plg_list = make_shared<playlist_unit_list>();
+		g_playlist_group_list[plg_key] = ps_plg_list;
+		auto plg_u_sz = oplg_u.via.array.size;
+		for (size_t iy = 0; iy < plg_u_sz;iy++)
+		{
+			 auto oplg = oplg_u.via.array.ptr[iy];
+			 auto ostm = oplg.via.array.ptr[0];
+			 string stm_name;
+			 auto ostm_sz = ostm.via.str.size;
+			 stm_name.resize(ostm_sz);
+			 memcpy(&stm_name[0], ostm.via.str.ptr, ostm_sz);
+			 auto oplaylist_id = oplg.via.array.ptr[1];
+			 playlist_unit plu = { stm_name, oplaylist_id.as<int>() };
+			 ps_plg_list->emplace_back(plu);
+		}
+	}
 }

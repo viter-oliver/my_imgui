@@ -1,0 +1,2 @@
+/opt/cluster-qt/2.5.3/sysroots/x86_64-sdrvsdk-linux/usr/bin/aarch64-sdrv-linux/aarch64-sdrv-linux-ar qc ../../afg_sdk/lib/libmessage_lib.a  CMakeFiles/message_lib.dir/msg_host_n.cpp.o
+/opt/cluster-qt/2.5.3/sysroots/x86_64-sdrvsdk-linux/usr/bin/aarch64-sdrv-linux/aarch64-sdrv-linux-ranlib ../../afg_sdk/lib/libmessage_lib.a

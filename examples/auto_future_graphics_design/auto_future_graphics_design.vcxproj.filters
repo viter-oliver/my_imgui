@@ -546,9 +546,6 @@
     <ClInclude Include="..\..\af_include\ft_cube_3d.h">
       <Filter>af_include</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\af_include\ft_fbx_assert_3d.h">
-      <Filter>af_include</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\af_include\ft_image.h">
       <Filter>af_include</Filter>
     </ClInclude>

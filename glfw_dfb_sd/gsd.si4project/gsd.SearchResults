@@ -1,0 +1,6 @@
+---- dfb.native Matches (2 in 2 files) ----
+internal.h (src) line 205 : #define _GLFW_EGL_NATIVE_WINDOW window->dfb.native
+glfwCreateWindow in window.c (src) :     		window->dfb.native = fbCreateWindow(native_display, 0, 0,  width,  height );
+---- _GLFW_EGL_NATIVE_WINDOW Matches (2 in 2 files) ----
+_glfwCreateContextEGL in egl_context.c (src) :                                  _GLFW_EGL_NATIVE_WINDOW,
+internal.h (src) line 205 : #define _GLFW_EGL_NATIVE_WINDOW window->dfb.native

@@ -44,7 +44,10 @@ namespace auto_future
      
      ft_base::~ft_base()
      {
+#ifndef AFG_GAME
           removl_base_ui_component_ref( this );
+#endif // !AFG_GAME
+
      }
 
      void ft_base::draw()
@@ -287,8 +290,10 @@ namespace auto_future
           {
                memcpy( pdest, pvalue, count * fd_ele._tpsz );
           }
+#ifndef AFG_GAME
 		prop_ele_position cur_prp_ele_pos = { this, pg_id, fd_id};
 		calcu_bind_node(cur_prp_ele_pos);
+#endif
 		return true;
 	}
 	base_ui_component* ft_base::get_copy_of_object()
