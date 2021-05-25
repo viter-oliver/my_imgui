@@ -6,7 +6,7 @@ namespace auto_future
           public ft_base
      {
      public:
-          ft_paragraph();
+          ft_paragraph(wstring& wsparagraph);
           ~ft_paragraph();
      };
 }

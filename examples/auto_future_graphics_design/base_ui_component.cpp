@@ -467,6 +467,42 @@ static	string aliase_btn_cp = "  ##";
 		}
 	}
 	
+     void base_ui_component::draw_outline()
+     {
+          auto winpos = ImGui::GetWindowPos();
+          ImVec2 abpos = absolute_coordinate_of_base_pos();
+          ImVec2 pos[ 4 ];
+          string cur_cname = typeid( *this ).name();
+          cur_cname = cur_cname.substr( sizeof( "class autofuture::" ) );
+          ImVec2 asz = { _in_p._sizew, _in_p._sizeh };
+          if (cur_cname=="ft_base")
+          {
+               asz = { 10, 10 };
+          }
+          pos[0] = winpos + abpos;
+          pos[1] = pos[0]+ ImVec2( asz.x, 0.f );
+          pos[ 2 ] = pos[ 0 ] + asz;
+          pos[ 3 ] = pos[ 0 ] + ImVec2( 0.f, asz.y );
+          ImDrawList* draw_list = ImGui::GetWindowDrawList();
+          float alpha = 1.f;
+          if( !be_seen() )
+          {
+               alpha = 0.4f;
+          }
+
+          ImU32 col = ImGui::ColorConvertFloat4ToU32( ImVec4( 0.7, 0.7, 0.7, alpha ) );
+          float thickness = 0.8f;
+          if (_selected)
+          {
+               col = ImGui::ColorConvertFloat4ToU32( ImVec4( 1, 0, 0, alpha ) );
+          }
+         
+          draw_list->AddPolyline( pos, 4, col, true, thickness );
+          for (auto& bc:_vchilds)
+          {
+               bc->draw_outline();
+          }
+     }
 	void base_ui_component::init_property_from_json(Value& jvalue){
 
 		for (auto& prop_ele : _vprop_eles)

@@ -188,7 +188,8 @@ namespace auto_future
 		}
 	}
 
-	base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
+
+     base_ui_component* ft_base::get_hit_ui_object(float posx, float posy)
 	{
 		for (auto it = _vchilds.rbegin(); it != _vchilds.rend(); it++)
 		{

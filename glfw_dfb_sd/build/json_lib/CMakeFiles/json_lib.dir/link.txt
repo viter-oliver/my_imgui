@@ -1,2 +1,0 @@
-/opt/cluster-qt/2.5.3/sysroots/x86_64-sdrvsdk-linux/usr/bin/aarch64-sdrv-linux/aarch64-sdrv-linux-ar qc ../../afg_sdk/lib/libjson_lib.a  CMakeFiles/json_lib.dir/json/json_reader.cpp.o CMakeFiles/json_lib.dir/json/json_value.cpp.o CMakeFiles/json_lib.dir/json/json_writer.cpp.o
-/opt/cluster-qt/2.5.3/sysroots/x86_64-sdrvsdk-linux/usr/bin/aarch64-sdrv-linux/aarch64-sdrv-linux-ranlib ../../afg_sdk/lib/libjson_lib.a

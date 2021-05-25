@@ -156,6 +156,7 @@ namespace auto_future
 		*/
 		//virtual void draw_peroperty_page(int property_part = -1) = 0;
 		void draw_peropertys();
+          virtual void draw_outline();
 		//struct command_elemment;
 		bool is_selected()
 		{
@@ -554,6 +555,21 @@ namespace auto_future
 		}
 		
 		bool is_visible(){ return _in_p._visible; }
+          bool be_seen()
+          {
+               base_ui_component* pparnt = this;
+               do 
+               {
+                         if (!pparnt->is_visible())
+                         {
+                              return false;
+                         }
+                    
+               }
+               while( pparnt = pparnt->get_parent() );
+               return true;
+               
+          }
 		void set_visible(bool visible){ _in_p._visible = visible; }
 	};
 }

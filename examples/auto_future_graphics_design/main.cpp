@@ -119,6 +119,7 @@ show_output_format = false, show_model_list = false, show_world_space = false, \
 show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false, \
 show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false,\
 show_common_value_edit = false,show_feedback_edit=false,show_playlist_group=false;
+bool show_outline = false;
 bool show_project_file_strategy = false;
 enum en_editing_wd_state
 {
@@ -203,7 +204,7 @@ void pack_value_to_plainText( vector<BYTE>& plainText, DWORD valid_mis )
      DWORD* pvalid_pos = (DWORD*)&plainText[  8 ];
      *pvalid_pos = valid_mis;
 }
-#define _request_authentication
+//#define _request_authentication
 
 namespace afg_fs = boost::filesystem;
 
@@ -1144,6 +1145,10 @@ int main( int argc, char* argv[] )
                     { 
                          show_property_window = !show_property_window; 
                     }
+                    if( ImGui::MenuItem( "Outline window", NULL, show_outline))
+                    {
+                         show_outline = !show_outline;
+                    }
 				if (ImGui::MenuItem("Texture Resource Manager", NULL, show_texture_res_manager)) 
                     { 
                          show_texture_res_manager = !show_texture_res_manager; 
@@ -1252,7 +1257,7 @@ int main( int argc, char* argv[] )
 			{
 				prj_edit->clear_sel_item();
 			}
-
+               ImGui::Checkbox( "Show outline", &show_outline );
 			ImGui::EndMainMenuBar();
 		}
           
@@ -1453,11 +1458,15 @@ int main( int argc, char* argv[] )
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 0.f);
 			
-			ImGui::Begin("edit window", &show_edit_window, ImGuiWindowFlags_NoTitleBar );
+               ImGui::Begin( "edit window", &show_edit_window, ImVec2( 0, 0 ),0.5f, ImGuiWindowFlags_NoTitleBar );
 			//
 			if (_proot)
 			{
 				_proot->draw_frames();
+                    if( show_outline )
+                    {
+                         _proot->draw_outline();
+                    }
 			}			
 			
 			ImGuiContext& g = *GImGui;
@@ -1508,6 +1517,7 @@ int main( int argc, char* argv[] )
 			ImGui::End();
 			ImGui::PopStyleVar(2);
 		}
+          
 		if (show_world_space)
 		{
 			ImGui::Begin("World space", &show_world_space, ImVec2(400, 500));

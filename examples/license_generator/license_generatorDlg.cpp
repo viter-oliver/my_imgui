@@ -16,8 +16,9 @@
 
 // Clicense_generatorDlg dialog
 
-string ikey = "max&maj20190815x";
-unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
+string ikey = "autofuture&afgER";//"max&maj20190815x";
+//unsigned char iv[] = { 103, 35, 148, 239, 76, 213, 47, 118, 255, 222, 123, 176, 106, 134, 98, 92 };
+string iv = "123456qwaszx0000";
 string cur_dir;
 string getAppCurpath(void)
 {
@@ -122,7 +123,7 @@ void Clicense_generatorDlg::OnBnClickedOk()
 	AESModeOfOperation moo;
 	moo.set_key((unsigned char*)ikey.c_str());
 	moo.set_mode(MODE_CBC);
-	moo.set_iv(iv);
+	moo.set_iv((unsigned char*)iv.c_str());
 	vector<string> license_out;
 	license_out.resize(m_counts);
 	vector<BYTE> ptext;
@@ -131,6 +132,7 @@ void Clicense_generatorDlg::OnBnClickedOk()
 	memcpy(&ptext[8], &valid_sec, 4);
 	vector<BYTE> ctext;
 	ctext.resize(32);
+     char label_str[ 4 ] = { 'a', 'f', 'g', 'x' };
 	for (DWORD ix = 0; ix < m_counts;ix++)
 	{
 		memcpy(&ptext[4], &ix, 4);

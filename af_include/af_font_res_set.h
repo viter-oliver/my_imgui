@@ -314,10 +314,15 @@ namespace auto_future
 
 	
           int draw_wstring( ps_font_unit& pf_u, GLint fontSize,
-                                               af_vec2& start_pos, af_vec2& end_pos,
-                                               GLfloat scale, wstring& str_content,
-                                               const af_vec4& txt_col, float width,
-                                               int omit_rest, bool be_new );
+                              af_vec2& start_pos, af_vec2& end_pos,
+                              GLfloat scale, wstring& str_content,
+                              const af_vec4& txt_col, float width,
+                              int omit_rest, bool be_new );
+          int draw_wstring( ps_font_unit& pf_u, GLint fontSize,
+                            af_vec2& start_pos, af_vec2& end_pos,
+                            GLfloat scale, wstring& str_content,
+                            const af_vec4& txt_col, af_vec2&l_top_edge, 
+                            af_vec2&r_bottom_edge, float& line_spacing, bool be_new );
      };
 
 	extern shared_ptr<font_face_manager> g_pfont_face_manager;

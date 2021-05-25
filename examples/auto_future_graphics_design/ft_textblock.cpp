@@ -174,7 +174,42 @@ namespace auto_future
 		}
 #endif
 	}
-	bool ft_textblock::contains(float posx, float posy)
+
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+     void ft_textblock::draw_outline()
+     {
+          ImVec2 abpos = absolute_coordinate_of_base_pos();
+          ImVec2 winpos = ImGui::GetWindowPos();
+          ImVec2 dpos = abpos + winpos;
+          auto real_size = _txt_area.Max - _txt_area.Min;
+
+          ImVec2 draw_pos;
+          draw_pos.x = dpos.x - real_size.x*_txt_pt._txt_alignh_nml;
+          draw_pos.y = dpos.y - real_size.y*_txt_pt._txt_alignv_nml;
+          ImVec2 pos[ 4 ];
+          pos[ 0 ] = draw_pos;
+          pos[ 1 ] = { pos[0].x, pos[0].y + real_size.y };
+          pos[ 2 ] = { pos[0].x + real_size.x, pos[0].y + real_size.y };
+          pos[ 3 ] = { pos[0].x + real_size.x, pos[0].y };
+          ImDrawList* draw_list = ImGui::GetWindowDrawList();
+          ImU32 col = ImGui::ColorConvertFloat4ToU32( ImVec4( 0.7, 0.7, 0.7, 1.f ) );
+          float thickness = 1.f;
+          if( _selected )
+          {
+               col = ImGui::ColorConvertFloat4ToU32( ImVec4( 1, 0, 0, 1 ) );
+          }
+          if (!is_visible())
+          {
+               col = ImGui::ColorConvertFloat4ToU32( ImVec4( 0.5, 0.5, 0.5, 0.4 ) );
+          }
+          draw_list->AddPolyline( pos, 4, col, true, thickness );
+          for( auto& bc : _vchilds )
+          {
+               bc->draw_outline();
+          }
+     }
+#endif
+     bool ft_textblock::contains(float posx, float posy)
 	{
 		ImVec2 mouse_pos(posx, posy);
 		bool be_contain = _txt_area.Contains(mouse_pos);

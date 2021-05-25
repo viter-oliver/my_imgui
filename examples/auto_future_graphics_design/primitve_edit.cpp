@@ -196,9 +196,7 @@ void primitve_edit::draw_primitive_list()
 	}
 
 	if (ImGui::BeginPopupContextWindow())
-	{
-		
-			
+	{	
 		if (_pmobj&&ImGui::MenuItem("delete", NULL, false, _pmobj.use_count() == 2))
 		{
 			auto& item_del = g_primitive_list.find(_key_name);

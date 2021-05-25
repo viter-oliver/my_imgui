@@ -1,1 +1,0 @@
-extern EGLConfig choose_config(EGLDisplay egl_disp, const char* str);

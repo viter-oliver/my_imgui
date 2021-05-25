@@ -29,6 +29,10 @@ namespace auto_future
 		~ft_textblock(){}
 		void link();
 		void draw();
+
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+          void draw_outline();
+#endif
 		void set_content(const char* strct)
 		{
 			strcpy(_txt_pt._content, strct);

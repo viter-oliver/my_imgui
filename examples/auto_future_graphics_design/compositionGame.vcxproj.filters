@@ -64,9 +64,6 @@
     <ClCompile Include="..\..\soil\stb_image_aug.c">
       <Filter>soil</Filter>
     </ClCompile>
-    <ClCompile Include="python_interpreter.cpp">
-      <Filter>render_utilities</Filter>
-    </ClCompile>
     <ClCompile Include="af_font_res_set.cpp">
       <Filter>render_utilities</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="ft_essay.cpp">
-      <Filter>controls</Filter>
-    </ClCompile>
-    <ClCompile Include="ft_paragraph.cpp">
       <Filter>controls</Filter>
     </ClCompile>
     <ClCompile Include="ft_sentence.cpp">
@@ -135,9 +129,6 @@
     <ClInclude Include="..\..\soil\stbi_DDS_aug_c.h">
       <Filter>soil</Filter>
     </ClInclude>
-    <ClInclude Include="python_interpreter.h">
-      <Filter>render_utilities</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\af_include\af_font_res_set.h">
       <Filter>af_include</Filter>
     </ClInclude>
@@ -157,9 +148,6 @@
       <Filter>controls</Filter>
     </ClInclude>
     <ClInclude Include="ft_sentence.h">
-      <Filter>controls</Filter>
-    </ClInclude>
-    <ClInclude Include="ft_paragraph.h">
       <Filter>controls</Filter>
     </ClInclude>
   </ItemGroup>

@@ -35,6 +35,7 @@ public:
 			std::cerr << "Error::Texture could not load texture file:" << filename << std::endl;
 			return 0;
 		}
+          glBindBuffer( GL_PIXEL_UNPACK_BUFFER, 0 );
 		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, picWidth, picHeight, 
 			0, picFormat, GL_UNSIGNED_BYTE, imageData);
 		//glGenerateMipmap(GL_TEXTURE_2D);

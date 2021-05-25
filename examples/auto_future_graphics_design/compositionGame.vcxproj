@@ -100,7 +100,7 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(SolutionDir)\libs\glfw\lib-vc2010-32;$(SolutionDir)\..\freetype_lib;$(SolutionDir)\..\Assimp_lib;$(SolutionDir)\..\Python_2.7.2;$(SolutionDir)\..\boost_lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies> shlwapi.lib;opengl32.lib;glfw3.lib;assimp.lib;freetype_d.lib;python27_d.lib;HtmlHelp.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>shlwapi.lib;opengl32.lib;glfw3.lib;freetype_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
       <IgnoreSpecificDefaultLibraries>msvcrt.lib</IgnoreSpecificDefaultLibraries>
     </Link>
@@ -183,10 +183,8 @@
     <ClCompile Include="compositionGame.cpp" />
     <ClCompile Include="ft_base.cpp" />
     <ClCompile Include="ft_essay.cpp" />
-    <ClCompile Include="ft_paragraph.cpp" />
     <ClCompile Include="ft_sentence.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
-    <ClCompile Include="python_interpreter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\af_include\af_font_res_set.h" />
@@ -208,10 +206,8 @@
     <ClInclude Include="..\libs\gl3w\GL\gl3w.h" />
     <ClInclude Include="..\libs\gl3w\GL\glcorearb.h" />
     <ClInclude Include="ft_essay.h" />
-    <ClInclude Include="ft_paragraph.h" />
     <ClInclude Include="ft_sentence.h" />
     <ClInclude Include="imgui_impl_glfw_gl3.h" />
-    <ClInclude Include="python_interpreter.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
