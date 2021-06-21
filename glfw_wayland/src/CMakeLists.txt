@@ -5,7 +5,7 @@ set(common_HEADERS internal.h
                    "${GLFW_SOURCE_DIR}/include/GLFW/glfw3native.h")
 set(common_SOURCES context.c init.c input.c monitor.c  window.c)
 if (_GLFW_WAYLAND)
-    add_definitions(-DIMGUI_WAYLAND -D_GLFW_WAYLAND)
+    add_definitions(-DLINUX -DWL_EGL_PLATFORM -DIMGUI_WAYLAND -D_GLFW_WAYLAND)
     set(glfw_HEADERS ${common_HEADERS} wl_platform.h linux_joystick.h choose_config.h
                     posix_time.h posix_thread.h xkb_unicode.h egl_context.h)
     set(glfw_SOURCES ${common_SOURCES} wl_init.c wl_monitor.c wl_window.c
@@ -38,5 +38,6 @@ IF("$ENV{ARCH}" STREQUAL "arm64")
 ELSE()
    MESSAGE(STATUS "this is imx6 platform")
    add_definitions(-DIMX6_PLATFORM)
-   set(LIBRARY_OUTPUT_PATH ${GLFW_SOURCE_DIR}/../../arhud/ar_hud/e115/afg_sdk/lib)
+   #set(LIBRARY_OUTPUT_PATH ${GLFW_SOURCE_DIR}/../../arhud/ar_hud/e115/afg_sdk/lib)
+   set(LIBRARY_OUTPUT_PATH ${GLFW_SOURCE_DIR}/../../arhud/ar_hud/e115_test_new/afg_sdk/lib)
 ENDIF()

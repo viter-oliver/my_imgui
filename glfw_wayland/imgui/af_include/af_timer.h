@@ -133,9 +133,14 @@ namespace auto_future
 			if (timer_id < max_timer_num&&_timer_list_ex[timer_id]._handle)
 			{
 				_timer_list_ex[timer_id]._tp = steady_clock::now();
-                    _timer_list_ex[timer_id]._start=_timer_list_ex[timer_id]._tp ;
+                _timer_list_ex[timer_id]._start=_timer_list_ex[timer_id]._tp ;
 				_timer_list_ex[timer_id]._tvalue = tvalue;
 				_active_tm_ex_list[timer_id]=0;
+				auto iwid = _will_erase_id_list.find(timer_id);
+				if (iwid != _will_erase_id_list.end())
+				{
+					_will_erase_id_list.erase(iwid);
+				}
 				return true;
 			}
 			return false;

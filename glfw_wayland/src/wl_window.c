@@ -305,8 +305,8 @@ static GLFWbool createShellSurface(_GLFWwindow* window)
     //window->monitor->wl.output=get_wl_out_put(1);
 	wl_shell_surface_set_fullscreen(
 				window->wl.shellSurface,
-				0,
-				60,
+				WL_SHELL_SURFACE_FULLSCREEN_METHOD_DRIVER,
+				60000,
 				window->monitor->wl.output);
 	wl_shell_surface_set_user_data(window->wl.shellSurface, window->wl.surface);
 	//wl_shell_surface_set_maximized(window->wl.shellSurface, NULL);
@@ -713,10 +713,11 @@ void _glfwPlatformSetWindowMonitor(_GLFWwindow* window,
     if (monitor)
     {
         //monitor->wl.output=get_wl_out_put(1);
+        printf("#####_glfwPlatformSetWindowMonitor\n");
         wl_shell_surface_set_fullscreen(
             window->wl.shellSurface,
-            WL_SHELL_SURFACE_FULLSCREEN_METHOD_DEFAULT,
-            refreshRate * 1000, // Convert Hz to mHz.
+            WL_SHELL_SURFACE_FULLSCREEN_METHOD_DRIVER,
+           60000, // Convert Hz to mHz.
             monitor->wl.output);
         setIdleInhibitor(window, GLFW_TRUE);
     }

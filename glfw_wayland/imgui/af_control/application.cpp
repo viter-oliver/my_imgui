@@ -96,12 +96,8 @@ namespace auto_future
 	bool application::create_run()
 	{
 		GLFWwindow* _window = { NULL };
-#if !defined(IMGUI_WAYLAND)
-		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", NULL, NULL);
-#else
         //glfwGetMonitor_by_id(monitor_id)
 		_window = glfwCreateWindow(_screen_width, _screen_height, "Graphics app", NULL, NULL);
-#endif
         glfwSetWindowPos(_window,_screen_posx,0);
 
 		//glfwSetWindowPos(_window, -_screen_posx,_screen_posy);
