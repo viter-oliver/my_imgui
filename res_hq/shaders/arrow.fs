@@ -1,4 +1,5 @@
-//precision mediump float;
+#version 120
+precision mediump float;
 varying vec2 Textcoord;
 uniform sampler2D text;
 uniform float alpha;

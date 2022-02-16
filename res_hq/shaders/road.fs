@@ -1,4 +1,5 @@
-//precision mediump float;
+#version 120
+precision mediump float;
 varying vec2 Textcoord;
 varying vec2 posx;
 uniform float bdw;

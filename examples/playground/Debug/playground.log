@@ -1,30 +1,26 @@
-﻿Build started 2018/4/27 15:12:30.
-     1>Project "G:\GitHub\my_imgui\my_imgui\examples\playground\playground.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         D:\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /IG:\GitHub\my_imgui\my_imgui\examples\\..\glm /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\playground.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt playground.cpp
-         playground.cpp
-     1>g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(217): warning C4101: 'tst_int' : unreferenced local variable
-     1>g:\github\my_imgui\my_imgui\examples\playground\fab\factory.h(114): warning C4101: 'e' : unreferenced local variable
-                 g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(187) : see reference to function template instantiation 'std::unique_ptr<Base,std::default_delete<_Ty>> fab::Factory<Base,std::string>::Create<MyClass2&>(const Key &,MyClass2 &)' being compiled
-                 with
-                 [
-                     Base=MyClass
-         ,            _Ty=MyClass
-         ,            Key=std::string
-                 ]
-                 g:\github\my_imgui\my_imgui\examples\playground\playground.cpp(187) : see reference to function template instantiation 'std::unique_ptr<Base,std::default_delete<_Ty>> fab::Factory<Base,std::string>::Create<MyClass2&>(const Key &,MyClass2 &)' being compiled
-                 with
-                 [
-                     Base=MyClass
-         ,            _Ty=MyClass
-         ,            Key=std::string
-                 ]
-       Link:
-         D:\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"G:\GitHub\my_imgui\my_imgui\examples\Debug\playground.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"G:\GitHub\my_imgui\my_imgui\examples\Debug\playground.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"G:\GitHub\my_imgui\my_imgui\examples\Debug\playground.lib" /MACHINE:X86 Debug\playground.obj
-         Debug\stdafx.obj
-         playground.vcxproj -> G:\GitHub\my_imgui\my_imgui\examples\Debug\playground.exe
-     1>Done Building Project "G:\GitHub\my_imgui\my_imgui\examples\playground\playground.vcxproj" (Build target(s)).
-
-Build succeeded.
-
-Time Elapsed 00:00:01.67
+﻿  playground.cpp
+D:\GitHub\my_imgui\examples\playground\playground.cpp(313,13): warning C4018: “<”: 有符号/无符号不匹配
+D:\GitHub\my_imgui\examples\playground\playground.cpp(458,22): warning C4838: 从“int”转换到“char”需要收缩转换
+D:\GitHub\my_imgui\examples\playground\playground.cpp(458,22): warning C4309: “初始化”: 截断常量值
+D:\GitHub\my_imgui\examples\playground\playground.cpp(752,11): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“main::test_this *”
+D:\GitHub\my_imgui\examples\playground\playground.cpp(761,11): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“main::test_this1 *”
+D:\GitHub\my_imgui\examples\playground\playground.cpp(771,11): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“main::test_this2 *”
+D:\GitHub\my_imgui\examples\playground\playground.cpp(853,12): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“main::test_iner_class::iner_class *”
+D:\GitHub\my_imgui\examples\playground\playground.cpp(864,11): warning C4477: “printf”: 格式字符串“%x”需要类型“unsigned int”的参数，但可变参数 1 拥有了类型“void *”
+D:\GitHub\my_imgui\examples\playground\playground.cpp(574,14): warning C4101: “tettt”: 未引用的局部变量
+D:\GitHub\my_imgui\examples\playground\playground.cpp(563,10): warning C4101: “lgint”: 未引用的局部变量
+D:\GitHub\my_imgui\examples\playground\playground.cpp(935,6): warning C4101: “aaa”: 未引用的局部变量
+D:\GitHub\my_imgui\examples\playground\fab\factory.h(114,26): warning C4101: “e”: 未引用的局部变量
+D:\GitHub\my_imgui\examples\playground\playground.cpp(509): message : 查看对正在编译的函数 模板 实例化“std::unique_ptr<Base,std::default_delete<Base>> fab::Factory<Base,std::string>::Create<int>(const Key &,int &&)”的引用
+          with
+          [
+              Base=MyClass,
+              Key=std::string
+          ]
+D:\GitHub\my_imgui\examples\playground\playground.cpp(509): message : 查看对正在编译的函数 模板 实例化“std::unique_ptr<Base,std::default_delete<Base>> fab::Factory<Base,std::string>::Create<int>(const Key &,int &&)”的引用
+          with
+          [
+              Base=MyClass,
+              Key=std::string
+          ]
+  playground.vcxproj -> D:\GitHub\my_imgui\examples\Debug\playground.exe

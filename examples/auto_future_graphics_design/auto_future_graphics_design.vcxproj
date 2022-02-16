@@ -232,7 +232,6 @@
     <ClCompile Include="ft_textblock.cpp" />
     <ClCompile Include="ft_trans.cpp" />
     <ClCompile Include="ft_video.cpp" />
-    <ClCompile Include="GetMacByCmd.cpp" />
     <ClCompile Include="get_web_time.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="main.cpp" />

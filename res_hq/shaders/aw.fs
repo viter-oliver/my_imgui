@@ -1,4 +1,4 @@
-
+#version 120
 varying vec2 Textcoord;
 uniform sampler2D text;
 void main()

@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "choose_config.h": "c",
+        "glfw3.h": "c",
+        "soil.h": "c"
+    }
+}

@@ -105,7 +105,7 @@ namespace auto_future
 				{
 					if (omit_rest != en_no_omit)
 					{
-						if (cnt_char < cnt_char)
+						//if (cnt_char < cnt_char)
 						{
 							wstring omit_sign = omit_rest == en_omit_rest ? L" " : L"…";
 							load_chars(pf_u->_ft_face, *pfrp, omit_sign);

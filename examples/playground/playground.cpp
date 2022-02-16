@@ -380,8 +380,18 @@ void send_cmd_2_uart(u8* pbuff, int len)
                return _b;
           }
      };
+	 class icontext
+	 {
+
+	 };
+	 class jcontext :public icontext
+	 {
+
+	 };
 int _tmain(int argc, _TCHAR* argv[])
 {
+	Factory<icontext,int> fc_test;
+	fc_test.Register(100, [](jcontext& obj)->jcontext* {return &obj; });
 
      unsigned int tuint = 0x442;
      char* pdd = (char*)&tuint;

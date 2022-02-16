@@ -313,9 +313,6 @@
     <ClCompile Include="ft_trans.cpp">
       <Filter>controls</Filter>
     </ClCompile>
-    <ClCompile Include="GetMacByCmd.cpp">
-      <Filter>mac</Filter>
-    </ClCompile>
     <ClCompile Include="get_web_time.cpp">
       <Filter>web</Filter>
     </ClCompile>

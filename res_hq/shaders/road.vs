@@ -1,4 +1,5 @@
-//precision mediump float;
+#version 120
+precision mediump float;
 attribute vec3 aposition;
 attribute vec2 btextcoord;
 attribute vec3 anormal;

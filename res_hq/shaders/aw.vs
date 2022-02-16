@@ -1,3 +1,4 @@
+#version 120
 attribute vec3 aposition;
 attribute vec2 btextcoord;
 attribute vec3 anormal;
