@@ -16,6 +16,11 @@
 package com.huoshan.playerdj.CustomExoplayer;
 
 import static com.google.android.exoplayer2.util.Assertions.checkNotNull;
+import static com.google.common.primitives.Ints.min;
+
+import static java.lang.Math.PI;
+import static java.lang.Math.cos;
+import static java.lang.Math.sin;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -23,11 +28,13 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Path;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 import androidx.annotation.Nullable;
 import com.google.android.exoplayer2.C;
 import com.google.android.exoplayer2.util.GlUtil;
+import com.huoshan.playerdj.CustomView.CircleColumnChartView;
 import com.huoshan.playerdj.R;
 import java.io.IOException;
 import java.util.Locale;
@@ -40,9 +47,25 @@ import javax.microedition.khronos.opengles.GL10;
  */
 /* package */ public final class BitmapOverlayVideoProcessor
     implements VideoProcessingGLSurfaceView.VideoProcessor {
+  private static final int OVERLAY_HEIGHT = 512;
+  private static final int OVERLAY_WIDTH = OVERLAY_HEIGHT*4;
 
-  private static final int OVERLAY_WIDTH = 512;
-  private static final int OVERLAY_HEIGHT = 256;
+  private class LineSegment{
+    float mStartX,mStartY,mEndX,mEndY;
+    void setValue(float startX,float startY,float endX,float endY){
+      mStartX=startX;
+      mStartY=startY;
+      mEndX=endX;
+      mEndY=endY;
+    }
+  }
+  private final int mCols=512;
+  private double mUnitAngle=2*PI/mCols;
+  private LineSegment[] mLineSegments=new LineSegment[mCols];
+  private float mRadius=OVERLAY_HEIGHT*0.25F;
+  private float mMaxColumnHeight=mRadius;
+  private float cxL=OVERLAY_HEIGHT*0.5F,cyL=cxL;
+  private float cxR=OVERLAY_WIDTH-cxL,cyR=cyL;
 
   private final Context context;
   private final Paint paint;
@@ -69,8 +92,51 @@ import javax.microedition.khronos.opengles.GL10;
     //overlayBitmap = BitmapFactory.decodeFile("/sdcard/123.png");
     overlayCanvas = new Canvas(overlayBitmap);
     logoBitmap=BitmapFactory.decodeResource(this.context.getResources(), R.drawable.music_b);
+    for (int ix=0;ix<mLineSegments.length;++ix){
+      mLineSegments[ix]=new LineSegment();
+    }
   }
+  public void handleFloatArrayValues(float[] values, float maxValue) {
+    double inclination0=0.f;
+    int vCnt=min(values.length,mCols);
+    for (int ix = 0; ix < vCnt; ++ix) {
+      float bx= (float) (mRadius*cos(inclination0));
+      float by=(float) (mRadius*sin(inclination0));
+      float drawHeight=values[ix]*mMaxColumnHeight/maxValue;
+      float drawRadius=mRadius+drawHeight;
+      float tx=(float) (drawRadius*cos(inclination0));
+      float ty=(float) (drawRadius*sin(inclination0));
+      mLineSegments[ix].setValue(bx,by,tx,ty);
+      inclination0+=mUnitAngle;
+    }
+  }
+  private void drawCircleColumns(Canvas canvas){
+    Paint paint=new Paint();
+    paint.setStyle(Paint.Style.FILL_AND_STROKE);
+    paint.setColor(Color.BLACK);
+    paint.setAntiAlias(true);
+    //2 circles
+    canvas.drawCircle(cxL,cyL,mRadius,paint);
+    canvas.drawCircle(cxR,cyR,mRadius,paint);
+    float pw=(float) PI*mRadius*2/(float) mCols;
+    paint.setStrokeWidth(pw);
+    //2 circleColumns
+    Path path=new Path();
+    paint.setColor(Color.RED);
+    for (int ix=0;ix<mLineSegments.length;++ix){
+      path.moveTo(mLineSegments[ix].mStartX+cxL,mLineSegments[ix].mStartY+cyL);
+      path.lineTo(mLineSegments[ix].mEndX+cxL,mLineSegments[ix].mEndY+cyL);
+    }
+    canvas.drawPath(path, paint);
+    path.reset();
+    paint.setColor(Color.BLUE);
+    for (int ix=0;ix<mLineSegments.length;++ix){
+      path.moveTo(mLineSegments[ix].mStartX+cxR,mLineSegments[ix].mStartY+cyR);
+      path.lineTo(mLineSegments[ix].mEndX+cxR,mLineSegments[ix].mEndY+cyR);
+    }
+    canvas.drawPath(path, paint);
 
+  }
   @Override
   public void initialize() {
     try {
@@ -127,8 +193,9 @@ import javax.microedition.khronos.opengles.GL10;
     // Draw to the canvas and store it in a texture.
     String text = String.format(Locale.US, "%.02f", frameTimestampUs / (float) C.MICROS_PER_SECOND);
     overlayBitmap.eraseColor(Color.TRANSPARENT);
-    overlayCanvas.drawBitmap(logoBitmap, /* left= */ 32, /* top= */ 32, paint);
-    overlayCanvas.drawText(text, /* x= */ 200, /* y= */ 130, paint);
+    //overlayCanvas.drawBitmap(logoBitmap, /* left= */ 32, /* top= */ 32, paint);
+    //overlayCanvas.drawText(text, /* x= */ 200, /* y= */ 130, paint);
+    drawCircleColumns(overlayCanvas);
     GLES20.glBindTexture(GL10.GL_TEXTURE_2D, textures[0]);
     GLUtils.texSubImage2D(
         GL10.GL_TEXTURE_2D, /* level= */ 0, /* xoffset= */ 0, /* yoffset= */ 0, overlayBitmap);
