@@ -38,6 +38,8 @@ import com.huoshan.playerdj.CustomView.CircleColumnChartView;
 import com.huoshan.playerdj.R;
 import java.io.IOException;
 import java.util.Locale;
+import java.util.concurrent.atomic.AtomicInteger;
+
 import javax.microedition.khronos.opengles.GL10;
 //import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
 
@@ -61,7 +63,8 @@ import javax.microedition.khronos.opengles.GL10;
   }
   private final int mCols=512;
   private double mUnitAngle=2*PI/mCols;
-  private LineSegment[] mLineSegments=new LineSegment[mCols];
+  private LineSegment[][] mLineSegments=new LineSegment[2][mCols];
+  private AtomicInteger mFront=new AtomicInteger();
   private float mRadius=OVERLAY_HEIGHT*0.25F;
   private float mMaxColumnHeight=mRadius;
   private float cxL=OVERLAY_HEIGHT*0.5F,cyL=cxL;
@@ -92,13 +95,22 @@ import javax.microedition.khronos.opengles.GL10;
     //overlayBitmap = BitmapFactory.decodeFile("/sdcard/123.png");
     overlayCanvas = new Canvas(overlayBitmap);
     logoBitmap=BitmapFactory.decodeResource(this.context.getResources(), R.drawable.music_b);
+    mLineSegments[0]=new LineSegment[mCols];
     for (int ix=0;ix<mLineSegments.length;++ix){
-      mLineSegments[ix]=new LineSegment();
+      mLineSegments[0][ix]=new LineSegment();
+    }
+    mLineSegments[1]=new LineSegment[mCols];
+    for (int ix=0;ix<mLineSegments.length;++ix){
+      mLineSegments[0][ix]=new LineSegment();
     }
   }
   public void handleFloatArrayValues(float[] values, float maxValue) {
     double inclination0=0.f;
     int vCnt=min(values.length,mCols);
+    int curId=mFront.get();
+    curId++;
+    if (curId>1)
+      curId=0;
     for (int ix = 0; ix < vCnt; ++ix) {
       float bx= (float) (mRadius*cos(inclination0));
       float by=(float) (mRadius*sin(inclination0));
@@ -106,9 +118,10 @@ import javax.microedition.khronos.opengles.GL10;
       float drawRadius=mRadius+drawHeight;
       float tx=(float) (drawRadius*cos(inclination0));
       float ty=(float) (drawRadius*sin(inclination0));
-      mLineSegments[ix].setValue(bx,by,tx,ty);
+      mLineSegments[curId][ix].setValue(bx,by,tx,ty);
       inclination0+=mUnitAngle;
     }
+    mFront.set(curId);
   }
   private void drawCircleColumns(Canvas canvas){
     Paint paint=new Paint();
@@ -123,16 +136,17 @@ import javax.microedition.khronos.opengles.GL10;
     //2 circleColumns
     Path path=new Path();
     paint.setColor(Color.RED);
+    int curId=mFront.get();
     for (int ix=0;ix<mLineSegments.length;++ix){
-      path.moveTo(mLineSegments[ix].mStartX+cxL,mLineSegments[ix].mStartY+cyL);
-      path.lineTo(mLineSegments[ix].mEndX+cxL,mLineSegments[ix].mEndY+cyL);
+      path.moveTo(mLineSegments[curId][ix].mStartX+cxL,mLineSegments[curId][ix].mStartY+cyL);
+      path.lineTo(mLineSegments[curId][ix].mEndX+cxL,mLineSegments[curId][ix].mEndY+cyL);
     }
     canvas.drawPath(path, paint);
     path.reset();
     paint.setColor(Color.BLUE);
     for (int ix=0;ix<mLineSegments.length;++ix){
-      path.moveTo(mLineSegments[ix].mStartX+cxR,mLineSegments[ix].mStartY+cyR);
-      path.lineTo(mLineSegments[ix].mEndX+cxR,mLineSegments[ix].mEndY+cyR);
+      path.moveTo(mLineSegments[curId][ix].mStartX+cxR,mLineSegments[curId][ix].mStartY+cyR);
+      path.lineTo(mLineSegments[curId][ix].mEndX+cxR,mLineSegments[curId][ix].mEndY+cyR);
     }
     canvas.drawPath(path, paint);
 
