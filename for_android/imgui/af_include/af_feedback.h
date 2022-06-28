@@ -6,7 +6,7 @@ struct af_feedback
      ps_mtl _pmtl;
      ps_primrive_object _pprm;
      GLuint _gpuOutputBuffer;
-#if !defined(DISABLE_DEMO)
+#if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 	bool _sel{ false };
 #endif
 	af_feedback(ps_mtl& pmtl, ps_primrive_object& pprm);

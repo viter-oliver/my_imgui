@@ -2,7 +2,7 @@
 #include <typeinfo>
 #include "af_bind.h"
 #include "rescontainer_manager.h"
-namespace auto_future
+namespace zl_future
 {
 	ft_base::ft_base()
 		: base_ui_component()
@@ -280,7 +280,7 @@ namespace auto_future
 		{
 			memcpy( pdest, pvalue, count * fd_ele._tpsz );
 		}
-		prop_ele_position cur_prp_ele_pos = { this, pg_id, fd_id};
+		prop_ele_position cur_prp_ele_pos = { this, (uint16_t)pg_id, (uint16_t)fd_id};
 		calcu_bind_node(cur_prp_ele_pos);
 		return true;
 	}

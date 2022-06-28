@@ -9,7 +9,7 @@
 #include "res_output.h"
 #include "ft_trans.h"
 #include <sstream>
-namespace auto_future
+namespace zl_future
 {
      ft_modeling_3d::ft_modeling_3d()
      {
@@ -462,7 +462,7 @@ namespace auto_future
                     GL_TRIANGLE_FAN,
                };
                GLuint& dml = draw_model[ _pty_page._draw_mode ];
-			glBindVertexArray(primid._vao);
+			   glBindVertexArray(primid._vao);
                glDrawElements( dml, primid._ele_buf_len, GL_UNSIGNED_INT, 0 );
 		}
 	}

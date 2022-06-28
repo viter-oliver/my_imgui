@@ -4,7 +4,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "ft_trans.h"
-namespace auto_future
+namespace zl_future
 {
 	ft_material_3d::ft_material_3d()
 	{
@@ -159,10 +159,10 @@ namespace auto_future
 		}
 		else
 		{
-			printf("material %s is mismathced\n",_pt._material_name);
+			LOGE("material %s is mismathced\n",_pt._material_name);
 			for(auto& imtl:g_material_list)
 			{
-				printf("mtl:%s\n",imtl.first.c_str());
+				LOGE("mtl:%s\n",imtl.first.c_str());
 			}
 		}
 		auto iprm = g_primitive_list.find(_pt._primitive_name);
@@ -174,16 +174,16 @@ namespace auto_future
 				glGenBuffers(1, &_gpu_outbuff);
 				glBindBuffer(GL_ARRAY_BUFFER, _gpu_outbuff);
 				auto buff_sz = _ps_prm->_vertex_buf_len*sizeof(GLfloat);
-				glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
+				glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_DRAW);
 			}
 			imatch++;
 		}
 		else
 		{
-			printf("primative %s is mismathced\n",_pt._primitive_name);
+			LOGE("primative %s is mismathced\n",_pt._primitive_name);
 			for(auto& ipm:g_primitive_list)
 			{
-				printf("mtl:%s\n",ipm.first.c_str());
+				LOGE("mtl:%s\n",ipm.first.c_str());
 			}
 		}
 		_matched = imatch==2;
@@ -198,9 +198,9 @@ namespace auto_future
 		overtex.resize(_ps_prm->_vertex_buf_len);
 		auto bfsz= _ps_prm->_vertex_buf_len*sizeof(GLfloat);
 		#ifdef INCLUDE_ES3
-		float* pbuf=(float*)glMapBufferRange(GL_ARRAY_BUFFER,0,bfsz,GL_MAP_READ_BIT);
-		memcpy(&overtex[0],pbuf,bfsz);
-		glUnmapBuffer(GL_ARRAY_BUFFER);
+		//float* pbuf=(float*)glMapBufferRangeEXT(GL_ARRAY_BUFFER,0,bfsz,GL_MAP_READ_BIT);
+		//memcpy(&overtex[0],pbuf,bfsz);
+	//	glUnmapBuffer(GL_ARRAY_BUFFER);
 		#else
 		glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, bfsz, &overtex[0]);
 		#endif
@@ -359,10 +359,10 @@ namespace auto_future
 					glGenBuffers(1, &_gpu_outbuff);
 					glBindBuffer(GL_ARRAY_BUFFER, _gpu_outbuff);
 					auto buff_sz = _ps_prm->_vertex_buf_len*sizeof(GLfloat);
-					glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_READ);
+					glBufferData(GL_ARRAY_BUFFER, buff_sz, nullptr, GL_STATIC_DRAW);
 				}
-				glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _gpu_outbuff);
-				glBeginTransformFeedback(dml);
+				//glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _gpu_outbuff);
+				//glBeginTransformFeedback(dml);
 			}
 			if (primid._ele_buf_len==0)
 			{
@@ -370,12 +370,12 @@ namespace auto_future
 			}
 			else
 			{
-			       //printf("elelen=%d\n",primid._ele_buf_len);
+			       //LOGE("elelen=%d\n",primid._ele_buf_len);
 				glDrawElements(dml, primid._ele_buf_len, GL_UNSIGNED_INT, 0);
 			}
 			if (_pt._with_feedback)
 			{
-				glEndTransformFeedback();
+				//glEndTransformFeedback();
 				glFlush();
 			}
 		}
@@ -386,22 +386,22 @@ namespace auto_future
 			if(timer>120)
 			{
 				timer=0;
-				printf("mismathced\n");
+				LOGE("mismathced\n");
 				auto& ps_sd = _ps_mtl->get_shader();
-				printf("prm=");
+				LOGE("prm=");
 				for(auto& ifm:_ps_prm->_ele_format)
 				{
-					printf( "%x,", ifm );
+					LOGE( "%x,", ifm );
 				}
-				printf("\n");
+				LOGE("\n");
 				                    
-	                    printf( "attrlist:" );
+	                    LOGE( "attrlist:" );
 	                    auto& attr_list = ps_sd->get_attr_list();
 	                    for( auto& iattr : attr_list )
 	                    {
-	                         printf( "name:%s,type%d,", iattr._name.c_str(), iattr._variable_type );
+	                         LOGE( "name:%s,type%d,", iattr._name.c_str(), iattr._variable_type );
 	                    }
-	                    printf( "\n" );
+	                    LOGE( "\n" );
 			}
 		}
 		//ft_base::draw();

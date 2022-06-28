@@ -1,8 +1,8 @@
 #pragma once
 #include "imgui.h"
 #include <string>
-#include <GLES3/gl32.h>
-#include <GLES3/gl3ext.h>
+#include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
 #include "res_output.h"
 extern std::wstring utf8ToWstring(const std::string& str);
 extern GLfloat* get_txt_uvs(const char* data_file, int& retn_len);

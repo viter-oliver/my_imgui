@@ -6,7 +6,7 @@
 x'=(x-a)cos��+(y-b)sin��+a
 y'=-(x-a)sin��+(y-b)cos��+b
 */
-namespace auto_future
+namespace zl_future
 {
 	ft_image::ft_image()
 		:ft_base()
@@ -29,7 +29,7 @@ namespace auto_future
 			return;
           if( img_txt_id.y >= ptext_cd.size() )
 		{
-               printf( "invalid texture index:%d\n", img_txt_id.y);
+               LOGE( "invalid texture index:%d\n", img_txt_id.y);
                return;
 
 		}

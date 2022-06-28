@@ -1,6 +1,6 @@
 #pragma once
 #include "control_common_def.h"
-using namespace auto_future;
+using namespace zl_future;
 class afb_output
 {
 	base_ui_component& _pj;

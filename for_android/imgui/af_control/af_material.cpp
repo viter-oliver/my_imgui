@@ -17,6 +17,8 @@ shared_ptr<shader_uf> get_sd_uf(shader_variable& unif)
 		return  make_shared<shader_uf_float>(unif._size, 9);
 	case GL_FLOAT_MAT4:
 		return  make_shared<shader_uf_float>(unif._size, 16);
+
+#ifndef INCLUDE_ES3
 	case GL_FLOAT_MAT2x3:
 	case GL_FLOAT_MAT3x2:
 		return  make_shared<shader_uf_float>(unif._size, 6);
@@ -26,6 +28,7 @@ shared_ptr<shader_uf> get_sd_uf(shader_variable& unif)
 	case GL_FLOAT_MAT3x4:
 	case GL_FLOAT_MAT4x3:
 		return  make_shared<shader_uf_float>(unif._size, 12);
+#endif
 #if !defined(DISABLE_DEMO)
 	case GL_DOUBLE:
 		return  make_shared<shader_uf_double>(unif._size, 1);
@@ -60,6 +63,7 @@ shared_ptr<shader_uf> get_sd_uf(shader_variable& unif)
 	case GL_INT_VEC4:
 		return  make_shared<shader_uf_int>(unif._size, 4);
 		break;
+#ifndef INCLUDE_ES3
 	case GL_UNSIGNED_INT:
 		return  make_shared<shader_uf_uint>(unif._size, 1);
 	case GL_UNSIGNED_INT_VEC2:
@@ -68,9 +72,10 @@ shared_ptr<shader_uf> get_sd_uf(shader_variable& unif)
 		return  make_shared<shader_uf_uint>(unif._size, 3);
 	case GL_UNSIGNED_INT_VEC4:
 		return  make_shared<shader_uf_uint>(unif._size, 4);
-	case GL_SAMPLER_1D:
-	case GL_SAMPLER_2D:
+#endif
+		//case GL_SAMPLER_1D:
 	case GL_SAMPLER_3D:
+	case GL_SAMPLER_2D:
 		return  make_shared<shader_uf_txt>(unif._size, 1);
 	}
 	return nullptr;
@@ -117,7 +122,7 @@ void material::set_value(string unf_name, float* pfvalue, GLuint len)
 	const auto& shd_ut = _mp_shader_uf.find(unf_name);
 	if (shd_ut==_mp_shader_uf.end())
 	{
-		//printf("fail to set uniform:%s\n", unf_name.c_str());
+		//LOGE("fail to set uniform:%s\n", unf_name.c_str());
 		return;
 	}
 	auto& pshd = shd_ut->second;
@@ -129,7 +134,7 @@ void material::set_value(string unf_name, float* pfvalue, GLuint len)
 #endif
 	if (cname != "shader_uf_float")
 	{
-		printf("fail to match type:type of %s is not shader_uf_float but %s\n", unf_name.c_str(), cname.c_str());
+		LOGE("fail to match type:type of %s is not shader_uf_float but %s\n", unf_name.c_str(), cname.c_str());
 		return;
 	}
 	shared_ptr<shader_uf_float> pshdf = static_pointer_cast<shader_uf_float>(pshd);
@@ -140,7 +145,7 @@ void material::set_value(string unf_name, int* pivalue, GLuint len)
 	const auto& shd_ut = _mp_shader_uf.find(unf_name);
 	if (shd_ut == _mp_shader_uf.end())
 	{
-		printf("fail to set uniform:%s\n", unf_name.c_str());
+		LOGE("fail to set uniform:%s\n", unf_name.c_str());
 		return;
 	}
 	auto& pshd = shd_ut->second;
@@ -152,7 +157,7 @@ void material::set_value(string unf_name, int* pivalue, GLuint len)
 #endif
 	if (cname != "shader_uf_int")
 	{
-		printf("fail to match type:type of %s is not shader_uf_int but %s\n", unf_name.c_str(), cname.c_str());
+		LOGE("fail to match type:type of %s is not shader_uf_int but %s\n", unf_name.c_str(), cname.c_str());
 		return;
 	}
 	shared_ptr<shader_uf_int> pshdf = static_pointer_cast<shader_uf_int>(pshd);
@@ -163,7 +168,7 @@ void material::set_value(string unf_name, unsigned int* puivalue, GLuint len)
 	const auto& shd_ut = _mp_shader_uf.find(unf_name);
 	if (shd_ut == _mp_shader_uf.end())
 	{
-		printf("fail to set uniform:%s\n", unf_name.c_str());
+		LOGE("fail to set uniform:%s\n", unf_name.c_str());
 		return;
 	}
 	auto& pshd = shd_ut->second;
@@ -173,13 +178,18 @@ void material::set_value(string unf_name, unsigned int* puivalue, GLuint len)
 #else
        cname = cname.substr(2);
 #endif
+#ifdef INCLUDE_ES3
+	LOGE("shader_uf_uint is not supported but\n");
+		return;
+#else
 	if (cname != "shader_uf_uint")
 	{
-		printf("fail to match type:type of %s is not shader_uf_uint but %s\n", unf_name.c_str(), cname.c_str());
+		LOGE("fail to match type:type of %s is not shader_uf_uint but %s\n", unf_name.c_str(), cname.c_str());
 		return;
 	}
 	shared_ptr<shader_uf_uint> pshdf = static_pointer_cast<shader_uf_uint>(pshd);
 	pshdf->set_uivalue(puivalue, len);
+#endif
 
 }
 #if !defined(DISABLE_DEMO)
@@ -188,7 +198,7 @@ void material::set_value(string unf_name, double* pdvalue, GLuint len)
 	auto& shd_ut = _mp_shader_uf.find(unf_name);
 	if (shd_ut == _mp_shader_uf.end())
 	{
-		printf("fail to set uniform:%s\n", unf_name.c_str());
+		LOGE("fail to set uniform:%s\n", unf_name.c_str());
 		return;
 	}
 	auto& pshd = shd_ut->second;
@@ -196,7 +206,7 @@ void material::set_value(string unf_name, double* pdvalue, GLuint len)
 	cname = cname.substr(sizeof("class"));
 	if (cname != "shader_uf_double")
 	{
-		printf("fail to match type:type of %s is not shader_uf_double but %s\n", unf_name.c_str(), cname.c_str());
+		LOGE("fail to match type:type of %s is not shader_uf_double but %s\n", unf_name.c_str(), cname.c_str());
 		return;
 	}
 	shared_ptr<shader_uf_double> pshdf = static_pointer_cast<shader_uf_double>(pshd);
@@ -315,7 +325,7 @@ bool create_material(string& shader_name, string& material_name, string& real_ma
 	auto shd = g_af_shader_list.find(shader_name);
 	if (shd==g_af_shader_list.end())
 	{
-		printf("fail to find shader:%s\n", shader_name.c_str());
+		LOGE("fail to find shader:%s\n", shader_name.c_str());
 		return false;
 	}
 	auto mtlu = g_material_list.find(material_name);

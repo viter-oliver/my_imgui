@@ -372,10 +372,10 @@ void shader_uf_txt::link(){
 	}
 	else
 	{
-		printf("failto find %s  \n",_txt_name);
+		LOGE("failto find %s  \n",_txt_name);
 		for(auto& imt:g_mtexture_list)
 		{
-			printf("txtname:%s\n",imt.first.c_str());	
+			LOGE("txtname:%s\n",imt.first.c_str());	
 		}
 	}
 }

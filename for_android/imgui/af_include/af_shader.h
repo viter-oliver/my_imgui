@@ -10,8 +10,9 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/type_ptr.hpp>
 #include <glm/gtx/norm.hpp>*/
-#include <GLES3/gl32.h>
-#include <GLES3/gl3ext.h>
+#include <GLES3/gl3.h>
+
+#include <GLES2/gl2ext.h>
 #include "fab.h"
 using namespace fab;
 using namespace std;

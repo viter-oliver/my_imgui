@@ -1,6 +1,6 @@
 #pragma once
 #include "ft_base.h"
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_button :
 		public ft_base
@@ -45,14 +45,14 @@ namespace auto_future
 		{
 			switch (_state)
 			{
-			case auto_future::ft_button::en_normal:
-				return _pt._image_normal_txt;
-			case auto_future::ft_button::en_pressed:
-				return _pt._image_press_txt;
-			case auto_future::ft_button::en_selected:
-				return _pt._image_select_txt;
+				case zl_future::ft_button::en_normal:
+					return _pt._image_normal_txt;
+				case zl_future::ft_button::en_pressed:
+					return _pt._image_press_txt;
+				case zl_future::ft_button::en_selected:
+					return _pt._image_select_txt;
 			}
-               return {0,0};
+			return {0,0};
 		}
 
 

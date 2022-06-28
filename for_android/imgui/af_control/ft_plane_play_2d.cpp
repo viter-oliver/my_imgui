@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-namespace auto_future
+namespace zl_future
 {
 	GLfloat _plain_vertices[] = {
 		-0.5f, -0.5f,
@@ -80,7 +80,7 @@ namespace auto_future
 
 		});
 #endif
-		glGenVertexArrays(1, &_vao);
+		//glGenVertexArrays(1, &_vao);
 		glGenBuffers(1, &_vbo_pos);
 		glGenBuffers(1, &_vbo_uv);
 		glBindVertexArray(_vao);

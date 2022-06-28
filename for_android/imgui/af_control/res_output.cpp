@@ -1,6 +1,6 @@
 #pragma once
 #include "res_output.h"
-#if !defined(IMGUI_WAYLAND)
+#if !defined(DISABLE_DEMO)
 #include "dir_output.h"
 const char* mesh_fold = "mesh_res\\";
 const char* font_fold = "fonts\\";
@@ -55,7 +55,7 @@ bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 	auto itimg = g_mtexture_list.find(img_file_name);
 	if (itimg!=g_mtexture_list.end())
 	{
-		printf("%s has already exist in the texture list!\n", img_file_name.c_str());
+		LOGE("%s has already exist in the texture list!\n", img_file_name.c_str());
 		return false;
 	}
 	string img_file_path = imgPath.substr(0, imgPath.find_last_of('\\') + 1);
@@ -66,7 +66,7 @@ bool add_image_to_mtexure_list(string& imgPath, bool is_mipmap)
 	imgdata = SOIL_load_image(imgPath.c_str(), &width, &height, &channels, SOIL_LOAD_RGBA);
 	if (imgdata == NULL)
 	{
-		printf("Fail to load texture file:%s\n", imgPath.c_str());
+		LOGE("Fail to load texture file:%s\n", imgPath.c_str());
 		return false;
 	}
 	string str_img_path = g_cureent_directory+image_fold;
@@ -150,7 +150,7 @@ void save_ojfile_to_file(string& key_name)
 	auto ifl = g_mfiles_list.find(key_name);
 	if (ifl == g_mfiles_list.end())
 	{
-		printf("invalid file key:%s\n", key_name.c_str());
+		LOGE("invalid file key:%s\n", key_name.c_str());
 		return;
 	}
 	auto& ofl = *ifl->second;

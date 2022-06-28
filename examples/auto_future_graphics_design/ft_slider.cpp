@@ -158,13 +158,13 @@ namespace auto_future
 			printf("invalid texture index:%d\n", txt_hd_id);
 			return;//txt_hd_id = 0;
 		}
-		ImVec2 value_point0, value_point1, dir_thumb0, dir_thumb1;
           if( 0 == _custom_trace_length ) return; //第一次进入random时判断
-          float tmp_length = 0.f;
-          int idx = 0;
-          float real_length = _custom_trace_length*_slider_pt._progress_nml;
           ImVec2 txt_size( hd_gp_texture_width, hd_gp_texture_height );
           ImVec2 uv_org = ImVec2( ( hd_text_cd[ txt_hd_id ]._x0 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y0 ) / hd_gp_texture_height );
+		  float real_length = _custom_trace_length*_slider_pt._progress_nml;
+		  ImVec2 value_point0, value_point1, dir_thumb0, dir_thumb1;
+          float tmp_length = 0.f;
+          int idx = 0;
           for( auto seg_unit : _custom_track_segment )
           {
                auto test_len = tmp_length + seg_unit;
@@ -215,48 +215,7 @@ namespace auto_future
                     break;
                }
           }
-		/*else
-		{
-			if (en_horizontal == _slider_pt._direction_item)
-			{
-				sizew = _slider_pt._hd_txtw *_slider_pt._progress_nml;
-				sizeh = _slider_pt._hd_txth;
 
-				pos1 = screen_base_pos;
-				pos2 = { pos1.x, pos1.y + sizeh };
-				pos3 = { pos1.x + sizew, pos1.y + sizeh };
-				pos4 = { pos1.x + sizew, pos1.y };
-				dir_thumb0=dir_thumb1 = { 1.0, 0 };
-			}
-			else if (en_vertical == _slider_pt._direction_item)
-			{
-				sizew = _slider_pt._hd_txtw;
-				sizeh = _slider_pt._hd_txth *_slider_pt._progress_nml;
-
-				pos1 = { abpos.x + winpos.x, abpos.y + winpos.y - sizeh };
-				pos2 = { pos1.x, abpos.y + winpos.y };
-				pos3 = { pos1.x + sizew, abpos.y + winpos.y };
-				pos4 = { pos1.x + sizew, abpos.y + winpos.y - sizeh };
-				dir_thumb0=dir_thumb1 = { 0, 1.0 };
-			}
-			value_point0 = {pos3.x,pos3.y};
-			value_point1 = {pos4.x,pos4.y};
-               uv0 = ImVec2( hd_text_cd[ txt_hd_id ]._x0 / hd_gp_texture_width, hd_text_cd[ txt_hd_id ]._y0 / hd_gp_texture_height );
-               uv1 = ImVec2( hd_text_cd[ txt_hd_id ]._x0 / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y1 ) / hd_gp_texture_height );
-               uv2 = ImVec2( ( hd_text_cd[ txt_hd_id ]._x1 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y1 ) / hd_gp_texture_height );
-               uv3 = ImVec2( ( hd_text_cd[ txt_hd_id ]._x1 ) / hd_gp_texture_width, ( hd_text_cd[ txt_hd_id ]._y0 ) / hd_gp_texture_height );
-			if (en_horizontal == _slider_pt._direction_item)
-			{
-				uv2.x = uv1.x + _slider_pt._progress_nml*(uv2.x - uv1.x);
-				uv3.x = uv0.x + _slider_pt._progress_nml*(uv3.x - uv0.x);
-			}
-			else if (en_vertical == _slider_pt._direction_item)
-			{
-				uv0.y = uv1.y - _slider_pt._progress_nml*(uv1.y - uv0.y);
-				uv3.y = uv2.y - _slider_pt._progress_nml*(uv2.y - uv3.y);
-			}
-               ImGui::ImageQuad( (ImTextureID)hd_texture_id, pos1, pos2, pos3, pos4, uv0, uv1, uv2, uv3 );
-		}*/
 		/************************************************thumb**************************************************/
 		if (!_slider_pt._thumb_visible) return;
 		auto tb_height = _slider_pt._tb_height;

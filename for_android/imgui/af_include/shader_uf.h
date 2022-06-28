@@ -1,6 +1,6 @@
 #pragma once
-#include <GLES3/gl32.h>
-#include <GLES3/gl3ext.h>
+#include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
 #if !defined(DISABLE_DEMO)
 #include "json/json.h"
 using namespace Json;
@@ -87,12 +87,12 @@ public:
                 if(debug_cnt>60){
                     debug_cnt=0;
                     int ix_siz=_usize*_el_size;
-                    printf("shader_uf_float:");
+                    LOGI("shader_uf_float:");
                     for(int ix=0;ix<ix_siz;ix++)
                     {
-                        printf("_pfvalue[%d]=%f ",ix,_pfvalue[ix]);
+                        LOGI("_pfvalue[%d]=%f ",ix,_pfvalue[ix]);
                     }
-                    printf("\n");
+                    LOGI("\n");
                 }
                 */
                 switch (_utype)
@@ -112,11 +112,12 @@ public:
 		case GL_FLOAT_MAT4:
 			glUniformMatrix4fv(location, _usize, GL_FALSE, _pfvalue);
 			break;
-		case GL_FLOAT_MAT2x3:
-			glUniformMatrix2x3fv(location, _usize, GL_FALSE,_pfvalue);
-			break;
 		case GL_FLOAT_MAT3:
 			glUniformMatrix3fv(location, _usize, GL_FALSE, _pfvalue);
+			break;
+#ifndef INCLUDE_ES3
+		case GL_FLOAT_MAT2x3:
+			glUniformMatrix2x3fv(location, _usize, GL_FALSE,_pfvalue);
 			break;
 		case GL_FLOAT_MAT3x2:
 			glUniformMatrix3x2fv(location, _usize, GL_FALSE,_pfvalue);
@@ -133,8 +134,9 @@ public:
 		case GL_FLOAT_MAT4x3:
 			glUniformMatrix4x3fv(location, _usize, GL_FALSE,_pfvalue);
 			break;
+#endif
 		default:
-			printf("invalid type:%d\n", _utype);
+			LOGE("invalid type:%d\n", _utype);
 			break;
 		}
 	}
@@ -188,7 +190,7 @@ public:
 			glUniform4iv(location, _usize, _pivalue);
 			break;
 		default:
-			printf("invalid type:%d\n", _utype);
+			LOGE("invalid type:%d\n", _utype);
 			break;
 		}
 	}
@@ -209,7 +211,7 @@ public:
 	}
 };
 REG_SHADER_UF(shader_uf_int);
-
+#ifndef INCLUDE_ES3
 class shader_uf_uint :public shader_uf
 {
 	unsigned int* _puivalue;
@@ -242,7 +244,7 @@ public:
 			glUniform4uiv(location, _usize, _puivalue);
 			break;
 		default:
-			printf("invalid type:%d\n", _utype);
+			LOGE("invalid type:%d\n", _utype);
 			break;
 		}
 	}
@@ -263,6 +265,7 @@ public:
 	}
 };
 REG_SHADER_UF(shader_uf_uint);
+#endif
 #if !defined(DISABLE_DEMO)
 class shader_uf_double :public shader_uf
 {
@@ -319,7 +322,7 @@ public:
 			glUniformMatrix4x3dv(location, _usize, GL_FALSE, _pdvalue);
 			break;
 		default:
-			printf("invalid type:%d\n", _utype);
+			LOGE("invalid type:%d\n", _utype);
 			break;
 		}
 	}
@@ -363,7 +366,7 @@ public:
 	{
 		if (!_pdtxt)
 		{
-		       printf("fail to set loaction txt:%s\n",_txt_name);
+		       LOGE("fail to set loaction txt:%s\n",_txt_name);
 			return;
 		}
 		glActiveTexture(GL_TEXTURE0 + _sample_index);
@@ -381,7 +384,7 @@ public:
 			break;
 
 		default:
-			printf("invalid type:%d\n", _utype);
+			LOGE("invalid type:%d\n", _utype);
 			break;
 		}*/
 	}

@@ -1,4 +1,5 @@
 #include "af_shader.h"
+#include "af_type.h"
 #include <sstream>
 #include <regex>
 #include <algorithm>
@@ -11,16 +12,21 @@ struct vtype_size
 map < GLenum, vtype_size> shader_variable_type_size = 
 {
 	{ GL_FLOAT, { sizeof(float), 1 } }, { GL_FLOAT_VEC2, { sizeof(float), 2 } }, { GL_FLOAT_VEC3, { sizeof(float), 3 } }, { GL_FLOAT_VEC3, { sizeof(float), 3 } }, { GL_FLOAT_VEC4, { sizeof(float), 4 } }, \
-	{ GL_DOUBLE,{ sizeof(double), 1} }, { GL_DOUBLE_VEC2, { sizeof(double), 2 } }, { GL_DOUBLE_VEC3, { sizeof(double), 3 } }, { GL_DOUBLE_VEC3, { sizeof(double), 3 } }, { GL_DOUBLE_VEC4, { sizeof(double), 4 } }, \
 	{ GL_INT, { sizeof(int), 1 }}, { GL_INT_VEC2, { sizeof(int), 2 } }, { GL_INT_VEC3, { sizeof(int), 3 } }, { GL_INT_VEC3, { sizeof(int), 3 } }, { GL_INT_VEC4, { sizeof(int), 4 } }, \
-	{ GL_UNSIGNED_INT, { sizeof(unsigned int), 1 } }, { GL_UNSIGNED_INT_VEC2, { sizeof(unsigned int), 2 } }, { GL_UNSIGNED_INT_VEC3, { sizeof(unsigned int), 3 } }, { GL_UNSIGNED_INT_VEC3, { sizeof(unsigned int), 3 } }, { GL_UNSIGNED_INT_VEC4, { sizeof(unsigned int), 4 } }, \
+	{ GL_UNSIGNED_INT, { sizeof(unsigned int), 1 } },\
 	{ GL_BOOL, { sizeof(bool), 1 }}, { GL_BOOL_VEC2, { sizeof(bool), 2 } }, { GL_BOOL_VEC3, { sizeof(bool), 3 } }, { GL_BOOL_VEC4, { sizeof(bool), 4 } }, \
-	{ GL_FLOAT_MAT2, {sizeof(float), 2 * 2 } }, { GL_FLOAT_MAT3, { sizeof(float), 3 * 3 } }, { GL_FLOAT_MAT4, { sizeof(float), 4 * 4 } }, \
+	{ GL_FLOAT_MAT2, {sizeof(float), 2 * 2 } }, { GL_FLOAT_MAT3, { sizeof(float), 3 * 3 } }, { GL_FLOAT_MAT4, { sizeof(float), 4 * 4 } },
+#ifndef INCLUDE_ES3
+	{ GL_UNSIGNED_INT_VEC2, { sizeof(unsigned int), 2 } }, { GL_UNSIGNED_INT_VEC3, { sizeof(unsigned int), 3 } }, { GL_UNSIGNED_INT_VEC3, { sizeof(unsigned int), 3 } }, { GL_UNSIGNED_INT_VEC4, { sizeof(unsigned int), 4 } },\
 	{ GL_FLOAT_MAT2x3, { sizeof(float), 2 * 3 } }, { GL_FLOAT_MAT2x4, { sizeof(float), 2 * 4 } }, { GL_FLOAT_MAT3x2, { sizeof(float), 3 * 2 } }, \
-	{ GL_FLOAT_MAT3x4, { sizeof(float), 3 * 4 } }, { GL_FLOAT_MAT4x2, { sizeof(float), 4 * 2 } }, { GL_FLOAT_MAT4x3, { sizeof(float), 4 * 3 } }, \
+	{ GL_FLOAT_MAT3x4, { sizeof(float), 3 * 4 } }, { GL_FLOAT_MAT4x2, { sizeof(float), 4 * 2 } }, { GL_FLOAT_MAT4x3, { sizeof(float), 4 * 3 } },
+#endif
+#if 0
+	{ GL_DOUBLE,{ sizeof(double), 1} }, { GL_DOUBLE_VEC2, { sizeof(double), 2 } }, { GL_DOUBLE_VEC3, { sizeof(double), 3 } }, { GL_DOUBLE_VEC3, { sizeof(double), 3 } }, { GL_DOUBLE_VEC4, { sizeof(double), 4 } }, \
 	{ GL_DOUBLE_MAT2, { sizeof(double), 2 * 2 }}, { GL_DOUBLE_MAT3, { sizeof(double), 3 * 3 } }, { GL_DOUBLE_MAT4, { sizeof(double), 4 * 4 } }, \
 	{ GL_DOUBLE_MAT2x3,{ sizeof(double), 2 * 3 }}, { GL_DOUBLE_MAT2x4, { sizeof(double), 2 * 4 } }, { GL_DOUBLE_MAT3x2, { sizeof(double), 3 * 2 } }, \
 	{ GL_DOUBLE_MAT3x4, { sizeof(double), 3 * 4 } }, { GL_DOUBLE_MAT4x2, { sizeof(double), 4 * 2 } }, { GL_DOUBLE_MAT4x3, { sizeof(double), 4 * 3 } },
+#endif
 };
 /*
 GL_SAMPLER_1D	sampler1D
@@ -157,7 +163,7 @@ bool af_shader::build_vs_code(string& vs_code)
 	if (status != GL_TRUE)
 	{
 		glGetShaderInfoLog(_vertex_shader, 512, NULL, buffer);
-		printf("vertex shader error:%s\n", buffer);
+		LOGE("vertex shader error:%s\n", buffer);
 		_valid = false;
 		be_success = false;
 	}
@@ -180,7 +186,7 @@ bool af_shader::build_fs_code(string& fs_code)
 	if (status != GL_TRUE)
 	{
 		glGetShaderInfoLog(_fragment_shader, 512, NULL, buffer);
-		printf("fragment shader error:%s\n", buffer);
+		LOGE("fragment shader error:%s\n", buffer);
 		be_success= false;
 		_valid = false;
 	}
@@ -203,7 +209,7 @@ void collect_attr(string& vscode, vattr& vat)
 	{
 		if (std::regex_search(line, re_layout))
 		{
-			printf("layout exists!\n");
+			LOGE("layout exists!\n");
 			vat.clear();
 			return;
 		}
@@ -332,7 +338,7 @@ void af_shader::specify_transfeedback( bool relink )
 	  //GLchar *varyings[] = { "outValue" };
 	 	feedbackVaryings[ix] = (char*)_out_list[ix]._name.c_str();
 	}
-	glTransformFeedbackVaryings(_shader_program_id, isz, (const GLchar* const*)feedbackVaryings, GL_INTERLEAVED_ATTRIBS);
+	//glTransformFeedbackVaryings(_shader_program_id, isz, (const GLchar* const*)feedbackVaryings, GL_INTERLEAVED_ATTRIBS);
 	delete[] feedbackVaryings;
 	if( relink )
 	{
@@ -376,16 +382,16 @@ void af_shader::refresh_viarable_list()
 	if (_att_list.size()==0)
 	{
 		glGetProgramiv(_shader_program_id, GL_ACTIVE_ATTRIBUTES, &count);
-		printf("Active Attributes: %d\n", count);
+		LOGE("Active Attributes: %d\n", count);
 		for (idx = 0; idx < count; idx++)
 		{
 			glGetActiveAttrib(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
 
-			printf("Attribute #%d Type: 0x%x Name: %s\n", idx, type, name);
+			LOGI("Attribute #%d Type: 0x%x Name: %s\n", idx, type, name);
 			GLuint location = glGetAttribLocation(_shader_program_id, name);
 			//_att_list[name] = shader_variable(type, location, size);
 			_att_list.emplace_back(); 
-			_att_list.back()={name, type, location, size};
+			_att_list.back()={name, type, (GLuint)location, (GLuint)size};
 		}
 	}
 	else
@@ -402,13 +408,13 @@ void af_shader::refresh_viarable_list()
 
 
 	glGetProgramiv(_shader_program_id, GL_ACTIVE_UNIFORMS, &count);
-	printf("Active Uniforms: %d\n", count);
+	LOGI("Active Uniforms: %d\n", count);
 
 	for (idx = 0; idx < count; idx++)
 	{
 		glGetActiveUniform(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
 
-		//printf("Uniform #%d Type: 0x%x Name: %s\n", idx, type, name);
+		//LOGI("Uniform #%d Type: 0x%x Name: %s\n", idx, type, name);
 		GLint location = glGetUniformLocation(_shader_program_id, name);
 		_unf_list[name] = shader_variable(type, location, size);
 	}
@@ -459,7 +465,7 @@ template<typename T> bool af_shader::uniform(string unf_name, GLsizei icnt, T* p
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
 	{
-		printf("fail to find attr:%s\n", unf_name.c_str());
+		LOGE("fail to find attr:%s\n", unf_name.c_str());
 		return false;
 	}
 	auto& unif = tt->second;
@@ -563,7 +569,7 @@ bool af_shader::uniform(string unf_name, float* pvalue)
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
 	{
-		printf("fail to find attr:%s\n", unf_name.c_str());
+		LOGE("fail to find attr:%s\n", unf_name.c_str());
 		return false;
 	}
 	auto& unif = tt->second;
@@ -590,6 +596,7 @@ bool af_shader::uniform(string unf_name, float* pvalue)
 	case GL_FLOAT_MAT4:
 		glUniformMatrix4fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
+#ifndef INCLUDE_ES3
 	case GL_FLOAT_MAT2x3:
 		glUniformMatrix2x3fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
@@ -608,8 +615,9 @@ bool af_shader::uniform(string unf_name, float* pvalue)
 	case GL_FLOAT_MAT4x3:
 		glUniformMatrix4x3fv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
+#endif
 	default:
-		printf("unmatched type");
+		LOGE("unmatched type");
 		return false;
 	}
 	return true;
@@ -619,7 +627,7 @@ bool af_shader::uniform(string unf_name, int* pvalue)
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
 	{
-		printf("fail to find attr:%s\n", unf_name.c_str());
+		LOGE("fail to find attr:%s\n", unf_name.c_str());
 		return false;
 	}
 	auto& unif = tt->second;
@@ -639,7 +647,7 @@ bool af_shader::uniform(string unf_name, int* pvalue)
 		glUniform4iv(unif._location, unif._size, pvalue);
 		break;
 	default:
-		printf("unmatched type");
+		LOGE("unmatched type");
 		return false;
 	}
 	return true;
@@ -650,7 +658,7 @@ bool af_shader::uniform(string unf_name, double* pvalue)
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
 	{
-		printf("fail to find attr:%s\n", unf_name.c_str());
+		LOGE("fail to find attr:%s\n", unf_name.c_str());
 		return false;
 	}
 	auto& unif = tt->second;
@@ -696,7 +704,7 @@ bool af_shader::uniform(string unf_name, double* pvalue)
 		glUniformMatrix4x3dv(unif._location, unif._size, GL_FALSE, pvalue);
 		break;
 	default:
-		printf("unmatched type");
+		LOGE("unmatched type");
 		return false;
 	}
 	return true;
@@ -707,7 +715,7 @@ bool af_shader::uniform(string unf_name, int ivalue)
 	auto tt = _unf_list.find(unf_name);
 	if (tt == _unf_list.end())
 	{
-		printf("fail to find attr:%s\n", unf_name.c_str());
+		LOGE("fail to find attr:%s\n", unf_name.c_str());
 		return false;
 	}
 	auto& unif = tt->second;
@@ -717,7 +725,7 @@ bool af_shader::uniform(string unf_name, int ivalue)
 		glUniform1i(unif._location, ivalue);
 		break;
 	default:
-		printf("unmatched type");
+		LOGE("unmatched type");
 		return false;
 	}
 	return true;

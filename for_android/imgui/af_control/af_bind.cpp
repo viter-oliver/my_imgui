@@ -1,5 +1,9 @@
 #include "af_bind.h"
+#ifdef _PYTHON_BIND
 #include "python_interpreter.h"
+#else
+#include "lua_interpreter.h"
+#endif
 bind_dic g_bind_dic;
 bind_ref_dic g_bind_ref_dic;
 void calcu_bind_node(prop_ele_position& pep)
@@ -29,8 +33,15 @@ void calcu_bind_node(prop_ele_position& pep)
 					vlist.emplace_back(cfel._type,pm_value);
 				}
 				auto& exp_calcu = ibind_ut->second->_expression;
-				bool be_success = g_python_intp.call_python_fun(exp_calcu, python_fun_name, vrtn, vlist);
-				calcu_bind_node(ref_pos);
+				#ifdef _PYTHON_BIND
+        bool be_success = g_python_intp.call_python_fun(exp_calcu, python_fun_name, vrtn, vlist);
+        #else
+        bool be_success=lua_interpreter::call_lua_fun(exp_calcu,vrtn,vlist);
+        #endif
+        if (be_success)
+        {
+              calcu_bind_node(ref_pos);
+        }             
 			}
 		}
 	}
@@ -130,7 +141,7 @@ bool set_property_aliase_value(string prp_aliase_name, void* pvalue)
 	const auto& ialiase = g_aliase_dic.find(prp_aliase_name);
 	if (ialiase==g_aliase_dic.end())
 	{
-		printf("unknown alias name:%s\n", prp_aliase_name.c_str());
+		LOGE("unknown alias name:%s\n", prp_aliase_name.c_str());
 		return false;
 	}
 	auto& prop_pos =*ialiase->second;
@@ -147,13 +158,13 @@ bool set_property_aliase_lazy_value( string prp_aliase_name, int during, void* p
     const auto& ialiase = g_aliase_dic.find( prp_aliase_name );
      if( ialiase == g_aliase_dic.end() )
      {
-          printf( "unknown alias name:%s\n", prp_aliase_name.c_str() );
+          LOGE( "unknown alias name:%s\n", prp_aliase_name.c_str() );
           return false;
      }
     const auto& ilazy = g_lazy_value_buff.find( prp_aliase_name );
     if( ilazy != g_lazy_value_buff.end() )
     {
-         printf( "alias:%s is already lazying state\n" );
+         LOGE( "alias:%s is already lazying state\n",prp_aliase_name.c_str());
          return false;
     }
     auto& prop_pos = *ialiase->second;
@@ -191,7 +202,7 @@ base_ui_component* get_aliase_ui_control(string prp_aliase_name)
 	const auto& ialiase = g_aliase_dic.find(prp_aliase_name);
 	if (ialiase == g_aliase_dic.end())
 	{
-		printf("unknown alias name:%s\n", prp_aliase_name.c_str());
+		LOGE("unknown alias name:%s\n", prp_aliase_name.c_str());
 		return nullptr;
 	}
 	auto& prop_pos = *ialiase->second;

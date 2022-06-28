@@ -5,7 +5,7 @@
 #include "res_output.h"
 #include "./fbx_save_info.h"
 #include "primitive_object.h"
-namespace auto_future{
+namespace zl_future{
 	class AFG_EXPORT ft_fbx_assert_3d :
 		public ft_base
 	{

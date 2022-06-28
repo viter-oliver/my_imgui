@@ -1,5 +1,5 @@
 #include "ft_trajectory_box_3d.h"
-namespace auto_future
+namespace zl_future
 {
 	void ft_trajectory_box_3d::draw()
 	{

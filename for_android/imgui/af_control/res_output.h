@@ -1,13 +1,13 @@
 #pragma once
-#include <GLES3/gl32.h>
-#include <GLES3/gl3ext.h>
+#include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
 #include <vector>
 #include <string>
 #include <atomic>
 #include <thread>
 #include <memory>
 using namespace std;
-#define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
+//#define GL_COMPRESSED_RGBA_S3TC_DXT5_EXT  0x83F3
 struct res_texture_coordinate
 {
 	string _file_name;
@@ -34,10 +34,10 @@ struct res_texture_list
 	unsigned int texture_id()
 	{
 #ifdef DISABLE_DEMO
-            if(!_is_separated)
-            {
-                return txt_id;
-            }
+		if(!_is_separated)
+		{
+			return txt_id;
+		}
 		while (!_loaded)
 		{
 			this_thread::yield();

@@ -1,7 +1,7 @@
 #include "ft_listbox.h"
 #include "res_output.h"
 
-namespace auto_future
+namespace zl_future
 {
 	ft_listbox::ft_listbox()
 		:ft_base()
@@ -72,7 +72,7 @@ namespace auto_future
 			return;
           if( img_txt_id.y >= ptext_cd.size() )
 		{
-               printf( "invalid texture index:%d\n", img_txt_id.y);
+               LOGE( "invalid texture index:%d\n", img_txt_id.y);
                return;
 		}
           int texture_width = cur_res_list.texture_width;
@@ -122,7 +122,7 @@ namespace auto_future
 	{
 		if (_vchilds.empty())
 		{
-			printf("list is empty!\n");
+			LOGE("list is empty!\n");
 			return;
 		}
 		if (max_display_num < 0)

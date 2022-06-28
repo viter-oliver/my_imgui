@@ -2,7 +2,7 @@
 #include <imgui.h>
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui_internal.h"
-namespace auto_future
+namespace zl_future
 {
 	shared_ptr<font_face_manager> g_pfont_face_manager;
 	/*af_font_res_set::af_font_res_set(font_face_manager& font_mg)
@@ -107,7 +107,7 @@ int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize,
 					
 					if (omit_rest != en_no_omit)
 					{
-						if (cnt_char < cnt_char)
+						//if (cnt_char < cnt_char)
 						{
 							wstring omit_sign ={0x2026};
 							if(omit_rest == en_omit_rest )

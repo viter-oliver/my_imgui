@@ -1,6 +1,6 @@
 #pragma once
 #include "ft_base.h"
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_trajectory_box_3d :
 		public ft_base

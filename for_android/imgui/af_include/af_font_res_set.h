@@ -4,9 +4,8 @@
 2��get glyph index by the code of char unit
 3��generate bitmap of glyphs 
 */
-#include <GLES3/gl32.h>
-#include <GLES3/gl3ext.h>
-#include <GL/glcorearb.h>
+#include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
 #include <map>
 #include <vector>
 #include <string>
@@ -19,7 +18,7 @@
 #endif
 #include "af_type.h"
 #include FT_FREETYPE_H
-namespace auto_future
+namespace zl_future
 {
 	using namespace std;
 
@@ -38,9 +37,9 @@ namespace auto_future
 	struct txt_coordinate
 	{
 		/*! \member of txt_coordinate*/
-		af_vui2 _size;
+		af_vi2 _size;
 		af_vi2 _bearing;
-		GLuint _advance;
+		long _advance;
 		float _x0, _y0, _x1, _y1;
 		
 	};
@@ -220,7 +219,7 @@ namespace auto_future
 			//glGenFramebuffers(1, &_fmbf_id);
 			//auto currentTime = std::chrono::high_resolution_clock::now();
 			//int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
-			//printf("FT_Init_FreeType consume %d milli secs\n", delta);
+			//LOGE("FT_Init_FreeType consume %d milli secs\n", delta);
 
 		}
 		~font_face_manager()
@@ -242,7 +241,7 @@ namespace auto_future
 			{
 				if (ft_item->_name == fontFaceName)
 				{
-					printf("font %s have been loaded!\n", fontFaceName.c_str());
+					LOGE("font %s have been loaded!\n", fontFaceName.c_str());
 					return nullptr;
 				}
 			}
@@ -251,7 +250,7 @@ namespace auto_future
 			FT_Error err = FT_New_Memory_Face(_ft, pfont_buff, file_size, 0, &face);
 			if (err)
 			{
-				printf("fail to load font from:%s!\n", fontFaceName.c_str());
+				LOGE("fail to load font from:%s!\n", fontFaceName.c_str());
 				return nullptr;
 			}
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
@@ -270,7 +269,7 @@ namespace auto_future
 			{
 				if (ft_item->_name == fontFaceName)
 				{
-					printf("font %s have been loaded!\n", fontFaceName.c_str());
+					LOGE("font %s have been loaded!\n", fontFaceName.c_str());
                          return ft_item;
 				}
                     idx++;
@@ -278,7 +277,7 @@ namespace auto_future
 			FT_Face face;
 			if (FT_New_Face(_ft, fontPath.c_str(), 0, &face))
 			{
-				printf("fail to load font from:%s!\n", fontPath.c_str());
+				LOGE("fail to load font from:%s!\n", fontPath.c_str());
 				return nullptr;
 			}
 			FT_Select_Charmap(face, FT_ENCODING_UNICODE);
@@ -289,7 +288,7 @@ namespace auto_future
 			//
 			//auto currentTime = std::chrono::high_resolution_clock::now();
 			//int delta = std::chrono::duration_cast<std::chrono::duration<int, std::milli>>(currentTime - lastTime).count();
-			//printf("load_font:%s consume %d milli secs\n", fontFaceName.c_str(), delta);
+			//LOGE("load_font:%s consume %d milli secs\n", fontFaceName.c_str(), delta);
 			return ft_u;
 		}
 

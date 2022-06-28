@@ -1,7 +1,7 @@
 #pragma once
 #include "ft_base.h"
 #include "res_output.h"
-namespace auto_future
+namespace zl_future
 {
 #define MAX_POS_PAIR_CNT 20
 	class AFG_EXPORT ft_polygon_image :

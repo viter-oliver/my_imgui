@@ -1,7 +1,7 @@
 #include "application.h"
 
 #include "imgui.h"
-#include "imgui_impl_glfw_gl3.h"
+#include "imgui_impl_gl3.h"
 #include <stdio.h>
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -13,7 +13,7 @@
 //#include <GL/gl3w.h>
 #include <chrono>
 #include <thread>
-#include <GLES3/gl32.h>
+#include <GLES3/gl3.h>
 #include <GLES3/gl3ext.h>
 #include "SOIL.h"
 //#include "texture.h"
@@ -26,160 +26,128 @@
 #include "af_primitive_object.h"
 
 using namespace chrono;
-//extern void instantiating_internal_shader();
-static void error_callback(int error, const char* description)
-{
-	fprintf(stderr, "Error %d: %s\n", error, description);
-}
 
-namespace auto_future
+
+namespace zl_future
 {
-	application::application(int argc, char **argv)
+	application::application()
 	{
-		if (argc > 1)
-		{
-			_cureent_project_file_path = argv[1];//afb
-		}
-		for (int ix = 2; ix < argc;ix++)
-		{
-			_arg_list.emplace_back(argv[ix]);
-		}
+		ImGui::CreateContext();
+		
+        ImGui_ImplGL3_CreateDeviceObjects();
+		
+		ImGui::StyleColorsClassic();
+		
 	}
 
 
 	application::~application()
 	{
-	}
-
-	int get_resolution(int* width,int* height)
-	{
-		struct fb_var_screeninfo sc_info;
-		int fd=open("/dev/fb0",O_RDWR);
-		if(!fd)
-			return 0;
-		ioctl(fd,FBIOGET_VSCREENINFO,&sc_info);
-		printf("%d*%d\n",sc_info.xres,sc_info.yres);
-		*width=sc_info.xres;
-		*height=sc_info.yres;
-		close(fd);
-		return 0;
-	}
-	bool application::prepare()
-	{
-				return true;
-	}
-
-	bool application::create_run()
-	{
-		//gl3wInit();
-
-		// Setup ImGui binding
-		ImGui::CreateContext();
-		//ImGuiIO& io = ImGui::GetIO(); //(void)io;
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;  // Enable Keyboard Controls
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;   // Enable Gamepad Controls
-
-        ImGui_ImplGlfwGL3_Init(_window, true);
-		//ImGui::StyleColorsClassic();
-		ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 1.00f);
-
-		//base_ui_component* _proot = NULL;
-		if (!_cureent_project_file_path.empty())
-		{
-			//_proot = new ft_base;
-			afb_load afl(_proot);
-			afl.load_afb(_cureent_project_file_path.c_str());
-			resLoaded();
-		}
-		int max_tex_size=0;
-		glGetIntegerv(GL_MAX_TEXTURE_SIZE,&max_tex_size);
-		printf("max texture size=%d\n",max_tex_size);
-		GLint max_samples=0;
-		glGetIntegerv(GL_MAX_SAMPLES,&max_samples);
-		printf("samples=%d\n",max_samples);
-		//init_internal_primitive_list();
-	// Setup style
-		//ImGui::StyleColorsLight();
-		ImGui::StyleColorsClassic();
-		int tar_fps=60;
-		int iper_sc=1000.f/tar_fps;
-		steady_clock::time_point  t_bf_render,t_af_render;
 		
-		_pscr_ds = make_shared<screen_image_distortion>( _screen_width, _screen_height );
-		while (1)//!glfwWindowShouldClose(_window))
+	}
+	application& application::set_windows_pos(float posx, float posy)
+	{
+		_wposx = posx;
+		_wposy = posy;
+		return *this;
+	}
+
+    application& application::set_window_size(float w,float h)
+	{
+		set_display(w,h);
+		_win_width = w;
+		_win_height = h;
+		return *this;
+	}
+    bool application::load_afb(const char* afb_file)
+	{
+		if (_proot)
 		{
-			// You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
-			// - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
-			// - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
-			// Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
-			
-			t_bf_render=steady_clock::now();
-			ImGui_ImplGlfwGL3_NewFrame();
-			ImGui::SetNextWindowSize(ImVec2(_win_width, _win_height), ImGuiCond_FirstUseEver);
-			ImGui::SetNextWindowPos(ImVec2(_wposx, _wposy));
-			ImGui::SetNextWindowBgAlpha(1.f);
-			static bool show_app = true;
-			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
-			ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.f);
-			ImGui::Begin("edit window", &show_app, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
-				ImGuiWindowFlags_NoScrollbar |ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove 
-				| ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoCollapse);
-			//
-			if (_proot)
-			{
-				onUpdate();
-				keep_state_trans_on();
-				execute_lazy_value();
-                _proot->draw_frames();
-			}
-			ImGui::End();
-			ImGui::PopStyleVar();
-			ImGui::PopStyleVar();
-			// Rendering
-			int display_w, display_h;
-			glfwGetFramebufferSize(_window, &display_w, &display_h);
-			glViewport(0, 0, display_w, display_h);
-			glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
-			glClear(GL_COLOR_BUFFER_BIT);
-			ImGui::Render();
-			 _pscr_ds->bind_framebuffer();
-			ImGui_ImplGlfwGL3_RenderDrawData(ImGui::GetDrawData());
-			 _pscr_ds->disbind_framebuffer();
-             _pscr_ds->draw();
-			glfwSwapBuffers(_window);
-			t_af_render=steady_clock::now();
-			int delta = chrono::duration_cast<chrono::duration<int,std::milli>>(t_af_render - t_bf_render).count();
-			if(delta<iper_sc)
-			{
-			    auto sp_pd=iper_sc-delta-10;
-			    //this_thread::sleep_for(chrono::milliseconds(sp_pd));
-			}
-			
+			delete _proot;
 		}
+		afb_load afl(_proot);
+		afl.load_afb(afb_file);
+		resLoaded();
 		return true;
 	}
-	void application::set_screen_pos(float posx, float posy)
+
+    bool application::loaf_afb_from_buff(const char* buff ,unsigned int len)
+    {
+        if (_proot)
+        {
+            delete _proot;
+        }
+
+        afb_load afl(_proot);
+        afl.load_afb_from_buff(buff,len);
+		LOGI("afb finish:%d\n",__LINE__);
+         resLoaded();
+        LOGI("afb finish:%d\n",__LINE__);
+		return true;
+    }
+	bool application::render()
 	{
-		_screen_posx=posx;
-		_screen_posy=posy;
+
+		ImVec4 clear_color = ImVec4(0.f, 0.f, 0.f, 1.00f);
+		LOGI("render:%d\n",__LINE__);	
+		ImGui_ImplGL3_NewFrame();
+		ImGui::SetNextWindowSize(ImVec2(_win_width, _win_height), ImGuiCond_FirstUseEver);
+		ImGui::SetNextWindowPos(ImVec2(_wposx, _wposy));
+		ImGui::SetNextWindowBgAlpha(1.f);
+		static bool show_app = true;
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2(0, 0));
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowBorderSize, 0.f);
+		ImGui::Begin("edit window", &show_app, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize |
+			ImGuiWindowFlags_NoScrollbar |ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoMove 
+			| ImGuiWindowFlags_NoSavedSettings|ImGuiWindowFlags_NoCollapse);
+		//
+		if (_proot)
+		{
+			LOGI("render:%d\n",__LINE__);
+			onUpdate();
+			LOGI("render:%d\n",__LINE__);
+			keep_state_trans_on();
+			LOGI("render:%d\n",__LINE__);
+			execute_lazy_value();
+			LOGI("render:%d\n",__LINE__);
+			_proot->draw_frames();
+			LOGI("render:%d\n",__LINE__);
+			
+		}
+		ImGui::End();
+		ImGui::PopStyleVar();
+		ImGui::PopStyleVar();
+		// Rendering
+		int scw=_win_width,sch=_win_height;
+		glViewport(0, 0, scw, sch);
+		glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
+		glClear(GL_COLOR_BUFFER_BIT);
+		ImGui::Render();
+		//_pscr_ds->bind_framebuffer();
+		ImGui_ImplGL3_RenderDrawData(ImGui::GetDrawData());
+		//_pscr_ds->disbind_framebuffer();
+		//_pscr_ds->draw();
+		//glfwSwapBuffers(_window);
+		return true;
 	}
+
 	void application::set_image_height(int height)
 	{
-		_pscr_ds->set_height(height);
+		//_pscr_ds->set_height(height);
 	}
 
 	void application::set_rotate_angle( float angle )
 	{
-		 _pscr_ds->set_rotate_angle( angle );
+		// _pscr_ds->set_rotate_angle( angle );
 	}
 	void application::set_rotate_axis_pos( float px, float py )
 	{
-		 _pscr_ds->set_rotate_axis_pos( px, py );
+		// _pscr_ds->set_rotate_axis_pos( px, py );
 	}
 
 	void application::destroy()
 	{
-		ImGui_ImplGlfwGL3_Shutdown();
+		 ImGui_ImplGL3_Shutdown();
 		ImGui::DestroyContext();
 	}
 }

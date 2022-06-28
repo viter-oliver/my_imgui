@@ -4,7 +4,7 @@
 #include "res_output.h"
 #include "af_primitive_object.h"
 #define FILE_NAME_LEN 50
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_plane_play_2d :
 		public ft_base

@@ -2,7 +2,7 @@
 #include "ft_trans.h"
 #include "af_primitive_object.h"
 
-namespace auto_future
+namespace zl_future
 {
 
      ft_trans::ft_trans()

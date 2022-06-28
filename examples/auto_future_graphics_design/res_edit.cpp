@@ -33,14 +33,15 @@ void res_edit::draw_res_list()
      ImGui::InputText( "texture data file:", texture_data_name_str, FILE_NAME_LEN );
      if( ImGui::Button( "new texture group" ) )
      {
-          g_vres_texture_list.emplace_back( make_shared<res_texture_list>() );
-          res_texture_list& retxt = *g_vres_texture_list.back();
+          auto sd_new_res_txtlist=make_shared<res_texture_list>();
+          res_texture_list& retxt = *sd_new_res_txtlist;
           retxt.texture_pack_file = texture_pack_name_str;
           retxt.texture_data_file = texture_data_name_str;
-          if( !load_texture_info( retxt, retxt.texture_pack_file, retxt.texture_data_file ) )
+          if( load_texture_info( retxt, retxt.texture_pack_file, retxt.texture_data_file ) )
           {
+               g_vres_texture_list.emplace_back( sd_new_res_txtlist);
+          } else {
                MessageBox( GetForegroundWindow(), "fail to loading texture information! ", "Error info", MB_OK );
-               g_vres_texture_list.erase( g_vres_texture_list.begin() + ( isize - 1 ) );
           }
           memset( texture_pack_name_str, 0, FILE_NAME_LEN );
           memset( texture_data_name_str, 0, FILE_NAME_LEN );

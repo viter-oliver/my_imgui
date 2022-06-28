@@ -1,8 +1,12 @@
 #pragma once
 //#prama execution_character_set("utf-8")
+#include <android/log.h>
+#define LOG_TAG __FUNCTION__ //"ndk-build"
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__)
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
 #define TXT_BUFF_SZ 1024 * 16
 
-namespace auto_future
+namespace zl_future
 {
 	template <class T>
 	struct af_vt2{

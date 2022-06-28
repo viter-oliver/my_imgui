@@ -7,12 +7,12 @@ class TextureHelper
 {
 public:
 	/*
-	/* ³É¹¦¼ÓÔØ2DÎÆÀíÔò·µ»ØÎÆÀí¶ÔÏóId ·ñÔò·µ»Ø0                                                                
+	/* ï¿½É¹ï¿½ï¿½ï¿½ï¿½ï¿½2Dï¿½ï¿½ï¿½ï¿½ï¿½ò·µ»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Id ï¿½ï¿½ï¿½ò·µ»ï¿½0                                                                
 	*/
 	static  GLuint load2DTexture(const char* filename, int& picWidth, int& picHeight, GLint internalFormat = GL_RGB,
 		GLenum picFormat = GL_RGB, int loadChannels = SOIL_LOAD_RGB)
 	{
-		// Step1 ´´½¨²¢°ó¶¨ÎÆÀí¶ÔÏó
+		// Step1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		GLuint textureId = 0;
 		glGenTextures(1, &textureId);
 		glBindTexture(GL_TEXTURE_2D, textureId);
@@ -21,14 +21,14 @@ public:
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		}
-		// Step2 Éè¶¨wrap²ÎÊý
+		// Step2 ï¿½è¶¨wrapï¿½ï¿½ï¿½ï¿½
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		// Step3 Éè¶¨filter²ÎÊý
+		// Step3 ï¿½è¶¨filterï¿½ï¿½ï¿½ï¿½
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 
-			GL_LINEAR_MIPMAP_LINEAR); // ÎªMipMapÉè¶¨filter·½·¨
-		// Step4 ¼ÓÔØÎÆÀí
+			GL_LINEAR_MIPMAP_LINEAR); // ÎªMipMapï¿½è¶¨filterï¿½ï¿½ï¿½ï¿½
+		// Step4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		GLubyte *imageData = NULL;
 		imageData = SOIL_load_image(filename, &picWidth, &picHeight, 0, loadChannels);
 		if (imageData == NULL)
@@ -39,7 +39,7 @@ public:
 		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, picWidth, picHeight, 
 			0, picFormat, GL_UNSIGNED_BYTE, imageData);
 		glGenerateMipmap(GL_TEXTURE_2D);
-		// Step5 ÊÍ·ÅÎÆÀíÍ¼Æ¬×ÊÔ´
+		// Step5 ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ô´
 		SOIL_free_image_data(imageData);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return textureId;
@@ -47,7 +47,7 @@ public:
 	static  GLint transferMemory2Texture(const unsigned char*  pdata,int bufferLen, int& picWidth, int& picHeight, GLint internalFormat = GL_RGB,
 		GLenum picFormat = GL_RGB, int loadChannels = SOIL_LOAD_RGB)
 	{
-		// Step1 ´´½¨²¢°ó¶¨ÎÆÀí¶ÔÏó
+		// Step1 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		GLuint textureId = 0;
 		glGenTextures(1, &textureId);
 		glBindTexture(GL_TEXTURE_2D, textureId);
@@ -56,14 +56,14 @@ public:
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		}
-		// Step2 Éè¶¨wrap²ÎÊý
+		// Step2 ï¿½è¶¨wrapï¿½ï¿½ï¿½ï¿½
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-		// Step3 Éè¶¨filter²ÎÊý
+		// Step3 ï¿½è¶¨filterï¿½ï¿½ï¿½ï¿½
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, 
-			GL_LINEAR_MIPMAP_LINEAR); // ÎªMipMapÉè¶¨filter·½·¨
-		// Step4 ¼ÓÔØÎÆÀí
+			GL_LINEAR_MIPMAP_LINEAR); // ÎªMipMapï¿½è¶¨filterï¿½ï¿½ï¿½ï¿½
+		// Step4 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		GLubyte *imageData = NULL;
 		imageData = SOIL_load_image_from_memory(pdata, bufferLen,&picWidth, &picHeight, 0, loadChannels);
 		if (imageData == NULL)
@@ -74,13 +74,13 @@ public:
 		glTexImage2D(GL_TEXTURE_2D, 0, internalFormat, picWidth, picHeight, 
 			0, picFormat, GL_UNSIGNED_BYTE, imageData);
 		glGenerateMipmap(GL_TEXTURE_2D);
-		// Step5 ÊÍ·ÅÎÆÀíÍ¼Æ¬×ÊÔ´
+		// Step5 ï¿½Í·ï¿½ï¿½ï¿½ï¿½ï¿½Í¼Æ¬ï¿½ï¿½Ô´
 		SOIL_free_image_data(imageData);
 		glBindTexture(GL_TEXTURE_2D, 0);
 		return textureId;
 	}
 	/*
-	* ´´½¨ framebuffer-attachable texture
+	* ï¿½ï¿½ï¿½ï¿½ framebuffer-attachable texture
 	*/
 	static GLuint makeAttachmentTexture(GLint level = 0, GLint internalFormat = GL_DEPTH24_STENCIL8,
 		GLsizei width = 800, GLsizei height = 600, GLenum picFormat = GL_DEPTH_STENCIL,
@@ -90,7 +90,7 @@ public:
 		glGenTextures(1, &textId);
 		glBindTexture(GL_TEXTURE_2D, textId);
 		glTexImage2D(GL_TEXTURE_2D, level, internalFormat,
-			width, height, 0, picFormat, picDataType, NULL); // Ô¤·ÖÅä¿Õ¼ä
+			width, height, 0, picFormat, picDataType, NULL); // Ô¤ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 

@@ -1,5 +1,5 @@
 #pragma once
-#include <python2.7/Python.h>
+
 #include <string>
 #include <vector>
 using namespace std;
@@ -17,7 +17,7 @@ struct  var_unit
 using variable_list = vector<var_unit>;
 class python_interpreter
 {
-	PyObject *_pModule, *_pGlobal, *_pLocal;
+
 public:
 	python_interpreter();
 	~python_interpreter();

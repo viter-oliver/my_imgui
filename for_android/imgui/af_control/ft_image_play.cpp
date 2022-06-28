@@ -10,7 +10,7 @@
 x'=(x-a)cos��+(y-b)sin��+a
 y'=-(x-a)sin��+(y-b)cos��+b
 */
-namespace auto_future
+namespace zl_future
 {
 	ft_image_play::ft_image_play()
 		:ft_base()

@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_scene :
 		public ft_base

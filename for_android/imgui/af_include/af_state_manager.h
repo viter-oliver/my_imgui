@@ -112,7 +112,7 @@ template<class T> bool set_trans_pair_state_list_delta( string trans_name,
      const auto& itrans = g_mstate_manager.find( trans_name );
      if( itrans == g_mstate_manager.end() )
      {
-          printf( "invalid trans name:%s\n", trans_name.c_str() );
+          LOGE( "invalid trans name:%s\n", trans_name.c_str() );
           return false;
      }
      int isz = sizeof( T );
@@ -122,7 +122,7 @@ template<class T> bool set_trans_pair_state_list_delta( string trans_name,
      field_ele& fel = pobj->get_filed_ele( pgidx, fidx );
      if( fel._tpsz != isz )
      {
-          printf( "value type size:%d!=original property size:%d\n", isz, fel._tpsz );
+          LOGE( "value type size:%d!=original property size:%d\n", isz, fel._tpsz );
           return false;
      }
      auto& trans = *itrans->second;
@@ -137,7 +137,7 @@ template<class T> bool set_trans_pair_state_list_delta( string trans_name,
      }
      if( pos_id == prp_list.size() )
      {
-          printf( "invalid property element position\n" );
+          LOGE( "invalid property element position\n" );
           return false;
      }
      auto vpsz = vpvalue.size();
@@ -153,7 +153,7 @@ template<class T> bool set_trans_pair_state_list_delta( string trans_name,
           auto& id = pu.id;
           if( id >= sz_prp_value_list )
           {
-               printf( "invalid id:%d for delta value set\n", id );
+               LOGE( "invalid id:%d for delta value set\n", id );
                continue;
           }
           auto& delta_value = pu.delta_value;
@@ -175,7 +175,7 @@ template<class T> bool set_trans_sequential_state_list_delta(string trans_name,
      const auto& itrans = g_mstate_manager.find( trans_name );
      if (itrans==g_mstate_manager.end())
      {
-          printf( "invalid trans name:%s\n", trans_name.c_str() );
+          LOGE( "invalid trans name:%s\n", trans_name.c_str() );
           return false;
      }
      int isz = sizeof( T );
@@ -185,7 +185,7 @@ template<class T> bool set_trans_sequential_state_list_delta(string trans_name,
      field_ele& fel = pobj->get_filed_ele( pgidx, fidx );
      if (fel._tpsz!=isz)
      {
-          printf( "value type size:%d!=original property size:%d\n", isz, fel._tpsz );
+          LOGE( "value type size:%d!=original property size:%d\n", isz, fel._tpsz );
           return false;
      }
      auto& trans =*itrans->second;
@@ -200,7 +200,7 @@ template<class T> bool set_trans_sequential_state_list_delta(string trans_name,
      }
      if (pos_id==prp_list.size())
      {
-          printf( "invalid property element position\n" );
+          LOGE( "invalid property element position\n" );
           return false;
      }
      auto vpsz = vpvalue.size();
@@ -209,7 +209,7 @@ template<class T> bool set_trans_sequential_state_list_delta(string trans_name,
      auto delta_sz = sz_prp_value_list - target_id - 1;
      if( vpsz != delta_sz )
      {
-          printf("invalid vpvalue size:%d for target id:%d\n",vpsz,target_id);
+          LOGE("invalid vpvalue size:%d for target id:%d\n",vpsz,target_id);
           return false;
      }
      auto& pp_vl_list_target = prp_value_list[ target_id ];

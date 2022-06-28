@@ -8,7 +8,7 @@
 #if !defined(DISABLE_DEMO)
 #include "video_capture.h"
 #endif
-namespace auto_future
+namespace zl_future
 {
 	void ft_video::init_txt_obj()
 	{
@@ -26,11 +26,11 @@ namespace auto_future
 	{
 		auto data_size = _txt_width*_txt_height * 4;
 		glGenBuffers(2, _pboIds);
-		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[0]);
-		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
-		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[1]);
-		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
-		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER_NV, _pboIds[0]);
+		glBufferData(GL_PIXEL_UNPACK_BUFFER_NV, data_size, 0, GL_STREAM_DRAW);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER_NV, _pboIds[1]);
+		glBufferData(GL_PIXEL_UNPACK_BUFFER_NV, data_size, 0, GL_STREAM_DRAW);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER_NV, 0);
 	}
 	void ft_video::release_res()
 	{
@@ -160,19 +160,19 @@ namespace auto_future
 		assert(sz == data_size);
 		bool nindex = !index;
 		glBindTexture(GL_TEXTURE_2D, _txt_id);
-		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[index]);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER_NV, _pboIds[index]);
 		glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, _txt_width, _txt_height, GL_RGBA, GL_UNSIGNED_BYTE, 0);
-		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, _pboIds[nindex]);
-		glBufferData(GL_PIXEL_UNPACK_BUFFER, data_size, 0, GL_STREAM_DRAW);
-		#if 1
-		GLubyte* ptr = (GLubyte*)glMapBufferRange(GL_PIXEL_UNPACK_BUFFER, 0,data_size,GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT | GL_MAP_UNSYNCHRONIZED_BIT);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER_NV, _pboIds[nindex]);
+		glBufferData(GL_PIXEL_UNPACK_BUFFER_NV, data_size, 0, GL_STREAM_DRAW);
+		#if 0
+		GLubyte* ptr = (GLubyte*)glMapBufferRangeEXT(GL_PIXEL_UNPACK_BUFFER_NV, 0,data_size,GL_MAP_WRITE_BIT | GL_MAP_INVALIDATE_BUFFER_BIT_EXT | GL_MAP_UNSYNCHRONIZED_BIT_EXT);
 		if (ptr)
 		{
 			memcpy(ptr, dst, data_size);
-			glUnmapBuffer(GL_PIXEL_UNPACK_BUFFER);
+			glUnmapBuffer(GL_PIXEL_UNPACK_BUFFER_NV);
 		}
 		#endif
-		glBindBuffer(GL_PIXEL_UNPACK_BUFFER, 0);
+		glBindBuffer(GL_PIXEL_UNPACK_BUFFER_NV, 0);
 		index = nindex;
 	}
 

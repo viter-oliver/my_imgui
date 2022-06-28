@@ -102,13 +102,23 @@ template<class T> bool get_prop_fd_value( prop_ele_position& pep, T& pvalue )
      auto& field = pep._pobj->get_filed_ele( pgidx, fdidx );
      if (field._tpsz!=sizeof(T))
      {
-          printf("The variable you input which type is invalid for(%s_%d_%d)!\n",pep._pobj->get_name().c_str(),pgidx,fdidx);
+          LOGE("The variable you input which type is invalid for(%s_%d_%d)!\n",pep._pobj->get_name().c_str(),pgidx,fdidx);
           return false;
      }
      memcpy( &pvalue, field._address, field._tpsz );
      return true;
 }
-
+template<class T> bool get_property_aliase_value_T(string prp_aliase_name, T& value)
+{
+	const auto& ialiase = g_aliase_dic.find(prp_aliase_name);
+	if (ialiase!=g_aliase_dic.end())
+	{
+		printf("unkown aliase name:%s\n", prp_aliase_name.c_str());
+		return false;
+	}
+	const auto& prop_pos = *ialiase->second;
+	return get_prop_fd_value(prp_aliase_name, value);	
+}
 enum get_ui_control_result
 {
      ui_rt_invalid_reciver,
@@ -118,7 +128,7 @@ enum get_ui_control_result
 };
 template<class T> get_ui_control_result get_ui_control_by_alias( string prp_aliase_name, T** ppUi_control )
 {
-     if( *ppUi_control != 0 );
+     if( *ppUi_control != 0 )
      {
           return ui_rt_invalid_reciver;
      }

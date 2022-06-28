@@ -7,7 +7,7 @@
 #include <boost/preprocessor/seq/for_each.hpp>
 #include <boost/preprocessor/tuple/elem.hpp>
 #include <boost/preprocessor/variadic/to_seq.hpp>
-using namespace auto_future;
+using namespace zl_future;
 enum range_value_type
 {
 	en_range_value_int,
@@ -150,26 +150,26 @@ stname vname{_vprop_eles}; MSC_PACK_END
 
 /************************************************************************/
 /* 
-Ê¹ÓÃDEF_STRUCTÀ´¶¨Òå½á¹¹Ìå×¢ÒâÊÂÏî£º
-1¡¢Êý×é³ÉÔ±²»ÄÜÖ±½Ó³õÊ¼»¯¡£ÀýÈç£ºchar a[20]{1,2,3}; //error C2536¡£
-2¡¢³ÉÔ±±äÁ¿²»Ö§³ÖÖ±½Ó³õÊ¼»¯¡£ÀýÈç class1 my_class{p1,p2,p3}
-3¡¢³ÉÔ±±äÁ¿µÄÀàÐÍ±ØÐëÊÇÒ»¸öpodÀàÐÍ¡£
-4¡¢»ù±¾Êý¾ÝÀàÐÍµÄ³ÉÔ±¶¼ÓÐÄ¬ÈÏµÄÊôÐÔ²Ù×÷£¬¿Í»§ÀàÐÍµÄ³ÉÔ±ÊôÐÔ²Ù×÷,·½·¨ÊÇ×¢²á»Øµ÷º¯Êý£¬²¢Ìá¹©ÀàÐÍÃû³Æ¡£
-5¡¢ÓÃ»§¿ÉÒÔÕë¶ÔÌØ¶¨µÄ½á¹¹Ìå±äÁ¿Ìá¹©ÊôÐÔ²Ù×÷£¬·½·¨ÊÇ×¢²á»Øµ÷º¯Êý£¬Í¬Ê±Ìá¹©½á¹¹Ìå±äÁ¿µÄµØÖ·¡£
-6¡¢ÓÃ»§¿ÉÒÔÕë¶ÔÌØ¶¨µÄ½á¹¹Ìå³ÉÔ±±äÁ¿Ìá¹©ÊôÐÔ²Ù×÷£¬·½·¨ÊÇ×¢²á»Øµ÷º¯Êý£¬Í¬Ê±Ìá¹©½á¹¹Ìå±äÁ¿µÄµØÖ·ºÍ½á¹¹Ìå³ÉÔ±±äÁ¿ÔÚ¸Ã½á¹¹ÖÐµÄÎ»ÖÃË÷Òý¡£
-7¡¢±äÁ¿Ãû³ÆµÄ×îºóÈý¸ö×ÖÄ¸°µÊ¾Ä³Ð©ÐÅÏ¢£¬ÊôÐÔÒ³»á¸ù¾ÝÕâÐ©ÐÅÏ¢²Ù×÷ÕâÐ©ÊôÐÔ£º
-   shd ¼´signed hundred£¬ÊýÖµ·¶Î§-100£¬100
-   stn ¼´signed ten£¬ÊýÖµ·¶Î§-10£¬10
-   srd ¼´signed round£¬ÊýÖµ·¶Î§-360£¬360
-   uhd ¼´unsigned hundred£¬ÊýÖµ·¶Î§0£¬100
-   utn ¼´unsigned ten£¬ÊýÖµ·¶Î§0£¬10
-   urd ¼´unsigned round£¬ÊýÖµ·¶Î§0£¬360
-   hac ¼´high accuracy,±£Áô6Î»Ð¡Êý
-   nml ¼´normal£¬ÊýÖµ·¶Î§0£¬1
-   clr ¼´color£¬¸ÃÊôÐÔÊ¹ÓÃÑÕÉ«±à¼­Æ÷À´²Ù×÷
-   txt ¼´texture£¬¸ÃÊôÐÔÊÇÒ»¸öÎÆÀíÊôÐÔ,ÊÇÄ³¸öÆ´½ÓÎÆÀíµÄ×ÓÎÆÀíË÷Òý£¬ËùÒÔ¸ÃÊôÐÔÒ³Ö®Ç°±ØÈ»°üº¬Ò»¸öÆ´½ÓÎÆÀíË÷Òý,_image_group_id
+Ê¹ï¿½ï¿½DEF_STRUCTï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½ï¿½î£º
+1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ç£ºchar a[20]{1,2,3}; //error C2536ï¿½ï¿½
+2ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö§ï¿½ï¿½Ö±ï¿½Ó³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ class1 my_class{p1,p2,p3}
+3ï¿½ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í±ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½podï¿½ï¿½ï¿½Í¡ï¿½
+4ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÍµÄ³ï¿½Ô±ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ïµï¿½ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í»ï¿½ï¿½ï¿½ï¿½ÍµÄ³ï¿½Ô±ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¡ï¿½
+5ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½Ä½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ê±ï¿½á¹©ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·ï¿½ï¿½
+6ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø¶ï¿½ï¿½Ä½á¹¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½ï¿½Ô²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í¬Ê±ï¿½á¹©ï¿½á¹¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Äµï¿½Ö·ï¿½Í½á¹¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½Ú¸Ã½á¹¹ï¿½Ðµï¿½Î»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+7ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¸ï¿½ï¿½Ê¾Ä³Ð©ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©ï¿½ï¿½Ï¢ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð©ï¿½ï¿½ï¿½Ô£ï¿½
+   shd ï¿½ï¿½signed hundredï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§-100ï¿½ï¿½100
+   stn ï¿½ï¿½signed tenï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§-10ï¿½ï¿½10
+   srd ï¿½ï¿½signed roundï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§-360ï¿½ï¿½360
+   uhd ï¿½ï¿½unsigned hundredï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§0ï¿½ï¿½100
+   utn ï¿½ï¿½unsigned tenï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§0ï¿½ï¿½10
+   urd ï¿½ï¿½unsigned roundï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§0ï¿½ï¿½360
+   hac ï¿½ï¿½high accuracy,ï¿½ï¿½ï¿½ï¿½6Î»Ð¡ï¿½ï¿½
+   nml ï¿½ï¿½normalï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§0ï¿½ï¿½1
+   clr ï¿½ï¿½colorï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½É«ï¿½à¼­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+   txt ï¿½ï¿½textureï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½Ä³ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½ï¿½ï¿½Ò³Ö®Ç°ï¿½ï¿½È»ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Æ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,_image_group_id
    
-8¡¢ÓÃ»§Ò²¿ÉÒÔÎªÌØ¶¨µÄ½á¹¹Ìå³ÉÔ±±äÁ¿Ìá¹©ÊýÖµ·¶Î§£¬·½·¨ÊÇ×¢²áÊýÖµ·¶Î§¡£
-9¡¢type,childs²»¿É×÷Îª±äÁ¿Ãû³Æ¡£
+8ï¿½ï¿½ï¿½Ã»ï¿½Ò²ï¿½ï¿½ï¿½ï¿½Îªï¿½Ø¶ï¿½ï¿½Ä½á¹¹ï¿½ï¿½ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½á¹©ï¿½ï¿½Öµï¿½ï¿½Î§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½Î§ï¿½ï¿½
+9ï¿½ï¿½type,childsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ¡ï¿½
 */
 /************************************************************************/

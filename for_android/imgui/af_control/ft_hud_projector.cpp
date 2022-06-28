@@ -1,13 +1,13 @@
 #include "ft_hud_projector.h"
 #include "common_functions.h"
-namespace auto_future
+namespace zl_future
 {
      ft_hud_projector::ft_hud_projector()
      {
           _in_p._sizew = 640;
           _in_p._sizeh = 480;
-          _pj_pt._view_pos = { -410.f, 1300.f, -2570.f };
-          _pj_pt._center_of_prj = { -410.f, 900.f, 5420.f };
+          _pj_pt._view_pos = { -41.f, 130.f, -257.f };
+          _pj_pt._center_of_prj = { -41.f, 90.f, 542.f };
           _pj_pt._up = { 0, 1.f, 0 };
           _pj_pt._fovy = 3;
           _pj_pt._near = 20;

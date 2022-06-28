@@ -8,25 +8,25 @@ void state_trans_player::play_state_trans(ps_state_manager pstate, int from, int
 	_cur_trans_play_key = {from,to};
 	_cur_trans_play_start = steady_clock::now();
 	_be_playing = true;
-}*/
+}
 static char* str_play_state[en_play_state_cnt] =
 {
 	"stopped",
 	"playing a trans",
 	"playing a playlist"
-};
+};*/
 AFG_EXPORT bool trans_is_playing( string trans_name)
 {
 	const auto& istm = g_mstate_manager.find(trans_name);
 	if (istm == g_mstate_manager.end())
 	{
-		printf("invalid state manager name:%s\n", trans_name.c_str());
+		LOGE("invalid state manager name:%s\n", trans_name.c_str());
 		return false;
 	}
 	auto& stm = *istm->second;
 	if (stm._play_state!=en_play_stop)
 	{
-		//printf("state manager:%s is running in state:%s\n", trans_name.c_str(), str_play_state[stm._play_state]);
+		//LOGE("state manager:%s is running in state:%s\n", trans_name.c_str(), str_play_state[stm._play_state]);
 		return true;
 	}
 	return false;
@@ -36,13 +36,13 @@ AFG_EXPORT bool play_tran(string stm_name, int from, int to,bool cover_from_valu
 	const auto& istm = g_mstate_manager.find(stm_name);
 	if (istm == g_mstate_manager.end())
 	{
-		printf("invalid state manager name:%s\n", stm_name.c_str());
+		LOGE("invalid state manager name:%s\n", stm_name.c_str());
 		return false;
 	}
 	auto& stm = *istm->second;
 	if (stm._play_state!=en_play_stop)
 	{
-		//printf("state manager:%s is running in state:%s\n", stm_name.c_str(), str_play_state[stm._play_state]);
+		//LOGE("state manager:%s is running in state:%s\n", stm_name.c_str(), str_play_state[stm._play_state]);
 		return false;
 	}
 	const auto& itran = stm._mtrans.find({ from, to });
@@ -81,18 +81,18 @@ AFG_EXPORT bool play_tran_playlist(string stm_name, int playlist_id)
 	const auto& istm = g_mstate_manager.find(stm_name);
 	if (istm == g_mstate_manager.end())
 	{
-		printf("invalid state manager name:%s\n", stm_name.c_str());
+		LOGE("invalid state manager name:%s\n", stm_name.c_str());
 		return false;
 	}
 	auto& stm = *istm->second;
 	if (stm._play_state != en_play_stop)
 	{
-		//printf("state manager:%s is running in state:%s\n", stm_name.c_str(), str_play_state[stm._play_state]);
+		//LOGE("state manager:%s is running in state:%s\n", stm_name.c_str(), str_play_state[stm._play_state]);
 		return false;
 	}
 	if (playlist_id>=stm._playlist_list.size())
 	{
-		printf("for state manager:%s,%d is invalid\n", stm_name.c_str(), playlist_id);
+		LOGE("for state manager:%s,%d is invalid\n", stm_name.c_str(), playlist_id);
 		return false;
 	}
 	stm._cur_playlist_id = playlist_id;
@@ -135,7 +135,7 @@ void keep_state_trans_on()
 			auto& play_clk = stm._trans_start;
 			auto dur_mills = duration_cast<milliseconds>(cur_clk - play_clk);
 			auto& cur_trans = *stm._pcur_tran;
-			auto delta_tm = dur_mills.count() - cur_trans._start_time;//note?¨ºostart_time2?¨¦2?¡§o?¡§o?¨¤??|¨¬??¨º???¡§o??¡§¡è¡§|¡§¡äo¡§¡é??o¡§??a¡§o?
+			auto delta_tm = dur_mills.count() - cur_trans._start_time;//note?ï¿½ï¿½ostart_time2?ï¿½ï¿½2?ï¿½ï¿½o?ï¿½ï¿½o?ï¿½ï¿½??|ï¿½ï¿½??ï¿½ï¿½???ï¿½ï¿½o??ï¿½ï¿½ï¿½è¡§|ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½??oï¿½ï¿½??aï¿½ï¿½o?
 			if (delta_tm>0)
 			{
 				double tm_pt_mill = (double)delta_tm / cur_trans._duration;
@@ -276,7 +276,7 @@ AFG_EXPORT bool save_property_to_trans_state( string trans_name,
      const auto& itrans = g_mstate_manager.find( trans_name );
      if( itrans == g_mstate_manager.end() )
      {
-          printf( "invalid trans name:%s\n", trans_name.c_str() );
+          LOGE( "invalid trans name:%s\n", trans_name.c_str() );
           return false;
      }
      auto& pobj = prp_pos._pobj;
@@ -296,7 +296,7 @@ AFG_EXPORT bool save_property_to_trans_state( string trans_name,
      }
      if( pos_id == prp_list.size() )
      {
-          printf( "invalid property element position\n" );
+          LOGE( "invalid property element position\n" );
           return false;
      }
      auto& prp_value_list = trans._prop_value_list;    
@@ -344,7 +344,7 @@ AFG_EXPORT bool cancel_play_tran(string stm_name)
 	const auto& istm = g_mstate_manager.find(stm_name);
 	if (istm == g_mstate_manager.end())
 	{
-		printf("invalid state manager name:%s\n", stm_name.c_str());
+		LOGE("invalid state manager name:%s\n", stm_name.c_str());
 		return false;
 	}
 	auto& stm = *istm->second;
@@ -389,7 +389,7 @@ AFG_EXPORT bool reg_trans_handle(string trans_name, trans_finish_handle trans_ha
 	const auto& itrans = g_mstate_manager.find(trans_name);
 	if (itrans==g_mstate_manager.end())
 	{
-		printf("unknown trans:%s for reg_trans_handle\n",trans_name.c_str());
+		LOGE("unknown trans:%s for reg_trans_handle\n",trans_name.c_str());
 		return false;
 	}
 	auto& trans = *itrans->second;

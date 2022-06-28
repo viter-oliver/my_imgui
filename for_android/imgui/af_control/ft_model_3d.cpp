@@ -9,7 +9,7 @@
 #include "dir_output.h"
 extern string g_cureent_directory;
 #endif
-namespace auto_future
+namespace zl_future
 {
 	ft_model_3d::ft_model_3d()
 		:ft_base(), _tri_cnt(0)
@@ -111,7 +111,7 @@ namespace auto_future
 		vector<Vertex> _vertData;
 		loadFBXFile(str_mesh_file.c_str(), _vertData);
 		_tri_cnt=_vertData.size();
-		glGenVertexArrays(1, &_vao);
+		//glGenVertexArrays(1, &_vao);
 		glGenBuffers(1, &_vbo);
 		glBindVertexArray(_vao);
 		glBindBuffer(GL_ARRAY_BUFFER,_vbo);

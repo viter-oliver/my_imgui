@@ -1,7 +1,7 @@
 #include "ft_block.h"
 
 
-namespace auto_future
+namespace zl_future
 {
 	ft_block::ft_block()
 	{

@@ -6,8 +6,8 @@
 #include <vector>
 #include "res_output.h"
 #include "platform_def.h"
-#include <GLES3/gl32.h>
-#include <GLES3/gl3ext.h>
+#include <GLES3/gl3.h>
+#include <GLES2/gl2ext.h>
 using namespace std;
 /**
 * @brief  primitive_object represent basic data struct which will be inputed into\n

@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-namespace auto_future
+namespace zl_future
 {
      class AFG_EXPORT ft_hud_projector :
      public ft_base
@@ -52,6 +52,6 @@ namespace auto_future
                return _pj_pt._far;
           }
      };
-     REGISTER_CONTROL( ft_hud_projector )
+     REGISTER_CONTROL(ft_hud_projector)
 }
 

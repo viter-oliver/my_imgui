@@ -18,7 +18,7 @@ int startApp(int argc, char **argv)
 	catch (...)
 	{
 
-		printf( "something is wrong!\n");
+		LOGE( "something is wrong!\n");
 		throw;
 	}
 

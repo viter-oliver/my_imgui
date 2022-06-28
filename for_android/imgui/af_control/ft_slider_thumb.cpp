@@ -1,6 +1,6 @@
 #include "ft_slider_thumb.h"
 
-namespace auto_future
+namespace zl_future
 {
 	ft_slider_thumb::ft_slider_thumb()
 	{

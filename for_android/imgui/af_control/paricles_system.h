@@ -1,6 +1,6 @@
 #pragma once
 #define _calcu_color
-namespace auto_future
+namespace zl_future
 {
 	//������
 	struct GParticle

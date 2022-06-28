@@ -7,7 +7,7 @@ y'=-(x-a)sin��+(y-b)cos��+b
 */
 
 
-namespace auto_future
+namespace zl_future
 {
 	static inline ImVec2 operator + (const ImVec2& imPt, const af_vec2& afPt)
 	{
@@ -79,7 +79,7 @@ namespace auto_future
 			return;
           if( img_txt_id.y >= ptext_cd.size() )
 		{
-               printf( "invalid texture index:%d\n", img_txt_id.y);
+               LOGE( "invalid texture index:%d\n", img_txt_id.y);
                return;
 		}
           int texture_width = cur_res_list.texture_width;

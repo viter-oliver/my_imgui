@@ -146,7 +146,7 @@ void drag_dop_callback(GLFWwindow *wh, int cnt, const char **fpaths)
      g_cureent_directory = g_cureent_project_file_path.substr(0, g_cureent_project_file_path.find_last_of('\\') + 1);
      if (g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able())
      {
-          int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+          int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "HardStoneGraphics designer", MB_YESNOCANCEL);
           if (result == IDCANCEL)
           {
                return;
@@ -334,7 +334,7 @@ int main(int argc, char *argv[])
      iw = mode->width;
      ih = mode->height;
      //printf("x%", this);
-     GLFWwindow *window = glfwCreateWindow(iw, ih, "Auto Future Graphics Designer", NULL, NULL);
+     GLFWwindow *window = glfwCreateWindow(iw, ih, "HardStoneGraphics designer", NULL, NULL);
      HWND hwnd_main = glfwGetWin32Window(window);
      SendMessage(hwnd_main, WM_SETICON, ICON_SMALL, (LPARAM)LoadIcon(GetModuleHandle(NULL), MAKEINTRESOURCE(IDI_ICON1)));
 
@@ -424,7 +424,7 @@ int main(int argc, char *argv[])
           {
                if (_proot)
                {
-                    int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+                    int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "HardStoneGraphics designer", MB_YESNOCANCEL);
                     if (result == IDCANCEL)
                     {
                          return;
@@ -465,7 +465,7 @@ int main(int argc, char *argv[])
                     {
                          if (g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able())
                          {
-                              int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+                              int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "HardStoneGraphics designer", MB_YESNOCANCEL);
                               if (result == IDCANCEL)
                               {
                                    return;
@@ -1756,7 +1756,7 @@ int main(int argc, char *argv[])
      }
      if (g_ui_edit_command_mg.suspending()) //g_ui_edit_command_mg.undo_able() || g_ui_edit_command_mg.redo_able())
      {
-          int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "auto future graphics designer", MB_YESNOCANCEL);
+          int result = MessageBox(GetForegroundWindow(), "Save changes to the current project?", "HardStoneGraphics designer", MB_YESNOCANCEL);
           if (result == IDYES)
           {
                fun_shortct(en_ctrl_s);

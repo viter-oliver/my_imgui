@@ -2,7 +2,7 @@
 #include "res_output.h"
 #include <sstream>
 #include "common_functions.h"
-namespace auto_future
+namespace zl_future
 {
 	
 	extern float length_of_p2p(ImVec2& p0, ImVec2&p1);

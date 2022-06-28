@@ -2,7 +2,7 @@
 #include "ft_base.h"
 #include "af_material.h"
 #include "af_primitive_object.h"
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_cube_3d :
 		public ft_base

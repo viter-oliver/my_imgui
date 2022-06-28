@@ -2,7 +2,7 @@
 #include "common_functions.h"
 #include <chrono>
 
-namespace auto_future
+namespace zl_future
 {
 	using namespace chrono;
 	static bool get_font_item(void* data, int idx, const char** out_str)

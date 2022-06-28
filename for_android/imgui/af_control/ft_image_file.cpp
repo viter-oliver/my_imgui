@@ -10,7 +10,7 @@ x'=(x-a)cos��+(y-b)sin��+a
 y'=-(x-a)sin��+(y-b)cos��+b
 */
 
-namespace auto_future
+namespace zl_future
 {
 	ft_image_file::ft_image_file()
 		:ft_base()
@@ -65,9 +65,9 @@ namespace auto_future
           imgdata = SOIL_load_image( image_path, &_width, &_height, &_channels, SOIL_LOAD_RGBA );
           if (imgdata==NULL)
           {
-			printf( "fail to load image from:%s\n", image_path );
+			LOGE( "fail to load image from:%s\n", image_path );
 			const char* fail_reson=SOIL_last_result();
-			printf("reson:%s\n",fail_reson);
+			LOGE("reson:%s\n",fail_reson);
 			return false;
           }
           glGenTextures( 1, &_texture_id );

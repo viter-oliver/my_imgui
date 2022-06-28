@@ -7,7 +7,7 @@ af_feedback::af_feedback(ps_mtl& pmtl, ps_primrive_object& pprm)
 	glBindBuffer(GL_ARRAY_BUFFER, _gpuOutputBuffer);
 	//auto stride = pprm->get_stride();
 	auto buff_sz = pprm->_vertex_buf_len;// stride;
-	glBufferData(GL_ARRAY_BUFFER, buff_sz*sizeof(GLfloat), nullptr, GL_STATIC_READ);
+	glBufferData(GL_ARRAY_BUFFER, buff_sz*sizeof(GLfloat), nullptr, GL_STATIC_DRAW);
 	//glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _gpuOutputBuffer);
 }
 
@@ -22,8 +22,8 @@ bool af_feedback::get_output_vertex(vector<float>& overtex)
 	overtex.resize(_pprm->_vertex_buf_len);
 	auto bfsz= _pprm->_vertex_buf_len*sizeof(GLfloat);
 	#ifdef INCLUDE_ES3
-	float* pbuf=(float*)glMapBufferRange(GL_ARRAY_BUFFER,0,bfsz,GL_MAP_READ_BIT);
-	memcpy(&overtex[0],pbuf,bfsz);
+	//float* pbuf=(float*)glMapBufferRangeEXT(GL_ARRAY_BUFFER,0,bfsz,GL_MAP_READ_BIT);
+	//memcpy(&overtex[0],pbuf,bfsz);
 	glUnmapBuffer(GL_ARRAY_BUFFER);
 	#else
 	glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, bfsz, &overtex[0]);
@@ -35,6 +35,7 @@ bool af_feedback::get_output_vertex(vector<float>& overtex)
 void af_feedback::draw()
 {
 	_pmtl->use();
+#if 0
 	GLboolean last_enable_discard = glIsEnabled(GL_RASTERIZER_DISCARD);
 	glEnable(GL_RASTERIZER_DISCARD);
 	glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _gpuOutputBuffer);
@@ -51,6 +52,7 @@ void af_feedback::draw()
 	{
 		glDisable(GL_RASTERIZER_DISCARD);
 	}
+#endif
 	glFlush();
 	
 }

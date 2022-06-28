@@ -6,7 +6,7 @@
 #include <memory>
 #include "control_common_def.h"
 #include <iostream>
-using namespace auto_future;
+using namespace zl_future;
 struct factory
 {
 	template<typename T>
@@ -38,12 +38,12 @@ struct factory
                    auto itc=fmap.find(key);
                    if(itc==fmap.end())
                     {
-                        printf("XXbegin reg:%s\n",key.c_str());
+                        LOGI("XXbegin reg:%s\n",key.c_str());
                         factory::get().map_.emplace(key, [&] { return new T(args...); });
                         //cout<<"end reg:"<<key<<endl;
                     }
                    else{
-                         printf(" XXfail to register control:%s\n",key.c_str());
+                         LOGE(" XXfail to register control:%s\n",key.c_str());
                    }
 		}
         #endif
@@ -53,14 +53,13 @@ struct factory
 	{
 		if (map_.find(key) == map_.end())
 		 {
-		        std::string exp_arg=key+" is not exist!";
-                    printf("exp:%s\n",exp_arg.c_str());
-                    for(auto& icl:map_)
-                    {
-                       printf("key:%s\n",icl.first.c_str());
-                    }
-			//throw std::invalid_argument(exp_arg);
-                     return map_[std::string("ft_base")]();
+			std::string exp_arg=key+" is not exist!";
+			LOGI("exp:%s\n",exp_arg.c_str());
+			for(auto& icl:map_)
+			{
+				LOGI("key:%s\n",icl.first.c_str());
+			}
+			return map_[std::string("ft_base")]();
 		 }
 		return map_[key]();
 	}
@@ -89,7 +88,7 @@ struct factory
 		auto itc = ac_map.find(cname);
 		if (itc!=ac_map.end())
 		{
-			printf("%s has existed!\n", cname.c_str());
+			LOGE("%s has existed!\n", cname.c_str());
 		}
 		else
 		{

@@ -2,7 +2,7 @@
 #include <fstream>
 #include "SOIL.h"
 #include "texture.h"
-#include <GLES3/gl32.h>
+#include <GLES3/gl3.h>
 #include <GLES3/gl3ext.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -15,7 +15,7 @@
 
 const int MaxParticles = 100000;
 
-namespace auto_future
+namespace zl_future
 {
 
 	static const GLfloat g_vertex_cc_data[] = {
@@ -101,7 +101,7 @@ namespace auto_future
 		});
 #endif
 		_ps_particle = make_shared<af_shader>(particles2_vs, particles2_fs);
-		glGenVertexArrays(1, &_vao);
+		//glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 
 		float cmr_wp[] = { 0.999137f, -0.000177f, 0.041540f };
@@ -257,7 +257,7 @@ namespace auto_future
 			0,                  // stride
 			(void*)0            // array buffer offset
 			);
-		glVertexAttribDivisor(0, 0); // particles vertices : always reuse the same 4 vertices -> 0
+		//glVertexAttribDivisor(0, 0); // particles vertices : always reuse the same 4 vertices -> 0
 
 		// 2nd attribute buffer : positions of particles' centers
 		glEnableVertexAttribArray(1);
@@ -270,7 +270,7 @@ namespace auto_future
 			0,                                // stride
 			(void*)0                          // array buffer offset
 			);
-		glVertexAttribDivisor(1, 1); // positions : one per quad (its center)                 -> 1
+		//glVertexAttribDivisor(1, 1); // positions : one per quad (its center)                 -> 1
 
 #ifdef _calcu_color
 		// 3rd attribute buffer : particles' colors
@@ -284,7 +284,7 @@ namespace auto_future
 			0,                                // stride
 			(void*)0                          // array buffer offset
 			);
-		glVertexAttribDivisor(2, 1); // color : one per quad                                  -> 1
+		//glVertexAttribDivisor(2, 1); // color : one per quad                                  -> 1
 #endif
 
 		// Draw the particules !
@@ -292,11 +292,11 @@ namespace auto_future
 		// This is equivalent to :
 		// for(i in ParticlesCount) : glDrawArrays(GL_TRIANGLE_STRIP, 0, 4), 
 		// but faster.
-		glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, g_ptcl_sys->valid_particle_cnt());
+		//glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, g_ptcl_sys->valid_particle_cnt());
 		//glDrawArraysInstanced(GL_TRIANGLES, 0, 6, ParticlesCount);
-		glDisableVertexAttribArray(0);
-		glDisableVertexAttribArray(1);
-		glDisableVertexAttribArray(2);
+		//glDisableVertexAttribArray(0);
+		//glDisableVertexAttribArray(1);
+		//glDisableVertexAttribArray(2);
 	}
 
 }

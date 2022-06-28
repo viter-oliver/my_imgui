@@ -4,7 +4,7 @@
 #include <glm/gtc/type_ptr.hpp>
 #include "ft_base.h"
 #include "af_shader.h"
-namespace auto_future
+namespace zl_future
 {
      class AFG_EXPORT ft_trans :
           public ft_base

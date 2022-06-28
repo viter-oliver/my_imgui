@@ -19,7 +19,8 @@
 #else
 #define AFG_EXPORT
 #endif
-#include <imgui.h>
+
+#include "imgui.h"
 #define IMGUI_DEFINE_MATH_OPERATORS
 #include "imgui_internal.h"
 #include <vector>
@@ -32,11 +33,11 @@
 #include <functional>
 //#include "command_element.h"
 //#include <map>
-namespace auto_future{ class base_ui_component; }
+namespace zl_future{ class base_ui_component; }
 
 #include "property_utilities.h"
 #include "af_type.h"
-namespace auto_future
+namespace zl_future
 {
 	struct property_range
 	{

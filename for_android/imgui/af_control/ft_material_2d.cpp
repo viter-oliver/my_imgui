@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-namespace auto_future
+namespace zl_future
 {
 	ft_material_2d::ft_material_2d()
 	{
@@ -116,7 +116,7 @@ namespace auto_future
 		{
 			if (!_ps_mtl->is_valid())
 			{
-				printf("material:%s is invalid\n",_pt._material_name);
+				LOGE("material:%s is invalid\n",_pt._material_name);
 				return;
 			}
 			static GLuint draw_model[en_gl_count] =
@@ -145,7 +145,7 @@ namespace auto_future
 		}
 		else
 		{
-			printf("material:%s is unmatched\n",_pt._material_name);
+			LOGE("material:%s is unmatched\n",_pt._material_name);
 		}
 		//ft_base::draw();
 	}

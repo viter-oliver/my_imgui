@@ -21,8 +21,8 @@ typedef pack<
 		decltype(std::placeholders::_7 ),
 		decltype(std::placeholders::_8 ),
 		decltype(std::placeholders::_9 ),
-		decltype(std::placeholders::_10),
-		decltype(std::placeholders::_11),
+		decltype(std::placeholders::_10)
+		/*,decltype(std::placeholders::_11),
 		decltype(std::placeholders::_12),
 		decltype(std::placeholders::_13),
 		decltype(std::placeholders::_14),
@@ -30,7 +30,7 @@ typedef pack<
 		decltype(std::placeholders::_16),
 		decltype(std::placeholders::_17),
 		decltype(std::placeholders::_18),
-		decltype(std::placeholders::_19)
+		decltype(std::placeholders::_19)*/
 	> placeholders;
 
 

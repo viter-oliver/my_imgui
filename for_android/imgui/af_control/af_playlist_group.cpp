@@ -13,7 +13,7 @@ bool play_playlist_group(string gp_name)
 	{
 		if (trans_is_playing(playlist_group._st_name))
 		{
-			printf("trans_name:%s is playing for playlist_group:%s\n", playlist_group._st_name.c_str(), gp_name.c_str());
+			LOGE("trans_name:%s is playing for playlist_group:%s\n", playlist_group._st_name.c_str(), gp_name.c_str());
 			return false;
 		}
 	}

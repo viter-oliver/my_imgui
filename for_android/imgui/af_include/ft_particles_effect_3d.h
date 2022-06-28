@@ -2,7 +2,7 @@
 #include "ft_base.h"
 #include "af_material.h"
 #include "res_output.h"
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_particles_effect_3d :
 		public ft_base

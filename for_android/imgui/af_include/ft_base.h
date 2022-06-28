@@ -1,6 +1,6 @@
 #pragma once
 #include "af_factory.h"
-namespace auto_future
+namespace zl_future
 {
 	enum anchor_type
 	{

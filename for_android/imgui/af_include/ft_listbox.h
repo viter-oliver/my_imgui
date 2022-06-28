@@ -1,6 +1,6 @@
 #pragma once
 #include "ft_base.h"
-namespace auto_future
+namespace zl_future
 {
 	enum direction_type
 	{

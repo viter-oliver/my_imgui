@@ -28,8 +28,10 @@
 #else
 	//#include <GL/gl.h>
 	//#include <GL/glx.h>
-	#include <GLES3/gl32.h>
-	#include <GLES3/gl3ext.h>
+    #include <EGL/egl.h>
+	#include <GLES2/gl2.h>
+	#include <GLES2/gl2ext.h>
+	#define APIENTRY
 #endif
 
 #include "SOIL.h"

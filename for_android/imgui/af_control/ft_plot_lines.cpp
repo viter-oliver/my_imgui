@@ -1,6 +1,6 @@
 #include "ft_plot_lines.h"
 #include "easing.h"
-namespace auto_future
+namespace zl_future
 {
 	ft_plot_lines::ft_plot_lines()
 		:ft_base()

@@ -1,6 +1,6 @@
 #include "ft_scene.h"
 #include "common_functions.h"
-namespace auto_future
+namespace zl_future
 {
 	ft_scene::ft_scene()
 		:ft_base()

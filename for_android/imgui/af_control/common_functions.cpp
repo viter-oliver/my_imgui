@@ -1,6 +1,7 @@
 #include "common_functions.h"
 #include <math.h>
 #include "SOIL.h"
+#include "af_type.h"
 #include "texture.h"
 #include "json/json.h"
 std::wstring utf8ToWstring(const std::string& s)
@@ -60,8 +61,8 @@ std::wstring utf8ToWstring(const std::string& s)
     return ws;
 }
 /*
-x'=(x-a)cos¦Á+(y-b)sin¦Á+a
-y'=-(x-a)sin¦Á+(y-b)cos¦Á+b
+x'=(x-a)cosï¿½ï¿½+(y-b)sinï¿½ï¿½+a
+y'=-(x-a)sinï¿½ï¿½+(y-b)cosï¿½ï¿½+b
 */
 using namespace Json;
 
@@ -223,16 +224,30 @@ bool prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fboId,
 	GLint last_fmid;
     glGetIntegerv( GL_FRAMEBUFFER_BINDING, &last_fmid );
 	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-	// ¸½¼Ó ÎÆÀí color attachment
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ color attachment
+	#ifndef __ANDROID__
 	colorTextId = TextureHelper::makeAttachmentTexture(0, GL_RGBA, frame_width, frame_height, GL_RGBA, GL_UNSIGNED_BYTE);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, colorTextId, 0);
-	// ¸½¼Ó depth stencil texture attachment
+	// ï¿½ï¿½ï¿½ï¿½ depth stencil texture attachment
 	depthStencilTextId = TextureHelper::makeAttachmentTexture(0, GL_DEPTH24_STENCIL8, frame_width,
 		frame_height, GL_DEPTH_STENCIL, GL_UNSIGNED_INT_24_8);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_TEXTURE_2D, depthStencilTextId, 0);
-	// ¼ì²âÍêÕûÐÔ
+	#else
+	glGenTextures(1,&colorTextId);
+	glBindTexture(GL_TEXTURE_2D,colorTextId);
+	glTexImage2D(GL_TEXTURE_2D,0,GL_RGBA,frame_width,frame_height,0,GL_RGBA,GL_UNSIGNED_BYTE,0);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_S,GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_CLAMP_TO_EDGE);
+	glFramebufferTexture2D(GL_FRAMEBUFFER,GL_COLOR_ATTACHMENT0,GL_TEXTURE_2D,colorTextId,0);
+	#endif
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
+		GLenum err_code = glGetError();
+		LOGE("%s::%d glerror:%d\n", __FUNCTION__, __LINE__, err_code);
 		glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );
 		return false;
 	}
@@ -245,29 +260,29 @@ bool af_prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fbo
 	GLint last_fmid;
     glGetIntegerv( GL_FRAMEBUFFER_BINDING, &last_fmid );
 	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-	// ¸½¼Ó ÎÆÀí color attachment
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ color attachment
 	glGenTextures(1, &colorTextId);
 	glBindTexture(GL_TEXTURE_2D, colorTextId);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32F, frame_width, frame_height, 0, GL_DEPTH_COMPONENT,GL_FLOAT, 0);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, frame_width, frame_height, 0, GL_DEPTH_COMPONENT,GL_FLOAT, 0);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,colorTextId, 0);
 
-	// ¸½¼Ó depth stencil texture attachment
+	// ï¿½ï¿½ï¿½ï¿½ depth stencil texture attachment
 	glGenTextures(1, &depthStencilTextId);
 	glBindTexture(GL_TEXTURE_2D, depthStencilTextId);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	glTexStorage2D(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, frame_width, frame_height);
+	//glTexStorage2DEXT(GL_TEXTURE_2D, 1, GL_DEPTH24_STENCIL8, frame_width, frame_height);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, depthStencilTextId, 0);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_STENCIL_ATTACHMENT, GL_TEXTURE_2D, depthStencilTextId, 0);
 
-	// ¼ì²âÍêÕûÐÔ
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	auto chk = glCheckFramebufferStatus(GL_FRAMEBUFFER);
 	if (chk != GL_FRAMEBUFFER_COMPLETE)
 	{
 		glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );
-		printf("chk=0x%x\n", chk);
+		LOGE("chk=0x%x\n", chk);
 		return false;
 	}
 	glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );
@@ -292,25 +307,27 @@ bool frame_buffer()
 	return true;
 }
 /*
-* ¸½¼ÓÎÆÀíµ½Color Attachment
-* Í¬Ê±¸½¼ÓRBOµ½depth stencil Attachment
+* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Color Attachment
+* Í¬Ê±ï¿½ï¿½ï¿½ï¿½RBOï¿½ï¿½depth stencil Attachment
 */
 bool prepareFBO2(GLuint& textId, GLuint& fboId, GLuint frame_width, GLuint frame_height)
 {
 	glGenFramebuffers(1, &fboId);
 	glBindFramebuffer(GL_FRAMEBUFFER, fboId);
-	// ¸½¼ÓÎÆÀí color attachment
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ color attachment
 	textId = TextureHelper::makeAttachmentTexture(0, GL_RGB, frame_width, frame_height, GL_RGB, GL_UNSIGNED_BYTE);
 	glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, textId, 0);
-	// ¸½¼Ó depth stencil RBO attachment
+	// ï¿½ï¿½ï¿½ï¿½ depth stencil RBO attachment
 	GLuint rboId;
 	glGenRenderbuffers(1, &rboId);
 	glBindRenderbuffer(GL_RENDERBUFFER, rboId);
 	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8,
-		frame_width, frame_height); // Ô¤·ÖÅäÄÚ´æ
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_STENCIL_ATTACHMENT, GL_RENDERBUFFER, rboId);
+		frame_width, frame_height); // Ô¤ï¿½ï¿½ï¿½ï¿½ï¿½Ú´ï¿½
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_LAYOUT_DEPTH_STENCIL_ATTACHMENT_EXT, GL_RENDERBUFFER, rboId);
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
+		GLenum err_code = glGetError();
+		LOGE("%s::%d glerror:%d\n", __FUNCTION__, __LINE__, err_code);
 		return false;
 	}
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -324,7 +341,7 @@ unsigned int conver_track_buff_to_pair(char* pbuff,unsigned int buff_len, vector
 	int bf_track_sz = buff_len - sizeof(int);
 	if (wtrack_sz* 2!=bf_track_sz)
 	{
-		printf("invalid slider track buff\n");
+		LOGE("invalid slider track buff\n");
 		return 0;
 	}
 	char* phead0 = pbuff + sizeof(int);

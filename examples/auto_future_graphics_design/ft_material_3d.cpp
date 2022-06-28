@@ -355,7 +355,7 @@ namespace auto_future
 			_ps_mtl->set_value(string(_pt._uf_model_name), glm::value_ptr(model), 16);
 			_ps_mtl->set_value(string(_pt._uf_view_name), glm::value_ptr(view), 16);
 			_ps_mtl->set_value(string(_pt._uf_proj_name), glm::value_ptr(proj), 16);
-               _ps_mtl->set_value( string("alpha"), &_pt._alpha_nml, 1 );
+            _ps_mtl->set_value( string("alpha"), &_pt._alpha_nml, 1 );
 			_ps_mtl->use();
 			auto& primid = *_ps_prm;
 			

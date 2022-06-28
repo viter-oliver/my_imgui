@@ -4,7 +4,7 @@
 //#include "Mesh.h"
 #include "res_output.h"
 #define FILE_NAME_LEN 50
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_model_3d :
 		public ft_base
@@ -28,7 +28,7 @@ namespace auto_future
 		~ft_model_3d();
 
 		void draw();
-#if !defined(DISABLE_DEMO
+#if !defined(DISABLE_DEMO)
 		void load_mesh_data_2_vertices();
 		void load_vertics_2_vbo();
 #endif

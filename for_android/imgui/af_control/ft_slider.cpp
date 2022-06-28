@@ -4,7 +4,7 @@
 #include "common_functions.h"
 #include <sstream>
 //#define  IMGUI_DEFINE_MATH_OPERATORS
-namespace auto_future
+namespace zl_future
 {
 	enum en_slide_direticn
 	{
@@ -114,7 +114,7 @@ namespace auto_future
 			return;
           if( bg_txt_index >= ptext_cd.size() )
 		{
-               printf( "invalid texture index:%d\n", bg_txt_index );
+               LOGE( "invalid texture index:%d\n", bg_txt_index );
                return;
 		}
           int bg_gp_texture_width = cur_res_list.texture_width;
@@ -155,7 +155,7 @@ namespace auto_future
 		/***********************************************************progress*********************************************************/
           if( txt_hd_id >= hd_text_cd.size() )
 		{
-			printf("invalid texture index:%d\n", txt_hd_id);
+			LOGE("invalid texture index:%d\n", txt_hd_id);
 			return;//txt_hd_id = 0;
 		}
 		ImVec2 value_point0, value_point1, dir_thumb0, dir_thumb1;

@@ -1,14 +1,14 @@
 #include "af_shader.h"
 #include "SOIL.h"
 #include "texture.h"
-#include <GLES3/gl32.h>
+#include <GLES3/gl3.h>
 #include <GLES3/gl3ext.h>
 //#include "user_control_imgui.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "paricles_system.h"
-namespace auto_future
+namespace zl_future
 {
 	void Gravity::ApplyForce(GParticle& pgp)
 	{

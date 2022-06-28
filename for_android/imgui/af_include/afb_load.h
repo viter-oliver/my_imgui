@@ -2,7 +2,7 @@
 #include "control_common_def.h"
 #include <msgpack.hpp>
 //#include <functional>
-using namespace auto_future;
+using namespace zl_future;
 class afb_load
 {
 	base_ui_component*& _pj;
@@ -13,5 +13,6 @@ public:
 	~afb_load(){}
 	
 	void load_afb(const char* afb_file);
+	void load_afb_from_buff(const char* buff,unsigned int buff_len);
 };
 

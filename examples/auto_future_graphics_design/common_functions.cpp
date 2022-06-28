@@ -211,6 +211,8 @@ bool prepareFBO1(GLuint& colorTextId, GLuint& depthStencilTextId, GLuint& fboId,
 	// ºÏ≤‚ÕÍ’˚–‘
 	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
 	{
+		GLenum err_code = glGetError();
+		printf("%s::%d glerror:%d\n", __FUNCTION__, __LINE__, err_code);
 		return false;
 	}
      glBindFramebuffer( GL_FRAMEBUFFER, last_fmid );

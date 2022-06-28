@@ -3,7 +3,7 @@
 #include "af_shader.h"
 #include "res_output.h"
 #include "af_primitive_object.h"
-namespace auto_future
+namespace zl_future
 {
      class ft_hud_obj_3d :
           public ft_base
@@ -36,5 +36,5 @@ namespace auto_future
                _pt_tb._tanslation_z = transz;
           }
      };
-     REGISTER_CONTROL( ft_hud_obj_3d );
+     REGISTER_CONTROL(ft_hud_obj_3d);
 }

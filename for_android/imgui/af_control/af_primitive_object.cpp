@@ -188,6 +188,7 @@ ps_primrive_object get_prm_object(const char* prm_name)
 	{
 		return iprm->second;	
 	}
+	return nullptr;
 }
 
 bool get_prm_data(const char* prm_name, float* pbuff, uint32_t buff_len)

@@ -4,7 +4,7 @@
 #include "ft_base.h"
 #include "res_output.h"
 
-namespace auto_future
+namespace zl_future
 {
 
 	typedef vector<point_pair> point_pair_vec;

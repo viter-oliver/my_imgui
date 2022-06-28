@@ -2,14 +2,14 @@
 #include <fstream>
 #include "SOIL.h"
 #include "texture.h"
-#include <GLES3/gl32.h>
+#include <GLES3/gl3.h>
 #include <GLES3/gl3ext.h>
 #include <chrono>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "af_shader_source_code.h"
-namespace auto_future
+namespace zl_future
 {
 	struct Particle{
 		glm::vec3 pos, speed;
@@ -96,7 +96,7 @@ namespace auto_future
 		});
 #endif
 		_ps_sd_particle = make_shared<af_shader>(particles1_vs, particles1_fs);
-		glGenVertexArrays(1, &_vao);
+		//glGenVertexArrays(1, &_vao);
 		glBindVertexArray(_vao);
 			
 		// Same as the billboards tutorial
@@ -305,7 +305,7 @@ namespace auto_future
 			0,                  // stride
 			(void*)0            // array buffer offset
 			);
-		glVertexAttribDivisor(0, 0); // particles vertices : always reuse the same 4 vertices -> 0
+		//glVertexAttribDivisor(0, 0); // particles vertices : always reuse the same 4 vertices -> 0
 
 		// 2nd attribute buffer : positions of particles' centers
 		glEnableVertexAttribArray(1);
@@ -318,7 +318,7 @@ namespace auto_future
 			0,                                // stride
 			(void*)0                          // array buffer offset
 			);
-		glVertexAttribDivisor(1, 1); // positions : one per quad (its center)                 -> 1
+		//glVertexAttribDivisor(1, 1); // positions : one per quad (its center)                 -> 1
 
 #ifdef _calcu_color
 		// 3rd attribute buffer : particles' colors
@@ -332,7 +332,7 @@ namespace auto_future
 			0,                                // stride
 			(void*)0                          // array buffer offset
 			);
-		glVertexAttribDivisor(2, 1); // color : one per quad                                  -> 1
+		//glVertexAttribDivisor(2, 1); // color : one per quad                                  -> 1
 #endif
 
 		// Draw the particules !
@@ -340,7 +340,7 @@ namespace auto_future
 		// This is equivalent to :
 		// for(i in ParticlesCount) : glDrawArrays(GL_TRIANGLE_STRIP, 0, 4), 
 		// but faster.
-		glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, ParticlesCount);
+		//glDrawArraysInstanced(GL_TRIANGLE_STRIP, 0, 4, ParticlesCount);
 		//glDrawArraysInstanced(GL_TRIANGLES, 0, 6, ParticlesCount);
 		glDisableVertexAttribArray(0);
 		glDisableVertexAttribArray(1);

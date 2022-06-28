@@ -1,6 +1,6 @@
 #pragma once
 #include "ft_base.h"
-namespace auto_future
+namespace zl_future
 { 
     #define MAX_VALUE_COUNT 50
 	class AFG_EXPORT ft_plot_lines :

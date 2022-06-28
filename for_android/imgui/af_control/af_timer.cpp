@@ -1,6 +1,6 @@
 #include "af_timer.h"
 
-namespace auto_future
+namespace zl_future
 {
 
 	af_timer::af_timer()

@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 using namespace chrono;
-namespace auto_future
+namespace zl_future
 {
 	const int max_timer_num = 0x100;
 	class AFG_EXPORT af_timer

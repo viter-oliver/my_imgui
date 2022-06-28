@@ -4,6 +4,7 @@
 //#include <ft_source.h>
 
 //***************************
+#include "af_type.h"
 #include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -65,30 +66,30 @@ uint32_t GetCalibrationData( char *&pBuffer )
 
      if( ( fd = open( CALIBRATION_DATA_NODE, O_RDONLY ) ) < 0 )
      {
-          printf( "open error: %s\n", strerror( errno ) );
+          LOGE( "open error: %s\n", strerror( errno ) );
      }
      else
      {
           //SEEK_SET（文件指针开始），SEEK_CUR（文件指针当前位置） ，SEEK_END为文件指针尾
           if( -1 == lseek( fd, CALIBRATION_DATA_OFFSET, SEEK_SET ) )
           {
-               printf( "lseek error: %s", strerror( errno ) );
+               LOGE( "lseek error: %s", strerror( errno ) );
           }
 
           if( 0 >= ( iReadRet = read( fd, &Length, sizeof( int ) ) ) )
           {
-               printf( "read length error: %s", strerror( errno ) );
+               LOGE( "read length error: %s", strerror( errno ) );
           }
 
           printf( "calibration file : length = %d", Length );
           if( 0 >= ( iReadRet = read( fd, pBuf, Length ) ) )
           {
-               printf( "read file error: %s", strerror( errno ) );
+               LOGE( "read file error: %s", strerror( errno ) );
           }
 
           if( 0 >= ( iReadRet = read( fd, &CRCFlag, sizeof( int ) ) ) )
           {
-               printf( "read CRC error: %s", strerror( errno ) );
+               LOGE( "read CRC error: %s", strerror( errno ) );
           }
      }
      close( fd );
@@ -103,7 +104,7 @@ uint32_t GetCalibrationData( char *&pBuffer )
      return Length;
 }
 //****************************
-namespace auto_future
+namespace zl_future
 {
 
 	const char* vs_code = R"glsl(
@@ -252,13 +253,13 @@ distortion_unit distortion_data[HEIGHT_CNT];
 		int fd=open( CALIBRATION_DATA_NODE, O_RDONLY );
 		if(fd<0)
 		{
-			printf("%s is invalid\n",CALIBRATION_DATA_NODE);
+			LOGE("%s is invalid\n",CALIBRATION_DATA_NODE);
 		}
 		else
 		{
 			if(-1==lseek(fd,CALIBRATION_DATA_OFFSET,SEEK_SET))
 			{
-				printf("offset:%d is invalid\n",CALIBRATION_DATA_OFFSET);
+				LOGE("offset:%d is invalid\n",CALIBRATION_DATA_OFFSET);
 			}
 			else
 			{
@@ -275,7 +276,7 @@ distortion_unit distortion_data[HEIGHT_CNT];
 				
 				if(rs<=0)
 				{
-					printf("fail to read distortion data\n");
+					LOGE("fail to read distortion data\n");
 				}
 			}
 		}

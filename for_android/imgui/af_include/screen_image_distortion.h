@@ -3,7 +3,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "af_shader.h"
-namespace auto_future
+namespace zl_future
 {
 	class screen_image_distortion
 	{

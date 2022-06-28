@@ -27,5 +27,8 @@
 #include "ft_textblock.h"
 #include "ft_modeling_3d.h"
 #include "ft_video.h"
+#include "ft_hud_projector.h"
+#include "ft_hud_obj_3d.h"
+#include "ft_hud_4_time_curve_3d.h"
 //#include "ft_trajectory_box_3d.h"
 //#include "ft_fbx_assert_3d.h"

@@ -14,7 +14,7 @@
 7������������ѳ����Ĳ��ֿ�ʼ�����ƶ���������ѵİ�ɫ���ٶ�ָʾ�׿�֮��ľ��������������ƶ����ٶȺ͵�λ����ʾ����
 
 */
-namespace auto_future
+namespace zl_future
 {
 	class ft_logo_animation :
 		public ft_base

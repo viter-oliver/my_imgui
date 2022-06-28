@@ -3,7 +3,13 @@
 #include "res_output.h"
 #include <GLFW/glfw3.h>
 #include "common_functions.h"
+#define _LUA_BIND
+#ifdef _PYTHON_BIND
 #include "python_interpreter.h"
+#endif
+#ifdef _LUA_BIND
+#include "lua_interpreter.h"
+#endif
 #include "ft_base.h"
 //#include <algorithm>
 //using namespace auto_future;
@@ -55,24 +61,38 @@ void bind_edit::sel_prop_ele(base_ui_component* pobj, uint16_t page_idx, uint16_
 	if (ibind != g_bind_dic.end())
 	{
 		_pcur_bind_unit = ibind->second.get();
-		auto&exp = _pcur_bind_unit->_expression;
+		#ifdef _PYTHON_BIND		
+		auto& exp = _pcur_bind_unit->_expression;
 		auto end_pos = exp.find('\n')+1;
 		auto exp_content = exp.substr(end_pos);
 		string exp_content_trim;
-		trim_align_expression(exp_content, exp_content_trim);
+		trim_align_expression(exp_content, exp_content_trim);//remove indent from expression
 		//txt_buff = exp;
 		auto slen = exp_content_trim.length();
 		memcpy(txt_buff, exp_content_trim.c_str(), slen);
 		txt_buff[slen] = 0;
-		//strcpy((char*)txt_buff.c_str(), exp.c_str());
 		_be_unsavable = false;
+		#endif
+		#ifdef _LUA_BIND
+		auto& exp = _pcur_bind_unit->_expression;
+		auto content_start_pos=exp.find('\n')+1;
+		auto content_end_pos=exp.rfind('\n');
+		auto content_len=content_end_pos-content_start_pos;
+		string exp_content=exp.substr(content_start_pos,content_len);
+		auto slen=exp_content.length();
+		memcpy(txt_buff,exp_content.c_str(),slen);
+		txt_buff[slen]=0;
+		_be_unsavable = false;
+		#endif
+		//strcpy((char*)txt_buff.c_str(), exp.c_str());
+		
 	}
 	else{
           _new_bind_unit._expression = "";
           _new_bind_unit._param_list.clear();
           _pcur_bind_unit = &_new_bind_unit;
 
-		txt_buff[0] = '\0';
+		  txt_buff[0] = '\0';
           _be_unsavable = true;
 		//memset(txt_buff, 0, TXT_BUFF_SZ);
 	}
@@ -168,22 +188,24 @@ void bind_edit::bind_source_view()
 	_hit_bind_window = _dragging&&ImGui::IsMouseHoveringWindow();
 	if (ImGui::Button("test"))
 	{
-          _exp_calcu = /*python_pre_define+*/python_fun_head;
+		#ifdef _PYTHON_BIND
+        _exp_calcu = /*python_pre_define+*/python_fun_head;
 		_exp_calcu += param_pass;
 		_exp_calcu += "):\n";
 		string fun_content;
 		string str_buff = txt_buff;
-		align_expression(str_buff, fun_content);
+		align_expression(str_buff, fun_content);//add indent to python expression
 		_exp_calcu += fun_content;
-		bool be_success=g_python_intp.call_python_fun(_exp_calcu, python_fun_name, vrtn, vlist);
-		if (!be_success)
-		{
-			_be_unsavable = true;
-		}
-		else
-		{
-			_be_unsavable = false;
-		}
+		_be_unsavable=!g_python_intp.call_python_fun(_exp_calcu, python_fun_name, vrtn, vlist);
+		#endif
+		#ifdef _LUA_BIND
+		_exp_calcu=lua_interpreter::lua_func_head;
+		_exp_calcu += param_pass;
+		_exp_calcu += ")\n";
+		_exp_calcu+=txt_buff;
+		_exp_calcu+=lua_interpreter::lua_func_tail;
+		_be_unsavable=!lua_interpreter::call_lua_fun(_exp_calcu,vrtn,vlist);
+		#endif		
 	}
 	ImGui::SameLine(0,30);
 	if (_be_unsavable)

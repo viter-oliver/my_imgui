@@ -1,7 +1,7 @@
 #pragma once
 #include "ft_base.h"
 #include "af_font_res_set.h"
-namespace auto_future
+namespace zl_future
 {
 	class AFG_EXPORT ft_textblock :
 		public ft_base
