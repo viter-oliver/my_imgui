@@ -1,0 +1,429 @@
+
+{
+	"_aj_model" : 0,
+	"_interval" : 0.0,
+	"_name" : "root",
+	"_posx" : 0.0,
+	"_posy" : 0.0,
+	"_sizeh" : 20.0,
+	"_sizew" : 1920.0,
+	"_visible" : true,
+	"afb_output_path" : "D:\\GitHub\\my_imgui-master\\res_hst\\afb\\",
+	"aliase" : 
+	{
+		"car0_show" : [ 6, 0, 3, 1 ],
+		"car1_show" : [ 6, 0, 4, 1 ],
+		"car2_show" : [ 6, 0, 5, 1 ],
+		"hud_far" : [ 5, 1, 1 ],
+		"hud_show" : [ 6, 0, 1 ],
+		"left_lane_show" : [ 6, 0, 0, 1 ],
+		"main_car_show" : [ 6, 0, 2, 1 ],
+		"right_lane_show" : [ 6, 0, 1, 1 ]
+	},
+	"backup_strategy" : 
+	{
+		"interval" : 5,
+		"max_count" : 10,
+		"model" : 0
+	},
+	"binds" : 
+	{
+		"dic" : 
+		[
+			
+			{
+				"bind_unit" : 
+				{
+					"expression" : "function calcu_property(v0)\nreturn not v0\nend",
+					"param_list" : 
+					[
+						[ 6, 0, 1 ]
+					]
+				},
+				"key" : [ 6, 0, 0 ]
+			}
+		],
+		"ref_dic" : 
+		[
+			
+			{
+				"key" : [ 6, 0, 1 ],
+				"ref_list" : 
+				[
+					[ 6, 0, 0 ]
+				]
+			}
+		]
+	},
+	"childs" : 
+	[
+		
+		{
+			"_aj_model" : 0,
+			"_bdclr" : 
+			{
+				"w" : 1.0,
+				"x" : 0.8241201639175415,
+				"y" : 0.8312236070632935,
+				"z" : 0.2700599730014801
+			},
+			"_bkclr" : 
+			{
+				"w" : 1.0,
+				"x" : 0.1764705926179886,
+				"y" : 0.1725490242242813,
+				"z" : 0.7333333492279053
+			},
+			"_border_width_uhd" : 10.0,
+			"_interval" : 0.0,
+			"_name" : "back_ground",
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_round_utn" : 0.0,
+			"_sizeh" : 720.0,
+			"_sizew" : 1920.0,
+			"_visible" : false,
+			"_with_border" : true,
+			"childs" : 
+			[
+				
+				{
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_interval" : 0.0,
+					"_name" : "cross_v",
+					"_posx" : 954.0,
+					"_posy" : 0.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 720.0,
+					"_sizew" : 8.0,
+					"_visible" : true,
+					"_with_border" : true,
+					"type" : "ft_block"
+				},
+				
+				{
+					"_aj_model" : 0,
+					"_bdclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_bkclr" : 
+					{
+						"w" : 1.0,
+						"x" : 1.0,
+						"y" : 1.0,
+						"z" : 1.0
+					},
+					"_border_width_uhd" : 1.0,
+					"_interval" : 0.0,
+					"_name" : "cross_h",
+					"_posx" : 0.0,
+					"_posy" : 356.0,
+					"_round_utn" : 0.0,
+					"_sizeh" : 8.0,
+					"_sizew" : 1920.0,
+					"_visible" : true,
+					"_with_border" : true,
+					"type" : "ft_block"
+				}
+			],
+			"type" : "ft_block"
+		},
+		
+		{
+			"_aj_model" : 0,
+			"_bk_clr" : 
+			{
+				"w" : 0.3921568691730499,
+				"x" : 0.03921568766236305,
+				"y" : 0.03921568766236305,
+				"z" : 0.03921568766236305
+			},
+			"_center_of_prj" : 
+			{
+				"x" : -41.0,
+				"y" : 90.0,
+				"z" : 542.0
+			},
+			"_far" : 6000.0,
+			"_fovy" : 4.0,
+			"_interval" : 0.0,
+			"_name" : "ft_hud_projector",
+			"_near" : 20.0,
+			"_posx" : 0.0,
+			"_posy" : 0.0,
+			"_sizeh" : 720.0,
+			"_sizew" : 1920.0,
+			"_test_depth" : false,
+			"_up" : 
+			{
+				"x" : 0.0,
+				"y" : 1.0,
+				"z" : 0.0
+			},
+			"_view_pos" : 
+			{
+				"x" : -41.0,
+				"y" : 130.0,
+				"z" : -257.0
+			},
+			"_visible" : true,
+			"childs" : 
+			[
+				
+				{
+					"_aj_model" : 0,
+					"_attached_image" : "lane_n_day.png",
+					"_coeff_hac" : [ -1.0, 0.0, 0.0, 0.0 ],
+					"_interval" : 0.0,
+					"_left_border" : true,
+					"_name" : "left_lane",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_tanslation_x" : 0.0,
+					"_tanslation_y" : 0.0,
+					"_tanslation_z" : 0.0,
+					"_visible" : false,
+					"_width" : 10.0,
+					"type" : "ft_hud_4_time_curve_3d"
+				},
+				
+				{
+					"_aj_model" : 0,
+					"_attached_image" : "lane_n_day.png",
+					"_coeff_hac" : [ 0.0, 0.0, 0.0, 9.999999974752427e-007 ],
+					"_interval" : 0.0,
+					"_left_border" : false,
+					"_name" : "right_lane",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 20.0,
+					"_sizew" : 20.0,
+					"_tanslation_x" : 0.0,
+					"_tanslation_y" : 0.0,
+					"_tanslation_z" : 0.0,
+					"_visible" : false,
+					"_width" : 10.0,
+					"type" : "ft_hud_4_time_curve_3d"
+				},
+				
+				{
+					"_aj_model" : 0,
+					"_attached_image" : "usq.png",
+					"_interval" : 0.0,
+					"_name" : "main_car",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 50.0,
+					"_sizew" : 109.0410079956055,
+					"_tanslation_x" : 5.031000137329102,
+					"_tanslation_y" : 0.0,
+					"_tanslation_z" : 3000.0,
+					"_visible" : true,
+					"type" : "ft_hud_obj_3d"
+				},
+				
+				{
+					"_aj_model" : 0,
+					"_attached_image" : "usq.png",
+					"_interval" : 0.0,
+					"_name" : "car0",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 50.0,
+					"_sizew" : 100.0,
+					"_tanslation_x" : -110.6920089721680,
+					"_tanslation_y" : 0.0,
+					"_tanslation_z" : 2900.0,
+					"_visible" : false,
+					"type" : "ft_hud_obj_3d"
+				},
+				
+				{
+					"_aj_model" : 0,
+					"_attached_image" : "usq.png",
+					"_interval" : 0.0,
+					"_name" : "car1",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 50.0,
+					"_sizew" : 100.0,
+					"_tanslation_x" : 75.47200012207031,
+					"_tanslation_y" : 0.0,
+					"_tanslation_z" : 2800.0,
+					"_visible" : false,
+					"type" : "ft_hud_obj_3d"
+				},
+				
+				{
+					"_aj_model" : 0,
+					"_attached_image" : "usq.png",
+					"_interval" : 0.0,
+					"_name" : "car2",
+					"_posx" : 0.0,
+					"_posy" : 0.0,
+					"_sizeh" : 50.0,
+					"_sizew" : 100.0,
+					"_tanslation_x" : -90.56600189208984,
+					"_tanslation_y" : 0.0,
+					"_tanslation_z" : 4000.0,
+					"_visible" : false,
+					"type" : "ft_hud_obj_3d"
+				}
+			],
+			"type" : "ft_hud_projector"
+		},
+		
+		{
+			"_aj_model" : 0,
+			"_alpha_nml" : 1.0,
+			"_anchor_type" : 0,
+			"_angle_srd" : 0.0,
+			"_aposx" : 0.0,
+			"_aposy" : 0.0,
+			"_interval" : 0.0,
+			"_name" : "tsr",
+			"_posx" : 5.0,
+			"_posy" : 697.0,
+			"_sizeh" : 41.0,
+			"_sizew" : 41.0,
+			"_texture_index_txt" : 
+			{
+				"x" : 0,
+				"y" : 86
+			},
+			"_tin_clr" : 
+			{
+				"x" : 1.0,
+				"y" : 1.0,
+				"z" : 1.0
+			},
+			"_visible" : true,
+			"childs" : 
+			[
+				
+				{
+					"_aj_model" : 0,
+					"_content" : "30",
+					"_font_id" : 0,
+					"_font_scale" : 1.0,
+					"_font_size" : 28,
+					"_interval" : 0.0,
+					"_name" : "tsr_value",
+					"_omit_rest" : 0,
+					"_play_circle" : 1.0,
+					"_playing" : false,
+					"_posx" : 20.0,
+					"_posy" : 9.0,
+					"_sizeh" : 31.12600135803223,
+					"_sizew" : 53.76400375366211,
+					"_txt_alignh_nml" : 0.50,
+					"_txt_alignv_nml" : 0.0,
+					"_txt_clr" : 
+					{
+						"w" : 1.0,
+						"x" : 0.003921568859368563,
+						"y" : 0.003921568859368563,
+						"z" : 0.003921568859368563
+					},
+					"_visible" : true,
+					"_width" : 200.0,
+					"_width_limit" : false,
+					"type" : "ft_textblock"
+				}
+			],
+			"type" : "ft_image"
+		}
+	],
+	"common_value_list" : {},
+	"feedback" : [],
+	"file_list" : [],
+	"fonts" : 
+	[
+		
+		{
+			"cols" : 20,
+			"name" : "SourceHanSansCN-Normal.ttf",
+			"rows" : 21
+		}
+	],
+	"material_list" : [],
+	"models" : {},
+	"output_bin_fmt" : 
+	{
+		"pgm_fmt" : 0,
+		"txt_fmt" : 0
+	},
+	"playlist_group_list" : [],
+	"primitive_list" : [],
+	"screenh" : 480.0,
+	"screenw" : 800.0,
+	"shader_list" : [],
+	"state_manager_list" : {},
+	"texture_id_index" : 0,
+	"texture_list" : 
+	[
+		
+		{
+			"mipmap" : false,
+			"name" : "lane_n_day.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "mark_fcw_AEB_p.png",
+			"separated" : false
+		},
+		
+		{
+			"mipmap" : false,
+			"name" : "usq.png",
+			"separated" : false
+		}
+	],
+	"texture_res_list" : 
+	[
+		
+		{
+			"separated" : false,
+			"texture_data_file" : "hst_hud.json",
+			"texture_pack_file" : "hst_hud.png"
+		}
+	],
+	"type" : "ft_base",
+	"window_show" : 
+	{
+		"be_editing" : 0,
+		"show_aliase_edit" : true,
+		"show_edit_window" : true,
+		"show_file_manager" : false,
+		"show_fonts_manager" : false,
+		"show_project_window" : true,
+		"show_property_window" : true,
+		"show_resource_manager" : false,
+		"show_slider_path_picker" : false,
+		"show_state_manager_edit" : false
+	}
+}
+

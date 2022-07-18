@@ -51,7 +51,19 @@ namespace auto_future
           {
                return _pj_pt._far;
           }
+         void set_fovy(float fovy)
+         {
+              _pj_pt._fovy=fovy;
+         }
+         void set_far(float ffar)
+         {
+              _pj_pt._far = ffar;
+         }
+         void set_near(float fnear)
+         {
+              _pj_pt._near=fnear;
+         }
      };
-     REGISTER_CONTROL( ft_hud_projector )
+     REGISTER_CONTROL(ft_hud_projector)
 }
 

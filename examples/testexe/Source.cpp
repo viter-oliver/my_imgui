@@ -10,6 +10,7 @@ struct test_field
 	unsigned int fd5 : 5;
 	unsigned int fdr : 9;
 };
+using namespace std;
 int main(int argc, char* argv[])
 {
 	//printf("hello world");
@@ -17,5 +18,9 @@ int main(int argc, char* argv[])
 	test_field tfd = { 1, 2, 3, 4, 5, 9 };
 	test_field* ptfd = (test_field* )&sss;
 	int fd1 = ptfd->fd5;
+	string str = "100,200";
+	auto cp = str.find(',');
+	string s1 = str.substr(0, cp);
+	string s2 = str.substr(cp+1);
 	return fd1;
 }

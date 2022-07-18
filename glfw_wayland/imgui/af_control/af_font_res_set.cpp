@@ -28,12 +28,12 @@ namespace auto_future
 	*/
 	using namespace ImGui;
 
-int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize,
+	int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize,
                                           af_vec2& start_pos, af_vec2& end_pos, 
                                           GLfloat scale, wstring& str_content, 
                                           const af_vec4& txt_col, float width, 
                                           int omit_rest,bool be_new)
-{
+	{
 		//if (fontSize != _font_rp._font_size)//!texture will be rebuilt
 		//{
 		//	_dic_gly_txtc.clear();
@@ -62,7 +62,7 @@ int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize,
 		{
 			load_chars(f_u._ft_face, *pfrp, str_content);
 		}
-              max_beary = pfrp->_max_bearingy;
+                max_beary = pfrp->_max_bearingy;
 		bool be_break = str_content[0] == L'O'&&str_content[1] == L'S';
 		
 		end_pos = start_pos;
@@ -104,10 +104,10 @@ int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize,
 				cnt_char++;
 				if (char_right_edge>str_most_right_edge)
 				{
-					
+
 					if (omit_rest != en_no_omit)
 					{
-						if (cnt_char < cnt_char)
+						//if (cnt_char < cnt_char)
 						{
 							wstring omit_sign ={0x2026};
 							if(omit_rest == en_omit_rest )
@@ -125,6 +125,7 @@ int font_face_manager::draw_wstring(ps_font_unit& pf_u, GLint fontSize,
 							char_left_edge = end_pos.x + bearing.x*scale;
 							char_right_edge = char_left_edge + tsize.x*scale;
 						}
+						
 						will_omit_test = true;
 					}
 					else

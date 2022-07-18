@@ -18,27 +18,28 @@ void main()
 {
     vec3 pos=position;
     float posx0=pos.x;
-    float z=pos.z*0.001;
+    float z=pos.z*0.01;
+    const float fs=100.0;
     if(left_boder>0)
     {
          if(posx0<0.1)
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0-w;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs-w;
          }
          else
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs;
          }
     }
     else
     {
          if(posx0<0.1)
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs;
          }
          else
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0+w;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs+w;
          }
 
     } 

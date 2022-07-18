@@ -144,13 +144,12 @@ namespace auto_future
 				if (!be_new)
 				ImageQuad((ImTextureID)txt_id, pos0, pos1, pos2, pos3, uv0, uv1, uv2, uv3, dcol);
 				float shift_dis = (advance >> 6)*scale;// Bitshift by 6 to get value in pixels (2^6 = 64)
-                    //end_pos.x += bearing_x_n;
+				//end_pos.x += bearing_x_n;
 				end_pos.x += shift_dis;
-                    if( end_pos.x > str_real_right_edg )
-                    {
-                         str_real_right_edg = end_pos.x;
-                    }
-
+				if( end_pos.x > str_real_right_edg )
+				{
+					str_real_right_edg = end_pos.x;
+				}
 				if (maxy<pos1.y)
 				{
 					maxy = pos1.y;

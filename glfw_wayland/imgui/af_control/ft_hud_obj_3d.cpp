@@ -8,8 +8,7 @@ GLfloat vertices[] = {
      -0.5f, 0.5f, 0.f,0.f, 0.f,
      0.5f, 0.5f,0.f, 1.f, 0.f,
 };
-const char* hud_sd_vs = R"glsl(
-#version 300 es
+const char* hud_sd_vs = R"glsl(#version 300 es
 precision mediump float;
 layout(location=0) in vec3 position;
 layout(location=1) in vec2 textCoord;
@@ -24,8 +23,7 @@ void main()
     TextCoord = textCoord;
 }
 )glsl";
-const char* hud_sd_fs = R"glsl(
-#version 300 es
+const char* hud_sd_fs = R"glsl(#version 300 es
 precision mediump float;
 in vec2 TextCoord;
 out vec4 o_clr;
@@ -136,6 +134,7 @@ namespace auto_future
           glBindTexture( GL_TEXTURE_2D, _pat_image->_txt_id() );
           _phud_sd->uniform( "text_at", 0 );
           glBindVertexArray( _ps_prm->_vao );
+          _ps_prm->enableVertex();
           glDrawArrays( GL_TRIANGLE_STRIP, 0, 4 );
      }
 

@@ -20,7 +20,14 @@ af_feedback::~af_feedback()
 bool af_feedback::get_output_vertex(vector<float>& overtex)
 {
 	overtex.resize(_pprm->_vertex_buf_len);
-	glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, _pprm->_vertex_buf_len*sizeof(GLfloat), &overtex[0]);
+	auto bfsz= _pprm->_vertex_buf_len*sizeof(GLfloat);
+	#ifdef GLFW_INCLUDE_ES3
+	float* pbuf=(float*)glMapBufferRange(GL_ARRAY_BUFFER,0,bfsz,GL_MAP_READ_BIT);
+	memcpy(&overtex[0],pbuf,bfsz);
+	glUnmapBuffer(GL_ARRAY_BUFFER);
+	#else
+	glGetBufferSubData(GL_TRANSFORM_FEEDBACK_BUFFER, 0, bfsz, &overtex[0]);
+	#endif
 	//glBindBufferBase(GL_TRANSFORM_FEEDBACK_BUFFER, 0, 0);
 	return true;
 }

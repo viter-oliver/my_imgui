@@ -2,8 +2,7 @@
 #include "ft_hud_projector.h"
 const char* hud_4_curve_shd_name = "sd_hud_4_curve";
 const char* hud_4_curve_prm_name = "prm_hud_4_curve";
-const char* hud_sd_4_curve_vs = R"glsl(
-#version 300 es
+const char* hud_sd_4_curve_vs = R"glsl(#version 300 es
 precision mediump float;
 layout(location=0) in vec3 position;
 layout(location=1) in vec2 textCoord;
@@ -18,36 +17,36 @@ void main()
 {
     vec3 pos=position;
     float posx0=pos.x;
-    float z=pos.z*0.001;
+    float z=pos.z*0.01;
+    const float fs=100.0;
     if(left_boder>0)
     {
          if(posx0<0.1)
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0-w;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs-w;
          }
          else
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs;
          }
     }
     else
     {
          if(posx0<0.1)
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs;
          }
          else
          {
-              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*1000.0+w;
+              pos.x=(c[3]*z*z*z+c[2]*z*z+c[1]*z+c[0])*fs+w;
          }
 
-    } 
+    }
     gl_Position = projection * view * model * vec4(pos, 1.0);
     TextCoord = textCoord;
 }
 )glsl";
-const char* hud_sd_4_curve_fs = R"glsl(
-#version 300 es
+const char* hud_sd_4_curve_fs = R"glsl(#version 300 es
 precision mediump float;
 in vec2 TextCoord;
 out vec4 o_clr;
@@ -72,7 +71,7 @@ namespace auto_future
         */
 
           _pt_tb._attached_image[ 0 ] = '\0';
-          _pt_tb._coeff[ 0 ] = _pt_tb._coeff[ 1 ] = _pt_tb._coeff[ 2 ] = _pt_tb._coeff[ 3 ] = 0.f;
+           _pt_tb._coeff_hac[ 0 ] = _pt_tb._coeff_hac[ 1 ] = _pt_tb._coeff_hac[ 2 ] = _pt_tb._coeff_hac[ 3 ] = 0.f;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           reg_property_handle( &_pt_tb, 0, [this]( void* member_address )
           {
@@ -106,7 +105,7 @@ namespace auto_future
 
      }
      const int curve_len = 100;
-     const float unit_len = 1000.f;
+     const float unit_len = 100.f;//1000.f;
      const int point_cnt = curve_len * 2 + 2;
 
      void ft_hud_4_time_curve_3d::link()
@@ -165,7 +164,9 @@ namespace auto_future
           float w, h;
           p_prj->get_size( w, h );
           float aspect = w / h;
-          glm::mat4 proj = glm::perspective( glm::radians( p_prj->get_fovy() ), aspect, p_prj->get_near(), p_prj->get_far() );
+          float near=p_prj->get_near();
+          float far=p_prj->get_far();
+          glm::mat4 proj = glm::perspective( glm::radians( p_prj->get_fovy() ), aspect, near, far);
           _phud_sd->uniform( "projection", glm::value_ptr( proj ) );
           glm::mat4 trans;
 		  trans = glm::translate(
@@ -173,7 +174,7 @@ namespace auto_future
                glm::vec3( _pt_tb._tanslation_x, _pt_tb._tanslation_y, _pt_tb._tanslation_z )
                );
           _phud_sd->uniform( "model", glm::value_ptr( trans ) );
-          _phud_sd->uniform( "c[0]", _pt_tb._coeff );
+          _phud_sd->uniform( "c[0]", _pt_tb._coeff_hac );
           int ileft_border = _pt_tb._left_border;
           _phud_sd->uniform( "left_boder", &ileft_border );
           _phud_sd->uniform( "w", &_pt_tb._width );
@@ -181,6 +182,7 @@ namespace auto_future
           glBindTexture( GL_TEXTURE_2D, _pat_image->_txt_id() );
           _phud_sd->uniform( "text_at", 0 );
           glBindVertexArray( _ps_prm->_vao );
+          _ps_prm->enableVertex();
           glDrawArrays( GL_TRIANGLE_STRIP, 0, point_cnt );
      }
 }
