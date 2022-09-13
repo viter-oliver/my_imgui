@@ -14,16 +14,17 @@
   ========================================================================
 **/
 #pragma once
-#include "platform_def.h "
-#include <imgui.h>
-#define IMGUI_DEFINE_MATH_OPERATORS
-#include "imgui_internal.h"
 #include <vector>
 #include <string>
 #include "json.h"
 #include <algorithm>
 #include <map>
 #include <functional>
+#include "platform_def.h "
+#include <imgui.h>
+#define IMGUI_DEFINE_MATH_OPERATORS
+#include "imgui_internal.h"
+
 //#include "command_element.h"
 //#include <map>
 namespace auto_future{ class base_ui_component; }
