@@ -1,8 +1,5 @@
 #include "ft_image.h"
 #include "res_output.h"
-#include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
 #include "common_functions.h"
 /*
 x'=(x-a)cos¦Á+(y-b)sin¦Á+a
@@ -41,6 +38,21 @@ namespace auto_future
 		float sizew = _in_p._sizew;
 		float sizeh = _in_p._sizeh;
 		ImVec2 abpos = absolute_coordinate_of_base_pos();
+		#if 0
+		if (1){
+			auto cur_cursor_pos = ImGui::GetCursorPos();
+			ImGui::SetCursorPos(abpos);
+			
+			ImVec2 uv0 = ImVec2(ptext_cd[img_txt_id.y]._x0 / texture_width, ptext_cd[img_txt_id.y]._y0 / texture_height);
+			
+			ImVec2 uv2 = ImVec2((ptext_cd[img_txt_id.y]._x1) / texture_width, (ptext_cd[img_txt_id.y]._y1) / texture_height);
+
+			ImVec4 tin_clr(_img_pt._tin_clr.x, _img_pt._tin_clr.y, _img_pt._tin_clr.z, _img_pt._alpha_nml);
+			ImGui::Image((ImTextureID)texture_id, ImVec2(sizew, sizeh), uv0, uv2, tin_clr);
+			ImGui::SetCursorPos(cur_cursor_pos);
+			return;
+		}
+		#endif
 		ImVec2 winpos = ImGui::GetWindowPos();
 		ImVec2 pos0 = { abpos.x + winpos.x, abpos.y + winpos.y };
 		ImVec2 pos1 = { pos0.x, pos0.y + sizeh };
@@ -54,7 +66,7 @@ namespace auto_future
 		float offsetx = abpos.x - base_pos().x;
 		float offsety = abpos.y - base_pos().y;
 		ImVec2 axisBasePos = { offsetx + _img_pt._aposx + winpos.x, offsety + _img_pt._aposy + winpos.y };
-		if (_img_pt._angle_srd != 0.f)
+		if (_img_pt._angle_srd > 0.1f)
 		{
 			pos0 = rotate_point_by_zaxis(pos0, _img_pt._angle_srd, axisBasePos);
 			pos1 = rotate_point_by_zaxis(pos1, _img_pt._angle_srd, axisBasePos);

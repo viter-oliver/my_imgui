@@ -29,3 +29,6 @@
 #include "ft_hud_projector.h"
 #include "ft_hud_obj_3d.h"
 #include "ft_hud_4_time_curve_3d.h"
+#include "ft_hud_4_time_wall_3d.h"
+#include "ft_hud_object_3d.h"
+#include "ft_hud_piece_3d.h"

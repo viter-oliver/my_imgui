@@ -14,7 +14,7 @@ static char fs_code[TXT_BUFF_SZ];
 shared_ptr<af_shader> pshd_sel = nullptr;
 shared_ptr<material> pmateral_sel = nullptr;
 string sd_key_name,mt_key_name;
-
+extern void store_to_clipboard(string& str_content);
 void material_shader_edit::draw_shader()
 {
 	ImGuiTreeNodeFlags node_flags_root = ImGuiTreeNodeFlags_DefaultOpen;
@@ -378,6 +378,10 @@ void material_shader_edit::draw_material()
 			g_material_list.erase(item_del);
 			pmateral_sel = nullptr;
 			mt_key_name = "";
+		}
+		if (ImGui::MenuItem("copy name", NULL, false))
+		{
+			store_to_clipboard(mt_key_name);
 		}
 		ImGui::EndPopup();
 	}

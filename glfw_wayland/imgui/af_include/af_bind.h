@@ -105,7 +105,7 @@ template<class T> bool get_prop_fd_value( prop_ele_position& pep, T& pvalue )
           printf("The variable you input which type is invalid for(%s_%d_%d)!\n",pep._pobj->get_name().c_str(),pgidx,fdidx);
           return false;
      }
-     memcpy( &pvalue, field._address, field._tpsz );
+     memcpy( &pvalue, field._address, field._tpsz*field._count );
      return true;
 }
 template<class T> bool get_property_aliase_value_T(string prp_aliase_name, T& value)

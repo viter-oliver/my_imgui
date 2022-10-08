@@ -10,6 +10,7 @@
 #include <sstream>
 #include "af_type.h"
 #include "common_functions.h"
+extern void store_to_clipboard(string& str_content);
 enum en_mem_usage
 {
 	en_GL_STREAM_DRAW,
@@ -202,6 +203,10 @@ void primitve_edit::draw_primitive_list()
 			g_primitive_list.erase(item_del);
 			_pmobj = nullptr;
 			_key_name = "";
+		}
+		if (_pmobj && ImGui::MenuItem("copy name", NULL, false))
+		{
+			store_to_clipboard(_key_name);
 		}
 		ImGui::EndPopup();
 	}

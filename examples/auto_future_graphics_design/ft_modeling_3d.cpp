@@ -1,10 +1,9 @@
+#include <sstream>
 #include "ft_modeling_3d.h"
-
 #include "af_model.h"
 #include "af_primitive_object.h"
 #include "res_output.h"
 #include "ft_trans.h"
-#include <sstream>
 namespace auto_future
 {
      ft_modeling_3d::ft_modeling_3d()

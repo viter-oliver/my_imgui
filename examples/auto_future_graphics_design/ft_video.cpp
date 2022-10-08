@@ -1,8 +1,8 @@
 #include "ft_video.h"
 #include "res_output.h"
-#include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
+//#include <glm.hpp>
+//#include <gtc/matrix_transform.hpp>
+//#include <gtc/type_ptr.hpp>
 #include "common_functions.h"
 #include "SOIL.h"
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

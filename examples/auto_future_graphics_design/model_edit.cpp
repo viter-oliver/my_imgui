@@ -92,7 +92,31 @@ void model_edit::draw_model_item_property()
 }
 
 const char* model_group_name = "model_group.json";
-const char* assimp_support_format = "file format:\0*.fbx\0*.dae\0*.blend\0*.3ds\0*.gltf\0*.glb\0*.ase\0*.obj\0*.ifc\0*.xgl\0*.zgl\0*.ply\0*.dxf\0*.lwo\0*.lws\0*.lxo\0*.stl\0*.x\0*.ac\0*.ms3d\0*.cob\0*.scn\0*.bvh\0*.csm\0\0";
+const char* assimp_support_format = "ALL Files(*.*)\0*.*\0"
+"fbx\0*.fbx\0"
+"dae\0*.dae\0"
+"blend\0*.blend\0"
+"3ds\0*.3ds\0"
+"gltf\0*.gltf\0"
+"glb\0*.glb\0"
+"ase\0*.ase\0"
+"obj\0*.obj\0"
+"ifc\0*.ifc\0"
+"xgl\0*.xgl\0"
+"zgl\0*.zgl\0"
+"ply\0*.ply\0"
+"dxf\0*.dxf\0"
+"lwo\0*.lwo\0"
+"lws\0*.lws\0"
+"lxo\0*.lxo\0"
+"stl\0*.stl\0"
+"x\0*.x\0"
+"ac\0*.ac\0"
+"ms3d\0*.ms3d\0"
+"cob\0*.cob\0"
+"scn\0*.scn\0"
+"bvh\0*.bvh\0"
+"csm\0*.csm\0\0";
 const char* assimp_support_other_format = "\0*.xml\0*.irrmesh\0*.irr\0*.md1\0*.md2\0*.md3\0*.pk3\0*.mdc\0*.md5*\0*.smd\0*.vta\0*.ogex\0*.3d\0*.b3d\0*.q3d\0*.q3s\0*.nff\0*.off\0*.raw\0*.ter\0*.mdl\0*.hmp\0*.ndo\0\0";
 //extern string g_cureent_directory;
 

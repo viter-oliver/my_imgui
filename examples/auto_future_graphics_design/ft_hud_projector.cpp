@@ -13,6 +13,7 @@ namespace auto_future
           _pj_pt._near = 20;
           _pj_pt._far = 100000.f;
           _pj_pt._test_depth = false;
+		  _pj_pt._bk_clr = { 0.2f, 0.2f, 0.2f, 1.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           reg_property_handle( &_pj_pt, 7, [this]( void* memb_adress )
           {

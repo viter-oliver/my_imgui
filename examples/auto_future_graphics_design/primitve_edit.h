@@ -11,6 +11,9 @@ class primitve_edit
 public:
 	void draw_primitive_list();
 	void draw_primitive_item_property();
-     void clear_states();
+    void clear_states();
+	string get_cur_key(){
+		return _key_name;
+	}
 };
 

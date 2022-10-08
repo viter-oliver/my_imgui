@@ -173,7 +173,7 @@ bool set_property_aliase_lazy_value( string prp_aliase_name, int during, void* p
     auto& field = prop_pos._pobj->get_filed_ele( pgidx, fdidx );
 
     g_lazy_value_buff[ prp_aliase_name ]._during = during;
-    g_lazy_value_buff[ prp_aliase_name ]._value.resize(field._tpsz);
+    g_lazy_value_buff[ prp_aliase_name ]._value.resize(field._tpsz*field._count);
     g_lazy_value_buff[ prp_aliase_name ]._start = steady_clock::now();
     return true;
 }

@@ -56,6 +56,7 @@ namespace auto_future
           }*/
           _in_p._sizew = _in_p._sizeh = 1000.f;
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
+		  _pt_tb._attached_image[0] = '\0';
           reg_property_handle( &_pt_tb, 0, [this]( void* member_address )
           {
                if( _pat_image )

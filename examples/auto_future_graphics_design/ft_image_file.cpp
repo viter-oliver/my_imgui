@@ -1,9 +1,6 @@
 #include "ft_image_file.h"
 #include "SOIL.h"
 #include "res_output.h"
-#include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
 #include "common_functions.h"
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
 #include <commdlg.h>

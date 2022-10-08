@@ -142,7 +142,7 @@ void afb_output::output_afb(const char* afb_file)
      fout_put.end_enum();
 	for (auto& res_item : g_vres_texture_list)
 	{
-          auto& res_unit = *res_item;
+        auto& res_unit = *res_item;
 		pk.pack_array(5);
 		pk.pack_str(res_unit.texture_pack_file.size());
 		pk.pack_str_body(res_unit.texture_pack_file.c_str(), res_unit.texture_pack_file.size());

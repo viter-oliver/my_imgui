@@ -157,7 +157,7 @@ namespace auto_future
 		*/
 		//virtual void draw_peroperty_page(int property_part = -1) = 0;
 		void draw_peropertys();
-          virtual void draw_outline();
+        virtual void draw_outline();
 		//struct command_elemment;
 		bool is_selected()
 		{
@@ -186,7 +186,7 @@ namespace auto_future
 		*  --false failure
 		*/
 		void init_property_from_json(Value& jvalue);
-          void init_property_from_json( Value& jvalue, dic_id& font_dic,dic_id& txt_dic);
+        void init_property_from_json( Value& jvalue, dic_id& font_dic,dic_id& txt_dic);
                
 	    /**
 		*@brief save some data members to a json unit

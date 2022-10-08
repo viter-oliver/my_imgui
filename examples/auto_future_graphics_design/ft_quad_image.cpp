@@ -1,8 +1,5 @@
 #include "ft_quad_image.h"
 #include "res_output.h"
-#include <glm.hpp>
-#include <gtc/matrix_transform.hpp>
-#include <gtc/type_ptr.hpp>
 #include "common_functions.h"
 /*
 x'=(x-a)cos¦Á+(y-b)sin¦Á+a

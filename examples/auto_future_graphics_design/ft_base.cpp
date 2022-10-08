@@ -1,6 +1,5 @@
 #include "ft_base.h"
-#include <GLFW/glfw3.h>
-#include <typeinfo>
+//#include <typeinfo>
 #include "af_bind.h"
 #include "rescontainer_manager.h"
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

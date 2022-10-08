@@ -218,7 +218,7 @@ namespace auto_future
 
 							if (mtype == "char")
 							{
-								if (array_cnt > 0)
+								if (array_cnt > 1)
 								{
 									if (mname == "_name")
 									{
@@ -368,7 +368,7 @@ namespace auto_future
 							}
 							if (f_draw_index_prop)
 							{
-								if (array_cnt > 0)
+								if (array_cnt > 1)
 								{
 									//be_base_type = false;
 									for (int ix = 0; ix < array_cnt; ++ix)
@@ -913,7 +913,7 @@ namespace auto_future
 					}
 				}
 
-				if (array_cnt > 0)
+				if (array_cnt > 1)
 				{
 					if (mtype == "char")
 					{

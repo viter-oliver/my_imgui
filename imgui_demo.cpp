@@ -1711,6 +1711,12 @@ void ImGui::ShowDemoWindow(bool* p_open)
             ImGui::Button("Corniflower");
             static float bar = 1.0f;
             ImGui::InputFloat("blue", &bar, 0.05f, 0, 3);
+			static float test_f = 2.1f;
+			ImGui::InputFloat("##", &test_f, 0.1f, 0, 6);
+			static float test_f2[2] = { 2.1f, 3.2f };
+			ImGui::InputFloat2("##", test_f2);
+			static float test_f3[3] = { 2.1f, 3.2f,1.4f };
+			ImGui::InputFloat3("##", test_f3);
             ImGui::NextColumn();
 
             if (ImGui::CollapsingHeader("Category A")) { ImGui::Text("Blah blah blah"); } ImGui::NextColumn();

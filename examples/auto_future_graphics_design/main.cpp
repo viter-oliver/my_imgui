@@ -138,7 +138,20 @@ static string reg_path = "afg_ide";
 static string ikey = "autofuture&afgER"; // "max&maj20190815x";
 
 string iv = "123456qwaszx0000";
-
+void store_to_clipboard(string& str_content){
+	if (!str_content.empty() && OpenClipboard(NULL)){
+		HGLOBAL wbuf_handle = GlobalAlloc(GMEM_MOVEABLE, (SIZE_T)str_content.size() + 1);
+		if (wbuf_handle)
+		{
+			auto idata = GlobalLock(wbuf_handle);
+			memcpy(idata, &str_content[0], str_content.size() + 1);
+			GlobalUnlock(wbuf_handle);
+			EmptyClipboard();
+			SetClipboardData(CF_TEXT, wbuf_handle);
+		}
+		CloseClipboard();
+	}
+}
 void drag_dop_callback(GLFWwindow *wh, int cnt, const char **fpaths)
 {
      int last_id = cnt - 1;
@@ -628,6 +641,7 @@ int main(int argc, char *argv[])
      condition_variable backup_con;
      mutex backup_sleep;
      condition_variable td_backup_sleep_con;
+
      auto backup_tast = [&]
      {
           afg_fs::path prj_path = afg_fs::system_complete(g_cureent_directory);
@@ -717,6 +731,7 @@ int main(int argc, char *argv[])
           // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
           // - When io.WantCaptureKeyboard is true, do not dispatch keyboard input data to your main application.
           // Generally you may always pass all inputs to dear imgui, and hide them from your application based on those two flags.
+#ifdef _MY_IMGUI__
           //unique_lock
           if (backup_lock.try_lock())
           {
@@ -727,6 +742,7 @@ int main(int argc, char *argv[])
                }
                backup_lock.unlock();
           }
+#endif
           if (glfwGetWindowAttrib(window, GLFW_ICONIFIED))
           {
                glfwWaitEvents();
@@ -790,9 +806,22 @@ int main(int argc, char *argv[])
 
                ImGui::Checkbox("Demo Window", &show_demo_window); // Edit bools storing our windows open/close state
                ImGui::Checkbox("Another Window", &show_another_window);
-
-               if (ImGui::Button("Button")) // Buttons return true when clicked (NB: most widgets return true when edited/activated)
+			   static bool be_disable = true;
+			   if (be_disable){
+				   ImGui::PushItemFlag(ImGuiItemFlags_Disabled, true);
+				   ImGui::PushStyleVar(ImGuiStyleVar_Alpha, ImGui::GetStyle().Alpha * 0.5f);
+			   }
+			   if (ImGui::Button("ButtonAdd")){}
+			   if (be_disable){
+				   ImGui::PopItemFlag();
+				   ImGui::PopStyleVar();
+			   }
+			   if (ImGui::Button("not state")){
+				   be_disable = !be_disable;
+			   }
+			   if (ImGui::Button("Button")) // Buttons return true when clicked (NB: most widgets return true when edited/activated)
                     counter++;
+
                ImGui::SameLine();
                ImGui::Text("counter = %d", counter);
 
@@ -1615,22 +1644,7 @@ int main(int argc, char *argv[])
                if (ImGui::IsWindowFocused() && ImGui::GetIO().KeyCtrl && ImGui::IsKeyReleased(GLFW_KEY_C))
                {
                     string key_name = g_aliase_edit.get_cur_key();
-                    if (!key_name.empty())
-                    {
-                         if (OpenClipboard(NULL))
-                         {
-                              HGLOBAL wbuf_handle = GlobalAlloc(GMEM_MOVEABLE, (SIZE_T)key_name.size() + 1);
-                              if (wbuf_handle)
-                              {
-                                   auto idata = GlobalLock(wbuf_handle);
-                                   memcpy(idata, &key_name[0], key_name.size() + 1);
-                                   GlobalUnlock(wbuf_handle);
-                                   EmptyClipboard();
-                                   SetClipboardData(CF_TEXT, wbuf_handle);
-                              }
-                              CloseClipboard();
-                         }
-                    }
+					store_to_clipboard(key_name);
                }
                g_aliase_edit.aliase_dic_view();
                //ImGui::NextColumn();
@@ -1643,10 +1657,15 @@ int main(int argc, char *argv[])
           {
                ImGui::Begin("Primitive objects", &show_prm_edit, ImVec2(600, 500));
                ImGui::Columns(2);
-               ImGui::SetColumnWidth(0, 200);
+               ImGui::SetColumnWidth(0, 400);
                g_primitive_edit.draw_primitive_list();
+			   if (ImGui::IsWindowFocused() && ImGui::GetIO().KeyCtrl && ImGui::IsKeyReleased(GLFW_KEY_C)) {
+                    string key_name = g_primitive_edit.get_cur_key();
+					store_to_clipboard(key_name);
+               }
                ImGui::NextColumn();
                g_primitive_edit.draw_primitive_item_property();
+               
                ImGui::End();
           }
           if (show_texture_res_manager)
@@ -1668,6 +1687,10 @@ int main(int argc, char *argv[])
                ImGui::BeginChild("Separated_textures list", ImVec2(0, 0), true);
                ImGui::Text("Separated texture list");
                ptexture->draw_texture_list();
+			   if (ImGui::IsWindowFocused() && ImGui::GetIO().KeyCtrl && ImGui::IsKeyReleased(GLFW_KEY_C)) {
+				   string key_name = ptexture->get_cur_key();
+				   store_to_clipboard(key_name);
+			   }
                ImGui::EndChild();
                ImGui::NextColumn();
                ptexture->draw_texture_item_property();

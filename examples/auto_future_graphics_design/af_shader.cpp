@@ -392,6 +392,7 @@ void af_shader::refresh_viarable_list()
 	{
 		glGetProgramiv(_shader_program_id, GL_ACTIVE_ATTRIBUTES, &count);
 		printf("Active Attributes: %d\n", count);
+		_att_list.resize(count);
 		for (idx = 0; idx < count; idx++)
 		{
 			glGetActiveAttrib(_shader_program_id, (GLuint)idx, bufSize, &length, &size, &type, name);
@@ -399,8 +400,7 @@ void af_shader::refresh_viarable_list()
 			printf("Attribute #%d Type: 0x%x Name: %s\n", idx, type, name);
 			GLuint location = glGetAttribLocation(_shader_program_id, name);
 			//_att_list[name] = shader_variable(type, location, size);
-			_att_list.emplace_back(); 
-			_att_list.back()={name, type, location, size};
+			_att_list[location]={name, type, location, size};
 		}
 	}
 	else

@@ -15,6 +15,7 @@
 #include <GL/gl3w.h> 
 #endif
 #include "SOIL.h"
+extern void store_to_clipboard(string& str_content);
 static BOOL isChked;
 UINT CALLBACK ofnHookProc(HWND hDlg, UINT uMsg, UINT wParam, LONG lParam)
 {
@@ -108,6 +109,9 @@ void texture_edit::draw_texture_list()
 			_ptexture = nullptr;
 			_key_name = "";
 		}
+		if (ImGui::MenuItem("copy name", "CTRL+C", false)){
+			store_to_clipboard(_key_name);
+		}
 		ImGui::EndPopup();
 	}
 }
@@ -128,4 +132,7 @@ void texture_edit::draw_texture_item_property()
 		ImGui::Image((ImTextureID)_ptexture->_txt_id(), ImVec2(imw,imh), ImVec2(0, 0), ImVec2(1, 1), ImColor(255, 255, 255, 255), ImColor(255, 255, 255, 128));
 
 	}
+}
+std::string texture_edit::get_cur_key(){
+	return _key_name;
 }

@@ -164,9 +164,9 @@ namespace auto_future
           float w, h;
           p_prj->get_size( w, h );
           float aspect = w / h;
-          float near=p_prj->get_near();
-          float far=p_prj->get_far();
-          glm::mat4 proj = glm::perspective( glm::radians( p_prj->get_fovy() ), aspect, near, far);
+          float near_value = _pt_tb._near>0.f ? _pt_tb._near : p_prj->get_near();
+		float far_value = _pt_tb._far>0.f ? _pt_tb._far : p_prj->get_far();
+          glm::mat4 proj = glm::perspective( glm::radians( p_prj->get_fovy() ), aspect, near_value, far_value );
           _phud_sd->uniform( "projection", glm::value_ptr( proj ) );
           glm::mat4 trans;
 		  trans = glm::translate(

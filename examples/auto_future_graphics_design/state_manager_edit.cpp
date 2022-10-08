@@ -196,12 +196,11 @@ void state_manager_edit::view_state_manager_item_property()
 					auto& pgidx = p_pos._page_index;
 					auto& fidx = p_pos._field_index;
 					auto& fel = p_pos._pobj->get_filed_ele(pgidx, fidx);
-					if (pp_block.size()==fel._tpsz)
-					{
-						char* ppt_addr =  fel._address;
-						memcpy(ppt_addr, &pp_block[0], fel._tpsz);
-                              calcu_bind_node( p_pos );
-					}
+					auto bk_sz = fel._tpsz*fel._count;
+					char* ppt_addr =  fel._address;
+					memcpy(ppt_addr, &pp_block[0], bk_sz);
+                    calcu_bind_node( p_pos );
+					
 				}
 			}
 
@@ -232,9 +231,9 @@ void state_manager_edit::view_state_manager_item_property()
 				field_ele &fel = p_pos._pobj->get_filed_ele(pgidx, fidx);
 				auto& pp_block = cur_pp_value[iidx];
 				char* ppt_addr = fel._address;
-				int tp_sz = fel._tpsz;
-				pp_block.resize(tp_sz);
-				memcpy(&pp_block[0], ppt_addr, tp_sz);
+				int bk_sz = fel._tpsz*fel._count;
+				pp_block.resize(bk_sz);
+				memcpy(&pp_block[0], ppt_addr, bk_sz);
 				iidx++;
 			}
 		}
@@ -480,6 +479,13 @@ void state_manager_edit::view_state_manager_item_property()
 			if (ImGui::ImageButton((ImTextureID)g_txt_id_intl, img_sz, uv0, uv1, 0,1, bk_col))
 			{
 				_trans_edit._easing_func = idx;
+			}
+			if (ImGui::IsItemActive()){
+				ImDrawList *draw_list = ImGui::GetWindowDrawList();
+				draw_list->PushClipRectFullScreen();
+				ImGuiIO &io = ImGui::GetIO();
+				draw_list->AddLine(io.MouseClickedPos[0], io.MousePos, ImGui::GetColorU32(ImGuiCol_Button), 4.0f);
+				draw_list->PopClipRect();
 			}
 			ImGui::PopID();
 			ImGui::Text(easing_func_name[idx]);
