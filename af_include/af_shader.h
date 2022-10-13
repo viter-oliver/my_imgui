@@ -8,6 +8,7 @@
 #include <functional>
 #include <glm.hpp>
 #include <gtc/matrix_transform.hpp>
+#include <gtc/quaternion.hpp>
 #include <gtc/type_ptr.hpp>
 #include <glm/gtx/norm.hpp>
 #if !defined(IMGUI_WAYLAND)

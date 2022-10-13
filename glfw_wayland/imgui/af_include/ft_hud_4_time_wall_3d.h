@@ -13,9 +13,9 @@ namespace auto_future
                                 ( char, _attached_image[ FILE_NAME_LEN ] ),
                                 ( float, _coeff_hac[4] ),
                                 ( float, _height, { 100.f } ),
-						  ( float, _offset, { 100.f } ),
+						        ( float, _offset, { 100.f } ),
                                 ( float, _near, {-1.f}),
-						  ( float, _far, {-1.f}),
+						        ( float, _far, {-1.f}),
                                 ( float, _tanslation_x, { 0.f } ),
                                 ( float, _tanslation_y, { 0.f } ),
                                 ( float, _tanslation_z, { 0.f } ) )

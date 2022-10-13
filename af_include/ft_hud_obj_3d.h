@@ -5,7 +5,7 @@
 #include "af_primitive_object.h"
 namespace auto_future
 {
-     class ft_hud_obj_3d :
+	class AFG_EXPORT ft_hud_obj_3d :
           public ft_base
      {
           DEF_STRUCT_WITH_INIT( pty_page, _pt_tb,

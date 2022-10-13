@@ -9,6 +9,7 @@ class project_edit
      base_ui_component* _pcut_object;
      bool _trigger_focus_switch = { false };
 	void view_object(base_ui_component& fb);
+	void add_model();
 public:
 	project_edit(base_ui_component& fb) 
           :_root(fb), _pcurrent_object(nullptr), _pcopy_object(nullptr), _pcut_object(nullptr)

@@ -1,3 +1,8 @@
+#include <windows.h>
+#include <locale.h>  
+#include <ShlObj.h>
+#include <Commdlg.h>
+#include "model_edit.h"
 #include "project_edit.h"
 #include "user_control_imgui.h"
 #include "res_output.h"
@@ -18,7 +23,24 @@ extern bind_edit g_bind_edit;
 3、当有多个node处于selected状态，快捷菜单只有copy和addsiblings，执行add sibling时，自末端向父级寻找selected的node，执行复制行为
 4、root被选中时不可以执行addsibling
 */
-
+void project_edit::add_model(){
+	OPENFILENAME ofn = { sizeof(OPENFILENAME) };
+	ofn.hwndOwner = GetForegroundWindow();
+	ofn.lpstrFilter = assimp_support_format;
+	char strFileName[MAX_PATH] = { 0 };
+	ofn.nFilterIndex = 1;
+	ofn.lpstrFile = strFileName;
+	ofn.nMaxFile = sizeof(strFileName);
+	ofn.lpstrTitle = "select a 3d file please!";
+	ofn.Flags = OFN_FILEMUSTEXIST | OFN_PATHMUSTEXIST;
+	if (GetOpenFileName(&ofn))
+	{
+		printf("open file:%s\n", strFileName);
+			//import_fbx_info(strFileName);
+		model_ui_generator mde(*_pcurrent_object);
+		mde.import_models(strFileName);
+	}
+}
 void project_edit::view_object(base_ui_component& fb)
 {
      bool beparent = fb.get_child_count() > 0;
@@ -145,6 +167,8 @@ bool allow_add_item( string& parent_type_name, string& child_type_name )
           { "ft_hud_projector", "ft_hud_4_time_curve_3d" },
 		  { "ft_hud_projector", "ft_hud_4_time_wall_3d" },
 		  { "ft_hud_projector", "ft_trans" },
+		  { "ft_light_scene", "ft_color_node" },
+		  { "ft_color_node", "ft_color_node" },
           { "ft_modeling_3d", "ft_trans" },
           { "ft_material_3d", "ft_trans" },
 		  { "ft_hud_piece_3d", "ft_trans" },
@@ -368,51 +392,57 @@ void project_edit::popup_context_menu()
      if( ImGui::IsKeyPressed( GLFW_KEY_LEFT_CONTROL ) && ImGui::IsKeyReleased( GLFW_KEY_DELETE ) )
      {
           delete_item();
-     }    
+     } 
+	 if ((ImGui::IsKeyPressed(GLFW_KEY_LEFT_SHIFT) || ImGui::IsKeyPressed(GLFW_KEY_RIGHT_SHIFT)) && ImGui::IsKeyReleased(GLFW_KEY_M))
+	 {
+		 add_model();
+	 }
 	if (ImGui::BeginPopupContextWindow())
 	{
 		if (ImGui::MenuItem("copy", "SHIFT+C", false))
 		{
-               copy_item();
+			copy_item();
 		}
-          if (ImGui::MenuItem("cut","SHIFT+X",false))
-          {
-               cut_item();
-          }
+		if (ImGui::MenuItem("cut","SHIFT+X",false))
+		{
+			cut_item();
+		}
 		if (ImGui::MenuItem("paste","SHIFT+V",false))
 		{
-               past_item();
+			past_item();
 		}
 		if (ImGui::BeginMenu("add child"))
 		{
-               add_item();
+			add_item();
 		}
-          if( ImGui::BeginMenu( "insert child" ) )
-          {
-               insert_item();
-          }		
-          if( ImGui::MenuItem( "add sibling", "SHIFT+A", false ) )
+		if( ImGui::BeginMenu( "insert child" ) )
 		{
-               add_sibling();
-			//ImGui::EndMenu();
+			insert_item();
+		}		
+		if( ImGui::MenuItem( "add sibling", "SHIFT+A", false ) )
+		{
+			add_sibling();
+		//ImGui::EndMenu();
 		}
 		if (ImGui::MenuItem("delete","Del"))
 		{
-               delete_item();
+			delete_item();
 		}
-          //char str_up[] = {  0x21,0x91, 0 };
-          string str_up = wstringToUtf8( wstring( L"↑" ) );
-          if( ImGui::MenuItem( "up", str_up.c_str()) )
+		//char str_up[] = {  0x21,0x91, 0 };
+		string str_up = wstringToUtf8( wstring( L"↑" ) );
+		if( ImGui::MenuItem( "up", str_up.c_str()) )
 		{
-               move_item_pre();
+			move_item_pre();
 		}
-          //char str_dn[] = { 0x21, 0x93, 0 };
-          string str_dn = wstringToUtf8( wstring( L"↓" ) );
-          if( ImGui::MenuItem( "down", str_dn.c_str() ) )
+		//char str_dn[] = { 0x21, 0x93, 0 };
+		string str_dn = wstringToUtf8( wstring( L"↓" ) );
+		if( ImGui::MenuItem( "down", str_dn.c_str() ) )
 		{
-               move_item_next();
+			move_item_next();
 		}
-
+		if (ImGui::MenuItem("Import model","SHIFT+M", false)){
+			add_model();
+		}
 		ImGui::EndPopup();
 	}
 }

@@ -15,7 +15,7 @@ namespace auto_future
                                 ( bool, _left_border, {true} ),
                                 ( float, _width, { 100.f } ),
                                 ( float, _near, { -1.f }),
-						  ( float, _far, { -1.f }),
+						        ( float, _far, { -1.f }),
                                 ( float, _tanslation_x, { 0.f } ),
                                 ( float, _tanslation_y, { 0.f } ),
                                 ( float, _tanslation_z, { 0.f } ))

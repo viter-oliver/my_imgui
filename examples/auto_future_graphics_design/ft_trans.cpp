@@ -6,6 +6,8 @@ namespace auto_future
 
      ft_trans::ft_trans()
      {
+		 _pt._trans_order = en_scale_rotate_translate;
+
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
           reg_property_handle( &_pt, 0, [this]( void* memb_adress )
           {
@@ -27,39 +29,39 @@ namespace auto_future
           {
                [&]()
                {
-                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, glm::radians( _pt._trans_rotation_x), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_y), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_z ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
                },
                     [&]()
                {
-                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians( _pt._trans_rotation_x), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_z), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_y ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
                },
                     [&]()
                {
-                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+				   model = glm::rotate(model, glm::radians(_pt._trans_rotation_y), glm::vec3(0.0f, 1.0f, 0.0f));
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_x), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_z ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
                },
                     [&]()
                {
-                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_y), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_z), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_x), glm::vec3( 1.0f, 0.0f, 0.0f ) );
                },
                     [&]()
                {
-                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_z), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, glm::radians( _pt._trans_rotation_x), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians( _pt._trans_rotation_y), glm::vec3( 0.0f, 1.0f, 0.0f ) );
                },
                     [&]()
                {
-                    model = glm::rotate( model, _pt._trans_rotation_z*glm::radians( 1.f ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_y*glm::radians( 1.f ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
-                    model = glm::rotate( model, _pt._trans_rotation_x*glm::radians( 1.f ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_z ), glm::vec3( 0.0f, 0.0f, 1.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_y ), glm::vec3( 0.0f, 1.0f, 0.0f ) );
+                    model = glm::rotate( model, glm::radians(_pt._trans_rotation_x ), glm::vec3( 1.0f, 0.0f, 0.0f ) );
                },
           };
           function<void()> f_trans[ en_trans_order_cnt ] =

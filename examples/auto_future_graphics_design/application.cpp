@@ -158,8 +158,8 @@ namespace auto_future
 			{
 				onUpdate();
 				keep_state_trans_on();
-                    execute_lazy_value();
-                    _proot->draw_frames();
+                execute_lazy_value();
+                _proot->draw_frames();
 			}
                ImGuiContext& g = *GImGui;
                ImGuiWindow* cur_window = ImGui::GetCurrentWindow();

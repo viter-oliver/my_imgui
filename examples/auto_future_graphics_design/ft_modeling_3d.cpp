@@ -18,6 +18,7 @@ namespace auto_future
           _pty_page._light_ambient_clr = { 0.2f, 0.2f, 0.2f };
           _pty_page._light_diffuse_clr = { 0.5f, 0.5f, 0.5f };
           _pty_page._light_specular_clr = { 1.f, 1.f, 1.f };
+		  _pty_page._trans_order = en_scale_rotate_translate;
           _pty_page._draw_mode = en_gl_triangles;
           //_pty_page._light_position_shd = { -1.f, 1.f, -2.f };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)

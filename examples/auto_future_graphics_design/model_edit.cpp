@@ -263,17 +263,69 @@ void processMesh(aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, a
 	// diffuse: texture_diffuseN
 	// specular: texture_specularN
 	// normal: texture_normalN
+	/*aiString vertex_sd;
+	material->Get(AI_MATKEY_SHADER_VERTEX, vertex_sd);*/
+
+	aiColor3D a_color_diff(0.f, 0.f, 0.f);
+	material->Get(AI_MATKEY_COLOR_DIFFUSE, a_color_diff);
+	aiColor3D a_color_ambient(0.f, 0.f, 0.f);
+	material->Get(AI_MATKEY_COLOR_AMBIENT, a_color_ambient);
+	aiColor3D a_color_specular(0.f, 0.f, 0.f);
+	material->Get(AI_MATKEY_COLOR_SPECULAR, a_color_specular);
+	aiColor3D a_color_emissive(0.f, 0.f, 0.f);
+	material->Get(AI_MATKEY_COLOR_EMISSIVE, a_color_emissive);
+	aiColor3D a_color_tranparent(0.f, 0.f, 0.f);
+	material->Get(AI_MATKEY_COLOR_TRANSPARENT, a_color_tranparent);
+	aiColor3D a_color_reflective(0.f, 0.f, 0.f);
+	material->Get(AI_MATKEY_COLOR_REFLECTIVE, a_color_reflective);
+	float b_reflectcity=0.f;
+	material->Get(AI_MATKEY_REFLECTIVITY, b_reflectcity);
+	int b_twosided = 0;
+	material->Get(AI_MATKEY_TWOSIDED, b_twosided);
+	int b_shading_model = 0;//gouraud ;aiShadingMode 
+	material->Get(AI_MATKEY_SHADING_MODEL, b_shading_model);
+	int b_blend_func=0;//aiBlendMode
+	material->Get(AI_MATKEY_BLEND_FUNC, b_blend_func);
+	float b_opacity = 0.f;
+	material->Get(AI_MATKEY_OPACITY, b_opacity);
+	float b_shininess=0.f;
+	material->Get(AI_MATKEY_SHININESS, b_shininess);
+	float b_shininess_strength = 0.f;
+	material->Get(AI_MATKEY_SHININESS_STRENGTH, b_shininess_strength);
+	float b_refracti = 0.f;//ÕÛÉä
+	material->Get(AI_MATKEY_REFRACTI, b_refracti);
 
 	// 1. diffuse maps
 	loadMaterialTextures(material, aiTextureType_DIFFUSE, mesh_unit._text_diffuse_list);
 	loadMaterialTextures(material, aiTextureType_SPECULAR, mesh_unit._text_specular_list);
 	loadMaterialTextures(material, aiTextureType_HEIGHT, mesh_unit._text_height_list);
 	loadMaterialTextures(material, aiTextureType_AMBIENT, mesh_unit._text_ambient_list);
+
+
+
 	// return a mesh object created from the extracted mesh data
 }
 
 void processNode(aiNode *node, const aiScene *scene, af_model& md, string& mesh_base_name)
 {
+	if (!node->mTransformation.IsIdentity()){
+
+		auto quaternion_2_vec3_angle = [](aiQuaternion& rq, af_vec3& ax, float& angle){
+			auto half_a = acosf(rq.w);
+			angle = 2 * half_a;
+			auto sinHalf_a = sinf(half_a);
+			ax.x = rq.x / sinHalf_a;
+			ax.y = rq.y / sinHalf_a;
+			ax.z = rq.z / sinHalf_a;
+		};
+		aiVector3D scaling, position;
+		aiQuaternion rotation;
+		node->mTransformation.Decompose(scaling, rotation, position);
+		af_vec3 rotate_ax;
+		float angle;
+		quaternion_2_vec3_angle(rotation, rotate_ax, angle);
+		printf("angle=%f\n", angle);
+	}
 	// process each mesh located at the current node
 	for (unsigned int i = 0; i < node->mNumMeshes; i++)
 	{
@@ -285,8 +337,10 @@ void processNode(aiNode *node, const aiScene *scene, af_model& md, string& mesh_
 		//meshes.push_back(processMesh(mesh, scene));
 		auto id = md.size();
 		char cc[50];
-		itoa(id, cc, 10);
-		string mesh_name = mesh_base_name + cc;
+		itoa(i, cc, 10);
+		
+		string mesh_name = node->mName.C_Str();//mesh_base_name + cc;
+		mesh_name += cc;
 		string mesh_kname = find_a_key_from_mp(g_primitive_list, mesh_name);
 		mesh_kname = find_a_key_from_mp(g_mfiles_list, mesh_kname);
 		g_primitive_list[mesh_kname] = pmtv;
@@ -317,10 +371,208 @@ bool import_models(const char* md_file_name)
 		printf("ERROR::ASSIMP::%s\n", importer.GetErrorString());
 		return false;
 	}
+	bool embeded_txt=scene->HasTextures();
 	string md_gp_nm = mdnm.substr(mdnm.find_last_of('\\') + 1);
 	model_path = mdnm.substr(0, mdnm.find_last_of('\\') + 1);
 	auto pmd = make_shared<af_model>();
 	processNode(scene->mRootNode, scene, *pmd, md_gp_nm);
 	g_mmodel_list[md_gp_nm] = pmd;
+	return true;
+}
+#include <cmath>
+#include "ft_light_scene.h"
+#include "ft_color_node.h"
+/*
+void GModel::rotate(float angle, glm::vec3 axis) {
+
+angle = angle* 3.141592 / 180; //rad
+
+float sinHalfAngle = sin(angle / 2);
+float cosHalfAngle = cos(angle / 2);
+
+float rX = axis.x*sinHalfAngle;
+float rY = axis.y*sinHalfAngle;
+float rZ = axis.z*sinHalfAngle;
+float rW = cosHalfAngle;
+
+glm::quat rota(rX, rY, rZ, rW);
+
+rotation = glm::mat4_cast(rota)*rotation;
+modelMatrix();
+}
+*/
+using namespace auto_future;
+bool model_ui_generator::import_models(const char* md_file_name){
+	Assimp::Importer importer;
+	string mdnm = md_file_name;
+	string md_gp_nm = mdnm.substr(mdnm.find_last_of('\\') + 1);
+	const aiScene* scene = importer.ReadFile(mdnm, aiProcess_Triangulate | aiProcess_FlipUVs | aiProcess_CalcTangentSpace);
+
+	if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+	{
+		printf("ERROR::ASSIMP::%s\n", importer.GetErrorString());
+		return false;
+	}
+	bool embeded_txt = scene->HasTextures();
+	x_r[0] = x_r[1] = y_r[0] = y_r[1] = z_r[0] = z_r[1] = 0;
+	if (!embeded_txt){
+		auto pscene = new ft_light_scene();
+		_proot.add_child(pscene);
+		pscene->set_name(md_gp_nm);
+		
+		auto process_mesh = [&](aiMesh *mesh, const aiScene *scene, primitive_object& obj_pm, ft_color_node& nodeTar){
+			struct  af_vertex
+			{
+				float _pos[3];				
+				float _nms[3];
+			};
+			af_vertex* pvertexs = new af_vertex[mesh->mNumVertices];
+			// Walk through each of the mesh's vertices
+			for (unsigned int i = 0; i < mesh->mNumVertices; i++)
+			{
+				//position
+				pvertexs[i]._pos[0] = mesh->mVertices[i].x; 
+				if (pvertexs[i]._pos[0] < x_r[0]) x_r[0] = pvertexs[i]._pos[0];
+				if (pvertexs[i]._pos[0] > x_r[1]) x_r[1] = pvertexs[i]._pos[0];
+
+				pvertexs[i]._pos[1] = mesh->mVertices[i].y;
+				if (pvertexs[i]._pos[1] < y_r[0]) y_r[0] = pvertexs[i]._pos[1];
+				if (pvertexs[i]._pos[1] > y_r[1]) y_r[1] = pvertexs[i]._pos[1];
+
+				pvertexs[i]._pos[2] = mesh->mVertices[i].z;
+				if (pvertexs[i]._pos[2] < z_r[0]) z_r[0] = pvertexs[i]._pos[2];
+				if (pvertexs[i]._pos[2] > z_r[1]) z_r[1] = pvertexs[i]._pos[2];
+
+
+				//normals
+				pvertexs[i]._nms[0] = mesh->mNormals[i].x;
+				pvertexs[i]._nms[1] = mesh->mNormals[i].y;
+				pvertexs[i]._nms[2] = mesh->mNormals[i].z;
+			}
+			// now wak through each of the mesh's faces (a face is a mesh its triangle) and retrieve the corresponding vertex indices.
+			GLuint* pface_idx = NULL;
+			GLuint num_indices = 0;
+			GLuint face_len = 0;
+			if (mesh->mNumFaces == 0)
+			{
+				return;
+			}
+			aiFace face = mesh->mFaces[0];
+			num_indices = face.mNumIndices;
+			face_len = mesh->mNumFaces * num_indices;
+			pface_idx = new GLuint[face_len];
+			for (unsigned int ix = 0; ix < mesh->mNumFaces; ix++)
+			{
+				aiFace face = mesh->mFaces[ix];
+				auto id = ix * 3;
+				for (int idx = 0; idx < num_indices; idx++)
+				{
+					pface_idx[id + idx] = face.mIndices[idx];
+
+				}
+			}
+
+			obj_pm.set_ele_format({ 3, 3 });
+			auto float_size = sizeof(af_vertex) / sizeof(float);
+			auto float_cnt = float_size*mesh->mNumVertices;
+			obj_pm.load_vertex_data((GLfloat*)pvertexs, float_cnt, pface_idx, face_len);
+			auto buff_len = 4 + float_cnt*sizeof(float) + face_len* sizeof(GLuint);
+			ps_af_file ps_file = make_shared<af_file>(buff_len);
+			char* phead = (char*)ps_file->_pbin;
+			GLuint* phead_len = (GLuint*)phead;
+			*phead_len = float_cnt*sizeof(float);
+			phead += 4;
+			memcpy(phead, pvertexs, *phead_len);
+			phead += *phead_len;
+			memcpy(phead, pface_idx, face_len*sizeof(GLuint));
+			delete[] pvertexs;
+			delete[] pface_idx;
+			obj_pm._ps_file = ps_file;
+			// process materials
+			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+		
+			auto a2v3 = [](aiColor3D& clr)->af_vec3{
+				return{ clr.r, clr.g, clr.b };
+			};
+			aiColor3D a_color_diff(0.f, 0.f, 0.f);
+			material->Get(AI_MATKEY_COLOR_DIFFUSE, a_color_diff);
+			nodeTar.set_diffuse(a2v3(a_color_diff));
+			aiColor3D a_color_ambient(0.f, 0.f, 0.f);
+			material->Get(AI_MATKEY_COLOR_AMBIENT, a_color_ambient);
+			nodeTar.set_ambient(a2v3(a_color_ambient));
+			aiColor3D a_color_specular(0.f, 0.f, 0.f);
+			material->Get(AI_MATKEY_COLOR_SPECULAR, a_color_specular);
+			nodeTar.set_specular(a2v3(a_color_specular));
+			
+		};
+		function<void(aiNode*, const aiScene *, ft_base* parent)> process_node = [&](aiNode *node, const aiScene *scene, ft_base* parent){
+			auto cur_node = new ft_color_node();
+			cur_node->set_name(node->mName.C_Str());
+			parent->add_child(cur_node);
+			auto& mTranspos = node->mTransformation.Transpose();
+			auto fv = mTranspos[0];
+			cur_node->set_trans_mat(fv);
+
+#if 0
+			if (!node->mTransformation.IsIdentity()){
+				aiVector3D scaling, position;
+				aiQuaternion rotation;
+				node->mTransformation.Decompose(scaling, rotation, position);
+				af_vec3 rotate_ax = { 0, 0, 0 };
+				float r_angle=0.f;
+				auto quaternion_2_vec3_angle = [](aiQuaternion& rq, af_vec3& ax, float& rangle){
+					auto half_a = acosf(rq.w);
+					rangle = 2 * half_a;
+					if (half_a > 0.0001){
+						auto sinHalf_a = sinf(half_a);
+						ax.x = rq.x / sinHalf_a;
+						ax.y = rq.y / sinHalf_a;
+						ax.z = rq.z / sinHalf_a;
+					}
+				
+				};
+				auto abs = [](float vf){
+					return vf > 0 ? vf : -vf;
+				};
+				if (abs(rotation.w)>0.0001)
+				{
+					quaternion_2_vec3_angle(rotation, rotate_ax, r_angle);
+				}
+				cur_node->set_translate_x(position.x).set_translate_y(position.y).set_translate_z(position.z).set_scale_x(scaling.x).set_scale_y(scaling.y).set_scale_z(scaling.z).set_rotate(rotate_ax, r_angle);
+			}
+#endif
+			
+			//rotation.
+			for (unsigned int i = 0; i < node->mNumMeshes; i++)
+			{
+				aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
+				auto pmtv = make_shared<primitive_object>();
+
+				process_mesh(mesh, scene,*pmtv, *cur_node);
+				string mesh_name = node->mName.C_Str();//mesh_base_name + cc;
+				
+				string mesh_kname = find_a_key_from_mp(g_primitive_list, mesh_name);
+				mesh_kname = find_a_key_from_mp(g_mfiles_list, mesh_kname);
+				g_primitive_list[mesh_kname] = pmtv;
+				g_mfiles_list[mesh_kname] = pmtv->_ps_file;
+				pmtv->_file_name = mesh_kname;
+				save_ojfile_to_file(mesh_kname);
+				cur_node->set_prm_obj(mesh_kname);
+				cur_node->link();
+				//processMesh(mesh, scene, *pmtv, cmesh);
+			}
+			// after we've processed all of the meshes (if any) we then recursively process each of the children nodes
+			for (unsigned int i = 0; i < node->mNumChildren; i++)
+			{
+				process_node(node->mChildren[i], scene,cur_node);
+			}
+		};
+		process_node(scene->mRootNode, scene, pscene);
+		pscene->link();
+		printf("xmin:%f  xmax:%f\n", x_r[0], x_r[1]);
+		printf("ymin:%f  ymax:%f\n", y_r[0], y_r[1]);
+		printf("zmin:%f  zmax:%f\n", z_r[0], z_r[1]);
+	}
+	
 	return true;
 }

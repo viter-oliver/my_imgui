@@ -1,8 +1,7 @@
 ﻿#include "af_shader_source_code.h"
 
 const char* single_txt;
-const char* single_txt_vs = R"glsl(
-#version 300 es
+const char* single_txt_vs = R"glsl(#version 300 es
 
 in vec3 position;
 in vec3 color;
@@ -18,8 +17,7 @@ void main()
 	TextCoord = textCoord;
 }
 )glsl";
-const char* single_txt_fs = R"glsl(
-#version 300 es
+const char* single_txt_fs = R"glsl(#version 300 es
 
 in vec3 VertColor;
 in vec2 TextCoord;
@@ -43,7 +41,7 @@ void main()
 )glsl";
 
 const char* color_obj = "color_obj";
-const char* color_obj_vs = R"glsl(
+const char* color_obj_vs = R"glsl(#version 300 es
 layout(location = 0) attribute vec3 position;
 layout(location = 1) attribute vec3 color;
 layout(location = 2) attribute vec2 texcoord;
@@ -59,7 +57,7 @@ void main()
 	gl_Position = proj * view * model * vec4(position, 1.0);
 }
 )glsl";
-const char* color_obj_fs = R"glsl(
+const char* color_obj_fs = R"glsl(#version 300 es
 varying vec3 Color;
 varying vec2 Texcoord;
 void main()
@@ -69,8 +67,7 @@ void main()
 )glsl";
 
 const char* particles1 = "particles1";
-const char* particles1_vs = R"glsl(
-#version 330 core
+const char* particles1_vs = R"glsl(#version 330 core
 // Input vertex data, different for all executions of this shader.
 layout(location = 0) in vec3 squareVertices;
 layout(location = 1) in vec4 xyzs; // Position of the center of the particule and size of the square
@@ -103,8 +100,7 @@ void main()
 	particlecolor = color;
 }
 )glsl";
-const char* particles1_fs = R"glsl(
-#version 330 core
+const char* particles1_fs = R"glsl(#version 330 core
 
 // Interpolated values from the vertex shaders
 in vec2 UV;
@@ -122,8 +118,7 @@ void main(){
 }
 )glsl";
 const char* particles2 = "particles2";
-const char* particles2_vs = R"glsl(
-#version 330 core
+const char* particles2_vs = R"glsl(#version 330 core
 
 // Input vertex data, different for all executions of this shader.
 layout(location = 0) in vec3 squareVertices;
@@ -158,8 +153,7 @@ void main()
 	UV = uvcol[uv_index];
 }
 )glsl";
-const char* particles2_fs = R"glsl(
-#version 330 core
+const char* particles2_fs = R"glsl(#version 330 core
 
 // Interpolated values from the vertex shaders
 in vec2 UV;
@@ -172,8 +166,7 @@ void main(){
 )glsl";
 
 const char* modeling = "modeling";
-const char* modeling_vs=R"glsl(
-#version 300 es
+const char* modeling_vs=R"glsl(#version 300 es
 precision mediump float;
 layout(location=0) in vec3 normal;
 layout(location=1) in vec3 position;
@@ -195,8 +188,7 @@ void main()
 	FragNormal = normalMatrix * normal; //calculate normal
 }
 )glsl";
-const char* modeling_fs=R"glsl(
-#version 300 es
+const char* modeling_fs=R"glsl(#version 300 es
 precision mediump float;
 in vec3 FragPos;
 in vec2 TextCoord;
@@ -237,6 +229,59 @@ void main()
 
 	vec3	result = (ambient + diffuse + specular) * attenuation;
 	//vec3 result=vec3(0,0,0);
+	o_clr	= vec4(result , 1.0f);
+}
+)glsl";
+
+const char* modeling_vs_col = R"glsl(#version 300 es
+precision mediump float;
+layout(location=0) in vec3 position;
+layout(location=1) in vec3 normal;
+out vec3 FragPos;
+out vec3 FragNormal;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    gl_Position = projection * view * model * vec4(position, 1.0);
+	FragPos = vec3(model * vec4(position, 1.0));//special a position for fragment
+	mat3 normalMatrix = mat3(transpose(inverse(model)));
+	FragNormal = normalMatrix * normal; //calculate normal
+}
+)glsl";
+const char* modeling_fs_col = R"glsl(#version 300 es
+precision mediump float;
+in vec3 FragPos;
+in vec3 FragNormal;
+out vec4 o_clr;
+uniform vec3 light_position;
+
+uniform vec3 light_ambient;
+uniform vec3 light_diffuse;
+uniform vec3 light_specular;
+
+uniform vec3 viewPos;
+uniform vec3 col_ambient;
+uniform vec3 col_diffuse;
+uniform vec3 col_specular;
+void main()
+{
+	vec3	ambient = light_ambient * col_ambient;
+
+	vec3	lightDir = normalize(light_position - FragPos);
+	vec3	normal = normalize(FragNormal);
+	float	diffFactor = max(dot(lightDir, normal), 0.0);
+	vec3	diffuse = diffFactor * light_diffuse * col_diffuse;
+	float	specularStrength = 0.5f;
+	vec3	reflectDir = normalize(reflect(-lightDir, normal));
+	vec3	viewDir = normalize(viewPos - FragPos);
+	float	specFactor = pow(max(dot(reflectDir, viewDir), 0.0), 64.0f);
+	vec3	specular = specFactor * light_specular * col_specular;
+	
+	vec3	result = ambient + diffuse + specular;
 	o_clr	= vec4(result , 1.0f);
 }
 )glsl";
