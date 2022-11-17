@@ -10,7 +10,7 @@
 #include <gtc/matrix_transform.hpp>
 #include <gtc/quaternion.hpp>
 #include <gtc/type_ptr.hpp>
-#include <glm/gtx/norm.hpp>
+#include <gtx/norm.hpp>
 #if !defined(IMGUI_WAYLAND)
 #include <GL/gl3w.h>
 #else

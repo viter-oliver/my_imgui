@@ -91,7 +91,7 @@ namespace auto_future
                               auto yheight = mbox._ymax - mbox._zmin;
 
                               _pty_page._cam._position = { ( mbox._xmax + mbox._xmin )*0.5f, \
-                                   ( mbox._ymax + mbox._ymin )*0.5,mbox._zmin-zthickness };
+                                   ( mbox._ymax + mbox._ymin )*0.5f,mbox._zmin-zthickness };
                               _pty_page._cam._direction = _pty_page._cam._position;
                               _pty_page._cam._direction.z = mbox._zmin;
                               _pty_page._cam._up = { 0.f, 1.f, 0.f };

@@ -113,8 +113,8 @@ enum en_short_cut_item
 };
 function<void(en_short_cut_item)> fun_shortct;
 bool show_project_window = true, show_edit_window = true,
-     show_property_window = true, show_texture_res_manager = true, show_shader_material_manager = false,
-     show_fonts_manager = true, show_file_manager = true,
+     show_property_window = true, show_texture_res_manager = false, show_shader_material_manager = false,
+     show_fonts_manager = false, show_file_manager = false,
      show_output_format = false, show_model_list = false, show_world_space = false,
      show_bind_edit = false, show_state_manager_edit = false, show_aliase_edit = false,
      show_slider_path_picker = false, show_prm_edit = false, show_video_dev_mg = false,

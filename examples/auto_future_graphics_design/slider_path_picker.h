@@ -2,6 +2,7 @@
 #include "af_type.h"
 #include <imgui.h>
 #define IMGUI_DEFINE_MATH_OPERATORS
+#include <string>
 #include <vector>
 using namespace auto_future;
 using namespace std;

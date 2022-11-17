@@ -37,7 +37,7 @@ void project_edit::add_model(){
 	{
 		printf("open file:%s\n", strFileName);
 			//import_fbx_info(strFileName);
-		model_ui_generator mde(*_pcurrent_object);
+		model_ui_generator mde(_pcurrent_object);
 		mde.import_models(strFileName);
 	}
 }
@@ -168,6 +168,10 @@ bool allow_add_item( string& parent_type_name, string& child_type_name )
 		  { "ft_hud_projector", "ft_hud_4_time_wall_3d" },
 		  { "ft_hud_projector", "ft_trans" },
 		  { "ft_light_scene", "ft_color_node" },
+		  { "ft_light_scene", "ft_trans" },
+		  { "ft_light_scene", "ft_4_time_curve_3d" },
+		  { "ft_trans", "ft_color_node" },
+		  { "ft_color_node", "ft_trans" },
 		  { "ft_color_node", "ft_color_node" },
           { "ft_modeling_3d", "ft_trans" },
           { "ft_material_3d", "ft_trans" },

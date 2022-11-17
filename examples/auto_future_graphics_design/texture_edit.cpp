@@ -17,7 +17,7 @@
 #include "SOIL.h"
 extern void store_to_clipboard(string& str_content);
 static BOOL isChked;
-UINT CALLBACK ofnHookProc(HWND hDlg, UINT uMsg, UINT wParam, LONG lParam)
+UINT_PTR CALLBACK ofnHookProc(HWND hDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
 	OFNOTIFY* pofNotify;
 	switch (uMsg)

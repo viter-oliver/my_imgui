@@ -19,11 +19,6 @@ namespace auto_future
 				(af_vec3, _light_ambient_clr),
 				(af_vec3, _light_diffuse_clr),
 				(af_vec3, _light_specular_clr),
-                (int, _trans_order, { 0 } ),
-				(int, _rotate_order, { 0 }),
-				(af_vec3, _translate),
-				(af_vec3, _scale),
-				(af_vec3, _roration),
                 (bool,_test_depth),
                 (af_vec4,_bk_clr))
           unsigned int _fboId = { 0 };
@@ -34,7 +29,6 @@ namespace auto_future
           ft_light_scene();
           ~ft_light_scene();
           void link();
-		  void transform(glm::mat4& model);
           void draw_frames();
          bool handle_mouse();
           af_vec3* get_view_pos()

@@ -22,7 +22,11 @@ namespace auto_future
      }
      void ft_trans::transform( glm::mat4& model )
      {
-          glm::vec3 gtranslate( _pt._trans_translation_x, _pt._trans_translation_y, _pt._trans_translation_z );
+          //glm::vec3 gtranslate( _pt._trans_translation_x, -_pt._trans_translation_z, _pt._trans_translation_y );
+		  glm::vec3 gtranslate(_pt._trans_translation_x,
+			  _pt._trans_translation_y, 
+			  _pt._trans_translation_z);
+
           glm::vec3 gscale( _pt._trans_scale_x, _pt._trans_scale_y, _pt._trans_scale_z );
 
           function<void()> f_rotate[ en_rotate_order_cnt ] =

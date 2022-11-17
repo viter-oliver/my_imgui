@@ -65,7 +65,7 @@ bool ui_assembler::load_afg_from_file(const char* file_path)
 	ifstream fin;
      locale::global( locale( "" ) );
 	fin.open(file_path);
-     locale::global( locale( "C" ) );
+    locale::global( locale( "C" ) );
 	if (fin.is_open())
 	{
 		Reader reader;

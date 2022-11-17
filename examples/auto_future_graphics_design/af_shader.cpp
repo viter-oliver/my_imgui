@@ -400,7 +400,7 @@ void af_shader::refresh_viarable_list()
 			printf("Attribute #%d Type: 0x%x Name: %s\n", idx, type, name);
 			GLuint location = glGetAttribLocation(_shader_program_id, name);
 			//_att_list[name] = shader_variable(type, location, size);
-			_att_list[location]={name, type, location, size};
+			_att_list[location]={name, type, location, (GLuint)size};
 		}
 	}
 	else

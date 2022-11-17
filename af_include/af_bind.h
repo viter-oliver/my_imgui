@@ -129,7 +129,7 @@ enum get_ui_control_result
 };
 template<class T> get_ui_control_result get_ui_control_by_alias( string prp_aliase_name, T** ppUi_control )
 {
-     if( *ppUi_control != 0 );
+     if( *ppUi_control != 0 )
      {
           return ui_rt_invalid_reciver;
      }

@@ -147,7 +147,7 @@ void aliase_edit::sel_aliase(base_ui_component* pobj, int pg_idx, int fd_idx)
 	}
 	else
 	{
-		_edit_prp_ele_pos = { pobj, pg_idx, fd_idx };
+		_edit_prp_ele_pos = { pobj, (uint16_t)pg_idx, (uint16_t)fd_idx };
 		sal_name_str[0] = '\0';
 		_popup_cap = new_aliase;
 		_key_name = "";

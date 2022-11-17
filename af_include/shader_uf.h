@@ -397,7 +397,7 @@ class AFG_EXPORT shader_uf_txt :public shader_uf
 {
 	char _txt_name[FILE_NAME_LEN];
 	ps_af_texture _pdtxt;
-	static GLuint  _sample_index;
+	static GLuint   _sample_index;
 public:
 	shader_uf_txt(GLuint usize, GLuint el_sz) :shader_uf(usize, el_sz)
 	{

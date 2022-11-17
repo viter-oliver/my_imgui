@@ -68,7 +68,7 @@ namespace auto_future
 
 
 
-     GLfloat _plain_vertices[] = {
+     static GLfloat _plain_vertices[] = {
           -1.f, -1.f, 
           1.f, -1.f, 
           -1.f, 1.f,

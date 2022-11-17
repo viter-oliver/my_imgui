@@ -285,3 +285,110 @@ void main()
 	o_clr	= vec4(result , 1.0f);
 }
 )glsl";
+
+const char* modeling_vs_col_d = R"glsl(#version 300 es
+precision mediump float;
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal;
+
+out vec3 FragPos;
+out vec3 Normal;
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    FragPos = vec3(model * vec4(aPos, 1.0));
+    Normal = mat3(transpose(inverse(model))) * aNormal;     
+    gl_Position = projection * view * vec4(FragPos, 1.0);
+})glsl";
+const char* modeling_fs_col_d = R"glsl(#version 300 es
+precision mediump float;
+in vec3 FragPos;
+in vec3 Normal;
+
+out vec4 o_clr;
+uniform vec3 light_position;
+
+uniform vec3 light_ambient;
+uniform vec3 light_diffuse;
+uniform vec3 light_specular;
+
+uniform vec3 viewPos;
+uniform vec3 col_ambient;
+uniform vec3 col_diffuse;
+uniform vec3 col_specular;
+void main()
+{
+	vec3	ambient = light_ambient;// * col_ambient;
+	vec3	normal = normalize(Normal);
+	vec3	lightDir = normalize(-light_position);
+	float	diffFactor = max(dot(lightDir, normal), 0.0);
+	vec3	diffuse = diffFactor * light_diffuse * col_diffuse;
+
+    vec3	viewDir = normalize(viewPos - FragPos);
+    vec3	reflectDir = normalize(reflect(-lightDir, normal));
+	float	specFactor = pow(max(dot(reflectDir, viewDir), 0.0), 32.0f);
+	vec3	specular = specFactor * light_specular * col_specular;
+	
+	vec3	result = ambient + diffuse + specular;
+	o_clr	= vec4(result , 1.0f);
+}
+)glsl";
+
+const char* modeling_vs_1_txt = R"glsl(#version 300 es
+precision mediump float;
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal;
+layout (location = 2) in vec2 txtcoord;
+
+out vec3 FragPos;
+out vec3 Normal;
+out vec2 txtCoord; 
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+
+void main()
+{
+    FragPos = vec3(model * vec4(aPos, 1.0));
+    Normal = mat3(transpose(inverse(model))) * aNormal;
+    txtCoord=txtcoord;     
+    gl_Position = projection * view * vec4(FragPos, 1.0);
+})glsl";
+const char* modeling_fs_1_txt = R"glsl(#version 300 es
+precision mediump float;
+in vec3 FragPos;
+in vec3 Normal;
+in vec2 txtCoord;
+
+out vec4 o_clr;
+uniform vec3 light_position;
+
+uniform vec3 light_ambient;
+uniform vec3 light_diffuse;
+uniform vec3 light_specular;
+
+uniform vec3 viewPos;
+uniform sampler2D texture_diffuse;
+
+void main()
+{
+    vec3    txt_diffuse = vec3(texture(texture_diffuse, txtCoord));
+	vec3	ambient = light_ambient * txt_diffuse;
+	vec3	normal = normalize(Normal);
+	vec3	lightDir = normalize(-light_position);
+	float	diffFactor = max(dot(lightDir, normal), 0.0);
+	vec3	diffuse = diffFactor * light_diffuse * txt_diffuse;
+
+    vec3	viewDir = normalize(viewPos - FragPos);
+    vec3	reflectDir = normalize(reflect(-lightDir, normal));
+	float	specFactor = pow(max(dot(reflectDir, viewDir), 0.0), 32.0f);
+	vec3	specular = specFactor * light_specular;
+	
+	vec3	result = ambient + diffuse + specular;
+	o_clr	= vec4(result , 1.0f);
+}
+)glsl";

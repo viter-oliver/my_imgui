@@ -98,6 +98,7 @@ void afb_load::load_afb(const char* afb_file)
 	file_size = fin.tellg() - file_size;
 	fin.seekg(0, ios::beg);	
 	msgpack::unpacker unpac;
+	#if 0
 	int afb_name_len = strlen(afb_file);
 	if (afb_file[afb_name_len-1]=='C')
 	{
@@ -128,6 +129,7 @@ void afb_load::load_afb(const char* afb_file)
 		delete[] pin_buff;	
 	}
 	else
+	#endif
 	{
 		unpac.reserve_buffer(file_size);
 		fin.read(unpac.buffer(), unpac.buffer_capacity());
@@ -199,14 +201,14 @@ void afb_load::load_afb(const char* afb_file)
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			// Step3 设定filter参数
+			// Step3 锟借定filter锟斤拷锟斤拷
 			/*GLfloat largest_supported_anisotropy;
 			glGetFloatv(GL_MAX_TEXTURE_MAX_ANISOTROPY_EXT, &largest_supported_anisotropy);
 			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, largest_supported_anisotropy);*/
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			if (mipv)
 			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap锟借定filter锟斤拷锟斤拷
 				glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, iw, ih,
 					0, GL_RGBA, GL_UNSIGNED_BYTE, ptxt_data);
 				glGenerateMipmap(GL_TEXTURE_2D);
@@ -233,11 +235,11 @@ void afb_load::load_afb(const char* afb_file)
 			glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-			// Step3 设定filter参数
+			// Step3 锟借定filter锟斤拷锟斤拷
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 			if (mipv)
 			{
-				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap设定filter方法
+				glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR); // 为MipMap锟借定filter锟斤拷锟斤拷
 				glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT5_EXT, iw, ih, 0, bin_sz, ptxt_data);
 				glGenerateMipmap(GL_TEXTURE_2D);
 			}

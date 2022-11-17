@@ -6,34 +6,23 @@ namespace auto_future
      ft_light_scene::ft_light_scene()
      {
           _in_p._sizew = 1500;
-          _in_p._sizeh = 1000;
-          _pj_pt._view_pos = { -41.f, 130.f, -500.f };
-          _pj_pt._center_of_prj = { -41.f, 90.f, 542.f };
+          _in_p._sizeh = 1500;
+          _pj_pt._view_pos = { 0.f, 206.f, -600.f };
+          _pj_pt._center_of_prj = { 0.f, 90.f, 0.f };
 		  
           _pj_pt._up = { 0, 1.f, 0 };
           _pj_pt._fovy = 20;
           _pj_pt._near = 20;
           _pj_pt._far = 100000.f;
-          _pj_pt._test_depth = false;
+          _pj_pt._test_depth = true;
 		  _pj_pt._bk_clr = { 0.2f, 0.2f, 0.2f, 1.f };
-		  _pj_pt._light_pos = { 41.f, 140, -500 };
-		  _pj_pt._light_ambient_clr = { 1, 1, 1 };
+		  _pj_pt._light_pos = { 0.f, -80.f, -60 };
+		  _pj_pt._light_ambient_clr = { 0.17, 0.17, 0.17 };
 		  _pj_pt._light_diffuse_clr = { 1, 1, 1 };
 		  _pj_pt._light_specular_clr = { 1, 1, 1 };
-		  _pj_pt._translate = { 0, 0, 0 };
-		  _pj_pt._scale = { 1, 1, 1 };
-		  _pj_pt._roration = { 0, 0, 0 };
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
-		  reg_property_handle(&_pj_pt, 10, [this](void* memb_adress)
-		  {
-			  ImGui::Combo("trans order:", &_pj_pt._trans_order, str_trans_order, en_trans_order_cnt);
-		  });
 
-		  reg_property_handle(&_pj_pt, 11, [this](void* memb_adress)
-		  {
-			  ImGui::Combo("rotate order:", &_pj_pt._rotate_order, str_rotate_oder, en_rotate_order_cnt);
-		  });
-          reg_property_handle( &_pj_pt, 16, [this]( void* memb_adress )
+          reg_property_handle( &_pj_pt, 11, [this]( void* memb_adress )
           {
                ImGui::ColorEdit4( "Color of background", (float*)&_pj_pt._bk_clr, ImGuiColorEditFlags_RGB );
                if( !_fboId )
@@ -75,92 +64,7 @@ namespace auto_future
           prepareFBO1( _colorTextId, _depthStencilTextId, _fboId, _in_p._sizew, _in_p._sizeh );
 
      }
-	 void ft_light_scene::transform(glm::mat4& model){
-
-		 glm::vec3 gtranslate(_pj_pt._translate.x, _pj_pt._translate.y, _pj_pt._translate.z);
-		 glm::vec3 gscale(_pj_pt._scale.x, _pj_pt._scale.y, _pj_pt._scale.z);
-
-		 function<void()> f_rotate[en_rotate_order_cnt] =
-		 {
-			 [&]()
-			 {
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.z), glm::vec3(0.0f, 0.0f, 1.0f));
-			 },
-				 [&]()
-			 {
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.y), glm::vec3(0.0f, 1.0f, 0.0f));
-			 },
-				 [&]()
-			 {
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.z), glm::vec3(0.0f, 0.0f, 1.0f));
-			 },
-				 [&]()
-			 {
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.x), glm::vec3(1.0f, 0.0f, 0.0f));
-			 },
-				 [&]()
-			 {
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.x), glm::vec3(1.0f, 0.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.y), glm::vec3(0.0f, 1.0f, 0.0f));
-			 },
-				 [&]()
-			 {
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.z), glm::vec3(0.0f, 0.0f, 1.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.y), glm::vec3(0.0f, 1.0f, 0.0f));
-				 model = glm::rotate(model, glm::radians(_pj_pt._roration.x), glm::vec3(1.0f, 0.0f, 0.0f));
-			 },
-		 };
-		 function<void()> f_trans[en_trans_order_cnt] =
-		 {
-			 [&]()
-			 {
-				 f_rotate[_pj_pt._rotate_order]();
-				 model = glm::scale(model, gscale);
-				 model = glm::translate(model, gtranslate);
-			 },
-				 [&]()
-			 {
-				 model = glm::scale(model, gscale);
-				 f_rotate[_pj_pt._rotate_order]();
-				 model = glm::translate(model, gtranslate);
-			 },
-				 [&]()
-			 {
-				 f_rotate[_pj_pt._rotate_order]();
-				 model = glm::translate(model, gtranslate);
-				 model = glm::scale(model, gscale);
-			 },
-				 [&]()
-			 {
-				 model = glm::translate(model, gtranslate);
-				 f_rotate[_pj_pt._rotate_order]();
-				 model = glm::scale(model, gscale);
-			 },
-				 [&]()
-			 {
-				 model = glm::scale(model, gscale);
-				 model = glm::translate(model, gtranslate);
-				 f_rotate[_pj_pt._rotate_order]();
-			 },
-				 [&]()
-			 {
-				 model = glm::translate(model, gtranslate);
-				 model = glm::scale(model, gscale);
-				 f_rotate[_pj_pt._rotate_order]();
-			 },
-		 };
-		 f_trans[_pj_pt._trans_order]();
-	 }
-     void ft_light_scene::draw_frames()
+	 void ft_light_scene::draw_frames()
      {
           if( !_fboId )
           {

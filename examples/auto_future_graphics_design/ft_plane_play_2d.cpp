@@ -32,7 +32,7 @@ namespace auto_future
 					ImGui::Text("fail to find material:%s", _pt._materil_name);
 				}
 			}
-#endif
+
 			ImGui::Spacing();
 			ImGui::InputText("texture:", _pt._texture_name, FILE_NAME_LEN);
 			ImGui::SameLine();
@@ -76,6 +76,7 @@ namespace auto_future
 			ImGui::SliderFloat("rz", &_pt._rotationZ_srd, -360.f, 360.f);
 
 		});
+#endif
 		glGenVertexArrays(1, &_vao);
 		glGenBuffers(1, &_vbo_pos);
 		glGenBuffers(1, &_vbo_uv);

@@ -1,27 +1,23 @@
 #include <cmath>
-#include "ft_color_node.h"
+#include "ft_color_mesh.h"
 #include "af_primitive_object.h"
 #include "ft_light_scene.h"
 #include "ft_trans.h"
+#include "ft_raw_trans.h"
 #include "af_shader_source_code.h"
 
 namespace auto_future
 {
-	 ps_shader ft_color_node::_pcolor_node_sd = nullptr;
-     ft_color_node::ft_color_node()
+	 ps_shader ft_color_mesh::_pcolor_node_sd = nullptr;
+     ft_color_mesh::ft_color_mesh()
      {
 		 _pt._attached_obj[0] = '\0';
 		 _pt._ambient_clr = { 0, 0, 0 };
 		 _pt._diffuse_clr = { 0, 0, 0 };
 		 _pt._specular_clr = { 0, 0, 0 };
-		 float transM[16] = {1, 0, 0, 0,
-							 0, 1, 0, 0,
-							 0, 0, 1, 0, 
-							 1, 0, 0, 1, };
-		 memcpy(_pt._trans_mat4x4, transM, 16 * sizeof (float));
-		 if (!ft_color_node::_pcolor_node_sd)
+		 if (!ft_color_mesh::_pcolor_node_sd)
 		 {
-			 ft_color_node::_pcolor_node_sd = make_shared<af_shader>(modeling_vs_col_d, modeling_fs_col_d);
+			 ft_color_mesh::_pcolor_node_sd = make_shared<af_shader>(modeling_vs_col_d, modeling_fs_col_d);
 		 }
 		 
 #if !defined(IMGUI_DISABLE_DEMO_WINDOWS)
@@ -49,42 +45,17 @@ namespace auto_future
 				 }
 			 }
 		 });
-		 reg_property_handle(&_pt, 1, [this](void* member_address)
-		 {
-			 ImGui::Text("transformation:");
-			 float* pf = _pt._trans_mat4x4;
-			 ImGui::InputFloat4("1st vec4:", pf);
-			 ImGui::InputFloat4("2nd vec4:", pf + 4);
-			 ImGui::InputFloat4("3rd vec4:", pf + 8);
-			 ImGui::InputFloat4("4th vec4:", pf + 12);
-
-		 });
 #endif
      }
-     void ft_color_node::transform( glm::mat4& model )
-     {
-		
-#if 1
-		 glm::mat4 transM = glm::make_mat4(_pt._trans_mat4x4);
-		 model = model* transM;
-#else
-		 glm::vec3 gtranslate(_pt._trans_pos.x, _pt._trans_pos.y, _pt._trans_pos.z);
-		 glm::vec3 gscale(_pt._trans_scale.x, _pt._trans_scale.y, _pt._trans_scale.z);
-		 glm::quat gquat(_pt._trans_qua.w, _pt._trans_qua.x, _pt._trans_qua.y, _pt._trans_qua.z);
-
-		 model = glm::mat4_cast(gquat) * model;
-		 model = glm::scale(model, gscale);
-		 model = glm::translate(model, gtranslate);
-#endif
-     }
-	 void ft_color_node::link(){
+     
+	 void ft_color_mesh::link(){
 		 auto iprm = g_primitive_list.find(_pt._attached_obj);
 		 if (iprm != g_primitive_list.end())
 		 {
 			 _ps_prm = iprm->second;
 		 }
 	 }
-	 void ft_color_node::draw(){
+	 void ft_color_mesh::draw(){
 		 auto cnt = child_count();
 		 for (int ix = 0; ix < cnt;++ix) {
 			 auto pchild = get_child(ix);
@@ -94,13 +65,12 @@ namespace auto_future
 			 return;
 		 }
 		 glm::mat4 model;
-		 transform(model);
 		 auto pd=get_parent();
 		 ft_light_scene* pscene = nullptr;
 		 while (pd)
 		 {
-			 if (typeid(*pd) == typeid(ft_color_node)){
-				 ft_color_node* pnode = static_cast <ft_color_node*>(pd);
+			 if (typeid(*pd) == typeid(ft_raw_trans)){
+				 ft_raw_trans* pnode = static_cast <ft_raw_trans*>(pd);
 				 pnode->transform(model);
 			 } else if (typeid(*pd) == typeid(ft_light_scene)){
 				 pscene = static_cast<ft_light_scene*>(pd);
